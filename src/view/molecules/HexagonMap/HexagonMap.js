@@ -57,6 +57,43 @@ function SVGTitles() {
   );
 }
 
+function SVGLegend({ resultIdx }) {
+  const partyToWins = Object.values(resultIdx).reduce(function (
+    partyToWins,
+    result
+  ) {
+    const winningPartyID = result.partyToVotes.winningPartyID;
+    if (!partyToWins[winningPartyID]) {
+      partyToWins[winningPartyID] = 0;
+    }
+    partyToWins[winningPartyID]++;
+    return partyToWins;
+  },
+  {});
+  const N_COLS = 2;
+  return Object.entries(partyToWins)
+    .sort(function ([partyID1, nWins1], [partyID2, nWins2]) {
+      return nWins2 - nWins1;
+    })
+    .map(function ([partyID, nWins], iParty) {
+      const party = Party.fromID(partyID);
+      return (
+        <SVGHexagon
+          key={partyID}
+          x={1 + parseInt(iParty / N_COLS)}
+          y={
+            ((iParty % N_COLS) -
+              3 +
+              (parseInt(iParty / N_COLS) % 2 === 1 ? 0.5 : 0)) /
+            Math.cos(Math.PI / 6)
+          }
+          color={party.color}
+          label={partyID}
+        />
+      );
+    });
+}
+
 export default function HexagonMap({ resultIdx, result: activeResult }) {
   return (
     <svg
@@ -66,6 +103,7 @@ export default function HexagonMap({ resultIdx, result: activeResult }) {
       fontFamily={STYLE.FONT_FAMILY}
     >
       <SVGTitles />
+      <SVGLegend resultIdx={resultIdx} />
       {[]
         .concat(
           Object.entries(HEXAGON_MAP_DATA_PD),
@@ -85,9 +123,10 @@ export default function HexagonMap({ resultIdx, result: activeResult }) {
             const winningPartyID = result.partyToVotes.winningPartyID;
             color = Party.fromID(winningPartyID).color;
             isActive = result.entID === activeResult.entID;
-            console.debug(result.partyToVotes, result.partyToVotes.pWinner);
             opacity =
-              0.2 + (0.8 * (result.partyToVotes.pWinner - 0.5)) / (1 - 0.5);
+              0.5 +
+              (0.5 * Math.max(0, result.partyToVotes.pWinner - 0.5)) /
+                (1 - 0.5);
           }
 
           return (

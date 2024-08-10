@@ -18,7 +18,8 @@ function SVGHexagon({ x, y, color, label, isActive }) {
     })
     .join(" ");
 
-  let opacity = 0.5;
+  let opacity = 0.8;
+
   if (isActive) {
     opacity = 1;
   }
@@ -29,14 +30,14 @@ function SVGHexagon({ x, y, color, label, isActive }) {
         points={points}
         fill={color}
         opacity={opacity}
-        stroke="#888"
+        stroke="#ccc"
         strokeWidth={0.05}
+        x
       />
       <text
         x={x}
         y={y + 0.1}
         fontSize={0.4}
-        fontFamily={STYLE.FONT_FAMILY}
         textAnchor="middle"
         alignmentBaseline="middle"
         fill={color === "#fff" ? "#eee" : "#fff"}
@@ -47,18 +48,33 @@ function SVGHexagon({ x, y, color, label, isActive }) {
   );
 }
 
+function SVGTitles() {
+  return (
+    <g fontSize={0.5} textAnchor="middle" fill="#888">
+      <text x={11} y={-3.5}>
+        22 Postal Votes
+      </text>
+      <text x={5} y={1}>
+        160 Polling Divisions
+      </text>
+    </g>
+  );
+}
+
 export default function HexagonMap({ resultIdx, result: activeResult }) {
   return (
     <svg
       width={window.innerWidth / 3}
       height={window.innerHeight}
-      viewBox="-2 -3 15 35"
+      viewBox="-2 -4 15 35"
+      fontFamily={STYLE.FONT_FAMILY}
     >
+      <SVGTitles />
       {[]
         .concat(
           Object.entries(HEXAGON_MAP_DATA_PD),
           Object.entries(HEXAGON_MAP_DATA_ED).map(function ([entID, [x, y]]) {
-            return [entID + "P", [x + 9, y - 1]];
+            return [entID + "P", [x + 9, y - 2]];
           })
         )
 

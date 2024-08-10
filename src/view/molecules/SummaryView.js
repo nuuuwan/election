@@ -3,7 +3,6 @@ import { Format } from "../../nonview/base";
 import LabelledStat from "../atoms/LabelledStat";
 
 export default function SummaryView({ summary }) {
-  console.debug({ summary });
   return (
     <Box>
       <LabelledStat

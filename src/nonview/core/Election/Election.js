@@ -62,6 +62,12 @@ class Election extends ElectionBase {
     );
   }
 
+  static async fromElectionTypeAndDate(electionType, date) {
+    const election = new Election(electionType, date);
+    await election.__loadData();
+    return election;
+  }
+
   static async listAll() {
     const elections = ELECTION_LIST_TUPLES.map(
       ([electionType, date]) => new Election(electionType, date)

@@ -6,6 +6,7 @@ import BottomNavigationCustom from "../molecules/BottomNavigationCustom";
 
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
+    electionType: "parliamentary",
     date: "2020-08-05",
     iResult: 0,
   };
@@ -28,9 +29,9 @@ export default class BasePage extends Component {
   }
 
   async componentDidMount() {
-    const { iResult, date } = this.state;
+    const { electionType, date, iResult } = this.state;
 
-    const election = await Election.fromDate(date);
+    const election = await Election.fromElectionTypeAndDate(electionType, date);
     const result = election.resultsList[iResult];
     const resultLK = election.resultsIdx["LK"];
 
@@ -41,7 +42,7 @@ export default class BasePage extends Component {
     const { election } = this.state;
     return (
       <Stack direction="column">
-        <Typography variant="h6">{election.date} Election</Typography>{" "}
+        <Typography variant="h6">{election.titleShort}</Typography>{" "}
       </Stack>
     );
   }

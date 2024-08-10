@@ -4,10 +4,10 @@ import HEXAGON_MAP_DATA_PD from "./HEXAGON_MAP_DATA_PD";
 import HEXAGON_MAP_DATA_ED from "./HEXAGON_MAP_DATA_ED";
 import { STYLE } from "../../../nonview/constants";
 
-function SVGHexagon({ x, y, color, label }) {
+function SVGHexagon({ x, y, color, label, isActive }) {
   const N_SIDES = 6;
   const X_TO_Y_RATIO = 1 / Math.cos(Math.PI / 6);
-  const radius = 0.6;
+  const radius = 0.5;
   const points = MathX.range(0, N_SIDES)
     .map(function (i) {
       const angle = (i * Math.PI * 2) / N_SIDES;
@@ -21,9 +21,14 @@ function SVGHexagon({ x, y, color, label }) {
     })
     .join(" ");
 
+  let opacity = 0.5;
+  if (isActive) {
+    opacity = 1;
+  }
+
   return (
     <g>
-      <polygon points={points} fill={color} stroke="white" strokeWidth={0.1} />
+      <polygon points={points} fill={color} opacity={opacity} stroke="none" />
       <text
         x={x}
         y={y * X_TO_Y_RATIO}
@@ -39,7 +44,7 @@ function SVGHexagon({ x, y, color, label }) {
   );
 }
 
-export default function HexagonMap({ resultIdx }) {
+export default function HexagonMap({ resultIdx, result: activeResult }) {
   return (
     <svg
       width={window.innerWidth / 3}
@@ -58,7 +63,16 @@ export default function HexagonMap({ resultIdx }) {
           const label = entID.substring(3, 6);
           const winningPartyID = result.partyToVotes.winningPartyID;
           const color = Party.fromID(winningPartyID).color;
-          return <SVGHexagon x={x} y={y} color={color} label={label} />;
+          const isActive = result.entID === activeResult.entID;
+          return (
+            <SVGHexagon
+              x={x}
+              y={y}
+              color={color}
+              label={label}
+              isActive={isActive}
+            />
+          );
         })}
     </svg>
   );

@@ -31,7 +31,7 @@ export default class EntView extends Component {
     return (
       <Stack
         direction="row"
-        gap={0.5}
+        gap={1}
         sx={{ margin: "auto", alignItems: "center" }}
       >
         <Typography variant="h3" sx={sx}>

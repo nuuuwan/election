@@ -67,7 +67,7 @@ export default class BasePage extends Component {
   }
 
   renderLeft() {
-    return <HexagonMap resultIdx={this.resultIdx} />;
+    return <HexagonMap resultIdx={this.resultIdx} result={this.result} />;
   }
 
   renderCenter() {

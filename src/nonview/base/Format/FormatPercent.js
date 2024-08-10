@@ -6,6 +6,9 @@ let FormatPercent = {
       return "-";
     }
     let minimumFractionDigits = 1;
+    if (x > 0.105) {
+      minimumFractionDigits = 0;
+    }
 
     return x.toLocaleString(undefined, {
       style: "percent",

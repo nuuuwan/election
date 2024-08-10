@@ -6,6 +6,7 @@ import {
   BottomNavigationCustom,
   HexagonMap,
 } from "../molecules";
+import { STYLE } from "../../nonview/constants";
 
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
@@ -37,6 +38,11 @@ export default class BasePage extends Component {
     return Result.fromList("LK", this.resultList);
   }
 
+  get nResults() {
+    const { election } = this.state;
+    return election.pdResultsList.length;
+  }
+
   setIResult(iResult) {
     const { election } = this.state;
     const result = election.pdResultsList[iResult];
@@ -59,28 +65,22 @@ export default class BasePage extends Component {
   }
 
   renderHeader() {
-    const { election, iResult } = this.state;
+    const { election } = this.state;
     return (
-      <Stack direction="column">
-        <Typography variant="h6">{election.titleShort}</Typography>
-        <Stack direction="row" sx={{ margin: "auto" }}>
-          <Typography variant="h4">{iResult + 1}</Typography>
-          <Typography variant="h4" color="#888">
-            /{election.pdResultsList.length}
-          </Typography>
-        </Stack>
-      </Stack>
+      <Typography variant="h3" color="#ccc">
+        {election.titleShort}
+      </Typography>
     );
   }
 
-  renderLeft() {
+  renderFarLeft() {
     return <HexagonMap resultIdx={this.resultIdx} result={this.result} />;
   }
 
-  renderCenter() {
+  renderCenterLeft() {
     return (
       <Box>
-        <ResultSingleView result={this.result} />
+        <ResultSingleView result={this.result} superTitle="Final" />
         <Typography variant="caption">
           visualization & analysis by @nuuuwan
         </Typography>
@@ -88,12 +88,22 @@ export default class BasePage extends Component {
     );
   }
 
-  renderRight() {
+  renderCenterRight() {
+    const { iResult } = this.state;
+    console.debug(iResult, this.nResults);
+    const superTitle =
+      this.nResults === iResult + 1
+        ? "Final"
+        : `${iResult + 1}/${this.nResults} Released`;
     return (
-      <Box>
-        <ResultSingleView result={this.resultLK} />
+      <Box key={iResult}>
+        <ResultSingleView result={this.resultLK} superTitle={superTitle} />
       </Box>
     );
+  }
+
+  renderFarRight() {
+    return null;
   }
 
   renderFooter() {
@@ -121,13 +131,15 @@ export default class BasePage extends Component {
       return <CircularProgress />;
     }
 
+    const width = STYLE.PCT_COLUMN_WIDTH;
     return (
       <Box sx={{ textAlign: "center" }}>
         {this.renderHeader()}
         <Stack direction="row">
-          <Box sx={{ width: "33%" }}> {this.renderLeft()}</Box>
-          <Box sx={{ width: "34%" }}> {this.renderCenter()}</Box>
-          <Box sx={{ width: "33%" }}> {this.renderRight()}</Box>
+          <Box sx={{ width }}> {this.renderFarLeft()}</Box>
+          <Box sx={{ width }}> {this.renderCenterLeft()}</Box>
+          <Box sx={{ width }}> {this.renderCenterRight()}</Box>{" "}
+          <Box sx={{ width }}> {this.renderFarRight()}</Box>
         </Stack>
         {this.renderFooter()}
       </Box>

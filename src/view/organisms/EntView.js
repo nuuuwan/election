@@ -23,21 +23,21 @@ export default class EntView extends Component {
   }
 
   get subTitle() {
-    return this.props.entID.replace("EC-", "");
+    return this.props.entID;
   }
 
   render() {
     const { sx } = this.props;
     return (
       <Stack
-        direction="row"
-        gap={1}
+        direction="column"
+        gap={0}
         sx={{ margin: "auto", alignItems: "center" }}
       >
-        <Typography variant="h3" sx={sx}>
+        <Typography variant="h5" sx={sx}>
           {this.title}
         </Typography>
-        <Typography variant="h3" sx={Object.assign({ opacity: 0.25 }, sx)}>
+        <Typography variant="h5" sx={Object.assign({ opacity: 0.25 }, sx)}>
           {this.subTitle}
         </Typography>
       </Stack>

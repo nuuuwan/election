@@ -37,8 +37,8 @@ export default function PartyToVotesPieChart({ partyToVotes }) {
           },
         }}
         slotProps={{ legend: { hidden: true } }}
-        width={window.innerWidth / 3}
-        height={300}
+        width={STYLE.COLUMN_WIDTH}
+        height={Math.min(STYLE.HEIGHT / 3, STYLE.COLUMN_WIDTH)}
         margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
       />
     </Box>

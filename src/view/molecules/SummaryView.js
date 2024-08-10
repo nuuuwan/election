@@ -11,11 +11,11 @@ export default function SummaryView({ summary }) {
       />{" "}
       <LabelledStat
         label="Turnout"
-        valueStr={Format.percent(summary.pTurnout, 1)}
+        valueStr={Format.percentWithStyle(summary.pTurnout)}
       />{" "}
       <LabelledStat
         label="Rejected"
-        valueStr={Format.percent(summary.pRejected, 1)}
+        valueStr={Format.percentWithStyle(summary.pRejected)}
       />
     </Box>
   );

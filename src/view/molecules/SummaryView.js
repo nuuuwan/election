@@ -4,7 +4,7 @@ import LabelledStat from "../atoms/LabelledStat";
 
 export default function SummaryView({ summary }) {
   return (
-    <Stack direction="column" gap={0}>
+    <Stack direction="column" gap={0} sx={{ opacity: 0.2 }}>
       <LabelledStat label="Electors" valueStr={Format.int(summary.electors)} />{" "}
       <Stack direction="row" gap={2} sx={{ margin: "auto" }}>
         <LabelledStat

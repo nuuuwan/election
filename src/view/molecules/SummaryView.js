@@ -6,14 +6,16 @@ export default function SummaryView({ summary }) {
   return (
     <Stack direction="column" gap={0}>
       <LabelledStat label="Electors" valueStr={Format.int(summary.electors)} />{" "}
-      <LabelledStat
-        label="Turnout"
-        valueStr={Format.percent(summary.pTurnout)}
-      />{" "}
-      <LabelledStat
-        label="Rejected"
-        valueStr={Format.percent(summary.pRejected)}
-      />
+      <Stack direction="row" gap={2} sx={{ margin: "auto" }}>
+        <LabelledStat
+          label="Turnout"
+          valueStr={Format.percent(summary.pTurnout)}
+        />
+        <LabelledStat
+          label="Rejected"
+          valueStr={Format.percent(summary.pRejected)}
+        />
+      </Stack>
     </Stack>
   );
 }

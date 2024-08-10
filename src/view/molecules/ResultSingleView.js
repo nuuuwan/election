@@ -5,6 +5,9 @@ import { Party } from "../../nonview/core";
 import { EntView } from "../../view/organisms";
 
 export default function ResultSingleView({ result }) {
+  if (!result) {
+    return null;
+  }
   const pdID = result.entID;
   const edID = pdID.substring(0, 5);
   const winningParty = Party.fromID(result.partyToVotes.winningPartyID);

@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { Box, CircularProgress, Stack, Typography } from "@mui/material";
-import { Election } from "../../nonview/core";
+import { Election, Result } from "../../nonview/core";
 import {
   ResultSingleView,
   BottomNavigationCustom,
@@ -11,7 +11,6 @@ export default class BasePage extends Component {
   static DEFAULT_STATE = {
     electionType: "Presidential",
     date: "2019-11-16",
-    iResult: 181,
   };
   constructor(props) {
     super(props);
@@ -23,12 +22,19 @@ export default class BasePage extends Component {
     const { election, iResult } = this.state;
     return election.pdResultsList[iResult];
   }
+
+  get resultList() {
+    const { election, iResult } = this.state;
+    return election.pdResultsList.slice(0, iResult + 1);
+  }
+
   get resultIdx() {
-    const { election } = this.state;
-    return election.resultsIdx;
+    return Object.fromEntries(
+      this.resultList.map((result) => [result.entID, result])
+    );
   }
   get resultLK() {
-    return this.resultIdx["LK"];
+    return Result.fromList("LK", this.resultList);
   }
 
   setIResult(iResult) {
@@ -47,8 +53,9 @@ export default class BasePage extends Component {
     const { electionType, date } = this.state;
 
     const election = await Election.fromElectionTypeAndDate(electionType, date);
+    const iResult = election.pdResultsList.length - 1;
 
-    this.setState({ election });
+    this.setState({ election, iResult });
   }
 
   renderHeader() {

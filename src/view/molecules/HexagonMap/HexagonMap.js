@@ -58,14 +58,22 @@ export default function HexagonMap({ resultIdx, result: activeResult }) {
             return [entID + "P", [x + 9, y - 1]];
           })
         )
+
         .map(function ([entID, [x, y]]) {
           const result = resultIdx[entID];
           const label = entID.substring(3, 6);
-          const winningPartyID = result.partyToVotes.winningPartyID;
-          const color = Party.fromID(winningPartyID).color;
-          const isActive = result.entID === activeResult.entID;
+
+          let color = "#eee";
+          let isActive = false;
+          if (result) {
+            const winningPartyID = result.partyToVotes.winningPartyID;
+            color = Party.fromID(winningPartyID).color;
+            isActive = result.entID === activeResult.entID;
+          }
+
           return (
             <SVGHexagon
+              key={entID}
               x={x}
               y={y}
               color={color}

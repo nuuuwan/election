@@ -51,11 +51,11 @@ function SVGHexagon({ x, y, color, label, isActive }) {
 function SVGTitles() {
   return (
     <g fontSize={0.5} textAnchor="middle" fill="#888">
-      <text x={11} y={-3.5}>
-        22 Postal Votes
+      <text x={11} y={-4}>
+        {"22 Postal Votes".toUpperCase()}
       </text>
       <text x={5} y={1}>
-        160 Polling Divisions
+        {"160 Polling Divisions".toUpperCase()}
       </text>
     </g>
   );
@@ -66,7 +66,7 @@ export default function HexagonMap({ resultIdx, result: activeResult }) {
     <svg
       width={STYLE.COLUMN_WIDTH}
       height={STYLE.HEIGHT}
-      viewBox="2 -4 9 33"
+      viewBox="2 -5 9 33"
       fontFamily={STYLE.FONT_FAMILY}
     >
       <SVGTitles />

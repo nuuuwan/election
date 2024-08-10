@@ -14,7 +14,11 @@ export default function ResultSingleView({ result, superTitle }) {
     <Stack key={entID} direction="column" gap={0}>
       <Typography
         variant="body1"
-        sx={{ color: winningParty.color, opacity: 0.5 }}
+        sx={{
+          color: winningParty.color,
+          opacity: 0.5,
+          textTransform: "uppercase",
+        }}
       >
         {superTitle}
       </Typography>

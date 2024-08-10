@@ -8,11 +8,22 @@ let FormatInt = {
     if (!x || x === 0) {
       return "-";
     }
-    if (x > 1_000_000) {
+    // M
+    if (x > 10_000_000) {
       return `${(x / 1_000_000).toFixed(1)}M`;
     }
-    if (x > 1_000) {
+    if (x > 1_000_000) {
+      return `${(x / 1_000_000).toFixed(2)}M`;
+    }
+    // K
+    if (x > 100_000) {
       return `${(x / 1_000).toFixed(0)}K`;
+    }
+    if (x > 10_000) {
+      return `${(x / 1_000).toFixed(1)}K`;
+    }
+    if (x > 1_000) {
+      return `${(x / 1_000).toFixed(2)}K`;
     }
     return x.toLocaleString();
   },

@@ -67,9 +67,12 @@ export default class BasePage extends Component {
   renderHeader() {
     const { election } = this.state;
     return (
-      <Typography variant="h3" color="#ccc">
-        {election.titleShort}
-      </Typography>
+      <Box color="#ccc">
+        <Typography variant="h4">{election.titleShort}</Typography>
+        <Typography variant="body1">
+          visualization & analysis by @nuuuwan
+        </Typography>
+      </Box>
     );
   }
 
@@ -81,9 +84,6 @@ export default class BasePage extends Component {
     return (
       <Box>
         <ResultSingleView result={this.result} superTitle="Final" />
-        <Typography variant="caption">
-          visualization & analysis by @nuuuwan
-        </Typography>
       </Box>
     );
   }
@@ -125,15 +125,10 @@ export default class BasePage extends Component {
     );
   }
 
-  render() {
-    const { election } = this.state;
-    if (!election) {
-      return <CircularProgress />;
-    }
-
+  renderMultiColumn() {
     const width = STYLE.PCT_COLUMN_WIDTH;
     return (
-      <Box sx={{ textAlign: "center" }}>
+      <Box>
         {this.renderHeader()}
         <Stack direction="row">
           <Box sx={{ width }}> {this.renderFarLeft()}</Box>
@@ -144,5 +139,31 @@ export default class BasePage extends Component {
         {this.renderFooter()}
       </Box>
     );
+  }
+
+  renderSingleColumn() {
+    return (
+      <Box>
+        {this.renderHeader()}
+        {this.renderCenterLeft()}
+        {this.renderFooter()}
+      </Box>
+    );
+  }
+
+  renderInner() {
+    const { election } = this.state;
+    if (!election) {
+      return <CircularProgress />;
+    }
+
+    if (STYLE.ASPECT_RATIO > 1.5) {
+      return this.renderMultiColumn();
+    }
+    return this.renderSingleColumn();
+  }
+
+  render() {
+    return <Box sx={{ textAlign: "center" }}>{this.renderInner()}</Box>;
   }
 }

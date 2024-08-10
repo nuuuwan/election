@@ -64,9 +64,9 @@ function SVGTitles() {
 export default function HexagonMap({ resultIdx, result: activeResult }) {
   return (
     <svg
-      width={window.innerWidth / 3}
-      height={window.innerHeight}
-      viewBox="-2 -4 15 35"
+      width={STYLE.COLUMN_WIDTH}
+      height={STYLE.HEIGHT}
+      viewBox="2 -4 9 33"
       fontFamily={STYLE.FONT_FAMILY}
     >
       <SVGTitles />

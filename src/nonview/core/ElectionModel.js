@@ -56,7 +56,7 @@ export default class ElectionModel {
     }, []);
   }
 
-  static normalize(partyToVoteInfo) {
+  static normalizeSingle(partyToVoteInfo) {
     const totalPVotes = MathX.sum(
       Object.values(partyToVoteInfo).map((x) => x.pVotesPredicted)
     );
@@ -64,6 +64,17 @@ export default class ElectionModel {
       Object.entries(partyToVoteInfo).map(function ([partyID, voteInfo]) {
         voteInfo.pVotesPredicted = voteInfo.pVotesPredicted / totalPVotes;
         return [partyID, voteInfo];
+      })
+    );
+  }
+
+  static normalize(pdToPartyToVoteInfo) {
+    return Object.fromEntries(
+      Object.entries(pdToPartyToVoteInfo).map(function ([
+        pdID,
+        partyToVoteInfo,
+      ]) {
+        return [pdID, ElectionModel.normalizeSingle(partyToVoteInfo)];
       })
     );
   }
@@ -103,8 +114,6 @@ export default class ElectionModel {
   }
 
   train() {
-    // Train
-
     const XTrain = this.getXTrain();
     const YTrain = this.getYTrain();
 
@@ -140,16 +149,7 @@ export default class ElectionModel {
       {}
     );
 
-    const normPDToPartyTOPVotes = Object.fromEntries(
-      Object.entries(pdToPartyToVoteInfo).map(function ([
-        pdID,
-        partyToVoteInfo,
-      ]) {
-        return [pdID, ElectionModel.normalize(partyToVoteInfo)];
-      })
-    );
-
-    return normPDToPartyTOPVotes;
+    return ElectionModel.normalize(pdToPartyToVoteInfo);
   }
 
   getElectionReleased() {

@@ -32,7 +32,7 @@ export default function BottomNavigationCustom({
   };
 
   return (
-    <BottomNavigation>
+    <BottomNavigation sx={{ backgroundColor: "#f8f8f8" }}>
       <BottomNavigationActionCustom
         icon={<FirstPageIcon />}
         onClick={gotoFirstResult}

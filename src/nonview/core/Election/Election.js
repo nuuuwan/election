@@ -58,7 +58,7 @@ class Election extends ElectionBase {
 
   static buildResultsIdx(resultsList) {
     return Object.fromEntries(
-      resultsList.map((result) => [result.entityID, result])
+      resultsList.map((result) => [result.entID, result])
     );
   }
 
@@ -99,8 +99,11 @@ class Election extends ElectionBase {
   }
 
   get pdResultsList() {
+    const EXCLUDE_PD_IDS = ["EC-11D"];
     return this.resultsList.filter(function (result) {
-      return result.entityID.length === 6;
+      return (
+        result.entID.length === 6 && !EXCLUDE_PD_IDS.includes(result.entID)
+      );
     });
   }
 }

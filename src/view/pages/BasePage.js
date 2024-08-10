@@ -18,7 +18,7 @@ export default class BasePage extends Component {
 
   setIResult(iResult) {
     const { election } = this.state;
-    const result = election.resultsList[iResult];
+    const result = election.pdResultsList[iResult];
     this.setState({ iResult, result });
   }
 
@@ -32,7 +32,7 @@ export default class BasePage extends Component {
     const { electionType, date, iResult } = this.state;
 
     const election = await Election.fromElectionTypeAndDate(electionType, date);
-    const result = election.resultsList[iResult];
+    const result = election.pdResultsList[iResult];
     const resultLK = election.resultsIdx["LK"];
     this.setState({ election, result, resultLK });
   }

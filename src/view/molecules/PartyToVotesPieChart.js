@@ -2,6 +2,7 @@ import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
 import { Party } from "../../nonview/core";
 import { Format } from "../../nonview/base";
 import { Box } from "@mui/material";
+import { STYLE } from "../../nonview/constants";
 
 export default function PartyToVotesPieChart({ partyToVotes }) {
   const data = Object.entries(partyToVotes.partyToVotesSortedOthered).map(
@@ -31,6 +32,7 @@ export default function PartyToVotesPieChart({ partyToVotes }) {
           [`& .${pieArcLabelClasses.root}`]: {
             fill: "white",
             fontSize: "200%",
+            fontFamily: STYLE.FONT_FAMILY,
           },
         }}
         slotProps={{ legend: { hidden: true } }}

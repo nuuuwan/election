@@ -7,7 +7,7 @@ const ElectionExpand = {
       edToResultsList,
       result
     ) {
-      const pdID = result.entityID;
+      const pdID = result.entID;
       const edID = pdID.slice(0, 5);
       if (!(edID in edToResultsList)) {
         edToResultsList[edID] = [];

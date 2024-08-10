@@ -84,9 +84,17 @@ export default class Ent {
   }
 
   static async fromID(entID) {
+    if (entID === "LK") {
+      return Ent.LK;
+    }
+
     const entType = EntType.fromID(entID);
     const entIndex = await Ent.idxFromType(entType);
     let ent = entIndex[entID];
+    if (!ent) {
+      return undefined;
+    }
+
     if (ent["centroid"]) {
       ent["centroid"] = JSON.parse(ent["centroid"]);
     }

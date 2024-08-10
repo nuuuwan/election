@@ -1,4 +1,5 @@
 import { MathX } from "..";
+import { STYLE } from "../../../nonview/constants";
 
 let FormatGeneric = {
   getFontSize(x, valueRange, fontSizeRange) {
@@ -42,7 +43,7 @@ let FormatGeneric = {
   },
 };
 
-FormatGeneric.DEFAULT_FONT_SIZE = 10;
+FormatGeneric.DEFAULT_FONT_SIZE = STYLE.FONT_SIZE;
 FormatGeneric.DEFAULT_FONT_SIZE_RANGE = [
   FormatGeneric.DEFAULT_FONT_SIZE,
   FormatGeneric.DEFAULT_FONT_SIZE * 2,

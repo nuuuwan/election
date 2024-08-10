@@ -6,15 +6,12 @@ import { STYLE } from "../../../nonview/constants";
 
 function SVGHexagon({ x, y, color, label, isActive }) {
   const N_SIDES = 6;
-  const X_TO_Y_RATIO = 1 / Math.cos(Math.PI / 6);
-  const radius = 0.5;
+
+  const radius = 1 / Math.cos(Math.PI / 6) ** 2 / 2;
   const points = MathX.range(0, N_SIDES)
     .map(function (i) {
       const angle = (i * Math.PI * 2) / N_SIDES;
-      return [
-        x + radius * Math.cos(angle),
-        (y + radius * Math.sin(angle)) * X_TO_Y_RATIO,
-      ];
+      return [x + radius * Math.cos(angle), y + radius * Math.sin(angle)];
     })
     .map(function ([x, y]) {
       return `${x},${y}`;
@@ -28,15 +25,21 @@ function SVGHexagon({ x, y, color, label, isActive }) {
 
   return (
     <g>
-      <polygon points={points} fill={color} opacity={opacity} stroke="none" />
+      <polygon
+        points={points}
+        fill={color}
+        opacity={opacity}
+        stroke="#888"
+        strokeWidth={0.05}
+      />
       <text
         x={x}
-        y={y * X_TO_Y_RATIO}
+        y={y + 0.1}
         fontSize={0.4}
         fontFamily={STYLE.FONT_FAMILY}
         textAnchor="middle"
         alignmentBaseline="middle"
-        fill="white"
+        fill={color === "#fff" ? "#eee" : "#fff"}
       >
         {label}
       </text>
@@ -63,7 +66,7 @@ export default function HexagonMap({ resultIdx, result: activeResult }) {
           const result = resultIdx[entID];
           const label = entID.substring(3, 6);
 
-          let color = "#eee";
+          let color = "#fff";
           let isActive = false;
           if (result) {
             const winningPartyID = result.partyToVotes.winningPartyID;
@@ -75,7 +78,7 @@ export default function HexagonMap({ resultIdx, result: activeResult }) {
             <SVGHexagon
               key={entID}
               x={x}
-              y={y}
+              y={y / Math.cos(Math.PI / 6)}
               color={color}
               label={label}
               isActive={isActive}

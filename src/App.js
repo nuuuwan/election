@@ -8,7 +8,7 @@ import { Format } from "./nonview/base";
 
 const THEME = createTheme({
   typography: {
-    fontFamily: "Afacad",
+    fontFamily: "Cabin",
     fontSize: Format.DEFAULT_FONT_SIZE,
   },
 });

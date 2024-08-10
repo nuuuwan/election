@@ -34,7 +34,7 @@ export default class EntView extends Component {
         gap={0}
         sx={{ margin: "auto", alignItems: "center" }}
       >
-        <Typography variant="h4" sx={sx}>
+        <Typography variant="h3" sx={sx}>
           {this.title}
         </Typography>
       </Stack>

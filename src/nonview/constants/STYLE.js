@@ -2,7 +2,7 @@ let STYLE = {
   WIDTH: window.innerWidth,
   HEIGHT: window.innerHeight - 60,
   FONT_SIZE: 10,
-  FONT_FAMILY: "Afacad",
+  FONT_FAMILY: "Cabin",
 };
 
 STYLE.ASPECT_RATIO = STYLE.WIDTH / STYLE.HEIGHT;

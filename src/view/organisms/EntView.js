@@ -34,10 +34,6 @@ export default class EntView extends Component {
         gap={0}
         sx={{ margin: "auto", alignItems: "center" }}
       >
-        {" "}
-        <Typography variant="h5" sx={Object.assign({ opacity: 0.25 }, sx)}>
-          {this.subTitle}
-        </Typography>
         <Typography variant="h4" sx={sx}>
           {this.title}
         </Typography>

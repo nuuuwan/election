@@ -22,7 +22,15 @@ export default function ResultSingleView({ result, superTitle }) {
       >
         {superTitle}
       </Typography>
-      <EntView entID={entID} sx={{ color: winningParty.color }} />
+      <EntView
+        entID={entID}
+        sx={{
+          backgroundColor: winningParty.color,
+          color: "white",
+          p: 0.5,
+          borderRadius: 1,
+        }}
+      />
       <SummaryView summary={result.summary} />
       <PartyToVotesView partyToVotes={result.partyToVotes} />
     </Stack>

@@ -1,6 +1,7 @@
 import { Stack } from "@mui/material";
 import { Format } from "../../nonview/base";
-import LabelledStat from "../atoms/LabelledStat";
+import { Party } from "../../nonview/core";
+import { LabelledStat, PartyView } from "../../view/atoms";
 
 const N_DISPLAY = 3;
 
@@ -11,12 +12,13 @@ export default function PartyToVotesView({ partyToVotes }) {
   );
   return (
     <Stack direction="column">
-      {entries.map(function ([party, pVotes]) {
+      {entries.map(function ([partyID, pVotes]) {
         return (
           <LabelledStat
-            key={party}
-            label={party}
+            key={partyID}
+            label={<PartyView partyID={partyID} />}
             valueStr={Format.percent(pVotes, 1)}
+            sx={{ color: Party.fromID(partyID).color }}
           />
         );
       })}

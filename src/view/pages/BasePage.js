@@ -34,7 +34,6 @@ export default class BasePage extends Component {
     const election = await Election.fromElectionTypeAndDate(electionType, date);
     const result = election.resultsList[iResult];
     const resultLK = election.resultsIdx["LK"];
-
     this.setState({ election, result, resultLK });
   }
 

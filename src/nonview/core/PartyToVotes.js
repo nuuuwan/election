@@ -55,7 +55,7 @@ export default class PartyToVotes {
     return Object.fromEntries(sortedMajorEntries);
   }
 
-  get winningParty() {
+  get winningPartyID() {
     return Object.keys(this.getSortedMajor(0.001))[0];
   }
 

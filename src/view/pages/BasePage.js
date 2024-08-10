@@ -5,22 +5,14 @@ import ResultSingleView from "../molecules/ResultSingleView";
 import BottomNavigationCustom from "../molecules/BottomNavigationCustom";
 
 export default class BasePage extends Component {
+  static DEFAULT_STATE = {
+    date: "2020-08-05",
+    iResult: 0,
+  };
   constructor(props) {
     super(props);
 
-    const date = undefined;
-    const iResult = undefined;
-    const election = undefined;
-    const result = undefined;
-    const resultLK = undefined;
-
-    this.state = {
-      date,
-      iResult,
-      election,
-      result,
-      resultLK,
-    };
+    this.state = BasePage.DEFAULT_STATE;
   }
 
   setIResult(iResult) {
@@ -36,19 +28,13 @@ export default class BasePage extends Component {
   }
 
   async componentDidMount() {
-    let { iResult, date } = this.state;
-
-    if (!date) {
-      const elections = await Election.listAll();
-      date = Election.getLastElection(elections).date;
-    }
-    iResult = iResult || 0;
+    const { iResult, date } = this.state;
 
     const election = await Election.fromDate(date);
     const result = election.resultsList[iResult];
     const resultLK = election.resultsIdx["LK"];
 
-    this.setState({ date, iResult, election, result, resultLK });
+    this.setState({ election, result, resultLK });
   }
 
   renderHeader() {

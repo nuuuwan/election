@@ -8,7 +8,7 @@ export default class BasePage extends Component {
   static DEFAULT_STATE = {
     electionType: "parliamentary",
     date: "2020-08-05",
-    iResult: 0,
+    iResult: 181,
   };
   constructor(props) {
     super(props);
@@ -24,7 +24,7 @@ export default class BasePage extends Component {
 
   gotoNextResult() {
     const { iResult } = this.state;
-    const iResultNext = iResult + 1;
+    const iResultNext = iResult - 1;
     this.setIResult(iResultNext);
   }
 

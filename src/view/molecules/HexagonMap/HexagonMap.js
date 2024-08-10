@@ -1,11 +1,13 @@
 import { MathX } from "../../../nonview/base";
 import { Party } from "../../../nonview/core";
 import HEXAGON_MAP_DATA_PD from "./HEXAGON_MAP_DATA_PD";
+import HEXAGON_MAP_DATA_ED from "./HEXAGON_MAP_DATA_ED";
+import { STYLE } from "../../../nonview/constants";
 
-function SVGHexagon({ x, y, color }) {
+function SVGHexagon({ x, y, color, label }) {
   const N_SIDES = 6;
   const X_TO_Y_RATIO = 1 / Math.cos(Math.PI / 6);
-  const radius = 0.55;
+  const radius = 0.6;
   const points = MathX.range(0, N_SIDES)
     .map(function (i) {
       const angle = (i * Math.PI * 2) / N_SIDES;
@@ -20,7 +22,20 @@ function SVGHexagon({ x, y, color }) {
     .join(" ");
 
   return (
-    <polygon points={points} fill={color} stroke="white" strokeWidth={0.1} />
+    <g>
+      <polygon points={points} fill={color} stroke="white" strokeWidth={0.1} />
+      <text
+        x={x}
+        y={y * X_TO_Y_RATIO}
+        fontSize={0.4}
+        fontFamily={STYLE.FONT_FAMILY}
+        textAnchor="middle"
+        alignmentBaseline="middle"
+        fill="white"
+      >
+        {label}
+      </text>
+    </g>
   );
 }
 
@@ -31,12 +46,20 @@ export default function HexagonMap({ resultIdx }) {
       height={window.innerHeight}
       viewBox="-2 -3 15 35"
     >
-      {Object.entries(HEXAGON_MAP_DATA_PD).map(function ([entID, [x, y]]) {
-        const result = resultIdx[entID];
-        const winningPartyID = result.partyToVotes.winningPartyID;
-        const color = Party.fromID(winningPartyID).color;
-        return <SVGHexagon x={x} y={y} color={color} />;
-      })}
+      {[]
+        .concat(
+          Object.entries(HEXAGON_MAP_DATA_PD),
+          Object.entries(HEXAGON_MAP_DATA_ED).map(function ([entID, [x, y]]) {
+            return [entID + "P", [x + 9, y - 1]];
+          })
+        )
+        .map(function ([entID, [x, y]]) {
+          const result = resultIdx[entID];
+          const label = entID.substring(3, 6);
+          const winningPartyID = result.partyToVotes.winningPartyID;
+          const color = Party.fromID(winningPartyID).color;
+          return <SVGHexagon x={x} y={y} color={color} label={label} />;
+        })}
     </svg>
   );
 }

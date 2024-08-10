@@ -1,5 +1,5 @@
 const ELECTION_LIST_TUPLES = [
-  ["Presidential", "2024-10-24"],
+  ["Presidential", "2024-09-21"],
   ["Presidential", "2019-11-16"],
   ["Presidential", "2015-01-08"],
   ["Presidential", "2010-01-26"],

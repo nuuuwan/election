@@ -5,7 +5,7 @@ import { Party } from "../../nonview/core";
 export default function ResultSingleView({ result }) {
   const winningParty = Party.fromID(result.partyToVotes.winningPartyID);
   return (
-    <Stack direction="column">
+    <Stack direction="column" gap={0}>
       <Typography variant="h3" color={winningParty.color}>
         {result.entityID}
       </Typography>

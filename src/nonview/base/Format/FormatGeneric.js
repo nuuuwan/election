@@ -42,7 +42,7 @@ let FormatGeneric = {
   },
 };
 
-FormatGeneric.DEFAULT_FONT_SIZE = 12;
+FormatGeneric.DEFAULT_FONT_SIZE = 10;
 FormatGeneric.DEFAULT_FONT_SIZE_RANGE = [
   FormatGeneric.DEFAULT_FONT_SIZE,
   FormatGeneric.DEFAULT_FONT_SIZE * 2,

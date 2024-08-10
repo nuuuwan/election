@@ -2,22 +2,19 @@ import { Stack } from "@mui/material";
 import { Format } from "../../nonview/base";
 import { Party } from "../../nonview/core";
 import { LabelledStat, PartyView } from "../../view/atoms";
-
-const N_DISPLAY = 3;
+import PartyToVotesPieChart from "./PartyToVotesPieChart";
 
 export default function PartyToVotesView({ partyToVotes }) {
-  const entries = Object.entries(partyToVotes.partyToPVotesSorted).slice(
-    0,
-    N_DISPLAY
-  );
+  const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
   return (
-    <Stack direction="column">
-      {entries.map(function ([partyID, pVotes]) {
+    <Stack direction="column" gap={0} sx={{ textAlign: "center" }}>
+      <PartyToVotesPieChart partyToVotes={partyToVotes} />
+      {entries.map(function ([partyID, votes]) {
         return (
           <LabelledStat
             key={partyID}
             label={<PartyView partyID={partyID} />}
-            valueStr={Format.percentWithStyle(pVotes)}
+            valueStr={Format.int(votes)}
             sx={{ color: Party.fromID(partyID).color }}
           />
         );

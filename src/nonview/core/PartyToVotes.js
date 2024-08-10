@@ -67,6 +67,20 @@ export default class PartyToVotes {
     );
   }
 
+  get partyToVotesSortedOthered() {
+    let nonOther = Object.fromEntries(
+      Object.entries(this.partyToVotes)
+
+        .sort(function (a, b) {
+          return b[1] - a[1];
+        })
+        .splice(0, 3)
+    );
+    const nonOtherVotes = MathX.sum(Object.values(nonOther));
+    const otherVotes = this.totalVotes - nonOtherVotes;
+    return { ...nonOther, Other: otherVotes };
+  }
+
   get partyToPVotesSorted() {
     const totalVotes = this.totalVotes;
     return Object.fromEntries(

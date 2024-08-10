@@ -4,7 +4,7 @@ import HEXAGON_MAP_DATA_PD from "./HEXAGON_MAP_DATA_PD";
 import HEXAGON_MAP_DATA_ED from "./HEXAGON_MAP_DATA_ED";
 import { STYLE } from "../../../nonview/constants";
 
-function SVGHexagon({ x, y, color, label, isActive }) {
+function SVGHexagon({ x, y, color, label, isActive, opacity }) {
   const N_SIDES = 6;
 
   const radius = 1 / Math.cos(Math.PI / 6) ** 2 / 2;
@@ -18,11 +18,7 @@ function SVGHexagon({ x, y, color, label, isActive }) {
     })
     .join(" ");
 
-  let opacity = 0.8;
-
-  if (isActive) {
-    opacity = 1;
-  }
+  const textColor = isActive ? "#000" : "#fff";
 
   return (
     <g>
@@ -40,7 +36,7 @@ function SVGHexagon({ x, y, color, label, isActive }) {
         fontSize={0.4}
         textAnchor="middle"
         alignmentBaseline="middle"
-        fill={color === "#fff" ? "#eee" : "#fff"}
+        fill={textColor}
       >
         {label}
       </text>
@@ -83,11 +79,14 @@ export default function HexagonMap({ resultIdx, result: activeResult }) {
           const label = entID.substring(3, 6);
 
           let color = "#fff";
+          let opacity = 1;
           let isActive = false;
           if (result) {
             const winningPartyID = result.partyToVotes.winningPartyID;
             color = Party.fromID(winningPartyID).color;
             isActive = result.entID === activeResult.entID;
+            console.debug(result.partyToVotes, result.partyToVotes.pWinner);
+            opacity = (result.partyToVotes.pWinner - 0.4) * 2;
           }
 
           return (
@@ -96,6 +95,7 @@ export default function HexagonMap({ resultIdx, result: activeResult }) {
               x={x}
               y={y / Math.cos(Math.PI / 6)}
               color={color}
+              opacity={opacity}
               label={label}
               isActive={isActive}
             />

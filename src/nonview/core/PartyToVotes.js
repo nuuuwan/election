@@ -110,7 +110,12 @@ export default class PartyToVotes {
   }
 
   get pMajority() {
-    const pVotes = Object.values(this.partyToPVotes);
+    const pVotes = Object.values(this.partyToPVotesSorted);
     return pVotes[0] - pVotes[1];
+  }
+
+  get pWinner() {
+    const pVotes = Object.values(this.partyToPVotesSorted);
+    return pVotes[0];
   }
 }

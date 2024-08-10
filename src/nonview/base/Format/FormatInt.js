@@ -4,6 +4,11 @@ let FormatInt = {
     return x.toLocaleString();
   },
 
+  intHumanizeSigned(x) {
+    const sign = x < 0 ? "-" : "+";
+    return sign + FormatInt.intHumanize(Math.abs(x));
+  },
+
   intHumanize(x) {
     if (!x || x === 0) {
       return "-";

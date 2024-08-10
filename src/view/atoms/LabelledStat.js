@@ -4,7 +4,7 @@ export default function LabelledStat({ label, valueStr, sx }) {
   return (
     <Stack direction="column" gap={0} sx={Object.assign({}, sx)}>
       <Typography
-        variant="caption"
+        variant="h6"
         sx={{ opacity: 0.5, textTransform: "uppercase" }}
       >
         {label}

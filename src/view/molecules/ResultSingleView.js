@@ -11,7 +11,7 @@ export default function ResultSingleView({ result, superTitle }) {
   const entID = result.entID;
   const winningParty = Party.fromID(result.partyToVotes.winningPartyID);
   return (
-    <Stack key={entID} direction="column" gap={0}>
+    <Stack key={entID} direction="column" gap={1}>
       <Typography
         variant="body1"
         sx={{
@@ -23,8 +23,8 @@ export default function ResultSingleView({ result, superTitle }) {
         {superTitle}
       </Typography>
       <EntView entID={entID} sx={{ color: winningParty.color }} />
-      <PartyToVotesView partyToVotes={result.partyToVotes} />
       <SummaryView summary={result.summary} />
+      <PartyToVotesView partyToVotes={result.partyToVotes} />
     </Stack>
   );
 }

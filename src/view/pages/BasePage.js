@@ -84,8 +84,8 @@ export default class BasePage extends Component {
     const { election } = this.state;
     return (
       <Box color="#ccc">
-        <Typography variant="h4">{election.titleShort}</Typography>
-        <Typography variant="body1">
+        <Typography variant="h2">{election.titleShort}</Typography>
+        <Typography variant="h6">
           visualization & analysis by @nuuuwan
         </Typography>
       </Box>

@@ -118,4 +118,9 @@ export default class PartyToVotes {
     const pVotes = Object.values(this.partyToPVotesSorted);
     return pVotes[0];
   }
+
+  get votesInMajority() {
+    const votes = Object.values(this.partyToVotesSorted);
+    return votes[0] - Math.ceil(this.totalVotes / 2);
+  }
 }

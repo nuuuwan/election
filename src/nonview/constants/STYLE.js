@@ -1,6 +1,6 @@
 let STYLE = {
   WIDTH: window.innerWidth,
-  HEIGHT: window.innerHeight,
+  HEIGHT: window.innerHeight - 60,
   FONT_SIZE: 10,
   FONT_FAMILY: "Afacad",
 };

@@ -11,7 +11,7 @@ import { STYLE } from "../../nonview/constants";
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
     electionType: "Presidential",
-    date: "2019-11-16",
+    date: "2015-01-08",
   };
   constructor(props) {
     super(props);

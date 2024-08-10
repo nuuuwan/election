@@ -43,7 +43,6 @@ export default function BottomNavigationCustom({
         onClick={gotoPreviousResult}
         disabled={iResult === 0}
       />
-      <BottomNavigationAction icon={<RefreshIcon />} onClick={handleRefresh} />
       <BottomNavigationActionCustom
         icon={<NavigateNextIcon />}
         onClick={gotoNextResult}
@@ -54,6 +53,7 @@ export default function BottomNavigationCustom({
         onClick={gotoLastResult}
         disabled={iResult === nResults - 1}
       />
+      <BottomNavigationAction icon={<RefreshIcon />} onClick={handleRefresh} />
     </BottomNavigation>
   );
 }

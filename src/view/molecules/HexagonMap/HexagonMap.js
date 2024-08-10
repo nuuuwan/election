@@ -86,7 +86,8 @@ export default function HexagonMap({ resultIdx, result: activeResult }) {
             color = Party.fromID(winningPartyID).color;
             isActive = result.entID === activeResult.entID;
             console.debug(result.partyToVotes, result.partyToVotes.pWinner);
-            opacity = (result.partyToVotes.pWinner - 0.4) * 2;
+            opacity =
+              0.2 + (0.8 * (result.partyToVotes.pWinner - 0.5)) / (1 - 0.5);
           }
 
           return (

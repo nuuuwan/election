@@ -49,10 +49,26 @@ export default class BasePage extends Component {
     this.setState({ iResult, result });
   }
 
-  gotoNextResult() {
+  gotoFirstResult() {
+    this.setIResult(0);
+  }
+
+  gotoPreviousResult() {
     const { iResult } = this.state;
     const iResultNext = iResult - 1;
     this.setIResult(iResultNext);
+  }
+
+  gotoNextResult() {
+    const { iResult } = this.state;
+    const iResultNext = iResult + 1;
+    this.setIResult(iResultNext);
+  }
+
+  gotoLastResult() {
+    const { election } = this.state;
+    const iResult = election.pdResultsList.length - 1;
+    this.setIResult(iResult);
   }
 
   async componentDidMount() {
@@ -90,7 +106,7 @@ export default class BasePage extends Component {
 
   renderCenterRight() {
     const { iResult } = this.state;
-    console.debug(iResult, this.nResults);
+
     const superTitle =
       this.nResults === iResult + 1
         ? "Final"
@@ -119,7 +135,12 @@ export default class BasePage extends Component {
         }}
       >
         <BottomNavigationCustom
+          gotoFirstResult={this.gotoFirstResult.bind(this)}
           gotoNextResult={this.gotoNextResult.bind(this)}
+          gotoPreviousResult={this.gotoPreviousResult.bind(this)}
+          gotoLastResult={this.gotoLastResult.bind(this)}
+          iResult={this.state.iResult}
+          nResults={this.nResults}
         />
       </Box>
     );

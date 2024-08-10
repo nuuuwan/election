@@ -5,6 +5,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { BasePage } from "./view/pages";
 import { Box } from "@mui/material";
 
+import { Format } from "./nonview/base";
+
 const THEME = createTheme({
   palette: {
     primary: {
@@ -25,7 +27,7 @@ const THEME = createTheme({
   },
   typography: {
     fontFamily: "Afacad",
-    fontSize: 12,
+    fontSize: Format.DEFAULT_FONT_SIZE,
   },
 });
 

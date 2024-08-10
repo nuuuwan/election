@@ -1,19 +1,34 @@
 import { Component } from "react";
 import { Box, CircularProgress, Stack, Typography } from "@mui/material";
 import { Election } from "../../nonview/core";
-import ResultSingleView from "../molecules/ResultSingleView";
-import BottomNavigationCustom from "../molecules/BottomNavigationCustom";
+import {
+  ResultSingleView,
+  BottomNavigationCustom,
+  HexagonMap,
+} from "../molecules";
 
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
-    electionType: "parliamentary",
-    date: "2020-08-05",
+    electionType: "Presidential",
+    date: "2015-01-08",
     iResult: 181,
   };
   constructor(props) {
     super(props);
 
     this.state = BasePage.DEFAULT_STATE;
+  }
+
+  get result() {
+    const { election, iResult } = this.state;
+    return election.pdResultsList[iResult];
+  }
+  get resultIdx() {
+    const { election } = this.state;
+    return election.resultsIdx;
+  }
+  get resultLK() {
+    return this.resultIdx["LK"];
   }
 
   setIResult(iResult) {
@@ -29,12 +44,11 @@ export default class BasePage extends Component {
   }
 
   async componentDidMount() {
-    const { electionType, date, iResult } = this.state;
+    const { electionType, date } = this.state;
 
     const election = await Election.fromElectionTypeAndDate(electionType, date);
-    const result = election.pdResultsList[iResult];
-    const resultLK = election.resultsIdx["LK"];
-    this.setState({ election, result, resultLK });
+
+    this.setState({ election });
   }
 
   renderHeader() {
@@ -53,14 +67,13 @@ export default class BasePage extends Component {
   }
 
   renderLeft() {
-    return <Typography variant="h6">(Map)</Typography>;
+    return <HexagonMap resultIdx={this.resultIdx} />;
   }
 
   renderCenter() {
-    const { result } = this.state;
     return (
       <Box>
-        <ResultSingleView result={result} />
+        <ResultSingleView result={this.result} />
         <Typography variant="caption">
           visualization & analysis by @nuuuwan
         </Typography>
@@ -69,10 +82,9 @@ export default class BasePage extends Component {
   }
 
   renderRight() {
-    const { resultLK } = this.state;
     return (
       <Box>
-        <ResultSingleView result={resultLK} />
+        <ResultSingleView result={this.resultLK} />
       </Box>
     );
   }

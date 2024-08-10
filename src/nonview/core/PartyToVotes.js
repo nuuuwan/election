@@ -68,9 +68,12 @@ export default class PartyToVotes {
   }
 
   get partyToVotesSortedOthered() {
+    const minVotes = 0.05 * this.totalVotes;
     let nonOther = Object.fromEntries(
       Object.entries(this.partyToVotes)
-
+        .filter(function (a) {
+          return a[1] > minVotes;
+        })
         .sort(function (a, b) {
           return b[1] - a[1];
         })

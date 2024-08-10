@@ -1,7 +1,7 @@
 import { Stack } from "@mui/material";
-import { Format } from "../../nonview/base";
-import { Party } from "../../nonview/core";
-import { LabelledStat, PartyView } from "../../view/atoms";
+import { Format } from "../../../nonview/base";
+import { Party } from "../../../nonview/core";
+import { LabelledStat, PartyView } from "../../atoms";
 import PartyToVotesPieChart from "./PartyToVotesPieChart";
 
 export default function PartyToVotesView({ partyToVotes }) {

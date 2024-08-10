@@ -1,8 +1,8 @@
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
-import { Party } from "../../nonview/core";
-import { Format } from "../../nonview/base";
+import { Party } from "../../../nonview/core";
+import { Format } from "../../../nonview/base";
 import { Box } from "@mui/material";
-import { STYLE } from "../../nonview/constants";
+import { STYLE } from "../../../nonview/constants";
 
 export default function PartyToVotesPieChart({ partyToVotes }) {
   const data = Object.entries(partyToVotes.partyToVotesSortedOthered).map(
@@ -25,7 +25,8 @@ export default function PartyToVotesPieChart({ partyToVotes }) {
             data,
             arcLabel: (item) => Format.percent(item.value),
             arcLabelMinAngle: 60,
-            paddingAngle: 1,
+            outerRadius: 100,
+            innerRadius: 0,
           },
         ]}
         sx={{

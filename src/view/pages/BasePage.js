@@ -40,7 +40,6 @@ export default class BasePage extends Component {
 
   renderHeader() {
     const { election, iResult } = this.state;
-    const resultCountLabel = `${iResult + 1}/${election.pdResultsList.length}`;
     return (
       <Stack direction="column">
         <Typography variant="h6">{election.titleShort}</Typography>

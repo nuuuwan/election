@@ -17,14 +17,7 @@ export default function PartyToVotesPieChart({ partyToVotes }) {
   );
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100%",
-      }}
-    >
+    <Box flexGrow={1}>
       <PieChart
         series={[
           {
@@ -37,12 +30,13 @@ export default function PartyToVotesPieChart({ partyToVotes }) {
         sx={{
           [`& .${pieArcLabelClasses.root}`]: {
             fill: "white",
-            fontWeight: "bold",
+            fontSize: "200%",
           },
         }}
         slotProps={{ legend: { hidden: true } }}
-        width={300}
+        width={window.innerWidth / 3}
         height={300}
+        margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
       />
     </Box>
   );

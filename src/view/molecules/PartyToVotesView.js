@@ -7,7 +7,7 @@ import PartyToVotesPieChart from "./PartyToVotesPieChart";
 export default function PartyToVotesView({ partyToVotes }) {
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
   return (
-    <Stack direction="column" gap={0} sx={{ textAlign: "center" }}>
+    <Stack width="100%" direction="column" gap={0} sx={{ textAlign: "center" }}>
       <PartyToVotesPieChart partyToVotes={partyToVotes} />
       {entries.map(function ([partyID, votes]) {
         return (

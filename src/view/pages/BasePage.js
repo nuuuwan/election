@@ -59,27 +59,36 @@ export default class BasePage extends Component {
   renderCenter() {
     const { result } = this.state;
     return (
-      <Typography variant="h6">
+      <Box>
         <ResultSingleView result={result} />
-      </Typography>
+        <Typography variant="caption">
+          visualization & analysis by @nuuuwan
+        </Typography>
+      </Box>
     );
   }
 
   renderRight() {
     const { resultLK } = this.state;
     return (
-      <Typography variant="h6">
+      <Box>
         <ResultSingleView result={resultLK} />
-      </Typography>
+      </Box>
     );
   }
 
   renderFooter() {
     return (
-      <Box>
-        <Typography variant="caption">
-          visualization & analysis by @nuuuwan
-        </Typography>
+      <Box
+        sx={{
+          position: "fixed",
+          height: 60,
+          bottom: 0,
+          left: 0,
+          right: 0,
+          zIndex: 1000,
+        }}
+      >
         <BottomNavigationCustom
           gotoNextResult={this.gotoNextResult.bind(this)}
         />
@@ -101,11 +110,7 @@ export default class BasePage extends Component {
           <Box sx={{ width: "34%" }}> {this.renderCenter()}</Box>
           <Box sx={{ width: "33%" }}> {this.renderRight()}</Box>
         </Stack>
-        <Box
-          sx={{ position: "fixed", bottom: 0, left: 0, right: 0, zindex: 1000 }}
-        >
-          {this.renderFooter()}
-        </Box>
+        {this.renderFooter()}
       </Box>
     );
   }

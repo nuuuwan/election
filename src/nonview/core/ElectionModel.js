@@ -21,8 +21,8 @@ export default class ElectionModel {
   static getPartyIDList(modelElection) {
     const resultsList = modelElection.pdResultsList;
     const aggrResults = Result.fromList("aggr", resultsList);
-    const partyToPVotes = aggrResults.partyToVotes.partyToPVotes;
-    return Object.entries(partyToPVotes)
+    const partyToPVotesSorted = aggrResults.partyToVotes.partyToPVotesSorted;
+    return Object.entries(partyToPVotesSorted)
       .filter(function ([partyID, pVotes]) {
         return pVotes > 0.05;
       })
@@ -37,8 +37,8 @@ export default class ElectionModel {
       if (!pdResult) {
         return 0.0;
       }
-      const partyToPVotes = pdResult.partyToVotes.partyToPVotes;
-      return partyToPVotes[partyID] || 0.0;
+      const partyToPVotesSorted = pdResult.partyToVotes.partyToPVotesSorted;
+      return partyToPVotesSorted[partyID] || 0.0;
     });
   }
 
@@ -128,22 +128,22 @@ export default class ElectionModel {
     );
 
     const pdToPartyToVoteInfo = YHat.reduce(
-      function (pdToPartyToPVotes, Yi, i) {
+      function (pdTopartyToPVotesSorted, Yi, i) {
         const partyID = partyIDList[i];
         return Yi.reduce(
-          function (pdToPartyToPVotes, pVotes, j) {
+          function (pdTopartyToPVotesSorted, pVotes, j) {
             const pdID = this.nonReleasedPDIDList[j];
 
-            if (!pdToPartyToPVotes[pdID]) {
-              pdToPartyToPVotes[pdID] = {};
+            if (!pdTopartyToPVotesSorted[pdID]) {
+              pdTopartyToPVotesSorted[pdID] = {};
             }
-            pdToPartyToPVotes[pdID][partyID] = {
+            pdTopartyToPVotesSorted[pdID][partyID] = {
               pVotesPredicted: pVotes,
               pVotesActual: YActual[i][j],
             };
-            return pdToPartyToPVotes;
+            return pdTopartyToPVotesSorted;
           }.bind(this),
-          pdToPartyToPVotes
+          pdTopartyToPVotesSorted
         );
       }.bind(this),
       {}
@@ -166,7 +166,7 @@ export default class ElectionModel {
   }
 
   getElectionNotReleasedPrediction() {
-    const normPDToPartyTOPVotes = this.train();
+    const normPDTopartyToPVotesSorted = this.train();
     const lastElection = this.getPreviousElections().slice(-1)[0];
 
     let election = new Election(
@@ -182,9 +182,9 @@ export default class ElectionModel {
     ) {
       let result = lastElection.getResults(pdID);
       const valid = result.summary.valid;
-      const partyToPVotes = normPDToPartyTOPVotes[pdID];
+      const partyToPVotesSorted = normPDTopartyToPVotesSorted[pdID];
       const partyToVotes = Object.fromEntries(
-        Object.entries(partyToPVotes).map(function ([partyID, voteInfo]) {
+        Object.entries(partyToPVotesSorted).map(function ([partyID, voteInfo]) {
           return [partyID, Math.round(voteInfo.pVotesPredicted * valid)];
         })
       );

@@ -9,6 +9,7 @@ import {
 } from "../../molecules";
 import { STYLE, VERSION } from "../../../nonview/constants";
 import SingleColumnMode from "./SingleColumnMode";
+import PredictionView from "../../organisms/PredictionView";
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
     electionType: "Presidential",
@@ -83,7 +84,7 @@ export default class BasePage extends Component {
     const { electionType, date } = this.state;
 
     const election = await Election.fromElectionTypeAndDate(electionType, date);
-    const iResult = election.pdResultsList.length - 1;
+    const iResult = election.pdResultsList.length - 1 - 10;
 
     this.setState({ election, iResult });
   }
@@ -145,7 +146,14 @@ export default class BasePage extends Component {
   }
 
   renderColumnPrediction() {
-    return null;
+    const { election, iResult } = this.state;
+    return (
+      <PredictionView
+        key={iResult}
+        activeElection={election}
+        iResult={iResult}
+      />
+    );
   }
 
   renderBodyFooter() {

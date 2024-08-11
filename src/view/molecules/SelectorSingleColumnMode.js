@@ -1,4 +1,4 @@
-import { Box, IconButton, Stack } from "@mui/material";
+import { Box, IconButton, Stack, Tooltip } from "@mui/material";
 import SingleColumnMode from "../pages/BasePage/SingleColumnMode";
 import { STYLE } from "../../nonview/constants";
 
@@ -24,15 +24,16 @@ export default function SelectorSingleColumnMode({
           const isSelected =
             selectedSingleColumnMode.id === singleColumnMode.id;
           return (
-            <IconButton
+            <Tooltip
               key={singleColumnMode.id}
-              onClick={onClick}
-              disabled={isSelected}
+              title={singleColumnMode.description}
             >
-              <singleColumnMode.Icon
-                sx={{ color: isSelected ? "#444" : "#ccc" }}
-              />
-            </IconButton>
+              <IconButton onClick={onClick}>
+                <singleColumnMode.Icon
+                  sx={{ color: isSelected ? "#444" : "#ccc" }}
+                />
+              </IconButton>
+            </Tooltip>
           );
         })}
       </Stack>

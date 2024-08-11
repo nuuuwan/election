@@ -30,7 +30,7 @@ export default function SelectorSingleColumnMode({
               disabled={isSelected}
             >
               <singleColumnMode.Icon
-                sx={{ color: isSelected ? "#ccc" : "#444" }}
+                sx={{ color: isSelected ? "#444" : "#ccc" }}
               />
             </IconButton>
           );

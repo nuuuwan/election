@@ -9,6 +9,7 @@ import {
 } from "../../molecules";
 import { STYLE, VERSION } from "../../../nonview/constants";
 import SingleColumnMode from "./SingleColumnMode";
+import BottomNavigationSingleColumnMode from "../../molecules/BottomNavigationSingleColumnMode";
 
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
@@ -105,7 +106,28 @@ export default class BasePage extends Component {
   renderColumnResult() {
     return (
       <Box>
-        <ResultSingleView result={this.result} superTitle="Final" />
+        <ResultSingleView result={this.result} superTitle="Final" />{" "}
+        <Box
+          sx={{
+            position: "fixed",
+            height: 60,
+            bottom: 55,
+            left: 0,
+            right: 0,
+            zIndex: 1000,
+            m: 0,
+            p: 0,
+          }}
+        >
+          <BottomNavigationCustom
+            gotoFirstResult={this.gotoFirstResult.bind(this)}
+            gotoNextResult={this.gotoNextResult.bind(this)}
+            gotoPreviousResult={this.gotoPreviousResult.bind(this)}
+            gotoLastResult={this.gotoLastResult.bind(this)}
+            iResult={this.state.iResult}
+            nResults={this.nResults}
+          />{" "}
+        </Box>
       </Box>
     );
   }
@@ -143,6 +165,7 @@ export default class BasePage extends Component {
   }
 
   renderFooter() {
+    const { singleColumnMode } = this.state;
     return (
       <Box
         sx={{
@@ -152,15 +175,13 @@ export default class BasePage extends Component {
           left: 0,
           right: 0,
           zIndex: 1000,
+          m: 0,
+          p: 0,
         }}
       >
-        <BottomNavigationCustom
-          gotoFirstResult={this.gotoFirstResult.bind(this)}
-          gotoNextResult={this.gotoNextResult.bind(this)}
-          gotoPreviousResult={this.gotoPreviousResult.bind(this)}
-          gotoLastResult={this.gotoLastResult.bind(this)}
-          iResult={this.state.iResult}
-          nResults={this.nResults}
+        <BottomNavigationSingleColumnMode
+          selectedSingleColumnMode={singleColumnMode}
+          setSingleColumnMode={this.setSingleColumnMode.bind(this)}
         />
       </Box>
     );
@@ -169,8 +190,8 @@ export default class BasePage extends Component {
   renderMultiColumn() {
     const width = STYLE.PCT_COLUMN_WIDTH;
     return (
-      <Box>
-        <Box sx={{ marginBottom: STYLE.FOOTER_HEIGHT }}>
+      <Box sx={{ marginBottom: STYLE.FOOTER_HEIGHT }}>
+        <Box>
           {this.renderHeader()}
           <Stack direction="row">
             <Box sx={{ width }}> {this.renderColumnMap()}</Box>
@@ -191,15 +212,10 @@ export default class BasePage extends Component {
   }
 
   renderSingleColumn() {
-    const { singleColumnMode } = this.state;
     return (
       <Box>
         {this.renderHeader()}
         {this.renderSingleColumnBody()}
-        <SelectorSingleColumnMode
-          selectedSingleColumnMode={singleColumnMode}
-          setSingleColumnMode={this.setSingleColumnMode.bind(this)}
-        />
         {this.renderFooter()}
       </Box>
     );

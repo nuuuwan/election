@@ -4,7 +4,7 @@ import FirstPageIcon from "@mui/icons-material/FirstPage";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import LastPageIcon from "@mui/icons-material/LastPage";
-import RefreshIcon from "@mui/icons-material/Refresh";
+
 
 function BottomNavigationActionCustom({ icon, onClick, disabled }) {
   const color = disabled ? "#ccc" : "#000";
@@ -18,7 +18,7 @@ function BottomNavigationActionCustom({ icon, onClick, disabled }) {
   );
 }
 
-export default function BottomNavigationCustom({
+export default function BottomNavigationPlayer({
   gotoFirstResult,
   gotoPreviousResult,
   gotoNextResult,
@@ -26,11 +26,6 @@ export default function BottomNavigationCustom({
   iResult,
   nResults,
 }) {
-  const handleRefresh = function () {
-    localStorage.clear();
-    window.location.reload();
-  };
-
   return (
     <BottomNavigation sx={{ backgroundColor: "#f8f8f8" }}>
       <BottomNavigationActionCustom
@@ -53,7 +48,6 @@ export default function BottomNavigationCustom({
         onClick={gotoLastResult}
         disabled={iResult === nResults - 1}
       />
-      <BottomNavigationAction icon={<RefreshIcon />} onClick={handleRefresh} />
     </BottomNavigation>
   );
 }

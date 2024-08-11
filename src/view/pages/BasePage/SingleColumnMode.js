@@ -1,8 +1,7 @@
 import MapIcon from "@mui/icons-material/Map";
 import FunctionsIcon from "@mui/icons-material/Functions";
-import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
 import ScheduleIcon from "@mui/icons-material/Schedule";
-
+import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
 export default class SingleColumnMode {
   constructor(id, description, getRenderer, Icon) {
     this.id = id;
@@ -33,7 +32,7 @@ export default class SingleColumnMode {
     "prediction",
     "Projected Results",
     (basePage) => basePage.renderColumnPrediction(),
-    OnlinePredictionIcon
+    TipsAndUpdatesIcon
   );
 
   static listAll() {

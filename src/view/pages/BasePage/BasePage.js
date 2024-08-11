@@ -3,14 +3,12 @@ import { Box, CircularProgress, Stack, Typography } from "@mui/material";
 import { Election, Result } from "../../../nonview/core";
 import {
   ResultSingleView,
-  BottomNavigationCustom,
   HexagonMap,
-  SelectorSingleColumnMode,
+  BottomNavigationSingleColumnMode,
+  BottomNavigationPlayer,
 } from "../../molecules";
 import { STYLE, VERSION } from "../../../nonview/constants";
 import SingleColumnMode from "./SingleColumnMode";
-import BottomNavigationSingleColumnMode from "../../molecules/BottomNavigationSingleColumnMode";
-
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
     electionType: "Presidential",
@@ -119,14 +117,14 @@ export default class BasePage extends Component {
             p: 0,
           }}
         >
-          <BottomNavigationCustom
+          <BottomNavigationPlayer
             gotoFirstResult={this.gotoFirstResult.bind(this)}
             gotoNextResult={this.gotoNextResult.bind(this)}
             gotoPreviousResult={this.gotoPreviousResult.bind(this)}
             gotoLastResult={this.gotoLastResult.bind(this)}
             iResult={this.state.iResult}
             nResults={this.nResults}
-          />{" "}
+          />
         </Box>
       </Box>
     );
@@ -191,17 +189,14 @@ export default class BasePage extends Component {
     const width = STYLE.PCT_COLUMN_WIDTH;
     return (
       <Box>
-        <Box>
-          {this.renderHeader()}
-          <Stack direction="row">
-            <Box sx={{ width }}> {this.renderColumnMap()}</Box>
-            <Box sx={{ width }}> {this.renderColumnResult()}</Box>
-            <Box sx={{ width }}> {this.renderColumnLKResult()}</Box>{" "}
-            <Box sx={{ width }}> {this.renderColumnPrediction()}</Box>
-          </Stack>
-          {this.renderBodyFooter()}
-        </Box>
-        {this.renderFooter()}
+        {this.renderHeader()}
+        {this.renderBodyFooter()}
+        <Stack direction="row">
+          <Box sx={{ width }}> {this.renderColumnMap()}</Box>
+          <Box sx={{ width }}> {this.renderColumnResult()}</Box>
+          <Box sx={{ width }}> {this.renderColumnLKResult()}</Box>{" "}
+          <Box sx={{ width }}> {this.renderColumnPrediction()}</Box>
+        </Stack>
       </Box>
     );
   }

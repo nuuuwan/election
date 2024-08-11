@@ -5,7 +5,6 @@ import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import LastPageIcon from "@mui/icons-material/LastPage";
 
-
 function BottomNavigationActionCustom({ icon, onClick, disabled }) {
   const color = disabled ? "#ccc" : "#000";
   return (

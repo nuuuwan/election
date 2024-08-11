@@ -16,7 +16,6 @@ export default function ResultSingleView({ result, superTitle }) {
         variant="body1"
         sx={{
           color: winningParty.color,
-          opacity: 0.5,
           textTransform: "uppercase",
         }}
       >
@@ -28,7 +27,7 @@ export default function ResultSingleView({ result, superTitle }) {
           backgroundColor: winningParty.color,
           color: "white",
           p: 0.5,
-          borderRadius: 1,
+          borderRadius: 2,
         }}
       />
       <SummaryView summary={result.summary} />

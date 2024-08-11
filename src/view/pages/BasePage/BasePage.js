@@ -12,12 +12,16 @@ import SingleColumnMode from "./SingleColumnMode";
 import PredictionView from "../../organisms/PredictionView";
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
+    electionType: "Presidential",
+    date: "2005-11-17",
+    // electionType: "Presidential",
+    // date: "2010-01-26",
     // electionType: "Presidential",
     // date: "2015-01-08",
-    electionType: "Presidential",
-    date: "2019-11-16",
+    // electionType: "Presidential",
+    // date: "2019-11-16",
     // electionType: "Parliamentary",
-    // date: "2020-08-05",
+    // date: "2000-10-10",
     singleColumnMode: SingleColumnMode.MAP,
   };
   constructor(props) {

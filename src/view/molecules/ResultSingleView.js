@@ -12,15 +12,17 @@ export default function ResultSingleView({ result, superTitle }) {
   const winningParty = Party.fromID(result.partyToVotes.winningPartyID);
   return (
     <Stack key={entID} direction="column" gap={1}>
-      <Typography
-        variant="body1"
-        sx={{
-          color: winningParty.color,
-          textTransform: "uppercase",
-        }}
-      >
-        {superTitle}
-      </Typography>
+      {superTitle ? (
+        <Typography
+          variant="body1"
+          sx={{
+            color: winningParty.color,
+            textTransform: "uppercase",
+          }}
+        >
+          {superTitle}
+        </Typography>
+      ) : null}
       <EntView
         entID={entID}
         sx={{

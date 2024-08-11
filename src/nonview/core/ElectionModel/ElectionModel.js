@@ -7,6 +7,7 @@ import Result from "../Result";
 export default class ElectionModel {
   static MIN_RESULTS_FOR_PREDICTION = 1;
   static PARTY_UNCERTAIN = Party.UNCERTAIN.id;
+  static ERROR_CONF = 0.9;
 
   constructor(
     elections,
@@ -165,7 +166,7 @@ export default class ElectionModel {
     }, []).sort();
 
     const n = pErrorList.length;
-    const p90Error = pErrorList[Math.floor(0.9 * n)];
+    const pError = pErrorList[Math.floor(ElectionModel.ERROR_CONF * n)];
 
     // Train
     const XTrain = this.getXTrain();
@@ -198,11 +199,11 @@ export default class ElectionModel {
       {}
     );
     const normPDToPartyToPVotes = ElectionModel.normalize(pdToPartyToPVotes);
-    return { normPDToPartyToPVotes, p90Error };
+    return { normPDToPartyToPVotes, pError };
   }
 
   getElectionNotReleasedPrediction() {
-    const { normPDToPartyToPVotes, p90Error } = this.trainingOutput;
+    const { normPDToPartyToPVotes, pError } = this.trainingOutput;
     const lastElection = this.getPreviousElections().slice(-1)[0];
 
     let election = new Election(
@@ -213,29 +214,33 @@ export default class ElectionModel {
     const releasedResultsList = this.releasedPDIDList.map((pdID) =>
       this.currentElection.getResults(pdID)
     );
-    const notReleasedResultsList = this.nonReleasedPDIDList.map(function (
-      pdID
-    ) {
-      // We assume the summary from the last election is valid.
-      let result = lastElection.getResults(pdID);
-      const valid = result.summary.valid;
-      const partyToPVotes = normPDToPartyToPVotes[pdID];
+    const notReleasedResultsList = this.nonReleasedPDIDList
+      .map(function (pdID) {
+        // We assume the summary from the last election is valid.
+        let result = lastElection.getResults(pdID);
+        if (!result) {
+          return null;
+        }
+        const valid = result.summary.valid;
+        const partyToPVotes = normPDToPartyToPVotes[pdID];
 
-      const partyToVotes = Object.entries(partyToPVotes).reduce(
-        function (partyToVotes, [partyID, pVotes]) {
-          const votes = Math.round(pVotes * valid);
-          const pError = Math.max(0, 1 - p90Error);
-          const votesMin = Math.round(pVotes * pError * valid);
-          partyToVotes[partyID] = votesMin;
-          partyToVotes[ElectionModel.PARTY_UNCERTAIN] += votes - votesMin;
-          return partyToVotes;
-        },
-        { [ElectionModel.PARTY_UNCERTAIN]: 0 }
-      );
+        const partyToVotes = Object.entries(partyToPVotes).reduce(
+          function (partyToVotes, [partyID, pVotes]) {
+            pVotes = MathX.forceRange(pVotes, 0, 1);
+            const votes = Math.round(pVotes * valid);
+            const kError = Math.max(0, 1 - pError);
+            const votesMin = Math.round(pVotes * kError * valid);
+            partyToVotes[partyID] = votesMin;
+            partyToVotes[ElectionModel.PARTY_UNCERTAIN] += votes - votesMin;
+            return partyToVotes;
+          },
+          { [ElectionModel.PARTY_UNCERTAIN]: 0 }
+        );
 
-      result.partyToVotes = new PartyToVotes(partyToVotes);
-      return result;
-    });
+        result.partyToVotes = new PartyToVotes(partyToVotes);
+        return result;
+      })
+      .filter((result) => result !== null);
 
     election.resultsList = [
       ...releasedResultsList,

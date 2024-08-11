@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { Party } from "../../nonview/core";
 
 export default function PartyView({ partyID }) {
@@ -12,25 +12,18 @@ export default function PartyView({ partyID }) {
   }
 
   return (
-    <Stack
-      direction="column"
-      gap={0}
+    <Typography
+      variant="h6"
       sx={{
-        margin: "auto",
-        alignItems: "center",
+        backgroundColor,
+        color,
+        padding: 0.3,
+        borderRadius: 2,
+        width: "fit-content",
       }}
+      component="span"
     >
-      <Typography
-        variant="h6"
-        sx={{
-          backgroundColor,
-          color,
-          padding: 0.3,
-          borderRadius: 2,
-        }}
-      >
-        {partyID}
-      </Typography>
-    </Stack>
+      {partyID}
+    </Typography>
   );
 }

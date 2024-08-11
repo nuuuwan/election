@@ -4,6 +4,8 @@ import PARTY_LIST_TUPLES from "./PARTY_LIST_TUPLES";
 
 export default class Party {
   static OTHER = new Party("Other", "Other");
+  static UNCERTAIN = new Party("Uncertain", "Uncertain");
+  static NON_PARTY_ID_LIST = [Party.OTHER.id, Party.UNCERTAIN.id];
   constructor(id, name) {
     this.id = id;
     this.name = name;
@@ -16,6 +18,12 @@ export default class Party {
   }
 
   get color() {
+    if (this.id === Party.UNCERTAIN.id) {
+      return "lightgray";
+    }
+    if (this.id === Party.OTHER.id) {
+      return "gray";
+    }
     return POLITICAL_PARTY_TO_COLOR[this.id];
   }
 
@@ -105,8 +113,8 @@ export default class Party {
     if (party) {
       return party;
     }
-    // console.error(`new Party("${id}", "${id}")`);
-    return new Party(id);
+
+    return new Party(id, id);
   }
 
   static isKnownPartyID(partyID) {

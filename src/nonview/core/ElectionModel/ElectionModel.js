@@ -1,10 +1,13 @@
 import { MLModel, MathX } from "../../base";
 import Election from "../Election/Election";
+import Party from "../Party";
 import PartyToVotes from "../PartyToVotes";
 import Result from "../Result";
 
 export default class ElectionModel {
   static MIN_RESULTS_FOR_PREDICTION = 1;
+  static PARTY_UNCERTAIN = Party.UNCERTAIN.id;
+
   constructor(
     elections,
     currentElection,
@@ -68,6 +71,34 @@ export default class ElectionModel {
     );
   }
 
+  getXTrainEvaluate() {
+    return ElectionModel.getFeatureMatrix(
+      this.getPreviousElections().slice(0, -1),
+      this.releasedPDIDList
+    );
+  }
+
+  getYTrainEvaluate() {
+    return ElectionModel.getFeatureMatrix(
+      this.getPreviousElections().slice(0, -1),
+      this.nonReleasedPDIDList
+    );
+  }
+
+  getXTestEvaluate() {
+    return ElectionModel.getFeatureMatrix(
+      this.getPreviousElections().slice(-1),
+      this.releasedPDIDList
+    );
+  }
+
+  getYTestEvaluate() {
+    return ElectionModel.getFeatureMatrix(
+      this.getPreviousElections().slice(-1),
+      this.nonReleasedPDIDList
+    );
+  }
+
   getXTrain() {
     return ElectionModel.getFeatureMatrix(
       this.getPreviousElections(),
@@ -86,13 +117,6 @@ export default class ElectionModel {
     return ElectionModel.getFeatureMatrix(
       [this.currentElection],
       this.releasedPDIDList
-    );
-  }
-
-  getYActual() {
-    return ElectionModel.getFeatureMatrix(
-      [this.currentElection],
-      this.nonReleasedPDIDList
     );
   }
 
@@ -116,13 +140,39 @@ export default class ElectionModel {
     );
   }
   train() {
+    // Evaluate Errpr
+    const XTrainEvaluate = this.getXTrainEvaluate();
+    const YTrainEvaluate = this.getYTrainEvaluate();
+    const modelEvaluate = new MLModel(XTrainEvaluate, YTrainEvaluate);
+
+    const XTestEvaluate = this.getXTestEvaluate();
+    const YTestEvaluate = this.getYTestEvaluate();
+
+    const YHatTestEvaluate = XTestEvaluate.map((Xi) =>
+      modelEvaluate.predict(Xi)
+    );
+
+    const MIN_P = 0.01;
+    const pErrorList = YHatTestEvaluate.reduce(function (pErrorList, YHat, i) {
+      return YHat.reduce(function (pErrorList, yHat, j) {
+        const y = YTestEvaluate[i][j];
+        if (y >= MIN_P) {
+          const error = Math.sqrt(Math.pow(yHat - y, 2)) / y;
+          pErrorList.push(error);
+        }
+        return pErrorList;
+      }, pErrorList);
+    }, []).sort();
+
+    const n = pErrorList.length;
+    const p90Error = pErrorList[Math.floor(0.9 * n)];
+
+    // Train
     const XTrain = this.getXTrain();
     const YTrain = this.getYTrain();
-
     const model = new MLModel(XTrain, YTrain);
 
     const XEvaluate = this.getXEvaluate();
-
     const YHat = XEvaluate.map((Xi) => model.predict(Xi));
     const partyIDList = ElectionModel.getPartyIDList(
       this.currentElection,
@@ -147,12 +197,12 @@ export default class ElectionModel {
       }.bind(this),
       {}
     );
-    return ElectionModel.normalize(pdToPartyToPVotes);
+    const normPDToPartyToPVotes = ElectionModel.normalize(pdToPartyToPVotes);
+    return { normPDToPartyToPVotes, p90Error };
   }
 
   getElectionNotReleasedPrediction() {
-    console.debug("getElectionNotReleasedPrediction");
-    const normPDToPartyToPVotes = this.trainingOutput;
+    const { normPDToPartyToPVotes, p90Error } = this.trainingOutput;
     const lastElection = this.getPreviousElections().slice(-1)[0];
 
     let election = new Election(
@@ -170,11 +220,19 @@ export default class ElectionModel {
       let result = lastElection.getResults(pdID);
       const valid = result.summary.valid;
       const partyToPVotes = normPDToPartyToPVotes[pdID];
-      const partyToVotes = Object.fromEntries(
-        Object.entries(partyToPVotes).map(function ([partyID, pVotes]) {
-          return [partyID, Math.round(pVotes * valid)];
-        })
+
+      const partyToVotes = Object.entries(partyToPVotes).reduce(
+        function (partyToVotes, [partyID, pVotes]) {
+          const votes = Math.round(pVotes * valid);
+          const pError = Math.max(0, 1 - p90Error);
+          const votesMin = Math.round(pVotes * pError * valid);
+          partyToVotes[partyID] = votesMin;
+          partyToVotes[ElectionModel.PARTY_UNCERTAIN] += votes - votesMin;
+          return partyToVotes;
+        },
+        { [ElectionModel.PARTY_UNCERTAIN]: 0 }
       );
+
       result.partyToVotes = new PartyToVotes(partyToVotes);
       return result;
     });

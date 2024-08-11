@@ -1,5 +1,6 @@
 import Summary from "./Summary.js";
 import { MathX } from "../base";
+import Party from "./Party.js";
 
 export default class PartyToVotes {
   static NON_PARTY_KEYS = [...Summary.KEYS, "entity_id"];
@@ -68,18 +69,20 @@ export default class PartyToVotes {
   }
 
   get partyToVotesSortedOthered() {
-    const P_MIN = 1.0 / 6;
+    const P_MIN = 0.05;
     const N_DISPLAY = 4;
     const minVotes = P_MIN * this.totalVotes;
     let nonOther = Object.fromEntries(
       Object.entries(this.partyToVotes)
-        .filter(function (a) {
-          return a[1] > minVotes;
-        })
         .sort(function (a, b) {
           return b[1] - a[1];
         })
-        .splice(0, N_DISPLAY)
+        .filter(function (a, i) {
+          if (a[0] === Party.UNCERTAIN.id) {
+            return true;
+          }
+          return a[1] > minVotes && i < N_DISPLAY;
+        })
     );
     const nonOtherVotes = MathX.sum(Object.values(nonOther));
     const otherVotes = this.totalVotes - nonOtherVotes;

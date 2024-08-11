@@ -6,9 +6,9 @@ export default function PartyView({ partyID }) {
 
   let backgroundColor = party.color;
   let color = "white";
-  if (partyID === "Other") {
+  if (Party.NON_PARTY_ID_LIST.includes(partyID)) {
     backgroundColor = "white";
-    color = "#ccc";
+    color = party.color;
   }
 
   return (

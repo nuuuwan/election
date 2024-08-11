@@ -190,7 +190,7 @@ export default class BasePage extends Component {
   renderMultiColumn() {
     const width = STYLE.PCT_COLUMN_WIDTH;
     return (
-      <Box sx={{ marginBottom: STYLE.FOOTER_HEIGHT }}>
+      <Box>
         <Box>
           {this.renderHeader()}
           <Stack direction="row">

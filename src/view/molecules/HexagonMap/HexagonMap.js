@@ -28,7 +28,6 @@ function SVGHexagon({ x, y, color, label, isActive, opacity }) {
         opacity={opacity}
         stroke="#ccc"
         strokeWidth={0.05}
-        x
       />
       <text
         x={x}
@@ -94,7 +93,46 @@ function SVGLegend({ resultIdx }) {
     });
 }
 
-export default function HexagonMap({ resultIdx, result: activeResult }) {
+function SVGMap({ resultIdx, activeResult }) {
+  return []
+    .concat(
+      Object.entries(HEXAGON_MAP_DATA_PD),
+      Object.entries(HEXAGON_MAP_DATA_ED).map(function ([entID, [x, y]]) {
+        return [entID + "P", [x + 9, y - 2]];
+      })
+    )
+
+    .map(function ([entID, [x, y]]) {
+      const result = resultIdx[entID];
+      const label = entID.substring(3, 6);
+
+      let color = "#fff";
+      let opacity = 1;
+      let isActive = false;
+      if (result) {
+        const winningPartyID = result.partyToVotes.winningPartyID;
+        color = Party.fromID(winningPartyID).color;
+        isActive = result.entID === activeResult.entID;
+        opacity =
+          0.5 +
+          (0.5 * Math.max(0, result.partyToVotes.pWinner - 0.5)) / (1 - 0.5);
+      }
+
+      return (
+        <SVGHexagon
+          key={entID}
+          x={x}
+          y={y / Math.cos(Math.PI / 6)}
+          color={color}
+          opacity={opacity}
+          label={label}
+          isActive={isActive}
+        />
+      );
+    });
+}
+
+export default function HexagonMap({ resultIdx, activeResult }) {
   return (
     <svg
       width={STYLE.COLUMN_WIDTH}
@@ -104,43 +142,7 @@ export default function HexagonMap({ resultIdx, result: activeResult }) {
     >
       <SVGTitles />
       <SVGLegend resultIdx={resultIdx} />
-      {[]
-        .concat(
-          Object.entries(HEXAGON_MAP_DATA_PD),
-          Object.entries(HEXAGON_MAP_DATA_ED).map(function ([entID, [x, y]]) {
-            return [entID + "P", [x + 9, y - 2]];
-          })
-        )
-
-        .map(function ([entID, [x, y]]) {
-          const result = resultIdx[entID];
-          const label = entID.substring(3, 6);
-
-          let color = "#fff";
-          let opacity = 1;
-          let isActive = false;
-          if (result) {
-            const winningPartyID = result.partyToVotes.winningPartyID;
-            color = Party.fromID(winningPartyID).color;
-            isActive = result.entID === activeResult.entID;
-            opacity =
-              0.5 +
-              (0.5 * Math.max(0, result.partyToVotes.pWinner - 0.5)) /
-                (1 - 0.5);
-          }
-
-          return (
-            <SVGHexagon
-              key={entID}
-              x={x}
-              y={y / Math.cos(Math.PI / 6)}
-              color={color}
-              opacity={opacity}
-              label={label}
-              isActive={isActive}
-            />
-          );
-        })}
+      <SVGMap resultIdx={resultIdx} activeResult={activeResult} />
     </svg>
   );
 }

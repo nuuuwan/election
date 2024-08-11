@@ -97,7 +97,7 @@ export default class BasePage extends Component {
   }
 
   renderColumnMap() {
-    return <HexagonMap resultIdx={this.resultIdx} result={this.result} />;
+    return <HexagonMap resultIdx={this.resultIdx} activeResult={this.result} />;
   }
 
   renderColumnResult() {

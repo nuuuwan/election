@@ -1,17 +1,20 @@
 import { Component } from "react";
 import { Box, CircularProgress, Stack, Typography } from "@mui/material";
-import { Election, Result } from "../../nonview/core";
+import { Election, Result } from "../../../nonview/core";
 import {
   ResultSingleView,
   BottomNavigationCustom,
   HexagonMap,
-} from "../molecules";
-import { STYLE, VERSION } from "../../nonview/constants";
+  SelectorSingleColumnMode,
+} from "../../molecules";
+import { STYLE, VERSION } from "../../../nonview/constants";
+import SingleColumnMode from "./SingleColumnMode";
 
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
     electionType: "Presidential",
     date: "2015-01-08",
+    singleColumnMode: SingleColumnMode.MAP,
   };
   constructor(props) {
     super(props);
@@ -44,9 +47,13 @@ export default class BasePage extends Component {
   }
 
   setIResult(iResult) {
+    this.setState({ iResult });
+  }
+
+  setSingleColumnMode(singleColumnMode) {
     const { election } = this.state;
-    const result = election.pdResultsList[iResult];
-    this.setState({ iResult, result });
+    const iResult = election.pdResultsList.length - 1;
+    this.setState({ singleColumnMode, iResult });
   }
 
   gotoFirstResult() {
@@ -89,11 +96,11 @@ export default class BasePage extends Component {
     );
   }
 
-  renderFarLeft() {
+  renderColumnMap() {
     return <HexagonMap resultIdx={this.resultIdx} result={this.result} />;
   }
 
-  renderCenterLeft() {
+  renderColumnResult() {
     return (
       <Box>
         <ResultSingleView result={this.result} superTitle="Final" />
@@ -101,7 +108,7 @@ export default class BasePage extends Component {
     );
   }
 
-  renderCenterRight() {
+  renderColumnLKResult() {
     const { iResult } = this.state;
 
     const superTitle =
@@ -115,7 +122,7 @@ export default class BasePage extends Component {
     );
   }
 
-  renderFarRight() {
+  renderColumnPrediction() {
     return null;
   }
 
@@ -164,10 +171,10 @@ export default class BasePage extends Component {
         <Box sx={{ marginBottom: STYLE.FOOTER_HEIGHT }}>
           {this.renderHeader()}
           <Stack direction="row">
-            <Box sx={{ width }}> {this.renderFarLeft()}</Box>
-            <Box sx={{ width }}> {this.renderCenterLeft()}</Box>
-            <Box sx={{ width }}> {this.renderCenterRight()}</Box>{" "}
-            <Box sx={{ width }}> {this.renderFarRight()}</Box>
+            <Box sx={{ width }}> {this.renderColumnMap()}</Box>
+            <Box sx={{ width }}> {this.renderColumnResult()}</Box>
+            <Box sx={{ width }}> {this.renderColumnLKResult()}</Box>{" "}
+            <Box sx={{ width }}> {this.renderColumnPrediction()}</Box>
           </Stack>
           {this.renderBodyFooter()}
         </Box>
@@ -176,11 +183,21 @@ export default class BasePage extends Component {
     );
   }
 
+  renderSingleColumnBody() {
+    const { singleColumnMode } = this.state;
+    return singleColumnMode.getRenderer(this);
+  }
+
   renderSingleColumn() {
+    const { singleColumnMode } = this.state;
     return (
       <Box>
         {this.renderHeader()}
-        {this.renderCenterLeft()}
+        {this.renderSingleColumnBody()}
+        <SelectorSingleColumnMode
+          selectedSingleColumnMode={singleColumnMode}
+          setSingleColumnMode={this.setSingleColumnMode.bind(this)}
+        />
         {this.renderFooter()}
       </Box>
     );

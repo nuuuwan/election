@@ -85,8 +85,9 @@ export default class BasePage extends Component {
     return (
       <Box color="#ccc">
         <Typography variant="h4">{election.titleShort}</Typography>
+        <Typography variant="h6">Source Data by elections.gov.lk</Typography>
         <Typography variant="h6">
-          visualization & analysis by @nuuuwan
+          Visualization & Analysis by @nuuuwan
         </Typography>
       </Box>
     );

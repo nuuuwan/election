@@ -18,7 +18,7 @@ export default class PredictionView extends Component {
       .slice(0, iResult)
       .map((result) => result.entID);
     const notReleasePDIDList = pdResultsList
-      .slice(iResult)
+      .slice(iResult + 1)
       .map((result) => result.entID);
 
     let error;

@@ -6,7 +6,7 @@ import {
   BottomNavigationCustom,
   HexagonMap,
 } from "../molecules";
-import { STYLE } from "../../nonview/constants";
+import { STYLE, VERSION } from "../../nonview/constants";
 
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
@@ -85,10 +85,6 @@ export default class BasePage extends Component {
     return (
       <Box color="#ccc">
         <Typography variant="h4">{election.titleShort}</Typography>
-        <Typography variant="h6">Source Data by elections.gov.lk</Typography>
-        <Typography variant="h6">
-          Visualization & Analysis by @nuuuwan
-        </Typography>
       </Box>
     );
   }
@@ -123,6 +119,20 @@ export default class BasePage extends Component {
     return null;
   }
 
+  renderBodyFooter() {
+    return (
+      <Box color="#ccc">
+        <Typography variant="h6">Source Data by elections.gov.lk</Typography>
+        <Typography variant="h6">
+          Visualization & Analysis by @nuuuwan
+        </Typography>
+        <Typography variant="caption">
+          App Last Updated at {VERSION.DATETIME_STR}
+        </Typography>
+      </Box>
+    );
+  }
+
   renderFooter() {
     return (
       <Box
@@ -151,13 +161,16 @@ export default class BasePage extends Component {
     const width = STYLE.PCT_COLUMN_WIDTH;
     return (
       <Box>
-        {this.renderHeader()}
-        <Stack direction="row">
-          <Box sx={{ width }}> {this.renderFarLeft()}</Box>
-          <Box sx={{ width }}> {this.renderCenterLeft()}</Box>
-          <Box sx={{ width }}> {this.renderCenterRight()}</Box>{" "}
-          <Box sx={{ width }}> {this.renderFarRight()}</Box>
-        </Stack>
+        <Box sx={{ marginBottom: STYLE.FOOTER_HEIGHT }}>
+          {this.renderHeader()}
+          <Stack direction="row">
+            <Box sx={{ width }}> {this.renderFarLeft()}</Box>
+            <Box sx={{ width }}> {this.renderCenterLeft()}</Box>
+            <Box sx={{ width }}> {this.renderCenterRight()}</Box>{" "}
+            <Box sx={{ width }}> {this.renderFarRight()}</Box>
+          </Stack>
+          {this.renderBodyFooter()}
+        </Box>
         {this.renderFooter()}
       </Box>
     );

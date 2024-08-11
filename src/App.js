@@ -4,12 +4,12 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import { BasePage } from "./view/pages";
 
-import { Format } from "./nonview/base";
+import { STYLE } from "./nonview/constants";
 
 const THEME = createTheme({
   typography: {
-    fontFamily: "Cabin",
-    fontSize: Format.DEFAULT_FONT_SIZE,
+    fontFamily: STYLE.FONT_FAMILY,
+    fontSize: STYLE.FONT_SIZE,
   },
 });
 

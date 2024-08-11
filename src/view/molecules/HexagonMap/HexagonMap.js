@@ -1,8 +1,9 @@
-import { MathX } from "../../../nonview/base";
+import { Format, MathX } from "../../../nonview/base";
 import { Party } from "../../../nonview/core";
 import HEXAGON_MAP_DATA_PD from "./HEXAGON_MAP_DATA_PD";
 import HEXAGON_MAP_DATA_ED from "./HEXAGON_MAP_DATA_ED";
 import { STYLE } from "../../../nonview/constants";
+const N_COLS = 2;
 
 function SVGHexagon({ x, y, color, label, isActive, opacity }) {
   const N_SIDES = 6;
@@ -56,41 +57,67 @@ function SVGTitles() {
   );
 }
 
-function SVGLegend({ resultIdx }) {
-  const partyToWins = Object.values(resultIdx).reduce(function (
-    partyToWins,
-    result
-  ) {
+function SVGLegendPercentages({ x, y }) {
+  const N_COLS = 2;
+  return [0.25, 0.5, 0.75].map(function (p, i) {
+    return (
+      <SVGHexagon
+        key={i}
+        x={x + parseInt(i / N_COLS)}
+        y={
+          y +
+          ((i % N_COLS) + (parseInt(i / N_COLS) % 2 === 1 ? 0.5 : 0)) /
+            Math.cos(Math.PI / 6)
+        }
+        color={"#888"}
+        label={Format.percent(p)}
+        opacity={getOpacity(p)}
+      />
+    );
+  });
+}
+
+function getPartyToWins(resultIdx) {
+  return Object.values(resultIdx).reduce(function (partyToWins, result) {
     const winningPartyID = result.partyToVotes.winningPartyID;
     if (!partyToWins[winningPartyID]) {
       partyToWins[winningPartyID] = 0;
     }
     partyToWins[winningPartyID]++;
     return partyToWins;
-  },
-  {});
-  const N_COLS = 2;
+  }, {});
+}
+
+function SVGLegendParty({ resultIdx, x, y }) {
+  const partyToWins = getPartyToWins(resultIdx);
+
   return Object.entries(partyToWins)
     .sort(function ([partyID1, nWins1], [partyID2, nWins2]) {
       return nWins2 - nWins1;
     })
-    .map(function ([partyID, nWins], iParty) {
+    .map(function ([partyID, nWins], i) {
       const party = Party.fromID(partyID);
       return (
         <SVGHexagon
           key={partyID}
-          x={1 + parseInt(iParty / N_COLS)}
+          x={x + parseInt(i / N_COLS)}
           y={
-            ((iParty % N_COLS) -
-              3 +
-              (parseInt(iParty / N_COLS) % 2 === 1 ? 0.5 : 0)) /
-            Math.cos(Math.PI / 6)
+            y +
+            ((i % N_COLS) + (parseInt(i / N_COLS) % 2 === 1 ? 0.5 : 0)) /
+              Math.cos(Math.PI / 6)
           }
           color={party.color}
           label={partyID}
         />
       );
     });
+}
+
+function getOpacity(p) {
+  const minOpacity = 0.33;
+  const [minP, maxP] = [0.4, 0.6];
+  const p2 = MathX.forceRange((p - minP) / (maxP - minP), 0, 1);
+  return minOpacity + (1 - minOpacity) * p2;
 }
 
 function SVGMap({ resultIdx, activeResult }) {
@@ -113,9 +140,7 @@ function SVGMap({ resultIdx, activeResult }) {
         const winningPartyID = result.partyToVotes.winningPartyID;
         color = Party.fromID(winningPartyID).color;
         isActive = result.entID === activeResult.entID;
-        opacity =
-          0.5 +
-          (0.5 * Math.max(0, result.partyToVotes.pWinner - 0.5)) / (1 - 0.5);
+        opacity = getOpacity(result.partyToVotes.pWinner);
       }
 
       return (
@@ -133,6 +158,8 @@ function SVGMap({ resultIdx, activeResult }) {
 }
 
 export default function HexagonMap({ resultIdx, activeResult }) {
+  const partyToWins = getPartyToWins(resultIdx);
+  const nParties = Object.keys(partyToWins).length;
   return (
     <svg
       width={STYLE.COLUMN_WIDTH}
@@ -141,7 +168,8 @@ export default function HexagonMap({ resultIdx, activeResult }) {
       fontFamily={STYLE.FONT_FAMILY}
     >
       <SVGTitles />
-      <SVGLegend resultIdx={resultIdx} />
+      <SVGLegendParty resultIdx={resultIdx} x={1} y={-3} />
+      <SVGLegendPercentages x={2 + nParties / N_COLS} y={-3} />
       <SVGMap resultIdx={resultIdx} activeResult={activeResult} />
     </svg>
   );

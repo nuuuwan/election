@@ -69,6 +69,7 @@ export default class PartyToVotes {
 
   get partyToVotesSortedOthered() {
     const P_MIN = 1.0 / 6;
+    const N_DISPLAY = 4;
     const minVotes = P_MIN * this.totalVotes;
     let nonOther = Object.fromEntries(
       Object.entries(this.partyToVotes)
@@ -78,7 +79,7 @@ export default class PartyToVotes {
         .sort(function (a, b) {
           return b[1] - a[1];
         })
-        .splice(0, 3)
+        .splice(0, N_DISPLAY)
     );
     const nonOtherVotes = MathX.sum(Object.values(nonOther));
     const otherVotes = this.totalVotes - nonOtherVotes;

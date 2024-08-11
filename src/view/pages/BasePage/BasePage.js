@@ -55,9 +55,7 @@ export default class BasePage extends Component {
   }
 
   setSingleColumnMode(singleColumnMode) {
-    const { election } = this.state;
-    const iResult = election.pdResultsList.length - 1;
-    this.setState({ singleColumnMode, iResult });
+    this.setState({ singleColumnMode });
   }
 
   gotoFirstResult() {

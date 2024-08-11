@@ -114,8 +114,8 @@ function SVGLegendParty({ resultIdx, x, y }) {
 }
 
 function getOpacity(p) {
-  const minOpacity = 0.33;
-  const [minP, maxP] = [0.4, 0.6];
+  const minOpacity = 0.25;
+  const [minP, maxP] = [0.45, 0.55];
   const p2 = MathX.forceRange((p - minP) / (maxP - minP), 0, 1);
   return minOpacity + (1 - minOpacity) * p2;
 }
@@ -131,7 +131,7 @@ function SVGMap({ resultIdx, activeResult }) {
 
     .map(function ([entID, [x, y]]) {
       const result = resultIdx[entID];
-      const label = entID.substring(3, 6);
+      const label = entID.replace("-0", "-").replace("EC-", "");
 
       let color = "#fff";
       let opacity = 1;

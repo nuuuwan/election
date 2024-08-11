@@ -23,7 +23,7 @@ export default class EntView extends Component {
   }
 
   get subTitle() {
-    return this.props.entID.replace("EC-", "");
+    return this.props.entID.replace("-0", "-").replace("EC-", "");
   }
 
   render() {

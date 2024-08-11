@@ -15,7 +15,7 @@ export default class PredictionView extends Component {
 
     const pdResultsList = activeElection.pdResultsList;
     const releasedPDIDList = pdResultsList
-      .slice(0, iResult)
+      .slice(0, iResult + 1)
       .map((result) => result.entID);
     const notReleasePDIDList = pdResultsList
       .slice(iResult + 1)

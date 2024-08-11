@@ -4,7 +4,7 @@ import PartyToVotes from "./PartyToVotes";
 import Result from "./Result";
 
 export default class ElectionModel {
-  static MIN_RESULTS_FOR_PREDICTION = 30;
+  static MIN_RESULTS_FOR_PREDICTION = 1;
   constructor(
     elections,
     currentElection,

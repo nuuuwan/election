@@ -166,6 +166,7 @@ export default class ElectionModel {
     const notReleasedResultsList = this.nonReleasedPDIDList.map(function (
       pdID
     ) {
+      // We assume the summary from the last election is valid.
       let result = lastElection.getResults(pdID);
       const valid = result.summary.valid;
       const partyToPVotes = normPDToPartyToPVotes[pdID];

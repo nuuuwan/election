@@ -2,4 +2,7 @@
 import EntView from "./EntView";
 import PredictionView from "./PredictionView";
 
-export { EntView, PredictionView };
+export {
+  EntView,
+  PredictionView,
+}

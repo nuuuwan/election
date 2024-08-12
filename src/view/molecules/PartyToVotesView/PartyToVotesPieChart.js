@@ -23,7 +23,7 @@ export default function PartyToVotesPieChart({ partyToVotes }) {
         series={[
           {
             data,
-            arcLabel: (item) => Format.percent(item.value),
+            arcLabel: (item) => Format.percentVotes(item.value),
             arcLabelMinAngle: 60,
           },
         ]}

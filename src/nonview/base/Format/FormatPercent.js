@@ -1,16 +1,16 @@
 import FormatGeneric from "./FormatGeneric";
 
 let FormatPercent = {
-  percentAbs(x) {
+  percentAbs(x, minimumFractionDigits = undefined) {
     if (x < 0.000001) {
       return "-";
     }
-    let minimumFractionDigits = 1;
-    if (x > 0.105) {
-      minimumFractionDigits = 0;
-    }
-    if (0.49 < x && x < 0.51) {
-      minimumFractionDigits = 1;
+
+    if (!minimumFractionDigits) {
+      let minimumFractionDigits = 1;
+      if (x > 0.105) {
+        minimumFractionDigits = 0;
+      }
     }
 
     return x.toLocaleString(undefined, {
@@ -19,10 +19,16 @@ let FormatPercent = {
     });
   },
 
-  percent(x) {
+  percentVotes(x) {
+    const diffX = Math.abs(x - 0.5);
+    const minimumFractionDigits = Math.max(0, parseInt(-Math.log10(diffX) - 1));
+    return FormatPercent.percentAbs(x, minimumFractionDigits);
+  },
+
+  percent(x, minimumFractionDigits = undefined) {
     const absX = Math.abs(x);
     const sign = x < 0 ? "-" : "";
-    return sign + FormatPercent.percentAbs(absX);
+    return sign + FormatPercent.percentAbs(absX, minimumFractionDigits);
   },
 
   percentWithStyle(

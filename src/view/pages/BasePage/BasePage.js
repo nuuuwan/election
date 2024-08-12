@@ -281,7 +281,7 @@ export default class BasePage extends Component {
       return <CircularProgress />;
     }
 
-    if (STYLE.ASPECT_RATIO > 1.5) {
+    if (STYLE.IS_MULTI_COLUMN) {
       return this.renderMultiColumn();
     }
     return this.renderSingleColumn();

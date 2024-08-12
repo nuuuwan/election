@@ -13,11 +13,11 @@ export default function PartyView({ partyID }) {
 
   return (
     <Typography
-      variant="h6"
+      variant="caption"
       sx={{
         backgroundColor,
         color,
-        padding: 0.3,
+        padding: 0.5,
         borderRadius: 2,
         width: "fit-content",
       }}

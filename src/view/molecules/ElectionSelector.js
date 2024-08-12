@@ -37,7 +37,7 @@ export default function ElectionSelector({
 
           return (
             <MenuItem key={i} value={toValue(election)} sx={{ color }}>
-              <Typography variant="h4">{election.title}</Typography>
+              <Typography variant="h5">{election.title}</Typography>
             </MenuItem>
           );
         })}

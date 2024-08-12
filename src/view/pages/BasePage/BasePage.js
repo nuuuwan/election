@@ -170,8 +170,8 @@ export default class BasePage extends Component {
   renderColumnLKResult() {
     return (
       <Box>
-        <Typography variant="h6">Aggregated Result</Typography>
-        <Typography variant="h3">Sri Lanka</Typography>
+        <Typography variant="body1">Aggregated Result</Typography>
+        <Typography variant="h4">Sri Lanka</Typography>
         <ResultSingleView result={this.resultLK} superTitle={"Aggregated"} />
       </Box>
     );
@@ -181,8 +181,8 @@ export default class BasePage extends Component {
     const { election, nResultsDisplay } = this.state;
     return (
       <Box>
-        <Typography variant="h6">Projected Final Result</Typography>
-        <Typography variant="h3">Sri Lanka</Typography>
+        <Typography variant="body1">Projected Final Result</Typography>
+        <Typography variant="h4">Sri Lanka</Typography>
         <PredictionView
           key={nResultsDisplay}
           activeElection={election}
@@ -195,8 +195,8 @@ export default class BasePage extends Component {
   renderBodyFooter() {
     return (
       <Box color="#ccc">
-        <Typography variant="h6">Source Data by elections.gov.lk</Typography>
-        <Typography variant="h6">
+        <Typography variant="body1">Source Data by elections.gov.lk</Typography>
+        <Typography variant="body1">
           Visualization & Analysis by @nuuuwan
         </Typography>
         <Typography variant="caption">

@@ -31,7 +31,7 @@ export default function FinalOutcomeView({ result }) {
     result.partyToVotes.partyToPVotesSorted[Party.UNCERTAIN.id] || 0.0;
 
   return (
-    <Typography variant="h5" sx={{ color: "gray" }}>
+    <Typography variant="h6" sx={{ color: "gray" }}>
       <Inner
         winningPartyID={winningPartyID}
         pWinner={pWinner}

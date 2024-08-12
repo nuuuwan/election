@@ -31,10 +31,10 @@ export default function PDSelector({
           const color = Party.fromID(winningPartyID).color;
           return (
             <MenuItem key={i} value={pd.id}>
-              <Typography variant="h4" color={color}>
+              <Typography variant="h5" color={color}>
                 {pd.name}
               </Typography>
-              <Typography variant="h6" sx={{ p: 0.5, color: "#888" }}>
+              <Typography variant="body1" sx={{ p: 0.5, color: "#888" }}>
                 {ed.name}
               </Typography>
             </MenuItem>

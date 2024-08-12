@@ -1,4 +1,5 @@
 import { Box, MenuItem, Select, Typography } from "@mui/material";
+import { Party } from "../../nonview/core";
 
 export default function PDSelector({
   resultsIdx,
@@ -25,10 +26,15 @@ export default function PDSelector({
       <Select value={activePDID} onChange={onChange}>
         {releasedPDs.map(function (pd, i) {
           const ed = edIdx[pd.id.substring(0, 5)];
+          const result = resultsIdx[pd.id];
+          const winningPartyID = result.partyToVotes.winningPartyID;
+          const color = Party.fromID(winningPartyID).color;
           return (
             <MenuItem key={i} value={pd.id}>
-              <Typography variant="h4">{pd.name}</Typography>
-              <Typography variant="h6" sx={{ p: 0.5 }}>
+              <Typography variant="h4" color={color}>
+                {pd.name}
+              </Typography>
+              <Typography variant="h6" sx={{ p: 0.5, color: "#888" }}>
                 {ed.name}
               </Typography>
             </MenuItem>

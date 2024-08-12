@@ -26,7 +26,16 @@ export default function ElectionSelector({
   );
   return (
     <Box>
-      <Select value={toValue(selectedElection)} onChange={onChange}>
+      <Select
+        value={toValue(selectedElection)}
+        onChange={onChange}
+        sx={{
+          border: "none",
+          "& .MuiOutlinedInput-notchedOutline": {
+            border: "none",
+          },
+        }}
+      >
         {sortedElections.map(function (election, i) {
           let color = "#888";
           if (election.resultsIdx) {

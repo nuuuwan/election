@@ -23,7 +23,16 @@ export default function PDSelector({
 
   return (
     <Box>
-      <Select value={activePDID} onChange={onChange}>
+      <Select
+        value={activePDID}
+        onChange={onChange}
+        sx={{
+          border: "none",
+          "& .MuiOutlinedInput-notchedOutline": {
+            border: "none",
+          },
+        }}
+      >
         {releasedPDs.map(function (pd, i) {
           const ed = edIdx[pd.id.substring(0, 5)];
           const result = resultsIdx[pd.id];

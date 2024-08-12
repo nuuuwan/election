@@ -236,11 +236,11 @@ export default class BasePage extends Component {
     }
 
     return (
-      <Box key={this.key}>
-        {this.renderHeader()}
-        {this.renderBody()}
-        {this.renderFooter()}
-      </Box>
+      <Grid container direction="column">
+        <Grid item>{this.renderHeader()}</Grid>
+        <Grid item>{this.renderBody()} </Grid>
+        <Grid item> {this.renderFooter()}</Grid>
+      </Grid>
     );
   }
 

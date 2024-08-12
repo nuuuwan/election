@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Grid } from "@mui/material";
 import { Format } from "../../../nonview/base";
 import { Party } from "../../../nonview/core";
 import { LabelledStat, PartyView } from "../../atoms";
@@ -8,19 +8,22 @@ export default function PartyToVotesView({ partyToVotes }) {
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
 
   return (
-    <Stack width="100%" direction="column" gap={1} sx={{ textAlign: "center" }}>
-      <PartyToVotesPieChart partyToVotes={partyToVotes} />
-
-      {entries.map(function ([partyID, votes], i) {
-        return (
-          <LabelledStat
-            key={partyID}
-            label={<PartyView partyID={partyID} />}
-            valueStr={Format.intHumanize(votes)}
-            sx={{ color: Party.fromID(partyID).color }}
-          />
-        );
-      })}
-    </Stack>
+    <Grid container direction="column" style={{ height: "100vh" }}>
+      <Grid item>
+        <PartyToVotesPieChart partyToVotes={partyToVotes} />
+      </Grid>
+      <Grid item>
+        {entries.map(function ([partyID, votes], i) {
+          return (
+            <LabelledStat
+              key={partyID}
+              label={<PartyView partyID={partyID} />}
+              valueStr={Format.intHumanize(votes)}
+              sx={{ color: Party.fromID(partyID).color }}
+            />
+          );
+        })}
+      </Grid>
+    </Grid>
   );
 }

@@ -112,10 +112,10 @@ function SVGLegendParty({ resultsIdx, x, y }) {
 }
 
 function getOpacity(p) {
-  const minOpacity = 0.25;
+  const [minOpacity, maxOpacity] = [0.2, 0.4];
   const [minP, maxP] = [0.45, 0.55];
   const p2 = MathX.forceRange((p - minP) / (maxP - minP), 0, 1);
-  return minOpacity + (1 - minOpacity) * p2;
+  return minOpacity + (maxOpacity - minOpacity) * p2;
 }
 
 function replaceLowercaseVowels(str) {
@@ -132,41 +132,90 @@ function getLabel(name) {
   return words.map((word) => word.substring(0, 1)).join("");
 }
 
-function SVGMap({ resultsIdx, pdIdx }) {
-  return []
-    .concat(
-      Object.entries(HEXAGON_MAP_DATA_PD),
-      Object.entries(HEXAGON_MAP_DATA_ED).map(function ([entID, [x, y]]) {
-        return [entID + "P", [x + 9, y - 2]];
-      })
-    )
+function getPDMapData() {
+  return HEXAGON_MAP_DATA_PD;
+}
 
-    .map(function ([entID, [x, y]]) {
-      const result = resultsIdx[entID];
-      const ent = pdIdx[entID];
-      const label = getLabel(ent.name);
+function getEDMapData() {
+  const [offsetX, offsetY] = [9, -2];
+  const idx = Object.fromEntries(
+    Object.entries(HEXAGON_MAP_DATA_ED.idx).map(function ([entID, [x, y]]) {
+      return [entID + "P", [x + offsetX, y + offsetY]];
+    })
+  );
+  const idx2 = Object.fromEntries(
+    Object.entries(HEXAGON_MAP_DATA_ED.idx2).map(function ([entID, polygons]) {
+      return [
+        entID,
+        polygons.map(function (polygon) {
+          return polygon.map(function ([x, y]) {
+            return [x + offsetX, y + offsetY];
+          });
+        }),
+      ];
+    })
+  );
+  return Object.assign({}, HEXAGON_MAP_DATA_ED, { idx, idx2 });
+}
 
-      let color = "#fff";
-      let opacity = 1;
+function SVGMapHexagons({ mapData, resultsIdx, pdIdx }) {
+  const { idx } = mapData;
+  return Object.entries(idx).map(function ([entID, [x, y]]) {
+    const result = resultsIdx[entID];
+    const ent = pdIdx[entID];
+    const label = getLabel(ent.name);
 
-      if (result) {
-        const winningPartyID = result.partyToVotes.winningPartyID;
-        color = Party.fromID(winningPartyID).color;
+    let color = "#fff";
+    let opacity = 1;
 
-        opacity = getOpacity(result.partyToVotes.pWinner);
-      }
+    if (result) {
+      const winningPartyID = result.partyToVotes.winningPartyID;
+      color = Party.fromID(winningPartyID).color;
 
+      opacity = getOpacity(result.partyToVotes.pWinner);
+    }
+
+    return (
+      <SVGHexagon
+        key={entID}
+        x={x}
+        y={y / Math.cos(Math.PI / 6)}
+        color={color}
+        opacity={opacity}
+        label={label}
+      />
+    );
+  });
+}
+
+function SVGMapBoundaries({ mapData, resultsIdx, pdIdx }) {
+  const { idx2 } = mapData;
+  return Object.entries(idx2).map(function ([entID, polygons]) {
+    return polygons.map(function (polygon) {
       return (
-        <SVGHexagon
+        <polygon
           key={entID}
-          x={x}
-          y={y / Math.cos(Math.PI / 6)}
-          color={color}
-          opacity={opacity}
-          label={label}
+          points={polygon
+            .map(function ([x, y]) {
+              return `${x},${y / Math.cos(Math.PI / 6)}`;
+            })
+            .join(" ")}
+          fill="none"
+          stroke="#000"
+          strokeWidth={0.1}
         />
       );
     });
+  });
+}
+
+function SVGMap({ mapData, resultsIdx, pdIdx }) {
+  return (
+    <g>
+      <SVGMapHexagons mapData={mapData} resultsIdx={resultsIdx} pdIdx={pdIdx} />
+      <SVGMapBoundaries mapData={mapData} />
+    </g>
+  );
 }
 
 export default function HexagonMap({ resultsIdx, pdIdx }) {
@@ -182,7 +231,8 @@ export default function HexagonMap({ resultsIdx, pdIdx }) {
       <SVGTitles />
       <SVGLegendParty resultsIdx={resultsIdx} x={1} y={-3} />
       <SVGLegendPercentages x={2 + nParties / N_COLS} y={-3} />
-      <SVGMap resultsIdx={resultsIdx} pdIdx={pdIdx} />
+      <SVGMap resultsIdx={resultsIdx} mapData={getPDMapData()} pdIdx={pdIdx} />
+      <SVGMap resultsIdx={resultsIdx} mapData={getEDMapData()} pdIdx={pdIdx} />
     </svg>
   );
 }

@@ -7,6 +7,7 @@ import {
   BottomNavigationSingleColumnMode,
   ElectionSelector,
   PDSelector,
+  PlayerControl,
 } from "../../molecules";
 import { STYLE, VERSION } from "../../../nonview/constants";
 import SingleColumnMode from "./SingleColumnMode";
@@ -16,7 +17,7 @@ import { Ent, EntType } from "../../../nonview/base";
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
     electionType: "Presidential",
-    date: "2005-11-17",
+    date: "2015-01-08",
     singleColumnMode: SingleColumnMode.MAP,
   };
   constructor(props) {
@@ -25,8 +26,8 @@ export default class BasePage extends Component {
     this.state = BasePage.DEFAULT_STATE;
   }
   get resultsList() {
-    const { election, iResult } = this.state;
-    return election.pdResultsList.slice(0, iResult + 1);
+    const { election, nResultsDisplay } = this.state;
+    return election.pdResultsList.slice(0, nResultsDisplay);
   }
 
   get resultsIdx() {
@@ -54,65 +55,64 @@ export default class BasePage extends Component {
   }
 
   async setElection(electionType, date) {
-    let { activePDID, iResult } = this.state;
+    let { activePDID, nResultsDisplay } = this.state;
     const election = await Election.fromElectionTypeAndDate(electionType, date);
 
     if (!election.isFuture) {
-      iResult = election.pdResultsList.length - 1;
+      nResultsDisplay = election.pdResultsList.length;
       if (!election.resultsIdx[activePDID]) {
-        activePDID = election.pdResultsList[iResult].entID;
+        activePDID = election.pdResultsList[nResultsDisplay - 1].entID;
       }
     }
 
-    this.setState({ electionType, date, iResult, activePDID, election });
+    this.setState({
+      electionType,
+      date,
+      nResultsDisplay,
+      activePDID,
+      election,
+    });
   }
 
   setActivePDID(activePDID) {
     this.setState({ activePDID });
   }
 
-  setIResult(iResult) {
-    this.setState({ iResult });
+  setNResultsDisplay(nResultsDisplay) {
+    const { election } = this.state;
+    const pdIDs = election.pdResultsList.map((pdResult) => pdResult.entID);
+    const activePDID = pdIDs[nResultsDisplay - 1];
+
+    this.setState({ nResultsDisplay, activePDID });
   }
 
   setSingleColumnMode(singleColumnMode) {
     this.setState({ singleColumnMode });
   }
 
-  gotoFirstResult() {
-    this.setIResult(0);
-  }
-
-  gotoPreviousResult() {
-    const { iResult } = this.state;
-    const iResultNext = iResult - 1;
-    this.setIResult(iResultNext);
-  }
-
-  gotoNextResult() {
-    const { iResult } = this.state;
-    const iResultNext = iResult + 1;
-    this.setIResult(iResultNext);
-  }
-
-  gotoLastResult() {
-    const { election } = this.state;
-    const iResult = election.pdResultsList.length - 1;
-    this.setIResult(iResult);
-  }
-
   async componentDidMount() {
+    const timerID = "⚡[Expensive] BasePage.componentDidMount";
+    console.time(timerID);
+
     const { electionType, date } = this.state;
 
     const election = await Election.fromElectionTypeAndDate(electionType, date);
-    const iResult = election.pdResultsList.length - 1;
-    const activePDID = election.pdResultsList[iResult].entID;
+    const nResultsDisplay = election.pdResultsList.length;
+    const activePDID = election.pdResultsList[nResultsDisplay - 1].entID;
 
     const pdIdx = await Ent.idxFromType(EntType.PD);
     const edIdx = await Ent.idxFromType(EntType.ED);
     const elections = await Election.listAll();
 
-    this.setState({ election, iResult, activePDID, pdIdx, edIdx, elections });
+    this.setState({
+      election,
+      nResultsDisplay,
+      activePDID,
+      pdIdx,
+      edIdx,
+      elections,
+    });
+    console.timeEnd(timerID);
   }
 
   renderHeader() {
@@ -178,15 +178,15 @@ export default class BasePage extends Component {
   }
 
   renderColumnPrediction() {
-    const { election, iResult } = this.state;
+    const { election, nResultsDisplay } = this.state;
     return (
       <Box>
         <Typography variant="h6">Projected Final Result</Typography>
         <Typography variant="h3">Sri Lanka</Typography>
         <PredictionView
-          key={iResult}
+          key={nResultsDisplay}
           activeElection={election}
-          iResult={iResult}
+          nResultsDisplay={nResultsDisplay}
         />{" "}
       </Box>
     );
@@ -230,7 +230,7 @@ export default class BasePage extends Component {
   }
 
   renderMultiColumnBody() {
-    const { election } = this.state;
+    const { election, nResultsDisplay } = this.state;
     if (election.isFuture) {
       return <FutureElection election={election} />;
     }
@@ -241,6 +241,11 @@ export default class BasePage extends Component {
         <Box sx={{ width }}> {this.renderColumnResult()}</Box>
         <Box sx={{ width }}> {this.renderColumnLKResult()}</Box>{" "}
         <Box sx={{ width }}> {this.renderColumnPrediction()}</Box>
+        <PlayerControl
+          setNResultsDisplay={this.setNResultsDisplay.bind(this)}
+          nResultsDisplay={nResultsDisplay}
+          nResults={this.nResults}
+        />
       </Stack>
     );
   }
@@ -257,7 +262,7 @@ export default class BasePage extends Component {
 
   renderSingleColumnBody() {
     const { singleColumnMode } = this.state;
-    return singleColumnMode.getRenderer(this);
+    return <Box>{singleColumnMode.getRenderer(this)}</Box>;
   }
 
   renderSingleColumn() {

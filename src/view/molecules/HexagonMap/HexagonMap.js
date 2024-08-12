@@ -5,7 +5,7 @@ import HEXAGON_MAP_DATA_ED from "./HEXAGON_MAP_DATA_ED";
 import { STYLE } from "../../../nonview/constants";
 const N_COLS = 2;
 
-function SVGHexagon({ x, y, color, label, isActive, opacity }) {
+function SVGHexagon({ x, y, color, label, opacity }) {
   const N_SIDES = 6;
 
   const radius = 1 / Math.cos(Math.PI / 6) ** 2 / 2;
@@ -18,8 +18,6 @@ function SVGHexagon({ x, y, color, label, isActive, opacity }) {
       return `${x},${y}`;
     })
     .join(" ");
-
-  const textColor = isActive ? "#000" : "#fff";
 
   return (
     <g>
@@ -36,7 +34,7 @@ function SVGHexagon({ x, y, color, label, isActive, opacity }) {
         fontSize={0.4}
         textAnchor="middle"
         alignmentBaseline="middle"
-        fill={textColor}
+        fill={"white"}
       >
         {label}
       </text>
@@ -134,7 +132,7 @@ function getLabel(name) {
   return words.map((word) => word.substring(0, 1)).join("");
 }
 
-function SVGMap({ resultsIdx, pdIdx, activeResult }) {
+function SVGMap({ resultsIdx, pdIdx }) {
   return []
     .concat(
       Object.entries(HEXAGON_MAP_DATA_PD),
@@ -150,11 +148,11 @@ function SVGMap({ resultsIdx, pdIdx, activeResult }) {
 
       let color = "#fff";
       let opacity = 1;
-      let isActive = false;
+
       if (result) {
         const winningPartyID = result.partyToVotes.winningPartyID;
         color = Party.fromID(winningPartyID).color;
-        isActive = result.entID === activeResult.entID;
+
         opacity = getOpacity(result.partyToVotes.pWinner);
       }
 
@@ -166,13 +164,12 @@ function SVGMap({ resultsIdx, pdIdx, activeResult }) {
           color={color}
           opacity={opacity}
           label={label}
-          isActive={isActive}
         />
       );
     });
 }
 
-export default function HexagonMap({ resultsIdx, pdIdx, activeResult }) {
+export default function HexagonMap({ resultsIdx, pdIdx }) {
   const partyToWins = getPartyToWins(resultsIdx);
   const nParties = Object.keys(partyToWins).length;
   return (
@@ -185,11 +182,7 @@ export default function HexagonMap({ resultsIdx, pdIdx, activeResult }) {
       <SVGTitles />
       <SVGLegendParty resultsIdx={resultsIdx} x={1} y={-3} />
       <SVGLegendPercentages x={2 + nParties / N_COLS} y={-3} />
-      <SVGMap
-        resultsIdx={resultsIdx}
-        pdIdx={pdIdx}
-        activeResult={activeResult}
-      />
+      <SVGMap resultsIdx={resultsIdx} pdIdx={pdIdx} />
     </svg>
   );
 }

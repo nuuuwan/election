@@ -1,5 +1,5 @@
 import { Box, MenuItem, Select, Typography } from "@mui/material";
-import { Election, Party } from "../../nonview/core";
+import { Party } from "../../nonview/core";
 
 function toValue(election) {
   return JSON.stringify({

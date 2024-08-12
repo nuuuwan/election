@@ -10,7 +10,7 @@ export default class PredictionView extends Component {
   }
 
   async componentDidMount() {
-    const { activeElection, iResult } = this.props;
+    const { activeElection, nResultsDisplay } = this.props;
     const elections = await Election.listAll();
 
     const pdResultsList = activeElection.pdResultsList;
@@ -19,10 +19,10 @@ export default class PredictionView extends Component {
     }
 
     const releasedPDIDList = pdResultsList
-      .slice(0, iResult + 1)
+      .slice(0, nResultsDisplay + 1)
       .map((result) => result.entID);
     const notReleasePDIDList = pdResultsList
-      .slice(iResult + 1)
+      .slice(nResultsDisplay + 1)
       .map((result) => result.entID);
 
     let resultsLK = undefined;

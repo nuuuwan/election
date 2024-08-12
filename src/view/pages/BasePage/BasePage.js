@@ -5,7 +5,6 @@ import {
   ResultSingleView,
   HexagonMap,
   BottomNavigationSingleColumnMode,
-  BottomNavigationPlayer,
   ElectionSelector,
 } from "../../molecules";
 import { STYLE, VERSION } from "../../../nonview/constants";
@@ -16,14 +15,6 @@ export default class BasePage extends Component {
   static DEFAULT_STATE = {
     electionType: "Presidential",
     date: "2005-11-17",
-    // electionType: "Presidential",
-    // date: "2010-01-26",
-    // electionType: "Presidential",
-    // date: "2015-01-08",
-    // electionType: "Presidential",
-    // date: "2019-11-16",
-    // electionType: "Parliamentary",
-    // date: "2000-10-10",
     singleColumnMode: SingleColumnMode.MAP,
   };
   constructor(props) {
@@ -31,12 +22,6 @@ export default class BasePage extends Component {
 
     this.state = BasePage.DEFAULT_STATE;
   }
-
-  get result() {
-    const { election, iResult } = this.state;
-    return election.pdResultsList[iResult];
-  }
-
   get resultList() {
     const { election, iResult } = this.state;
     return election.pdResultsList.slice(0, iResult + 1);
@@ -47,6 +32,11 @@ export default class BasePage extends Component {
       this.resultList.map((result) => [result.entID, result])
     );
   }
+  get result() {
+    const { activePDID } = this.state;
+    return this.resultIdx[activePDID];
+  }
+
   get resultLK() {
     return Result.fromList("LK", this.resultList);
   }
@@ -57,17 +47,20 @@ export default class BasePage extends Component {
   }
 
   get key() {
-    const { electionType, date, iResult } = this.state;
-    return `${electionType}-${date}-${iResult}`;
+    const { electionType, date, activePDID } = this.state;
+    return `${electionType}-${date}-${activePDID}`;
   }
 
   async setElection(electionType, date) {
     const election = await Election.fromElectionTypeAndDate(electionType, date);
-    let iResult;
+
+    let activePDID, iResult;
     if (!election.isFuture) {
       iResult = election.pdResultsList.length - 1;
+      activePDID = election.pdResultsList[iResult].entID;
     }
-    this.setState({ electionType, date, iResult, election });
+
+    this.setState({ electionType, date, iResult, activePDID, election });
   }
 
   setIResult(iResult) {
@@ -105,8 +98,8 @@ export default class BasePage extends Component {
 
     const election = await Election.fromElectionTypeAndDate(electionType, date);
     const iResult = election.pdResultsList.length - 1;
-
-    this.setState({ election, iResult });
+    const activePDID = election.pdResultsList[iResult].entID;
+    this.setState({ election, iResult, activePDID });
   }
 
   renderHeader() {
@@ -126,15 +119,9 @@ export default class BasePage extends Component {
   }
 
   renderColumnResult() {
-    const { iResult } = this.state;
-    let superTitle = `Result ${iResult + 1} of ${this.nResults}`;
-    if (iResult === this.nResults - 1) {
-      superTitle += " (Latest)";
-    }
-
     return (
       <Box>
-        <ResultSingleView result={this.result} superTitle={superTitle} />{" "}
+        <ResultSingleView result={this.result} superTitle={"Result"} />{" "}
         <Box
           sx={{
             position: "fixed",
@@ -146,16 +133,7 @@ export default class BasePage extends Component {
             m: 0,
             p: 0,
           }}
-        >
-          <BottomNavigationPlayer
-            gotoFirstResult={this.gotoFirstResult.bind(this)}
-            gotoNextResult={this.gotoNextResult.bind(this)}
-            gotoPreviousResult={this.gotoPreviousResult.bind(this)}
-            gotoLastResult={this.gotoLastResult.bind(this)}
-            iResult={this.state.iResult}
-            nResults={this.nResults}
-          />
-        </Box>
+        ></Box>
       </Box>
     );
   }

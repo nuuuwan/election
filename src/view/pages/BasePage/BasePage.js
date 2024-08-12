@@ -1,16 +1,15 @@
 import { Component } from "react";
-import { Box, CircularProgress, Stack, Typography } from "@mui/material";
+import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import { Election, Result } from "../../../nonview/core";
 import {
   ResultSingleView,
   HexagonMap,
-  BottomNavigationSingleColumnMode,
   ElectionSelector,
   PDSelector,
   PlayerControl,
 } from "../../molecules";
-import { STYLE, VERSION } from "../../../nonview/constants";
-import SingleColumnMode from "./SingleColumnMode";
+import { VERSION } from "../../../nonview/constants";
+
 import PredictionView from "../../organisms/PredictionView";
 import { FutureElection } from "../../atoms";
 import { Ent, EntType } from "../../../nonview/base";
@@ -18,7 +17,6 @@ export default class BasePage extends Component {
   static DEFAULT_STATE = {
     electionType: "Presidential",
     date: "2015-01-08",
-    singleColumnMode: SingleColumnMode.MAP,
   };
   constructor(props) {
     super(props);
@@ -84,10 +82,6 @@ export default class BasePage extends Component {
     const activePDID = pdIDs[nResultsDisplay - 1];
 
     this.setState({ nResultsDisplay, activePDID });
-  }
-
-  setSingleColumnMode(singleColumnMode) {
-    this.setState({ singleColumnMode });
   }
 
   async componentDidMount() {
@@ -192,7 +186,7 @@ export default class BasePage extends Component {
     );
   }
 
-  renderBodyFooter() {
+  renderFooter() {
     return (
       <Box color="#ccc">
         <Typography variant="body1">Source Data by elections.gov.lk</Typography>
@@ -206,72 +200,32 @@ export default class BasePage extends Component {
     );
   }
 
-  renderFooter() {
-    const { singleColumnMode } = this.state;
-    return (
-      <Box
-        sx={{
-          position: "fixed",
-          height: 60,
-          bottom: 0,
-          left: 0,
-          right: 0,
-          zIndex: 1000,
-          m: 0,
-          p: 0,
-        }}
-      >
-        <BottomNavigationSingleColumnMode
-          selectedSingleColumnMode={singleColumnMode}
-          setSingleColumnMode={this.setSingleColumnMode.bind(this)}
-        />
-      </Box>
-    );
-  }
-
-  renderMultiColumnBody() {
+  renderBody() {
     const { election, nResultsDisplay } = this.state;
     if (election.isFuture) {
       return <FutureElection election={election} />;
     }
-    const width = STYLE.PCT_COLUMN_WIDTH;
+
     return (
-      <Stack direction="row">
-        <Box sx={{ width }}> {this.renderColumnMap()}</Box>
-        <Box sx={{ width }}> {this.renderColumnResult()}</Box>
-        <Box sx={{ width }}> {this.renderColumnLKResult()}</Box>{" "}
-        <Box sx={{ width }}> {this.renderColumnPrediction()}</Box>
+      <Grid container>
+        <Grid item xs={12} md={6} lg={3}>
+          {this.renderColumnMap()}
+        </Grid>
+        <Grid item xs={12} md={6} lg={3}>
+          {this.renderColumnResult()}
+        </Grid>
+        <Grid item xs={12} md={6} lg={3}>
+          {this.renderColumnLKResult()}
+        </Grid>{" "}
+        <Grid item xs={12} md={6} lg={3}>
+          {this.renderColumnPrediction()}
+        </Grid>
         <PlayerControl
           setNResultsDisplay={this.setNResultsDisplay.bind(this)}
           nResultsDisplay={nResultsDisplay}
           nResults={this.nResults}
         />
-      </Stack>
-    );
-  }
-
-  renderMultiColumn() {
-    return (
-      <Box key={this.key}>
-        {this.renderHeader()}
-        {this.renderBodyFooter()}
-        {this.renderMultiColumnBody()}
-      </Box>
-    );
-  }
-
-  renderSingleColumnBody() {
-    const { singleColumnMode } = this.state;
-    return <Box>{singleColumnMode.getRenderer(this)}</Box>;
-  }
-
-  renderSingleColumn() {
-    return (
-      <Box key={this.key}>
-        {this.renderHeader()}
-        {this.renderSingleColumnBody()}
-        {this.renderFooter()}
-      </Box>
+      </Grid>
     );
   }
 
@@ -281,10 +235,13 @@ export default class BasePage extends Component {
       return <CircularProgress />;
     }
 
-    if (STYLE.IS_MULTI_COLUMN) {
-      return this.renderMultiColumn();
-    }
-    return this.renderSingleColumn();
+    return (
+      <Box key={this.key}>
+        {this.renderHeader()}
+        {this.renderBody()}
+        {this.renderFooter()}
+      </Box>
+    );
   }
 
   render() {

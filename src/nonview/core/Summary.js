@@ -21,13 +21,13 @@ export default class Summary {
     );
   }
 
-  static fromList(resultList) {
+  static fromList(resultsList) {
     let summary = {};
     for (const key of Summary.KEYS) {
       summary[key] = 0;
     }
 
-    for (const result of resultList) {
+    for (const result of resultsList) {
       for (const key of Summary.KEYS) {
         summary[key] += parseInt(result.summary[key]);
       }

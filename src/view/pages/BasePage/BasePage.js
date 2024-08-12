@@ -6,11 +6,13 @@ import {
   HexagonMap,
   BottomNavigationSingleColumnMode,
   ElectionSelector,
+  PDSelector,
 } from "../../molecules";
 import { STYLE, VERSION } from "../../../nonview/constants";
 import SingleColumnMode from "./SingleColumnMode";
 import PredictionView from "../../organisms/PredictionView";
 import { FutureElection } from "../../atoms";
+import { Ent, EntType } from "../../../nonview/base";
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
     electionType: "Presidential",
@@ -22,23 +24,23 @@ export default class BasePage extends Component {
 
     this.state = BasePage.DEFAULT_STATE;
   }
-  get resultList() {
+  get resultsList() {
     const { election, iResult } = this.state;
     return election.pdResultsList.slice(0, iResult + 1);
   }
 
-  get resultIdx() {
+  get resultsIdx() {
     return Object.fromEntries(
-      this.resultList.map((result) => [result.entID, result])
+      this.resultsList.map((result) => [result.entID, result])
     );
   }
   get result() {
     const { activePDID } = this.state;
-    return this.resultIdx[activePDID];
+    return this.resultsIdx[activePDID];
   }
 
   get resultLK() {
-    return Result.fromList("LK", this.resultList);
+    return Result.fromList("LK", this.resultsList);
   }
 
   get nResults() {
@@ -52,15 +54,21 @@ export default class BasePage extends Component {
   }
 
   async setElection(electionType, date) {
+    let { activePDID, iResult } = this.state;
     const election = await Election.fromElectionTypeAndDate(electionType, date);
 
-    let activePDID, iResult;
     if (!election.isFuture) {
       iResult = election.pdResultsList.length - 1;
-      activePDID = election.pdResultsList[iResult].entID;
+      if (!election.resultsIdx[activePDID]) {
+        activePDID = election.pdResultsList[iResult].entID;
+      }
     }
 
     this.setState({ electionType, date, iResult, activePDID, election });
+  }
+
+  setActivePDID(activePDID) {
+    this.setState({ activePDID });
   }
 
   setIResult(iResult) {
@@ -99,7 +107,11 @@ export default class BasePage extends Component {
     const election = await Election.fromElectionTypeAndDate(electionType, date);
     const iResult = election.pdResultsList.length - 1;
     const activePDID = election.pdResultsList[iResult].entID;
-    this.setState({ election, iResult, activePDID });
+
+    const pdIdx = await Ent.idxFromType(EntType.PD);
+    const edIdx = await Ent.idxFromType(EntType.ED);
+
+    this.setState({ election, iResult, activePDID, pdIdx, edIdx });
   }
 
   renderHeader() {
@@ -115,12 +127,27 @@ export default class BasePage extends Component {
   }
 
   renderColumnMap() {
-    return <HexagonMap resultIdx={this.resultIdx} activeResult={this.result} />;
+    const { pdIdx } = this.state;
+    return (
+      <HexagonMap
+        resultsIdx={this.resultsIdx}
+        pdIdx={pdIdx}
+        activeResult={this.result}
+      />
+    );
   }
 
   renderColumnResult() {
+    const { activePDID, pdIdx, edIdx } = this.state;
     return (
       <Box>
+        <PDSelector
+          resultsIdx={this.resultsIdx}
+          activePDID={activePDID}
+          pdIdx={pdIdx}
+          edIdx={edIdx}
+          setActivePDID={this.setActivePDID.bind(this)}
+        />
         <ResultSingleView result={this.result} superTitle={"Result"} />{" "}
         <Box
           sx={{
@@ -141,6 +168,8 @@ export default class BasePage extends Component {
   renderColumnLKResult() {
     return (
       <Box>
+        <Typography variant="h6">Aggregated Result</Typography>
+        <Typography variant="h3">Sri Lanka</Typography>
         <ResultSingleView result={this.resultLK} superTitle={"Aggregated"} />
       </Box>
     );
@@ -149,11 +178,15 @@ export default class BasePage extends Component {
   renderColumnPrediction() {
     const { election, iResult } = this.state;
     return (
-      <PredictionView
-        key={iResult}
-        activeElection={election}
-        iResult={iResult}
-      />
+      <Box>
+        <Typography variant="h6">Projected Final Result</Typography>
+        <Typography variant="h3">Sri Lanka</Typography>
+        <PredictionView
+          key={iResult}
+          activeElection={election}
+          iResult={iResult}
+        />{" "}
+      </Box>
     );
   }
 

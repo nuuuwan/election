@@ -4,6 +4,7 @@ import BottomNavigationSingleColumnMode from "./BottomNavigationSingleColumnMode
 import ElectionSelector from "./ElectionSelector";
 import FinalOutcomeView from "./FinalOutcomeView";
 import HexagonMap from "./HexagonMap";
+import PDSelector from "./PDSelector";
 import PartyToVotesView from "./PartyToVotesView";
 import ResultSingleView from "./ResultSingleView";
 import SummaryView from "./SummaryView";
@@ -14,6 +15,7 @@ export {
   ElectionSelector,
   FinalOutcomeView,
   HexagonMap,
+  PDSelector,
   PartyToVotesView,
   ResultSingleView,
   SummaryView,

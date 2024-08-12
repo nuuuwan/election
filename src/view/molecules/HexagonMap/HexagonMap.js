@@ -77,8 +77,8 @@ function SVGLegendPercentages({ x, y }) {
   });
 }
 
-function getPartyToWins(resultIdx) {
-  return Object.values(resultIdx).reduce(function (partyToWins, result) {
+function getPartyToWins(resultsIdx) {
+  return Object.values(resultsIdx).reduce(function (partyToWins, result) {
     const winningPartyID = result.partyToVotes.winningPartyID;
     if (!partyToWins[winningPartyID]) {
       partyToWins[winningPartyID] = 0;
@@ -88,8 +88,8 @@ function getPartyToWins(resultIdx) {
   }, {});
 }
 
-function SVGLegendParty({ resultIdx, x, y }) {
-  const partyToWins = getPartyToWins(resultIdx);
+function SVGLegendParty({ resultsIdx, x, y }) {
+  const partyToWins = getPartyToWins(resultsIdx);
 
   return Object.entries(partyToWins)
     .sort(function ([partyID1, nWins1], [partyID2, nWins2]) {
@@ -120,7 +120,21 @@ function getOpacity(p) {
   return minOpacity + (1 - minOpacity) * p2;
 }
 
-function SVGMap({ resultIdx, activeResult }) {
+function replaceLowercaseVowels(str) {
+  return str.replace(/[aeiou]/g, "");
+}
+
+function getLabel(name) {
+  name = name.replace("Postal ", "");
+  name = replaceLowercaseVowels(name);
+  const words = name.split(" ");
+  if (words.length === 1) {
+    return name.substring(0, 3).toUpperCase();
+  }
+  return words.map((word) => word.substring(0, 1)).join("");
+}
+
+function SVGMap({ resultsIdx, pdIdx, activeResult }) {
   return []
     .concat(
       Object.entries(HEXAGON_MAP_DATA_PD),
@@ -130,8 +144,9 @@ function SVGMap({ resultIdx, activeResult }) {
     )
 
     .map(function ([entID, [x, y]]) {
-      const result = resultIdx[entID];
-      const label = entID.replace("-0", "-").replace("EC-", "");
+      const result = resultsIdx[entID];
+      const ent = pdIdx[entID];
+      const label = getLabel(ent.name);
 
       let color = "#fff";
       let opacity = 1;
@@ -157,8 +172,8 @@ function SVGMap({ resultIdx, activeResult }) {
     });
 }
 
-export default function HexagonMap({ resultIdx, activeResult }) {
-  const partyToWins = getPartyToWins(resultIdx);
+export default function HexagonMap({ resultsIdx, pdIdx, activeResult }) {
+  const partyToWins = getPartyToWins(resultsIdx);
   const nParties = Object.keys(partyToWins).length;
   return (
     <svg
@@ -168,9 +183,13 @@ export default function HexagonMap({ resultIdx, activeResult }) {
       fontFamily={STYLE.FONT_FAMILY}
     >
       <SVGTitles />
-      <SVGLegendParty resultIdx={resultIdx} x={1} y={-3} />
+      <SVGLegendParty resultsIdx={resultsIdx} x={1} y={-3} />
       <SVGLegendPercentages x={2 + nParties / N_COLS} y={-3} />
-      <SVGMap resultIdx={resultIdx} activeResult={activeResult} />
+      <SVGMap
+        resultsIdx={resultsIdx}
+        pdIdx={pdIdx}
+        activeResult={activeResult}
+      />
     </svg>
   );
 }

@@ -7,7 +7,7 @@ let FormatPercent = {
     }
 
     if (!minimumFractionDigits) {
-      let minimumFractionDigits = 1;
+      minimumFractionDigits = 1;
       if (x > 0.105) {
         minimumFractionDigits = 0;
       }

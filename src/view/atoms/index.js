@@ -2,7 +2,4 @@
 import LabelledStat from "./LabelledStat";
 import PartyView from "./PartyView";
 
-export {
-  LabelledStat,
-  PartyView,
-}
+export { LabelledStat, PartyView };

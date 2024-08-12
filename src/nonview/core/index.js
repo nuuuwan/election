@@ -19,4 +19,4 @@ export {
   PartyToVotes,
   Result,
   Summary,
-}
+};

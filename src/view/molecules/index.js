@@ -15,4 +15,4 @@ export {
   PartyToVotesView,
   ResultSingleView,
   SummaryView,
-}
+};

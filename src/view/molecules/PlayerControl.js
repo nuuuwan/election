@@ -4,7 +4,6 @@ import FirstPageIcon from "@mui/icons-material/FirstPage";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import LastPageIcon from "@mui/icons-material/LastPage";
-import { STYLE } from "../../nonview/constants";
 
 function IconButtomCustom({ Icon, onClick, disabled }) {
   const color = disabled ? "#ccc" : "#000";

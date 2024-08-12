@@ -7,7 +7,8 @@ import Result from "../Result";
 export default class ElectionModel {
   static MIN_RESULTS_FOR_PREDICTION = 1;
   static PARTY_UNCERTAIN = Party.UNCERTAIN.id;
-  static ERROR_CONF = 0.9;
+  static ERROR_CONF = 0.7;
+  static DEFAULT_P_ERROR = 0.2;
 
   constructor(
     elections,
@@ -141,49 +142,62 @@ export default class ElectionModel {
     );
   }
   train() {
-    // Evaluate Errpr
+    // Evaluate Error
     const XTrainEvaluate = this.getXTrainEvaluate();
-    if (XTrainEvaluate.length === 0) {
-      throw new Error(
-        "There is insufficient data to train an election projection model."
-      );
-    }
+    const canTrainModelEvaluate =
+      XTrainEvaluate.length >= ElectionModel.MIN_RESULTS_FOR_PREDICTION;
     const YTrainEvaluate = this.getYTrainEvaluate();
-    const modelEvaluate = new MLModel(XTrainEvaluate, YTrainEvaluate);
 
+    let modelEvaluate = null;
+    if (canTrainModelEvaluate) {
+      modelEvaluate = new MLModel(XTrainEvaluate, YTrainEvaluate);
+    }
     const XTestEvaluate = this.getXTestEvaluate();
     const YTestEvaluate = this.getYTestEvaluate();
 
-    const YHatTestEvaluate = XTestEvaluate.map((Xi) =>
-      modelEvaluate.predict(Xi)
-    );
+    let YHatTestEvaluate = [];
+    let pError = ElectionModel.DEFAULT_P_ERROR;
+    if (canTrainModelEvaluate) {
+      YHatTestEvaluate = XTestEvaluate.map((Xi) => modelEvaluate.predict(Xi));
 
-    const MIN_P = 0.01;
-    const pErrorList = YHatTestEvaluate.reduce(function (pErrorList, YHat, i) {
-      return YHat.reduce(function (pErrorList, yHat, j) {
-        const y = YTestEvaluate[i][j];
-        if (y >= MIN_P) {
-          const error = Math.sqrt(Math.pow(yHat - y, 2)) / y;
-          pErrorList.push(error);
-        }
-        return pErrorList;
-      }, pErrorList);
-    }, []).sort();
+      const MIN_P = 0.01;
+      const pErrorList = YHatTestEvaluate.reduce(function (
+        pErrorList,
+        YHat,
+        i
+      ) {
+        return YHat.reduce(function (pErrorList, yHat, j) {
+          const y = YTestEvaluate[i][j];
+          if (y >= MIN_P) {
+            const error = Math.sqrt(Math.pow(yHat - y, 2)) / y;
+            pErrorList.push(error);
+          }
+          return pErrorList;
+        }, pErrorList);
+      },
+      []).sort();
 
-    const n = pErrorList.length;
-    const pError = pErrorList[Math.floor(ElectionModel.ERROR_CONF * n)];
-
+      const n = pErrorList.length;
+      pError = pErrorList[Math.floor(ElectionModel.ERROR_CONF * n)];
+    }
     // Train
     const XTrain = this.getXTrain();
+    const canTrainModel =
+      XTrain.length >= ElectionModel.MIN_RESULTS_FOR_PREDICTION;
     const YTrain = this.getYTrain();
-    const model = new MLModel(XTrain, YTrain);
 
-    const XEvaluate = this.getXEvaluate();
-    const YHat = XEvaluate.map((Xi) => model.predict(Xi));
+    let model = null;
+    let YHat = [];
     const partyIDList = ElectionModel.getPartyIDList(
       this.currentElection,
       this.releasedPDIDList
     );
+    if (canTrainModel) {
+      model = new MLModel(XTrain, YTrain);
+
+      const XEvaluate = this.getXEvaluate();
+      YHat = XEvaluate.map((Xi) => model.predict(Xi));
+    }
 
     const pdToPartyToPVotes = YHat.reduce(
       function (pdToPartyToPVotes, Yi, i) {
@@ -222,6 +236,9 @@ export default class ElectionModel {
     const notReleasedResultsList = this.nonReleasedPDIDList
       .map(function (pdID) {
         // We assume the summary from the last election is valid.
+        if (!lastElection) {
+          return null;
+        }
         let result = lastElection.getResults(pdID);
         if (!result) {
           return null;

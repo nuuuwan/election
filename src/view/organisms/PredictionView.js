@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { Alert, CircularProgress, Stack } from "@mui/material";
+import { CircularProgress, Stack } from "@mui/material";
 import { Election, ElectionModel } from "../../nonview/core";
 import { FinalOutcomeView, ResultSingleView } from "../molecules";
 
@@ -26,34 +26,21 @@ export default class PredictionView extends Component {
       .map((result) => result.entID);
 
     let resultsLK = undefined;
-    let error = undefined;
-    try {
-      const electionModel = new ElectionModel(
-        elections,
-        activeElection,
-        releasedPDIDList,
-        notReleasePDIDList
-      );
-      const predictedElection =
-        electionModel.getElectionNotReleasedPrediction();
-      resultsLK = predictedElection.resultsIdx["LK"];
-    } catch (error0) {
-      error = error0;
-    }
 
-    this.setState({ resultsLK, error });
+    const electionModel = new ElectionModel(
+      elections,
+      activeElection,
+      releasedPDIDList,
+      notReleasePDIDList
+    );
+    const predictedElection = electionModel.getElectionNotReleasedPrediction();
+    resultsLK = predictedElection.resultsIdx["LK"];
+
+    this.setState({ resultsLK });
   }
 
   render() {
-    const { resultsLK, error } = this.state;
-
-    if (error) {
-      return (
-        <Alert severity="error" sx={{ fontSize: "100%" }}>
-          {error.message}
-        </Alert>
-      );
-    }
+    const { resultsLK } = this.state;
 
     if (!resultsLK) {
       return <CircularProgress />;

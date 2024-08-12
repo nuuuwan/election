@@ -223,8 +223,8 @@ export default function HexagonMap({ resultsIdx, pdIdx }) {
   const nParties = Object.keys(partyToWins).length;
   return (
     <svg
-      width={STYLE.COLUMN_WIDTH}
-      height={STYLE.HEIGHT}
+      width={"100%"}
+      height={"100vh"}
       viewBox="0 -4 11 35"
       fontFamily={STYLE.FONT_FAMILY}
     >

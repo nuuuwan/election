@@ -208,16 +208,16 @@ export default class BasePage extends Component {
 
     return (
       <Grid container>
-        <Grid item xs={12} md={6} lg={3}>
+        <Grid item xs={12} md={6} xl={3}>
           {this.renderColumnMap()}
         </Grid>
-        <Grid item xs={12} md={6} lg={3}>
+        <Grid item xs={12} md={6} xl={3}>
           {this.renderColumnResult()}
         </Grid>
-        <Grid item xs={12} md={6} lg={3}>
+        <Grid item xs={12} md={6} xl={3}>
           {this.renderColumnLKResult()}
         </Grid>{" "}
-        <Grid item xs={12} md={6} lg={3}>
+        <Grid item xs={12} md={6} xl={3}>
           {this.renderColumnPrediction()}
         </Grid>
         <PlayerControl

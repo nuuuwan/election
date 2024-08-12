@@ -1,5 +1,5 @@
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
-import SingleColumnMode from "../pages/base_page/SingleColumnMode";
+import SingleColumnMode from "../pages/BasePage/SingleColumnMode";
 import RefreshIcon from "@mui/icons-material/Refresh";
 
 export default function BottomNavigationSingleColumnMode({

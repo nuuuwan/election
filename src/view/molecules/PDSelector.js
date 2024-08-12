@@ -1,4 +1,4 @@
-import { Box, MenuItem, Select, Typography } from "@mui/material";
+import { Box, Divider, MenuItem, Select, Typography } from "@mui/material";
 import { Party } from "../../nonview/core";
 
 export default function PDSelector({
@@ -21,6 +21,7 @@ export default function PDSelector({
       return a.name.localeCompare(b.name);
     });
 
+  let prevFirstChar;
   return (
     <Box>
       <Select
@@ -33,12 +34,18 @@ export default function PDSelector({
           },
         }}
       >
-        {releasedPDs.map(function (pd, i) {
+        {releasedPDs.reduce(function (innerItems, pd, i) {
           const ed = edIdx[pd.id.substring(0, 5)];
           const result = resultsIdx[pd.id];
           const winningPartyID = result.partyToVotes.winningPartyID;
           const color = Party.fromID(winningPartyID).color;
-          return (
+
+          const firstChar = pd.name.substring(0, 1);
+          if (prevFirstChar !== firstChar && i !== 0) {
+            innerItems.push(<Divider key={`divider-${i}`} />);
+          }
+          prevFirstChar = firstChar;
+          const innerItem = (
             <MenuItem key={i} value={pd.id}>
               <Typography variant="h5" color={color}>
                 {pd.name}
@@ -48,7 +55,9 @@ export default function PDSelector({
               </Typography>
             </MenuItem>
           );
-        })}
+          innerItems.push(innerItem);
+          return innerItems;
+        }, [])}
       </Select>
     </Box>
   );

@@ -30,15 +30,8 @@ export default class ElectionBase {
     return this.electionTypeHashtag + this.year;
   }
 
-  get emojiNew() {
-    if (this.isFuture) {
-      return "🆕";
-    }
-    return "";
-  }
-
   get title() {
-    return this.year + " " + this.electionTypeTitle + " " + this.emojiNew;
+    return this.year + " " + this.electionTypeTitle;
   }
 
   get year() {

@@ -16,7 +16,7 @@ export default class ElectionBase {
     if (this.electionType === "Presidential") {
       return "Presidential";
     }
-    return "General";
+    return "Parliamentary";
   }
 
   get electionTypeHashtag() {
@@ -28,6 +28,17 @@ export default class ElectionBase {
 
   get titleShort() {
     return this.electionTypeHashtag + this.year;
+  }
+
+  get emojiNew() {
+    if (this.isFuture) {
+      return "🆕";
+    }
+    return "";
+  }
+
+  get title() {
+    return this.year + " " + this.electionTypeTitle + " " + this.emojiNew;
   }
 
   get year() {

@@ -6,10 +6,12 @@ import {
   HexagonMap,
   BottomNavigationSingleColumnMode,
   BottomNavigationPlayer,
+  ElectionSelector,
 } from "../../molecules";
 import { STYLE, VERSION } from "../../../nonview/constants";
 import SingleColumnMode from "./SingleColumnMode";
 import PredictionView from "../../organisms/PredictionView";
+import { FutureElection } from "../../atoms";
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
     electionType: "Presidential",
@@ -52,6 +54,20 @@ export default class BasePage extends Component {
   get nResults() {
     const { election } = this.state;
     return election.pdResultsList.length;
+  }
+
+  get key() {
+    const { electionType, date, iResult } = this.state;
+    return `${electionType}-${date}-${iResult}`;
+  }
+
+  async setElection(electionType, date) {
+    const election = await Election.fromElectionTypeAndDate(electionType, date);
+    let iResult;
+    if (!election.isFuture) {
+      iResult = election.pdResultsList.length - 1;
+    }
+    this.setState({ electionType, date, iResult, election });
   }
 
   setIResult(iResult) {
@@ -97,7 +113,10 @@ export default class BasePage extends Component {
     const { election } = this.state;
     return (
       <Box color="#ccc">
-        <Typography variant="h4">{election.titleShort}</Typography>
+        <ElectionSelector
+          selectedElection={election}
+          setElection={this.setElection.bind(this)}
+        />
       </Box>
     );
   }
@@ -142,10 +161,8 @@ export default class BasePage extends Component {
   }
 
   renderColumnLKResult() {
-    const { iResult } = this.state;
-
     return (
-      <Box key={iResult}>
+      <Box>
         <ResultSingleView result={this.resultLK} superTitle={"Aggregated"} />
       </Box>
     );
@@ -199,18 +216,28 @@ export default class BasePage extends Component {
     );
   }
 
-  renderMultiColumn() {
+  renderMultiColumnBody() {
+    const { election } = this.state;
+    if (election.isFuture) {
+      return <FutureElection election={election} />;
+    }
     const width = STYLE.PCT_COLUMN_WIDTH;
     return (
-      <Box>
+      <Stack direction="row">
+        <Box sx={{ width }}> {this.renderColumnMap()}</Box>
+        <Box sx={{ width }}> {this.renderColumnResult()}</Box>
+        <Box sx={{ width }}> {this.renderColumnLKResult()}</Box>{" "}
+        <Box sx={{ width }}> {this.renderColumnPrediction()}</Box>
+      </Stack>
+    );
+  }
+
+  renderMultiColumn() {
+    return (
+      <Box key={this.key}>
         {this.renderHeader()}
         {this.renderBodyFooter()}
-        <Stack direction="row">
-          <Box sx={{ width }}> {this.renderColumnMap()}</Box>
-          <Box sx={{ width }}> {this.renderColumnResult()}</Box>
-          <Box sx={{ width }}> {this.renderColumnLKResult()}</Box>{" "}
-          <Box sx={{ width }}> {this.renderColumnPrediction()}</Box>
-        </Stack>
+        {this.renderMultiColumnBody()}
       </Box>
     );
   }
@@ -222,7 +249,7 @@ export default class BasePage extends Component {
 
   renderSingleColumn() {
     return (
-      <Box>
+      <Box key={this.key}>
         {this.renderHeader()}
         {this.renderSingleColumnBody()}
         {this.renderFooter()}

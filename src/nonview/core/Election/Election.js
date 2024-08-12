@@ -22,7 +22,7 @@ class Election extends ElectionBase {
     return this.resultsIdx[id];
   }
   async __loadData() {
-    if (this.isFutureElection) {
+    if (this.isFuture) {
       return;
     }
     this.resultsList = await this.getResultsList();
@@ -74,6 +74,14 @@ class Election extends ElectionBase {
     ).sort();
 
     await Promise.all(elections.map((election) => election.__loadData()));
+    return elections;
+  }
+
+  static listAllNoLoad() {
+    const elections = ELECTION_LIST_TUPLES.map(
+      ([electionType, date]) => new Election(electionType, date)
+    ).sort();
+
     return elections;
   }
 

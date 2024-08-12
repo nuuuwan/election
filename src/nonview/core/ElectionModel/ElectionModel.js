@@ -143,6 +143,11 @@ export default class ElectionModel {
   train() {
     // Evaluate Errpr
     const XTrainEvaluate = this.getXTrainEvaluate();
+    if (XTrainEvaluate.length === 0) {
+      throw new Error(
+        "There is insufficient data to train an election projection model."
+      );
+    }
     const YTrainEvaluate = this.getYTrainEvaluate();
     const modelEvaluate = new MLModel(XTrainEvaluate, YTrainEvaluate);
 

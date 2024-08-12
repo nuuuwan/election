@@ -225,7 +225,7 @@ export default function HexagonMap({ resultsIdx, pdIdx }) {
     <svg
       width={STYLE.COLUMN_WIDTH}
       height={STYLE.HEIGHT}
-      viewBox="2 -5 9 33"
+      viewBox="0 -4 11 35"
       fontFamily={STYLE.FONT_FAMILY}
     >
       <SVGTitles />

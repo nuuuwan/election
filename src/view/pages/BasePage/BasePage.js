@@ -107,9 +107,15 @@ export default class BasePage extends Component {
   }
 
   renderColumnResult() {
+    const { iResult } = this.state;
+    let superTitle = `Result ${iResult + 1} of ${this.nResults}`;
+    if (iResult === this.nResults - 1) {
+      superTitle += " (Latest)";
+    }
+
     return (
       <Box>
-        <ResultSingleView result={this.result} superTitle="Final" />{" "}
+        <ResultSingleView result={this.result} superTitle={superTitle} />{" "}
         <Box
           sx={{
             position: "fixed",
@@ -138,13 +144,9 @@ export default class BasePage extends Component {
   renderColumnLKResult() {
     const { iResult } = this.state;
 
-    const superTitle =
-      this.nResults === iResult + 1
-        ? "Final"
-        : `${iResult + 1}/${this.nResults} Released`;
     return (
       <Box key={iResult}>
-        <ResultSingleView result={this.resultLK} superTitle={superTitle} />
+        <ResultSingleView result={this.resultLK} superTitle={"Aggregated"} />
       </Box>
     );
   }

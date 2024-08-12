@@ -110,16 +110,18 @@ export default class BasePage extends Component {
 
     const pdIdx = await Ent.idxFromType(EntType.PD);
     const edIdx = await Ent.idxFromType(EntType.ED);
+    const elections = await Election.listAll();
 
-    this.setState({ election, iResult, activePDID, pdIdx, edIdx });
+    this.setState({ election, iResult, activePDID, pdIdx, edIdx, elections });
   }
 
   renderHeader() {
-    const { election } = this.state;
+    const { election, elections } = this.state;
     return (
       <Box color="#ccc">
         <ElectionSelector
           selectedElection={election}
+          elections={elections}
           setElection={this.setElection.bind(this)}
         />
       </Box>

@@ -8,9 +8,6 @@ export default function PredictionView({
   elections,
 }) {
   const pdResultsList = activeElection.pdResultsList;
-  if (pdResultsList.length === 0) {
-    return null;
-  }
 
   const releasedPDIDList = pdResultsList
     .slice(0, nResultsDisplay + 1)
@@ -29,10 +26,6 @@ export default function PredictionView({
   );
   const predictedElection = electionModel.getElectionNotReleasedPrediction();
   resultsLK = predictedElection.resultsIdx["LK"];
-
-  if (!resultsLK) {
-    return <CircularProgress />;
-  }
 
   return (
     <Stack direction="column" gap={0}>

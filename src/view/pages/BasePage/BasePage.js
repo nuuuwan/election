@@ -23,7 +23,7 @@ import {
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
     electionType: "Presidential",
-    date: "2010-01-26",
+    date: "2019-11-16",
     isPlaying: false,
   };
   constructor(props) {

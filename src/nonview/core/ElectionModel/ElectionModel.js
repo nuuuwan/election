@@ -102,8 +102,10 @@ export default class ElectionModel {
   }
 
   getXTrain() {
+    const previousElections = this.getPreviousElections();
+
     return ElectionModel.getFeatureMatrix(
-      this.getPreviousElections(),
+      previousElections,
       this.releasedPDIDList
     );
   }
@@ -182,6 +184,7 @@ export default class ElectionModel {
     }
     // Train
     const XTrain = this.getXTrain();
+
     const canTrainModel =
       XTrain.length >= ElectionModel.MIN_RESULTS_FOR_PREDICTION;
     const YTrain = this.getYTrain();
@@ -239,7 +242,7 @@ export default class ElectionModel {
         if (!lastElection) {
           return null;
         }
-        let result = lastElection.getResults(pdID);
+        let result = JSON.parse(JSON.stringify(lastElection.getResults(pdID)));
         if (!result) {
           return null;
         }

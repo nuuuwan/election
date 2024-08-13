@@ -63,24 +63,17 @@ class FinalOutcome {
     return normalizedLikelyWinnerPartyInfoList;
   }
 
-  renderInsights(final) {
+  renderInsights() {
     if (this.isTooEarlyToCall) {
       return ["Too early to call"];
     }
     if (this.hasFirstPrefWinner) {
       const winningPartyID = this.result.partyToVotes.winningPartyID;
       return [
-        this.final ? (
-          <Box>
-            <PartyView partyID={winningPartyID} /> wins on 1st preferences.
-          </Box>
-        ) : (
-          <Box>
-            <PartyView partyID={winningPartyID} /> projected to win on 1st
-            preferences.
-          </Box>
-        ),
-        this.final ? null : <Confidence />,
+        <Box>
+          <PartyView partyID={winningPartyID} /> wins on 1st preferences.
+        </Box>,
+        <Confidence />,
       ];
     }
     const likelyWinnerPartyInfoList = this.likelyWinnerPartyInfoList;
@@ -93,6 +86,7 @@ class FinalOutcome {
 
     return [
       "Too close to call",
+      "Possible Outcomes and Probabilities",
       <Box display="flex" justifyContent="center">
         <table>
           <tbody>
@@ -138,8 +132,8 @@ class FinalOutcome {
   }
 }
 
-export default function FinalOutcomeView({ result, final }) {
-  const finalOutput = new FinalOutcome(result, final);
+export default function FinalOutcomeView({ result }) {
+  const finalOutput = new FinalOutcome(result);
   return (
     <Typography variant="h6" sx={{ color: "gray" }}>
       {finalOutput.renderInsights().map(function (insight, i) {

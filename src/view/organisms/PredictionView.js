@@ -25,36 +25,22 @@ export default class PredictionView extends Component {
       .slice(nResultsDisplay + 1)
       .map((result) => result.entID);
 
-    const electionIsComplete = notReleasePDIDList.length === 0;
-
     let resultsLK = undefined;
-    if (!electionIsComplete) {
-      const electionModel = new ElectionModel(
-        elections,
-        activeElection,
-        releasedPDIDList,
-        notReleasePDIDList
-      );
-      const predictedElection =
-        electionModel.getElectionNotReleasedPrediction();
-      resultsLK = predictedElection.resultsIdx["LK"];
-    }
 
-    this.setState({ resultsLK, electionIsComplete });
+    const electionModel = new ElectionModel(
+      elections,
+      activeElection,
+      releasedPDIDList,
+      notReleasePDIDList
+    );
+    const predictedElection = electionModel.getElectionNotReleasedPrediction();
+    resultsLK = predictedElection.resultsIdx["LK"];
+
+    this.setState({ resultsLK });
   }
 
   render() {
-    const { activeElection } = this.props;
-    const { resultsLK, electionIsComplete } = this.state;
-
-    if (electionIsComplete) {
-      return (
-        <FinalOutcomeView
-          result={activeElection.resultsIdx["LK"]}
-          final={true}
-        />
-      );
-    }
+    const { resultsLK } = this.state;
 
     if (!resultsLK) {
       return <CircularProgress />;

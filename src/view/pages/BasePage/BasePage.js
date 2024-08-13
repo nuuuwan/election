@@ -114,7 +114,16 @@ export default class BasePage extends Component {
   renderHeader() {
     const { election, elections } = this.state;
     return (
-      <Box color={STYLE.COLOR.LIGHTER}>
+      <Box
+        sx={{
+          position: "fixed",
+          top: 0,
+          right: 0,
+          left: 0,
+          zIndex: 3000,
+          backgroundColor: "white",
+        }}
+      >
         <ElectionSelector
           selectedElection={election}
           elections={elections}
@@ -146,7 +155,7 @@ export default class BasePage extends Component {
             pdIdx={pdIdx}
             edIdx={edIdx}
             setActivePDID={this.setActivePDID.bind(this)}
-          />{" "}
+          />
         </Box>
         <ResultSingleView result={this.result} superTitle={"Result"} />{" "}
       </Box>
@@ -157,7 +166,7 @@ export default class BasePage extends Component {
     return (
       <Box>
         <Box sx={{ height: 70 }}>
-          <Typography variant="body1">Aggregated Result</Typography>
+          <Typography variant="body1">Aggregated</Typography>
           <Typography variant="h4">Sri Lanka</Typography>
         </Box>
         <ResultSingleView result={this.resultLK} superTitle={"Aggregated"} />
@@ -182,9 +191,11 @@ export default class BasePage extends Component {
     );
   }
 
-  renderFooter() {
+  renderCitations() {
     return (
-      <Box color={STYLE.COLOR.LIGHTER}>
+      <Box
+        sx={{ color: STYLE.COLOR.LIGHTER, textAlign: "center", margin: "auto" }}
+      >
         <Typography variant="body1">Source Data by elections.gov.lk</Typography>
         <Typography variant="body1">
           Visualization & Analysis by @nuuuwan
@@ -203,7 +214,14 @@ export default class BasePage extends Component {
     }
 
     return (
-      <Grid container>
+      <Grid
+        container
+        sx={{
+          paddingTop: 10,
+          paddingBottom: 10,
+        }}
+        spacing={3}
+      >
         <Grid item xs={12} md={6} xl={3}>
           {this.renderColumnResult()}
         </Grid>
@@ -222,6 +240,7 @@ export default class BasePage extends Component {
           nResultsDisplay={nResultsDisplay}
           nResults={this.nResults}
         />
+        {this.renderCitations()}
       </Grid>
     );
   }
@@ -236,16 +255,11 @@ export default class BasePage extends Component {
       <Grid container direction="column">
         <Grid item>{this.renderHeader()}</Grid>
         <Grid item>{this.renderBody()} </Grid>
-        <Grid item> {this.renderFooter()}</Grid>
       </Grid>
     );
   }
 
   render() {
-    return (
-      <Box sx={{ textAlign: "center", paddingBottom: 10 }}>
-        {this.renderInner()}
-      </Box>
-    );
+    return <Box sx={{ textAlign: "center" }}>{this.renderInner()}</Box>;
   }
 }

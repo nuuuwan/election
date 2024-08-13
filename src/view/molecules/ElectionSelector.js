@@ -25,7 +25,7 @@ export default function ElectionSelector({
 
           return (
             <Stack direction="column" gap={0}>
-              <Typography variant="h5" color={color}>
+              <Typography variant="h4" color={color}>
                 {election.title}
               </Typography>
               <Typography variant="caption" color={color}>

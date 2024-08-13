@@ -15,6 +15,9 @@ export default function PDSelector({
       dataList={Object.values(pdIdx)}
       value={pdIdx[activePDID]}
       getID={function (pd) {
+        if (!pd) {
+          return null;
+        }
         return pd.name;
       }}
       onChange={function (pd) {

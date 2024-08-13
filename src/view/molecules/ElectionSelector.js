@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 
 import { CustomSelect } from "../atoms";
 
@@ -20,9 +20,14 @@ export default function ElectionSelector({
           const color = election.color;
 
           return (
-            <Typography variant="h5" color={color}>
-              {election.title}
-            </Typography>
+            <Stack direction="column" gap={0}>
+              <Typography variant="h5" color={color}>
+                {election.title}
+              </Typography>
+              <Typography variant="caption" color={color}>
+                {election.date}
+              </Typography>
+            </Stack>
           );
         }}
         getDividerKey={function (election) {

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import { BasePage } from "./view/pages";
+import BasePage from "./view/pages/BasePage/BasePage";
 
 import { STYLE } from "./nonview/constants";
 

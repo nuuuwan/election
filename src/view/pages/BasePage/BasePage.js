@@ -1,5 +1,11 @@
 import { Component } from "react";
-import { Box, CircularProgress, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Grid,
+  IconButton,
+  Typography,
+} from "@mui/material";
 import { Election, Result } from "../../../nonview/core";
 import {
   ResultSingleView,
@@ -13,6 +19,7 @@ import { STYLE, VERSION } from "../../../nonview/constants";
 import PredictionView from "../../organisms/PredictionView";
 import { FutureElection } from "../../atoms";
 import { Ent, EntType } from "../../../nonview/base";
+import { Refresh } from "@mui/icons-material";
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
     electionType: "Presidential",
@@ -219,17 +226,24 @@ export default class BasePage extends Component {
   }
 
   renderCitations() {
+    const onClick = function () {
+      localStorage.clear();
+      window.location.reload();
+    };
     return (
       <Box
         sx={{ color: STYLE.COLOR.LIGHTER, textAlign: "center", margin: "auto" }}
       >
-        <Typography variant="body1">Source Data by elections.gov.lk</Typography>
-        <Typography variant="body1">
+        <Typography variant="h6">Source Data by elections.gov.lk</Typography>
+        <Typography variant="h6">
           Visualization & Analysis by @nuuuwan
         </Typography>
-        <Typography variant="caption">
+        <Typography variant="body2">
           App Last Updated at {VERSION.DATETIME_STR}
         </Typography>
+        <IconButton onClick={onClick}>
+          <Refresh />
+        </IconButton>
       </Box>
     );
   }

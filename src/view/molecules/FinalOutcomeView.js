@@ -98,7 +98,7 @@ class FinalOutcome {
           <tbody>
             {likelyWinnerPartyInfoList.map(function ({ partyID, p }, i) {
               return (
-                <tr>
+                <tr key={partyID}>
                   <td style={{ textAlign: "right", padding: 1 }}>
                     <Typography variant="body1">
                       {Format.percent(p * FinalOutcome.P_BASE)}
@@ -110,7 +110,7 @@ class FinalOutcome {
                       gap={0.5}
                       sx={{ alignItems: "center" }}
                     >
-                      <PartyView key={partyID} partyID={partyID} />
+                      <PartyView partyID={partyID} />
                       <Typography variant="body2">
                         wins on 1st preferences
                       </Typography>

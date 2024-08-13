@@ -165,13 +165,12 @@ function SVGMapHexagons({ mapData, resultsIdx, pdIdx, setActivePDID }) {
     const ent = pdIdx[entID];
     const label = getLabel(ent.name);
 
-    let color = "#fff";
+    let color = STYLE.COLOR.LIGHTEST;
     let opacity = 1;
 
     if (result) {
       const winningPartyID = result.partyToVotes.winningPartyID;
       color = Party.fromID(winningPartyID).color;
-
       opacity = getOpacity(result.partyToVotes.pWinner);
     }
 

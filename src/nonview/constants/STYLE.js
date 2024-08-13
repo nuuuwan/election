@@ -1,6 +1,7 @@
 let STYLE = {};
 
 STYLE.COLOR = {
+  LIGHTEST: "#f8f8f8",
   LIGHTER: "#ccc",
   LIGHT: "#888",
   DARK: "#444",

@@ -23,6 +23,12 @@ export default class BasePage extends Component {
 
     this.state = BasePage.DEFAULT_STATE;
   }
+
+  get resultsListAll() {
+    const { election } = this.state;
+    return election.pdResultsList;
+  }
+
   get resultsList() {
     const { election, nResultsDisplay } = this.state;
     return election.pdResultsList.slice(0, nResultsDisplay);
@@ -75,9 +81,10 @@ export default class BasePage extends Component {
   }
 
   setActivePDID(activePDID) {
-    const i = this.resultsList.findIndex(
+    const i = this.resultsListAll.findIndex(
       (result) => result.entID === activePDID
     );
+
     const nResultsDisplay = i + 1;
     this.setState({ activePDID, nResultsDisplay });
   }
@@ -97,7 +104,7 @@ export default class BasePage extends Component {
     const { electionType, date } = this.state;
 
     const election = await Election.fromElectionTypeAndDate(electionType, date);
-    const nResultsDisplay = election.pdResultsList.length;
+    const nResultsDisplay = Math.ceil(election.pdResultsList.length / 2);
     const activePDID = election.pdResultsList[nResultsDisplay - 1].entID;
 
     const pdIdx = await Ent.idxFromType(EntType.PD);

@@ -1,11 +1,5 @@
 import { Component } from "react";
-import {
-  Box,
-  CircularProgress,
-  Divider,
-  Grid,
-  Typography,
-} from "@mui/material";
+import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import { Election, Result } from "../../../nonview/core";
 import {
   ResultSingleView,

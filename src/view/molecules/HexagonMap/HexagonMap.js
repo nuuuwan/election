@@ -34,7 +34,7 @@ function SVGHexagon({ x, y, color, label, opacity, onClick }) {
         fontSize={0.4}
         textAnchor="middle"
         alignmentBaseline="middle"
-        fill={"white"}
+        fill={STYLE.COLOR.LIGHTER}
       >
         {label}
       </text>

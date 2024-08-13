@@ -242,6 +242,10 @@ export default class BasePage extends Component {
   }
 
   render() {
-    return <Box sx={{ textAlign: "center" }}>{this.renderInner()}</Box>;
+    return (
+      <Box sx={{ textAlign: "center", paddingBottom: 10 }}>
+        {this.renderInner()}
+      </Box>
+    );
   }
 }

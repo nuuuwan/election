@@ -1,5 +1,6 @@
-import { Box, Divider, MenuItem, Select, Typography } from "@mui/material";
+import { Box, Divider, MenuItem, Typography } from "@mui/material";
 import { Party } from "../../nonview/core";
+import { CustomSelect } from "../atoms";
 
 export default function PDSelector({
   resultsIdx,
@@ -24,16 +25,7 @@ export default function PDSelector({
   let prevFirstChar;
   return (
     <Box>
-      <Select
-        value={activePDID}
-        onChange={onChange}
-        sx={{
-          border: "none",
-          "& .MuiOutlinedInput-notchedOutline": {
-            border: "none",
-          },
-        }}
-      >
+      <CustomSelect value={activePDID} onChange={onChange}>
         {releasedPDs.reduce(function (innerItems, pd, i) {
           const ed = edIdx[pd.id.substring(0, 5)];
           const result = resultsIdx[pd.id];
@@ -58,7 +50,7 @@ export default function PDSelector({
           innerItems.push(innerItem);
           return innerItems;
         }, [])}
-      </Select>
+      </CustomSelect>
     </Box>
   );
 }

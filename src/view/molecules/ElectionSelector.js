@@ -1,5 +1,6 @@
-import { Box, Divider, MenuItem, Select, Typography } from "@mui/material";
+import { Box, Divider, MenuItem, Typography } from "@mui/material";
 import { Party } from "../../nonview/core";
+import { CustomSelect } from "../atoms";
 
 function toValue(election) {
   return JSON.stringify({
@@ -27,16 +28,7 @@ export default function ElectionSelector({
   let prevDecade = undefined;
   return (
     <Box>
-      <Select
-        value={toValue(selectedElection)}
-        onChange={onChange}
-        sx={{
-          border: "none",
-          "& .MuiOutlinedInput-notchedOutline": {
-            border: "none",
-          },
-        }}
-      >
+      <CustomSelect value={toValue(selectedElection)} onChange={onChange}>
         {sortedElections.reduce(function (innerItems, election, i) {
           let color = "#888";
 
@@ -61,7 +53,7 @@ export default function ElectionSelector({
 
           return innerItems;
         }, [])}
-      </Select>
+      </CustomSelect>
     </Box>
   );
 }

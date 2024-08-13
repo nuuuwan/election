@@ -175,12 +175,12 @@ export default class BasePage extends Component {
   renderColumnLKResult() {
     const { nResultsDisplay } = this.state;
     return (
-      <Box>
+      <Box color={STYLE.COLOR.LIGHT}>
         <Box sx={{ height: 70 }}>
           <Typography variant="body1">
             After {nResultsDisplay} Results
           </Typography>
-          <Typography variant="h4">Sri Lanka</Typography>
+          <Typography variant="h4">Islandwide</Typography>
         </Box>
         <ResultSingleView result={this.resultLK} superTitle={"Aggregated"} />
       </Box>
@@ -190,7 +190,7 @@ export default class BasePage extends Component {
   renderColumnPrediction() {
     const { election, nResultsDisplay } = this.state;
     return (
-      <Box>
+      <Box color={STYLE.COLOR.DARK}>
         <Box sx={{ height: 70 }}>
           <Typography variant="body1">Projected Final Result</Typography>
           <Typography variant="h4">Sri Lanka</Typography>

@@ -29,7 +29,12 @@ export default function ElectionSelector({
                 {election.title}
               </Typography>
               <Typography variant="caption" color={color}>
-                {election.date}
+                {new Date(election.date).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                  weekday: "long",
+                })}
               </Typography>
             </Stack>
           );

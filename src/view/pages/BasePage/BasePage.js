@@ -1,5 +1,11 @@
 import { Component } from "react";
-import { Box, CircularProgress, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Divider,
+  Grid,
+  Typography,
+} from "@mui/material";
 import { Election, Result } from "../../../nonview/core";
 import {
   ResultSingleView,
@@ -220,27 +226,31 @@ export default class BasePage extends Component {
           paddingTop: 10,
           paddingBottom: 10,
         }}
-        spacing={3}
+        rowSpacing={5}
       >
         <Grid item xs={12} md={6} xl={3}>
           {this.renderColumnResult()}
         </Grid>
+
         <Grid item xs={12} md={6} xl={3}>
           {this.renderColumnLKResult()}
         </Grid>
+
         <Grid item xs={12} md={6} xl={3}>
           {this.renderColumnPrediction()}
         </Grid>
+
         <Grid item xs={12} md={6} xl={3}>
           {this.renderColumnMap()}
         </Grid>
+
+        {this.renderCitations()}
         <PlayerControl
           key={nResultsDisplay}
           setNResultsDisplay={this.setNResultsDisplay.bind(this)}
           nResultsDisplay={nResultsDisplay}
           nResults={this.nResults}
         />
-        {this.renderCitations()}
       </Grid>
     );
   }

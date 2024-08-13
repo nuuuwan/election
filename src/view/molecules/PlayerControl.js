@@ -9,6 +9,8 @@ import {
 
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import LastPageIcon from "@mui/icons-material/LastPage";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PauseIcon from "@mui/icons-material/Pause";
 import Replay10Icon from "@mui/icons-material/Replay10";
 import Forward10Icon from "@mui/icons-material/Forward10";
 
@@ -30,9 +32,12 @@ function BottomNavigationActionCustom({ Icon, onClick, disabled }) {
 }
 
 export default function PlayerControl({
-  setNResultsDisplay,
   nResultsDisplay,
   nResults,
+  setNResultsDisplay,
+  isPlaying,
+  playAnimation,
+  pauseAnimation,
 }) {
   const [nResultsDisplayUpdated, setNResultsDisplayUpdated] =
     useState(nResultsDisplay);
@@ -93,6 +98,10 @@ export default function PlayerControl({
             setNResultsDisplay(Math.max(0, nResultsDisplay - N_JUMP_STEPS))
           }
           disabled={nResultsDisplay === 0}
+        />
+        <BottomNavigationActionCustom
+          Icon={isPlaying ? PauseIcon : PlayArrowIcon}
+          onClick={() => (isPlaying ? pauseAnimation() : playAnimation())}
         />
         <BottomNavigationActionCustom
           Icon={Forward10Icon}

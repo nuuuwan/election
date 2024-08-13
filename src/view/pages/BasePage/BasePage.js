@@ -24,6 +24,7 @@ export default class BasePage extends Component {
   static DEFAULT_STATE = {
     electionType: "Presidential",
     date: "2015-01-08",
+    isPlaying: false,
   };
   constructor(props) {
     super(props);
@@ -102,6 +103,25 @@ export default class BasePage extends Component {
     const activePDID = pdIDs[nResultsDisplay - 1];
 
     this.setState({ nResultsDisplay, activePDID });
+  }
+
+  async playAnimation() {
+    this.setState(
+      { isPlaying: true },
+      async function () {
+        while (true) {
+          if (this.state.isPlaying === false) {
+            break;
+          }
+          this.setNResultsDisplay(this.state.nResultsDisplay + 1);
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+        }
+      }.bind(this)
+    );
+  }
+
+  async pauseAnimation() {
+    this.setState({ isPlaying: false });
   }
 
   async componentDidMount() {
@@ -269,7 +289,7 @@ export default class BasePage extends Component {
   }
 
   renderBodyInner() {
-    const { election, nResultsDisplay } = this.state;
+    const { election, nResultsDisplay, isPlaying } = this.state;
     if (election.isFuture) {
       return <FutureElection election={election} />;
     }
@@ -295,9 +315,12 @@ export default class BasePage extends Component {
         {this.renderCitations()}
         <PlayerControl
           key={nResultsDisplay}
-          setNResultsDisplay={this.setNResultsDisplay.bind(this)}
           nResultsDisplay={nResultsDisplay}
           nResults={this.nResults}
+          setNResultsDisplay={this.setNResultsDisplay.bind(this)}
+          isPlaying={isPlaying}
+          playAnimation={this.playAnimation.bind(this)}
+          pauseAnimation={this.pauseAnimation.bind(this)}
         />
       </Grid>
     );

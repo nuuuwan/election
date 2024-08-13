@@ -221,6 +221,7 @@ export default class BasePage extends Component {
           {this.renderColumnMap()}
         </Grid>
         <PlayerControl
+          key={nResultsDisplay}
           setNResultsDisplay={this.setNResultsDisplay.bind(this)}
           nResultsDisplay={nResultsDisplay}
           nResults={this.nResults}

@@ -8,10 +8,13 @@ import {
 } from "@mui/material";
 
 import FirstPageIcon from "@mui/icons-material/FirstPage";
-import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import LastPageIcon from "@mui/icons-material/LastPage";
+import Replay10Icon from "@mui/icons-material/Replay10";
+import Forward10Icon from "@mui/icons-material/Forward10";
+
 import { useState } from "react";
+
+const N_JUMP_STEPS = 10;
 
 function BottomNavigationActionCustom({ Icon, onClick, disabled }) {
   const color = disabled ? "#ccc" : "#000";
@@ -34,12 +37,15 @@ export default function PlayerControl({
     useState(nResultsDisplay);
 
   const onChangeCommitted = function (__, value) {
+    setNResultsDisplayUpdated(value);
     setNResultsDisplay(value);
   };
 
   const onChange = function (__, value) {
     setNResultsDisplayUpdated(value);
   };
+
+  console.debug({ nResultsDisplayUpdated });
 
   return (
     <Box
@@ -65,7 +71,7 @@ export default function PlayerControl({
         <Typography variant="h6">{nResultsDisplayUpdated}</Typography>
         <Slider
           aria-label="Always visible"
-          defaultValue={nResultsDisplay}
+          defaultValue={nResultsDisplayUpdated}
           min={1}
           max={nResults}
           onChange={onChange}
@@ -82,13 +88,19 @@ export default function PlayerControl({
           disabled={nResultsDisplay === 1}
         />
         <BottomNavigationActionCustom
-          Icon={NavigateBeforeIcon}
-          onClick={() => setNResultsDisplay(nResultsDisplay - 1)}
+          Icon={Replay10Icon}
+          onClick={() =>
+            setNResultsDisplay(Math.max(1, nResultsDisplay - N_JUMP_STEPS))
+          }
           disabled={nResultsDisplay === 1}
         />
         <BottomNavigationActionCustom
-          Icon={NavigateNextIcon}
-          onClick={() => setNResultsDisplay(nResultsDisplay + 1)}
+          Icon={Forward10Icon}
+          onClick={() =>
+            setNResultsDisplay(
+              Math.min(nResults, nResultsDisplay + N_JUMP_STEPS)
+            )
+          }
           disabled={nResultsDisplay === nResults}
         />
         <BottomNavigationActionCustom

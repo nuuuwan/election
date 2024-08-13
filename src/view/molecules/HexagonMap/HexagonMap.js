@@ -25,7 +25,7 @@ function SVGHexagon({ x, y, color, label, opacity }) {
         points={points}
         fill={color}
         opacity={opacity}
-        stroke="#ccc"
+        stroke={STYLE.COLOR.LIGHTER}
         strokeWidth={0.05}
       />
       <text
@@ -44,7 +44,7 @@ function SVGHexagon({ x, y, color, label, opacity }) {
 
 function SVGTitles() {
   return (
-    <g fontSize={0.5} textAnchor="middle" fill="#888">
+    <g fontSize={0.5} textAnchor="middle" fill={STYLE.COLOR.LIGHT}>
       <text x={11} y={-4}>
         {"22 Postal Votes".toUpperCase()}
       </text>
@@ -67,7 +67,7 @@ function SVGLegendPercentages({ x, y }) {
           ((i % N_COLS) + (parseInt(i / N_COLS) % 2 === 1 ? 0.5 : 0)) /
             Math.cos(Math.PI / 6)
         }
-        color={"#888"}
+        color={STYLE.COLOR.LIGHT}
         label={Format.percent(p)}
         opacity={getOpacity(p)}
       />
@@ -201,7 +201,7 @@ function SVGMapBoundaries({ mapData, resultsIdx, pdIdx }) {
             })
             .join(" ")}
           fill="none"
-          stroke="#000"
+          stroke={STYLE.COLOR.DARKER}
           strokeWidth={0.1}
         />
       );

@@ -22,7 +22,7 @@ let FormatGeneric = {
 
   getColor(x, valueRange) {
     const minValue = valueRange[0];
-    return x < minValue ? "#888" : "inherit";
+    return x < minValue ? STYLE.COLOR.LIGHT : "inherit";
   },
 
   formatWithStyle(

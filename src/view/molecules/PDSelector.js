@@ -1,6 +1,7 @@
 import { Stack, Typography } from "@mui/material";
 import { Party } from "../../nonview/core";
 import { CustomSelect } from "../atoms";
+import { STYLE } from "../../nonview/constants";
 
 export default function PDSelector({
   resultsIdx,
@@ -34,7 +35,7 @@ export default function PDSelector({
             <Typography variant="h6" color={color}>
               {pd.name}
             </Typography>
-            <Typography variant="caption" sx={{ color: "#888" }}>
+            <Typography variant="caption" sx={{ color: STYLE.COLOR.LIGHT }}>
               {ed.name}
             </Typography>
           </Stack>

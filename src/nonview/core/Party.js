@@ -1,4 +1,4 @@
-import { POLITICAL_PARTY_TO_COLOR } from "../constants";
+import { POLITICAL_PARTY_TO_COLOR, STYLE } from "../constants";
 import { LIGHT_COLORS } from "../constants/POLITICAL_PARTY_TO_COLOR";
 import PARTY_LIST_TUPLES from "./PARTY_LIST_TUPLES";
 
@@ -19,10 +19,10 @@ export default class Party {
 
   get color() {
     if (this.id === Party.UNCERTAIN.id) {
-      return "#ccc";
+      return STYLE.COLOR.LIGHTER;
     }
     if (this.id === Party.OTHER.id) {
-      return "#888";
+      return STYLE.COLOR.LIGHT;
     }
     return POLITICAL_PARTY_TO_COLOR[this.id] || "#444";
   }
@@ -33,58 +33,6 @@ export default class Party {
 
   localeCompare(other) {
     return this.id.localeCompare(other.id);
-  }
-
-  get partyEmoji() {
-    return (
-      {
-        UNP: "🐘",
-        SLPP: "🌷",
-        SLFP: "🤚🏻",
-        PA: "🪑",
-        JVP: "🔔",
-        ITAK: "🏚️",
-        SJB: "☎️",
-        MNA: "⚖️",
-        OPPP: "🏴",
-        JJB: "🧭",
-      }[this.id] || ""
-    );
-  }
-
-  get colorEmoji() {
-    return (
-      {
-        "#008": "🔵",
-        "#042": "🟢",
-        "#060": "🟢",
-        "#080": "🟢",
-        "#800": "🔴",
-        "#808": "🟣",
-        "#888": "⚪",
-        "#8c0": "🟢",
-        "#999": "⚪",
-        "#f00": "🔴",
-        "#f0f": "🟣",
-        "#f80": "🟠",
-        "#f90": "🟠",
-        "#fc0": "🟡",
-      }[this.color] || ""
-    );
-  }
-
-  get handle() {
-    return (
-      {
-        UNP: "@OfficialUNP",
-        SLPP: "@PodujanaParty",
-        SLFP: "@SLFreedomParty",
-        JVP: "@JVPnews",
-        ITAK: "@TNAmediaoffice",
-        SJB: "@SJBSriLanka",
-        UPFA: "@UPFASriLanka",
-      }[this.id] || "# " + this.id
-    );
   }
 
   getCustomLabel(labelType) {

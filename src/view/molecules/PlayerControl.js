@@ -13,11 +13,12 @@ import Replay10Icon from "@mui/icons-material/Replay10";
 import Forward10Icon from "@mui/icons-material/Forward10";
 
 import { useState } from "react";
+import { STYLE } from "../../nonview/constants";
 
 const N_JUMP_STEPS = 10;
 
 function BottomNavigationActionCustom({ Icon, onClick, disabled }) {
-  const color = disabled ? "#ccc" : "#000";
+  const color = disabled ? STYLE.COLOR.LIGHTER : STYLE.COLOR.DARKER;
   return (
     <BottomNavigationAction
       onClick={onClick}
@@ -76,7 +77,7 @@ export default function PlayerControl({
           onChange={onChange}
           onChangeCommitted={onChangeCommitted}
         />
-        <Typography variant="h6" color="#888">
+        <Typography variant="h6" color={STYLE.COLOR.LIGHT}>
           {nResults}
         </Typography>
       </Stack>

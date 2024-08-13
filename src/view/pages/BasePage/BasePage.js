@@ -8,7 +8,7 @@ import {
   PDSelector,
   PlayerControl,
 } from "../../molecules";
-import { VERSION } from "../../../nonview/constants";
+import { STYLE, VERSION } from "../../../nonview/constants";
 
 import PredictionView from "../../organisms/PredictionView";
 import { FutureElection } from "../../atoms";
@@ -114,7 +114,7 @@ export default class BasePage extends Component {
   renderHeader() {
     const { election, elections } = this.state;
     return (
-      <Box color="#ccc">
+      <Box color={STYLE.COLOR.LIGHTER}>
         <ElectionSelector
           selectedElection={election}
           elections={elections}
@@ -184,7 +184,7 @@ export default class BasePage extends Component {
 
   renderFooter() {
     return (
-      <Box color="#ccc">
+      <Box color={STYLE.COLOR.LIGHTER}>
         <Typography variant="body1">Source Data by elections.gov.lk</Typography>
         <Typography variant="body1">
           Visualization & Analysis by @nuuuwan

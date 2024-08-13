@@ -1,4 +1,5 @@
 import { Time } from "../../base/index.js";
+import STYLE from "../../constants/STYLE.js";
 import Party from "../Party.js";
 
 export default class ElectionBase {
@@ -89,7 +90,7 @@ export default class ElectionBase {
 
   get color() {
     if (!this.resultsIdx) {
-      return "#888";
+      return STYLE.COLOR.LIGHT;
     }
     const resultLK = this.resultsIdx["LK"];
     const winningPartyID = resultLK.partyToVotes.winningPartyID;

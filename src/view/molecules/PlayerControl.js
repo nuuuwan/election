@@ -84,15 +84,15 @@ export default function PlayerControl({
       <BottomNavigation>
         <BottomNavigationActionCustom
           Icon={FirstPageIcon}
-          onClick={() => setNResultsDisplay(1)}
-          disabled={nResultsDisplay === 1}
+          onClick={() => setNResultsDisplay(0)}
+          disabled={nResultsDisplay === 0}
         />
         <BottomNavigationActionCustom
           Icon={Replay10Icon}
           onClick={() =>
-            setNResultsDisplay(Math.max(1, nResultsDisplay - N_JUMP_STEPS))
+            setNResultsDisplay(Math.max(0, nResultsDisplay - N_JUMP_STEPS))
           }
-          disabled={nResultsDisplay === 1}
+          disabled={nResultsDisplay === 0}
         />
         <BottomNavigationActionCustom
           Icon={Forward10Icon}

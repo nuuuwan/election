@@ -153,6 +153,13 @@ export default class BasePage extends Component {
 
   renderColumnResult() {
     const { activePDID, pdIdx, edIdx } = this.state;
+    if (!activePDID) {
+      return (
+        <Box>
+          <Typography variant="h6">No results released.</Typography>
+        </Box>
+      );
+    }
     return (
       <Box>
         <Box sx={{ height: 70 }}>

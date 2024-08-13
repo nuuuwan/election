@@ -144,18 +144,6 @@ export default class BasePage extends Component {
     );
   }
 
-  renderColumnMap() {
-    const { pdIdx } = this.state;
-    return (
-      <HexagonMap
-        resultsIdx={this.resultsIdx}
-        pdIdx={pdIdx}
-        activeResult={this.result}
-        setActivePDID={this.setActivePDID.bind(this)}
-      />
-    );
-  }
-
   renderColumnResult() {
     const { activePDID, pdIdx, edIdx } = this.state;
     return (
@@ -191,6 +179,24 @@ export default class BasePage extends Component {
           <Typography variant="h4">Islandwide</Typography>
         </Box>
         <ResultSingleView result={this.resultLK} superTitle={"Aggregated"} />
+      </Box>
+    );
+  }
+
+  renderColumnMap() {
+    const { pdIdx } = this.state;
+    return (
+      <Box color={STYLE.COLOR.LIGHT}>
+        <Box sx={{ height: 70 }}>
+          <Typography variant="body1">Results Map</Typography>{" "}
+          <Typography variant="h4">Polling Divisions</Typography>
+        </Box>
+        <HexagonMap
+          resultsIdx={this.resultsIdx}
+          pdIdx={pdIdx}
+          activeResult={this.result}
+          setActivePDID={this.setActivePDID.bind(this)}
+        />
       </Box>
     );
   }

@@ -233,8 +233,8 @@ export default function HexagonMap({ resultsIdx, pdIdx, setActivePDID }) {
   return (
     <svg
       width={"100%"}
-      height={"100vh"}
-      viewBox="0 -6 11 40"
+      height={"90vh"}
+      viewBox="0 -6 11 38"
       fontFamily={STYLE.FONT_FAMILY}
     >
       <SVGTitles />

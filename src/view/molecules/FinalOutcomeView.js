@@ -104,7 +104,7 @@ class FinalOutcome {
                       {Format.percent(p * FinalOutcome.P_BASE)}
                     </Typography>
                   </td>
-                  <td style={{ textAlign: "left", padding: 1 }}>
+                  <td style={{ textAlign: "left", padding: 1, opacity: 0.5 }}>
                     <Stack
                       direction="row"
                       gap={0.5}
@@ -125,7 +125,7 @@ class FinalOutcome {
                   {Format.percent(pUncertainHappenning * FinalOutcome.P_BASE)}
                 </Typography>
               </td>
-              <td style={{ textAlign: "left", padding: 1 }}>
+              <td style={{ textAlign: "left", padding: 1, opacity: 0.5 }}>
                 <Typography variant="body2">
                   2nd/3rd Preference Count
                 </Typography>

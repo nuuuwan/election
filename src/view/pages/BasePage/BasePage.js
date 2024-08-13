@@ -214,20 +214,26 @@ export default class BasePage extends Component {
   }
 
   renderBody() {
+    return (
+      <Box
+        sx={{
+          paddingTop: 10,
+          paddingBottom: 10,
+        }}
+      >
+        {this.renderBodyInner()}
+      </Box>
+    );
+  }
+
+  renderBodyInner() {
     const { election, nResultsDisplay } = this.state;
     if (election.isFuture) {
       return <FutureElection election={election} />;
     }
 
     return (
-      <Grid
-        container
-        sx={{
-          paddingTop: 10,
-          paddingBottom: 10,
-        }}
-        rowSpacing={5}
-      >
+      <Grid container rowSpacing={5}>
         <Grid item xs={12} md={6} xl={3}>
           {this.renderColumnResult()}
         </Grid>

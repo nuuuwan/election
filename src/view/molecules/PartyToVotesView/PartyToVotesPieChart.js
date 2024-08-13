@@ -8,17 +8,16 @@ import { Box } from "@mui/material";
 const CHART_SIZE = 240;
 
 export default function PartyToVotesPieChart({ partyToVotes }) {
-  const data = Object.entries(partyToVotes.partyToVotesSortedOthered).map(
-    function ([partyID, votes]) {
-      const party = Party.fromID(partyID);
-      return {
-        id: partyID,
-        value: votes / partyToVotes.totalVotes,
-        label: partyID,
-        color: party.color || STYLE.COLOR.LIGHT,
-      };
-    }
-  );
+  const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
+  const data = entries.map(function ([partyID, votes]) {
+    const party = Party.fromID(partyID);
+    return {
+      id: partyID,
+      value: votes / partyToVotes.totalVotes,
+      label: partyID,
+      color: party.color || STYLE.COLOR.LIGHT,
+    };
+  });
 
   return (
     <Box sx={{ display: "flex", p: 1 }}>

@@ -76,7 +76,7 @@ export default function PlayerControl({
         <Typography variant="h6">{nResultsDisplayUpdated}</Typography>
         <Slider
           aria-label="Always visible"
-          defaultValue={nResultsDisplayUpdated}
+          value={nResultsDisplayUpdated}
           min={0}
           max={nResults}
           onChange={onChange}

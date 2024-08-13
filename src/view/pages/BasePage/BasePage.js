@@ -6,20 +6,20 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
+import { Refresh } from "@mui/icons-material";
+import { Ent, EntType } from "../../../nonview/base";
+import { STYLE, VERSION } from "../../../nonview/constants";
 import { Election, Result } from "../../../nonview/core";
+import { FutureElection } from "../../atoms";
 import {
   ResultSingleView,
   HexagonMap,
   ElectionSelector,
   PDSelector,
   PlayerControl,
+  PredictionView,
 } from "../../molecules";
-import { STYLE, VERSION } from "../../../nonview/constants";
 
-import PredictionView from "../../organisms/PredictionView";
-import { FutureElection } from "../../atoms";
-import { Ent, EntType } from "../../../nonview/base";
-import { Refresh } from "@mui/icons-material";
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
     electionType: "Presidential",
@@ -111,6 +111,10 @@ export default class BasePage extends Component {
       async function () {
         while (true) {
           if (this.state.isPlaying === false) {
+            break;
+          }
+          if (this.state.nResultsDisplay === this.nResults) {
+            this.setState({ isPlaying: false });
             break;
           }
           this.setNResultsDisplay(this.state.nResultsDisplay + 1);
@@ -243,7 +247,7 @@ export default class BasePage extends Component {
   }
 
   renderColumnPrediction() {
-    const { election, nResultsDisplay } = this.state;
+    const { election, nResultsDisplay, elections } = this.state;
     return (
       <Box color={STYLE.COLOR.DARK}>
         <Box sx={{ height: 70 }}>
@@ -251,9 +255,9 @@ export default class BasePage extends Component {
           <Typography variant="h4">Islandwide</Typography>
         </Box>
         <PredictionView
-          key={nResultsDisplay}
           activeElection={election}
           nResultsDisplay={nResultsDisplay}
+          elections={elections}
         />
       </Box>
     );

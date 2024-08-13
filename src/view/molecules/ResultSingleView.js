@@ -13,10 +13,9 @@ export default function ResultSingleView({ result }) {
       </Box>
     );
   }
-  const entID = result.entID;
 
   return (
-    <Stack key={entID} direction="column" gap={0}>
+    <Stack direction="column" gap={0}>
       <SummaryView summary={result.summary} />
       <PartyToVotesView partyToVotes={result.partyToVotes} />
     </Stack>

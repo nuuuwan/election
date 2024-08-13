@@ -5,6 +5,7 @@ import HexagonMap from "./HexagonMap";
 import PDSelector from "./PDSelector";
 import PartyToVotesView from "./PartyToVotesView";
 import PlayerControl from "./PlayerControl";
+import PredictionView from "./PredictionView";
 import ResultSingleView from "./ResultSingleView";
 import SummaryView from "./SummaryView";
 
@@ -15,6 +16,7 @@ export {
   PDSelector,
   PartyToVotesView,
   PlayerControl,
+  PredictionView,
   ResultSingleView,
   SummaryView,
 };

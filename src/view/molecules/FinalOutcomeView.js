@@ -86,7 +86,7 @@ class FinalOutcome {
 
     return [
       "Too close to call",
-      "Possible Outcomes and Probabilities",
+      "Possible Outcomes & Probabilities",
       <Box display="flex" justifyContent="center">
         <table>
           <tbody>

@@ -306,23 +306,24 @@ export default class BasePage extends Component {
     }
 
     return (
-      <Grid container rowSpacing={5}>
-        <Grid item xs={12} md={6} xl={3}>
-          {this.renderColumnResult()}
-        </Grid>
+      <Box>
+        <Grid container rowSpacing={5}>
+          <Grid item xs={12} md={6} xl={3}>
+            {this.renderColumnResult()}
+          </Grid>
 
-        <Grid item xs={12} md={6} xl={3}>
-          {this.renderColumnLKResult()}
-        </Grid>
+          <Grid item xs={12} md={6} xl={3}>
+            {this.renderColumnLKResult()}
+          </Grid>
 
-        <Grid item xs={12} md={6} xl={3}>
-          {this.renderColumnMap()}
-        </Grid>
+          <Grid item xs={12} md={6} xl={3}>
+            {this.renderColumnMap()}
+          </Grid>
 
-        <Grid item xs={12} md={6} xl={3}>
-          {this.renderColumnPrediction()}
-        </Grid>
-
+          <Grid item xs={12} md={6} xl={3}>
+            {this.renderColumnPrediction()}
+          </Grid>
+        </Grid>{" "}
         {this.renderCitations()}
         <PlayerControl
           key={nResultsDisplay}
@@ -333,7 +334,7 @@ export default class BasePage extends Component {
           playAnimation={this.playAnimation.bind(this)}
           pauseAnimation={this.pauseAnimation.bind(this)}
         />
-      </Grid>
+      </Box>
     );
   }
 

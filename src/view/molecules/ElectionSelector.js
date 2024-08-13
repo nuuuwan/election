@@ -33,6 +33,7 @@ export default function ElectionSelector({
         getDividerKey={function (election) {
           return election.date.substring(0, 3);
         }}
+        reverse={true}
       ></CustomSelect>
     </Box>
   );

@@ -6,12 +6,18 @@ export default function CustomSelect({
   getID,
   renderMenuItemInner,
   getDividerKey,
+  reverse,
 }) {
-  const sortedDataList = dataList
+  let sortedDataList = dataList
     .filter((data) => getID(data) !== null)
     .sort(function (a, b) {
       return getID(a).localeCompare(getID(b));
     });
+
+  if (reverse) {
+    sortedDataList.reverse();
+  }
+
   const dataIdx = Object.fromEntries(
     sortedDataList.map((data) => [getID(data), data])
   );

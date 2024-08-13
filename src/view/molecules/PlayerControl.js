@@ -77,7 +77,7 @@ export default function PlayerControl({
         <Slider
           aria-label="Always visible"
           defaultValue={nResultsDisplayUpdated}
-          min={1}
+          min={0}
           max={nResults}
           onChange={onChange}
           onChangeCommitted={onChangeCommitted}

@@ -109,8 +109,11 @@ class Election extends ElectionBase {
   get pdResultsList() {
     const EXCLUDE_PD_IDS = ["EC-11D"];
     return this.resultsList.filter(function (result) {
+      const pdID = result.entID;
       return (
-        result.entID.length === 6 && !EXCLUDE_PD_IDS.includes(result.entID)
+        pdID.length === 6 &&
+        !EXCLUDE_PD_IDS.includes(pdID) &&
+        pdID.substring(5, 6) !== "-"
       );
     });
   }

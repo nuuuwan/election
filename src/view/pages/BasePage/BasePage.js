@@ -23,7 +23,7 @@ import { Refresh } from "@mui/icons-material";
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
     electionType: "Presidential",
-    date: "2015-01-08",
+    date: "2010-01-26",
     isPlaying: false,
   };
   constructor(props) {
@@ -137,6 +137,13 @@ export default class BasePage extends Component {
     const pdIdx = await Ent.idxFromType(EntType.PD);
     const edIdx = await Ent.idxFromType(EntType.ED);
     const elections = await Election.listAll();
+
+    for (const result of election.pdResultsList) {
+      const pdID = result.entID;
+      if (!pdIdx[pdID]) {
+        console.log(pdID);
+      }
+    }
 
     this.setState({
       election,

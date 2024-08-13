@@ -173,10 +173,13 @@ export default class BasePage extends Component {
   }
 
   renderColumnLKResult() {
+    const { nResultsDisplay } = this.state;
     return (
       <Box>
         <Box sx={{ height: 70 }}>
-          <Typography variant="body1">Aggregated</Typography>
+          <Typography variant="body1">
+            After {nResultsDisplay} Results
+          </Typography>
           <Typography variant="h4">Sri Lanka</Typography>
         </Box>
         <ResultSingleView result={this.resultLK} superTitle={"Aggregated"} />

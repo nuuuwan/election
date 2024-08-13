@@ -19,12 +19,12 @@ export default class Party {
 
   get color() {
     if (this.id === Party.UNCERTAIN.id) {
-      return "lightgray";
+      return "#ccc";
     }
     if (this.id === Party.OTHER.id) {
-      return "gray";
+      return "#888";
     }
-    return POLITICAL_PARTY_TO_COLOR[this.id];
+    return POLITICAL_PARTY_TO_COLOR[this.id] || "#444";
   }
 
   get inverseColor() {

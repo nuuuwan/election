@@ -1,4 +1,4 @@
-import { Box, Divider, MenuItem, Typography } from "@mui/material";
+import { Box, MenuItem, Typography } from "@mui/material";
 import { Party } from "../../nonview/core";
 import { CustomSelect } from "../atoms";
 
@@ -18,42 +18,33 @@ export default function ElectionSelector({
   elections,
   setElection,
 }) {
-  const onChange = function (event) {
-    const { electionType, date } = fromValue(event.target.value);
-    setElection(electionType, date);
-  };
-  const sortedElections = elections.sort((a, b) =>
-    b.date.localeCompare(a.date)
-  );
-  let prevDecade = undefined;
   return (
     <Box>
-      <CustomSelect value={toValue(selectedElection)} onChange={onChange}>
-        {sortedElections.reduce(function (innerItems, election, i) {
+      <CustomSelect
+        value={selectedElection}
+        onChange={setElection}
+        dataList={elections}
+        getID={function (election) {
+          return election.date;
+        }}
+        renderMenuItemInner={function (election, i) {
           let color = "#888";
-
-          const decade = election.date.substring(0, 3);
-          if (prevDecade !== decade && i !== 0) {
-            innerItems.push(<Divider key={`divider-${i}`} />);
-          }
-          prevDecade = decade;
-
           if (election.resultsIdx) {
             const resultLK = election.resultsIdx["LK"];
             const winningPartyID = resultLK.partyToVotes.winningPartyID;
             color = Party.fromID(winningPartyID).color;
           }
 
-          const innerItem = (
-            <MenuItem key={i} value={toValue(election)} sx={{ color }}>
-              <Typography variant="h5">{election.title}</Typography>
-            </MenuItem>
+          return (
+            <Typography variant="h5" color={color}>
+              {election.title}
+            </Typography>
           );
-          innerItems.push(innerItem);
-
-          return innerItems;
-        }, [])}
-      </CustomSelect>
+        }}
+        getDividerKey={function (election) {
+          return election.date.substring(0, 3);
+        }}
+      ></CustomSelect>
     </Box>
   );
 }

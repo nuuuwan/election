@@ -52,8 +52,10 @@ export default class BasePage extends Component {
     return `${electionType}-${date}-${activePDID}`;
   }
 
-  async setElection(electionType, date) {
+  async setElection(election0) {
     let { activePDID, nResultsDisplay } = this.state;
+
+    const { electionType, date } = election0;
     const election = await Election.fromElectionTypeAndDate(electionType, date);
 
     if (!election.isFuture) {

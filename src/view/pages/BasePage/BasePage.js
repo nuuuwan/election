@@ -139,13 +139,15 @@ export default class BasePage extends Component {
     const { activePDID, pdIdx, edIdx } = this.state;
     return (
       <Box>
-        <PDSelector
-          resultsIdx={this.resultsIdx}
-          activePDID={activePDID}
-          pdIdx={pdIdx}
-          edIdx={edIdx}
-          setActivePDID={this.setActivePDID.bind(this)}
-        />
+        <Box sx={{ height: 70 }}>
+          <PDSelector
+            resultsIdx={this.resultsIdx}
+            activePDID={activePDID}
+            pdIdx={pdIdx}
+            edIdx={edIdx}
+            setActivePDID={this.setActivePDID.bind(this)}
+          />{" "}
+        </Box>
         <ResultSingleView result={this.result} superTitle={"Result"} />{" "}
       </Box>
     );
@@ -154,8 +156,10 @@ export default class BasePage extends Component {
   renderColumnLKResult() {
     return (
       <Box>
-        <Typography variant="body1">Aggregated Result</Typography>
-        <Typography variant="h4">Sri Lanka</Typography>
+        <Box sx={{ height: 70 }}>
+          <Typography variant="body1">Aggregated Result</Typography>
+          <Typography variant="h4">Sri Lanka</Typography>
+        </Box>
         <ResultSingleView result={this.resultLK} superTitle={"Aggregated"} />
       </Box>
     );
@@ -165,13 +169,15 @@ export default class BasePage extends Component {
     const { election, nResultsDisplay } = this.state;
     return (
       <Box>
-        <Typography variant="body1">Projected Final Result</Typography>
-        <Typography variant="h4">Sri Lanka</Typography>
+        <Box sx={{ height: 70 }}>
+          <Typography variant="body1">Projected Final Result</Typography>
+          <Typography variant="h4">Sri Lanka</Typography>
+        </Box>
         <PredictionView
           key={nResultsDisplay}
           activeElection={election}
           nResultsDisplay={nResultsDisplay}
-        />{" "}
+        />
       </Box>
     );
   }

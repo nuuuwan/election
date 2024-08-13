@@ -47,9 +47,9 @@ export default class PredictionView extends Component {
     }
 
     return (
-      <Stack direction="column" gap={2}>
-        <FinalOutcomeView result={resultsLK} />
+      <Stack direction="column" gap={0}>
         <ResultSingleView result={resultsLK} superTitle="Projected Final" />
+        <FinalOutcomeView result={resultsLK} />
       </Stack>
     );
   }

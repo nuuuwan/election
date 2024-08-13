@@ -7,12 +7,16 @@ export default function ElectionSelector({
   elections,
   setElection,
 }) {
+  const presidentialElections = elections.filter(
+    (election) => election.electionType === "Presidential"
+  );
+
   return (
     <Box>
       <CustomSelect
         value={selectedElection}
         onChange={setElection}
-        dataList={elections}
+        dataList={presidentialElections}
         getID={function (election) {
           return election.date;
         }}

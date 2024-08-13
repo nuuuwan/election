@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { Party } from "../../nonview/core";
 import { CustomSelect } from "../atoms";
 
@@ -30,14 +30,14 @@ export default function PDSelector({
         const color = Party.fromID(winningPartyID).color;
 
         return (
-          <Box>
-            <Typography variant="h5" color={color}>
+          <Stack direction="column" gap={0}>
+            <Typography variant="h6" color={color}>
               {pd.name}
             </Typography>
-            <Typography variant="body1" sx={{ p: 0.5, color: "#888" }}>
+            <Typography variant="caption" sx={{ color: "#888" }}>
               {ed.name}
             </Typography>
-          </Box>
+          </Stack>
         );
       }}
       getDividerKey={function (pd) {

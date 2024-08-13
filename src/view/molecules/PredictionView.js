@@ -1,4 +1,4 @@
-import { CircularProgress, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import { ElectionModel } from "../../nonview/core";
 import { FinalOutcomeView, ResultSingleView } from ".";
 

@@ -19,6 +19,13 @@ function SVGHexagon({ x, y, color, label, opacity, onClick }) {
     })
     .join(" ");
 
+  const textColor =
+    color === STYLE.COLOR.LIGHTEST
+      ? STYLE.COLOR.LIGHTER
+      : opacity > 0.5
+      ? "white"
+      : "black";
+
   return (
     <g onClick={onClick}>
       <polygon
@@ -34,7 +41,7 @@ function SVGHexagon({ x, y, color, label, opacity, onClick }) {
         fontSize={0.4}
         textAnchor="middle"
         alignmentBaseline="middle"
-        fill={STYLE.COLOR.LIGHTER}
+        fill={textColor}
       >
         {label}
       </text>

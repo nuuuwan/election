@@ -1,4 +1,5 @@
 import { Time } from "../../base/index.js";
+import Party from "../Party.js";
 
 export default class ElectionBase {
   static URL_BASE =
@@ -84,5 +85,14 @@ export default class ElectionBase {
     const ut = Time.fromString(this.date).ut;
     const dut = utNow - ut;
     return dut / (1000 * 365.25 * 86400);
+  }
+
+  get color() {
+    if (!this.resultsIdx) {
+      return "#888";
+    }
+    const resultLK = this.resultsIdx["LK"];
+    const winningPartyID = resultLK.partyToVotes.winningPartyID;
+    return Party.fromID(winningPartyID).color;
   }
 }

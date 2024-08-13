@@ -35,9 +35,9 @@ export default function PartyToVotesPieChart({ partyToVotes }) {
           },
         }}
         slotProps={{ legend: { hidden: true } }}
-        width={STYLE.COLUMN_WIDTH}
-        height={Math.min(STYLE.HEIGHT / 3)}
-        margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+        width={400}
+        height={400}
+        margin={{ top: 32, right: 0, bottom: 32, left: 0 }}
       />
     </Container>
   );

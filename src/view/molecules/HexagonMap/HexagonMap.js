@@ -5,7 +5,7 @@ import HEXAGON_MAP_DATA_ED from "./HEXAGON_MAP_DATA_ED";
 import { STYLE } from "../../../nonview/constants";
 const N_COLS = 2;
 
-function SVGHexagon({ x, y, color, label, opacity }) {
+function SVGHexagon({ x, y, color, label, opacity, onClick }) {
   const N_SIDES = 6;
 
   const radius = 1 / Math.cos(Math.PI / 6) ** 2 / 2;
@@ -20,7 +20,7 @@ function SVGHexagon({ x, y, color, label, opacity }) {
     .join(" ");
 
   return (
-    <g>
+    <g onClick={onClick}>
       <polygon
         points={points}
         fill={color}
@@ -158,7 +158,7 @@ function getEDMapData() {
   return Object.assign({}, HEXAGON_MAP_DATA_ED, { idx, idx2 });
 }
 
-function SVGMapHexagons({ mapData, resultsIdx, pdIdx }) {
+function SVGMapHexagons({ mapData, resultsIdx, pdIdx, setActivePDID }) {
   const { idx } = mapData;
   return Object.entries(idx).map(function ([entID, [x, y]]) {
     const result = resultsIdx[entID];
@@ -175,6 +175,10 @@ function SVGMapHexagons({ mapData, resultsIdx, pdIdx }) {
       opacity = getOpacity(result.partyToVotes.pWinner);
     }
 
+    const onClick = function () {
+      setActivePDID(entID);
+    };
+
     return (
       <SVGHexagon
         key={entID}
@@ -183,6 +187,7 @@ function SVGMapHexagons({ mapData, resultsIdx, pdIdx }) {
         color={color}
         opacity={opacity}
         label={label}
+        onClick={onClick}
       />
     );
   });
@@ -209,16 +214,21 @@ function SVGMapBoundaries({ mapData, resultsIdx, pdIdx }) {
   });
 }
 
-function SVGMap({ mapData, resultsIdx, pdIdx }) {
+function SVGMap({ mapData, resultsIdx, pdIdx, setActivePDID }) {
   return (
     <g>
-      <SVGMapHexagons mapData={mapData} resultsIdx={resultsIdx} pdIdx={pdIdx} />
+      <SVGMapHexagons
+        mapData={mapData}
+        resultsIdx={resultsIdx}
+        pdIdx={pdIdx}
+        setActivePDID={setActivePDID}
+      />
       <SVGMapBoundaries mapData={mapData} />
     </g>
   );
 }
 
-export default function HexagonMap({ resultsIdx, pdIdx }) {
+export default function HexagonMap({ resultsIdx, pdIdx, setActivePDID }) {
   const partyToWins = getPartyToWins(resultsIdx);
   const nParties = Object.keys(partyToWins).length;
   return (
@@ -231,8 +241,18 @@ export default function HexagonMap({ resultsIdx, pdIdx }) {
       <SVGTitles />
       <SVGLegendParty resultsIdx={resultsIdx} x={1} y={-3} />
       <SVGLegendPercentages x={2 + nParties / N_COLS} y={-3} />
-      <SVGMap resultsIdx={resultsIdx} mapData={getPDMapData()} pdIdx={pdIdx} />
-      <SVGMap resultsIdx={resultsIdx} mapData={getEDMapData()} pdIdx={pdIdx} />
+      <SVGMap
+        resultsIdx={resultsIdx}
+        mapData={getPDMapData()}
+        pdIdx={pdIdx}
+        setActivePDID={setActivePDID}
+      />
+      <SVGMap
+        resultsIdx={resultsIdx}
+        mapData={getEDMapData()}
+        pdIdx={pdIdx}
+        setActivePDID={setActivePDID}
+      />
     </svg>
   );
 }

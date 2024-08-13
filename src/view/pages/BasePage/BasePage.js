@@ -150,6 +150,7 @@ export default class BasePage extends Component {
         resultsIdx={this.resultsIdx}
         pdIdx={pdIdx}
         activeResult={this.result}
+        setActivePDID={this.setActivePDID.bind(this)}
       />
     );
   }

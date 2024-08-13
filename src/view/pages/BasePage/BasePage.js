@@ -81,7 +81,11 @@ export default class BasePage extends Component {
   }
 
   setActivePDID(activePDID) {
-    this.setState({ activePDID });
+    const i = this.resultsList.findIndex(
+      (result) => result.entID === activePDID
+    );
+    const nResultsDisplay = i + 1;
+    this.setState({ activePDID, nResultsDisplay });
   }
 
   setNResultsDisplay(nResultsDisplay) {
@@ -243,11 +247,11 @@ export default class BasePage extends Component {
         </Grid>
 
         <Grid item xs={12} md={6} xl={3}>
-          {this.renderColumnPrediction()}
+          {this.renderColumnMap()}
         </Grid>
 
         <Grid item xs={12} md={6} xl={3}>
-          {this.renderColumnMap()}
+          {this.renderColumnPrediction()}
         </Grid>
 
         {this.renderCitations()}

@@ -1,4 +1,4 @@
-import { Box, Divider, MenuItem, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Party } from "../../nonview/core";
 import { CustomSelect } from "../atoms";
 
@@ -11,17 +11,17 @@ export default function PDSelector({
 }) {
   return (
     <CustomSelect
-      value={pdIdx[resultsIdx[activePDID].entID].name}
-      dataList={Object.values(resultsIdx)}
-      getID={function (result) {
-        return pdIdx[result.entID].name;
+      dataList={Object.values(pdIdx)}
+      value={pdIdx[activePDID]}
+      getID={function (pd) {
+        return pd.name;
       }}
-      onChange={function (result) {
-        setActivePDID(result.entID);
+      onChange={function (pd) {
+        setActivePDID(pd.id);
       }}
-      renderMenuItemInner={function (result, i) {
-        const pd = pdIdx[result.entID];
-        if (!pd) {
+      renderMenuItemInner={function (pd, i) {
+        const result = resultsIdx[pd.id];
+        if (!result) {
           return null;
         }
 
@@ -40,8 +40,8 @@ export default function PDSelector({
           </Box>
         );
       }}
-      getDividerKey={function (result) {
-        return pdIdx[result.entID].name.substring(0, 1);
+      getDividerKey={function (pd) {
+        return pd.name.substring(0, 1);
       }}
     />
   );

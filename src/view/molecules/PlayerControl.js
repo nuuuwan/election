@@ -45,8 +45,6 @@ export default function PlayerControl({
     setNResultsDisplayUpdated(value);
   };
 
-  console.debug({ nResultsDisplayUpdated });
-
   return (
     <Box
       sx={{

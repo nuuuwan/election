@@ -1,5 +1,4 @@
 import { Divider, MenuItem, Select } from "@mui/material";
-
 export default function CustomSelect({
   value,
   onChange,
@@ -8,9 +7,11 @@ export default function CustomSelect({
   renderMenuItemInner,
   getDividerKey,
 }) {
-  const sortedDataList = dataList.sort(function (a, b) {
-    return getID(a).localeCompare(getID(b));
-  });
+  const sortedDataList = dataList
+    .filter((data) => getID(data) !== null)
+    .sort(function (a, b) {
+      return getID(a).localeCompare(getID(b));
+    });
   const dataIdx = Object.fromEntries(
     sortedDataList.map((data) => [getID(data), data])
   );
@@ -23,7 +24,7 @@ export default function CustomSelect({
   let prevDividerKey = undefined;
   return (
     <Select
-      value={value}
+      value={getID(value)}
       onChange={onChangeInner}
       sx={{
         border: "none",
@@ -33,6 +34,11 @@ export default function CustomSelect({
       }}
     >
       {sortedDataList.reduce(function (innerItems, data, i) {
+        const inner = renderMenuItemInner(data, i);
+        if (!inner) {
+          return innerItems;
+        }
+
         const dividerKey = getDividerKey(data);
         if (prevDividerKey !== dividerKey && i !== 0) {
           innerItems.push(<Divider key={`divider-${i}`} />);
@@ -41,7 +47,7 @@ export default function CustomSelect({
 
         const innerItem = (
           <MenuItem key={getID(data)} value={getID(data)}>
-            {renderMenuItemInner(data, i)}
+            {inner}
           </MenuItem>
         );
         innerItems.push(innerItem);

@@ -5,6 +5,8 @@ import { Format } from "../../../nonview/base";
 import { STYLE } from "../../../nonview/constants";
 import { Box } from "@mui/material";
 
+const CHART_SIZE = 240;
+
 export default function PartyToVotesPieChart({ partyToVotes }) {
   const data = Object.entries(partyToVotes.partyToVotesSortedOthered).map(
     function ([partyID, votes]) {
@@ -36,8 +38,8 @@ export default function PartyToVotesPieChart({ partyToVotes }) {
           },
         }}
         slotProps={{ legend: { hidden: true } }}
-        width={320}
-        height={320}
+        width={CHART_SIZE}
+        height={CHART_SIZE}
         margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
       />
     </Box>

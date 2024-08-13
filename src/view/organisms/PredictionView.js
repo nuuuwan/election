@@ -15,7 +15,7 @@ export default class PredictionView extends Component {
 
     const pdResultsList = activeElection.pdResultsList;
     if (pdResultsList.length === 0) {
-      return;
+      return null;
     }
 
     const releasedPDIDList = pdResultsList
@@ -25,22 +25,36 @@ export default class PredictionView extends Component {
       .slice(nResultsDisplay + 1)
       .map((result) => result.entID);
 
+    const electionIsComplete = notReleasePDIDList.length === 0;
+
     let resultsLK = undefined;
+    if (!electionIsComplete) {
+      const electionModel = new ElectionModel(
+        elections,
+        activeElection,
+        releasedPDIDList,
+        notReleasePDIDList
+      );
+      const predictedElection =
+        electionModel.getElectionNotReleasedPrediction();
+      resultsLK = predictedElection.resultsIdx["LK"];
+    }
 
-    const electionModel = new ElectionModel(
-      elections,
-      activeElection,
-      releasedPDIDList,
-      notReleasePDIDList
-    );
-    const predictedElection = electionModel.getElectionNotReleasedPrediction();
-    resultsLK = predictedElection.resultsIdx["LK"];
-
-    this.setState({ resultsLK });
+    this.setState({ resultsLK, electionIsComplete });
   }
 
   render() {
-    const { resultsLK } = this.state;
+    const { activeElection } = this.props;
+    const { resultsLK, electionIsComplete } = this.state;
+
+    if (electionIsComplete) {
+      return (
+        <FinalOutcomeView
+          result={activeElection.resultsIdx["LK"]}
+          final={true}
+        />
+      );
+    }
 
     if (!resultsLK) {
       return <CircularProgress />;

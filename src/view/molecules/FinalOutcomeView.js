@@ -1,11 +1,22 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { Party } from "../../nonview/core";
 import { PartyView } from "../atoms";
+import { Format, MathX } from "../../nonview/base";
+
+function Confidence() {
+  return (
+    <Typography variant="caption">
+      &gt;{Format.percent(FinalOutcome.P_BASE)} confidence
+    </Typography>
+  );
+}
 
 class FinalOutcome {
+  static P_BASE = 0.9;
   static P_TOO_EARLY_TO_CALL = 0.5;
-  constructor(result) {
+  constructor(result, final) {
     this.result = result;
+    this.final = final;
   }
 
   get pWinner() {
@@ -26,61 +37,118 @@ class FinalOutcome {
     return this.result.partyToVotes.pWinner > 0.5;
   }
 
-  get likelyWinnerPartyIDs() {
+  get likelyWinnerPartyInfoList() {
     const pUncertain = this.pUncertain;
-    return Object.entries(this.result.partyToVotes.partyToPVotesSorted)
+    const likelyWinnerPartyInfoList = Object.entries(
+      this.result.partyToVotes.partyToPVotesSorted
+    )
       .filter(function ([partyID, pVotes]) {
         return pVotes + pUncertain > 0.5 && partyID !== Party.UNCERTAIN.id;
       })
       .map(function ([partyID, pVotes]) {
-        return partyID;
+        const missingPVotes = 0.5 - pVotes;
+        const ease = pUncertain / missingPVotes;
+        return { partyID, ease };
       });
+
+    const totalEase =
+      MathX.sum(likelyWinnerPartyInfoList.map(({ ease }) => ease)) + 1;
+
+    const normalizedLikelyWinnerPartyInfoList = likelyWinnerPartyInfoList.map(
+      function ({ partyID, ease }) {
+        return { partyID, p: ease / totalEase };
+      }
+    );
+
+    return normalizedLikelyWinnerPartyInfoList;
   }
 
-  renderInsights() {
+  renderInsights(final) {
     if (this.isTooEarlyToCall) {
       return ["Too early to call"];
     }
     if (this.hasFirstPrefWinner) {
       const winningPartyID = this.result.partyToVotes.winningPartyID;
       return [
-        <Box>
-          <PartyView partyID={winningPartyID} /> projected to win on 1st
-          preferences.
-        </Box>,
+        this.final ? (
+          <Box>
+            <PartyView partyID={winningPartyID} /> wins on 1st preferences.
+          </Box>
+        ) : (
+          <Box>
+            <PartyView partyID={winningPartyID} /> projected to win on 1st
+            preferences.
+          </Box>
+        ),
+        this.final ? null : <Confidence />,
       ];
     }
-    const likelyWinnerPartyIDs = this.likelyWinnerPartyIDs;
-    if (!likelyWinnerPartyIDs.length) {
-      return ["2nd/3rd Preference Count Projected"];
+    const likelyWinnerPartyInfoList = this.likelyWinnerPartyInfoList;
+    if (!likelyWinnerPartyInfoList.length) {
+      return ["2nd/3rd Preference Count Projected", <Confidence />];
     }
+
+    const pUncertainHappenning =
+      1 - MathX.sum(likelyWinnerPartyInfoList.map(({ p }) => p));
+
     return [
-      "Too close call",
-      <Box>
-        {likelyWinnerPartyIDs.map(function (partyID, i) {
-          const prefix = i === 0 ? "" : " or ";
-          return (
-            <Box component="span">
-              {prefix}
-              <PartyView key={partyID} partyID={partyID} />
-            </Box>
-          );
-        })}{" "}
-        could win on 1st Preferences.
+      "Too close to call",
+      <Box display="flex" justifyContent="center">
+        <table>
+          <tbody>
+            {likelyWinnerPartyInfoList.map(function ({ partyID, p }, i) {
+              return (
+                <tr>
+                  <td style={{ textAlign: "right", padding: 1 }}>
+                    <Typography variant="body1">
+                      {Format.percent(p * FinalOutcome.P_BASE)}
+                    </Typography>
+                  </td>
+                  <td style={{ textAlign: "left", padding: 1 }}>
+                    <Stack
+                      direction="row"
+                      gap={0.5}
+                      sx={{ alignItems: "center" }}
+                    >
+                      <PartyView key={partyID} partyID={partyID} />
+                      <Typography variant="body2">
+                        wins on 1st preferences
+                      </Typography>
+                    </Stack>
+                  </td>
+                </tr>
+              );
+            })}
+            <tr>
+              <td style={{ textAlign: "right", padding: 1 }}>
+                <Typography variant="body1">
+                  {Format.percent(pUncertainHappenning * FinalOutcome.P_BASE)}
+                </Typography>
+              </td>
+              <td style={{ textAlign: "left", padding: 1 }}>
+                <Typography variant="body2">
+                  2nd/3rd Preference Count
+                </Typography>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </Box>,
-      "2nd/3rd Preference Count also possible.",
     ];
   }
 }
 
-export default function FinalOutcomeView({ result }) {
-  const finalOutput = new FinalOutcome(result);
+export default function FinalOutcomeView({ result, final }) {
+  const finalOutput = new FinalOutcome(result, final);
   return (
     <Typography variant="h6" sx={{ color: "gray" }}>
       {finalOutput.renderInsights().map(function (insight, i) {
         const fontSize = i === 0 ? "100%" : "50%";
         return (
-          <Box key={i} sx={{ fontSize }}>
+          <Box
+            key={i}
+            sx={{ fontSize, textAlign: "center", alignItems: "center" }}
+          >
             {insight}
           </Box>
         );

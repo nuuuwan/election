@@ -147,18 +147,6 @@ export default class BasePage extends Component {
           setActivePDID={this.setActivePDID.bind(this)}
         />
         <ResultSingleView result={this.result} superTitle={"Result"} />{" "}
-        <Box
-          sx={{
-            position: "fixed",
-            height: 60,
-            bottom: 55,
-            left: 0,
-            right: 0,
-            zIndex: 1000,
-            m: 0,
-            p: 0,
-          }}
-        ></Box>
       </Box>
     );
   }

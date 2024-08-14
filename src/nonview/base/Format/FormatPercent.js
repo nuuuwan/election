@@ -6,11 +6,8 @@ let FormatPercent = {
       return "-";
     }
 
-    if (!minimumFractionDigits) {
-      minimumFractionDigits = 1;
-      if (x > 0.105) {
-        minimumFractionDigits = 0;
-      }
+    if (minimumFractionDigits === undefined) {
+      minimumFractionDigits = 0;
     }
 
     return x.toLocaleString(undefined, {
@@ -20,9 +17,15 @@ let FormatPercent = {
   },
 
   percentVotes(x) {
-    const diffX = Math.abs(x - 0.5);
-    const minimumFractionDigits = Math.max(0, parseInt(-Math.log10(diffX) - 1));
-    return FormatPercent.percentAbs(x, minimumFractionDigits);
+    // Never display "50%"
+    if (0.4995 < x && x <= 0.5) {
+      return "49.9%";
+    }
+    if (0.5 < x && x < 0.5005) {
+      return "50.1%";
+    }
+
+    return FormatPercent.percentAbs(x, 0);
   },
 
   percent(x, minimumFractionDigits = undefined) {

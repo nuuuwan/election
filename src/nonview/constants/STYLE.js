@@ -13,6 +13,6 @@ STYLE.BODY_HEADER = {
 };
 
 STYLE.FONT_SIZE = 14;
-STYLE.FONT_FAMILY = "Cabin";
+STYLE.FONT_FAMILY = "Figtree";
 
 export default STYLE;

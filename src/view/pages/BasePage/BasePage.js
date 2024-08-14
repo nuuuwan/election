@@ -89,28 +89,27 @@ export default class BasePage extends Component {
     console.timeEnd(timerID);
   }
 
-  get resultsListAll() {
+  get pdResultsList() {
     const { election } = this.state;
     return election.pdResultsList;
   }
 
-  get resultsList() {
-    const { election, nResultsDisplay } = this.state;
-    return election.pdResultsList.slice(0, nResultsDisplay);
+  get pdResultsDisplay() {
+    const { nResultsDisplay } = this.state;
+    return this.pdResultsList.slice(0, nResultsDisplay);
   }
 
   get resultsIdx() {
-    return Object.fromEntries(
-      this.resultsList.map((result) => [result.entID, result])
-    );
+    const { election } = this.state;
+    return election.resultsIdx;
   }
   get result() {
     const { activePDID } = this.state;
     return this.resultsIdx[activePDID];
   }
 
-  get resultLK() {
-    return Result.fromList("LK", this.resultsList);
+  get resultLKDisplay() {
+    return Result.fromList("LK", this.pdResultsDisplay);
   }
 
   get nResults() {
@@ -150,8 +149,7 @@ export default class BasePage extends Component {
 
   setActivePDID(activePDID) {
     const nResultsDisplay =
-      this.resultsListAll.findIndex((result) => result.entID === activePDID) +
-      1;
+      this.pdResultsList.findIndex((result) => result.entID === activePDID) + 1;
     this.setStateAndContext({ activePDID, nResultsDisplay });
   }
 
@@ -251,7 +249,10 @@ export default class BasePage extends Component {
           <Typography variant="caption">{this.subTitleProgress}</Typography>
           <Typography variant="h4">National</Typography>
         </Box>
-        <ResultSingleView result={this.resultLK} superTitle={"Aggregated"} />
+        <ResultSingleView
+          result={this.resultLKDisplay}
+          superTitle={"Aggregated"}
+        />
       </Box>
     );
   }

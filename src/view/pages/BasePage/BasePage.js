@@ -193,7 +193,7 @@ export default class BasePage extends Component {
     }
     return (
       <Box>
-        <Box sx={{ height: 70 }}>
+        <Box sx={{ height: STYLE.BODY_HEADER.HEIGHT }}>
           <PDSelector
             resultsIdx={this.resultsIdx}
             activePDID={activePDID}
@@ -219,7 +219,7 @@ export default class BasePage extends Component {
       );
     return (
       <Box color={STYLE.COLOR.LIGHT}>
-        <Box sx={{ height: 70 }}>
+        <Box sx={{ height: STYLE.BODY_HEADER.HEIGHT }}>
           <Typography variant="body1">{title}</Typography>
           <Typography variant="h4">Islandwide</Typography>
         </Box>
@@ -232,7 +232,7 @@ export default class BasePage extends Component {
     const { pdIdx } = this.state;
     return (
       <Box color={STYLE.COLOR.LIGHT}>
-        <Box sx={{ height: 70 }}>
+        <Box sx={{ height: STYLE.BODY_HEADER.HEIGHT }}>
           <Typography variant="body1">Results Map</Typography>{" "}
           <Typography variant="h4">Polling Divisions</Typography>
         </Box>

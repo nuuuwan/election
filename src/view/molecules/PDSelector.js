@@ -29,17 +29,19 @@ export default function PDSelector({
           return null;
         }
 
-        const ed = edIdx[pd.id.substring(0, 5)];
+        const resultNum = Object.keys(resultsIdx).indexOf(pd.id) + 1;
+
         const winningPartyID = result.partyToVotes.winningPartyID;
         const color = Party.fromID(winningPartyID).color;
 
         return (
           <Stack direction="column" gap={0}>
+            <Typography variant="caption" sx={{ color: STYLE.COLOR.LIGHT }}>
+              {"Result "}
+              {resultNum}
+            </Typography>
             <Typography variant="h6" color={color}>
               {pd.name}
-            </Typography>
-            <Typography variant="caption" sx={{ color: STYLE.COLOR.LIGHT }}>
-              {ed.name}
             </Typography>
           </Stack>
         );

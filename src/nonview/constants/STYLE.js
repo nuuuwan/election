@@ -8,6 +8,10 @@ STYLE.COLOR = {
   DARKER: "#222",
 };
 
+STYLE.BODY_HEADER = {
+  HEIGHT: 70,
+};
+
 STYLE.FONT_SIZE = 14;
 STYLE.FONT_FAMILY = "Cabin";
 

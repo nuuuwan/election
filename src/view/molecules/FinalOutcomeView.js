@@ -170,7 +170,7 @@ export default function FinalOutcomeView({ result, nResultsDisplay }) {
         maxWidth: "80%",
 
         margin: "auto",
-        p: 1.5,
+        p: 0.5,
         backgroundColor: STYLE.COLOR.LIGHTEST,
         elevation: 1,
       }}

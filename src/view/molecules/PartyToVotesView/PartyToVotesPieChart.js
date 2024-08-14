@@ -5,7 +5,7 @@ import { Format } from "../../../nonview/base";
 import { STYLE } from "../../../nonview/constants";
 import { Box } from "@mui/material";
 
-const CHART_SIZE = 240;
+const CHART_SIZE = 180;
 
 export default function PartyToVotesPieChart({ partyToVotes }) {
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
@@ -20,7 +20,7 @@ export default function PartyToVotesPieChart({ partyToVotes }) {
   });
 
   return (
-    <Box sx={{ display: "flex", p: 1 }}>
+    <Box sx={{ display: "flex", p: 0.5 }}>
       <PieChart
         series={[
           {
@@ -32,7 +32,7 @@ export default function PartyToVotesPieChart({ partyToVotes }) {
         sx={{
           [`& .${pieArcLabelClasses.root}`]: {
             fill: "white",
-            fontSize: "125%",
+            fontSize: "100%",
             fontFamily: STYLE.FONT_FAMILY,
           },
         }}

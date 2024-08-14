@@ -8,7 +8,7 @@ export default function PartyToVotesView({ partyToVotes }) {
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
 
   return (
-    <Stack direction="column" gap={0.25}>
+    <Stack direction="column" gap={0.1}>
       <PartyToVotesPieChart partyToVotes={partyToVotes} />
 
       {entries.map(function ([partyID, votes], i) {

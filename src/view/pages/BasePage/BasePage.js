@@ -4,6 +4,7 @@ import {
   CircularProgress,
   Grid,
   IconButton,
+  Stack,
   Typography,
 } from "@mui/material";
 import { Refresh } from "@mui/icons-material";
@@ -355,20 +356,22 @@ export default class BasePage extends Component {
       localStorage.clear();
       window.location.reload();
     };
+
+    const content = [
+      'Source Data by elections.gov.lk',
+      'Music by bensound',
+      'Visualization & Analysis by @nuuuwan',
+      VERSION.DATETIME_STR,
+    ].join(" · ");
+
     return (
       <Box
-        sx={{ color: STYLE.COLOR.LIGHTER, textAlign: "center", margin: "auto" }}
+        sx={{ color: STYLE.COLOR.LIGHTER, alignContent: "center", margin: "auto", cursor: "pointer" }}
+        onClick={onClick}
       >
-        <Typography variant="h6">Source Data by elections.gov.lk</Typography>
-        <Typography variant="h6">
-          Visualization & Analysis by @nuuuwan
-        </Typography>
-        <Typography variant="body2">
-          App Last Updated at {VERSION.DATETIME_STR}
-        </Typography>
-        <IconButton onClick={onClick}>
-          <Refresh />
-        </IconButton>
+        <Typography variant="body2">{content}</Typography>
+
+
       </Box>
     );
   }

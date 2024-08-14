@@ -253,12 +253,13 @@ export default class ElectionModel {
           function (partyToVotes, [partyID, pVotes]) {
             pVotes = MathX.forceRange(pVotes, 0, 1);
             const votes = Math.round(pVotes * valid);
+
             const kError = Math.max(0, 1 - pError);
-            const votesMin = MathX.forceRange(
-              Math.round(pVotes * kError * valid),
-              0,
-              1
-            );
+            const votesMin = Math.round(pVotes * kError * valid);
+            if (votesMin > votes || votesMin < 0) {
+              throw new Error("Invalid votesMin", votesMin, votes);
+            }
+
             partyToVotes[partyID] = votesMin;
             partyToVotes[ElectionModel.PARTY_UNCERTAIN] += votes - votesMin;
             return partyToVotes;
@@ -279,6 +280,7 @@ export default class ElectionModel {
 
     election.resultsIdx = Election.buildResultsIdx(election.resultsList);
     election.isLoaded = true;
+
     return election;
   }
 }

@@ -15,7 +15,7 @@ export default class MathX {
     return MathX.sum(numList) / numList.length;
   }
 
-  static forceRange(min, max, value) {
+  static forceRange(value, min, max) {
     return Math.max(min, Math.min(max, value));
   }
 

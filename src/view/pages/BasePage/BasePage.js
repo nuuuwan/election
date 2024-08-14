@@ -419,10 +419,8 @@ export default class BasePage extends Component {
 
     return (
       <Box>
-        <div id="header_and_body">
-          {this.renderHeader()}
-          {this.renderBody()}
-        </div>
+        {this.renderHeader()}
+        {this.renderBody()}
         <PlayerControl
           key={nResultsDisplay}
           nResultsDisplay={nResultsDisplay}

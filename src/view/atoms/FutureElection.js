@@ -7,19 +7,18 @@ export default function FutureElection({ election }) {
     <Paper
       elevation={1}
       sx={{
-        width: "fit-content",
-        margin: "auto",
+        width: 100,
         p: 1.5,
+        textAlign: "left",
         backgroundColor: STYLE.COLOR.LIGHTEST,
       }}
     >
-      <Typography variant="h4">This election is in {days} days.</Typography>
-      <Typography variant="body1">
-        We will provide the results once they are available.
+      <Typography variant="h6" color={STYLE.COLOR.LIGHT}>
+        Random Test Data!
       </Typography>
-      <Typography variant="caption" color="orange">
-        Here are some imaginary election results, purely for testing purposes.
-      </Typography>{" "}
+      <Typography variant="caption" color={STYLE.COLOR.DARK}>
+        Election is in {days} days.
+      </Typography>
     </Paper>
   );
 }

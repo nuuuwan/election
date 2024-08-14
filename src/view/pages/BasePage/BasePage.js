@@ -228,6 +228,18 @@ export default class BasePage extends Component {
         <Box
           sx={{
             position: "fixed",
+            bottom: 0,
+            left: 0,
+            paddingBottom: 20,
+            paddingLeft: 4,
+            zIndex: 3000,
+          }}
+        >
+          {election.isFuture ? <FutureElection election={election} /> : null}
+        </Box>
+        <Box
+          sx={{
+            position: "fixed",
             top: 0,
             right: 0,
             zIndex: 3000,
@@ -366,11 +378,10 @@ export default class BasePage extends Component {
   }
 
   renderBodyInner() {
-    const { election, nResultsDisplay, isPlaying } = this.state;
+    const { nResultsDisplay, isPlaying } = this.state;
 
     return (
       <Box>
-        {election.isFuture ? <FutureElection election={election} /> : null}
         <Grid container rowSpacing={5}>
           <Grid item xs={12} md={6} xl={3}>
             {this.renderColumnResult()}

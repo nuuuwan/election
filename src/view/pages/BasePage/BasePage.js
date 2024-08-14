@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Refresh } from "@mui/icons-material";
-import { Ent, EntType } from "../../../nonview/base";
+import { Ent, EntType, URLContext } from "../../../nonview/base";
 import { STYLE, VERSION } from "../../../nonview/constants";
 import { Election, Result } from "../../../nonview/core";
 import { FutureElection } from "../../atoms";
@@ -28,8 +28,66 @@ export default class BasePage extends Component {
   };
   constructor(props) {
     super(props);
+    this.state = Object.assign({}, BasePage.DEFAULT_STATE, URLContext.get());
+  }
 
-    this.state = BasePage.DEFAULT_STATE;
+  setStateAndContext(newState) {
+    this.setState(
+      newState,
+      function () {
+        const { electionType, date, isPlaying, activePDID } = this.state;
+        URLContext.set({
+          electionType,
+          date,
+          isPlaying,
+          activePDID,
+        });
+      }.bind(this)
+    );
+  }
+
+  async componentDidMount() {
+    const timerID = "⚡[Expensive] BasePage.componentDidMount";
+    console.time(timerID);
+
+    let { electionType, date, isPlaying, nResultsDisplay, activePDID } =
+      this.state;
+
+    const election = await Election.fromElectionTypeAndDate(electionType, date);
+    activePDID =
+      activePDID ||
+      election.pdResultsList[election.pdResultsList.length - 1].entID;
+
+    nResultsDisplay =
+      election.pdResultsList.map((result) => result.entID).indexOf(activePDID) +
+      1;
+    isPlaying = isPlaying || false;
+
+    const pdIdx = await Ent.idxFromType(EntType.PD);
+    const edIdx = await Ent.idxFromType(EntType.ED);
+    const elections = await Election.listAll();
+
+    for (const result of election.pdResultsList) {
+      const pdID = result.entID;
+      if (!pdIdx[pdID]) {
+        console.log(pdID);
+      }
+    }
+
+    this.setStateAndContext({
+      electionType,
+      date,
+      isPlaying,
+      nResultsDisplay,
+      activePDID,
+      // Derived
+      election,
+      pdIdx,
+      edIdx,
+      elections,
+    });
+
+    console.timeEnd(timerID);
   }
 
   get resultsListAll() {
@@ -73,13 +131,16 @@ export default class BasePage extends Component {
     const election = await Election.fromElectionTypeAndDate(electionType, date);
 
     if (!election.isFuture) {
-      nResultsDisplay = election.pdResultsList.length;
       if (!election.resultsIdx[activePDID]) {
         activePDID = election.pdResultsList[nResultsDisplay - 1].entID;
       }
+      nResultsDisplay =
+        election.pdResultsList
+          .map((result) => result.entID)
+          .indexOf(activePDID) + 1;
     }
 
-    this.setState({
+    this.setStateAndContext({
       electionType,
       date,
       nResultsDisplay,
@@ -89,12 +150,10 @@ export default class BasePage extends Component {
   }
 
   setActivePDID(activePDID) {
-    const i = this.resultsListAll.findIndex(
-      (result) => result.entID === activePDID
-    );
-
-    const nResultsDisplay = i + 1;
-    this.setState({ activePDID, nResultsDisplay });
+    const nResultsDisplay =
+      this.resultsListAll.findIndex((result) => result.entID === activePDID) +
+      1;
+    this.setStateAndContext({ activePDID, nResultsDisplay });
   }
 
   setNResultsDisplay(nResultsDisplay) {
@@ -102,7 +161,7 @@ export default class BasePage extends Component {
     const pdIDs = election.pdResultsList.map((pdResult) => pdResult.entID);
     const activePDID = pdIDs[nResultsDisplay - 1];
 
-    this.setState({ nResultsDisplay, activePDID });
+    this.setStateAndContext({ nResultsDisplay, activePDID });
   }
 
   async playAnimation() {
@@ -126,38 +185,6 @@ export default class BasePage extends Component {
 
   async pauseAnimation() {
     this.setState({ isPlaying: false });
-  }
-
-  async componentDidMount() {
-    const timerID = "⚡[Expensive] BasePage.componentDidMount";
-    console.time(timerID);
-
-    const { electionType, date } = this.state;
-
-    const election = await Election.fromElectionTypeAndDate(electionType, date);
-    const nResultsDisplay = election.pdResultsList.length;
-    const activePDID = election.pdResultsList[nResultsDisplay - 1].entID;
-
-    const pdIdx = await Ent.idxFromType(EntType.PD);
-    const edIdx = await Ent.idxFromType(EntType.ED);
-    const elections = await Election.listAll();
-
-    for (const result of election.pdResultsList) {
-      const pdID = result.entID;
-      if (!pdIdx[pdID]) {
-        console.log(pdID);
-      }
-    }
-
-    this.setState({
-      election,
-      nResultsDisplay,
-      activePDID,
-      pdIdx,
-      edIdx,
-      elections,
-    });
-    console.timeEnd(timerID);
   }
 
   renderHeader() {

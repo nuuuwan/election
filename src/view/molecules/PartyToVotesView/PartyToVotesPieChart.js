@@ -26,13 +26,13 @@ export default function PartyToVotesPieChart({ partyToVotes }) {
           {
             data,
             arcLabel: (item) => Format.percentVotes(item.value),
-            arcLabelMinAngle: 60,
+            arcLabelMinAngle: 30,
           },
         ]}
         sx={{
           [`& .${pieArcLabelClasses.root}`]: {
             fill: "white",
-            fontSize: "200%",
+            fontSize: "150%",
             fontFamily: STYLE.FONT_FAMILY,
           },
         }}

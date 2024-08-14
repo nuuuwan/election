@@ -113,6 +113,7 @@ function SVGLegendParty({ resultsIdx, x, y }) {
           }
           color={party.color}
           label={partyID}
+          opacity={1}
         />
       );
     });
@@ -234,14 +235,35 @@ function SVGMap({ mapData, resultsIdx, pdIdx, setActivePDID }) {
   );
 }
 
+function getViewBox() {
+  const mapData = [].concat(
+    Object.values(getPDMapData().idx),
+    Object.values(getEDMapData().idx)
+  );
+  const [minX, minY, maxX, maxY] = mapData.reduce(
+    function ([minX, minY, maxX, maxY], [x, y]) {
+      return [
+        Math.min(minX, x),
+        Math.min(minY, y),
+        Math.max(maxX, x),
+        Math.max(maxY, y),
+      ];
+    },
+    [Infinity, Infinity, -Infinity, -Infinity]
+  );
+  const [width, height] = [maxX - minX, maxY - minY];
+
+  return `${minX - 1} ${minY - 2} ${width + 2} ${height + 6}`;
+}
+
 export default function HexagonMap({ resultsIdx, pdIdx, setActivePDID }) {
   const partyToWins = getPartyToWins(resultsIdx);
   const nParties = Object.keys(partyToWins).length;
   return (
     <svg
       width={"100%"}
-      height={"90vh"}
-      viewBox="0 -6 11 38"
+      height={"70vh"}
+      viewBox={getViewBox()}
       fontFamily={STYLE.FONT_FAMILY}
     >
       <SVGTitles />

@@ -15,21 +15,22 @@ let FormatInt = {
     }
     // M
     if (x > 10_000_000) {
-      return `${(x / 1_000_000).toFixed(0)}M`;
+      return `${(x / 1_000_000).toFixed(1)}M`;
     }
     if (x > 1_000_000) {
-      return `${(x / 1_000_000).toFixed(1)}M`;
+      return `${(x / 1_000_000).toFixed(2)}M`;
     }
     // K
     if (x > 100_000) {
-      return `${10 * (x / 10_000).toFixed(0)}K`;
-    }
-    if (x > 10_000) {
       return `${(x / 1_000).toFixed(0)}K`;
     }
-    if (x > 1_000) {
+    if (x > 10_000) {
       return `${(x / 1_000).toFixed(1)}K`;
     }
+    if (x > 1_000) {
+      return `${(x / 1_000).toFixed(2)}K`;
+    }
+    // Unit
     return x.toLocaleString();
   },
 

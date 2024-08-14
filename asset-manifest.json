@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/prespollsl2024/static/js/main.f3fc6bd2.js",
+    "main.js": "/prespollsl2024/static/js/main.d72558d2.js",
     "static/js/453.5d4436c0.chunk.js": "/prespollsl2024/static/js/453.5d4436c0.chunk.js",
     "index.html": "/prespollsl2024/index.html",
-    "main.f3fc6bd2.js.map": "/prespollsl2024/static/js/main.f3fc6bd2.js.map",
+    "main.d72558d2.js.map": "/prespollsl2024/static/js/main.d72558d2.js.map",
     "453.5d4436c0.chunk.js.map": "/prespollsl2024/static/js/453.5d4436c0.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.f3fc6bd2.js"
+    "static/js/main.d72558d2.js"
   ]
 }

@@ -32,7 +32,7 @@ export default function PartyToVotesPieChart({ partyToVotes }) {
         sx={{
           [`& .${pieArcLabelClasses.root}`]: {
             fill: "white",
-            fontSize: "150%",
+            fontSize: "125%",
             fontFamily: STYLE.FONT_FAMILY,
           },
         }}

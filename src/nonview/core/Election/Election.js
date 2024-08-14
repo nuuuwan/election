@@ -6,6 +6,7 @@ import ElectionBase from "./ElectionBase.js";
 import ElectionGetters from "./ElectionGetters.js";
 import ElectionGettersStatic from "./ElectionGettersStatic.js";
 import ElectionExpand from "./ElectionExpand.js";
+import TestElection from "../TestElection.js";
 
 class Election extends ElectionBase {
   static MIN_RESULTS = 10;
@@ -23,13 +24,12 @@ class Election extends ElectionBase {
   }
   async __loadData() {
     if (this.isFuture) {
-      return;
+      await TestElection.loadData(this);
+    } else {
+      this.resultsList = await this.getResultsList();
+      this.resultsIdx = Election.buildResultsIdx(this.resultsList);
+      this.isLoaded = this.resultsList.length > Election.MIN_RESULTS;
     }
-    this.resultsList = await this.getResultsList();
-
-    this.resultsIdx = Election.buildResultsIdx(this.resultsList);
-
-    this.isLoaded = this.resultsList.length > Election.MIN_RESULTS;
   }
 
   async getRawDataList() {

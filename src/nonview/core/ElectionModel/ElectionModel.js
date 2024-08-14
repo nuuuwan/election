@@ -254,7 +254,11 @@ export default class ElectionModel {
             pVotes = MathX.forceRange(pVotes, 0, 1);
             const votes = Math.round(pVotes * valid);
             const kError = Math.max(0, 1 - pError);
-            const votesMin = Math.round(pVotes * kError * valid);
+            const votesMin = MathX.forceRange(
+              Math.round(pVotes * kError * valid),
+              0,
+              1
+            );
             partyToVotes[partyID] = votesMin;
             partyToVotes[ElectionModel.PARTY_UNCERTAIN] += votes - votesMin;
             return partyToVotes;

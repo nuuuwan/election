@@ -1,13 +1,13 @@
 import STYLE from "./STYLE";
 
 const COLOR_TO_POLITICAL_PARTIES = {
-  "#008": ["SLFP", "PA", "UPFA"],
+  "#008": ["SLFP", "PA", "UPFA", "SLPP-R"],
   "#080": ["UNP", "NDF"],
   "#8c0": ["SJB"],
   "#800": ["SLPP"],
-  "#f80": ["ACTC"],
+  "#f80": ["ACTC", "Ind-R"],
   "#f90": ["JHU", "SU", "OPPP"],
-  "#f0f": ["NPP"],
+
   "#f00": [
     "JVP",
     "LSSP",
@@ -20,6 +20,7 @@ const COLOR_TO_POLITICAL_PARTIES = {
     "MEP",
     "DNA",
     "USA",
+    "NPP",
   ],
   "#fc0": ["ITAK", "AITC", "AITM"],
   "#060": ["MNA", "SLMC", "NUA", "ACMC", "NC"],

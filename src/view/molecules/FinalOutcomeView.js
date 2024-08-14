@@ -147,7 +147,7 @@ export default function FinalOutcomeView({ result }) {
       sx={{
         width: "fit-content",
         margin: "auto",
-        p: 1,
+        p: 1.5,
         backgroundColor: STYLE.COLOR.LIGHTEST,
         elevation: 1,
       }}

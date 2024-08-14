@@ -19,7 +19,6 @@ import {
   PlayerControl,
   PredictionView,
 } from "../../molecules";
-import TestElection from "../../../nonview/core/TestElection";
 
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
@@ -71,23 +70,7 @@ export default class BasePage extends Component {
     const edIdx = await Ent.idxFromType(EntType.ED);
     const elections = await Election.listAll();
 
-    let election = await Election.fromElectionTypeAndDate(electionType, date);
-
-    if (election.isFuture) {
-      election = TestElection.random(
-        Object.keys(pdIdx),
-        electionType,
-        date,
-        {
-          SJB: 40,
-          JVP: 30,
-          UNP: 20,
-          SLPP: 10,
-        },
-        182
-      );
-    }
-    console.debug(election);
+    const election = await Election.fromElectionTypeAndDate(electionType, date);
 
     activePDID =
       activePDID ||

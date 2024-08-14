@@ -1,7 +1,8 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Paper, Stack, Typography } from "@mui/material";
 import { Party } from "../../nonview/core";
 import { PartyView } from "../atoms";
 import { Format, MathX } from "../../nonview/base";
+import { STYLE } from "../../nonview/constants";
 
 function Confidence() {
   return (
@@ -65,28 +66,35 @@ class FinalOutcome {
 
   renderInsights() {
     if (this.isTooEarlyToCall) {
-      return ["Too early to call"];
+      return [<Typography variant="h6">Too early to call</Typography>];
     }
     if (this.hasFirstPrefWinner) {
       const winningPartyID = this.result.partyToVotes.winningPartyID;
       return [
-        <Box>
+        <Typography variant="h6">
           <PartyView partyID={winningPartyID} /> wins on 1st preferences.
-        </Box>,
+        </Typography>,
         <Confidence />,
       ];
     }
     const likelyWinnerPartyInfoList = this.likelyWinnerPartyInfoList;
     if (!likelyWinnerPartyInfoList.length) {
-      return ["2nd/3rd Preference Count Projected", <Confidence />];
+      return [
+        <Typography variant="h6">
+          2nd/3rd Preference Count Projected
+        </Typography>,
+        <Confidence />,
+      ];
     }
 
     const pUncertainHappenning =
       1 - MathX.sum(likelyWinnerPartyInfoList.map(({ p }) => p));
 
     return [
-      "Too close to call",
-      "Possible Outcomes & Probabilities",
+      <Typography variant="h6">Too close to call</Typography>,
+      <Typography variant="caption">
+        Possible Outcomes & Probabilities
+      </Typography>,
       <Box display="flex" justifyContent="center">
         <table>
           <tbody>
@@ -135,18 +143,22 @@ class FinalOutcome {
 export default function FinalOutcomeView({ result }) {
   const finalOutput = new FinalOutcome(result);
   return (
-    <Typography variant="h6" sx={{ color: "gray" }}>
+    <Paper
+      sx={{
+        width: "fit-content",
+        margin: "auto",
+        p: 1,
+        backgroundColor: STYLE.COLOR.LIGHTEST,
+        elevation: 1,
+      }}
+    >
       {finalOutput.renderInsights().map(function (insight, i) {
-        const fontSize = i === 0 ? "100%" : "50%";
         return (
-          <Box
-            key={i}
-            sx={{ fontSize, textAlign: "center", alignItems: "center" }}
-          >
+          <Box key={i} sx={{ textAlign: "center", alignItems: "center" }}>
             {insight}
           </Box>
         );
       })}
-    </Typography>
+    </Paper>
   );
 }

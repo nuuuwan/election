@@ -206,23 +206,39 @@ export default class BasePage extends Component {
   }
 
   renderHeader() {
-    const { election, elections } = this.state;
+    const { election, elections, nResultsDisplay } = this.state;
     return (
-      <Box
-        sx={{
-          position: "fixed",
-          top: 0,
-          right: 0,
-          left: 0,
-          zIndex: 3000,
-          backgroundColor: "white",
-        }}
-      >
-        <ElectionSelector
-          selectedElection={election}
-          elections={elections}
-          setElection={this.setElection.bind(this)}
-        />
+      <Box>
+        <Box
+          sx={{
+            position: "fixed",
+            top: 0,
+            right: 0,
+            left: 0,
+            zIndex: 3000,
+            backgroundColor: "white",
+          }}
+        >
+          <ElectionSelector
+            selectedElection={election}
+            elections={elections}
+            setElection={this.setElection.bind(this)}
+          />
+        </Box>
+        <Box
+          sx={{
+            position: "fixed",
+            top: 0,
+            right: 0,
+            zIndex: 3000,
+            backgroundColor: "white",
+            paddingTop: 2,
+            paddingRight: 4,
+            color: STYLE.COLOR.LIGHTER,
+          }}
+        >
+          <Typography variant="h3">{nResultsDisplay}</Typography>
+        </Box>
       </Box>
     );
   }

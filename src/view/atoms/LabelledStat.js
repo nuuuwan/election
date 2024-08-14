@@ -10,7 +10,7 @@ export default function LabelledStat({ label, valueStr, sx }) {
       <Typography variant="caption" sx={{ textTransform: "uppercase" }}>
         {label}
       </Typography>
-      <Typography variant="h5">{valueStr}</Typography>
+      <Typography variant="h6">{valueStr}</Typography>
     </Stack>
   );
 }

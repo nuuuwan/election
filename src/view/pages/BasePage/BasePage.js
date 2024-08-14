@@ -32,6 +32,11 @@ export default class BasePage extends Component {
     } else {
       context.isPlaying = false;
     }
+
+    if (context.nResultsDisplay) {
+      context.nResultsDisplay = parseInt(context.nResultsDisplay);
+    }
+
     return context;
   }
 
@@ -83,12 +88,6 @@ export default class BasePage extends Component {
       nResultsDisplay = election.pdResultsList.length;
     }
 
-    for (const result of election.pdResultsList) {
-      const pdID = result.entID;
-      if (!pdIdx[pdID]) {
-        console.log(pdID);
-      }
-    }
 
     this.setStateAndContext({
       electionType,
@@ -415,6 +414,8 @@ export default class BasePage extends Component {
     if (!election) {
       return <CircularProgress />;
     }
+
+
 
     return (
       <Box>

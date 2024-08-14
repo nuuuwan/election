@@ -1,7 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import { Party } from "../../nonview/core";
 import { CustomSelect } from "../atoms";
-import { STYLE } from "../../nonview/constants";
 
 export default function PDSelector({
   resultsIdx,

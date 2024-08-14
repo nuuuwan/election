@@ -17,8 +17,9 @@ export default function PartyView({ partyID }) {
       sx={{
         backgroundColor,
         color,
-        padding: 0.5,
-        borderRadius: 2,
+        padding: 0.25,
+        margin: 0.25,
+        borderRadius: 1,
         width: "fit-content",
       }}
       component="span"

@@ -17,15 +17,12 @@ let FormatPercent = {
   },
 
   percentVotes(x) {
-    // Never display "50%"
-    if (0.4995 < x && x <= 0.5) {
-      return "49.9%";
+    let minimumFractionDigits = 0;
+    const diffX = Math.abs(x - 0.5);
+    if (diffX < 0.01) {
+      minimumFractionDigits = Math.ceil(-Math.log10(diffX) - 2);
     }
-    if (0.5 < x && x < 0.5005) {
-      return "50.1%";
-    }
-
-    return FormatPercent.percentAbs(x, 0);
+    return FormatPercent.percentAbs(x, minimumFractionDigits);
   },
 
   percent(x, minimumFractionDigits = undefined) {

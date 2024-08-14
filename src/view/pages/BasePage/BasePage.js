@@ -263,7 +263,7 @@ export default class BasePage extends Component {
       <Box color={STYLE.COLOR.LIGHT}>
         <Box sx={STYLE.BODY_HEADER}>
           <Typography variant="caption">{this.subTitleProgress}</Typography>
-          <Typography variant="h4">Map</Typography>
+          <Typography variant="h4">Maps</Typography>
         </Box>
         <HexagonMap
           resultsIdx={this.resultsIdx}

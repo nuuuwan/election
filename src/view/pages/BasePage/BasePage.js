@@ -45,7 +45,8 @@ export default class BasePage extends Component {
     this.setState(
       newState,
       function () {
-        const { electionType, date, isPlaying, nResultsDisplay, activePDID } = this.state;
+        const { electionType, date, isPlaying, nResultsDisplay, activePDID } =
+          this.state;
         URLContext.set({
           electionType,
           date,
@@ -75,15 +76,17 @@ export default class BasePage extends Component {
 
     if (activePDID !== undefined) {
       nResultsDisplay =
-      election.pdResultsList.map((result) => result.entID).indexOf(activePDID) +
-      1;
+        election.pdResultsList
+          .map((result) => result.entID)
+          .indexOf(activePDID) + 1;
     } else if (nResultsDisplay !== undefined) {
       if (nResultsDisplay > 0) {
         activePDID = election.pdResultsList[nResultsDisplay - 1].entID;
       }
     } else {
-      activePDID = election.pdResultsList[election.pdResultsList.length - 1].entID;
-      nResultsDisplay = election.pdResultsList.length
+      activePDID =
+        election.pdResultsList[election.pdResultsList.length - 1].entID;
+      nResultsDisplay = election.pdResultsList.length;
     }
 
     for (const result of election.pdResultsList) {
@@ -384,8 +387,6 @@ export default class BasePage extends Component {
   }
 
   renderBodyInner() {
-  
-
     return (
       <Box>
         <Grid container rowSpacing={5}>
@@ -406,13 +407,12 @@ export default class BasePage extends Component {
           </Grid>
         </Grid>{" "}
         {this.renderCitations()}
-       
       </Box>
     );
   }
 
   renderInner() {
-    const { nResultsDisplay, isPlaying , election} = this.state;
+    const { nResultsDisplay, isPlaying, election } = this.state;
     if (!election) {
       return <CircularProgress />;
     }
@@ -421,7 +421,7 @@ export default class BasePage extends Component {
       <Box>
         <div id="header_and_body">
           {this.renderHeader()}
-          {this.renderBody()} 
+          {this.renderBody()}
         </div>
         <PlayerControl
           key={nResultsDisplay}

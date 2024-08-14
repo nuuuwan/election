@@ -45,11 +45,12 @@ export default class BasePage extends Component {
     this.setState(
       newState,
       function () {
-        const { electionType, date, isPlaying, activePDID } = this.state;
+        const { electionType, date, isPlaying, nResultsDisplay, activePDID } = this.state;
         URLContext.set({
           electionType,
           date,
           isPlaying,
+          nResultsDisplay,
           activePDID,
         });
         if (funcRunAfter) {
@@ -72,13 +73,18 @@ export default class BasePage extends Component {
 
     const election = await Election.fromElectionTypeAndDate(electionType, date);
 
-    activePDID =
-      activePDID ||
-      election.pdResultsList[election.pdResultsList.length - 1].entID;
-
-    nResultsDisplay =
+    if (activePDID !== undefined) {
+      nResultsDisplay =
       election.pdResultsList.map((result) => result.entID).indexOf(activePDID) +
       1;
+    } else if (nResultsDisplay !== undefined) {
+      if (nResultsDisplay > 0) {
+        activePDID = election.pdResultsList[nResultsDisplay - 1].entID;
+      }
+    } else {
+      activePDID = election.pdResultsList[election.pdResultsList.length - 1].entID;
+      nResultsDisplay = election.pdResultsList.length
+    }
 
     for (const result of election.pdResultsList) {
       const pdID = result.entID;

@@ -61,7 +61,6 @@ export default class BasePage extends Component {
     nResultsDisplay =
       election.pdResultsList.map((result) => result.entID).indexOf(activePDID) +
       1;
-    isPlaying = isPlaying || false;
 
     const pdIdx = await Ent.idxFromType(EntType.PD);
     const edIdx = await Ent.idxFromType(EntType.ED);

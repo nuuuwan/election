@@ -28,10 +28,20 @@ export default class BasePage extends Component {
   };
   constructor(props) {
     super(props);
-    this.state = Object.assign({}, BasePage.DEFAULT_STATE, URLContext.get());
+    this.state = Object.assign({}, BasePage.DEFAULT_STATE, this.getContext());
   }
 
-  setStateAndContext(newState) {
+  getContext() {
+    let context = URLContext.get();
+    if (context.isPlaying === true || context.isPlaying === "true") {
+      context.isPlaying = true;
+    } else {
+      context.isPlaying = false;
+    }
+    return context;
+  }
+
+  setStateAndContext(newState, funcRunAfter = undefined) {
     this.setState(
       newState,
       function () {
@@ -42,6 +52,9 @@ export default class BasePage extends Component {
           isPlaying,
           activePDID,
         });
+        if (funcRunAfter) {
+          funcRunAfter();
+        }
       }.bind(this)
     );
   }
@@ -94,11 +107,6 @@ export default class BasePage extends Component {
     return election.pdResultsList;
   }
 
-  get pdResultsDisplay() {
-    const { nResultsDisplay } = this.state;
-    return this.pdResultsList.slice(0, nResultsDisplay);
-  }
-
   get resultsIdx() {
     const { election } = this.state;
     return election.resultsIdx;
@@ -106,6 +114,18 @@ export default class BasePage extends Component {
   get result() {
     const { activePDID } = this.state;
     return this.resultsIdx[activePDID];
+  }
+
+  // Display
+  get pdResultsDisplay() {
+    const { nResultsDisplay } = this.state;
+    return this.pdResultsList.slice(0, nResultsDisplay);
+  }
+
+  get resultsIdxDisplay() {
+    return Object.fromEntries(
+      this.pdResultsDisplay.map((result) => [result.entID, result])
+    );
   }
 
   get resultLKDisplay() {
@@ -162,7 +182,7 @@ export default class BasePage extends Component {
   }
 
   async playAnimation() {
-    this.setState(
+    this.setStateAndContext(
       { isPlaying: true },
       async function () {
         while (true) {
@@ -181,7 +201,7 @@ export default class BasePage extends Component {
   }
 
   async pauseAnimation() {
-    this.setState({ isPlaying: false });
+    this.setStateAndContext({ isPlaying: false });
   }
 
   renderHeader() {
@@ -266,7 +286,7 @@ export default class BasePage extends Component {
           <Typography variant="h4">Maps</Typography>
         </Box>
         <HexagonMap
-          resultsIdx={this.resultsIdx}
+          resultsIdx={this.resultsIdxDisplay}
           pdIdx={pdIdx}
           activeResult={this.result}
           setActivePDID={this.setActivePDID.bind(this)}
@@ -330,6 +350,7 @@ export default class BasePage extends Component {
 
   renderBodyInner() {
     const { election, nResultsDisplay, isPlaying } = this.state;
+
     if (election.isFuture) {
       return <FutureElection election={election} />;
     }

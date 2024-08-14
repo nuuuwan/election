@@ -384,7 +384,7 @@ export default class BasePage extends Component {
   }
 
   renderBodyInner() {
-    const { nResultsDisplay, isPlaying } = this.state;
+  
 
     return (
       <Box>
@@ -406,6 +406,23 @@ export default class BasePage extends Component {
           </Grid>
         </Grid>{" "}
         {this.renderCitations()}
+       
+      </Box>
+    );
+  }
+
+  renderInner() {
+    const { nResultsDisplay, isPlaying , election} = this.state;
+    if (!election) {
+      return <CircularProgress />;
+    }
+
+    return (
+      <Box>
+        <div id="header_and_body">
+          {this.renderHeader()}
+          {this.renderBody()} 
+        </div>
         <PlayerControl
           key={nResultsDisplay}
           nResultsDisplay={nResultsDisplay}
@@ -416,20 +433,6 @@ export default class BasePage extends Component {
           pauseAnimation={this.pauseAnimation.bind(this)}
         />
       </Box>
-    );
-  }
-
-  renderInner() {
-    const { election } = this.state;
-    if (!election) {
-      return <CircularProgress />;
-    }
-
-    return (
-      <Grid container direction="column">
-        <Grid item>{this.renderHeader()}</Grid>
-        <Grid item>{this.renderBody()} </Grid>
-      </Grid>
     );
   }
 

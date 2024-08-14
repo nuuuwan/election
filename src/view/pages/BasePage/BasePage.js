@@ -135,7 +135,7 @@ export default class BasePage extends Component {
     const { electionType, date } = this.state;
 
     const election = await Election.fromElectionTypeAndDate(electionType, date);
-    const nResultsDisplay = Math.ceil(election.pdResultsList.length / 2);
+    const nResultsDisplay = election.pdResultsList.length;
     const activePDID = election.pdResultsList[nResultsDisplay - 1].entID;
 
     const pdIdx = await Ent.idxFromType(EntType.PD);

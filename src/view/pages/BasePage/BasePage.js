@@ -220,7 +220,7 @@ export default class BasePage extends Component {
     }
     return (
       <Box>
-        <Box sx={{ height: STYLE.BODY_HEADER.HEIGHT }}>
+        <Box sx={STYLE.BODY_HEADER}>
           <PDSelector
             resultsIdx={this.resultsIdx}
             activePDID={activePDID}
@@ -234,21 +234,23 @@ export default class BasePage extends Component {
     );
   }
 
-  renderColumnLKResult() {
+  get subTitleProgress() {
     const { nResultsDisplay } = this.state;
-    const title =
-      nResultsDisplay === this.nResults ? (
-        "Final Result"
-      ) : (
-        <>
-          After {nResultsDisplay}/{this.nResults} Results
-        </>
-      );
+    return nResultsDisplay === this.nResults ? (
+      "Final Result"
+    ) : (
+      <>
+        {nResultsDisplay}/{this.nResults} Results Released
+      </>
+    );
+  }
+
+  renderColumnLKResult() {
     return (
       <Box color={STYLE.COLOR.LIGHT}>
-        <Box sx={{ height: STYLE.BODY_HEADER.HEIGHT }}>
-          <Typography variant="body1">{title}</Typography>
-          <Typography variant="h4">Islandwide</Typography>
+        <Box sx={STYLE.BODY_HEADER}>
+          <Typography variant="caption">{this.subTitleProgress}</Typography>
+          <Typography variant="h4">National</Typography>
         </Box>
         <ResultSingleView result={this.resultLK} superTitle={"Aggregated"} />
       </Box>
@@ -259,9 +261,9 @@ export default class BasePage extends Component {
     const { pdIdx } = this.state;
     return (
       <Box color={STYLE.COLOR.LIGHT}>
-        <Box sx={{ height: STYLE.BODY_HEADER.HEIGHT }}>
-          <Typography variant="body1">Results Map</Typography>{" "}
-          <Typography variant="h4">Polling Divisions</Typography>
+        <Box sx={STYLE.BODY_HEADER}>
+          <Typography variant="caption">{this.subTitleProgress}</Typography>
+          <Typography variant="h4">Results Map</Typography>
         </Box>
         <HexagonMap
           resultsIdx={this.resultsIdx}
@@ -277,9 +279,9 @@ export default class BasePage extends Component {
     const { election, nResultsDisplay, elections } = this.state;
     return (
       <Box color={STYLE.COLOR.DARK}>
-        <Box sx={{ height: 70 }}>
-          <Typography variant="body1">Projected Final Result</Typography>
-          <Typography variant="h4">Islandwide</Typography>
+        <Box sx={STYLE.BODY_HEADER}>
+          <Typography variant="caption">Projected Final Result</Typography>
+          <Typography variant="h4">National</Typography>
         </Box>
         <PredictionView
           activeElection={election}

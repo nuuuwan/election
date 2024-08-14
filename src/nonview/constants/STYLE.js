@@ -9,7 +9,8 @@ STYLE.COLOR = {
 };
 
 STYLE.BODY_HEADER = {
-  HEIGHT: 70,
+  p: 0.5,
+  height: 65,
 };
 
 STYLE.FONT_SIZE = 14;

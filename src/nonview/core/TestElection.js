@@ -8,7 +8,7 @@ export default class TestElection {
   static getPartyToPVote() {
     return {
       SJB: 0.43,
-      NPP: 0.3 + 1,
+      NPP: 0.3,
       "Ind-R": 0.2,
       "SLPP-R": 0.07,
     };

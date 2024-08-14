@@ -38,7 +38,7 @@ function SVGHexagon({ x, y, color, label, opacity, onClick }) {
       <text
         x={x}
         y={y + 0.1}
-        fontSize={0.4 * 3 / Math.max(3, label.length)}
+        fontSize={(0.4 * 3) / Math.max(3, label.length)}
         textAnchor="middle"
         alignmentBaseline="middle"
         fill={textColor}

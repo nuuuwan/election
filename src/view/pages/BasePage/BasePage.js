@@ -1,11 +1,5 @@
 import { Component } from "react";
-import {
-  Box,
-  CircularProgress,
-  Grid,
-
-  Typography,
-} from "@mui/material";
+import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 
 import { Ent, EntType, URLContext } from "../../../nonview/base";
 import { STYLE, VERSION } from "../../../nonview/constants";
@@ -357,20 +351,23 @@ export default class BasePage extends Component {
     };
 
     const content = [
-      'Source Data by elections.gov.lk',
-      'Music by bensound',
-      'Visualization & Analysis by @nuuuwan',
+      "Source Data by elections.gov.lk",
+      "Music by bensound",
+      "Visualization & Analysis by @nuuuwan",
       VERSION.DATETIME_STR,
     ].join(" · ");
 
     return (
       <Box
-        sx={{ color: STYLE.COLOR.LIGHTER, alignContent: "center", margin: "auto", cursor: "pointer" }}
+        sx={{
+          color: STYLE.COLOR.LIGHTER,
+          alignContent: "center",
+          margin: "auto",
+          cursor: "pointer",
+        }}
         onClick={onClick}
       >
         <Typography variant="body2">{content}</Typography>
-
-
       </Box>
     );
   }

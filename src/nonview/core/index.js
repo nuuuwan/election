@@ -8,6 +8,7 @@ import Party from "./Party";
 import PartyToVotes from "./PartyToVotes";
 import Result from "./Result";
 import Summary from "./Summary";
+import TestElection from "./TestElection";
 
 export {
   Comparator,
@@ -19,4 +20,5 @@ export {
   PartyToVotes,
   Result,
   Summary,
+  TestElection,
 };

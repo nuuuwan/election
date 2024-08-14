@@ -117,6 +117,33 @@ class Election extends ElectionBase {
       );
     });
   }
+
+  static buildEDResultsList(pdResultsList) {
+    const edIDToResultsList = pdResultsList.reduce(function (
+      edIDToResultsList,
+      pdResult
+    ) {
+      const pdID = pdResult.entID;
+      const edID = pdID.substring(0, 5);
+      if (!edIDToResultsList[edID]) {
+        edIDToResultsList[edID] = [];
+      }
+      edIDToResultsList[edID].push(pdResult);
+      return edIDToResultsList;
+    },
+    {});
+    const edResultsList = Object.entries(edIDToResultsList).map(function ([
+      edID,
+      resultsListForED,
+    ]) {
+      return Result.fromList(edID, resultsListForED);
+    });
+    return edResultsList;
+  }
+
+  static buildLKResult(pdResultsList) {
+    return Result.fromList("LK", pdResultsList);
+  }
 }
 
 Object.assign(Election.prototype, ElectionGetters);

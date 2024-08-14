@@ -7,6 +7,9 @@ export default function FutureElection({ election }) {
       <Typography variant="h4">This election is in {days} days.</Typography>
       <Typography variant="body1">
         We will provide the results once they are available.
+      </Typography>
+      <Typography variant="caption" color="orange">
+        Here are some imaginary election results, purely for testing purposes.
       </Typography>{" "}
     </Box>
   );

@@ -19,11 +19,12 @@ import {
   PlayerControl,
   PredictionView,
 } from "../../molecules";
+import TestElection from "../../../nonview/core/TestElection";
 
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
     electionType: "Presidential",
-    date: "2019-11-16",
+    date: "2024-09-21",
     isPlaying: false,
   };
   constructor(props) {
@@ -66,7 +67,28 @@ export default class BasePage extends Component {
     let { electionType, date, isPlaying, nResultsDisplay, activePDID } =
       this.state;
 
-    const election = await Election.fromElectionTypeAndDate(electionType, date);
+    const pdIdx = await Ent.idxFromType(EntType.PD);
+    const edIdx = await Ent.idxFromType(EntType.ED);
+    const elections = await Election.listAll();
+
+    let election = await Election.fromElectionTypeAndDate(electionType, date);
+
+    if (election.isFuture) {
+      election = TestElection.random(
+        Object.keys(pdIdx),
+        electionType,
+        date,
+        {
+          SJB: 40,
+          JVP: 30,
+          UNP: 20,
+          SLPP: 10,
+        },
+        182
+      );
+    }
+    console.debug(election);
+
     activePDID =
       activePDID ||
       election.pdResultsList[election.pdResultsList.length - 1].entID;
@@ -74,10 +96,6 @@ export default class BasePage extends Component {
     nResultsDisplay =
       election.pdResultsList.map((result) => result.entID).indexOf(activePDID) +
       1;
-
-    const pdIdx = await Ent.idxFromType(EntType.PD);
-    const edIdx = await Ent.idxFromType(EntType.ED);
-    const elections = await Election.listAll();
 
     for (const result of election.pdResultsList) {
       const pdID = result.entID;
@@ -351,12 +369,9 @@ export default class BasePage extends Component {
   renderBodyInner() {
     const { election, nResultsDisplay, isPlaying } = this.state;
 
-    if (election.isFuture) {
-      return <FutureElection election={election} />;
-    }
-
     return (
       <Box>
+        {election.isFuture ? <FutureElection election={election} /> : null}
         <Grid container rowSpacing={5}>
           <Grid item xs={12} md={6} xl={3}>
             {this.renderColumnResult()}

@@ -15,4 +15,13 @@ export default class Random {
   static coinFlipWin(winRate) {
     return Math.random() < winRate;
   }
+
+  static shuffle(arr) {
+    const shuffled = arr.slice();
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Random.randomInt(0, i + 1);
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }
 }

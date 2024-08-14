@@ -20,7 +20,6 @@ export default function PartyView({ partyID }) {
         padding: 0.25,
         margin: 0.25,
 
-        
         borderRadius: 1,
         width: "fit-content",
       }}

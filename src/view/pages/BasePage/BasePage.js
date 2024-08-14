@@ -3,11 +3,10 @@ import {
   Box,
   CircularProgress,
   Grid,
-  IconButton,
-  Stack,
+
   Typography,
 } from "@mui/material";
-import { Refresh } from "@mui/icons-material";
+
 import { Ent, EntType, URLContext } from "../../../nonview/base";
 import { STYLE, VERSION } from "../../../nonview/constants";
 import { Election, Result } from "../../../nonview/core";

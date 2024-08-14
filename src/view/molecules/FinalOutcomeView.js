@@ -3,6 +3,7 @@ import { Party } from "../../nonview/core";
 import { PartyView } from "../atoms";
 import { Format, MathX } from "../../nonview/base";
 import { STYLE } from "../../nonview/constants";
+import SmartToyIcon from "@mui/icons-material/SmartToy";
 
 function Confidence() {
   return (
@@ -14,10 +15,11 @@ function Confidence() {
 
 class FinalOutcome {
   static P_BASE = 0.9;
-  static P_TOO_EARLY_TO_CALL = 0.5;
-  constructor(result, final) {
+  static P_TOO_MUCH_UNCERTAINTY = 0.5;
+  static MIN_N_RESULTS = 30;
+  constructor(result, nResultsDisplay) {
     this.result = result;
-    this.final = final;
+    this.nResultsDisplay = nResultsDisplay;
   }
 
   get pWinner() {
@@ -31,7 +33,11 @@ class FinalOutcome {
   }
 
   get isTooEarlyToCall() {
-    return this.pUncertain > FinalOutcome.P_TOO_EARLY_TO_CALL;
+    return this.nResultsDisplay <= FinalOutcome.MIN_N_RESULTS;
+  }
+
+  get isTooMuchUncertainty() {
+    return this.pUncertain > FinalOutcome.P_TOO_MUCH_UNCERTAINTY;
   }
 
   get hasFirstPrefWinner() {
@@ -66,7 +72,23 @@ class FinalOutcome {
 
   renderInsights() {
     if (this.isTooEarlyToCall) {
-      return [<Typography variant="h6">Too early to call</Typography>];
+      return [
+        <Typography variant="h6">Too early to call</Typography>,
+        <Typography variant="caption">
+          Our Model needs &gt;{FinalOutcome.MIN_N_RESULTS} results to be
+          confident.
+        </Typography>,
+      ];
+    }
+    if (this.isTooMuchUncertainty) {
+      return [
+        <Typography variant="h6">Too much uncertainty to call</Typography>,
+        <Typography variant="caption">
+          The voting preferences of &gt;
+          {Format.percent(FinalOutcome.P_TOO_MUCH_UNCERTAINTY)} of voters are
+          uncertain.
+        </Typography>,
+      ];
     }
     if (this.hasFirstPrefWinner) {
       const winningPartyID = this.result.partyToVotes.winningPartyID;
@@ -139,19 +161,28 @@ class FinalOutcome {
     ];
   }
 }
-
-export default function FinalOutcomeView({ result }) {
-  const finalOutput = new FinalOutcome(result);
+export default function FinalOutcomeView({ result, nResultsDisplay }) {
+  const finalOutput = new FinalOutcome(result, nResultsDisplay);
   return (
     <Paper
       sx={{
         width: "fit-content",
+        maxWidth: "80%",
+
         margin: "auto",
         p: 1.5,
         backgroundColor: STYLE.COLOR.LIGHTEST,
         elevation: 1,
       }}
     >
+      <Stack
+        direction="row"
+        gap={1}
+        sx={{ alignItems: "center", color: STYLE.COLOR.LIGHT }}
+      >
+        <SmartToyIcon sx={{ fontSize: "150%" }} />
+        <Typography variant="caption">Model says</Typography>
+      </Stack>
       {finalOutput.renderInsights().map(function (insight, i) {
         return (
           <Box key={i} sx={{ textAlign: "center", alignItems: "center" }}>

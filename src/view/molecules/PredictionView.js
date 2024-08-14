@@ -30,7 +30,7 @@ export default function PredictionView({
   return (
     <Stack direction="column" gap={0}>
       <ResultSingleView result={resultsLK} />
-      <FinalOutcomeView result={resultsLK} />
+      <FinalOutcomeView result={resultsLK} nResultsDisplay={nResultsDisplay} />
     </Stack>
   );
 }

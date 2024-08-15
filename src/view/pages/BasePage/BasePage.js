@@ -17,8 +17,8 @@ import {
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
     electionType: "Presidential",
-    // date: "2019-11-16",
-    date: "2024-09-21",
+    date: "2019-11-16",
+    // date: "2024-09-21",
     isPlaying: false,
   };
   constructor(props) {
@@ -345,7 +345,7 @@ export default class BasePage extends Component {
 
     const content = [
       "Source Data by elections.gov.lk",
-      "Music by bensound",
+      "Music by @bensound",
       "Visualization & Analysis by @nuuuwan",
       VERSION.DATETIME_STR,
     ].join(" · ");

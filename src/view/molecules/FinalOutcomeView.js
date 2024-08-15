@@ -4,7 +4,6 @@ import { PartyView } from "../atoms";
 import { Format, MathX } from "../../nonview/base";
 import { STYLE } from "../../nonview/constants";
 
-
 function Confidence() {
   return (
     <Typography variant="caption">
@@ -75,8 +74,8 @@ class FinalOutcome {
       return [
         <Typography variant="h6">Too early to call</Typography>,
         <Typography variant="caption">
-          Our Model needs &gt;{FinalOutcome.MIN_N_RESULTS} results, 
-          before it can make a reasonable projection.
+          Our Model needs &gt;{FinalOutcome.MIN_N_RESULTS} results, before it
+          can make a reasonable projection.
         </Typography>,
       ];
     }
@@ -166,7 +165,6 @@ export default function FinalOutcomeView({ result, nResultsDisplay }) {
   return (
     <Paper
       sx={{
-
         width: "fit-content",
         margin: "auto",
         p: 0.5,
@@ -174,10 +172,9 @@ export default function FinalOutcomeView({ result, nResultsDisplay }) {
         elevation: 2,
       }}
     >
-      
       {finalOutput.renderInsights().map(function (insight, i) {
         return (
-          <Box key={i} sx={{ textAlign: "center", alignItems: "center" }} >
+          <Box key={i} sx={{ textAlign: "center", alignItems: "center" }}>
             {insight}
           </Box>
         );

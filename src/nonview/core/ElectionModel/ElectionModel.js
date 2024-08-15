@@ -206,7 +206,7 @@ export default class ElectionModel {
     // Common
     const previousElections = this.getPreviousElections();
     const electionYears = previousElections.map((election) => election.date);
-    console.debug(`🤖 Training model with data from ${electionYears.length} previous elections (${electionYears.join(", ")})`);
+    console.debug(`🤖 Training model with data from ${electionYears.length} previous elections.`);
     console.debug(`🤖 Training a "[${this.releasedPDIDList.length}] -> [${this.nonReleasedPDIDList.length}]" model.`)
 
  

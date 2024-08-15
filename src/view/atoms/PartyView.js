@@ -11,6 +11,11 @@ export default function PartyView({ partyID }) {
     color = party.color;
   }
 
+  let label = partyID;
+  if (partyID === Party.UNCERTAIN.id) {
+    label = "Margin of Error";
+  }
+
   return (
     <Typography
       variant="caption"
@@ -25,7 +30,7 @@ export default function PartyView({ partyID }) {
       }}
       component="span"
     >
-      {partyID}
+      {label}
     </Typography>
   );
 }

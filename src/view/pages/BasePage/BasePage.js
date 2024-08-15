@@ -17,7 +17,8 @@ import {
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
     electionType: "Presidential",
-    date: "2019-11-16",
+    // date: "2019-11-16",
+    date: "2024-09-21",
     isPlaying: false,
   };
   constructor(props) {
@@ -330,7 +331,7 @@ export default class BasePage extends Component {
   }
 
   renderColumnPrediction() {
-    const { election, nResultsDisplay, elections } = this.state;
+    const { election, nResultsDisplay, elections, pdIdx } = this.state;
     return (
       <Box color={STYLE.COLOR.DARK}>
         <Box sx={STYLE.BODY_HEADER}>
@@ -341,6 +342,7 @@ export default class BasePage extends Component {
           activeElection={election}
           nResultsDisplay={nResultsDisplay}
           elections={elections}
+          pdIdx={pdIdx}
         />
       </Box>
     );

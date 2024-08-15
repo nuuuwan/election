@@ -14,14 +14,14 @@ export default class ElectionModel {
     elections,
     currentElection,
     releasedPDIDList,
-    notReleasePDIDList
+    nonReleasedPDIDList
   ) {
     this.elections = elections;
     this.currentElection = currentElection;
     this.releasedPDIDList = releasedPDIDList;
-    this.nonReleasedPDIDList = notReleasePDIDList;
+    this.nonReleasedPDIDList = nonReleasedPDIDList;
 
-    this.trainingOutput = this.train();
+   this.trainingOutput = this.train();
   }
   static getPartyIDList(modelElection) {
     // Returns the list of party IDs, where the party has won at least MIN_P votes in the election.
@@ -207,6 +207,9 @@ export default class ElectionModel {
     const previousElections = this.getPreviousElections();
     const electionYears = previousElections.map((election) => election.date);
     console.debug(`🤖 Training model with data from ${electionYears.length} previous elections (${electionYears.join(", ")})`);
+    console.debug(`🤖 Training a "[${this.releasedPDIDList.length}] -> [${this.nonReleasedPDIDList.length}]" model.`)
+
+ 
     
     const XAll = ElectionModel.getFeatureMatrixListForElections(
       previousElections,

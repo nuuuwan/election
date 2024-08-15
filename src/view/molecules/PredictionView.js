@@ -6,15 +6,16 @@ export default function PredictionView({
   activeElection,
   nResultsDisplay,
   elections,
+  pdIdx,
 }) {
   const pdResultsList = activeElection.pdResultsList;
 
   const releasedPDIDList = pdResultsList
     .slice(0, nResultsDisplay + 1)
     .map((result) => result.entID);
-  const notReleasePDIDList = pdResultsList
-    .slice(nResultsDisplay + 1)
-    .map((result) => result.entID);
+  const nonReleasedPDIDList = Object.keys(pdIdx).filter(
+    (pdID) => !releasedPDIDList.includes(pdID)
+  )
 
   let resultsLK = undefined;
 
@@ -22,7 +23,7 @@ export default function PredictionView({
     elections,
     activeElection,
     releasedPDIDList,
-    notReleasePDIDList
+    nonReleasedPDIDList
   );
   const predictedElection = electionModel.getElectionNotReleasedPrediction();
   resultsLK = predictedElection.resultsIdx["LK"];

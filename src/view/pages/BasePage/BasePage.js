@@ -4,7 +4,7 @@ import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import { Ent, EntType, URLContext } from "../../../nonview/base";
 import { STYLE, VERSION } from "../../../nonview/constants";
 import { Election, Result } from "../../../nonview/core";
-import { FutureElection } from "../../atoms";
+
 import {
   ResultSingleView,
   HexagonMap,

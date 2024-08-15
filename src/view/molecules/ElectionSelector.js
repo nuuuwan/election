@@ -41,7 +41,7 @@ export default function ElectionSelector({
               </Typography>
               {days > 0 ? (
                 <Typography variant="caption" color="red">
-                  {` (in ${days} days) This is test data!`}
+                  {`This is test data! The actual election is in ${days} days.`}
                 </Typography>
               ) : null}
             </Stack>

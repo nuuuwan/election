@@ -134,9 +134,13 @@ export default class BasePage extends Component {
     return Result.fromList("LK", this.pdResultsDisplay);
   }
 
-  get nResults() {
+  get nResultsReleased() {
     const { election } = this.state;
     return election.pdResultsList.length;
+  }
+
+  get nResultsAll() {
+    return 182;
   }
 
   get key() {
@@ -283,11 +287,11 @@ export default class BasePage extends Component {
 
   get subTitleProgress() {
     const { nResultsDisplay } = this.state;
-    return nResultsDisplay === this.nResults ? (
+    return nResultsDisplay === this.nResultsAll ? (
       "Final Result"
     ) : (
       <>
-        {nResultsDisplay}/{this.nResults} Results Released
+        {nResultsDisplay}/{this.nResultsAll} Results Released
       </>
     );
   }
@@ -421,7 +425,7 @@ export default class BasePage extends Component {
         <PlayerControl
           key={nResultsDisplay}
           nResultsDisplay={nResultsDisplay}
-          nResults={this.nResults}
+          nResults={this.nResultsReleased}
           setNResultsDisplay={this.setNResultsDisplay.bind(this)}
           isPlaying={isPlaying}
           playAnimation={this.playAnimation.bind(this)}

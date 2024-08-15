@@ -5,9 +5,9 @@ import { Format } from "../../../nonview/base";
 import { STYLE } from "../../../nonview/constants";
 import { Box } from "@mui/material";
 
-const CHART_SIZE = 180;
 
-export default function PartyToVotesPieChart({ partyToVotes }) {
+export default function PartyToVotesPieChart({ partyToVotes, chartSize }) {
+  chartSize = chartSize || 320;
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
   const data = entries.map(function ([partyID, votes]) {
     const party = Party.fromID(partyID);
@@ -32,13 +32,13 @@ export default function PartyToVotesPieChart({ partyToVotes }) {
         sx={{
           [`& .${pieArcLabelClasses.root}`]: {
             fill: "white",
-            fontSize: "100%",
+            fontSize: chartSize/10,
             fontFamily: STYLE.FONT_FAMILY,
           },
         }}
         slotProps={{ legend: { hidden: true } }}
-        width={CHART_SIZE}
-        height={CHART_SIZE}
+        width={chartSize}
+        height={chartSize}
         margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
       />
     </Box>

@@ -369,7 +369,7 @@ export default class BasePage extends Component {
     return (
       <Box
         sx={{
-          paddingTop: 10,
+          paddingTop: 13,
           paddingBottom: 10,
         }}
       >

@@ -196,12 +196,12 @@ export default class BasePage extends Component {
           if (this.state.isPlaying === false) {
             break;
           }
-          if (this.state.nResultsDisplay === this.nResults) {
+          if (this.state.nResultsDisplay >= this.nResultsReleased) {
             this.setState({ isPlaying: false });
             break;
           }
           this.setNResultsDisplay(this.state.nResultsDisplay + 1);
-          await new Promise((resolve) => setTimeout(resolve, 1000));
+          await new Promise((resolve) => setTimeout(resolve, 250));
         }
       }.bind(this)
     );

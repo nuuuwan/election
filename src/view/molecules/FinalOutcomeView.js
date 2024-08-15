@@ -168,9 +168,8 @@ export default function FinalOutcomeView({ result, nResultsDisplay }) {
       sx={{
         width: "fit-content",
         maxWidth: "80%",
-
         margin: "auto",
-        p: 0.5,
+        p: 1,
         backgroundColor: STYLE.COLOR.LIGHTEST,
         elevation: 1,
       }}

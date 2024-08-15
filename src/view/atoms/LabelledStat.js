@@ -7,7 +7,7 @@ export default function LabelledStat({ label, valueStr, sx }) {
       gap={0}
       sx={Object.assign({ alignItems: "center" }, sx)}
     >
-      <Typography variant="body1" sx={{ textTransform: "uppercase" }}>
+      <Typography variant="body2" sx={{ textTransform: "uppercase" }}>
         {label}
       </Typography>
       <Typography variant="h5">{valueStr}</Typography>

@@ -291,7 +291,7 @@ export default class BasePage extends Component {
       <Box color={STYLE.COLOR.LIGHT}>
         <Box sx={STYLE.BODY_HEADER}>
           <Typography variant="caption">{this.subTitleProgress}</Typography>
-          <Typography variant="h4">National</Typography>
+          <Typography variant="h4">Islandwide</Typography>
         </Box>
         <ResultSingleView
           result={this.resultLKDisplay}
@@ -307,7 +307,7 @@ export default class BasePage extends Component {
       <Box color={STYLE.COLOR.LIGHT}>
         <Box sx={STYLE.BODY_HEADER}>
           <Typography variant="caption">{this.subTitleProgress}</Typography>
-          <Typography variant="h4">Maps</Typography>
+          <Typography variant="h4">The Map</Typography>
         </Box>
         <HexagonMap
           resultsIdx={this.resultsIdxDisplay}
@@ -324,8 +324,8 @@ export default class BasePage extends Component {
     return (
       <Box color={STYLE.COLOR.DARK}>
         <Box sx={STYLE.BODY_HEADER}>
-          <Typography variant="caption">Projected Final Result</Typography>
-          <Typography variant="h4">National</Typography>
+          <Typography variant="caption">Final Result</Typography>
+          <Typography variant="h4">Projected</Typography>
         </Box>
         <PredictionView
           activeElection={election}

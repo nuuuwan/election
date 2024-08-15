@@ -17,7 +17,7 @@ import {
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
     electionType: "Presidential",
-    date: "2024-09-21",
+    date: "2019-11-16",
     isPlaying: false,
   };
   constructor(props) {
@@ -287,7 +287,7 @@ export default class BasePage extends Component {
 
   get subTitleProgress() {
     const { nResultsDisplay } = this.state;
-    return nResultsDisplay === this.nResultsAll ? (
+    return nResultsDisplay === this.E ? (
       "Final Result"
     ) : (
       <>

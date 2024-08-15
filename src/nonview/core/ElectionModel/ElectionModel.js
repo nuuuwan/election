@@ -57,6 +57,20 @@ export default class ElectionModel {
     });
   }
 
+  static getFeatureMatrixListForElections(elections, pdIDList) {
+    // Returns a list of feature matrices, one for each election.
+    return elections.map(function (election) {
+      return ElectionModel.getFeatureMatrixForElection(election, pdIDList);
+    });
+  }
+
+  static concatFeatureMatrixList(featureMatrixList) {
+    // Concatenates all feature matrices in featureMatrixList.
+    return featureMatrixList.reduce(function (X, featureMatrix) {
+      return X.concat(featureMatrix);
+    }, []);
+  }
+
   static getFeatureMatrix(elections, pdIDList) {
     // Concatenates all feature matrices for all the training elections.
     return elections.reduce(function (X, election) {
@@ -70,50 +84,6 @@ export default class ElectionModel {
     // All elections before currentElection.
     return this.elections.filter(
       (election) => election.localeCompare(this.currentElection) < 0
-    );
-  }
-
-  getXTrainEvaluate() {
-    return ElectionModel.getFeatureMatrix(
-      this.getPreviousElections().slice(0, -1),
-      this.releasedPDIDList
-    );
-  }
-
-  getYTrainEvaluate() {
-    return ElectionModel.getFeatureMatrix(
-      this.getPreviousElections().slice(0, -1),
-      this.nonReleasedPDIDList
-    );
-  }
-
-  getXTestEvaluate() {
-    return ElectionModel.getFeatureMatrix(
-      this.getPreviousElections().slice(-1),
-      this.releasedPDIDList
-    );
-  }
-
-  getYTestEvaluate() {
-    return ElectionModel.getFeatureMatrix(
-      this.getPreviousElections().slice(-1),
-      this.nonReleasedPDIDList
-    );
-  }
-
-  getXTrain() {
-    const previousElections = this.getPreviousElections();
-
-    return ElectionModel.getFeatureMatrix(
-      previousElections,
-      this.releasedPDIDList
-    );
-  }
-
-  getYTrain() {
-    return ElectionModel.getFeatureMatrix(
-      this.getPreviousElections(),
-      this.nonReleasedPDIDList
     );
   }
 
@@ -143,19 +113,20 @@ export default class ElectionModel {
       })
     );
   }
-  train() {
+
+  static getPError(XAll, YAll) {
     // Evaluate Error
-    const XTrainEvaluate = this.getXTrainEvaluate();
+    const XTrainEvaluate = ElectionModel.concatFeatureMatrixList(XAll.slice(0, -1));
+    const YTrainEvaluate = ElectionModel.concatFeatureMatrixList(YAll.slice(0, -1));
     const canTrainModelEvaluate =
       XTrainEvaluate.length >= ElectionModel.MIN_RESULTS_FOR_PREDICTION;
-    const YTrainEvaluate = this.getYTrainEvaluate();
 
     let modelEvaluate = null;
     if (canTrainModelEvaluate) {
       modelEvaluate = new MLModel(XTrainEvaluate, YTrainEvaluate);
     }
-    const XTestEvaluate = this.getXTestEvaluate();
-    const YTestEvaluate = this.getYTestEvaluate();
+    const XTestEvaluate = ElectionModel.concatFeatureMatrixList(XAll.slice(-1));
+    const YTestEvaluate = ElectionModel.concatFeatureMatrixList(YAll.slice(-1));
 
     let YHatTestEvaluate = [];
     let pError = ElectionModel.DEFAULT_P_ERROR;
@@ -182,45 +153,80 @@ export default class ElectionModel {
       const n = pErrorList.length;
       pError = pErrorList[Math.floor(ElectionModel.ERROR_CONF * n)];
     }
-    // Train
-    const XTrain = this.getXTrain();
+    return pError;
+  }
 
+  static trainModel(XAll, YAll) {
+    const XTrain = ElectionModel.concatFeatureMatrixList(XAll);
+    const YTrain = ElectionModel.concatFeatureMatrixList(YAll);
     const canTrainModel =
       XTrain.length >= ElectionModel.MIN_RESULTS_FOR_PREDICTION;
-    const YTrain = this.getYTrain();
+    if (!canTrainModel) {
+      return null;
+    }
+    return new MLModel(XTrain, YTrain);
+  }
 
-    let model = null;
+  
+  static getProjection(model , currentElection, XEvaluate, nonReleasedPDIDList) {
     let YHat = [];
-    const partyIDList = ElectionModel.getPartyIDList(
-      this.currentElection,
-      this.releasedPDIDList
-    );
-    if (canTrainModel) {
-      model = new MLModel(XTrain, YTrain);
+    if (model) {
 
-      const XEvaluate = this.getXEvaluate();
       YHat = XEvaluate.map((Xi) => model.predict(Xi));
     }
 
+    const partyIDList = ElectionModel.getPartyIDList(currentElection);
     const pdToPartyToPVotes = YHat.reduce(
       function (pdToPartyToPVotes, Yi, i) {
         const partyID = partyIDList[i];
         return Yi.reduce(
           function (pdToPartyToPVotes, pVotes, j) {
-            const pdID = this.nonReleasedPDIDList[j];
+            const pdID = nonReleasedPDIDList[j];
 
             if (!pdToPartyToPVotes[pdID]) {
               pdToPartyToPVotes[pdID] = {};
             }
             pdToPartyToPVotes[pdID][partyID] = pVotes;
             return pdToPartyToPVotes;
-          }.bind(this),
+          },
           pdToPartyToPVotes
         );
-      }.bind(this),
+      },
       {}
     );
     const normPDToPartyToPVotes = ElectionModel.normalize(pdToPartyToPVotes);
+    return normPDToPartyToPVotes;
+  }
+
+  train() {
+    console.time("ElectionModel.train") 
+
+
+    // Common
+    const previousElections = this.getPreviousElections();
+    const XAll = ElectionModel.getFeatureMatrixListForElections(
+      previousElections,
+      this.releasedPDIDList
+    );
+    const YAll = ElectionModel.getFeatureMatrixListForElections(
+      previousElections,
+      this.nonReleasedPDIDList
+    );
+
+    // Computer Model Error
+    const pError = ElectionModel.getPError(XAll, YAll);
+   
+    // Train Model
+    const model = ElectionModel.trainModel(XAll, YAll);
+
+    // Evaluate Projection
+    const normPDToPartyToPVotes = ElectionModel.getProjection(
+      model,
+      this.currentElection,
+      this.getXEvaluate(),
+      this.nonReleasedPDIDList
+    );
+    console.timeEnd("ElectionModel.train")
     return { normPDToPartyToPVotes, pError };
   }
 

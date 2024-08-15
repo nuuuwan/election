@@ -199,11 +199,15 @@ export default class ElectionModel {
   }
 
   train() {
-    console.time("ElectionModel.train") 
+    const timerID  = "⌚ ElectionModel.train"
+    console.time(timerID) 
 
 
     // Common
     const previousElections = this.getPreviousElections();
+    const electionYears = previousElections.map((election) => election.date);
+    console.debug(`🤖 Training model with data from ${electionYears.length} previous elections (${electionYears.join(", ")})`);
+    
     const XAll = ElectionModel.getFeatureMatrixListForElections(
       previousElections,
       this.releasedPDIDList
@@ -226,7 +230,7 @@ export default class ElectionModel {
       this.getXEvaluate(),
       this.nonReleasedPDIDList
     );
-    console.timeEnd("ElectionModel.train")
+    console.timeEnd(timerID)
     return { normPDToPartyToPVotes, pError };
   }
 

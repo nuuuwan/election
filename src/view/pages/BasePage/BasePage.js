@@ -61,7 +61,7 @@ export default class BasePage extends Component {
   }
 
   async componentDidMount() {
-    const timerID = "⚡[Expensive] BasePage.componentDidMount";
+    const timerID = "⌚ BasePage.componentDidMount";
     console.time(timerID);
 
     let { electionType, date, isPlaying, nResultsDisplay, activePDID } =

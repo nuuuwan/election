@@ -7,12 +7,12 @@ export default class Summary {
     this.electors = electors;
   }
   static fromDict(d) {
-
-    
     let summary = {};
     for (const key in d) {
       if (Summary.KEYS.includes(key)) {
-        summary[key] = parseInt(d[key].toString().replaceAll("'", "").replaceAll('"', ""));
+        summary[key] = parseInt(
+          d[key].toString().replaceAll("'", "").replaceAll('"', "")
+        );
       }
     }
     return new Summary(

@@ -14,6 +14,6 @@ STYLE.BODY_HEADER = {
 };
 
 STYLE.FONT_SIZE = 14;
-STYLE.FONT_FAMILY = "Figtree";
+STYLE.FONT_FAMILY = "Lexend Deca";
 
 export default STYLE;

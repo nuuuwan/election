@@ -75,8 +75,8 @@ class FinalOutcome {
       return [
         <Typography variant="h6">Too early to call</Typography>,
         <Typography variant="caption">
-          Our Model needs &gt;{FinalOutcome.MIN_N_RESULTS} results to be
-          confident.
+          Our Model needs &gt;{FinalOutcome.MIN_N_RESULTS} results, 
+          before it can make a reasonable projection.
         </Typography>,
       ];
     }
@@ -113,7 +113,7 @@ class FinalOutcome {
       1 - MathX.sum(likelyWinnerPartyInfoList.map(({ p }) => p));
 
     return [
-      <Typography variant="h6">Too close to call</Typography>,
+      <Typography variant="body1">Too close to call</Typography>,
       <Typography variant="caption">
         Possible Outcomes & Probabilities
       </Typography>,
@@ -166,25 +166,18 @@ export default function FinalOutcomeView({ result, nResultsDisplay }) {
   return (
     <Paper
       sx={{
+
         width: "fit-content",
-        maxWidth: "80%",
         margin: "auto",
-        p: 1,
+        p: 0.5,
         backgroundColor: STYLE.COLOR.LIGHTEST,
-        elevation: 1,
+        elevation: 2,
       }}
     >
-      <Stack
-        direction="row"
-        gap={1}
-        sx={{ alignItems: "center", color: STYLE.COLOR.LIGHT }}
-      >
-        <SmartToyIcon sx={{ fontSize: "150%" }} />
-        <Typography variant="caption">Model says</Typography>
-      </Stack>
+      
       {finalOutput.renderInsights().map(function (insight, i) {
         return (
-          <Box key={i} sx={{ textAlign: "center", alignItems: "center" }}>
+          <Box key={i} sx={{ textAlign: "center", alignItems: "center" }} >
             {insight}
           </Box>
         );

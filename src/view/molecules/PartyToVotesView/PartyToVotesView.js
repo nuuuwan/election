@@ -4,12 +4,12 @@ import { Party } from "../../../nonview/core";
 import { LabelledStat, PartyView } from "../../atoms";
 import PartyToVotesPieChart from "./PartyToVotesPieChart";
 
-export default function PartyToVotesView({ partyToVotes }) {
+export default function PartyToVotesView({ partyToVotes, chartSize }) {
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
 
   return (
     <Stack direction="column" gap={0.1}>
-      <PartyToVotesPieChart partyToVotes={partyToVotes} />
+      <PartyToVotesPieChart partyToVotes={partyToVotes} chartSize={chartSize} />
 
       {entries.map(function ([partyID, votes], i) {
         return (

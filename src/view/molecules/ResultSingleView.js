@@ -2,7 +2,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import SummaryView from "../../view/molecules/SummaryView";
 import PartyToVotesView from "./PartyToVotesView/PartyToVotesView";
 
-export default function ResultSingleView({ result }) {
+export default function ResultSingleView({ result, chartSize }) {
   if (!result) {
     return null;
   }
@@ -17,7 +17,7 @@ export default function ResultSingleView({ result }) {
   return (
     <Stack direction="column" gap={0}>
       <SummaryView summary={result.summary} />
-      <PartyToVotesView partyToVotes={result.partyToVotes} />
+      <PartyToVotesView partyToVotes={result.partyToVotes} chartSize={chartSize} />
     </Stack>
   );
 }

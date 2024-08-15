@@ -88,7 +88,6 @@ export default class BasePage extends Component {
       nResultsDisplay = election.pdResultsList.length;
     }
 
-
     this.setStateAndContext({
       electionType,
       date,
@@ -414,8 +413,6 @@ export default class BasePage extends Component {
     if (!election) {
       return <CircularProgress />;
     }
-
-
 
     return (
       <Box>

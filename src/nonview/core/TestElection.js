@@ -19,17 +19,15 @@ export default class TestElection {
   }
 
   static gePDResultsList() {
-    return PRESPOLLSL2024.filter(
-      function(data) {
-        return data['result_time'] !== 0
-      }
-    ).sort(
-      function(a,b) {
-        return a['result_time'].localeCompare(b['result_time']);
-      }
-    ).map(function (data) {
-      return TestElection.getPDResult(data);
-    });
+    return PRESPOLLSL2024.filter(function (data) {
+      return data["result_time"] !== 0;
+    })
+      .sort(function (a, b) {
+        return a["result_time"].localeCompare(b["result_time"]);
+      })
+      .map(function (data) {
+        return TestElection.getPDResult(data);
+      });
   }
 
   static async loadData(election) {

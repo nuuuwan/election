@@ -231,18 +231,7 @@ export default class BasePage extends Component {
             setElection={this.setElection.bind(this)}
           />
         </Box>
-        <Box
-          sx={{
-            position: "fixed",
-            bottom: 0,
-            left: 0,
-            paddingBottom: 20,
-            paddingLeft: 4,
-            zIndex: 3000,
-          }}
-        >
-          {election.isFuture ? <FutureElection election={election} /> : null}
-        </Box>
+
         <Box
           sx={{
             position: "fixed",
@@ -250,12 +239,12 @@ export default class BasePage extends Component {
             right: 0,
             zIndex: 3000,
             backgroundColor: "white",
-            paddingTop: 2,
-            paddingRight: 4,
+            paddingTop: 1,
+            paddingRight: 2,
             color: STYLE.COLOR.LIGHTER,
           }}
         >
-          <Typography variant="h3">{nResultsDisplay}</Typography>
+          <Typography variant="h6">{nResultsDisplay}</Typography>
         </Box>
       </Box>
     );

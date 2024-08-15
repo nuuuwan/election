@@ -15,7 +15,7 @@ export default function PredictionView({
     .map((result) => result.entID);
   const nonReleasedPDIDList = Object.keys(pdIdx).filter(
     (pdID) => !releasedPDIDList.includes(pdID)
-  )
+  );
 
   let resultsLK = undefined;
 

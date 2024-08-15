@@ -21,7 +21,7 @@ export default class ElectionModel {
     this.releasedPDIDList = releasedPDIDList;
     this.nonReleasedPDIDList = nonReleasedPDIDList;
 
-   this.trainingOutput = this.train();
+    this.trainingOutput = this.train();
   }
   static getPartyIDList(modelElection) {
     // Returns the list of party IDs, where the party has won at least MIN_P votes in the election.
@@ -116,8 +116,12 @@ export default class ElectionModel {
 
   static getPError(XAll, YAll) {
     // Evaluate Error
-    const XTrainEvaluate = ElectionModel.concatFeatureMatrixList(XAll.slice(0, -1));
-    const YTrainEvaluate = ElectionModel.concatFeatureMatrixList(YAll.slice(0, -1));
+    const XTrainEvaluate = ElectionModel.concatFeatureMatrixList(
+      XAll.slice(0, -1)
+    );
+    const YTrainEvaluate = ElectionModel.concatFeatureMatrixList(
+      YAll.slice(0, -1)
+    );
     const canTrainModelEvaluate =
       XTrainEvaluate.length >= ElectionModel.MIN_RESULTS_FOR_PREDICTION;
 
@@ -167,50 +171,43 @@ export default class ElectionModel {
     return new MLModel(XTrain, YTrain);
   }
 
-  
-  static getProjection(model , currentElection, XEvaluate, nonReleasedPDIDList) {
+  static getProjection(model, currentElection, XEvaluate, nonReleasedPDIDList) {
     let YHat = [];
     if (model) {
-
       YHat = XEvaluate.map((Xi) => model.predict(Xi));
     }
 
     const partyIDList = ElectionModel.getPartyIDList(currentElection);
-    const pdToPartyToPVotes = YHat.reduce(
-      function (pdToPartyToPVotes, Yi, i) {
-        const partyID = partyIDList[i];
-        return Yi.reduce(
-          function (pdToPartyToPVotes, pVotes, j) {
-            const pdID = nonReleasedPDIDList[j];
+    const pdToPartyToPVotes = YHat.reduce(function (pdToPartyToPVotes, Yi, i) {
+      const partyID = partyIDList[i];
+      return Yi.reduce(function (pdToPartyToPVotes, pVotes, j) {
+        const pdID = nonReleasedPDIDList[j];
 
-            if (!pdToPartyToPVotes[pdID]) {
-              pdToPartyToPVotes[pdID] = {};
-            }
-            pdToPartyToPVotes[pdID][partyID] = pVotes;
-            return pdToPartyToPVotes;
-          },
-          pdToPartyToPVotes
-        );
-      },
-      {}
-    );
+        if (!pdToPartyToPVotes[pdID]) {
+          pdToPartyToPVotes[pdID] = {};
+        }
+        pdToPartyToPVotes[pdID][partyID] = pVotes;
+        return pdToPartyToPVotes;
+      }, pdToPartyToPVotes);
+    }, {});
     const normPDToPartyToPVotes = ElectionModel.normalize(pdToPartyToPVotes);
     return normPDToPartyToPVotes;
   }
 
   train() {
-    const timerID  = "⌚ ElectionModel.train"
-    console.time(timerID) 
-
+    const timerID = "⌚ ElectionModel.train";
+    console.time(timerID);
 
     // Common
     const previousElections = this.getPreviousElections();
     const electionYears = previousElections.map((election) => election.date);
-    console.debug(`🤖 Training model with data from ${electionYears.length} previous elections.`);
-    console.debug(`🤖 Training a "[${this.releasedPDIDList.length}] -> [${this.nonReleasedPDIDList.length}]" model.`)
+    console.debug(
+      `🤖 Training model with data from ${electionYears.length} previous elections.`
+    );
+    console.debug(
+      `🤖 Training a "[${this.releasedPDIDList.length}] -> [${this.nonReleasedPDIDList.length}]" model.`
+    );
 
- 
-    
     const XAll = ElectionModel.getFeatureMatrixListForElections(
       previousElections,
       this.releasedPDIDList
@@ -222,7 +219,7 @@ export default class ElectionModel {
 
     // Computer Model Error
     const pError = ElectionModel.getPError(XAll, YAll);
-   
+
     // Train Model
     const model = ElectionModel.trainModel(XAll, YAll);
 
@@ -233,7 +230,7 @@ export default class ElectionModel {
       this.getXEvaluate(),
       this.nonReleasedPDIDList
     );
-    console.timeEnd(timerID)
+    console.timeEnd(timerID);
     return { normPDToPartyToPVotes, pError };
   }
 

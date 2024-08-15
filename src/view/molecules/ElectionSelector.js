@@ -22,6 +22,9 @@ export default function ElectionSelector({
         }}
         renderMenuItemInner={function (election, i) {
           const color = election.color;
+          const days = Math.floor(
+            (new Date(election.date) - new Date()) / 86400000
+          );
 
           return (
             <Stack direction="column" gap={0}>
@@ -36,6 +39,11 @@ export default function ElectionSelector({
                   weekday: "long",
                 })}
               </Typography>
+              {days > 0 ? (
+                <Typography variant="caption" color="red">
+                  {` (in ${days} days) This is test data!`}
+                </Typography>
+              ) : null}
             </Stack>
           );
         }}

@@ -17,7 +17,10 @@ export default function ResultSingleView({ result, chartSize }) {
   return (
     <Stack direction="column" gap={0}>
       <SummaryView summary={result.summary} />
-      <PartyToVotesView partyToVotes={result.partyToVotes} chartSize={chartSize} />
+      <PartyToVotesView
+        partyToVotes={result.partyToVotes}
+        chartSize={chartSize}
+      />
     </Stack>
   );
 }

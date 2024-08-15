@@ -5,7 +5,6 @@ import { Format } from "../../../nonview/base";
 import { STYLE } from "../../../nonview/constants";
 import { Box } from "@mui/material";
 
-
 export default function PartyToVotesPieChart({ partyToVotes, chartSize }) {
   chartSize = chartSize || 320;
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
@@ -32,7 +31,7 @@ export default function PartyToVotesPieChart({ partyToVotes, chartSize }) {
         sx={{
           [`& .${pieArcLabelClasses.root}`]: {
             fill: "white",
-            fontSize: chartSize/10,
+            fontSize: chartSize / 10,
             fontFamily: STYLE.FONT_FAMILY,
           },
         }}

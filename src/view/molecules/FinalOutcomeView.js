@@ -85,7 +85,8 @@ class FinalOutcome {
         <Typography variant="h6">Too much uncertainty to call</Typography>,
         <Typography variant="caption">
           The voting preferences of &gt;
-          {Format.percent(FinalOutcome.P_TOO_MUCH_UNCERTAINTY)} of votes are within the Margin of Error.
+          {Format.percent(FinalOutcome.P_TOO_MUCH_UNCERTAINTY)} of votes are
+          within the Margin of Error.
         </Typography>,
       ];
     }

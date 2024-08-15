@@ -80,7 +80,7 @@ export default class PartyToVotes {
           if (b[0] === Party.UNCERTAIN.id) {
             return 1;
           }
-          
+
           return b[1] - a[1];
         })
         .filter(function (a, i) {

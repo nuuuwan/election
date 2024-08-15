@@ -3,7 +3,7 @@ import { Party } from "../../nonview/core";
 import { PartyView } from "../atoms";
 import { Format, MathX } from "../../nonview/base";
 import { STYLE } from "../../nonview/constants";
-import SmartToyIcon from "@mui/icons-material/SmartToy";
+
 
 function Confidence() {
   return (

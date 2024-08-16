@@ -1,15 +1,13 @@
-import { MathX } from "../../base";
-import Election from "../Election/Election";
-import Party from "../Party";
-import PartyToVotes from "../PartyToVotes";
 
-import ElectionModelTrainMixin from "./ElectionModelTrainMixin";
+import Election from "../Election/Election";
+
+
+
+import ElectionModelUtils from "./ElectionModelUtils";
 
 export default class ElectionModel {
-  static MIN_RESULTS_FOR_PREDICTION = 1;
-  static PARTY_UNCERTAIN = Party.UNCERTAIN.id;
-  static ERROR_CONF = 0.7;
-  static DEFAULT_P_ERROR = 0.2;
+
+
 
   constructor(
     elections,
@@ -33,7 +31,7 @@ export default class ElectionModel {
   }
 
   getXEvaluate() {
-    return ElectionModel.getFeatureMatrix(
+    return ElectionModelUtils.getFeatureMatrix(
       [this.currentElection],
       this.releasedPDIDList
     );
@@ -53,23 +51,24 @@ export default class ElectionModel {
       `🤖 Training a "[${this.releasedPDIDList.length}] -> [${this.nonReleasedPDIDList.length}]" model.`
     );
 
-    const XAll = ElectionModel.getFeatureMatrixListForElections(
+    const XAll = ElectionModelUtils.getFeatureMatrixListForElections(
       previousElections,
       this.releasedPDIDList
     );
-    const YAll = ElectionModel.getFeatureMatrixListForElections(
+    const YAll = ElectionModelUtils.getFeatureMatrixListForElections(
       previousElections,
       this.nonReleasedPDIDList
     );
 
     // Computer Model Error
-    const pError = ElectionModel.getPErrorEvaluate(XAll, YAll);
+    const pError = ElectionModelUtils.getPErrorEvaluate(XAll, YAll);
 
     // Train Model
-    const model = ElectionModel.trainModel(XAll, YAll);
+    const model = ElectionModelUtils.trainModel(XAll, YAll);
+
 
     // Evaluate Projection
-    const normPDToPartyToPVotes = ElectionModel.getProjection(
+    const normPDToPartyToPVotes = ElectionModelUtils.getProjection(
       model,
       this.currentElection,
       this.getXEvaluate(),
@@ -79,35 +78,6 @@ export default class ElectionModel {
     return { normPDToPartyToPVotes, pError };
   }
 
-  static getSimulatedResult(lastElection, pdID, normPDToPartyToPVotes, pError) {
-    // We assume the summary from the last election is valid.
-    if (!lastElection) {
-      return null;
-    }
-    let result = JSON.parse(JSON.stringify(lastElection.getResults(pdID)));
-    if (!result) {
-      return null;
-    }
-    const valid = result.summary.valid;
-    const partyToPVotes = normPDToPartyToPVotes[pdID];
-
-    const partyToVotes = Object.entries(partyToPVotes).reduce(
-      function (partyToVotes, [partyID, pVotes]) {
-        pVotes = MathX.forceRange(pVotes, 0, 1);
-        const votes = Math.round(pVotes * valid);
-
-        const kError = Math.max(0, 1 - pError);
-        const votesMin = Math.round(pVotes * kError * valid);
-        partyToVotes[partyID] = votesMin;
-        partyToVotes[ElectionModel.PARTY_UNCERTAIN] += votes - votesMin;
-        return partyToVotes;
-      },
-      { [ElectionModel.PARTY_UNCERTAIN]: 0 }
-    );
-
-    result.partyToVotes = new PartyToVotes(partyToVotes);
-    return result;
-  }
 
   getElectionNotReleasedPrediction() {
     const { normPDToPartyToPVotes, pError } = this.trainingOutput;
@@ -123,7 +93,7 @@ export default class ElectionModel {
     );
     const notReleasedResultsList = this.nonReleasedPDIDList
       .map(function (pdID) {
-        return ElectionModel.getSimulatedResult(
+        return ElectionModelUtils.getSimulatedResult(
           lastElection,
           pdID,
           normPDToPartyToPVotes,
@@ -144,4 +114,4 @@ export default class ElectionModel {
   }
 }
 
-Object.assign(ElectionModel, ElectionModelTrainMixin);
+Object.assign(ElectionModel, ElectionModelUtils);

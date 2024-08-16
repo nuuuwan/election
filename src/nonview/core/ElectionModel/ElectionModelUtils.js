@@ -1,9 +1,12 @@
 import { MLModel, MathX } from "../../base";
+import {PartyToVotes, Result, Party} from "../../../nonview/core";
 
-import Result from "../Result";
+export default class ElectionModelUtils {
+  static MIN_RESULTS_FOR_PREDICTION = 1;
+  static ERROR_CONF = 0.7;
+  static DEFAULT_P_ERROR = 0.2;
 
-const ElectionModelTrainMixin = {
-  getPartyIDList(modelElection) {
+  static getPartyIDList(modelElection) {
     // Returns the list of party IDs, where the party has won at least MIN_P votes in the election.
     const MIN_P = 0.01;
     const resultsList = modelElection.pdResultsList;
@@ -16,9 +19,9 @@ const ElectionModelTrainMixin = {
       .map(function ([partyID, pVotes]) {
         return partyID;
       });
-  },
+  }
 
-  getFeatureVector(election, partyID, pdIDList) {
+  static  getFeatureVector(election, partyID, pdIDList) {
     // Returns a vector with the % of votes party(ID) has got for pdIDList, in election election.
     return pdIDList.map(function (pdID) {
       const pdResult = election.getResults(pdID);
@@ -27,66 +30,65 @@ const ElectionModelTrainMixin = {
       }
       return pdResult.partyToVotes.partyToPVotesSorted[partyID] || 0.0;
     });
-  },
+  }
 
-  getFeatureMatrixForElection(modelElection, pdIDLIst) {
+  static  getFeatureMatrixForElection(modelElection, pdIDLIst) {
     // Returns a matrix, where each row is getFeatureVector for a party in the election.
-    const partyIDList = ElectionModelTrainMixin.getPartyIDList(modelElection);
+    const partyIDList = ElectionModelUtils.getPartyIDList(modelElection);
     return partyIDList.map(function (partyID) {
-      return ElectionModelTrainMixin.getFeatureVector(
+      return ElectionModelUtils.getFeatureVector(
         modelElection,
         partyID,
         pdIDLIst
       );
     });
-  },
+  }
 
-  getFeatureMatrixListForElections(elections, pdIDList) {
+  static  getFeatureMatrixListForElections(elections, pdIDList) {
     // Returns a list of feature matrices, one for each election.
     return elections.map(function (election) {
-      return ElectionModelTrainMixin.getFeatureMatrixForElection(
+      return ElectionModelUtils.getFeatureMatrixForElection(
         election,
         pdIDList
       );
     });
-  },
-
-  concatFeatureMatrixList(featureMatrixList) {
+  }
+  static  concatFeatureMatrixList(featureMatrixList) {
     // Concatenates all feature matrices in featureMatrixList.
     return featureMatrixList.reduce(function (X, featureMatrix) {
       return X.concat(featureMatrix);
     }, []);
-  },
+  }
 
-  getFeatureMatrix(elections, pdIDList) {
+  static getFeatureMatrix(elections, pdIDList) {
     // Concatenates all feature matrices for all the training elections.
     return elections.reduce(function (X, election) {
       return X.concat(
-        ElectionModelTrainMixin.getFeatureMatrixForElection(election, pdIDList)
+        ElectionModelUtils.getFeatureMatrixForElection(election, pdIDList)
       );
     }, []);
-  },
-  normalizeSingle(partyToPVotes) {
+  }
+  static  normalizeSingle(partyToPVotes) {
     const totalPVotes = MathX.sumValues(partyToPVotes);
     return Object.fromEntries(
       Object.entries(partyToPVotes).map(function ([partyID, pVotes]) {
         return [partyID, pVotes / totalPVotes];
       })
     );
-  },
+  }
 
-  normalize(pdToPartyToVoteInfo) {
+  static  normalize(pdToPartyToVoteInfo) {
     return Object.fromEntries(
       Object.entries(pdToPartyToVoteInfo).map(function ([
         pdID,
         partyToVoteInfo,
       ]) {
-        return [pdID, ElectionModelTrainMixin.normalizeSingle(partyToVoteInfo)];
+        return [pdID, ElectionModelUtils.normalizeSingle(partyToVoteInfo)];
       })
     );
-  },
+  }
 
-  getPError(Y, yHat) {
+  static  getPError(Y, yHat) {
     const MIN_P = 0.01;
     const pErrorList = yHat
       .reduce(function (pErrorList, YHat, i) {
@@ -102,62 +104,62 @@ const ElectionModelTrainMixin = {
       .sort();
 
     const n = pErrorList.length;
-    return pErrorList[Math.floor(ElectionModelTrainMixin.ERROR_CONF * n)];
-  },
+    return pErrorList[Math.floor(ElectionModelUtils.ERROR_CONF * n)];
+  }
 
-  getPErrorEvaluate(XAll, YAll) {
+  static  getPErrorEvaluate(XAll, YAll) {
     // Evaluate Error
-    const XTrainEvaluate = ElectionModelTrainMixin.concatFeatureMatrixList(
+    const XTrainEvaluate = ElectionModelUtils.concatFeatureMatrixList(
       XAll.slice(0, -1)
     );
-    const YTrainEvaluate = ElectionModelTrainMixin.concatFeatureMatrixList(
+    const YTrainEvaluate = ElectionModelUtils.concatFeatureMatrixList(
       YAll.slice(0, -1)
     );
     const canTrainModelEvaluate =
       XTrainEvaluate.length >=
-      ElectionModelTrainMixin.MIN_RESULTS_FOR_PREDICTION;
+      ElectionModelUtils.MIN_RESULTS_FOR_PREDICTION;
 
     let modelEvaluate = null;
     if (canTrainModelEvaluate) {
       modelEvaluate = new MLModel(XTrainEvaluate, YTrainEvaluate);
     }
-    const XTestEvaluate = ElectionModelTrainMixin.concatFeatureMatrixList(
+    const XTestEvaluate = ElectionModelUtils.concatFeatureMatrixList(
       XAll.slice(-1)
     );
-    const YTestEvaluate = ElectionModelTrainMixin.concatFeatureMatrixList(
+    const YTestEvaluate = ElectionModelUtils.concatFeatureMatrixList(
       YAll.slice(-1)
     );
 
     let YHatTestEvaluate = [];
-    let pError = ElectionModelTrainMixin.DEFAULT_P_ERROR;
+    let pError = ElectionModelUtils.DEFAULT_P_ERROR;
     if (canTrainModelEvaluate) {
       YHatTestEvaluate = XTestEvaluate.map((Xi) => modelEvaluate.predict(Xi));
-      pError = ElectionModelTrainMixin.getPError(
+      pError = ElectionModelUtils.getPError(
         YTestEvaluate,
         YHatTestEvaluate
       );
     }
     return pError;
-  },
+  }
 
-  trainModel(XAll, YAll) {
-    const XTrain = ElectionModelTrainMixin.concatFeatureMatrixList(XAll);
-    const YTrain = ElectionModelTrainMixin.concatFeatureMatrixList(YAll);
+  static  trainModel(XAll, YAll) {
+    const XTrain = ElectionModelUtils.concatFeatureMatrixList(XAll);
+    const YTrain = ElectionModelUtils.concatFeatureMatrixList(YAll);
     const canTrainModel =
-      XTrain.length >= ElectionModelTrainMixin.MIN_RESULTS_FOR_PREDICTION;
+      XTrain.length >= ElectionModelUtils.MIN_RESULTS_FOR_PREDICTION;
     if (!canTrainModel) {
       return null;
     }
     return new MLModel(XTrain, YTrain);
-  },
+  }
 
-  getProjection(model, currentElection, XEvaluate, nonReleasedPDIDList) {
+  static getProjection(model, currentElection, XEvaluate, nonReleasedPDIDList) {
     let YHat = [];
     if (model) {
       YHat = XEvaluate.map((Xi) => model.predict(Xi));
     }
 
-    const partyIDList = ElectionModelTrainMixin.getPartyIDList(currentElection);
+    const partyIDList = ElectionModelUtils.getPartyIDList(currentElection);
     const pdToPartyToPVotes = YHat.reduce(function (pdToPartyToPVotes, Yi, i) {
       const partyID = partyIDList[i];
       return Yi.reduce(function (pdToPartyToPVotes, pVotes, j) {
@@ -171,9 +173,40 @@ const ElectionModelTrainMixin = {
       }, pdToPartyToPVotes);
     }, {});
     const normPDToPartyToPVotes =
-      ElectionModelTrainMixin.normalize(pdToPartyToPVotes);
+      ElectionModelUtils.normalize(pdToPartyToPVotes);
     return normPDToPartyToPVotes;
-  },
+  }
+
+  static getSimulatedResult(lastElection, pdID, normPDToPartyToPVotes, pError) {
+    // We assume the summary from the last election is valid.
+    if (!lastElection) {
+      return null;
+    }
+    let result = JSON.parse(JSON.stringify(lastElection.getResults(pdID)));
+    if (!result) {
+      return null;
+    }
+    const valid = result.summary.valid;
+    const partyToPVotes = normPDToPartyToPVotes[pdID];
+
+    const partyToVotes = Object.entries(partyToPVotes).reduce(
+      function (partyToVotes, [partyID, pVotes]) {
+        pVotes = MathX.forceRange(pVotes, 0, 1);
+        const votes = Math.round(pVotes * valid);
+
+        const kError = Math.max(0, 1 - pError);
+        const votesMin = Math.round(pVotes * kError * valid);
+        partyToVotes[partyID] = votesMin;
+        partyToVotes[Party.UNCERTAIN.id] += votes - votesMin;
+        return partyToVotes;
+      },
+      { [Party.UNCERTAIN.id]: 0 }
+    );
+
+    result.partyToVotes = new PartyToVotes(partyToVotes);
+    return result;
+  }
+
 };
 
-export default ElectionModelTrainMixin;
+

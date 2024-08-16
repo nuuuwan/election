@@ -3,6 +3,7 @@ import Comparator from "./Comparator";
 import DataTable from "./DataTable";
 import Election from "./Election";
 import ElectionModel from "./ElectionModel";
+import FinalOutcome from "./FinalOutcome";
 import PARTY_LIST_TUPLES from "./PARTY_LIST_TUPLES";
 import Party from "./Party";
 import PartyToVotes from "./PartyToVotes";
@@ -15,6 +16,7 @@ export {
   DataTable,
   Election,
   ElectionModel,
+  FinalOutcome,
   PARTY_LIST_TUPLES,
   Party,
   PartyToVotes,

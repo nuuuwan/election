@@ -234,20 +234,7 @@ export default class ElectionModel {
     return { normPDToPartyToPVotes, pError };
   }
 
-  getElectionNotReleasedPrediction() {
-    const { normPDToPartyToPVotes, pError } = this.trainingOutput;
-    const lastElection = this.getPreviousElections().slice(-1)[0];
-
-    let election = new Election(
-      this.currentElection.electionType,
-      this.currentElection.date
-    );
-
-    const releasedResultsList = this.releasedPDIDList.map((pdID) =>
-      this.currentElection.getResults(pdID)
-    );
-    const notReleasedResultsList = this.nonReleasedPDIDList
-      .map(function (pdID) {
+  static getSimulatedResult(lastElection, pdID, normPDToPartyToPVotes, pError) {
         // We assume the summary from the last election is valid.
         if (!lastElection) {
           return null;
@@ -266,10 +253,6 @@ export default class ElectionModel {
 
             const kError = Math.max(0, 1 - pError);
             const votesMin = Math.round(pVotes * kError * valid);
-            if (votesMin > votes || votesMin < 0) {
-              throw new Error("Invalid votesMin", votesMin, votes);
-            }
-
             partyToVotes[partyID] = votesMin;
             partyToVotes[ElectionModel.PARTY_UNCERTAIN] += votes - votesMin;
             return partyToVotes;
@@ -279,6 +262,28 @@ export default class ElectionModel {
 
         result.partyToVotes = new PartyToVotes(partyToVotes);
         return result;
+  }
+
+  getElectionNotReleasedPrediction() {
+    const { normPDToPartyToPVotes, pError } = this.trainingOutput;
+    const lastElection = this.getPreviousElections().slice(-1)[0];
+
+    let election = new Election(
+      this.currentElection.electionType,
+      this.currentElection.date
+    );
+
+    const releasedResultsList = this.releasedPDIDList.map((pdID) =>
+      this.currentElection.getResults(pdID)
+    );
+    const notReleasedResultsList = this.nonReleasedPDIDList
+      .map(function (pdID) {
+        return ElectionModel.getSimulatedResult(
+          lastElection,
+          pdID,
+          normPDToPartyToPVotes,
+          pError
+        );
       })
       .filter((result) => result !== null);
 
@@ -287,7 +292,6 @@ export default class ElectionModel {
       ...notReleasedResultsList,
     ].filter((result) => result);
     election.resultsList = Election.expand(election.resultsList);
-
     election.resultsIdx = Election.buildResultsIdx(election.resultsList);
     election.isLoaded = true;
 

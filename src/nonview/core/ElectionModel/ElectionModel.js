@@ -30,18 +30,11 @@ export default class ElectionModel {
   }
 
   train() {
-    const timerID = "⌚ ElectionModel.train";
-    console.time(timerID);
+
+
 
     // Common
     const previousElections = this.getPreviousElections();
-    const electionYears = previousElections.map((election) => election.date);
-    console.debug(
-      `🤖 Training model with data from ${electionYears.length} previous elections.`
-    );
-    console.debug(
-      `🤖 Training a "[${this.releasedPDIDList.length}] -> [${this.nonReleasedPDIDList.length}]" model.`
-    );
 
     const XAll = ElectionModelUtils.getFeatureMatrixListForElections(
       previousElections,
@@ -65,7 +58,7 @@ export default class ElectionModel {
       this.getXEvaluate(),
       this.nonReleasedPDIDList
     );
-    console.timeEnd(timerID);
+
     return { normPDToPartyToPVotes, pError };
   }
 

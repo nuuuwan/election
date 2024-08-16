@@ -74,8 +74,7 @@ export default class BasePage extends Component {
   }
 
   async componentDidMount() {
-    const timerID = "⌚ BasePage.componentDidMount";
-    console.time(timerID);
+
 
     let { electionType, date, isPlaying, nResultsDisplay, activePDID } =
       this.state;
@@ -104,7 +103,7 @@ export default class BasePage extends Component {
       elections,
     });
 
-    console.timeEnd(timerID);
+
   }
 
   get pdResultsList() {

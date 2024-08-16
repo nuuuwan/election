@@ -2,6 +2,35 @@ import { Stack, Typography } from "@mui/material";
 import { Party } from "../../nonview/core";
 import { CustomSelect } from "../atoms";
 
+function buildRenderMenuItemInner(resultsIdx, edIdx) {
+const renderMenuItemInner = function (pd, i) {
+  const result = resultsIdx[pd.id];
+  if (!result) {
+    return null;
+  }
+
+  const colorPD = Party.fromID(result.partyToVotes.winningPartyID).color;
+
+  const edID = pd.id.substring(0, 5);
+  const ed = edIdx[edID];
+  const edResult = resultsIdx[edID];
+  const colorED = Party.fromID(
+    edResult.partyToVotes.winningPartyID
+  ).color;
+
+  return (
+    <Stack direction="column" gap={0}>
+      <Typography variant="h6" color={colorPD}>
+        {pd.name}
+      </Typography>
+      <Typography variant="caption" color={colorED} sx={{ opacity: 0.5 }}>
+        {ed.name}
+      </Typography>
+    </Stack>
+  );
+}
+return renderMenuItemInner;
+}
 export default function PDSelector({
   resultsIdx,
   pdIdx,
@@ -22,32 +51,7 @@ export default function PDSelector({
       onChange={function (pd) {
         setActivePDID(pd.id);
       }}
-      renderMenuItemInner={function (pd, i) {
-        const result = resultsIdx[pd.id];
-        if (!result) {
-          return null;
-        }
-
-        const colorPD = Party.fromID(result.partyToVotes.winningPartyID).color;
-
-        const edID = pd.id.substring(0, 5);
-        const ed = edIdx[edID];
-        const edResult = resultsIdx[edID];
-        const colorED = Party.fromID(
-          edResult.partyToVotes.winningPartyID
-        ).color;
-
-        return (
-          <Stack direction="column" gap={0}>
-            <Typography variant="h6" color={colorPD}>
-              {pd.name}
-            </Typography>
-            <Typography variant="caption" color={colorED} sx={{ opacity: 0.5 }}>
-              {ed.name}
-            </Typography>
-          </Stack>
-        );
-      }}
+      renderMenuItemInner={buildRenderMenuItemInner(resultsIdx, edIdx)}
       getDividerKey={function (pd) {
         return pd.name.substring(0, 1);
       }}

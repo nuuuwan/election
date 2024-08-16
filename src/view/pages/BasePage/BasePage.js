@@ -61,19 +61,9 @@ export default class BasePage extends Component {
     );
   }
 
-  async componentDidMount() {
-    const timerID = "⌚ BasePage.componentDidMount";
-    console.time(timerID);
 
-    let { electionType, date, isPlaying, nResultsDisplay, activePDID } =
-      this.state;
-
-    const pdIdx = await Ent.idxFromType(EntType.PD);
-    const edIdx = await Ent.idxFromType(EntType.ED);
-    const elections = await Election.listAll();
-
-    const election = await Election.fromElectionTypeAndDate(electionType, date);
-
+  getActivePDIDAndNResultDisplay({ activePDID, nResultsDisplay, election }) {
+    
     if (activePDID !== undefined) {
       nResultsDisplay =
         election.pdResultsList
@@ -88,6 +78,23 @@ export default class BasePage extends Component {
         election.pdResultsList[election.pdResultsList.length - 1].entID;
       nResultsDisplay = election.pdResultsList.length;
     }
+    return { activePDID, nResultsDisplay };
+  }
+
+  async componentDidMount() {
+    const timerID = "⌚ BasePage.componentDidMount";
+    console.time(timerID);
+
+    let { electionType, date, isPlaying, nResultsDisplay, activePDID } =
+      this.state;
+
+    const pdIdx = await Ent.idxFromType(EntType.PD);
+    const edIdx = await Ent.idxFromType(EntType.ED);
+    const elections = await Election.listAll();
+
+    const election = await Election.fromElectionTypeAndDate(electionType, date);
+    ({activePDID, nResultsDisplay} = this.getActivePDIDAndNResultDisplay({ activePDID, nResultsDisplay, election }));
+
 
     this.setStateAndContext({
       electionType,

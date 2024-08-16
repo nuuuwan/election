@@ -31,6 +31,44 @@ function BottomNavigationActionCustom({ Icon, onClick, disabled }) {
   );
 }
 
+function getBottomNavigationActionConfigs(
+  setNResultsDisplay,
+  nResultsDisplay,
+  nResults,
+  isPlaying,
+  playAnimation,
+  pauseAnimation
+) {
+  return [
+    {
+      Icon: FirstPageIcon,
+      onClick: () => setNResultsDisplay(0),
+      disabled: nResultsDisplay === 0,
+    },
+    {
+      Icon: Replay10Icon,
+      onClick: () =>
+        setNResultsDisplay(Math.max(0, nResultsDisplay - N_JUMP_STEPS)),
+      disabled: nResultsDisplay === 0,
+    },
+    {
+      Icon: isPlaying ? PauseIcon : PlayArrowIcon,
+      onClick: () => (isPlaying ? pauseAnimation() : playAnimation()),
+    },
+    {
+      Icon: Forward10Icon,
+      onClick: () =>
+        setNResultsDisplay(Math.min(nResults, nResultsDisplay + N_JUMP_STEPS)),
+      disabled: nResultsDisplay === nResults,
+    },
+    {
+      Icon: LastPageIcon,
+      onClick: () => setNResultsDisplay(nResults),
+      disabled: nResultsDisplay === nResults,
+    },
+  ];
+}
+
 function BottomNavigationCustom({
   nResultsDisplay,
   nResults,
@@ -41,66 +79,69 @@ function BottomNavigationCustom({
 }) {
   return (
     <BottomNavigation>
-      <BottomNavigationActionCustom
-        Icon={FirstPageIcon}
-        onClick={() => setNResultsDisplay(0)}
-        disabled={nResultsDisplay === 0}
-      />
-      <BottomNavigationActionCustom
-        Icon={Replay10Icon}
-        onClick={() =>
-          setNResultsDisplay(Math.max(0, nResultsDisplay - N_JUMP_STEPS))
-        }
-        disabled={nResultsDisplay === 0}
-      />
-      <BottomNavigationActionCustom
-        Icon={isPlaying ? PauseIcon : PlayArrowIcon}
-        onClick={() => (isPlaying ? pauseAnimation() : playAnimation())}
-      />
-      <BottomNavigationActionCustom
-        Icon={Forward10Icon}
-        onClick={() =>
-          setNResultsDisplay(Math.min(nResults, nResultsDisplay + N_JUMP_STEPS))
-        }
-        disabled={nResultsDisplay === nResults}
-      />
-      <BottomNavigationActionCustom
-        Icon={LastPageIcon}
-        onClick={() => setNResultsDisplay(nResults)}
-        disabled={nResultsDisplay === nResults}
-      />
+      {getBottomNavigationActionConfigs(
+        setNResultsDisplay,
+        nResultsDisplay,
+        nResults,
+        isPlaying,
+        playAnimation,
+        pauseAnimation
+      ).map(function (config, i) {
+        return (
+          <BottomNavigationActionCustom
+            key={i}
+            Icon={config.Icon}
+            onClick={config.onClick}
+            disabled={config.disabled}
+          />
+        );
+      })}
     </BottomNavigation>
   );
 }
 
-function CustomSlider({nResultsDisplayUpdated, nResults, onChange, onChangeCommitted}) {
+function CustomSlider({
+  nResultsDisplayUpdated,
+  nResults,
+  onChange,
+  onChangeCommitted,
+}) {
   return (
     <Stack
-    direction="row"
-    gap={2}
-    sx={{
-      alignItems: "center",
-      p: 0,
-      m: 0,
-      paddingLeft: 2,
-      paddingRight: 2,
-    }}
-  >
-    <Typography variant="h6">{nResultsDisplayUpdated}</Typography>
-    <Slider
-      aria-label="Always visible"
-      value={nResultsDisplayUpdated}
-      min={0}
-      max={nResults}
-      onChange={onChange}
-      onChangeCommitted={onChangeCommitted}
-    />
-    <Typography variant="h6" color={STYLE.COLOR.LIGHT}>
-      {nResults}
-    </Typography>
-  </Stack>
-  )
+      direction="row"
+      gap={2}
+      sx={{
+        alignItems: "center",
+        p: 0,
+        m: 0,
+        paddingLeft: 2,
+        paddingRight: 2,
+      }}
+    >
+      <Typography variant="h6">{nResultsDisplayUpdated}</Typography>
+      <Slider
+        aria-label="Always visible"
+        value={nResultsDisplayUpdated}
+        min={0}
+        max={nResults}
+        onChange={onChange}
+        onChangeCommitted={onChangeCommitted}
+      />
+      <Typography variant="h6" color={STYLE.COLOR.LIGHT}>
+        {nResults}
+      </Typography>
+    </Stack>
+  );
 }
+
+const STYLE_PLAYER_CONTROL = {
+  position: "fixed",
+  bottom: 0,
+  right: 0,
+  left: 0,
+  zIndex: 2000,
+  backgroundColor: "white",
+};
 
 export default function PlayerControl({
   nResultsDisplay,
@@ -112,29 +153,22 @@ export default function PlayerControl({
 }) {
   const [nResultsDisplayUpdated, setNResultsDisplayUpdated] =
     useState(nResultsDisplay);
-
   const onChangeCommitted = function (__, value) {
     setNResultsDisplayUpdated(value);
     setNResultsDisplay(value);
   };
-
   const onChange = function (__, value) {
     setNResultsDisplayUpdated(value);
   };
 
   return (
-    <Box
-      sx={{
-        position: "fixed",
-        bottom: 0,
-        right: 0,
-        left: 0,
-        zIndex: 2000,
-        backgroundColor: "white",
-      }}
-    >
-      <CustomSlider nResultsDisplayUpdated={nResultsDisplayUpdated} nResults={nResults} onChange={onChange} onChangeCommitted={onChangeCommitted}/>
- 
+    <Box sx={STYLE_PLAYER_CONTROL}>
+      <CustomSlider
+        nResultsDisplayUpdated={nResultsDisplayUpdated}
+        nResults={nResults}
+        onChange={onChange}
+        onChangeCommitted={onChangeCommitted}
+      />
       <BottomNavigationCustom
         nResultsDisplay={nResultsDisplay}
         nResults={nResults}

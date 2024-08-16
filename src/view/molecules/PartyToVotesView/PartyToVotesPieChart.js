@@ -6,7 +6,7 @@ import { STYLE } from "../../../nonview/constants";
 import { Box } from "@mui/material";
 
 export default function PartyToVotesPieChart({ partyToVotes, chartSize }) {
-  chartSize = chartSize || 320;
+  chartSize = chartSize || 240;
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
   const data = entries.map(function ([partyID, votes]) {
     const party = Party.fromID(partyID);

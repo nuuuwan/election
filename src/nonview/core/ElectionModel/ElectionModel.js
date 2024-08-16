@@ -1,14 +1,8 @@
-
 import Election from "../Election/Election";
-
-
 
 import ElectionModelUtils from "./ElectionModelUtils";
 
 export default class ElectionModel {
-
-
-
   constructor(
     elections,
     currentElection,
@@ -66,7 +60,6 @@ export default class ElectionModel {
     // Train Model
     const model = ElectionModelUtils.trainModel(XAll, YAll);
 
-
     // Evaluate Projection
     const normPDToPartyToPVotes = ElectionModelUtils.getProjection(
       model,
@@ -77,7 +70,6 @@ export default class ElectionModel {
     console.timeEnd(timerID);
     return { normPDToPartyToPVotes, pError };
   }
-
 
   getElectionNotReleasedPrediction() {
     const { normPDToPartyToPVotes, pError } = this.trainingOutput;

@@ -1,5 +1,5 @@
 import { MLModel, MathX } from "../../base";
-import {PartyToVotes, Result, Party} from "../../../nonview/core";
+import { PartyToVotes, Result, Party } from "../../../nonview/core";
 
 export default class ElectionModelUtils {
   static MIN_RESULTS_FOR_PREDICTION = 1;
@@ -21,7 +21,7 @@ export default class ElectionModelUtils {
       });
   }
 
-  static  getFeatureVector(election, partyID, pdIDList) {
+  static getFeatureVector(election, partyID, pdIDList) {
     // Returns a vector with the % of votes party(ID) has got for pdIDList, in election election.
     return pdIDList.map(function (pdID) {
       const pdResult = election.getResults(pdID);
@@ -32,7 +32,7 @@ export default class ElectionModelUtils {
     });
   }
 
-  static  getFeatureMatrixForElection(modelElection, pdIDLIst) {
+  static getFeatureMatrixForElection(modelElection, pdIDLIst) {
     // Returns a matrix, where each row is getFeatureVector for a party in the election.
     const partyIDList = ElectionModelUtils.getPartyIDList(modelElection);
     return partyIDList.map(function (partyID) {
@@ -44,16 +44,13 @@ export default class ElectionModelUtils {
     });
   }
 
-  static  getFeatureMatrixListForElections(elections, pdIDList) {
+  static getFeatureMatrixListForElections(elections, pdIDList) {
     // Returns a list of feature matrices, one for each election.
     return elections.map(function (election) {
-      return ElectionModelUtils.getFeatureMatrixForElection(
-        election,
-        pdIDList
-      );
+      return ElectionModelUtils.getFeatureMatrixForElection(election, pdIDList);
     });
   }
-  static  concatFeatureMatrixList(featureMatrixList) {
+  static concatFeatureMatrixList(featureMatrixList) {
     // Concatenates all feature matrices in featureMatrixList.
     return featureMatrixList.reduce(function (X, featureMatrix) {
       return X.concat(featureMatrix);
@@ -68,7 +65,7 @@ export default class ElectionModelUtils {
       );
     }, []);
   }
-  static  normalizeSingle(partyToPVotes) {
+  static normalizeSingle(partyToPVotes) {
     const totalPVotes = MathX.sumValues(partyToPVotes);
     return Object.fromEntries(
       Object.entries(partyToPVotes).map(function ([partyID, pVotes]) {
@@ -77,7 +74,7 @@ export default class ElectionModelUtils {
     );
   }
 
-  static  normalize(pdToPartyToVoteInfo) {
+  static normalize(pdToPartyToVoteInfo) {
     return Object.fromEntries(
       Object.entries(pdToPartyToVoteInfo).map(function ([
         pdID,
@@ -88,7 +85,7 @@ export default class ElectionModelUtils {
     );
   }
 
-  static  getPError(Y, yHat) {
+  static getPError(Y, yHat) {
     const MIN_P = 0.01;
     const pErrorList = yHat
       .reduce(function (pErrorList, YHat, i) {
@@ -107,7 +104,7 @@ export default class ElectionModelUtils {
     return pErrorList[Math.floor(ElectionModelUtils.ERROR_CONF * n)];
   }
 
-  static  getPErrorEvaluate(XAll, YAll) {
+  static getPErrorEvaluate(XAll, YAll) {
     // Evaluate Error
     const XTrainEvaluate = ElectionModelUtils.concatFeatureMatrixList(
       XAll.slice(0, -1)
@@ -116,8 +113,7 @@ export default class ElectionModelUtils {
       YAll.slice(0, -1)
     );
     const canTrainModelEvaluate =
-      XTrainEvaluate.length >=
-      ElectionModelUtils.MIN_RESULTS_FOR_PREDICTION;
+      XTrainEvaluate.length >= ElectionModelUtils.MIN_RESULTS_FOR_PREDICTION;
 
     let modelEvaluate = null;
     if (canTrainModelEvaluate) {
@@ -134,15 +130,12 @@ export default class ElectionModelUtils {
     let pError = ElectionModelUtils.DEFAULT_P_ERROR;
     if (canTrainModelEvaluate) {
       YHatTestEvaluate = XTestEvaluate.map((Xi) => modelEvaluate.predict(Xi));
-      pError = ElectionModelUtils.getPError(
-        YTestEvaluate,
-        YHatTestEvaluate
-      );
+      pError = ElectionModelUtils.getPError(YTestEvaluate, YHatTestEvaluate);
     }
     return pError;
   }
 
-  static  trainModel(XAll, YAll) {
+  static trainModel(XAll, YAll) {
     const XTrain = ElectionModelUtils.concatFeatureMatrixList(XAll);
     const YTrain = ElectionModelUtils.concatFeatureMatrixList(YAll);
     const canTrainModel =
@@ -206,7 +199,4 @@ export default class ElectionModelUtils {
     result.partyToVotes = new PartyToVotes(partyToVotes);
     return result;
   }
-
-};
-
-
+}

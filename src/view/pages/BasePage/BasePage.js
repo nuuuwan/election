@@ -120,7 +120,6 @@ export default class BasePage extends Component {
     return this.resultsIdx[activePDID];
   }
 
-  // Display
   get pdResultsDisplay() {
     const { nResultsDisplay } = this.state;
     return this.pdResultsList.slice(0, nResultsDisplay);

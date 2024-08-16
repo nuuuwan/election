@@ -53,7 +53,7 @@ const BasePageSettersMixin = {
             break;
           }
           this.setNResultsDisplay(this.state.nResultsDisplay + 1);
-          await new Promise((resolve) => setTimeout(resolve, 250));
+          await new Promise((resolve) => setTimeout(resolve, 1000));
         }
       }.bind(this)
     );

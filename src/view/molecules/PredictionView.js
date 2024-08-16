@@ -29,8 +29,8 @@ export default function PredictionView({
   resultsLK = predictedElection.resultsIdx["LK"];
 
   return (
-    <Stack direction="column" gap={0.5}>
-      <ResultSingleView election={predictedElection} entID="LK" chartSize={150} elections={elections} />
+    <Stack direction="column" gap={2}>
+      <ResultSingleView election={predictedElection} entID="LK" chartSize={140} elections={elections} />
       <FinalOutcomeView result={resultsLK} nResultsDisplay={nResultsDisplay} />
     </Stack>
   );

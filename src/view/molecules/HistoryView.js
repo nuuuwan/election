@@ -1,6 +1,9 @@
 import { Stack, Typography } from "@mui/material";
-import {Election, Result} from "../../nonview/core";
+import { Format } from "../../nonview/base";
+import {Election, Result,Party} from "../../nonview/core";
 import {PartyView} from "../../view/atoms";
+
+
 const N_DISPLAY = 3;
     
 function HistoryViewRow({election, entID, i, entIDs} ) {
@@ -12,12 +15,22 @@ function HistoryViewRow({election, entID, i, entIDs} ) {
     }else {
         result = election.resultsIdx[entID];
     }
-        const opacity = (1 - i/N_DISPLAY) * 0.5 + 0.5;
+    const opacity = (1 - i/N_DISPLAY) * 0.25 + 0.5;
     const winningPartyID = result.partyToVotes.winningPartyID;
+    const pWinner = result.partyToVotes.pWinner
+    const color = Party.fromID(winningPartyID).color;
+    
     return (
-        <Stack direction="column" gap={0.5} sx={{alignItems: "center", opacity}}>
-            <Typography variant="caption">{election.year}</Typography>
+        <Stack direction="column" gap={0} sx={{ opacity, color, alignItems:"center"}}>
+            <Typography variant="caption" sx={{fontSize: "50%"}}>{election.year}</Typography>
+     
+            
             <PartyView partyID={winningPartyID} />
+            <Typography variant="caption">{Format.percentVotes(pWinner)}
+            </Typography>
+         
+         
+    
         </Stack>
     );
 }

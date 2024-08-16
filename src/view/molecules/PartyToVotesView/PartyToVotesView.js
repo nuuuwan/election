@@ -2,13 +2,25 @@ import { Stack } from "@mui/material";
 import PartyToVotesPieChart from "./PartyToVotesPieChart";
 import PartyToVotesStatsView from "./PartyToVotesStatsView";
 import {HistoryView} from "../../../view/molecules"
+import { Result } from "../../../nonview/core";
 export default function PartyToVotesView({ election, entID, chartSize , elections, entIDs}) {
-  const partyToVotes = election.resultsIdx[entID].partyToVotes;
+
+  let result;
+  if (entIDs) {
+      result = Result.fromList(entID, entIDs.map(
+          entID => election.resultsIdx[entID]
+      ));
+  }else {
+      result = election.resultsIdx[entID];
+  }
+
+
+  const partyToVotes = result.partyToVotes;
 
   return (
-    <Stack direction="column" gap={0.1}>
+    <Stack direction="column" gap={0}>
       <PartyToVotesPieChart partyToVotes={partyToVotes} chartSize={chartSize} />
-      <Stack direction="row" gap={2} sx={{margin: "auto"}}>
+      <Stack direction="row" gap={4} sx={{margin: "auto"}}>
       <PartyToVotesStatsView partyToVotes={partyToVotes} />
       {elections ? (<HistoryView elections={elections} election={election} entID={entID} entIDs={entIDs} />): null}
       </Stack >

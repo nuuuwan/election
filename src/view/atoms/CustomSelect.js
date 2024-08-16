@@ -1,33 +1,16 @@
 import { Divider, MenuItem, Select } from "@mui/material";
-export default function CustomSelect({
+
+
+function CustomSelectInner({
   value,
-  onChange,
-  dataList,
   getID,
   renderMenuItemInner,
   getDividerKey,
-  reverse,
+  //
+  onChangeInner,
+  sortedDataList,
+  prevDividerKey,
 }) {
-  let sortedDataList = dataList
-    .filter((data) => getID(data) !== null)
-    .sort(function (a, b) {
-      return getID(a).localeCompare(getID(b));
-    });
-
-  if (reverse) {
-    sortedDataList.reverse();
-  }
-
-  const dataIdx = Object.fromEntries(
-    sortedDataList.map((data) => [getID(data), data])
-  );
-
-  const onChangeInner = function (event) {
-    const id = event.target.value;
-    onChange(dataIdx[id]);
-  };
-
-  let prevDividerKey = undefined;
   return (
     <Select
       value={getID(value)}
@@ -62,4 +45,46 @@ export default function CustomSelect({
       }, [])}
     </Select>
   );
+}
+
+export default function CustomSelect({
+  value,
+  onChange,
+  dataList,
+  getID,
+  renderMenuItemInner,
+  getDividerKey,
+  reverse,
+}) {
+  let sortedDataList = dataList
+    .filter((data) => getID(data) !== null)
+    .sort(function (a, b) {
+      return getID(a).localeCompare(getID(b));
+    });
+
+  if (reverse) {
+    sortedDataList.reverse();
+  }
+
+  const dataIdx = Object.fromEntries(
+    sortedDataList.map((data) => [getID(data), data])
+  );
+
+  const onChangeInner = function (event) {
+    const id = event.target.value;
+    onChange(dataIdx[id]);
+  };
+
+  let prevDividerKey = undefined;
+
+  return (<CustomSelectInner 
+    value={value}
+    getID={getID}
+    renderMenuItemInner={renderMenuItemInner}
+    getDividerKey={getDividerKey}
+    onChangeInner={onChangeInner}
+    sortedDataList={sortedDataList}
+    prevDividerKey={prevDividerKey}
+    />);
+
 }

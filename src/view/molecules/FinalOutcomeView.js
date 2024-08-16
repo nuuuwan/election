@@ -100,38 +100,37 @@ class FinalOutcome {
     ];
   }
 
-  static renderTooCloseToCall(likelyWinnerPartyInfoList, pUncertainHappenning) {
-    return [
-      <Typography variant="body1">Too close to call</Typography>,
-      <Typography variant="caption">
-        Possible Outcomes & Probabilities
-      </Typography>,
-      <Box display="flex" justifyContent="center">
-        <table>
+  static renderLikelyhoodTablePartyRows(likelyWinnerPartyInfoList) {
+    return  likelyWinnerPartyInfoList.map(function ({ partyID, p }, i) {
+      return (
+        <tr key={partyID}>
+          <td style={{ textAlign: "right", padding: 1 }}>
+            <Typography variant="body1">
+              {Format.percent(p * FinalOutcome.P_BASE)}
+            </Typography>
+          </td>
+          <td style={{ textAlign: "left", padding: 1, opacity: 0.5 }}>
+            <Stack
+              direction="row"
+              gap={0.5}
+              sx={{ alignItems: "center" }}
+            >
+              <PartyView partyID={partyID} />
+              <Typography variant="body2">
+                wins on 1st preferences
+              </Typography>
+            </Stack>
+          </td>
+        </tr>
+      );
+    })
+  }
+
+  static renderLikelyhoodTable(likelyWinnerPartyInfoList, pUncertainHappenning) {
+    return (
+      <table>
           <tbody>
-            {likelyWinnerPartyInfoList.map(function ({ partyID, p }, i) {
-              return (
-                <tr key={partyID}>
-                  <td style={{ textAlign: "right", padding: 1 }}>
-                    <Typography variant="body1">
-                      {Format.percent(p * FinalOutcome.P_BASE)}
-                    </Typography>
-                  </td>
-                  <td style={{ textAlign: "left", padding: 1, opacity: 0.5 }}>
-                    <Stack
-                      direction="row"
-                      gap={0.5}
-                      sx={{ alignItems: "center" }}
-                    >
-                      <PartyView partyID={partyID} />
-                      <Typography variant="body2">
-                        wins on 1st preferences
-                      </Typography>
-                    </Stack>
-                  </td>
-                </tr>
-              );
-            })}
+            {FinalOutcome.renderLikelyhoodTablePartyRows(likelyWinnerPartyInfoList)}
             <tr>
               <td style={{ textAlign: "right", padding: 1 }}>
                 <Typography variant="body1">
@@ -146,6 +145,17 @@ class FinalOutcome {
             </tr>
           </tbody>
         </table>
+    )
+  }
+
+  static renderTooCloseToCall(likelyWinnerPartyInfoList, pUncertainHappenning) {
+    return [
+      <Typography variant="body1">Too close to call</Typography>,
+      <Typography variant="caption">
+        Possible Outcomes & Probabilities
+      </Typography>,
+      <Box display="flex" justifyContent="center">
+        {FinalOutcome.renderLikelyhoodTable(likelyWinnerPartyInfoList, pUncertainHappenning)}
       </Box>,
     ];
   }

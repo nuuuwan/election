@@ -19,9 +19,7 @@ export default class ElectionModel {
 
   getPreviousElections() {
     // All elections before currentElection.
-    return this.elections.filter(
-      (election) => election.localeCompare(this.currentElection) < 0
-    );
+    return Election.getPreviousElections(this.elections, this.currentElection);
   }
 
   getXEvaluate() {

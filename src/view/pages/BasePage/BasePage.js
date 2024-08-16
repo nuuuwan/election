@@ -136,6 +136,10 @@ export default class BasePage extends Component {
     return Result.fromList("LK", this.pdResultsDisplay);
   }
 
+  get resultDisplayPDIDs() {
+    return this.pdResultsDisplay.map((result) => result.entID);
+  }
+
   get nResultsReleased() {
     const { election } = this.state;
     return election.pdResultsList.length;

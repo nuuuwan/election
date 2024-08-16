@@ -106,6 +106,20 @@ class Election extends ElectionBase {
     return Election.filterCompleted(elections).sort().reverse()[0];
   }
 
+  static getPreviousElections(elections, currentElection) {
+    return elections.filter(function (election) {
+      return election.date.localeCompare(currentElection.date) < 0;
+    });
+  }
+
+  static getPreviousElectionsOfSameType(elections, currentElection) {
+    return Election.getPreviousElections(elections, currentElection).filter(
+      function (election) {
+        return election.electionType === currentElection.electionType;
+      }
+    );
+  }
+
   get pdResultsList() {
     const EXCLUDE_PD_IDS = ["EC-11D"];
     return this.resultsList.filter(function (result) {

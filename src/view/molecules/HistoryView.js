@@ -24,7 +24,7 @@ function HistoryViewRow({election, entID, i, entIDs} ) {
 
 export default function HistoryView({elections, election, entID, entIDs}) {
     const previousElections = Election.getPreviousElectionsOfSameType(elections, election).reverse().slice(0, N_DISPLAY);
-    return (<Stack direction="column" gap={0.1} >{
+    return (<Stack direction="column" gap={1} >{
         
         previousElections.map(
             function(election, i) {

@@ -101,7 +101,7 @@ class FinalOutcome {
   }
 
   static renderLikelyhoodTablePartyRows(likelyWinnerPartyInfoList) {
-    return  likelyWinnerPartyInfoList.map(function ({ partyID, p }, i) {
+    return likelyWinnerPartyInfoList.map(function ({ partyID, p }, i) {
       return (
         <tr key={partyID}>
           <td style={{ textAlign: "right", padding: 1 }}>
@@ -110,42 +110,39 @@ class FinalOutcome {
             </Typography>
           </td>
           <td style={{ textAlign: "left", padding: 1, opacity: 0.5 }}>
-            <Stack
-              direction="row"
-              gap={0.5}
-              sx={{ alignItems: "center" }}
-            >
+            <Stack direction="row" gap={0.5} sx={{ alignItems: "center" }}>
               <PartyView partyID={partyID} />
-              <Typography variant="body2">
-                wins on 1st preferences
-              </Typography>
+              <Typography variant="body2">wins on 1st preferences</Typography>
             </Stack>
           </td>
         </tr>
       );
-    })
+    });
   }
 
-  static renderLikelyhoodTable(likelyWinnerPartyInfoList, pUncertainHappenning) {
+  static renderLikelyhoodTable(
+    likelyWinnerPartyInfoList,
+    pUncertainHappenning
+  ) {
     return (
       <table>
-          <tbody>
-            {FinalOutcome.renderLikelyhoodTablePartyRows(likelyWinnerPartyInfoList)}
-            <tr>
-              <td style={{ textAlign: "right", padding: 1 }}>
-                <Typography variant="body1">
-                  {Format.percent(pUncertainHappenning * FinalOutcome.P_BASE)}
-                </Typography>
-              </td>
-              <td style={{ textAlign: "left", padding: 1, opacity: 0.5 }}>
-                <Typography variant="body2">
-                  2nd/3rd Preference Count
-                </Typography>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-    )
+        <tbody>
+          {FinalOutcome.renderLikelyhoodTablePartyRows(
+            likelyWinnerPartyInfoList
+          )}
+          <tr>
+            <td style={{ textAlign: "right", padding: 1 }}>
+              <Typography variant="body1">
+                {Format.percent(pUncertainHappenning * FinalOutcome.P_BASE)}
+              </Typography>
+            </td>
+            <td style={{ textAlign: "left", padding: 1, opacity: 0.5 }}>
+              <Typography variant="body2">2nd/3rd Preference Count</Typography>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    );
   }
 
   static renderTooCloseToCall(likelyWinnerPartyInfoList, pUncertainHappenning) {
@@ -155,7 +152,10 @@ class FinalOutcome {
         Possible Outcomes & Probabilities
       </Typography>,
       <Box display="flex" justifyContent="center">
-        {FinalOutcome.renderLikelyhoodTable(likelyWinnerPartyInfoList, pUncertainHappenning)}
+        {FinalOutcome.renderLikelyhoodTable(
+          likelyWinnerPartyInfoList,
+          pUncertainHappenning
+        )}
       </Box>,
     ];
   }

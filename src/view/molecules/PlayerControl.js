@@ -39,40 +39,38 @@ function BottomNavigationCustom({
   playAnimation,
   pauseAnimation,
 }) {
-return (
-  <BottomNavigation>
-  <BottomNavigationActionCustom
-    Icon={FirstPageIcon}
-    onClick={() => setNResultsDisplay(0)}
-    disabled={nResultsDisplay === 0}
-  />
-  <BottomNavigationActionCustom
-    Icon={Replay10Icon}
-    onClick={() =>
-      setNResultsDisplay(Math.max(0, nResultsDisplay - N_JUMP_STEPS))
-    }
-    disabled={nResultsDisplay === 0}
-  />
-  <BottomNavigationActionCustom
-    Icon={isPlaying ? PauseIcon : PlayArrowIcon}
-    onClick={() => (isPlaying ? pauseAnimation() : playAnimation())}
-  />
-  <BottomNavigationActionCustom
-    Icon={Forward10Icon}
-    onClick={() =>
-      setNResultsDisplay(
-        Math.min(nResults, nResultsDisplay + N_JUMP_STEPS)
-      )
-    }
-    disabled={nResultsDisplay === nResults}
-  />
-  <BottomNavigationActionCustom
-    Icon={LastPageIcon}
-    onClick={() => setNResultsDisplay(nResults)}
-    disabled={nResultsDisplay === nResults}
-  />
-</BottomNavigation>
-)
+  return (
+    <BottomNavigation>
+      <BottomNavigationActionCustom
+        Icon={FirstPageIcon}
+        onClick={() => setNResultsDisplay(0)}
+        disabled={nResultsDisplay === 0}
+      />
+      <BottomNavigationActionCustom
+        Icon={Replay10Icon}
+        onClick={() =>
+          setNResultsDisplay(Math.max(0, nResultsDisplay - N_JUMP_STEPS))
+        }
+        disabled={nResultsDisplay === 0}
+      />
+      <BottomNavigationActionCustom
+        Icon={isPlaying ? PauseIcon : PlayArrowIcon}
+        onClick={() => (isPlaying ? pauseAnimation() : playAnimation())}
+      />
+      <BottomNavigationActionCustom
+        Icon={Forward10Icon}
+        onClick={() =>
+          setNResultsDisplay(Math.min(nResults, nResultsDisplay + N_JUMP_STEPS))
+        }
+        disabled={nResultsDisplay === nResults}
+      />
+      <BottomNavigationActionCustom
+        Icon={LastPageIcon}
+        onClick={() => setNResultsDisplay(nResults)}
+        disabled={nResultsDisplay === nResults}
+      />
+    </BottomNavigation>
+  );
 }
 
 export default function PlayerControl({
@@ -130,14 +128,14 @@ export default function PlayerControl({
           {nResults}
         </Typography>
       </Stack>
-        <BottomNavigationCustom 
-          nResultsDisplay={nResultsDisplay}
-          nResults={nResults}
-          setNResultsDisplay={setNResultsDisplay}
-          isPlaying={isPlaying}
-          playAnimation={playAnimation}
-          pauseAnimation={pauseAnimation}
-          />
+      <BottomNavigationCustom
+        nResultsDisplay={nResultsDisplay}
+        nResults={nResults}
+        setNResultsDisplay={setNResultsDisplay}
+        isPlaying={isPlaying}
+        playAnimation={playAnimation}
+        pauseAnimation={pauseAnimation}
+      />
     </Box>
   );
 }

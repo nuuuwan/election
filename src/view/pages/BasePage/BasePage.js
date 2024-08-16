@@ -61,9 +61,7 @@ export default class BasePage extends Component {
     );
   }
 
-
   getActivePDIDAndNResultDisplay({ activePDID, nResultsDisplay, election }) {
-    
     if (activePDID !== undefined) {
       nResultsDisplay =
         election.pdResultsList
@@ -93,8 +91,11 @@ export default class BasePage extends Component {
     const elections = await Election.listAll();
 
     const election = await Election.fromElectionTypeAndDate(electionType, date);
-    ({activePDID, nResultsDisplay} = this.getActivePDIDAndNResultDisplay({ activePDID, nResultsDisplay, election }));
-
+    ({ activePDID, nResultsDisplay } = this.getActivePDIDAndNResultDisplay({
+      activePDID,
+      nResultsDisplay,
+      election,
+    }));
 
     this.setStateAndContext({
       electionType,

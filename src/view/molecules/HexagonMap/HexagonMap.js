@@ -5,33 +5,32 @@ import HEXAGON_MAP_DATA_ED from "./HEXAGON_MAP_DATA_ED";
 import { STYLE } from "../../../nonview/constants";
 const N_COLS = 2;
 
-function getPoints( x, y, radius) {
+function getPoints(x, y, radius) {
   const N_SIDES = 6;
 
-  return  MathX.range(0, N_SIDES)
-.map(function (i) {
-  const angle = (i * Math.PI * 2) / N_SIDES;
-  return [x + radius * Math.cos(angle), y + radius * Math.sin(angle)];
-})
-.map(function ([x, y]) {
-  return `${x},${y}`;
-})
-.join(" ");
+  return MathX.range(0, N_SIDES)
+    .map(function (i) {
+      const angle = (i * Math.PI * 2) / N_SIDES;
+      return [x + radius * Math.cos(angle), y + radius * Math.sin(angle)];
+    })
+    .map(function ([x, y]) {
+      return `${x},${y}`;
+    })
+    .join(" ");
 }
 
 function getTextColor(color, opacity) {
-return    color === STYLE.COLOR.LIGHTEST
-? STYLE.COLOR.LIGHTER
-: opacity > 0.5
-? "white"
-: "black";
+  return color === STYLE.COLOR.LIGHTEST
+    ? STYLE.COLOR.LIGHTER
+    : opacity > 0.5
+    ? "white"
+    : "black";
 }
 
 function SVGHexagon({ x, y, color, label, opacity, onClick }) {
-  
   const radius = 1 / Math.cos(Math.PI / 6) ** 2 / 2;
-  const points = getPoints( x, y, radius );
-  const textColor = getTextColor(color, opacity)
+  const points = getPoints(x, y, radius);
+  const textColor = getTextColor(color, opacity);
 
   return (
     <g onClick={onClick}>

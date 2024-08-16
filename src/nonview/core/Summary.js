@@ -30,6 +30,9 @@ export default class Summary {
     }
 
     for (const result of resultsList) {
+      if (!result) {
+        continue;
+      }
       for (const key of Summary.KEYS) {
         summary[key] += parseInt(result.summary[key]) || 0;
       }

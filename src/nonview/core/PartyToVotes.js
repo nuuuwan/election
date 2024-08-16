@@ -22,6 +22,9 @@ export default class PartyToVotes {
   static fromList(resultsList) {
     const partyToVotes = {};
     for (const result of resultsList) {
+      if (!result) {
+        continue;
+      }
       for (const party in result.partyToVotes.partyToVotes) {
         if (partyToVotes[party] === undefined) {
           partyToVotes[party] = 0;

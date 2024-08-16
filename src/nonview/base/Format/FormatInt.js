@@ -9,29 +9,23 @@ let FormatInt = {
     return sign + FormatInt.intHumanize(Math.abs(x));
   },
 
-  intHumanize(x) {
-    if (!x || x === 0) {
-      return "-";
+  intHumanize(value) {
+    if (value === null || value === undefined) {
+      return '';
     }
-    // M
-    if (x > 10_000_000) {
-      return `${(x / 1_000_000).toFixed(1)}M`;
+  
+    const suffixes = ['', 'K', 'M', 'B', 'T'];
+    const tier = Math.floor(Math.log10(Math.abs(value)) / 3);
+  
+    if (tier === 0) {
+      return value.toString();
     }
-    if (x > 1_000_000) {
-      return `${(x / 1_000_000).toFixed(2)}M`;
-    }
-    // K
-    if (x > 100_000) {
-      return `${(x / 1_000).toFixed(0)}K`;
-    }
-    if (x > 10_000) {
-      return `${(x / 1_000).toFixed(1)}K`;
-    }
-    if (x > 1_000) {
-      return `${(x / 1_000).toFixed(2)}K`;
-    }
-    // Unit
-    return x.toLocaleString();
+  
+    const suffix = suffixes[tier];
+    const scale = Math.pow(10, tier * 3);
+    const scaledValue = value / scale;
+  
+    return scaledValue.toPrecision(3) + suffix;
   },
 
   intHumanizeWithStyle(

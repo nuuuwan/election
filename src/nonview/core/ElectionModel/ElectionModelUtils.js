@@ -6,8 +6,6 @@ export default class ElectionModelUtils {
   static ERROR_CONF = 0.7;
   static DEFAULT_P_ERROR = 0.2;
 
-
-
   static getFeatureVector(election, partyID, pdIDList) {
     // Returns a vector with the % of votes party(ID) has got for pdIDList, in election election.
     return pdIDList.map(function (pdID) {

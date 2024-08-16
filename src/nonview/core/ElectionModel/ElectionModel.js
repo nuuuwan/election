@@ -30,9 +30,6 @@ export default class ElectionModel {
   }
 
   train() {
-
-
-
     // Common
     const previousElections = this.getPreviousElections();
 

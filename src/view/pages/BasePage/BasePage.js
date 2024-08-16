@@ -74,8 +74,6 @@ export default class BasePage extends Component {
   }
 
   async componentDidMount() {
-
-
     let { electionType, date, isPlaying, nResultsDisplay, activePDID } =
       this.state;
 
@@ -102,8 +100,6 @@ export default class BasePage extends Component {
       edIdx,
       elections,
     });
-
-
   }
 
   get pdResultsList() {

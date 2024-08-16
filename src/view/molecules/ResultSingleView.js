@@ -3,17 +3,22 @@ import SummaryView from "../../view/molecules/SummaryView";
 import PartyToVotesView from "./PartyToVotesView/PartyToVotesView";
 import { Result } from "../../nonview/core";
 
-export default function ResultSingleView({ election, elections, entID, entIDs, chartSize }) {
+export default function ResultSingleView({
+  election,
+  elections,
+  entID,
+  entIDs,
+  chartSize,
+}) {
   let result;
   if (entIDs) {
-      result = Result.fromList(entID, entIDs.map(
-          entID => election.resultsIdx[entID]
-      ));
-  }else {
-      result = election.resultsIdx[entID];
+    result = Result.fromList(
+      entID,
+      entIDs.map((entID) => election.resultsIdx[entID])
+    );
+  } else {
+    result = election.resultsIdx[entID];
   }
-
-
 
   if (!result) {
     return null;

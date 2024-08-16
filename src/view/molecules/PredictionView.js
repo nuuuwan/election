@@ -30,7 +30,12 @@ export default function PredictionView({
 
   return (
     <Stack direction="column" gap={2}>
-      <ResultSingleView election={predictedElection} entID="LK" chartSize={140} elections={elections} />
+      <ResultSingleView
+        election={predictedElection}
+        entID="LK"
+        chartSize={140}
+        elections={elections}
+      />
       <FinalOutcomeView result={resultsLK} nResultsDisplay={nResultsDisplay} />
     </Stack>
   );

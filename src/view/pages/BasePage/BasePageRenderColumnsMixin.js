@@ -11,7 +11,7 @@ import {
 
 const BasePageRenderColumnsMixin = {
   renderColumnResult() {
-    const { activePDID, pdIdx, edIdx , election, elections} = this.state;
+    const { activePDID, pdIdx, edIdx, election, elections } = this.state;
     if (!activePDID) {
       return (
         <Box>
@@ -30,13 +30,17 @@ const BasePageRenderColumnsMixin = {
             setActivePDID={this.setActivePDID.bind(this)}
           />
         </Box>
-        <ResultSingleView election={election} elections={elections} entID={activePDID} />
+        <ResultSingleView
+          election={election}
+          elections={elections}
+          entID={activePDID}
+        />
       </Box>
     );
   },
 
   renderColumnLKResult() {
-    const {election, elections} = this.state;
+    const { election, elections } = this.state;
     return (
       <Box color={STYLE.COLOR.LIGHT}>
         <Box
@@ -48,7 +52,10 @@ const BasePageRenderColumnsMixin = {
           <Typography variant="h4">Islandwide</Typography>
         </Box>
         <ResultSingleView
-          election={election} elections={elections}  entID={"LK"} entIDs={this.resultDisplayPDIDs}
+          election={election}
+          elections={elections}
+          entID={"LK"}
+          entIDs={this.resultDisplayPDIDs}
         />
       </Box>
     );

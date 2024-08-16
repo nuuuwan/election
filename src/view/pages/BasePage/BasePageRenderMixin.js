@@ -2,12 +2,7 @@ import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 
 import { STYLE, VERSION } from "../../../nonview/constants";
 
-import {
-
-  ElectionSelector,
-  PlayerControl,
-
-} from "../../molecules";
+import { ElectionSelector, PlayerControl } from "../../molecules";
 
 const BasePageRenderMixin = {
   renderHeader() {

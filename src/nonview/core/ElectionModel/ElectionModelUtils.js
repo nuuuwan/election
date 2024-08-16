@@ -1,25 +1,12 @@
 import { MLModel, MathX } from "../../base";
-import { PartyToVotes, Result, Party } from "../../../nonview/core";
+import { PartyToVotes, Party } from "../../../nonview/core";
 
 export default class ElectionModelUtils {
   static MIN_RESULTS_FOR_PREDICTION = 1;
   static ERROR_CONF = 0.7;
   static DEFAULT_P_ERROR = 0.2;
 
-  static getPartyIDList(modelElection) {
-    // Returns the list of party IDs, where the party has won at least MIN_P votes in the election.
-    const MIN_P = 0.01;
-    const resultsList = modelElection.pdResultsList;
-    const aggrResults = Result.fromList("aggr", resultsList);
-    const partyToPVotesSorted = aggrResults.partyToVotes.partyToPVotesSorted;
-    return Object.entries(partyToPVotesSorted)
-      .filter(function ([partyID, pVotes]) {
-        return pVotes >= MIN_P;
-      })
-      .map(function ([partyID, pVotes]) {
-        return partyID;
-      });
-  }
+
 
   static getFeatureVector(election, partyID, pdIDList) {
     // Returns a vector with the % of votes party(ID) has got for pdIDList, in election election.
@@ -34,7 +21,7 @@ export default class ElectionModelUtils {
 
   static getFeatureMatrixForElection(modelElection, pdIDLIst) {
     // Returns a matrix, where each row is getFeatureVector for a party in the election.
-    const partyIDList = ElectionModelUtils.getPartyIDList(modelElection);
+    const partyIDList = modelElection.getPartyIDList();
     return partyIDList.map(function (partyID) {
       return ElectionModelUtils.getFeatureVector(
         modelElection,
@@ -152,7 +139,7 @@ export default class ElectionModelUtils {
       YHat = XEvaluate.map((Xi) => model.predict(Xi));
     }
 
-    const partyIDList = ElectionModelUtils.getPartyIDList(currentElection);
+    const partyIDList = currentElection.getPartyIDList();
     const pdToPartyToPVotes = YHat.reduce(function (pdToPartyToPVotes, Yi, i) {
       const partyID = partyIDList[i];
       return Yi.reduce(function (pdToPartyToPVotes, pVotes, j) {

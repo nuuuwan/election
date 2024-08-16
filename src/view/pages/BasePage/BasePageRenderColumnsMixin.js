@@ -1,18 +1,15 @@
 import { Box, Typography } from "@mui/material";
 
-import { STYLE,  } from "../../../nonview/constants";
+import { STYLE } from "../../../nonview/constants";
 
 import {
   ResultSingleView,
   HexagonMap,
-
   PredictionView,
   PDSelector,
 } from "../../molecules";
 
 const BasePageRenderColumnsMixin = {
-
-
   renderColumnResult() {
     const { activePDID, pdIdx, edIdx } = this.state;
     if (!activePDID) {
@@ -96,8 +93,6 @@ const BasePageRenderColumnsMixin = {
       </Box>
     );
   },
-
-  
 };
 
 export default BasePageRenderColumnsMixin;

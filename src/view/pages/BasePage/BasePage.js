@@ -164,4 +164,4 @@ export default class BasePage extends Component {
 
 Object.assign(BasePage.prototype, BasePageRenderMixin);
 Object.assign(BasePage.prototype, BasePageSettersMixin);
-Object.assign(BasePage.prototype, BasePageRenderColumnsMixin)
+Object.assign(BasePage.prototype, BasePageRenderColumnsMixin);

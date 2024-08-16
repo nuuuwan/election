@@ -2,7 +2,8 @@ import { Box, Stack, Typography } from "@mui/material";
 import SummaryView from "../../view/molecules/SummaryView";
 import PartyToVotesView from "./PartyToVotesView/PartyToVotesView";
 
-export default function ResultSingleView({ result, chartSize }) {
+export default function ResultSingleView({ election, entID, chartSize }) {
+  const result = election.resultsIdx[entID];
   if (!result) {
     return null;
   }

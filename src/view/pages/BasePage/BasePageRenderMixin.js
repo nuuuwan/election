@@ -79,7 +79,7 @@ const BasePageRenderMixin = {
   renderColumnLKResult() {
     return (
       <Box color={STYLE.COLOR.LIGHT}>
-        <Box sx={STYLE.BODY_HEADER}>
+        <Box sx={Object.assign({}, STYLE.BODY_HEADER, {color: this.resultLKDisplay.winningPartyColor})}>
           <Typography variant="caption">{this.subTitleProgress}</Typography>
           <Typography variant="h4">Islandwide</Typography>
         </Box>
@@ -95,7 +95,7 @@ const BasePageRenderMixin = {
     const { pdIdx } = this.state;
     return (
       <Box color={STYLE.COLOR.LIGHT}>
-        <Box sx={STYLE.BODY_HEADER}>
+                <Box sx={Object.assign({}, STYLE.BODY_HEADER, {color: this.resultLKDisplay.winningPartyColor})}>
           <Typography variant="caption">{this.subTitleProgress}</Typography>
           <Typography variant="h4">The Map</Typography>
         </Box>

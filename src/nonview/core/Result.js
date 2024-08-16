@@ -1,5 +1,6 @@
 import Summary from "./Summary";
 import PartyToVotes from "./PartyToVotes";
+import Party from "./Party";
 
 export default class Result {
   constructor(entID, summary, partyToVotes) {
@@ -21,5 +22,9 @@ export default class Result {
     const partyToVotes = PartyToVotes.fromList(results);
 
     return new Result(entID, summary, partyToVotes);
+  }
+
+  get winningPartyColor() {
+    return Party.fromID(this.partyToVotes.winningPartyID).color;
   }
 }

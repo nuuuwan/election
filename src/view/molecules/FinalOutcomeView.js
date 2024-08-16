@@ -69,48 +69,38 @@ class FinalOutcome {
     return normalizedLikelyWinnerPartyInfoList;
   }
 
-  renderInsights() {
-    if (this.isTooEarlyToCall) {
-      return [
-        <Typography variant="h6">Too early to call</Typography>,
-        <Typography variant="caption">
-          Our Model needs &gt;{FinalOutcome.MIN_N_RESULTS} results, before it
-          can make a reasonable projection.
-        </Typography>,
-      ];
-    }
-    if (this.isTooMuchUncertainty) {
-      return [
-        <Typography variant="h6">Too much uncertainty to call</Typography>,
-        <Typography variant="caption">
-          The voting preferences of &gt;
-          {Format.percent(FinalOutcome.P_TOO_MUCH_UNCERTAINTY)} of votes are
-          within the Margin of Error.
-        </Typography>,
-      ];
-    }
-    if (this.hasFirstPrefWinner) {
-      const winningPartyID = this.result.partyToVotes.winningPartyID;
-      return [
-        <Typography variant="h6">
-          <PartyView partyID={winningPartyID} /> wins on 1st preferences.
-        </Typography>,
-        <Confidence />,
-      ];
-    }
-    const likelyWinnerPartyInfoList = this.likelyWinnerPartyInfoList;
-    if (!likelyWinnerPartyInfoList.length) {
-      return [
-        <Typography variant="h6">
-          2nd/3rd Preference Count Projected
-        </Typography>,
-        <Confidence />,
-      ];
-    }
+  static renderTooEarlyToCall() {
+    return [
+      <Typography variant="h6">Too early to call</Typography>,
+      <Typography variant="caption">
+        Our Model needs &gt;{FinalOutcome.MIN_N_RESULTS} results, before it can
+        make a reasonable projection.
+      </Typography>,
+    ];
+  }
 
-    const pUncertainHappenning =
-      1 - MathX.sum(likelyWinnerPartyInfoList.map(({ p }) => p));
+  static renderTooMuchUncertainty() {
+    return [
+      <Typography variant="h6">Too much uncertainty to call</Typography>,
+      <Typography variant="caption">
+        The voting preferences of &gt;
+        {Format.percent(FinalOutcome.P_TOO_MUCH_UNCERTAINTY)} of votes are
+        within the Margin of Error.
+      </Typography>,
+    ];
+  }
 
+  static renderFirstPrefWinner() {
+    const winningPartyID = this.result.partyToVotes.winningPartyID;
+    return [
+      <Typography variant="h6">
+        <PartyView partyID={winningPartyID} /> wins on 1st preferences.
+      </Typography>,
+      <Confidence />,
+    ];
+  }
+
+  static renderTooCloseToCall(likelyWinnerPartyInfoList, pUncertainHappenning) {
     return [
       <Typography variant="body1">Too close to call</Typography>,
       <Typography variant="caption">
@@ -158,6 +148,35 @@ class FinalOutcome {
         </table>
       </Box>,
     ];
+  }
+
+  renderInsights() {
+    if (this.isTooEarlyToCall) {
+      return FinalOutcome.renderTooEarlyToCall();
+    }
+    if (this.isTooMuchUncertainty) {
+      return FinalOutcome.renderTooMuchUncertainty();
+    }
+    if (this.hasFirstPrefWinner) {
+      return FinalOutcome.renderFirstPrefWinner();
+    }
+    const likelyWinnerPartyInfoList = this.likelyWinnerPartyInfoList;
+    if (!likelyWinnerPartyInfoList.length) {
+      return [
+        <Typography variant="h6">
+          2nd/3rd Preference Count Projected
+        </Typography>,
+        <Confidence />,
+      ];
+    }
+
+    const pUncertainHappenning =
+      1 - MathX.sum(likelyWinnerPartyInfoList.map(({ p }) => p));
+
+    return FinalOutcome.renderTooCloseToCall(
+      likelyWinnerPartyInfoList,
+      pUncertainHappenning
+    );
   }
 }
 export default function FinalOutcomeView({ result, nResultsDisplay }) {

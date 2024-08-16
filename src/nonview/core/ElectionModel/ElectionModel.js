@@ -235,33 +235,33 @@ export default class ElectionModel {
   }
 
   static getSimulatedResult(lastElection, pdID, normPDToPartyToPVotes, pError) {
-        // We assume the summary from the last election is valid.
-        if (!lastElection) {
-          return null;
-        }
-        let result = JSON.parse(JSON.stringify(lastElection.getResults(pdID)));
-        if (!result) {
-          return null;
-        }
-        const valid = result.summary.valid;
-        const partyToPVotes = normPDToPartyToPVotes[pdID];
+    // We assume the summary from the last election is valid.
+    if (!lastElection) {
+      return null;
+    }
+    let result = JSON.parse(JSON.stringify(lastElection.getResults(pdID)));
+    if (!result) {
+      return null;
+    }
+    const valid = result.summary.valid;
+    const partyToPVotes = normPDToPartyToPVotes[pdID];
 
-        const partyToVotes = Object.entries(partyToPVotes).reduce(
-          function (partyToVotes, [partyID, pVotes]) {
-            pVotes = MathX.forceRange(pVotes, 0, 1);
-            const votes = Math.round(pVotes * valid);
+    const partyToVotes = Object.entries(partyToPVotes).reduce(
+      function (partyToVotes, [partyID, pVotes]) {
+        pVotes = MathX.forceRange(pVotes, 0, 1);
+        const votes = Math.round(pVotes * valid);
 
-            const kError = Math.max(0, 1 - pError);
-            const votesMin = Math.round(pVotes * kError * valid);
-            partyToVotes[partyID] = votesMin;
-            partyToVotes[ElectionModel.PARTY_UNCERTAIN] += votes - votesMin;
-            return partyToVotes;
-          },
-          { [ElectionModel.PARTY_UNCERTAIN]: 0 }
-        );
+        const kError = Math.max(0, 1 - pError);
+        const votesMin = Math.round(pVotes * kError * valid);
+        partyToVotes[partyID] = votesMin;
+        partyToVotes[ElectionModel.PARTY_UNCERTAIN] += votes - votesMin;
+        return partyToVotes;
+      },
+      { [ElectionModel.PARTY_UNCERTAIN]: 0 }
+    );
 
-        result.partyToVotes = new PartyToVotes(partyToVotes);
-        return result;
+    result.partyToVotes = new PartyToVotes(partyToVotes);
+    return result;
   }
 
   getElectionNotReleasedPrediction() {

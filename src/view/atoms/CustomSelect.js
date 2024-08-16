@@ -1,12 +1,17 @@
 import { Divider, MenuItem, Select } from "@mui/material";
 
+const STYLE= {
+  border: "none",
+  "& .MuiOutlinedInput-notchedOutline": {
+    border: "none",
+  },
+};
 
 function CustomSelectInner({
   value,
   getID,
   renderMenuItemInner,
   getDividerKey,
-  //
   onChangeInner,
   sortedDataList,
   prevDividerKey,
@@ -15,32 +20,18 @@ function CustomSelectInner({
     <Select
       value={getID(value)}
       onChange={onChangeInner}
-      sx={{
-        border: "none",
-        "& .MuiOutlinedInput-notchedOutline": {
-          border: "none",
-        },
-      }}
+      sx={STYLE}
     >
       {sortedDataList.reduce(function (innerItems, data, i) {
         const inner = renderMenuItemInner(data, i);
-        if (!inner) {
-          return innerItems;
-        }
-
         const dividerKey = getDividerKey(data);
         if (prevDividerKey !== dividerKey && i !== 0) {
           innerItems.push(<Divider key={`divider-${i}`} />);
         }
         prevDividerKey = dividerKey;
-
-        const innerItem = (
-          <MenuItem key={getID(data)} value={getID(data)}>
-            {inner}
-          </MenuItem>
-        );
-        innerItems.push(innerItem);
-
+        innerItems.push( <MenuItem key={getID(data)} value={getID(data)}>
+        {inner}
+      </MenuItem>);
         return innerItems;
       }, [])}
     </Select>
@@ -77,14 +68,15 @@ export default function CustomSelect({
 
   let prevDividerKey = undefined;
 
-  return (<CustomSelectInner 
-    value={value}
-    getID={getID}
-    renderMenuItemInner={renderMenuItemInner}
-    getDividerKey={getDividerKey}
-    onChangeInner={onChangeInner}
-    sortedDataList={sortedDataList}
-    prevDividerKey={prevDividerKey}
-    />);
-
+  return (
+    <CustomSelectInner
+      value={value}
+      getID={getID}
+      renderMenuItemInner={renderMenuItemInner}
+      getDividerKey={getDividerKey}
+      onChangeInner={onChangeInner}
+      sortedDataList={sortedDataList}
+      prevDividerKey={prevDividerKey}
+    />
+  );
 }

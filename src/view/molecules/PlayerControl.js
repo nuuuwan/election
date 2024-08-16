@@ -73,6 +73,35 @@ function BottomNavigationCustom({
   );
 }
 
+function CustomSlider({nResultsDisplayUpdated, nResults, onChange, onChangeCommitted}) {
+  return (
+    <Stack
+    direction="row"
+    gap={2}
+    sx={{
+      alignItems: "center",
+      p: 0,
+      m: 0,
+      paddingLeft: 2,
+      paddingRight: 2,
+    }}
+  >
+    <Typography variant="h6">{nResultsDisplayUpdated}</Typography>
+    <Slider
+      aria-label="Always visible"
+      value={nResultsDisplayUpdated}
+      min={0}
+      max={nResults}
+      onChange={onChange}
+      onChangeCommitted={onChangeCommitted}
+    />
+    <Typography variant="h6" color={STYLE.COLOR.LIGHT}>
+      {nResults}
+    </Typography>
+  </Stack>
+  )
+}
+
 export default function PlayerControl({
   nResultsDisplay,
   nResults,
@@ -104,30 +133,8 @@ export default function PlayerControl({
         backgroundColor: "white",
       }}
     >
-      <Stack
-        direction="row"
-        gap={2}
-        sx={{
-          alignItems: "center",
-          p: 0,
-          m: 0,
-          paddingLeft: 2,
-          paddingRight: 2,
-        }}
-      >
-        <Typography variant="h6">{nResultsDisplayUpdated}</Typography>
-        <Slider
-          aria-label="Always visible"
-          value={nResultsDisplayUpdated}
-          min={0}
-          max={nResults}
-          onChange={onChange}
-          onChangeCommitted={onChangeCommitted}
-        />
-        <Typography variant="h6" color={STYLE.COLOR.LIGHT}>
-          {nResults}
-        </Typography>
-      </Stack>
+      <CustomSlider nResultsDisplayUpdated={nResultsDisplayUpdated} nResults={nResults} onChange={onChange} onChangeCommitted={onChangeCommitted}/>
+ 
       <BottomNavigationCustom
         nResultsDisplay={nResultsDisplay}
         nResults={nResults}

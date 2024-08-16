@@ -1,19 +1,11 @@
 import { Component } from "react";
-import { Box,  Typography } from "@mui/material";
 
 import { Ent, EntType, URLContext } from "../../../nonview/base";
-import { STYLE,  } from "../../../nonview/constants";
+
 import { Election, Result } from "../../../nonview/core";
 
-import {
-  ResultSingleView,
-
-  ElectionSelector,
-  PDSelector,
-
-} from "../../molecules";
-
 import BasePageRenderMixin from "./BasePageRenderMixin";
+import BasePageSettersMixin from "./BasePageSettersMixin";
 
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
@@ -158,132 +150,6 @@ export default class BasePage extends Component {
     return `${electionType}-${date}-${activePDID}`;
   }
 
-  async setElection(election0) {
-    let { activePDID, nResultsDisplay } = this.state;
-
-    const { electionType, date } = election0;
-    const election = await Election.fromElectionTypeAndDate(electionType, date);
-
-    if (!election.isFuture) {
-      if (!election.resultsIdx[activePDID]) {
-        activePDID = election.pdResultsList[nResultsDisplay - 1].entID;
-      }
-      nResultsDisplay =
-        election.pdResultsList
-          .map((result) => result.entID)
-          .indexOf(activePDID) + 1;
-    }
-
-    this.setStateAndContext({
-      electionType,
-      date,
-      nResultsDisplay,
-      activePDID,
-      election,
-    });
-  }
-
-  setActivePDID(activePDID) {
-    const nResultsDisplay =
-      this.pdResultsList.findIndex((result) => result.entID === activePDID) + 1;
-    this.setStateAndContext({ activePDID, nResultsDisplay });
-  }
-
-  setNResultsDisplay(nResultsDisplay) {
-    const { election } = this.state;
-    const pdIDs = election.pdResultsList.map((pdResult) => pdResult.entID);
-    const activePDID = pdIDs[nResultsDisplay - 1];
-
-    this.setStateAndContext({ nResultsDisplay, activePDID });
-  }
-
-  async playAnimation() {
-    this.setStateAndContext(
-      { isPlaying: true },
-      async function () {
-        while (true) {
-          if (this.state.isPlaying === false) {
-            break;
-          }
-          if (this.state.nResultsDisplay >= this.nResultsReleased) {
-            this.setState({ isPlaying: false });
-            break;
-          }
-          this.setNResultsDisplay(this.state.nResultsDisplay + 1);
-          await new Promise((resolve) => setTimeout(resolve, 250));
-        }
-      }.bind(this)
-    );
-  }
-
-  async pauseAnimation() {
-    this.setStateAndContext({ isPlaying: false });
-  }
-
-  renderHeader() {
-    const { election, elections, nResultsDisplay } = this.state;
-    return (
-      <Box>
-        <Box
-          sx={{
-            position: "fixed",
-            top: 0,
-            right: 0,
-            left: 0,
-            zIndex: 3000,
-            backgroundColor: "white",
-          }}
-        >
-          <ElectionSelector
-            selectedElection={election}
-            elections={elections}
-            setElection={this.setElection.bind(this)}
-          />
-        </Box>
-
-        <Box
-          sx={{
-            position: "fixed",
-            top: 0,
-            right: 0,
-            zIndex: 3000,
-            backgroundColor: "white",
-            paddingTop: 1,
-            paddingRight: 2,
-            color: STYLE.COLOR.LIGHTER,
-          }}
-        >
-          <Typography variant="h6">{nResultsDisplay}</Typography>
-        </Box>
-      </Box>
-    );
-  }
-
-  renderColumnResult() {
-    const { activePDID, pdIdx, edIdx } = this.state;
-    if (!activePDID) {
-      return (
-        <Box>
-          <Typography variant="h6">No results released.</Typography>
-        </Box>
-      );
-    }
-    return (
-      <Box>
-        <Box sx={STYLE.BODY_HEADER}>
-          <PDSelector
-            resultsIdx={this.resultsIdx}
-            activePDID={activePDID}
-            pdIdx={pdIdx}
-            edIdx={edIdx}
-            setActivePDID={this.setActivePDID.bind(this)}
-          />
-        </Box>
-        <ResultSingleView result={this.result} superTitle={"Result"} />{" "}
-      </Box>
-    );
-  }
-
   get subTitleProgress() {
     const { nResultsDisplay } = this.state;
     return nResultsDisplay === this.E ? (
@@ -294,8 +160,7 @@ export default class BasePage extends Component {
       </>
     );
   }
-
-
 }
 
 Object.assign(BasePage.prototype, BasePageRenderMixin);
+Object.assign(BasePage.prototype, BasePageSettersMixin);

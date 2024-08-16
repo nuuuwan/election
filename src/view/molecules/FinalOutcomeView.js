@@ -90,8 +90,8 @@ class FinalOutcome {
     ];
   }
 
-  static renderFirstPrefWinner() {
-    const winningPartyID = this.result.partyToVotes.winningPartyID;
+  static renderFirstPrefWinner(result) {
+    const winningPartyID = result.partyToVotes.winningPartyID;
     return [
       <Typography variant="h6">
         <PartyView partyID={winningPartyID} /> wins on 1st preferences.
@@ -168,7 +168,7 @@ class FinalOutcome {
       return FinalOutcome.renderTooMuchUncertainty();
     }
     if (this.hasFirstPrefWinner) {
-      return FinalOutcome.renderFirstPrefWinner();
+      return FinalOutcome.renderFirstPrefWinner(this.result);
     }
     const likelyWinnerPartyInfoList = this.likelyWinnerPartyInfoList;
     if (!likelyWinnerPartyInfoList.length) {

@@ -11,19 +11,19 @@ let FormatInt = {
 
   intHumanize(value) {
     if (value === null || value === undefined) {
-      return '';
+      return "";
     }
-  
+
     const tier = Math.floor(Math.log10(Math.abs(value)) / 3);
     if (tier === 0) {
       return value.toString();
     }
-  
-    const suffixes = ['', 'K', 'M', 'B', 'T'];
+
+    const suffixes = ["", "K", "M", "B", "T"];
     const suffix = suffixes[tier];
     const scale = Math.pow(10, tier * 3);
     const scaledValue = value / scale;
-  
+
     return scaledValue.toPrecision(3) + suffix;
   },
 

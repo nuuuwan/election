@@ -114,7 +114,26 @@ export default class ElectionModel {
     );
   }
 
-  static getPError(XAll, YAll) {
+  static getPError(Y, yHat) {
+    const MIN_P = 0.01;
+    const pErrorList = yHat
+      .reduce(function (pErrorList, YHat, i) {
+        return YHat.reduce(function (pErrorList, yHat, j) {
+          const y = Y[i][j];
+          if (y >= MIN_P) {
+            const error = Math.sqrt(Math.pow(yHat - y, 2)) / y;
+            pErrorList.push(error);
+          }
+          return pErrorList;
+        }, pErrorList);
+      }, [])
+      .sort();
+
+    const n = pErrorList.length;
+    return pErrorList[Math.floor(ElectionModel.ERROR_CONF * n)];
+  }
+
+  static getPErrorEvaluate(XAll, YAll) {
     // Evaluate Error
     const XTrainEvaluate = ElectionModel.concatFeatureMatrixList(
       XAll.slice(0, -1)
@@ -136,26 +155,7 @@ export default class ElectionModel {
     let pError = ElectionModel.DEFAULT_P_ERROR;
     if (canTrainModelEvaluate) {
       YHatTestEvaluate = XTestEvaluate.map((Xi) => modelEvaluate.predict(Xi));
-
-      const MIN_P = 0.01;
-      const pErrorList = YHatTestEvaluate.reduce(function (
-        pErrorList,
-        YHat,
-        i
-      ) {
-        return YHat.reduce(function (pErrorList, yHat, j) {
-          const y = YTestEvaluate[i][j];
-          if (y >= MIN_P) {
-            const error = Math.sqrt(Math.pow(yHat - y, 2)) / y;
-            pErrorList.push(error);
-          }
-          return pErrorList;
-        }, pErrorList);
-      },
-      []).sort();
-
-      const n = pErrorList.length;
-      pError = pErrorList[Math.floor(ElectionModel.ERROR_CONF * n)];
+      pError = ElectionModel.getPError(YTestEvaluate, YHatTestEvaluate);
     }
     return pError;
   }
@@ -218,7 +218,7 @@ export default class ElectionModel {
     );
 
     // Computer Model Error
-    const pError = ElectionModel.getPError(XAll, YAll);
+    const pError = ElectionModel.getPErrorEvaluate(XAll, YAll);
 
     // Train Model
     const model = ElectionModel.trainModel(XAll, YAll);

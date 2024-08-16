@@ -1,8 +1,7 @@
-import { Box, Paper,  } from "@mui/material";
-
+import { Box, Paper } from "@mui/material";
 
 import { STYLE } from "../../../nonview/constants";
-import {FinalOutcome} from "../../../nonview/core";
+import { FinalOutcome } from "../../../nonview/core";
 import FinalOutcomeViewRenderUtils from "./FinalOutcomeViewRenderUtils";
 
 export default function FinalOutcomeView({ result, nResultsDisplay }) {
@@ -17,7 +16,10 @@ export default function FinalOutcomeView({ result, nResultsDisplay }) {
         elevation: 2,
       }}
     >
-      {FinalOutcomeViewRenderUtils.renderInsights(finalOutcome).map(function (insight, i) {
+      {FinalOutcomeViewRenderUtils.renderInsights(finalOutcome).map(function (
+        insight,
+        i
+      ) {
         return (
           <Box key={i} sx={{ textAlign: "center", alignItems: "center" }}>
             {insight}

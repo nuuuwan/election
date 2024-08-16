@@ -6,6 +6,7 @@ import { Election, Result } from "../../../nonview/core";
 
 import BasePageRenderMixin from "./BasePageRenderMixin";
 import BasePageSettersMixin from "./BasePageSettersMixin";
+import BasePageRenderColumnsMixin from "./BasePageRenderColumnsMixin";
 
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
@@ -163,3 +164,4 @@ export default class BasePage extends Component {
 
 Object.assign(BasePage.prototype, BasePageRenderMixin);
 Object.assign(BasePage.prototype, BasePageSettersMixin);
+Object.assign(BasePage.prototype, BasePageRenderColumnsMixin)

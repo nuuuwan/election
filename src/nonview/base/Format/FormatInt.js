@@ -14,13 +14,12 @@ let FormatInt = {
       return '';
     }
   
-    const suffixes = ['', 'K', 'M', 'B', 'T'];
     const tier = Math.floor(Math.log10(Math.abs(value)) / 3);
-  
     if (tier === 0) {
       return value.toString();
     }
   
+    const suffixes = ['', 'K', 'M', 'B', 'T'];
     const suffix = suffixes[tier];
     const scale = Math.pow(10, tier * 3);
     const scaledValue = value / scale;

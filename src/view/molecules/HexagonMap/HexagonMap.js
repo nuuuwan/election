@@ -6,7 +6,7 @@ import SVGTitles from "./SVGTitles";
 import SVGLegendPercentages from "./SVGLegendPercentages";
 import SVGLegendParty from "./SVGLegendParty";
 import SVGMap from "./SVGMap";
-import { Color } from "../../../nonview/base";
+import StyleHexagonMap from "./StyleHexagonMap";
 
 function getPDMapData() {
   return HEXAGON_MAP_DATA_PD;
@@ -68,7 +68,7 @@ export default function HexagonMap({ election, pdIdx, setActivePDID }) {
     >
       <SVGTitles />
       <SVGLegendParty election={election} x={1} y={-3} />
-      <SVGLegendPercentages x={2 + nParties / Color.N_COLS} y={-3} />
+      <SVGLegendPercentages x={2 + nParties / StyleHexagonMap.N_COLS} y={-3} />
       <SVGMap
         resultsIdx={resultsIdx}
         mapData={getPDMapData()}

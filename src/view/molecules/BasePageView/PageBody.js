@@ -21,7 +21,7 @@ export default function PageBody({
   const resultsIdxDisplay = electionDisplay.resultsIdx;
   const subTitleProgress = `${electionDisplay.nResults}/${election.nResults} Results`;
   const resultLKDisplay= electionDisplay.resultsIdx['LK'];
-  const resultDisplayPDIDs = electionDisplay.pdResultsList.map((result) => result.entID);
+ 
   const result = electionDisplay.resultsIdx[activePDID];
   const nResultsDisplay = electionDisplay.nResults;
 
@@ -46,10 +46,8 @@ export default function PageBody({
         <Grid item xs={12} md={6} xl={3}>
           <ColumnResultsLK
             election={election}
+            electionDisplay={electionDisplay}
             elections={elections}
-            subTitleProgress={subTitleProgress}
-            resultLKDisplay={resultLKDisplay}
-            resultDisplayPDIDs={resultDisplayPDIDs}
           />
         </Grid>
         <Grid item xs={12} md={6} xl={3}>

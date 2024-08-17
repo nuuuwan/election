@@ -182,6 +182,10 @@ class Election extends ElectionBase {
   get finalPDID() {
     return this.finalResult.entID;
   }
+
+  get resultLK() {
+    return this.resultsIdx["LK"]; 
+  }
 }
 
 Object.assign(Election.prototype, ElectionGetters);

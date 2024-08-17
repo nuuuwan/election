@@ -92,7 +92,7 @@ export default class ElectionBase {
     if (!this.resultsIdx) {
       return STYLE.COLOR.LIGHT;
     }
-    const resultLK = this.resultsIdx["LK"];
+    const resultLK = this.resultLK;
     const winningPartyID = resultLK.partyToVotes.winningPartyID;
     return Party.fromID(winningPartyID).color;
   }

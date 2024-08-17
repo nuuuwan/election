@@ -1,21 +1,15 @@
 import { Stack, Typography } from "@mui/material";
 import SummaryView from "../../view/molecules/SummaryView";
 import PartyToVotesView from "./PartyToVotesView/PartyToVotesView";
-import { Result } from "../../nonview/core";
+
 
 export default function ResultSingleView({
   election,
   elections,
   entID,
-  entIDs,
   chartSize,
 }) {
-  const result = entIDs
-    ? Result.fromList(
-        entID,
-        entIDs.map((entID) => election.resultsIdx[entID])
-      )
-    : election.resultsIdx[entID];
+  const result = election.resultsIdx[entID];
 
   if (!result) {
     return null;
@@ -32,7 +26,6 @@ export default function ResultSingleView({
         entID={entID}
         chartSize={chartSize}
         elections={elections}
-        entIDs={entIDs}
       />
     </Stack>
   );

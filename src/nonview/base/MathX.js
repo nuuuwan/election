@@ -24,27 +24,4 @@ export default class MathX {
     return [...Array(span).keys()].map((x) => x + min);
   }
 
-  static max(numList) {
-    return numList
-      .filter(function (x) {
-        return typeof x === "number";
-      })
-      .reduce(function (_max, num) {
-        return Math.max(_max, num);
-      }, -Infinity);
-  }
-
-  static min(numList) {
-    return numList
-      .filter(function (x) {
-        return typeof x === "number";
-      })
-      .reduce(function (_min, num) {
-        return Math.min(_min, num);
-      }, Infinity);
-  }
-
-  static fitRange(value, min, max) {
-    return Math.max(min, Math.min(max, value));
-  }
 }

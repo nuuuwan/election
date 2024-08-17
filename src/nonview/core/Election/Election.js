@@ -174,6 +174,14 @@ class Election extends ElectionBase {
   get nResults() {
     return this.pdResultsList.length;
   }
+
+  get finalResult() {
+    return this.pdResultsList[this.nResults - 1];
+  }
+
+  get finalPDID() {
+    return this.finalResult.entID;
+  }
 }
 
 Object.assign(Election.prototype, ElectionGetters);

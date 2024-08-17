@@ -5,26 +5,28 @@ import { STYLE } from "../../../nonview/constants";
 import { ResultSingleView, PDSelector } from "../../molecules";
 
 export default function ColumnResults({
-  activePDID,
+  election,
+  electionDisplay,
   pdIdx,
   edIdx,
-  election,
   elections,
-  resultsIdx,
   setActivePDID,
 }) {
-  if (!activePDID) {
+  if (electionDisplay.nResults === 0) {
     return (
       <Box>
         <Typography variant="h6">No results released.</Typography>
       </Box>
     );
   }
+
+  const activePDID = electionDisplay.finalPDID;
+
   return (
     <Box>
       <Box sx={STYLE.BODY_HEADER}>
         <PDSelector
-          resultsIdx={resultsIdx}
+          election={election}
           activePDID={activePDID}
           pdIdx={pdIdx}
           edIdx={edIdx}

@@ -30,7 +30,7 @@ function buildRenderMenuItemInner(resultsIdx, edIdx) {
   return renderMenuItemInner;
 }
 export default function PDSelector({
-  resultsIdx,
+  election,
   pdIdx,
   edIdx,
   activePDID,
@@ -49,7 +49,7 @@ export default function PDSelector({
       onChange={function (pd) {
         setActivePDID(pd.id);
       }}
-      renderMenuItemInner={buildRenderMenuItemInner(resultsIdx, edIdx)}
+      renderMenuItemInner={buildRenderMenuItemInner(election.resultsIdx, edIdx)}
       getDividerKey={function (pd) {
         return pd.name.substring(0, 1);
       }}

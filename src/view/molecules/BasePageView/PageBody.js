@@ -17,8 +17,7 @@ export default function PageBody({
   setActivePDID,
 }) {
 
-  const activePDID = electionDisplay.pdResultsList[electionDisplay.nResults - 1].entID;
-  const resultsIdx = election.resultsIdx;
+  const activePDID = electionDisplay.finalPDID;
   const resultsIdxDisplay = electionDisplay.resultsIdx;
   const subTitleProgress = `${electionDisplay.nResults}/${election.nResults} Results`;
   const resultLKDisplay= electionDisplay.resultsIdx['LK'];
@@ -36,12 +35,11 @@ export default function PageBody({
       <Grid container rowSpacing={5}>
         <Grid item xs={12} md={6} xl={3}>
           <ColumnResults
-            activePDID={activePDID}
+            election={election}
+            electionDisplay={electionDisplay}
             pdIdx={pdIdx}
             edIdx={edIdx}
-            election={election}
             elections={elections}
-            resultsIdx={resultsIdx}
             setActivePDID={setActivePDID}
           />
         </Grid>

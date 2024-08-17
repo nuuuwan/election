@@ -48,11 +48,12 @@ export default function BasePageView({
         resultDisplayPDIDs={resultDisplayPDIDs}
       />
       <PageFooter
-        nResultsDisplay={nResultsDisplay}
+        electionDisplay={electionDisplay}
+        election={election}
         isPlaying={isPlaying}
+        // 
         playAnimation={playAnimation}
         pauseAnimation={pauseAnimation}
-        nResultsReleased={nResultsReleased}
         setNResultsDisplay={setNResultsDisplay}
       />
     </Box>

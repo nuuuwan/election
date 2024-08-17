@@ -144,13 +144,16 @@ const STYLE_PLAYER_CONTROL = {
 };
 
 export default function PlayerControl({
-  nResultsDisplay,
-  nResults,
+  electionDisplay,
+  election,
   setNResultsDisplay,
   isPlaying,
   playAnimation,
   pauseAnimation,
 }) {
+  const nResultsDisplay = electionDisplay.nResults;
+  const nResults = election.nResults
+  
   const [nResultsDisplayUpdated, setNResultsDisplayUpdated] =
     useState(nResultsDisplay);
   const onChangeCommitted = function (__, value) {

@@ -1,20 +1,22 @@
 import { PlayerControl } from "../../../view/molecules";
 
 export default function PageFooter({
-  nResultsDisplay,
+  electionDisplay,
+  election,
   isPlaying,
+  //
   playAnimation,
   pauseAnimation,
-  nResultsReleased,
   setNResultsDisplay,
 }) {
   return (
     <PlayerControl
-      key={nResultsDisplay}
-      nResultsDisplay={nResultsDisplay}
-      nResults={nResultsReleased}
-      setNResultsDisplay={setNResultsDisplay}
+      key={electionDisplay.nResults}
+      electionDisplay={electionDisplay}
+      election={election}
       isPlaying={isPlaying}
+      //
+      setNResultsDisplay={setNResultsDisplay}
       playAnimation={playAnimation}
       pauseAnimation={pauseAnimation}
     />

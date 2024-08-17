@@ -7,6 +7,9 @@ const N_DISPLAY = 3;
 
 function HistoryViewRow({ election, entID }) {
   const result = election.resultsIdx[entID];
+  if (!result) {
+    return null;
+  }
 
   const winningPartyID = result.partyToVotes.winningPartyID;
   const pWinner = result.partyToVotes.pWinner;

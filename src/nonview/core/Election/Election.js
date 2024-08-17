@@ -4,8 +4,8 @@ import Result from "../Result.js";
 import ElectionBase from "./ElectionBase.js";
 
 import ElectionGetters from "./ElectionGetters.js";
-import ElectionGettersStatic from "./ElectionGettersStatic.js";
-import ElectionExpand from "./ElectionExpand.js";
+
+
 import TestElection from "../TestElection.js";
 
 class Election extends ElectionBase {
@@ -35,6 +35,8 @@ class Election extends ElectionBase {
   async getRawDataList() {
     return await WWW.tsv(this.urlData);
   }
+
+
 
   async getResultsList() {
     const rawData = await this.getRawDataList();
@@ -71,7 +73,11 @@ class Election extends ElectionBase {
   static async listAll() {
     const elections = ELECTION_LIST_TUPLES.map(
       ([electionType, date]) => new Election(electionType, date)
-    ).sort();
+    ).sort(
+      function(a, b) {
+        return a.date.localeCompare(b.date);
+      }
+    );
 
     await Promise.all(elections.map((election) => election.__loadData()));
     return elections;
@@ -133,6 +139,12 @@ class Election extends ElectionBase {
 
   static buildLKResult(pdResultsList) {
     return Result.fromList("LK", pdResultsList);
+  }
+
+  static expand(pdResultsList) {
+    const edResultsList = Election.buildEDResultsList(pdResultsList);
+    const lkResult = Election.buildLKResult(pdResultsList);
+    return [lkResult, ...edResultsList, ...pdResultsList];
   }
 
   getSubsetElectionByPDResultList(pdResultsList) {
@@ -201,6 +213,5 @@ class Election extends ElectionBase {
 }
 
 Object.assign(Election.prototype, ElectionGetters);
-Object.assign(Election, ElectionGettersStatic);
-Object.assign(Election, ElectionExpand);
+
 export default Election;

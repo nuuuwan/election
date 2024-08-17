@@ -7,6 +7,7 @@ export default function BasePageView({
   activePDID,
   edIdx,
   election,
+  electionDisplay,
   elections,
   isPlaying,
   nResultsDisplay,
@@ -27,9 +28,8 @@ export default function BasePageView({
   return (
     <Box sx={{ textAlign: "center" }}>
       <PageHeader
-        election={election}
+        electionDisplay={electionDisplay}
         elections={elections}
-        nResultsDisplay={nResultsDisplay}
         setElection={setElection}
       />
       <PageBody

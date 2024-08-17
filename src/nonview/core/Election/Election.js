@@ -158,6 +158,22 @@ class Election extends ElectionBase {
   static buildLKResult(pdResultsList) {
     return Result.fromList("LK", pdResultsList);
   }
+
+  getElectionSubset(nResultsDisplay) {
+    const pdResultsList = this.pdResultsList.slice(0, nResultsDisplay);
+    const edResultsList = Election.buildEDResultsList(pdResultsList);
+    const lkResult = Election.buildLKResult(pdResultsList);
+    const resultsList = [lkResult, ...edResultsList, ...pdResultsList];
+    const election = new Election(this.electionType, this.date);
+    election.resultsList = resultsList;
+    election.resultsIdx = Election.buildResultsIdx(resultsList);
+    election.isLoaded = true;
+    return election;
+  }
+
+  get nResults() {
+    return this.pdResultsList.length;
+  }
 }
 
 Object.assign(Election.prototype, ElectionGetters);

@@ -26,23 +26,22 @@ const STYLE_PAGE_HEADER = {
 };
 
 export default function PageHeader({
-  election,
+  electionDisplay,
   elections,
-  nResultsDisplay,
   setElection,
 }) {
   return (
     <Box>
       <Box sx={STYLE_PAGE_HEADER.SELECTOR}>
         <ElectionSelector
-          selectedElection={election}
+          selectedElection={electionDisplay}
           elections={elections}
           setElection={setElection}
         />
       </Box>
 
       <Box sx={STYLE_PAGE_HEADER.N_RESULTS_DISPLAY}>
-        <Typography variant="h6">{nResultsDisplay}</Typography>
+        <Typography variant="h6">{electionDisplay.nResults}</Typography>
       </Box>
     </Box>
   );

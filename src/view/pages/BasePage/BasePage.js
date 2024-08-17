@@ -149,13 +149,18 @@ export default class BasePage extends Component {
 
   get subTitleProgress() {
     const { nResultsDisplay } = this.state;
-    return nResultsDisplay === this.E ? (
+    return nResultsDisplay === this.nResultsAll ? (
       "Final Result"
     ) : (
       <>
         {nResultsDisplay}/{this.nResultsAll} Results Released
       </>
     );
+  }
+
+  get electionDisplay() {
+    const {election, nResultsDisplay} = this.state;
+    return election.getElectionSubset(nResultsDisplay);
   }
 
   render() {
@@ -173,26 +178,27 @@ export default class BasePage extends Component {
     }
     return (
       <BasePageView
+        activePDID={activePDID}
+        edIdx={edIdx}
         election={election}
         elections={elections}
-        nResultsDisplay={nResultsDisplay}
         isPlaying={isPlaying}
-        activePDID={activePDID}
+        nResultsDisplay={nResultsDisplay}
         pdIdx={pdIdx}
-        edIdx={edIdx}
         //
+        electionDisplay={this.electionDisplay}
         nResultsReleased={this.nResultsReleased}
-        subTitleProgress={this.subTitleProgress}
-        resultsIdxDisplay={this.resultsIdxDisplay}
+        resultDisplayPDIDs={this.resultDisplayPDIDs}
         resultLKDisplay={this.resultLKDisplay}
         resultsIdx={this.resultsIdx}
-        resultDisplayPDIDs={this.resultDisplayPDIDs}
+        resultsIdxDisplay={this.resultsIdxDisplay}
+        subTitleProgress={this.subTitleProgress}
         //
-        playAnimation={this.playAnimation.bind(this)}
         pauseAnimation={this.pauseAnimation.bind(this)}
-        setNResultsDisplay={this.setNResultsDisplay.bind(this)}
-        setElection={this.setElection.bind(this)}
+        playAnimation={this.playAnimation.bind(this)}
         setActivePDID={this.setActivePDID.bind(this)}
+        setElection={this.setElection.bind(this)}
+        setNResultsDisplay={this.setNResultsDisplay.bind(this)}
       />
     );
   }

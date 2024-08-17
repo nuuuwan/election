@@ -1,19 +1,17 @@
 import { POLITICAL_PARTY_TO_COLOR, STYLE } from "../constants";
-import { LIGHT_COLORS } from "../constants/POLITICAL_PARTY_TO_COLOR";
 
 export default class Party {
   static OTHER = new Party("Other", "Other");
   static UNCERTAIN = new Party("Uncertain", "Uncertain");
   static NON_PARTY_ID_LIST = [Party.OTHER.id, Party.UNCERTAIN.id];
-  constructor(id, name) {
+  
+  constructor(id) {
     this.id = id;
-    this.name = name;
+
   }
 
-  // getters
-
-  get wikiPageName() {
-    return this.name.replaceAll(" ", "_");
+  static fromID(id) {
+    return new Party(id);
   }
 
   get color() {
@@ -23,41 +21,11 @@ export default class Party {
     if (this.id === Party.OTHER.id) {
       return STYLE.COLOR.LIGHT;
     }
-    return POLITICAL_PARTY_TO_COLOR[this.id] || "#444";
+    return POLITICAL_PARTY_TO_COLOR[this.id] || STYLE.COLOR.LIGHT;
   }
 
-  get inverseColor() {
-    return LIGHT_COLORS.includes(this.color) ? "black" : "white";
+  get isNonParty () {
+    return Party.NON_PARTY_ID_LIST.includes(this.id);
   }
 
-  localeCompare(other) {
-    return this.id.localeCompare(other.id);
-  }
-
-  getCustomLabel(labelType) {
-    if (labelType === "handle") {
-      return this.handle;
-    }
-    if (labelType === "name") {
-      return this.name;
-    }
-    return this.id;
-  }
-
-  static listPartyIDs() {
-    return this.listAll().map((party) => party.id);
-  }
-
-  static fromID(id) {
-    const party = this.listAll().find((party) => party.id === id);
-    if (party) {
-      return party;
-    }
-
-    return new Party(id, id);
-  }
-
-  static isKnownPartyID(partyID) {
-    return Party.listPartyIDs().includes(partyID);
-  }
 }

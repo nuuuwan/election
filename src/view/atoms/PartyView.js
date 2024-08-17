@@ -2,43 +2,31 @@ import { Typography } from "@mui/material";
 import { Party } from "../../nonview/core";
 import { Color } from "../../nonview/base";
 
+const STYLE_LABEL ={
+  padding: 0.25,
+  margin: 0.25,
+  borderRadius: 1,
+  width: "fit-content",
+};
+
 export default function PartyView({ partyID, pVotes }) {
   const party = Party.fromID(partyID);
-  const isNonParty = Party.NON_PARTY_ID_LIST.includes(partyID);
 
-  let label = partyID;
-  if (partyID === Party.UNCERTAIN.id) {
-    label = "Margin of Error";
-  }
-
-  let backgroundColor = party.color;
-  if (isNonParty) {
-    backgroundColor = "white";
-  }
-
+  const label = (partyID === Party.UNCERTAIN.id) ? "Margin of Error" : partyID;
+  let backgroundColor = party.isNonParty ? party.color : "white";
   let textColor = "white";
   if (pVotes) {
     const opacity = Color.getOpacity(pVotes);
-    textColor = Color.getTextColor(backgroundColor, opacity);
-    if (isNonParty) {
-      textColor = party.color;
-    }
-
+    textColor = party.isNonParty ? party.color : Color.getTextColor(backgroundColor, opacity);
     backgroundColor += Color.getOpacityChar(pVotes);
   }
 
   return (
     <Typography
       variant="caption"
-      sx={{
-        backgroundColor,
+      sx={Object.assign({}, STYLE_LABEL, {backgroundColor,
         color: textColor,
-        padding: 0.25,
-        margin: 0.25,
-
-        borderRadius: 1,
-        width: "fit-content",
-      }}
+      })}
       component="span"
     >
       {label}

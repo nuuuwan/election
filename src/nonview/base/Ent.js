@@ -13,23 +13,6 @@ export default class Ent {
     this.d = d;
   }
 
-  // compare
-  localeCompare(other) {
-    const dLevel = this.entType.level - other.entType.level;
-    if (dLevel !== 0) {
-      return dLevel;
-    }
-    return this.id.localeCompare(other.id);
-  }
-
-  localeCompareByName(other) {
-    const dLevel = this.entType.level - other.entType.level;
-    if (dLevel !== 0) {
-      return dLevel;
-    }
-    return this.name.localeCompare(other.name);
-  }
-
   get entType() {
     if (this.id === "NationalList") {
       return EntType.COUNTRY;

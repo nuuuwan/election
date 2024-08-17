@@ -48,8 +48,6 @@ export default class ElectionBase {
     );
   }
 
-
-
   get isFuture() {
     return this.date.localeCompare(Time.now().date) > 0;
   }
@@ -57,7 +55,6 @@ export default class ElectionBase {
   localeCompare(other) {
     return this.date.localeCompare(other.date);
   }
-
 
   get color() {
     if (!this.resultsIdx) {

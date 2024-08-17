@@ -4,8 +4,8 @@ import { STYLE } from "../../../nonview/constants";
 import { FinalOutcome } from "../../../nonview/core";
 import FinalOutcomeViewRenderUtils from "./FinalOutcomeViewRenderUtils";
 
-export default function FinalOutcomeView({ result, nResultsDisplay }) {
-  const finalOutcome = new FinalOutcome(result, nResultsDisplay);
+export default function FinalOutcomeView({ election, nResultsDisplay }) {
+  const finalOutcome = new FinalOutcome(election, nResultsDisplay);
   return (
     <Paper
       sx={{

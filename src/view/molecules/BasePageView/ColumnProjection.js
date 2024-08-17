@@ -5,7 +5,7 @@ import { STYLE } from "../../../nonview/constants";
 import { PredictionView } from "../../molecules";
 export default function ColumnProjection({
   election,
-  nResultsDisplay,
+  electionDisplay,
   elections,
   pdIdx,
 }) {
@@ -17,7 +17,7 @@ export default function ColumnProjection({
       </Box>
       <PredictionView
         activeElection={election}
-        nResultsDisplay={nResultsDisplay}
+        electionDisplay={electionDisplay}
         elections={elections}
         pdIdx={pdIdx}
       />

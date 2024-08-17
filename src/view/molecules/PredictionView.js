@@ -4,20 +4,18 @@ import { FinalOutcomeView, ResultSingleView } from ".";
 
 export default function PredictionView({
   activeElection,
-  nResultsDisplay,
+  electionDisplay,
   elections,
   pdIdx,
 }) {
-  const pdResultsList = activeElection.pdResultsList;
 
-  const releasedPDIDList = pdResultsList
-    .slice(0, nResultsDisplay + 1)
-    .map((result) => result.entID);
+  const nResultsDisplay = electionDisplay.nResults;
+  const releasedPDIDList = activeElection.pdIDList;
   const nonReleasedPDIDList = Object.keys(pdIdx).filter(
     (pdID) => !releasedPDIDList.includes(pdID)
   );
 
-  let resultLK = undefined;
+
 
   const electionModel = new ElectionModel(
     elections,
@@ -26,7 +24,7 @@ export default function PredictionView({
     nonReleasedPDIDList
   );
   const predictedElection = electionModel.getElectionNotReleasedPrediction();
-  resultLK = predictedElection.resultLK;
+
 
   return (
     <Stack direction="column" gap={2}>
@@ -36,7 +34,7 @@ export default function PredictionView({
         chartSize={140}
         elections={elections}
       />
-      <FinalOutcomeView result={resultLK} nResultsDisplay={nResultsDisplay} />
+      <FinalOutcomeView election={predictedElection} nResultsDisplay={nResultsDisplay} />
     </Stack>
   );
 }

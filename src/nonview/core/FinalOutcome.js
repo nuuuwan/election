@@ -6,9 +6,13 @@ export default class FinalOutcome {
   static P_BASE = 0.9;
   static P_TOO_MUCH_UNCERTAINTY = 0.5;
   static MIN_N_RESULTS = 30;
-  constructor(result, nResultsDisplay) {
-    this.result = result;
+  constructor(election, nResultsDisplay) {
+    this.election = election;
     this.nResultsDisplay = nResultsDisplay;
+  }
+
+  get result() {
+    return this.election.resultLK;
   }
 
   get pWinner() {

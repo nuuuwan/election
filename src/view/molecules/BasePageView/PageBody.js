@@ -19,7 +19,6 @@ export default function PageBody({
 
 
 
-  const nResultsDisplay = electionDisplay.nResults;
 
   return (
     <Box
@@ -57,7 +56,7 @@ export default function PageBody({
         <Grid item xs={12} md={6} xl={3}>
           <ColumnProjection
             election={election}
-            nResultsDisplay={nResultsDisplay}
+            electionDisplay={electionDisplay}
             elections={elections}
             pdIdx={pdIdx}
           />

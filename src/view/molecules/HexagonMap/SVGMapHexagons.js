@@ -1,6 +1,7 @@
+import { Color } from "../../../nonview/base";
 import { STYLE } from "../../../nonview/constants";
 import { Party } from "../../../nonview/core";
-import HexagonUtils from "./HexagonUtils";
+
 import SVGHexagon from "./SVGHexagon";
 
 function replaceLowercaseVowels(str) {
@@ -35,7 +36,7 @@ export default function SVGMapHexagons({
     if (result) {
       const winningPartyID = result.partyToVotes.winningPartyID;
       color = Party.fromID(winningPartyID).color;
-      opacity = HexagonUtils.getOpacity(result.partyToVotes.pWinner);
+      opacity = Color.getOpacity(result.partyToVotes.pWinner);
     }
 
     const onClick = function () {

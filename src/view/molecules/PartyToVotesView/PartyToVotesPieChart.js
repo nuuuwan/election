@@ -10,11 +10,12 @@ export default function PartyToVotesPieChart({ partyToVotes, chartSize }) {
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
   const data = entries.map(function ([partyID, votes]) {
     const party = Party.fromID(partyID);
+    const pVotes = votes / partyToVotes.totalVotes;
     return {
       id: partyID,
-      value: votes / partyToVotes.totalVotes,
+      value: pVotes,
       label: partyID,
-      color: party.color || STYLE.COLOR.LIGHT,
+      color: (party.color || STYLE.COLOR.LIGHT),
     };
   });
 

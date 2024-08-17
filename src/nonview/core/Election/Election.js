@@ -171,6 +171,17 @@ class Election extends ElectionBase {
     return election;
   }
 
+  getPartyToWins() {
+    return Object.values(this.resultsIdx).reduce(function (partyToWins, result) {
+      const winningPartyID = result.partyToVotes.winningPartyID;
+      if (!partyToWins[winningPartyID]) {
+        partyToWins[winningPartyID] = 0;
+      }
+      partyToWins[winningPartyID]++;
+      return partyToWins;
+    }, {});
+  }
+
   get nResults() {
     return this.pdResultsList.length;
   }

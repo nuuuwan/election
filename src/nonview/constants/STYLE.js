@@ -1,11 +1,16 @@
 let STYLE = {};
 
+
+function gray(x) {
+  return '#' + x.repeat(3);
+}
+
 STYLE.COLOR = {
-  LIGHTEST: "#f8f8f8",
-  LIGHTER: "#ccc",
-  LIGHT: "#888",
-  DARK: "#444",
-  DARKER: "#222",
+  LIGHTEST: gray("e"),
+  LIGHTER: gray("c"),
+  LIGHT: gray("8"),
+  DARK: gray("4"),
+  DARKER: gray("2"),
 };
 
 STYLE.BODY_HEADER = {

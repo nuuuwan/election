@@ -2,11 +2,12 @@ import HEXAGON_MAP_DATA_PD from "./HEXAGON_MAP_DATA_PD";
 import HEXAGON_MAP_DATA_ED from "./HEXAGON_MAP_DATA_ED";
 import { STYLE } from "../../../nonview/constants";
 
-import HexagonUtils from "./HexagonUtils";
+
 import SVGTitles from "./SVGTitles";
 import SVGLegendPercentages from "./SVGLegendPercentages";
 import SVGLegendParty from "./SVGLegendParty";
 import SVGMap from "./SVGMap";
+import { Color } from "../../../nonview/base";
 
 function getPDMapData() {
   return HEXAGON_MAP_DATA_PD;
@@ -55,8 +56,9 @@ function getViewBox() {
   return `${minX - 1} ${minY - 2} ${width + 2} ${height + 6}`;
 }
 
-export default function HexagonMap({ resultsIdx, pdIdx, setActivePDID }) {
-  const partyToWins = HexagonUtils.getPartyToWins(resultsIdx);
+export default function HexagonMap({ election, pdIdx, setActivePDID }) {
+  const resultsIdx = election.resultsIdx;
+  const partyToWins = election.getPartyToWins();
   const nParties = Object.keys(partyToWins).length;
   return (
     <svg
@@ -66,8 +68,8 @@ export default function HexagonMap({ resultsIdx, pdIdx, setActivePDID }) {
       fontFamily={STYLE.FONT_FAMILY}
     >
       <SVGTitles />
-      <SVGLegendParty resultsIdx={resultsIdx} x={1} y={-3} />
-      <SVGLegendPercentages x={2 + nParties / HexagonUtils.N_COLS} y={-3} />
+      <SVGLegendParty election={election} x={1} y={-3} />
+      <SVGLegendPercentages x={2 + nParties / Color.N_COLS} y={-3} />
       <SVGMap
         resultsIdx={resultsIdx}
         mapData={getPDMapData()}

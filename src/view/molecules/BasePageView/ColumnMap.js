@@ -10,7 +10,6 @@ export default function ColumnMap({
   setActivePDID,
 }) {
   const resultLKDisplay = electionDisplay.resultLK;
-  const resultsIdxDisplay = electionDisplay.resultsIdx;
   const subTitleProgress = `${electionDisplay.nResults}/${election.nResults} Results`;
 
   return (
@@ -24,7 +23,7 @@ export default function ColumnMap({
         <Typography variant="h4">The Map</Typography>
       </Box>
       <HexagonMap
-        resultsIdx={resultsIdxDisplay}
+        election={electionDisplay}
         pdIdx={db.pdIdx}
         setActivePDID={setActivePDID}
       />

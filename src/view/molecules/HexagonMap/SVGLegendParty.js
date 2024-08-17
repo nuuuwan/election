@@ -1,9 +1,10 @@
+import { Color } from "../../../nonview/base";
 import { Party } from "../../../nonview/core";
-import HexagonUtils from "./HexagonUtils";
+
 import SVGHexagon from "./SVGHexagon";
 
-export default function SVGLegendParty({ resultsIdx, x, y }) {
-  const partyToWins = HexagonUtils.getPartyToWins(resultsIdx);
+export default function SVGLegendParty({ election, x, y }) {
+  const partyToWins = election.getPartyToWins();
 
   return Object.entries(partyToWins)
     .sort(function ([partyID1, nWins1], [partyID2, nWins2]) {
@@ -14,11 +15,11 @@ export default function SVGLegendParty({ resultsIdx, x, y }) {
       return (
         <SVGHexagon
           key={partyID}
-          x={x + parseInt(i / HexagonUtils.N_COLS)}
+          x={x + parseInt(i / Color.N_COLS)}
           y={
             y +
-            ((i % HexagonUtils.N_COLS) +
-              (parseInt(i / HexagonUtils.N_COLS) % 2 === 1 ? 0.5 : 0)) /
+            ((i % Color.N_COLS) +
+              (parseInt(i / Color.N_COLS) % 2 === 1 ? 0.5 : 0)) /
               Math.cos(Math.PI / 6)
           }
           color={party.color}

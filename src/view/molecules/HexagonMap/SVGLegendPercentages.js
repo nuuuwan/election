@@ -1,7 +1,7 @@
 import { STYLE } from "../../../nonview/constants";
-import { Format } from "../../../nonview/base";
+import { Color, Format } from "../../../nonview/base";
 
-import HexagonUtils from "./HexagonUtils";
+
 import SVGHexagon from "./SVGHexagon";
 
 export default function SVGLegendPercentages({ x, y }) {
@@ -18,7 +18,7 @@ export default function SVGLegendPercentages({ x, y }) {
         }
         color={STYLE.COLOR.LIGHT}
         label={Format.percent(p)}
-        opacity={HexagonUtils.getOpacity(p)}
+        opacity={Color.getOpacity(p)}
       />
     );
   });

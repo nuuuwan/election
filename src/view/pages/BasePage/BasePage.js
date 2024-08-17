@@ -1,6 +1,6 @@
 import { Component } from "react";
-import { Ent, EntType, URLContext } from "../../../nonview/base";
-import { Election, Result } from "../../../nonview/core";
+import { URLContext } from "../../../nonview/base";
+import { Election, DB } from "../../../nonview/core";
 import { BasePageView } from "../../../view/molecules";
 
 import BasePageSettersMixin from "./BasePageSettersMixin";
@@ -75,9 +75,7 @@ export default class BasePage extends Component {
     let { electionType, date, isPlaying, nResultsDisplay, activePDID } =
       this.state;
 
-    const pdIdx = await Ent.idxFromType(EntType.PD);
-    const edIdx = await Ent.idxFromType(EntType.ED);
-    const elections = await Election.listAll();
+    const db = await DB.load();
 
     const election = await Election.fromElectionTypeAndDate(electionType, date);
     ({ activePDID, nResultsDisplay } = this.getActivePDIDAndNResultDisplay({
@@ -94,68 +92,13 @@ export default class BasePage extends Component {
       activePDID,
       // Derived
       election,
-      pdIdx,
-      edIdx,
-      elections,
+      db,
     });
-  }
-
-  get pdResultsList() {
-    const { election } = this.state;
-    return election.pdResultsList;
-  }
-
-  get resultsIdx() {
-    const { election } = this.state;
-    return election.resultsIdx;
-  }
-  get result() {
-    const { activePDID } = this.state;
-    return this.resultsIdx[activePDID];
-  }
-
-  get pdResultsDisplay() {
-    const { nResultsDisplay } = this.state;
-    return this.pdResultsList.slice(0, nResultsDisplay);
-  }
-
-  get resultsIdxDisplay() {
-    return Object.fromEntries(
-      this.pdResultsDisplay.map((result) => [result.entID, result])
-    );
-  }
-
-  get resultLKDisplay() {
-    return Result.fromList("LK", this.pdResultsDisplay);
-  }
-
-  get resultDisplayPDIDs() {
-    return this.pdResultsDisplay.map((result) => result.entID);
-  }
-
-  get nResultsReleased() {
-    const { election } = this.state;
-    return election.pdResultsList.length;
-  }
-
-  get nResultsAll() {
-    return 182;
   }
 
   get key() {
     const { electionType, date, activePDID } = this.state;
     return `${electionType}-${date}-${activePDID}`;
-  }
-
-  get subTitleProgress() {
-    const { nResultsDisplay } = this.state;
-    return nResultsDisplay === this.nResultsAll ? (
-      "Final Result"
-    ) : (
-      <>
-        {nResultsDisplay}/{this.nResultsAll} Results Released
-      </>
-    );
   }
 
   get electionDisplay() {
@@ -164,7 +107,7 @@ export default class BasePage extends Component {
   }
 
   render() {
-    const { election, elections, isPlaying, pdIdx, edIdx } = this.state;
+    const { isPlaying, election, db } = this.state;
     if (!election) {
       return <CircularProgress />;
     }
@@ -175,9 +118,7 @@ export default class BasePage extends Component {
         isPlaying={isPlaying}
         //
         electionDisplay={this.electionDisplay}
-        elections={elections}
-        pdIdx={pdIdx}
-        edIdx={edIdx}
+        db={db}
         //
         pauseAnimation={this.pauseAnimation.bind(this)}
         playAnimation={this.playAnimation.bind(this)}

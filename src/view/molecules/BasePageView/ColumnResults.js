@@ -7,9 +7,7 @@ import { ResultSingleView, PDSelector } from "../../molecules";
 export default function ColumnResults({
   election,
   electionDisplay,
-  pdIdx,
-  edIdx,
-  elections,
+  db,
   setActivePDID,
 }) {
   if (electionDisplay.nResults === 0) {
@@ -28,14 +26,13 @@ export default function ColumnResults({
         <PDSelector
           election={election}
           activePDID={activePDID}
-          pdIdx={pdIdx}
-          edIdx={edIdx}
+          db={db}
           setActivePDID={setActivePDID}
         />
       </Box>
       <ResultSingleView
         election={election}
-        elections={elections}
+        elections={db.elections}
         entID={activePDID}
       />
     </Box>

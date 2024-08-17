@@ -31,15 +31,14 @@ function buildRenderMenuItemInner(resultsIdx, edIdx) {
 }
 export default function PDSelector({
   election,
-  pdIdx,
-  edIdx,
+  db,
   activePDID,
   setActivePDID,
 }) {
   return (
     <CustomSelect
-      dataList={Object.values(pdIdx)}
-      value={pdIdx[activePDID]}
+      dataList={Object.values(db.pdIdx)}
+      value={db.pdIdx[activePDID]}
       getID={function (pd) {
         if (!pd) {
           return null;
@@ -49,7 +48,10 @@ export default function PDSelector({
       onChange={function (pd) {
         setActivePDID(pd.id);
       }}
-      renderMenuItemInner={buildRenderMenuItemInner(election.resultsIdx, edIdx)}
+      renderMenuItemInner={buildRenderMenuItemInner(
+        election.resultsIdx,
+        db.edIdx
+      )}
       getDividerKey={function (pd) {
         return pd.name.substring(0, 1);
       }}

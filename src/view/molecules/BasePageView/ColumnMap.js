@@ -6,7 +6,7 @@ import { HexagonMap } from "../../molecules";
 export default function ColumnMap({
   election,
   electionDisplay,
-  pdIdx,
+  db,
   setActivePDID,
 }) {
   const resultLKDisplay = electionDisplay.resultLK;
@@ -25,7 +25,7 @@ export default function ColumnMap({
       </Box>
       <HexagonMap
         resultsIdx={resultsIdxDisplay}
-        pdIdx={pdIdx}
+        pdIdx={db.pdIdx}
         setActivePDID={setActivePDID}
       />
     </Box>

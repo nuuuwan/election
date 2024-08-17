@@ -10,9 +10,7 @@ export default function PageBody({
   election,
   electionDisplay,
   //
-  elections,
-  pdIdx,
-  edIdx,
+  db,
   //
   setActivePDID,
 }) {
@@ -28,9 +26,7 @@ export default function PageBody({
           <ColumnResults
             election={election}
             electionDisplay={electionDisplay}
-            pdIdx={pdIdx}
-            edIdx={edIdx}
-            elections={elections}
+            db={db}
             setActivePDID={setActivePDID}
           />
         </Grid>
@@ -38,14 +34,14 @@ export default function PageBody({
           <ColumnResultsLK
             election={election}
             electionDisplay={electionDisplay}
-            elections={elections}
+            db={db}
           />
         </Grid>
         <Grid item xs={12} md={6} xl={3}>
           <ColumnMap
             election={election}
             electionDisplay={electionDisplay}
-            pdIdx={pdIdx}
+            db={db}
             setActivePDID={setActivePDID}
           />
         </Grid>
@@ -53,8 +49,7 @@ export default function PageBody({
           <ColumnProjection
             election={election}
             electionDisplay={electionDisplay}
-            elections={elections}
-            pdIdx={pdIdx}
+            db={db}
           />
         </Grid>
       </Grid>

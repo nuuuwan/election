@@ -3,11 +3,7 @@ import { Box, Typography } from "@mui/material";
 import { STYLE } from "../../../nonview/constants";
 
 import { ResultSingleView } from "../../molecules";
-export default function ColumnResultsLK({
-  election,
-  electionDisplay,
-  elections,
-}) {
+export default function ColumnResultsLK({ election, electionDisplay, db }) {
   const subTitleProgress = `${electionDisplay.nResults}/${election.nResults} Results`;
 
   return (
@@ -22,7 +18,7 @@ export default function ColumnResultsLK({
       </Box>
       <ResultSingleView
         election={electionDisplay}
-        elections={elections}
+        elections={db.elections}
         entID={"LK"}
       />
     </Box>

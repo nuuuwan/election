@@ -5,17 +5,16 @@ import { FinalOutcomeView, ResultSingleView } from ".";
 export default function PredictionView({
   activeElection,
   electionDisplay,
-  elections,
-  pdIdx,
+  db,
 }) {
   const nResultsDisplay = electionDisplay.nResults;
   const releasedPDIDList = activeElection.pdIDList;
-  const nonReleasedPDIDList = Object.keys(pdIdx).filter(
+  const nonReleasedPDIDList = Object.keys(db.pdIdx).filter(
     (pdID) => !releasedPDIDList.includes(pdID)
   );
 
   const electionModel = new ElectionModel(
-    elections,
+    db.elections,
     activeElection,
     releasedPDIDList,
     nonReleasedPDIDList
@@ -28,7 +27,7 @@ export default function PredictionView({
         election={predictedElection}
         entID="LK"
         chartSize={140}
-        elections={elections}
+        elections={db.elections}
       />
       <FinalOutcomeView
         election={predictedElection}

@@ -25,17 +25,13 @@ const STYLE_PAGE_HEADER = {
   },
 };
 
-export default function PageHeader({
-  electionDisplay,
-  elections,
-  setElection,
-}) {
+export default function PageHeader({ electionDisplay, db, setElection }) {
   return (
     <Box>
       <Box sx={STYLE_PAGE_HEADER.SELECTOR}>
         <ElectionSelector
           selectedElection={electionDisplay}
-          elections={elections}
+          elections={db.elections}
           setElection={setElection}
         />
       </Box>

@@ -4,13 +4,16 @@ import { STYLE } from "../../../nonview/constants";
 
 import { HexagonMap } from "../../molecules";
 export default function ColumnMap({
+  election,
+  electionDisplay,
   pdIdx,
-  subTitleProgress,
-  resultsIdxDisplay,
-  resultLKDisplay,
-  result,
   setActivePDID,
 }) {
+
+  const resultLKDisplay = electionDisplay.resultLK
+  const resultsIdxDisplay = electionDisplay.resultsIdx
+  const subTitleProgress = `${electionDisplay.nResults}/${election.nResults} Results`;
+
   return (
     <Box color={STYLE.COLOR.LIGHT}>
       <Box
@@ -24,7 +27,7 @@ export default function ColumnMap({
       <HexagonMap
         resultsIdx={resultsIdxDisplay}
         pdIdx={pdIdx}
-        activeResult={result}
+
         setActivePDID={setActivePDID}
       />
     </Box>

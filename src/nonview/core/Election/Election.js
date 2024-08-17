@@ -77,34 +77,10 @@ class Election extends ElectionBase {
     return elections;
   }
 
-  static listAllNoLoad() {
-    const elections = ELECTION_LIST_TUPLES.map(
-      ([electionType, date]) => new Election(electionType, date)
-    ).sort();
 
-    return elections;
-  }
 
-  static async fromDate(date) {
-    const elections = await Election.listAll();
-    return Election.findFromDate(elections, date);
-  }
 
-  static findFromDate(elections, date) {
-    return elections.find(function (election) {
-      return election.date === date;
-    });
-  }
-
-  static filterCompleted(elections) {
-    return elections.filter(function (election) {
-      return !election.isFuture;
-    });
-  }
-
-  static getLastElection(elections) {
-    return Election.filterCompleted(elections).sort().reverse()[0];
-  }
+ 
 
   static getPreviousElections(elections, currentElection) {
     return elections.filter(function (election) {

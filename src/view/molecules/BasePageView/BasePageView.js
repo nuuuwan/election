@@ -4,7 +4,6 @@ import PageBody from "./PageBody";
 import PageFooter from "./PageFooter";
 
 export default function BasePageView({
-
   election,
   isPlaying,
   //
@@ -18,7 +17,6 @@ export default function BasePageView({
   setActivePDID,
   setElection,
   setNResultsDisplay,
-
 }) {
   return (
     <Box sx={{ textAlign: "center" }}>
@@ -41,7 +39,7 @@ export default function BasePageView({
         electionDisplay={electionDisplay}
         election={election}
         isPlaying={isPlaying}
-        // 
+        //
         playAnimation={playAnimation}
         pauseAnimation={pauseAnimation}
         setNResultsDisplay={setNResultsDisplay}

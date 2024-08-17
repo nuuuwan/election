@@ -8,7 +8,6 @@ export default function ColumnResultsLK({
   electionDisplay,
   elections,
 }) {
-
   const subTitleProgress = `${electionDisplay.nResults}/${election.nResults} Results`;
 
   return (

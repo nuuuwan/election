@@ -16,10 +16,6 @@ export default function PageBody({
   //
   setActivePDID,
 }) {
-
-
-
-
   return (
     <Box
       sx={{

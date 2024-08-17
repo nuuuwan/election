@@ -152,8 +152,8 @@ export default function PlayerControl({
   pauseAnimation,
 }) {
   const nResultsDisplay = electionDisplay.nResults;
-  const nResults = election.nResults
-  
+  const nResults = election.nResults;
+
   const [nResultsDisplayUpdated, setNResultsDisplayUpdated] =
     useState(nResultsDisplay);
   const onChangeCommitted = function (__, value) {

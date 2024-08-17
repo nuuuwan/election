@@ -2,7 +2,6 @@ import { Stack, Typography } from "@mui/material";
 import SummaryView from "../../view/molecules/SummaryView";
 import PartyToVotesView from "./PartyToVotesView/PartyToVotesView";
 
-
 export default function ResultSingleView({
   election,
   elections,

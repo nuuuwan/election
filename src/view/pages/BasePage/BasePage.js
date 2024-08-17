@@ -159,18 +159,12 @@ export default class BasePage extends Component {
   }
 
   get electionDisplay() {
-    const {election, nResultsDisplay} = this.state;
+    const { election, nResultsDisplay } = this.state;
     return election.getElectionSubset(nResultsDisplay);
   }
 
   render() {
-    const {
-      election,
-      elections,
-      isPlaying,
-      pdIdx,
-      edIdx,
-    } = this.state;
+    const { election, elections, isPlaying, pdIdx, edIdx } = this.state;
     if (!election) {
       return <CircularProgress />;
     }

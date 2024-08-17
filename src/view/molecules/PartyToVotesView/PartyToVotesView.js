@@ -22,7 +22,6 @@ export default function PartyToVotesView({
             elections={elections}
             election={election}
             entID={entID}
-
           />
         ) : null}
       </Stack>

@@ -1,12 +1,12 @@
 import { Stack, Typography } from "@mui/material";
 import { Format } from "../../nonview/base";
-import { Election,  Party } from "../../nonview/core";
+import { Election, Party } from "../../nonview/core";
 import { PartyView } from "../../view/atoms";
 
 const N_DISPLAY = 3;
 
 function HistoryViewRow({ election, entID, i, entIDs }) {
-  const  result = election.resultsIdx[entID];
+  const result = election.resultsIdx[entID];
   const opacity = (1 - i / N_DISPLAY) * 0.25 + 0.5;
   const winningPartyID = result.partyToVotes.winningPartyID;
   const pWinner = result.partyToVotes.pWinner;

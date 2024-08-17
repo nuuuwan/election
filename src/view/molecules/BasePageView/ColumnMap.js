@@ -9,9 +9,8 @@ export default function ColumnMap({
   pdIdx,
   setActivePDID,
 }) {
-
-  const resultLKDisplay = electionDisplay.resultLK
-  const resultsIdxDisplay = electionDisplay.resultsIdx
+  const resultLKDisplay = electionDisplay.resultLK;
+  const resultsIdxDisplay = electionDisplay.resultsIdx;
   const subTitleProgress = `${electionDisplay.nResults}/${election.nResults} Results`;
 
   return (
@@ -27,7 +26,6 @@ export default function ColumnMap({
       <HexagonMap
         resultsIdx={resultsIdxDisplay}
         pdIdx={pdIdx}
-
         setActivePDID={setActivePDID}
       />
     </Box>

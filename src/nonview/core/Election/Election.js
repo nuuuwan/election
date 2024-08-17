@@ -184,7 +184,7 @@ class Election extends ElectionBase {
   }
 
   get resultLK() {
-    return this.resultsIdx["LK"]; 
+    return this.resultsIdx["LK"];
   }
 
   get pdIDList() {

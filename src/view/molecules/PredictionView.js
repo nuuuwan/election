@@ -8,14 +8,11 @@ export default function PredictionView({
   elections,
   pdIdx,
 }) {
-
   const nResultsDisplay = electionDisplay.nResults;
   const releasedPDIDList = activeElection.pdIDList;
   const nonReleasedPDIDList = Object.keys(pdIdx).filter(
     (pdID) => !releasedPDIDList.includes(pdID)
   );
-
-
 
   const electionModel = new ElectionModel(
     elections,
@@ -25,7 +22,6 @@ export default function PredictionView({
   );
   const predictedElection = electionModel.getElectionNotReleasedPrediction();
 
-
   return (
     <Stack direction="column" gap={2}>
       <ResultSingleView
@@ -34,7 +30,10 @@ export default function PredictionView({
         chartSize={140}
         elections={elections}
       />
-      <FinalOutcomeView election={predictedElection} nResultsDisplay={nResultsDisplay} />
+      <FinalOutcomeView
+        election={predictedElection}
+        nResultsDisplay={nResultsDisplay}
+      />
     </Stack>
   );
 }

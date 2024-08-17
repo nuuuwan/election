@@ -1,4 +1,3 @@
-
 export default class StyleHexagonMap {
-    static N_COLS = 2;
+  static N_COLS = 2;
 }

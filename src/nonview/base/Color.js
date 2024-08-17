@@ -5,10 +5,9 @@ export default class Color {
     const [minOpacity, maxOpacity] = [0.2, 0.8];
     const [minP, maxP] = [0.45, 0.55];
     const p2 = MathX.forceRange((p - minP) / (maxP - minP), 0, 1);
-    const opacity2 =  minOpacity + (maxOpacity - minOpacity) * p2;
+    const opacity2 = minOpacity + (maxOpacity - minOpacity) * p2;
     const opacity = MathX.forceRange(opacity2, minOpacity, maxOpacity);
 
-    
     return opacity;
   }
 

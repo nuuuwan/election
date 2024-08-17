@@ -2,11 +2,7 @@ import { Stack } from "@mui/material";
 import { ElectionModel } from "../../nonview/core";
 import { FinalOutcomeView, ResultSingleView } from ".";
 
-export default function PredictionView({
-  election,
-  electionDisplay,
-  db,
-}) {
+export default function PredictionView({ election, electionDisplay, db }) {
   const nResultsDisplay = election.nResults;
   const releasedPDIDList = electionDisplay.pdIDList;
   const nonReleasedPDIDList = Object.keys(db.pdIdx).filter(

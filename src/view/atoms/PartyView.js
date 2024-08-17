@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 import { Party } from "../../nonview/core";
 import { Color } from "../../nonview/base";
 
-export default function PartyView({ partyID ,pVotes}) {
+export default function PartyView({ partyID, pVotes }) {
   const party = Party.fromID(partyID);
   const isNonParty = Party.NON_PARTY_ID_LIST.includes(partyID);
 
@@ -10,7 +10,6 @@ export default function PartyView({ partyID ,pVotes}) {
   if (partyID === Party.UNCERTAIN.id) {
     label = "Margin of Error";
   }
-
 
   let backgroundColor = party.color;
   if (isNonParty) {
@@ -25,8 +24,7 @@ export default function PartyView({ partyID ,pVotes}) {
       textColor = party.color;
     }
 
-    backgroundColor += Color.getOpacityChar(pVotes)
-  
+    backgroundColor += Color.getOpacityChar(pVotes);
   }
 
   return (
@@ -40,7 +38,6 @@ export default function PartyView({ partyID ,pVotes}) {
 
         borderRadius: 1,
         width: "fit-content",
-
       }}
       component="span"
     >

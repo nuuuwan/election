@@ -159,9 +159,7 @@ class Election extends ElectionBase {
     return Result.fromList("LK", pdResultsList);
   }
 
-  
   getSubsetElectionByPDResultList(pdResultsList) {
-
     const edResultsList = Election.buildEDResultsList(pdResultsList);
     const lkResult = Election.buildLKResult(pdResultsList);
     const resultsList = [lkResult, ...edResultsList, ...pdResultsList];
@@ -173,22 +171,22 @@ class Election extends ElectionBase {
   }
 
   getSubsetElectionByPDIDList(pdIDList) {
-    const pdResultsList = pdIDList.map(function (pdID) {
-      return this.resultsIdx[pdID];
-    }.bind(this)).filter(
-      function(result) {
+    const pdResultsList = pdIDList
+      .map(
+        function (pdID) {
+          return this.resultsIdx[pdID];
+        }.bind(this)
+      )
+      .filter(function (result) {
         return result !== undefined;
-      }
-    );
+      });
     return this.getSubsetElectionByPDResultList(pdResultsList);
-    
   }
 
   getElectionSubset(nResultsDisplay) {
     const pdResultsList = this.pdResultsList.slice(0, nResultsDisplay);
     return this.getSubsetElectionByPDResultList(pdResultsList);
   }
-
 
   getPartyToWins() {
     return Object.values(this.resultsIdx).reduce(function (

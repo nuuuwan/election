@@ -6,52 +6,57 @@ import ColumnResultsLK from "./ColumnResultsLK";
 import ColumnMap from "./ColumnMap";
 import ColumnProjection from "./ColumnProjection";
 
+const STYLE = {
+  paddingTop: 10,
+  paddingBottom: 10,
+};
+
+function getColumns(election, electionDisplay, db, setActivePDID) {
+  return [
+    <ColumnResults
+      election={election}
+      electionDisplay={electionDisplay}
+      db={db}
+      setActivePDID={setActivePDID}
+    />,
+    <ColumnResultsLK
+      election={election}
+      electionDisplay={electionDisplay}
+      db={db}
+    />,
+    <ColumnMap
+      election={election}
+      electionDisplay={electionDisplay}
+      db={db}
+      setActivePDID={setActivePDID}
+    />,
+    <ColumnProjection
+      election={election}
+      electionDisplay={electionDisplay}
+      db={db}
+    />,
+  ];
+}
+
 export default function PageBody({
   election,
   electionDisplay,
-  //
   db,
-  //
   setActivePDID,
 }) {
   return (
-    <Box
-      sx={{
-        paddingTop: 10,
-        paddingBottom: 10,
-      }}
-    >
-      <Grid container rowSpacing={5}>
-        <Grid item xs={12} md={6} xl={3}>
-          <ColumnResults
-            election={election}
-            electionDisplay={electionDisplay}
-            db={db}
-            setActivePDID={setActivePDID}
-          />
-        </Grid>
-        <Grid item xs={12} md={6} xl={3}>
-          <ColumnResultsLK
-            election={election}
-            electionDisplay={electionDisplay}
-            db={db}
-          />
-        </Grid>
-        <Grid item xs={12} md={6} xl={3}>
-          <ColumnMap
-            election={election}
-            electionDisplay={electionDisplay}
-            db={db}
-            setActivePDID={setActivePDID}
-          />
-        </Grid>
-        <Grid item xs={12} md={6} xl={3}>
-          <ColumnProjection
-            election={election}
-            electionDisplay={electionDisplay}
-            db={db}
-          />
-        </Grid>
+    <Box sx={STYLE}>
+      <Grid container rowSpacing={4}>
+        {getColumns(election, electionDisplay, db, setActivePDID).map(function (
+          column,
+          i
+        ) {
+          return (
+            <Grid key={i} item xs={12} md={6} xl={3}>
+              {column}
+            </Grid>
+          );
+        })}
       </Grid>
       <CitationsView />
     </Box>

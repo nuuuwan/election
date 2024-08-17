@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import CitationsView from "./CitationsView";
 
 import ColumnResults from "./ColumnResults";
@@ -44,9 +44,11 @@ export default function PageBody({
   db,
   setActivePDID,
 }) {
+
+
   return (
     <Box sx={STYLE}>
-      <Grid container rowSpacing={4}>
+      { (electionDisplay.nResults=== 0) ? (<Typography variant="h3" sx={{paddingTop: 10, paddingBottom: 20}}>Await results...</Typography>) : (     <Grid container rowSpacing={4}>
         {getColumns(election, electionDisplay, db, setActivePDID).map(function (
           column,
           i
@@ -57,7 +59,8 @@ export default function PageBody({
             </Grid>
           );
         })}
-      </Grid>
+      </Grid>)}
+ 
       <CitationsView />
     </Box>
   );

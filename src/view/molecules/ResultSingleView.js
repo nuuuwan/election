@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack,  } from "@mui/material";
 import SummaryView from "../../view/molecules/SummaryView";
 import PartyToVotesView from "./PartyToVotesView/PartyToVotesView";
 
@@ -12,9 +12,6 @@ export default function ResultSingleView({
 
   if (!result) {
     return null;
-  }
-  if (result.summary.valid === 0) {
-    return <Typography variant="h6">No Results to Aggregate.</Typography>;
   }
 
   return (

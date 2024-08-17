@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import SummaryView from "../../view/molecules/SummaryView";
 import PartyToVotesView from "./PartyToVotesView/PartyToVotesView";
 import { Result } from "../../nonview/core";
@@ -10,25 +10,18 @@ export default function ResultSingleView({
   entIDs,
   chartSize,
 }) {
-  let result;
-  if (entIDs) {
-    result = Result.fromList(
-      entID,
-      entIDs.map((entID) => election.resultsIdx[entID])
-    );
-  } else {
-    result = election.resultsIdx[entID];
-  }
+  const result = entIDs
+    ? Result.fromList(
+        entID,
+        entIDs.map((entID) => election.resultsIdx[entID])
+      )
+    : election.resultsIdx[entID];
 
   if (!result) {
     return null;
   }
   if (result.summary.valid === 0) {
-    return (
-      <Box>
-        <Typography variant="h6">No Results to Aggregate.</Typography>
-      </Box>
-    );
+    return <Typography variant="h6">No Results to Aggregate.</Typography>;
   }
 
   return (

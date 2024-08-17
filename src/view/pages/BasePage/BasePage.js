@@ -1,12 +1,10 @@
 import { Component } from "react";
-
 import { Ent, EntType, URLContext } from "../../../nonview/base";
-
 import { Election, Result } from "../../../nonview/core";
+import { BasePageView } from "../../../view/molecules";
 
-import BasePageRenderMixin from "./BasePageRenderMixin";
 import BasePageSettersMixin from "./BasePageSettersMixin";
-import BasePageRenderColumnsMixin from "./BasePageRenderColumnsMixin";
+import { CircularProgress } from "@mui/material";
 
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
@@ -159,8 +157,45 @@ export default class BasePage extends Component {
       </>
     );
   }
+
+  render() {
+    const {
+      election,
+      elections,
+      nResultsDisplay,
+      isPlaying,
+      activePDID,
+      pdIdx,
+      edIdx,
+    } = this.state;
+    if (!election) {
+      return <CircularProgress />;
+    }
+    return (
+      <BasePageView
+        election={election}
+        elections={elections}
+        nResultsDisplay={nResultsDisplay}
+        isPlaying={isPlaying}
+        activePDID={activePDID}
+        pdIdx={pdIdx}
+        edIdx={edIdx}
+        //
+        nResultsReleased={this.nResultsReleased}
+        subTitleProgress={this.subTitleProgress}
+        resultsIdxDisplay={this.resultsIdxDisplay}
+        resultLKDisplay={this.resultLKDisplay}
+        resultsIdx={this.resultsIdx}
+        resultDisplayPDIDs={this.resultDisplayPDIDs}
+        //
+        playAnimation={this.playAnimation.bind(this)}
+        pauseAnimation={this.pauseAnimation.bind(this)}
+        setNResultsDisplay={this.setNResultsDisplay.bind(this)}
+        setElection={this.setElection.bind(this)}
+        setActivePDID={this.setActivePDID.bind(this)}
+      />
+    );
+  }
 }
 
-Object.assign(BasePage.prototype, BasePageRenderMixin);
 Object.assign(BasePage.prototype, BasePageSettersMixin);
-Object.assign(BasePage.prototype, BasePageRenderColumnsMixin);

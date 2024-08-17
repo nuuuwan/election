@@ -1,6 +1,5 @@
 import { POLITICAL_PARTY_TO_COLOR, STYLE } from "../constants";
 import { LIGHT_COLORS } from "../constants/POLITICAL_PARTY_TO_COLOR";
-import PARTY_LIST_TUPLES from "./PARTY_LIST_TUPLES";
 
 export default class Party {
   static OTHER = new Party("Other", "Other");
@@ -43,13 +42,6 @@ export default class Party {
       return this.name;
     }
     return this.id;
-  }
-
-  // static getters
-  static listAll() {
-    return PARTY_LIST_TUPLES.map(function ([id, name]) {
-      return new Party(id, name);
-    });
   }
 
   static listPartyIDs() {

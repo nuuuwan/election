@@ -3,19 +3,19 @@ import { ElectionModel } from "../../nonview/core";
 import { FinalOutcomeView, ResultSingleView } from ".";
 
 export default function PredictionView({
-  activeElection,
+  election,
   electionDisplay,
   db,
 }) {
-  const nResultsDisplay = electionDisplay.nResults;
-  const releasedPDIDList = activeElection.pdIDList;
+  const nResultsDisplay = election.nResults;
+  const releasedPDIDList = electionDisplay.pdIDList;
   const nonReleasedPDIDList = Object.keys(db.pdIdx).filter(
     (pdID) => !releasedPDIDList.includes(pdID)
   );
 
   const electionModel = new ElectionModel(
     db.elections,
-    activeElection,
+    election,
     releasedPDIDList,
     nonReleasedPDIDList
   );

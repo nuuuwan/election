@@ -11,7 +11,7 @@ export default function ColumnProjection({ election, electionDisplay, db }) {
         <Typography variant="h4">Projected</Typography>
       </Box>
       <PredictionView
-        activeElection={election}
+        election={election}
         electionDisplay={electionDisplay}
         db={db}
       />

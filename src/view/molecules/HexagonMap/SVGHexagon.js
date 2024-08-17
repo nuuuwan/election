@@ -1,4 +1,4 @@
-import { MathX } from "../../../nonview/base";
+import { Color, MathX } from "../../../nonview/base";
 
 import { STYLE } from "../../../nonview/constants";
 
@@ -16,18 +16,12 @@ function getPoints(x, y, radius) {
     .join(" ");
 }
 
-function getTextColor(color, opacity) {
-  return color === STYLE.COLOR.LIGHTEST
-    ? STYLE.COLOR.LIGHTER
-    : opacity > 0.5
-    ? "white"
-    : "black";
-}
+
 
 export default function SVGHexagon({ x, y, color, label, opacity, onClick }) {
   const radius = 1 / Math.cos(Math.PI / 6) ** 2 / 2;
   const points = getPoints(x, y, radius);
-  const textColor = getTextColor(color, opacity);
+  const textColor = Color.getTextColor(color, opacity);
 
   return (
     <g onClick={onClick}>

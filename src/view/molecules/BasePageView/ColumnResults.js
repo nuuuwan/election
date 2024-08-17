@@ -31,7 +31,7 @@ export default function ColumnResults({
         />
       </Box>
       <ResultSingleView
-        election={election}
+        election={electionDisplay}
         elections={db.elections}
         entID={activePDID}
       />

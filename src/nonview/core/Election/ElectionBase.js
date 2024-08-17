@@ -21,17 +21,6 @@ export default class ElectionBase {
     return "Parliamentary";
   }
 
-  get electionTypeHashtag() {
-    if (this.electionType === "Presidential") {
-      return "#PresPollSL";
-    }
-    return "#GenElecSL";
-  }
-
-  get titleShort() {
-    return this.electionTypeHashtag + this.year;
-  }
-
   get title() {
     return this.year + " " + this.electionTypeTitle;
   }
@@ -59,9 +48,7 @@ export default class ElectionBase {
     );
   }
 
-  get isNoData() {
-    return !this.resultsList || this.resultsList.length === 0;
-  }
+
 
   get isFuture() {
     return this.date.localeCompare(Time.now().date) > 0;
@@ -71,22 +58,6 @@ export default class ElectionBase {
     return this.date.localeCompare(other.date);
   }
 
-  toString() {
-    return this.date;
-  }
-
-  get wikiPageName() {
-    return (
-      this.year + "_Sri_Lankan_" + this.electionType.toLowerCase() + "_election"
-    );
-  }
-
-  get yearsSince() {
-    const utNow = Time.now().ut;
-    const ut = Time.fromString(this.date).ut;
-    const dut = utNow - ut;
-    return dut / (1000 * 365.25 * 86400);
-  }
 
   get color() {
     if (!this.resultsIdx) {

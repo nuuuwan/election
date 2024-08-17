@@ -4,7 +4,6 @@ import { Party } from "../../../nonview/core";
 import { LabelledStat, PartyView } from "../../atoms";
 
 export default function PartyToVotesStatsView({ partyToVotes }) {
-
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
   const totalVotes = partyToVotes.totalVotes;
 

@@ -10,7 +10,6 @@ let FormatInt = {
   },
 
   intHumanize(value) {
-    
     if (value === null || value === undefined) {
       return "";
     }

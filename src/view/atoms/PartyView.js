@@ -23,7 +23,6 @@ export default function PartyView({ partyID, pVotes }) {
     backgroundColor += Color.getOpacityChar(pVotes);
   }
 
-
   return (
     <Typography
       variant="caption"

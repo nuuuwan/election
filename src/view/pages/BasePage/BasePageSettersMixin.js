@@ -27,9 +27,11 @@ const BasePageSettersMixin = {
   },
 
   setActivePDID(activePDID) {
-    const {election} = this.state;
+    const { election } = this.state;
     const nResultsDisplay =
-    election.pdResultsList.findIndex((result) => result.entID === activePDID) + 1;
+      election.pdResultsList.findIndex(
+        (result) => result.entID === activePDID
+      ) + 1;
     this.setStateAndContext({ activePDID, nResultsDisplay });
   },
 

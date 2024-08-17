@@ -36,7 +36,7 @@ export default function ColumnResults({
         elections={db.elections}
         entID={activePDID}
       />
-      <BellwetherView 
+      <BellwetherView
         elections={db.elections}
         electionDisplay={electionDisplay}
       />

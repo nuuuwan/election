@@ -1,7 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 
 export default function LabelledStat({ label, valueStr, sx }) {
-
   return (
     <Stack
       direction="column"

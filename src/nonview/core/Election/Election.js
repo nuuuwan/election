@@ -181,8 +181,6 @@ class Election extends ElectionBase {
     {});
   }
 
-
-
   get nResults() {
     return this.pdResultsList.length;
   }

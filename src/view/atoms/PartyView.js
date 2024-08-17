@@ -14,7 +14,7 @@ export default function PartyView({ partyID, pVotes }) {
 
   const label = partyID === Party.UNCERTAIN.id ? "Margin of Error" : partyID;
   let backgroundColor = party.isNonParty ? "white" : party.color;
-  let textColor = "white";
+  let textColor = party.isNonParty ? party.color : "white";
   if (pVotes) {
     const opacity = Color.getOpacity(pVotes);
     textColor = party.isNonParty
@@ -22,6 +22,7 @@ export default function PartyView({ partyID, pVotes }) {
       : Color.getTextColor(backgroundColor, opacity);
     backgroundColor += Color.getOpacityChar(pVotes);
   }
+
 
   return (
     <Typography

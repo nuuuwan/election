@@ -56,6 +56,7 @@ export default class PartyToVotes {
 
     sortedMajorEntries.push(["Other", otherVotes]);
 
+
     return Object.fromEntries(sortedMajorEntries);
   }
 

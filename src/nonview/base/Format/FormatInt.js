@@ -10,8 +10,13 @@ let FormatInt = {
   },
 
   intHumanize(value) {
+    
     if (value === null || value === undefined) {
       return "";
+    }
+
+    if (value === 0) {
+      return 0;
     }
 
     const tier = Math.floor(Math.log10(Math.abs(value)) / 3);

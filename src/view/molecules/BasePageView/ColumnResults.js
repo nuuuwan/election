@@ -3,6 +3,7 @@ import { Box, Typography } from "@mui/material";
 import { STYLE } from "../../../nonview/constants";
 
 import { ResultSingleView, PDSelector } from "../../molecules";
+import BellwetherView from "../BellwetherView";
 
 export default function ColumnResults({
   election,
@@ -34,6 +35,10 @@ export default function ColumnResults({
         election={electionDisplay}
         elections={db.elections}
         entID={activePDID}
+      />
+      <BellwetherView 
+        elections={db.elections}
+        electionDisplay={electionDisplay}
       />
     </Box>
   );

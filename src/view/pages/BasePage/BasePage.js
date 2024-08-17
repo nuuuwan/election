@@ -167,32 +167,23 @@ export default class BasePage extends Component {
     const {
       election,
       elections,
-      nResultsDisplay,
       isPlaying,
-      activePDID,
       pdIdx,
       edIdx,
     } = this.state;
     if (!election) {
       return <CircularProgress />;
     }
+
     return (
       <BasePageView
-        activePDID={activePDID}
-        edIdx={edIdx}
         election={election}
-        elections={elections}
         isPlaying={isPlaying}
-        nResultsDisplay={nResultsDisplay}
-        pdIdx={pdIdx}
         //
         electionDisplay={this.electionDisplay}
-        nResultsReleased={this.nResultsReleased}
-        resultDisplayPDIDs={this.resultDisplayPDIDs}
-        resultLKDisplay={this.resultLKDisplay}
-        resultsIdx={this.resultsIdx}
-        resultsIdxDisplay={this.resultsIdxDisplay}
-        subTitleProgress={this.subTitleProgress}
+        elections={elections}
+        pdIdx={pdIdx}
+        edIdx={edIdx}
         //
         pauseAnimation={this.pauseAnimation.bind(this)}
         playAnimation={this.playAnimation.bind(this)}

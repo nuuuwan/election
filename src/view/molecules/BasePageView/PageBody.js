@@ -7,20 +7,25 @@ import ColumnMap from "./ColumnMap";
 import ColumnProjection from "./ColumnProjection";
 
 export default function PageBody({
-  activePDID,
-  edIdx,
   election,
+  electionDisplay,
+  //
   elections,
-  nResultsDisplay,
   pdIdx,
-  result,
-  resultLKDisplay,
-  resultsIdx,
-  resultsIdxDisplay,
-  resultDisplayPDIDs,
+  edIdx,
+  //
   setActivePDID,
-  subTitleProgress,
 }) {
+
+  const activePDID = electionDisplay.pdResultsList[electionDisplay.nResults - 1].entID;
+  const resultsIdx = election.resultsIdx;
+  const resultsIdxDisplay = electionDisplay.resultsIdx;
+  const subTitleProgress = `${electionDisplay.nResults}/${election.nResults} Results`;
+  const resultLKDisplay= electionDisplay.resultsIdx['LK'];
+  const resultDisplayPDIDs = electionDisplay.pdResultsList.map((result) => result.entID);
+  const result = electionDisplay.resultsIdx[activePDID];
+  const nResultsDisplay = electionDisplay.nResults;
+
   return (
     <Box
       sx={{

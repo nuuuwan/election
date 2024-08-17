@@ -13,7 +13,7 @@ export default function PartyView({ partyID, pVotes }) {
   const party = Party.fromID(partyID);
 
   const label = partyID === Party.UNCERTAIN.id ? "Margin of Error" : partyID;
-  let backgroundColor = party.isNonParty ? party.color : "white";
+  let backgroundColor = party.isNonParty ? "white" : party.color;
   let textColor = "white";
   if (pVotes) {
     const opacity = Color.getOpacity(pVotes);

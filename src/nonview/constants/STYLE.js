@@ -1,8 +1,7 @@
 let STYLE = {};
 
-
 function gray(x) {
-  return '#' + x.repeat(3);
+  return "#" + x.repeat(3);
 }
 
 STYLE.COLOR = {

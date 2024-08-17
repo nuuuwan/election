@@ -2,7 +2,6 @@ import HEXAGON_MAP_DATA_PD from "./HEXAGON_MAP_DATA_PD";
 import HEXAGON_MAP_DATA_ED from "./HEXAGON_MAP_DATA_ED";
 import { STYLE } from "../../../nonview/constants";
 
-
 import SVGTitles from "./SVGTitles";
 import SVGLegendPercentages from "./SVGLegendPercentages";
 import SVGLegendParty from "./SVGLegendParty";

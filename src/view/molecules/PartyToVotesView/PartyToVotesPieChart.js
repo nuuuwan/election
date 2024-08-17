@@ -15,7 +15,7 @@ export default function PartyToVotesPieChart({ partyToVotes, chartSize }) {
       id: partyID,
       value: pVotes,
       label: partyID,
-      color: (party.color || STYLE.COLOR.LIGHT),
+      color: party.color || STYLE.COLOR.LIGHT,
     };
   });
 

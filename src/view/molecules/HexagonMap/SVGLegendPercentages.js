@@ -1,7 +1,6 @@
 import { STYLE } from "../../../nonview/constants";
 import { Color, Format } from "../../../nonview/base";
 
-
 import SVGHexagon from "./SVGHexagon";
 
 export default function SVGLegendPercentages({ x, y }) {

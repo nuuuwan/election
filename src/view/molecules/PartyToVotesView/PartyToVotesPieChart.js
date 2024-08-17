@@ -1,6 +1,6 @@
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
 import { Party } from "../../../nonview/core";
-import {  Format } from "../../../nonview/base";
+import { Format } from "../../../nonview/base";
 
 import { STYLE } from "../../../nonview/constants";
 import { Box } from "@mui/material";
@@ -15,7 +15,7 @@ export default function PartyToVotesPieChart({ partyToVotes, chartSize }) {
       id: partyID,
       value: pVotes,
       label: partyID,
-      color: (party.color || STYLE.COLOR.LIGHT) ,
+      color: party.color || STYLE.COLOR.LIGHT,
     };
   });
 

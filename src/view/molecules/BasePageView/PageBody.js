@@ -44,23 +44,26 @@ export default function PageBody({
   db,
   setActivePDID,
 }) {
-
-
   return (
     <Box sx={STYLE}>
-      { (electionDisplay.nResults=== 0) ? (<Typography variant="h3" sx={{paddingTop: 10, paddingBottom: 20}}>Await results...</Typography>) : (     <Grid container rowSpacing={4}>
-        {getColumns(election, electionDisplay, db, setActivePDID).map(function (
-          column,
-          i
-        ) {
-          return (
-            <Grid key={i} item xs={12} md={6} xl={3}>
-              {column}
-            </Grid>
-          );
-        })}
-      </Grid>)}
- 
+      {electionDisplay.nResults === 0 ? (
+        <Typography variant="h3" sx={{ paddingTop: 10, paddingBottom: 20 }}>
+          Await results...
+        </Typography>
+      ) : (
+        <Grid container rowSpacing={4}>
+          {getColumns(election, electionDisplay, db, setActivePDID).map(
+            function (column, i) {
+              return (
+                <Grid key={i} item xs={12} md={6} xl={3}>
+                  {column}
+                </Grid>
+              );
+            }
+          )}
+        </Grid>
+      )}
+
       <CitationsView />
     </Box>
   );

@@ -1,4 +1,4 @@
-import { Stack,  } from "@mui/material";
+import { Stack } from "@mui/material";
 import SummaryView from "../../view/molecules/SummaryView";
 import PartyToVotesView from "./PartyToVotesView/PartyToVotesView";
 

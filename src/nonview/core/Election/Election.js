@@ -143,20 +143,71 @@ class Election extends ElectionBase {
     return edResultList;
   }
 
+  static getProvinceID(edID) {
+    return {
+      "EC-01": "LK-1",
+      "EC-02": "LK-1",
+      "EC-03": "LK-1",
+      "EC-04": "LK-2",
+      "EC-05": "LK-2",
+      "EC-06": "LK-2",
+      "EC-07": "LK-3",
+      "EC-08": "LK-3",
+      "EC-09": "LK-3",
+      "EC-10": "LK-4",
+      "EC-11": "LK-4",
+      "EC-12": "LK-5",
+      "EC-13": "LK-5",
+      "EC-14": "LK-5",
+      "EC-15": "LK-6",
+      "EC-16": "LK-6",
+      "EC-17": "LK-7",
+      "EC-18": "LK-7",
+      "EC-19": "LK-8",
+      "EC-20": "LK-8",
+      "EC-21": "LK-9",
+      "EC-22": "LK-9",       
+    }[edID];
+  }
+
+  static buildProvinceResultList(pdResultList) {
+    const provinceIDToResultList = pdResultList.reduce(function (
+      provinceIDToResultList,
+      pdResult
+    ) {
+      const pdID = pdResult.entID;
+      const edID = pdID.substring(0, 5);
+      const provinceID = Election.getProvinceID(edID)
+      if (!provinceIDToResultList[provinceID]) {
+        provinceIDToResultList[provinceID] = [];
+      }
+      provinceIDToResultList[provinceID].push(pdResult);
+      return provinceIDToResultList;
+    },
+    {});
+    const edResultList = Object.entries(provinceIDToResultList).map(function ([
+      edID,
+      resultListForED,
+    ]) {
+      return Result.fromList(edID, resultListForED);
+    });
+    return edResultList;
+  }
+
+
   static buildLKResult(pdResultList) {
     return Result.fromList("LK", pdResultList);
   }
 
   static expand(pdResultList) {
     const edResultList = Election.buildEDResultList(pdResultList);
+    const provinceResultList = Election.buildProvinceResultList(pdResultList);
     const lkResult = Election.buildLKResult(pdResultList);
-    return [lkResult, ...edResultList, ...pdResultList];
+    return [lkResult, ...provinceResultList, ...edResultList, ...pdResultList];
   }
 
   getSubsetElectionByPDResultList(pdResultList) {
-    const edResultList = Election.buildEDResultList(pdResultList);
-    const lkResult = Election.buildLKResult(pdResultList);
-    const resultList = [lkResult, ...edResultList, ...pdResultList];
+    const resultList = Election.expand(pdResultList);
     const election = new Election(this.electionType, this.date);
     election.resultList = resultList;
     election.resultIdx = Election.buildResultIdx(resultList);

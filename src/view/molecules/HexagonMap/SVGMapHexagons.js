@@ -21,13 +21,13 @@ function getLabel(name) {
 export default function SVGMapHexagons({
   mapData,
   resultIdx,
-  pdIdx,
+  db,
   setActivePDID,
 }) {
   const { idx } = mapData;
   return Object.entries(idx).map(function ([entID, [x, y]]) {
     const result = resultIdx[entID];
-    const ent = pdIdx[entID];
+    const ent = db.pdIdx[entID] || db.edIdx[entID] || db.provinceIdx[entID];
     const label = getLabel(ent.name);
 
     let color = STYLE.COLOR.LIGHTEST;
@@ -40,7 +40,9 @@ export default function SVGMapHexagons({
     }
 
     const onClick = function () {
-      setActivePDID(entID);
+      if (entID.length === 6) {
+        setActivePDID(entID);
+      }
     };
 
     return (

@@ -24,7 +24,7 @@ export default function ColumnMap({
       </Box>
       <HexagonMap
         election={electionDisplay}
-        pdIdx={db.pdIdx}
+        db={db}
         setActivePDID={setActivePDID}
       />
     </Box>

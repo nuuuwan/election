@@ -8,7 +8,6 @@
 
 ### Major
 
-* Hexagon Maps for Provinces and Districts
 * Move to 3-column formal - which is more in line with Mobile ❓
 
 ### Minor

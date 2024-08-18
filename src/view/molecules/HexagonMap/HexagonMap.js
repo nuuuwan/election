@@ -14,10 +14,9 @@ function getPDMapData() {
 }
 
 function offsetData(originalData, idSuffix, [offsetX, offsetY]) {
-  
   const idx = Object.fromEntries(
     Object.entries(originalData.idx).map(function ([entID, [x, y]]) {
-      return [entID + idSuffix , [x + offsetX, y + offsetY]];
+      return [entID + idSuffix, [x + offsetX, y + offsetY]];
     })
   );
   const idx2 = Object.fromEntries(
@@ -36,21 +35,16 @@ function offsetData(originalData, idSuffix, [offsetX, offsetY]) {
 }
 
 function getPostalPDMapData() {
-
   return offsetData(HEXAGON_MAP_DATA_ED, "P", [9, -0.5]);
 }
 
-
 function getEDMapData() {
-
   return offsetData(HEXAGON_MAP_DATA_ED, "", [-3, 4]);
 }
 
 function getProvinceMapData() {
   return offsetData(HEXAGON_MAP_DATA_PROVINCE, "", [-3, 16]);
 }
-
-
 
 function getViewBox() {
   const mapData = [].concat(
@@ -102,13 +96,13 @@ export default function HexagonMap({ election, db, setActivePDID }) {
         setActivePDID={setActivePDID}
       />
 
-<SVGMap
+      <SVGMap
         resultIdx={resultIdx}
         mapData={getEDMapData()}
         db={db}
         setActivePDID={setActivePDID}
       />
-<SVGMap
+      <SVGMap
         resultIdx={resultIdx}
         mapData={getProvinceMapData()}
         db={db}

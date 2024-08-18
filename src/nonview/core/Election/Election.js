@@ -166,7 +166,7 @@ class Election extends ElectionBase {
       "EC-19": "LK-8",
       "EC-20": "LK-8",
       "EC-21": "LK-9",
-      "EC-22": "LK-9",       
+      "EC-22": "LK-9",
     }[edID];
   }
 
@@ -177,7 +177,7 @@ class Election extends ElectionBase {
     ) {
       const pdID = pdResult.entID;
       const edID = pdID.substring(0, 5);
-      const provinceID = Election.getProvinceID(edID)
+      const provinceID = Election.getProvinceID(edID);
       if (!provinceIDToResultList[provinceID]) {
         provinceIDToResultList[provinceID] = [];
       }
@@ -193,7 +193,6 @@ class Election extends ElectionBase {
     });
     return edResultList;
   }
-
 
   static buildLKResult(pdResultList) {
     return Result.fromList("LK", pdResultList);

@@ -9,10 +9,15 @@ import {
 
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import LastPageIcon from "@mui/icons-material/LastPage";
+
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
+
 import Replay10Icon from "@mui/icons-material/Replay10";
 import Forward10Icon from "@mui/icons-material/Forward10";
+
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 import { useState } from "react";
 import { STYLE } from "../../nonview/constants";
@@ -52,8 +57,20 @@ function getBottomNavigationActionConfigs(
       disabled: nResultsDisplay === 0,
     },
     {
+      Icon: KeyboardArrowLeftIcon,
+      onClick: () =>
+        setNResultsDisplay(Math.max(0, nResultsDisplay - 1)),
+      disabled: nResultsDisplay === 0,
+    },
+    {
       Icon: isPlaying ? PauseIcon : PlayArrowIcon,
       onClick: () => (isPlaying ? pauseAnimation() : playAnimation()),
+    },
+    {
+      Icon: KeyboardArrowRightIcon,
+      onClick: () =>
+        setNResultsDisplay(Math.min(nResults, nResultsDisplay + 1)),
+      disabled: nResultsDisplay === nResults,
     },
     {
       Icon: Forward10Icon,

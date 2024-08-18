@@ -20,7 +20,7 @@ export default function PartyToVotesPieChart({ partyToVotes, chartSize }) {
   });
 
   return (
-    <Box sx={{ display: "flex", p: 1 }}>
+    <Box sx={{ display: "flex", p: 0.5 }}>
       <PieChart
         series={[
           {

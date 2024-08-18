@@ -21,7 +21,6 @@ export default function ColumnLatestResult({
 
   const activePDID = electionDisplay.finalPDID;
   const color = electionDisplay.getResult(activePDID).winningPartyColor;
-  console.debug(color);
   return (
     <Box>
       <Box sx={STYLE.BODY_HEADER}>

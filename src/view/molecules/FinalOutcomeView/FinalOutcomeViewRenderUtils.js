@@ -15,11 +15,11 @@ function Confidence() {
 export default class FinalOutcomeViewRenderUtils {
   static renderTooMuchUncertainty() {
     return [
-      <Typography variant="h6">Too much uncertainty to call</Typography>,
+      <Typography variant="h6">Error Margin too High</Typography>,
       <Typography variant="caption">
         The voting preferences of &gt;
         {Format.percent(FinalOutcome.P_TOO_MUCH_UNCERTAINTY)} of votes are
-        within the Margin of Error.
+        within the Error Margin. Please wait for more results.
       </Typography>,
     ];
   }
@@ -81,7 +81,7 @@ export default class FinalOutcomeViewRenderUtils {
 
   static renderTooCloseToCall(likelyWinnerPartyInfoList, pUncertainHappenning) {
     return [
-      <Typography variant="body1">Too close to call</Typography>,
+      <Typography variant="h6">Too close to call</Typography>,
       <Typography variant="caption">
         Possible Outcomes & Probabilities
       </Typography>,

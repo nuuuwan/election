@@ -7,7 +7,7 @@ export default function PredictionView({
   db,
 }) {
   return (
-    <Stack direction="column" gap={2}>
+    <Stack direction="column" gap={0}>
       <ResultSingleView
         election={projectedElection}
         entID="LK"

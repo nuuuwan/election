@@ -12,7 +12,7 @@ const STYLE_LABEL = {
 export default function PartyView({ partyID, pVotes }) {
   const party = Party.fromID(partyID);
 
-  const label = partyID === Party.UNCERTAIN.id ? "Margin of Error" : partyID;
+  const label = partyID === Party.UNCERTAIN.id ? "Error Margin" : partyID;
   let backgroundColor = party.isNonParty ? "white" : party.color;
   let textColor = party.isNonParty ? party.color : "white";
   if (pVotes) {

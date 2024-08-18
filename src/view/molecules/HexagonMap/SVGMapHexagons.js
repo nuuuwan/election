@@ -4,7 +4,6 @@ import { Party } from "../../../nonview/core";
 
 import SVGHexagon from "./SVGHexagon";
 
-
 export default function SVGMapHexagons({
   mapData,
   resultIdx,

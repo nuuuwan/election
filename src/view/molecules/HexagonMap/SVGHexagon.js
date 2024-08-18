@@ -16,7 +16,6 @@ function getShortLabel(name) {
   return words.map((word) => word.substring(0, 1)).join("");
 }
 
-
 function getPoints(x, y, radius) {
   const N_SIDES = 6;
 
@@ -35,7 +34,7 @@ export default function SVGHexagon({ x, y, color, label, opacity, onClick }) {
   const radius = 1 / Math.cos(Math.PI / 6) ** 2 / 2;
   const points = getPoints(x, y, radius);
   const textColor = Color.getTextColor(color, opacity);
-  const shortLabel = getShortLabel(label)
+  const shortLabel = getShortLabel(label);
   return (
     <g onClick={onClick}>
       <polygon
@@ -52,7 +51,7 @@ export default function SVGHexagon({ x, y, color, label, opacity, onClick }) {
         textAnchor="middle"
         alignmentBaseline="middle"
         fill={textColor}
-      > 
+      >
         <title>{label}</title>
         {shortLabel}
       </text>

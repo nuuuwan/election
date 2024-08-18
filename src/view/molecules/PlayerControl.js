@@ -29,11 +29,10 @@ const STYLE_PLAYER_CONTROL = {
     paddingTop: 1,
     backgroundColor: STYLE.COLOR.LIGHTEST,
   },
-  BOTTOM_NAVIGATION : {
+  BOTTOM_NAVIGATION: {
     backgroundColor: STYLE.COLOR.LIGHTEST,
-  }
+  },
 };
-
 
 const N_JUMP_STEPS = 10;
 
@@ -152,7 +151,6 @@ function CustomSlider({
     </Stack>
   );
 }
-
 
 export default function PlayerControl({
   electionDisplay,

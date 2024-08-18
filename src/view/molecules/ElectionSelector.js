@@ -1,22 +1,22 @@
-import { Box,  Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import { CustomSelect } from "../atoms";
 
 function renderValue(election, i) {
   const color = election.color;
   return (
-      <Typography variant="h4" sx={{color: "white", backgroundColor: color}}>
-        {election.title}
-      </Typography>
+    <Typography variant="h4" sx={{ color: "white", backgroundColor: color }}>
+      {election.title}
+    </Typography>
   );
 }
 
 function renderMenuItemInner(election, i) {
   const color = election.color;
   return (
-      <Typography variant="h6" sx={{color}}>
-        {election.title}
-      </Typography>
+    <Typography variant="h6" sx={{ color }}>
+      {election.title}
+    </Typography>
   );
 }
 

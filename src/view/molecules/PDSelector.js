@@ -21,7 +21,7 @@ function buildRenderMenuItemInner(resultIdx, edIdx, variant1, variant2) {
         <Typography variant={variant1} color={colorPD}>
           {pd.name}
         </Typography>
-        <Typography variant={variant2}  color={colorED} sx={{ opacity: 0.5 }}>
+        <Typography variant={variant2} color={colorED} sx={{ opacity: 0.5 }}>
           {ed.name}
         </Typography>
       </Stack>
@@ -51,14 +51,14 @@ export default function PDSelector({
       renderValue={buildRenderMenuItemInner(
         election.resultIdx,
         db.edIdx,
-        'h6',
-        'body1',
+        "h6",
+        "body1"
       )}
       renderMenuItemInner={buildRenderMenuItemInner(
         election.resultIdx,
         db.edIdx,
-        'body1',
-        'body2'
+        "body1",
+        "body2"
       )}
       getDividerKey={function (pd) {
         return pd.name.substring(0, 1);

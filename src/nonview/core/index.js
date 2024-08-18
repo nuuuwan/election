@@ -8,7 +8,7 @@ import Party from "./Party";
 import PartyToVotes from "./PartyToVotes";
 import Result from "./Result";
 import Summary from "./Summary";
-import TestElection from "./TestElection";
+import OngoingElection from "./OngoingElection";
 
 export {
   Bellwether,
@@ -20,5 +20,5 @@ export {
   PartyToVotes,
   Result,
   Summary,
-  TestElection,
+  OngoingElection,
 };

@@ -5,7 +5,7 @@ import ElectionBase from "./ElectionBase.js";
 
 import ElectionGetters from "./ElectionGetters.js";
 
-import TestElection from "../TestElection.js";
+import OngoingElection from "../OngoingElection.js";
 
 class Election extends ElectionBase {
   static MIN_RESULTS = 10;
@@ -23,7 +23,7 @@ class Election extends ElectionBase {
   }
   async __loadData() {
     if (this.isFuture) {
-      await TestElection.loadData(this);
+      await OngoingElection.loadData(this);
     } else {
       this.resultList = await this.getResultList();
       this.resultIdx = Election.buildResultIdx(this.resultList);

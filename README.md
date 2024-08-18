@@ -2,7 +2,7 @@
 
 ## App
 
-[https://nuuuwan.github.io/prespollsl2024/](https://nuuuwan.github.io/prespollsl2024/)
+[https://nuuuwan.github.io/prespoll/](https://nuuuwan.github.io/prespoll/)
 
 ## TODOs
 

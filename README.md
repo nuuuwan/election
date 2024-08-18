@@ -8,15 +8,14 @@
 
 ### Major
 
-* Move to 3-column formal - which is more in line with Mobile
 * Hexagon Maps for Provinces and Districts
+* Move to 3-column formal - which is more in line with Mobile ❓
 
 ### Minor
 
-* Change repo/app name to ##PresPoll
-
 ### One Liners
 
+* Tooltips for HexagonMap Hexagons
 * Replace number of votes with percentage ❓
 * Replace humanized number of votes, with actual number of votes ❓
 

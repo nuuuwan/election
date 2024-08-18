@@ -12,6 +12,7 @@ const STYLE = {
 
 const STYLE_GRID = {
   paddingBottom: 10,
+  border: "1px solid #f0f0f0",
 };
 
 function getColumns(

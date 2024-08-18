@@ -14,7 +14,6 @@ const STYLE_PAGE_HEADER = {
 };
 
 export default function PageHeader({
-
   electionDisplay,
   projectedElection,
   db,

@@ -3,17 +3,19 @@ import { Box, Typography } from "@mui/material";
 import { CustomSelect } from "../atoms";
 
 function getRenderValue(colorElection) {
-  const renderValue = function(election, i) {
-    const color = (colorElection.date === election.date)? colorElection.color : election.color;
+  const renderValue = function (election, i) {
+    const color =
+      colorElection.date === election.date
+        ? colorElection.color
+        : election.color;
     return (
       <Typography variant="h4" sx={{ color: "white", backgroundColor: color }}>
         {election.title}
       </Typography>
     );
-  }
+  };
   return renderValue;
 }
-
 
 function renderMenuItemInner(election, i) {
   const color = election.color;

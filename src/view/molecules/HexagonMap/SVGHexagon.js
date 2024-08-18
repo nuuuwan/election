@@ -2,6 +2,21 @@ import { Color, MathX } from "../../../nonview/base";
 
 import { STYLE } from "../../../nonview/constants";
 
+function replaceLowercaseVowels(str) {
+  return str.replace(/[aeiou]/g, "");
+}
+
+function getShortLabel(name) {
+  name = name.replace("Postal ", "");
+  name = replaceLowercaseVowels(name);
+  const words = name.split(" ");
+  if (words.length === 1) {
+    return name.substring(0, 3).toUpperCase();
+  }
+  return words.map((word) => word.substring(0, 1)).join("");
+}
+
+
 function getPoints(x, y, radius) {
   const N_SIDES = 6;
 
@@ -20,7 +35,7 @@ export default function SVGHexagon({ x, y, color, label, opacity, onClick }) {
   const radius = 1 / Math.cos(Math.PI / 6) ** 2 / 2;
   const points = getPoints(x, y, radius);
   const textColor = Color.getTextColor(color, opacity);
-
+  const shortLabel = getShortLabel(label)
   return (
     <g onClick={onClick}>
       <polygon
@@ -33,12 +48,13 @@ export default function SVGHexagon({ x, y, color, label, opacity, onClick }) {
       <text
         x={x}
         y={y + 0.1}
-        fontSize={(0.4 * 3) / Math.max(3, label.length)}
+        fontSize={(0.4 * 3) / Math.max(3, shortLabel.length)}
         textAnchor="middle"
         alignmentBaseline="middle"
         fill={textColor}
-      >
-        {label}
+      > 
+        <title>{label}</title>
+        {shortLabel}
       </text>
     </g>
   );

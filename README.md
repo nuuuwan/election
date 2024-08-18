@@ -12,9 +12,16 @@
 
 ### Minor
 
+* Contrast color header
+
 ### One Liners
 
-* Tooltips for HexagonMap Hexagons
+* Remove title number
+* Lighter font for Citations
+* Fix HTML Title
+* Swap Pie Chart and Stats labels
+* Remove date from Election ❓
+* Swap Latest and Cumulative Results ❓
 * Replace number of votes with percentage ❓
 * Replace humanized number of votes, with actual number of votes ❓
 

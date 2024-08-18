@@ -24,6 +24,7 @@ export default function ColumnResults({
   return (
     <Box>
       <Box sx={STYLE.BODY_HEADER}>
+      <Typography variant="caption" component="div" color={STYLE.COLOR.LIGHT}>Latest Result</Typography>
         <PDSelector
           election={election}
           activePDID={activePDID}

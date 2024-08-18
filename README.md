@@ -17,7 +17,6 @@
 
 ### One Liners
 
-* "Latest Result"
 * Add buttons to move by a single step in slider
 * Add padding above slider
 * Citations on multiple lines

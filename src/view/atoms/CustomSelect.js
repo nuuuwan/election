@@ -5,6 +5,10 @@ const STYLE = {
   "& .MuiOutlinedInput-notchedOutline": {
     border: "none",
   },
+  "& .MuiSelect-select": {
+    margin: 0,
+    padding: 0,
+  },
 };
 
 function CustomSelectInner({

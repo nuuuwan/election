@@ -17,7 +17,6 @@
 
 ### One Liners
 
-* Add padding to bottom of columns
 * Replace number of votes with percentage
 * Replace humanized number of votes, with actual number of votes
 * "Cumulative"

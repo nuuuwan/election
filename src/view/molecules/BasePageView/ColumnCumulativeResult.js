@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import { STYLE } from "../../../nonview/constants";
-import { ResultSingleView, CitationsView } from "../../molecules";
+import { ResultSingleView, CitationsView } from "..";
 
-export default function ColumnResultsLK({ election, electionDisplay, db }) {
+export default function ColumnCumulativeResult({ election, electionDisplay, db }) {
   const subTitleProgress = `Cumulative Total (${electionDisplay.nResults}/${election.nResults})`;
 
   return (

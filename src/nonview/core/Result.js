@@ -17,9 +17,9 @@ export default class Result {
     return new Result(entID, summary, partyToVotes);
   }
 
-  static fromList(entID, results) {
-    const summary = Summary.fromList(results);
-    const partyToVotes = PartyToVotes.fromList(results);
+  static fromList(entID, resultList) {
+    const summary = Summary.fromList(resultList);
+    const partyToVotes = PartyToVotes.fromList(resultList);
 
     return new Result(entID, summary, partyToVotes);
   }

@@ -69,7 +69,7 @@ export default class ElectionModel {
     );
 
     const releasedResultList = this.releasedPDIDList.map((pdID) =>
-      this.currentElection.getResults(pdID)
+      this.currentElection.getResult(pdID)
     );
     const notReleasedResultList = this.nonReleasedPDIDList
       .map(function (pdID) {
@@ -87,7 +87,7 @@ export default class ElectionModel {
       ...notReleasedResultList,
     ].filter((result) => result);
     election.resultList = Election.expand(election.resultList);
-    election.resultIdx = Election.buildResultsIdx(election.resultList);
+    election.resultIdx = Election.buildResultIdx(election.resultList);
     election.isLoaded = true;
 
     return election;

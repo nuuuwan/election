@@ -15,7 +15,7 @@ const BasePageSettersMixin = {
     
     const election = await Election.fromElectionTypeAndDate(electionType, date);
     if (!election.isFuture) {
-      if (!election.resultIdx[activePDID]) {
+      if (!election.getResult(activePDID)) {
         activePDID = election.pdResultList[nResultsDisplay - 1].entID;
       }
       nResultsDisplay =

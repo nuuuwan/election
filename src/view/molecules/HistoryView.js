@@ -6,7 +6,7 @@ import { PartyView } from "../../view/atoms";
 const N_DISPLAY = 3;
 
 function HistoryViewRow({ election, entID }) {
-  const result = election.resultIdx[entID];
+  const result = election.getResult(entID);
   if (!result) {
     return null;
   }

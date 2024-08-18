@@ -15,8 +15,8 @@ class Election extends ElectionBase {
     this.resultIdx = null;
     this.isLoaded = false;
   }
-  getResults(id) {
-    if (!this.isLoaded || !this.resultIdx[id]) {
+  getResult(id) {
+    if (!this.isLoaded) {
       return null;
     }
     return this.resultIdx[id];
@@ -26,7 +26,7 @@ class Election extends ElectionBase {
       await TestElection.loadData(this);
     } else {
       this.resultList = await this.getResultList();
-      this.resultIdx = Election.buildResultsIdx(this.resultList);
+      this.resultIdx = Election.buildResultIdx(this.resultList);
       this.isLoaded = this.resultList.length > Election.MIN_RESULTS;
     }
   }
@@ -55,7 +55,7 @@ class Election extends ElectionBase {
     return sortedResultList;
   }
 
-  static buildResultsIdx(resultList) {
+  static buildResultIdx(resultList) {
     return Object.fromEntries(
       resultList.map((result) => [result.entID, result])
     );
@@ -143,7 +143,7 @@ class Election extends ElectionBase {
     const resultList = [lkResult, ...edResultList, ...pdResultList];
     const election = new Election(this.electionType, this.date);
     election.resultList = resultList;
-    election.resultIdx = Election.buildResultsIdx(resultList);
+    election.resultIdx = Election.buildResultIdx(resultList);
     election.isLoaded = true;
     return election;
   }
@@ -152,7 +152,7 @@ class Election extends ElectionBase {
     const pdResultList = pdIDList
       .map(
         function (pdID) {
-          return this.resultIdx[pdID];
+          return this.getResult(pdID);
         }.bind(this)
       )
       .filter(function (result) {
@@ -194,7 +194,7 @@ class Election extends ElectionBase {
   }
 
   get resultLK() {
-    return this.resultIdx["LK"];
+    return this.getResult("LK");
   }
 
   get pdIDList() {

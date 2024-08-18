@@ -9,7 +9,7 @@ export default class ElectionModelUtils {
   static getFeatureVector(election, partyID, pdIDList) {
     // Returns a vector with the % of votes party(ID) has got for pdIDList, in election election.
     return pdIDList.map(function (pdID) {
-      const pdResult = election.getResults(pdID);
+      const pdResult = election.getResult(pdID);
       if (!pdResult) {
         return 0.0;
       }
@@ -160,7 +160,7 @@ export default class ElectionModelUtils {
     if (!lastElection) {
       return null;
     }
-    let result = JSON.parse(JSON.stringify(lastElection.getResults(pdID)));
+    let result = JSON.parse(JSON.stringify(lastElection.getResult(pdID)));
     if (!result) {
       return null;
     }

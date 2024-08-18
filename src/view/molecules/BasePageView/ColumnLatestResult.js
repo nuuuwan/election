@@ -2,10 +2,10 @@ import { Box, Typography } from "@mui/material";
 
 import { STYLE } from "../../../nonview/constants";
 
-import { ResultSingleView, PDSelector } from "../../molecules";
+import { ResultSingleView, PDSelector } from "..";
 import BellwetherView from "../BellwetherView";
 
-export default function ColumnResults({
+export default function ColumnLatestResult({
   election,
   electionDisplay,
   db,

@@ -8,7 +8,7 @@ export default function ResultSingleView({
   entID,
   chartSize,
 }) {
-  const result = election.resultIdx[entID];
+  const result = election.getResult(entID);
 
   if (!result) {
     return null;

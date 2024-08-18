@@ -1,7 +1,7 @@
 import { Box, Grid, Typography } from "@mui/material";
 
-import ColumnResults from "./ColumnResults";
-import ColumnResultsLK from "./ColumnResultsLK";
+import ColumnLatestResult from "./ColumnLatestResult";
+import ColumnCumulativeResult from "./ColumnCumulativeResult";
 import ColumnMap from "./ColumnMap";
 import ColumnProjection from "./ColumnProjection";
 
@@ -16,13 +16,13 @@ const STYLE_GRID = {
 
 function getColumns(election, electionDisplay, db, predictedElection, setActivePDID, ) {
   return [
-    <ColumnResults
+    <ColumnLatestResult
       election={election}
       electionDisplay={electionDisplay}
       db={db}
       setActivePDID={setActivePDID}
     />,
-    <ColumnResultsLK
+    <ColumnCumulativeResult
       election={election}
       electionDisplay={electionDisplay}
       db={db}

@@ -14,7 +14,6 @@
 
 * Estimate Rejected votes etc based on election of same kind. Otherwise they could be off.
 * Prediction -> Projection
-* Results -> Result/ResultList
 
 ### One Liners
 

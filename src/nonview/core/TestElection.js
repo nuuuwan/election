@@ -40,7 +40,7 @@ export default class TestElection {
     const lkResult = Election.buildLKResult(pdResultList);
 
     election.resultList = [].concat(pdResultList, edResultList, [lkResult]);
-    election.resultIdx = Election.buildResultsIdx(election.resultList);
+    election.resultIdx = Election.buildResultIdx(election.resultList);
     election.isLoaded = true;
     return election;
   }

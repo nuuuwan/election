@@ -138,4 +138,4 @@ const HEXAGON_MAP_DATA_PROVINCE = {
   "dim": 1
 }
 
-export default HEXAGON_MAP_DATA_ED;
+export default HEXAGON_MAP_DATA_PROVINCE;

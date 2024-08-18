@@ -2,14 +2,18 @@ import { Box, Typography } from "@mui/material";
 
 import { CustomSelect } from "../atoms";
 
-function renderValue(election, i) {
-  const color = election.color;
-  return (
-    <Typography variant="h4" sx={{ color: "white", backgroundColor: color }}>
-      {election.title}
-    </Typography>
-  );
+function getRenderValue(colorElection) {
+  const renderValue = function(election, i) {
+    const color = (colorElection.date === election.date)? colorElection.color : election.color;
+    return (
+      <Typography variant="h4" sx={{ color: "white", backgroundColor: color }}>
+        {election.title}
+      </Typography>
+    );
+  }
+  return renderValue;
 }
+
 
 function renderMenuItemInner(election, i) {
   const color = election.color;
@@ -24,6 +28,7 @@ export default function ElectionSelector({
   selectedElection,
   elections,
   setElection,
+  colorElection,
 }) {
   const presidentialElections = elections.filter(
     (election) => election.electionType === "Presidential"
@@ -38,7 +43,7 @@ export default function ElectionSelector({
         getID={function (election) {
           return election.date;
         }}
-        renderValue={renderValue}
+        renderValue={getRenderValue(colorElection)}
         renderMenuItemInner={renderMenuItemInner}
         getDividerKey={function (election) {
           return election.date.substring(0, 3);

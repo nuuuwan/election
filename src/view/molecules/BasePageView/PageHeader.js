@@ -14,18 +14,20 @@ const STYLE_PAGE_HEADER = {
 };
 
 export default function PageHeader({
-  election,
+
   electionDisplay,
+  projectedElection,
   db,
   setElection,
 }) {
-  const color = election.color;
+  const color = projectedElection.color;
   return (
     <Box
       sx={Object.assign({ backgroundColor: color }, STYLE_PAGE_HEADER.SELECTOR)}
     >
       <ElectionSelector
         selectedElection={electionDisplay}
+        colorElection={projectedElection}
         elections={db.elections}
         setElection={setElection}
       />

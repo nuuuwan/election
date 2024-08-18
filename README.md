@@ -12,7 +12,7 @@
 
 ## Previous Designs
 
-![PresPollSL2024](README.files/PresPollSL2024.png)
+![PresPollSL2024-v1](README.files/PresPollSL2024-v1.png)
 
 ![PresPollSL2019-v1](README.files/PresPollSL2019-v1.png)
 

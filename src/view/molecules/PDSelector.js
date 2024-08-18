@@ -2,7 +2,7 @@ import { Stack, Typography } from "@mui/material";
 import { Party } from "../../nonview/core";
 import { CustomSelect } from "../atoms";
 
-function buildRenderMenuItemInner(resultIdx, edIdx) {
+function buildRenderMenuItemInner(resultIdx, edIdx, variant1, variant2) {
   const renderMenuItemInner = function (pd, i) {
     const result = resultIdx[pd.id];
     if (!result) {
@@ -15,13 +15,13 @@ function buildRenderMenuItemInner(resultIdx, edIdx) {
     const ed = edIdx[edID];
     const edResult = resultIdx[edID];
     const colorED = Party.fromID(edResult.partyToVotes.winningPartyID).color;
-    const variant = pd.name.length > 20 ? "h6" : "h5";
+
     return (
-      <Stack direction="row" gap={1} sx={{ alignItems: "center" }}>
-        <Typography variant={variant} color={colorPD}>
+      <Stack direction="row" gap={0.5} sx={{ alignItems: "center" }}>
+        <Typography variant={variant1} color={colorPD}>
           {pd.name}
         </Typography>
-        <Typography variant="body1" color={colorED} sx={{ opacity: 0.5 }}>
+        <Typography variant={variant2}  color={colorED} sx={{ opacity: 0.5 }}>
           {ed.name}
         </Typography>
       </Stack>
@@ -50,11 +50,15 @@ export default function PDSelector({
       }}
       renderValue={buildRenderMenuItemInner(
         election.resultIdx,
-        db.edIdx
+        db.edIdx,
+        'h6',
+        'body1',
       )}
       renderMenuItemInner={buildRenderMenuItemInner(
         election.resultIdx,
-        db.edIdx
+        db.edIdx,
+        'body1',
+        'body2'
       )}
       getDividerKey={function (pd) {
         return pd.name.substring(0, 1);

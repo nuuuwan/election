@@ -155,23 +155,11 @@ export default class ElectionModelUtils {
     return normPDToPartyToPVotes;
   }
 
-  static getSimulatedResult(
-    lastElection,
-    lastElectionOfSameType,
-    pdID,
-    normPDToPartyToPVotes,
-    pError
-  ) {
-    // We assume the summary from the last election is valid.
-    if (!lastElection) {
-      return null;
-    }
-
+  static getSimulatedSummary(pdID, lastElection, lastElectionOfSameType) {
     const resultLastSameType = lastElectionOfSameType.getResult(pdID);
     if (!resultLastSameType) {
       return null;
     }
-
     const resultLast = lastElection.getResult(pdID);
     const summaryLast = resultLast.summary;
     const summaryLastSameType = resultLastSameType.summary;
@@ -183,8 +171,11 @@ export default class ElectionModelUtils {
     );
     const valid = polled - rejected;
 
-    const summary = new Summary(valid, rejected, polled, electors);
+    return new Summary(valid, rejected, polled, electors);
+  }
 
+  static getSimulatedPartyToVotes(pdID, summary, normPDToPartyToPVotes, pError) { 
+    const valid = summary.valid;
     const partyToPVotes = normPDToPartyToPVotes[pdID];
     const partyToVotes = Object.entries(partyToPVotes).reduce(
       function (partyToVotes, [partyID, pVotes]) {
@@ -199,7 +190,34 @@ export default class ElectionModelUtils {
       },
       { [Party.UNCERTAIN.id]: 0 }
     );
+    return new PartyToVotes(partyToVotes);
+  }
 
-    return new Result(pdID, summary, new PartyToVotes(partyToVotes));
+  static getSimulatedResult(
+    lastElection,
+    lastElectionOfSameType,
+    pdID,
+    normPDToPartyToPVotes,
+    pError
+  ) {
+    // We assume the summary from the last election is valid.
+    if (!lastElection) {
+      return null;
+    }
+
+    const summary = ElectionModelUtils.getSimulatedSummary(
+      pdID,
+      lastElection,
+      lastElectionOfSameType
+    );
+    if (!summary) {
+      return null;
+    }
+
+    const partyToVotes = ElectionModelUtils.getSimulatedPartyToVotes(
+      pdID, summary, normPDToPartyToPVotes, pError
+    );
+
+    return new Result(pdID, summary, partyToVotes);
   }
 }

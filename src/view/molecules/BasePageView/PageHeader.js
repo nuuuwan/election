@@ -35,10 +35,6 @@ export default function PageHeader({ electionDisplay, db, setElection }) {
           setElection={setElection}
         />
       </Box>
-
-      <Box sx={STYLE_PAGE_HEADER.N_RESULTS_DISPLAY}>
-        <Typography variant="h6">{electionDisplay.nResults}</Typography>
-      </Box>
     </Box>
   );
 }

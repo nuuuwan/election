@@ -16,7 +16,6 @@
 
 ### One Liners
 
-* Remove title number
 * Lighter font for Citations
 * Fix HTML Title
 * Swap Pie Chart and Stats labels

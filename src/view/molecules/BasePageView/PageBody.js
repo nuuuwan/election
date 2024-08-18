@@ -21,10 +21,10 @@ function getColumns(
 ) {
   return [
     <ColumnProjection
-    projectedElection={projectedElection}
-    electionDisplay={electionDisplay}
-    db={db}
-  />,
+      projectedElection={projectedElection}
+      electionDisplay={electionDisplay}
+      db={db}
+    />,
     <ColumnCumulativeResult
       election={election}
       electionDisplay={electionDisplay}
@@ -33,17 +33,17 @@ function getColumns(
     />,
 
     <ColumnLatestResult
-    election={election}
-    electionDisplay={electionDisplay}
-    db={db}
-    setActivePDID={setActivePDID}
-  />,
-  <ColumnMap
-  election={election}
-  electionDisplay={electionDisplay}
-  db={db}
-  setActivePDID={setActivePDID}
-/>,
+      election={election}
+      electionDisplay={electionDisplay}
+      db={db}
+      setActivePDID={setActivePDID}
+    />,
+    <ColumnMap
+      election={election}
+      electionDisplay={electionDisplay}
+      db={db}
+      setActivePDID={setActivePDID}
+    />,
   ];
 }
 

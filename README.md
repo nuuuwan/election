@@ -18,7 +18,6 @@
 
 * Change repo/app name to PresPollSL
 * "Cumulative Total (56% released)"
-* "Result #23 (Latest)"
 * Replace number of votes with percentage ❓
 * Replace humanized number of votes, with actual number of votes ❓
 

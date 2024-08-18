@@ -25,7 +25,7 @@ export default function ColumnLatestResult({
     <Box>
       <Box sx={STYLE.BODY_HEADER}>
         <Typography variant="caption" component="div" color={STYLE.COLOR.LIGHT}>
-          Latest Result
+          Latest Result ({electionDisplay.nResults})
         </Typography>
         <PDSelector
           election={election}

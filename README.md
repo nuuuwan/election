@@ -1,4 +1,4 @@
-# Presidential Elections of Sri Lanka (#PresPollSL) App
+# Presidential Elections of Sri Lanka (###PresPoll) App
 
 ## App
 
@@ -13,7 +13,7 @@
 
 ### Minor
 
-* Change repo/app name to PresPollSL
+* Change repo/app name to ##PresPoll
 
 ### One Liners
 
@@ -22,11 +22,11 @@
 
 ## Previous Designs
 
-![PresPollSL2024-v1](README.files/PresPollSL2024-v1.png)
+![##PresPoll2024-v1](README.files/##PresPoll2024-v1.png)
 
-![PresPollSL2019-v1](README.files/PresPollSL2019-v1.png)
+![##PresPoll2019-v1](README.files/##PresPoll2019-v1.png)
 
-![PresPollSL2015](README.files/PresPollSL2015.png)
+![##PresPoll2015](README.files/##PresPoll2015.png)
 
 ![GenElecSL2020](README.files/GenElecSL2020.png)
 

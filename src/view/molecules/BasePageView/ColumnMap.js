@@ -20,7 +20,7 @@ export default function ColumnMap({
         })}
       >
         <Typography variant="caption">{subTitleProgress}</Typography>
-        <Typography variant="h4">The Map</Typography>
+        <Typography variant="h4">Maps</Typography>
       </Box>
       <HexagonMap
         election={electionDisplay}

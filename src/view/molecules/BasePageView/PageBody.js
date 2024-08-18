@@ -1,5 +1,4 @@
 import { Box, Grid, Typography } from "@mui/material";
-import CitationsView from "./CitationsView";
 
 import ColumnResults from "./ColumnResults";
 import ColumnResultsLK from "./ColumnResultsLK";
@@ -68,7 +67,6 @@ export default function PageBody({
         </Grid>
       )}
 
-      <CitationsView />
     </Box>
   );
 }

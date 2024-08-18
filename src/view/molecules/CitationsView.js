@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { VERSION, STYLE } from "../../../nonview/constants";
+import { VERSION, STYLE } from "../../nonview/constants";
 
 export default function CitationsView() {
   const onClick = function () {
@@ -7,12 +7,11 @@ export default function CitationsView() {
     window.location.reload();
   };
 
-  const content = [
+  const lines = [
     "Source Data by elections.gov.lk",
     "Music by @bensound",
     "Visualization & Analysis by @nuuuwan",
-    VERSION.DATETIME_STR,
-  ].join(" · ");
+  ];
 
   return (
     <Box
@@ -21,10 +20,14 @@ export default function CitationsView() {
         alignContent: "center",
         margin: "auto",
         cursor: "pointer",
+        padding: 2
       }}
       onClick={onClick}
     >
-      <Typography variant="body2">{content}</Typography>
+      {lines.map(function(line, i){
+        return <Typography key={i} variant="body1">{line}</Typography>;
+      })}
+      <Typography variant="caption">v{VERSION.DATETIME_STR}</Typography>
     </Box>
   );
 }

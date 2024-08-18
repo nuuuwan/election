@@ -4,8 +4,8 @@ const BasePageSettersMixin = {
 
   getDerived(nResultsDisplay, election, db) {
     const electionDisplay = election.getElectionSubset(nResultsDisplay);
-    const predictedElection = this.getPredictedElection(election, electionDisplay, db);
-    return { electionDisplay, predictedElection };
+    const projectedElection = this.getPredictedElection(election, electionDisplay, db);
+    return { electionDisplay, projectedElection };
   },
 
   async setElection(election0) {
@@ -24,7 +24,7 @@ const BasePageSettersMixin = {
           .indexOf(activePDID) + 1;
     }
 
-    const { electionDisplay, predictedElection } = this.getDerived(nResultsDisplay, election, db);
+    const { electionDisplay, projectedElection } = this.getDerived(nResultsDisplay, election, db);
 
     this.setStateAndContext({
       electionType,
@@ -32,7 +32,7 @@ const BasePageSettersMixin = {
       nResultsDisplay,
       activePDID,
       election,
-      electionDisplay, predictedElection,
+      electionDisplay, projectedElection,
     });
   },
 
@@ -43,10 +43,10 @@ const BasePageSettersMixin = {
         (result) => result.entID === activePDID
       ) + 1;
 
-      const { electionDisplay, predictedElection } = this.getDerived(nResultsDisplay, election, db);
+      const { electionDisplay, projectedElection } = this.getDerived(nResultsDisplay, election, db);
 
 
-    this.setStateAndContext({ activePDID, nResultsDisplay, electionDisplay, predictedElection });
+    this.setStateAndContext({ activePDID, nResultsDisplay, electionDisplay, projectedElection });
   },
 
   setNResultsDisplay(nResultsDisplay) {
@@ -54,10 +54,10 @@ const BasePageSettersMixin = {
     const pdIDs = election.pdResultList.map((pdResult) => pdResult.entID);
     const activePDID = pdIDs[nResultsDisplay - 1];
 
-    const { electionDisplay, predictedElection } = this.getDerived(nResultsDisplay, election, db);
+    const { electionDisplay, projectedElection } = this.getDerived(nResultsDisplay, election, db);
 
 
-    this.setStateAndContext({ nResultsDisplay, activePDID , electionDisplay, predictedElection});
+    this.setStateAndContext({ nResultsDisplay, activePDID , electionDisplay, projectedElection});
   },
 };
 

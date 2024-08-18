@@ -13,7 +13,6 @@
 ### Minor
 
 * Estimate Rejected votes etc based on election of same kind. Otherwise they could be off.
-* Prediction -> Projection
 
 ### One Liners
 

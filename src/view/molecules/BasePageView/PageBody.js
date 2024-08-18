@@ -14,7 +14,7 @@ const STYLE_GRID = {
   paddingBottom: 10,
 };
 
-function getColumns(election, electionDisplay, db, predictedElection, setActivePDID, ) {
+function getColumns(election, electionDisplay, db, projectedElection, setActivePDID, ) {
   return [
     <ColumnLatestResult
       election={election}
@@ -34,7 +34,7 @@ function getColumns(election, electionDisplay, db, predictedElection, setActiveP
       setActivePDID={setActivePDID}
     />,
     <ColumnProjection
-      predictedElection={predictedElection}
+      projectedElection={projectedElection}
       electionDisplay={electionDisplay}
       db={db}
     />,
@@ -45,7 +45,7 @@ export default function PageBody({
   election,
   electionDisplay,
   db,
-  predictedElection,
+  projectedElection,
   setActivePDID,
 }) {
   return (
@@ -56,7 +56,7 @@ export default function PageBody({
         </Typography>
       ) : (
         <Grid container rowSpacing={4}>
-          {getColumns(election, electionDisplay, db, predictedElection, setActivePDID).map(
+          {getColumns(election, electionDisplay, db, projectedElection, setActivePDID).map(
             function (column, i) {
               return (
                 <Grid key={i} item xs={12} md={6} xl={3} sx={STYLE_GRID}>

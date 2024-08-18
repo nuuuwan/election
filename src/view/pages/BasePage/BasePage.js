@@ -77,8 +77,8 @@ export default class BasePage extends Component {
       releasedPDIDList,
       nonReleasedPDIDList
     );
-    const predictedElection = electionModel.getElectionNotReleasedPrediction();
-    return predictedElection;
+    const projectedElection = electionModel.getElectionNotReleasedPrediction();
+    return projectedElection;
   
   }
 
@@ -95,7 +95,7 @@ export default class BasePage extends Component {
       election,
     }));
     const electionDisplay = election.getElectionSubset(nResultsDisplay);
-    const predictedElection = this.getPredictedElection(election, electionDisplay, db);
+    const projectedElection = this.getPredictedElection(election, electionDisplay, db);
 
     this.setStateAndContext({
       electionType,
@@ -105,7 +105,7 @@ export default class BasePage extends Component {
       // Derived
       election,
       electionDisplay,
-      predictedElection,
+      projectedElection,
       // Common
       db,
       
@@ -119,7 +119,7 @@ export default class BasePage extends Component {
 
 
   render() {
-    const { electionType, date, election, db, predictedElection ,electionDisplay } = this.state;
+    const { electionType, date, election, db, projectedElection ,electionDisplay } = this.state;
     if (!election) {
       const tempElection = new Election(electionType, date);
       return (
@@ -135,7 +135,7 @@ export default class BasePage extends Component {
         //
         electionDisplay={electionDisplay}
         db={db}
-        predictedElection={predictedElection}
+        projectedElection={projectedElection}
         //
         setActivePDID={this.setActivePDID.bind(this)}
         setElection={this.setElection.bind(this)}

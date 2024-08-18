@@ -8,7 +8,7 @@ export default function BasePageView({
   //
   electionDisplay,
   db,
-  predictedElection,
+  projectedElection,
   //
   setActivePDID,
   setElection,
@@ -26,7 +26,7 @@ export default function BasePageView({
         electionDisplay={electionDisplay}
         //
         db={db}
-        predictedElection={predictedElection}
+        projectedElection={projectedElection}
         //
         setActivePDID={setActivePDID}
       />

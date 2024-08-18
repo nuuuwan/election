@@ -26,6 +26,7 @@ function getColumns(election, electionDisplay, db, projectedElection, setActiveP
       election={election}
       electionDisplay={electionDisplay}
       db={db}
+      projectedElection={projectedElection}
     />,
     <ColumnMap
       election={election}

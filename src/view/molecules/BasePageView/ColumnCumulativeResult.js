@@ -1,9 +1,15 @@
 import { Box, Typography } from "@mui/material";
 import { STYLE } from "../../../nonview/constants";
 import { ResultSingleView, CitationsView } from "..";
+import { Format } from "../../../nonview/base";
 
-export default function ColumnCumulativeResult({ election, electionDisplay, db }) {
-  const subTitleProgress = `Cumulative Total (${electionDisplay.nResults}/${election.nResults})`;
+export default function ColumnCumulativeResult({ election, electionDisplay, db, projectedElection }) {
+
+
+  const electorsReleased = electionDisplay.resultLK.summary.electors;
+  const electorsProjected = projectedElection.resultLK.summary.electors;
+  const pReleased = electorsReleased / electorsProjected;
+  const subTitleProgress = `Cumulative Total (${Format.percent(pReleased)} released)`;
 
   return (
     <Box color={STYLE.COLOR.LIGHT}>

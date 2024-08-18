@@ -6,7 +6,7 @@ import { STYLE } from "../../nonview/constants";
 function getRenderValue(colorElection) {
   const renderValue = function (election, i) {
     const color =
-      (colorElection && colorElection.date === election.date )
+      colorElection && colorElection.date === election.date
         ? colorElection.color
         : STYLE.COLOR.LIGHTEST;
     return (

@@ -13,16 +13,6 @@ function Confidence() {
 }
 
 export default class FinalOutcomeViewRenderUtils {
-  static renderTooEarlyToCall() {
-    return [
-      <Typography variant="h6">Too early to call</Typography>,
-      <Typography variant="caption">
-        Our Model needs &gt;{FinalOutcome.MIN_N_RESULTS} results, before it can
-        make a reasonable projection.
-      </Typography>,
-    ];
-  }
-
   static renderTooMuchUncertainty() {
     return [
       <Typography variant="h6">Too much uncertainty to call</Typography>,
@@ -105,9 +95,6 @@ export default class FinalOutcomeViewRenderUtils {
   }
 
   static renderInsights(finalOutcome) {
-    if (finalOutcome.isTooEarlyToCall) {
-      return FinalOutcomeViewRenderUtils.renderTooEarlyToCall();
-    }
     if (finalOutcome.isTooMuchUncertainty) {
       return FinalOutcomeViewRenderUtils.renderTooMuchUncertainty();
     }

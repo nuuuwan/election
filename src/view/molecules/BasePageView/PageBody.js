@@ -6,14 +6,14 @@ import ColumnMap from "./ColumnMap";
 import ColumnProjection from "./ColumnProjection";
 
 const STYLE = {
-  paddingTop: 10,
-  paddingBottom: 10,
+  BOX: {paddingTop: 10},
+  GRID_ITEM: {
+    paddingBottom: 10,
+    border: "1px solid #f0f0f0",
+  },
 };
 
-const STYLE_GRID = {
-  paddingBottom: 10,
-  border: "1px solid #f0f0f0",
-};
+
 
 function getColumns(
   election,
@@ -57,7 +57,7 @@ export default function PageBody({
   setActivePDID,
 }) {
   return (
-    <Box sx={STYLE}>
+    <Box sx={STYLE.BOX}>
       {electionDisplay.nResults === 0 ? (
         <Typography variant="h3" sx={{ paddingTop: 10, paddingBottom: 20 }}>
           Await results...
@@ -72,7 +72,7 @@ export default function PageBody({
             setActivePDID
           ).map(function (column, i) {
             return (
-              <Grid key={i} item xs={12} md={6} xl={3} sx={STYLE_GRID}>
+              <Grid key={i} item xs={12} md={6} xl={3} sx={STYLE.GRID_ITEM}>
                 {column}
               </Grid>
             );

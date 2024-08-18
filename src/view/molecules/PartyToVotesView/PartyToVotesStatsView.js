@@ -16,7 +16,7 @@ export default function PartyToVotesStatsView({ partyToVotes }) {
           <LabelledStat
             key={partyID}
             label={<PartyView partyID={partyID} pVotes={pVotes} />}
-            valueStr={Format.percentVotes(pVotes)}
+            valueStr={Format.intHumanize(votes)}
             sx={{ color }}
           />
         );

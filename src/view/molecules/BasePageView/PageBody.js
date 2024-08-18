@@ -20,18 +20,18 @@ function getColumns(
   setActivePDID
 ) {
   return [
-    <ColumnProjection
-      projectedElection={projectedElection}
-      electionDisplay={electionDisplay}
-      db={db}
-    />,
+
     <ColumnCumulativeResult
       election={election}
       electionDisplay={electionDisplay}
       db={db}
       projectedElection={projectedElection}
     />,
-
+    <ColumnProjection
+      projectedElection={projectedElection}
+      electionDisplay={electionDisplay}
+      db={db}
+    />,
     <ColumnLatestResult
       election={election}
       electionDisplay={electionDisplay}

@@ -13,7 +13,7 @@ export default function SummaryView({ summary }) {
       <LabelledStat
         label="Electors"
         valueStr={Format.intHumanize(summary.electors)}
-      />{" "}
+      />
       <LabelledStat
         label="Turnout"
         valueStr={Format.percent(summary.pTurnout)}

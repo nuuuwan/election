@@ -21,8 +21,8 @@ STYLE.FONT_SIZE = 14;
 STYLE.FONT_FAMILY = "Lexend Deca";
 
 STYLE.MESSAGE = {
-  padding: 1,
-  marginTop: 1,
+  padding: 0.5,
+  marginTop: 0.5,
   margin: "auto",
   alignContent: "center",
   alignItems: "center",

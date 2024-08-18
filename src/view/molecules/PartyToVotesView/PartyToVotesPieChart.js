@@ -6,13 +6,14 @@ import { STYLE } from "../../../nonview/constants";
 import { Box } from "@mui/material";
 
 export default function PartyToVotesPieChart({ partyToVotes, chartSize }) {
-  chartSize = chartSize || 140;
+  chartSize = chartSize || 210;
+  const totalVotes = partyToVotes.totalVotes;
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
   const data = entries.map(function ([partyID, votes]) {
     const party = Party.fromID(partyID);
     return {
       id: partyID,
-      value: votes,
+      value: votes / totalVotes,
       label: partyID,
       color: party.color || STYLE.COLOR.LIGHT,
     };
@@ -24,14 +25,14 @@ export default function PartyToVotesPieChart({ partyToVotes, chartSize }) {
         series={[
           {
             data,
-            arcLabel: (item) => Format.intHumanize(item.value),
+            arcLabel: (item) => Format.percentVotes(item.value),
             arcLabelMinAngle: 45,
           },
         ]}
         sx={{
           [`& .${pieArcLabelClasses.root}`]: {
             fill: "white",
-            fontSize: chartSize / 12,
+            fontSize: chartSize / 9,
             fontFamily: STYLE.FONT_FAMILY,
           },
         }}

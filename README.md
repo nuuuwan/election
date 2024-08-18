@@ -16,7 +16,6 @@
 
 ### One Liners
 
-* Fix HTML Title
 * Swap Pie Chart and Stats labels
 * Remove date from Election ❓
 * Swap Latest and Cumulative Results ❓

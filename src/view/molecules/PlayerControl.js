@@ -10,9 +10,6 @@ import {
 import FirstPageIcon from "@mui/icons-material/FirstPage";
 import LastPageIcon from "@mui/icons-material/LastPage";
 
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import PauseIcon from "@mui/icons-material/Pause";
-
 import Replay10Icon from "@mui/icons-material/Replay10";
 import Forward10Icon from "@mui/icons-material/Forward10";
 
@@ -40,9 +37,8 @@ function getBottomNavigationActionConfigs(
   setNResultsDisplay,
   nResultsDisplay,
   nResults,
-  isPlaying,
-  playAnimation,
-  pauseAnimation
+
+
 ) {
   return [
     {
@@ -62,10 +58,7 @@ function getBottomNavigationActionConfigs(
         setNResultsDisplay(Math.max(0, nResultsDisplay - 1)),
       disabled: nResultsDisplay === 0,
     },
-    {
-      Icon: isPlaying ? PauseIcon : PlayArrowIcon,
-      onClick: () => (isPlaying ? pauseAnimation() : playAnimation()),
-    },
+
     {
       Icon: KeyboardArrowRightIcon,
       onClick: () =>
@@ -90,9 +83,6 @@ function BottomNavigationCustom({
   nResultsDisplay,
   nResults,
   setNResultsDisplay,
-  isPlaying,
-  playAnimation,
-  pauseAnimation,
 }) {
   return (
     <BottomNavigation>
@@ -100,9 +90,6 @@ function BottomNavigationCustom({
         setNResultsDisplay,
         nResultsDisplay,
         nResults,
-        isPlaying,
-        playAnimation,
-        pauseAnimation
       ).map(function (config, i) {
         return (
           <BottomNavigationActionCustom
@@ -165,9 +152,6 @@ export default function PlayerControl({
   electionDisplay,
   election,
   setNResultsDisplay,
-  isPlaying,
-  playAnimation,
-  pauseAnimation,
 }) {
   const nResultsDisplay = electionDisplay.nResults;
   const nResults = election.nResults;
@@ -194,9 +178,6 @@ export default function PlayerControl({
         nResultsDisplay={nResultsDisplay}
         nResults={nResults}
         setNResultsDisplay={setNResultsDisplay}
-        isPlaying={isPlaying}
-        playAnimation={playAnimation}
-        pauseAnimation={pauseAnimation}
       />
     </Box>
   );

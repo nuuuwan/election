@@ -11,7 +11,6 @@ export default class BasePage extends Component {
     electionType: "Presidential",
     date: "2019-11-16",
     // date: "2024-09-21",
-    isPlaying: false,
   };
   constructor(props) {
     super(props);
@@ -20,12 +19,6 @@ export default class BasePage extends Component {
 
   getContext() {
     let context = URLContext.get();
-    if (context.isPlaying === true || context.isPlaying === "true") {
-      context.isPlaying = true;
-    } else {
-      context.isPlaying = false;
-    }
-
     if (context.nResultsDisplay) {
       context.nResultsDisplay = parseInt(context.nResultsDisplay);
     }
@@ -37,12 +30,11 @@ export default class BasePage extends Component {
     this.setState(
       newState,
       function () {
-        const { electionType, date, isPlaying, nResultsDisplay, activePDID } =
+        const { electionType, date, nResultsDisplay, activePDID } =
           this.state;
         URLContext.set({
           electionType,
           date,
-          isPlaying,
           nResultsDisplay,
           activePDID,
         });
@@ -72,7 +64,7 @@ export default class BasePage extends Component {
   }
 
   async componentDidMount() {
-    let { electionType, date, isPlaying, nResultsDisplay, activePDID } =
+    let { electionType, date, nResultsDisplay, activePDID } =
       this.state;
 
     const db = await DB.load();
@@ -87,7 +79,6 @@ export default class BasePage extends Component {
     this.setStateAndContext({
       electionType,
       date,
-      isPlaying,
       nResultsDisplay,
       activePDID,
       // Derived
@@ -107,7 +98,7 @@ export default class BasePage extends Component {
   }
 
   render() {
-    const { isPlaying, election, db } = this.state;
+    const { election, db } = this.state;
     if (!election) {
       return <CircularProgress />;
     }
@@ -115,13 +106,10 @@ export default class BasePage extends Component {
     return (
       <BasePageView
         election={election}
-        isPlaying={isPlaying}
         //
         electionDisplay={this.electionDisplay}
         db={db}
         //
-        pauseAnimation={this.pauseAnimation.bind(this)}
-        playAnimation={this.playAnimation.bind(this)}
         setActivePDID={this.setActivePDID.bind(this)}
         setElection={this.setElection.bind(this)}
         setNResultsDisplay={this.setNResultsDisplay.bind(this)}

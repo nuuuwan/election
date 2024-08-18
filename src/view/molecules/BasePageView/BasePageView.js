@@ -5,13 +5,11 @@ import PageFooter from "./PageFooter";
 
 export default function BasePageView({
   election,
-  isPlaying,
   //
   electionDisplay,
   db,
   //
-  pauseAnimation,
-  playAnimation,
+
   setActivePDID,
   setElection,
   setNResultsDisplay,
@@ -34,10 +32,7 @@ export default function BasePageView({
       <PageFooter
         electionDisplay={electionDisplay}
         election={election}
-        isPlaying={isPlaying}
         //
-        playAnimation={playAnimation}
-        pauseAnimation={pauseAnimation}
         setNResultsDisplay={setNResultsDisplay}
       />
     </Box>

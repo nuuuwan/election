@@ -43,28 +43,6 @@ const BasePageSettersMixin = {
     this.setStateAndContext({ nResultsDisplay, activePDID });
   },
 
-  async playAnimation() {
-    this.setStateAndContext(
-      { isPlaying: true },
-      async function () {
-        while (true) {
-          if (this.state.isPlaying === false) {
-            break;
-          }
-          if (this.state.nResultsDisplay >= this.nResultsReleased) {
-            this.setState({ isPlaying: false });
-            break;
-          }
-          this.setNResultsDisplay(this.state.nResultsDisplay + 1);
-          await new Promise((resolve) => setTimeout(resolve, 1000));
-        }
-      }.bind(this)
-    );
-  },
-
-  async pauseAnimation() {
-    this.setStateAndContext({ isPlaying: false });
-  },
 };
 
 export default BasePageSettersMixin;

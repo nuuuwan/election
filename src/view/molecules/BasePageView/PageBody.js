@@ -6,14 +6,12 @@ import ColumnMap from "./ColumnMap";
 import ColumnProjection from "./ColumnProjection";
 
 const STYLE = {
-  BOX: {paddingTop: 10},
+  BOX: { paddingTop: 10 },
   GRID_ITEM: {
     paddingBottom: 10,
     border: "1px solid #f0f0f0",
   },
 };
-
-
 
 function getColumns(
   election,

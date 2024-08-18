@@ -8,6 +8,8 @@
 
 ### Major
 
+* Move to 3-column formal - which is more in line with Mobile
+
 ### Minor
 
 * Estimate Rejected votes etc based on election of same kind. Otherwise they could be off.

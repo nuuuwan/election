@@ -92,6 +92,23 @@ class Election extends ElectionBase {
     );
   }
 
+  static getPenultimateElection(elections, currentElection) {
+    const previousElections = Election.getPreviousElections(
+      elections,
+      currentElection
+    );
+    return previousElections[previousElections.length - 1];
+  }
+
+  static getPenultimateElectionOfSameType(elections, currentElection) {
+    const previousElections = Election.getPreviousElectionsOfSameType(
+      elections,
+      currentElection
+    );
+    return previousElections[previousElections.length - 1];
+  }
+  
+
   get pdResultList() {
     const EXCLUDE_PD_IDS = ["EC-11D"];
     return this.resultList.filter(function (result) {

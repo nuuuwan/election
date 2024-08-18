@@ -1,5 +1,5 @@
 import { MLModel, MathX } from "../../base";
-import { PartyToVotes, Party } from "../../../nonview/core";
+import { PartyToVotes, Party, Summary, Result } from "../../../nonview/core";
 
 export default class ElectionModelUtils {
   static MIN_RESULTS_FOR_PREDICTION = 1;
@@ -155,18 +155,30 @@ export default class ElectionModelUtils {
     return normPDToPartyToPVotes;
   }
 
-  static getSimulatedResult(lastElection, pdID, normPDToPartyToPVotes, pError) {
+  static getSimulatedResult(lastElection, lastElectionOfSameType, pdID, normPDToPartyToPVotes, pError) {
     // We assume the summary from the last election is valid.
     if (!lastElection) {
       return null;
     }
-    let result = JSON.parse(JSON.stringify(lastElection.getResult(pdID)));
-    if (!result) {
+
+    const resultLastSameType = lastElectionOfSameType.getResult(pdID);
+    if (!resultLastSameType) {
       return null;
     }
-    const valid = result.summary.valid;
-    const partyToPVotes = normPDToPartyToPVotes[pdID];
+  
+    const resultLast = lastElection.getResult(pdID);
+    const summaryLast = resultLast.summary;
+    const summaryLastSameType = resultLastSameType.summary;
 
+
+    const electors = summaryLast.electors;
+    const polled = summaryLast.polled;
+    const rejected = Math.round(summaryLast.polled * summaryLastSameType.pRejected);
+    const valid = polled - rejected;
+
+    const summary = new Summary(valid, rejected, polled, electors);
+
+    const partyToPVotes = normPDToPartyToPVotes[pdID];
     const partyToVotes = Object.entries(partyToPVotes).reduce(
       function (partyToVotes, [partyID, pVotes]) {
         pVotes = MathX.forceRange(pVotes, 0, 1);
@@ -181,7 +193,6 @@ export default class ElectionModelUtils {
       { [Party.UNCERTAIN.id]: 0 }
     );
 
-    result.partyToVotes = new PartyToVotes(partyToVotes);
-    return result;
+    return new Result(pdID, summary, new PartyToVotes(partyToVotes));
   }
 }

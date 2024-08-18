@@ -17,11 +17,6 @@ export default class ElectionModel {
     this.trainingOutput = this.train();
   }
 
-  getPreviousElections() {
-    // All elections before currentElection.
-    return Election.getPreviousElections(this.elections, this.currentElection);
-  }
-
   getXEvaluate() {
     return ElectionModelUtils.getFeatureMatrix(
       [this.currentElection],
@@ -31,7 +26,10 @@ export default class ElectionModel {
 
   train() {
     // Common
-    const previousElections = this.getPreviousElections();
+    const previousElections = Election.getPreviousElections(
+      this.elections,
+      this.currentElection
+    );
 
     const XAll = ElectionModelUtils.getFeatureMatrixListForElections(
       previousElections,
@@ -61,7 +59,11 @@ export default class ElectionModel {
 
   getElectionNotReleasedPrediction() {
     const { normPDToPartyToPVotes, pError } = this.trainingOutput;
-    const lastElection = this.getPreviousElections().slice(-1)[0];
+    const lastElection = Election.getPenultimateElection(this.elections, this.currentElection);
+    const lastElectionOfSameType = Election.getPenultimateElectionOfSameType(
+      this.elections,
+      this.currentElection
+    );
 
     let election = new Election(
       this.currentElection.electionType,
@@ -75,6 +77,7 @@ export default class ElectionModel {
       .map(function (pdID) {
         return ElectionModelUtils.getSimulatedResult(
           lastElection,
+          lastElectionOfSameType,
           pdID,
           normPDToPartyToPVotes,
           pError

@@ -12,7 +12,6 @@
 
 ### Minor
 
-* Estimate Rejected votes etc based on election of same kind. Otherwise they could be off.
 * Change repo/app name to PresPollSL
 
 ### One Liners

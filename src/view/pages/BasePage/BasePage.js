@@ -84,11 +84,15 @@ export default class BasePage extends Component {
 
     let projectedElection;
     if (nResultsDisplay > 0) {
+  
+      
       projectedElection = this.getPredictedElection(
         election,
         electionDisplay,
         db
       );
+      
+
     }
     return { electionDisplay, projectedElection };
   }

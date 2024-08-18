@@ -18,7 +18,6 @@
 ### One Liners
 
 * Add buttons to move by a single step in slider
-* Add padding above slider
 * Citations on multiple lines
 * Replace number of votes with percentage ❓
 * Replace humanized number of votes, with actual number of votes ❓

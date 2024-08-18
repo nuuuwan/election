@@ -141,6 +141,7 @@ const STYLE_PLAYER_CONTROL = {
   left: 0,
   zIndex: 2000,
   backgroundColor: "white",
+  paddingTop: 3,
 };
 
 export default function PlayerControl({

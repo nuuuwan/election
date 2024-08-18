@@ -1,8 +1,11 @@
 import { Stack } from "@mui/material";
 import { FinalOutcomeView, ResultSingleView } from ".";
 
-export default function PredictionView({ electionDisplay, projectedElection, db }) {
-
+export default function PredictionView({
+  electionDisplay,
+  projectedElection,
+  db,
+}) {
   return (
     <Stack direction="column" gap={2}>
       <ResultSingleView

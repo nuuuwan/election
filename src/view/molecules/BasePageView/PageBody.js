@@ -14,7 +14,13 @@ const STYLE_GRID = {
   paddingBottom: 10,
 };
 
-function getColumns(election, electionDisplay, db, projectedElection, setActivePDID, ) {
+function getColumns(
+  election,
+  electionDisplay,
+  db,
+  projectedElection,
+  setActivePDID
+) {
   return [
     <ColumnLatestResult
       election={election}
@@ -57,15 +63,19 @@ export default function PageBody({
         </Typography>
       ) : (
         <Grid container rowSpacing={4}>
-          {getColumns(election, electionDisplay, db, projectedElection, setActivePDID).map(
-            function (column, i) {
-              return (
-                <Grid key={i} item xs={12} md={6} xl={3} sx={STYLE_GRID}>
-                  {column}
-                </Grid>
-              );
-            }
-          )}
+          {getColumns(
+            election,
+            electionDisplay,
+            db,
+            projectedElection,
+            setActivePDID
+          ).map(function (column, i) {
+            return (
+              <Grid key={i} item xs={12} md={6} xl={3} sx={STYLE_GRID}>
+                {column}
+              </Grid>
+            );
+          })}
         </Grid>
       )}
     </Box>

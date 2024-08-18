@@ -3,7 +3,11 @@ import { Box, Typography } from "@mui/material";
 import { STYLE } from "../../../nonview/constants";
 
 import { PredictionView } from "../../molecules";
-export default function ColumnProjection({ projectedElection, electionDisplay, db }) {
+export default function ColumnProjection({
+  projectedElection,
+  electionDisplay,
+  db,
+}) {
   return (
     <Box color={STYLE.COLOR.DARK}>
       <Box sx={STYLE.BODY_HEADER}>

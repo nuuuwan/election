@@ -64,13 +64,11 @@ export default class BasePage extends Component {
   }
 
   getPredictedElection(election, electionDisplay, db) {
-
-
     const releasedPDIDList = electionDisplay.pdIDList;
     const nonReleasedPDIDList = Object.keys(db.pdIdx).filter(
       (pdID) => !releasedPDIDList.includes(pdID)
     );
-  
+
     const electionModel = new ElectionModel(
       db.elections,
       election,
@@ -79,20 +77,21 @@ export default class BasePage extends Component {
     );
     const projectedElection = electionModel.getElectionNotReleasedPrediction();
     return projectedElection;
-  
   }
 
   getDerived(nResultsDisplay, election, db) {
     const electionDisplay = election.getElectionSubset(nResultsDisplay);
-    
+
     let projectedElection;
     if (nResultsDisplay > 0) {
-      projectedElection = this.getPredictedElection(election, electionDisplay, db);
-    
+      projectedElection = this.getPredictedElection(
+        election,
+        electionDisplay,
+        db
+      );
     }
     return { electionDisplay, projectedElection };
   }
-
 
   async componentDidMount() {
     let { electionType, date, nResultsDisplay, activePDID } = this.state;
@@ -106,8 +105,12 @@ export default class BasePage extends Component {
       nResultsDisplay,
       election,
     }));
-    
-    const { electionDisplay, projectedElection } = this.getDerived(nResultsDisplay, election, db);
+
+    const { electionDisplay, projectedElection } = this.getDerived(
+      nResultsDisplay,
+      election,
+      db
+    );
 
     this.setStateAndContext({
       electionType,
@@ -120,7 +123,6 @@ export default class BasePage extends Component {
       projectedElection,
       // Common
       db,
-      
     });
   }
 
@@ -129,9 +131,15 @@ export default class BasePage extends Component {
     return `${electionType}-${date}-${activePDID}`;
   }
 
-
   render() {
-    const { electionType, date, election, db, projectedElection ,electionDisplay } = this.state;
+    const {
+      electionType,
+      date,
+      election,
+      db,
+      projectedElection,
+      electionDisplay,
+    } = this.state;
     if (!election) {
       const tempElection = new Election(electionType, date);
       return (

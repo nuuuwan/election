@@ -1,13 +1,11 @@
 import { Election } from "../../../nonview/core";
 
 const BasePageSettersMixin = {
-
-
   async setElection(election0) {
     let { activePDID, nResultsDisplay, db } = this.state;
 
     const { electionType, date } = election0;
-    
+
     const election = await Election.fromElectionTypeAndDate(electionType, date);
     if (!election.isFuture) {
       if (!election.getResult(activePDID)) {
@@ -19,7 +17,11 @@ const BasePageSettersMixin = {
           .indexOf(activePDID) + 1;
     }
 
-    const { electionDisplay, projectedElection } = this.getDerived(nResultsDisplay, election, db);
+    const { electionDisplay, projectedElection } = this.getDerived(
+      nResultsDisplay,
+      election,
+      db
+    );
 
     this.setStateAndContext({
       electionType,
@@ -27,21 +29,29 @@ const BasePageSettersMixin = {
       nResultsDisplay,
       activePDID,
       election,
-      electionDisplay, projectedElection,
+      electionDisplay,
+      projectedElection,
     });
   },
 
   setActivePDID(activePDID) {
     const { election, db } = this.state;
     const nResultsDisplay =
-      election.pdResultList.findIndex(
-        (result) => result.entID === activePDID
-      ) + 1;
+      election.pdResultList.findIndex((result) => result.entID === activePDID) +
+      1;
 
-      const { electionDisplay, projectedElection } = this.getDerived(nResultsDisplay, election, db);
+    const { electionDisplay, projectedElection } = this.getDerived(
+      nResultsDisplay,
+      election,
+      db
+    );
 
-
-    this.setStateAndContext({ activePDID, nResultsDisplay, electionDisplay, projectedElection });
+    this.setStateAndContext({
+      activePDID,
+      nResultsDisplay,
+      electionDisplay,
+      projectedElection,
+    });
   },
 
   setNResultsDisplay(nResultsDisplay) {
@@ -49,10 +59,18 @@ const BasePageSettersMixin = {
     const pdIDs = election.pdResultList.map((pdResult) => pdResult.entID);
     const activePDID = pdIDs[nResultsDisplay - 1];
 
-    const { electionDisplay, projectedElection } = this.getDerived(nResultsDisplay, election, db);
+    const { electionDisplay, projectedElection } = this.getDerived(
+      nResultsDisplay,
+      election,
+      db
+    );
 
-
-    this.setStateAndContext({ nResultsDisplay, activePDID , electionDisplay, projectedElection});
+    this.setStateAndContext({
+      nResultsDisplay,
+      activePDID,
+      electionDisplay,
+      projectedElection,
+    });
   },
 };
 

@@ -27,20 +27,27 @@ const BasePageSettersMixin = {
   },
 
   setActivePDID(activePDID) {
-    const { election } = this.state;
+    const { election, db } = this.state;
     const nResultsDisplay =
       election.pdResultsList.findIndex(
         (result) => result.entID === activePDID
       ) + 1;
-    this.setStateAndContext({ activePDID, nResultsDisplay });
+
+    const electionDisplay = election.getElectionSubset(nResultsDisplay);
+    const predictedElection = this.getPredictedElection(election, electionDisplay, db);
+
+    this.setStateAndContext({ activePDID, nResultsDisplay, electionDisplay, predictedElection });
   },
 
   setNResultsDisplay(nResultsDisplay) {
-    const { election } = this.state;
+    const { election, db } = this.state;
     const pdIDs = election.pdResultsList.map((pdResult) => pdResult.entID);
     const activePDID = pdIDs[nResultsDisplay - 1];
 
-    this.setStateAndContext({ nResultsDisplay, activePDID });
+    const electionDisplay = election.getElectionSubset(nResultsDisplay);
+    const predictedElection = this.getPredictedElection(election, electionDisplay, db);
+
+    this.setStateAndContext({ nResultsDisplay, activePDID , electionDisplay, predictedElection});
   },
 };
 

@@ -14,6 +14,8 @@
 
 * Estimate Rejected votes etc based on election of same kind. Otherwise they could be off.
 * Change repo/app name to PresPollSL
+* "Cumulative Total (56% released)"
+* "Result #23 (Latest)"
 
 ### One Liners
 

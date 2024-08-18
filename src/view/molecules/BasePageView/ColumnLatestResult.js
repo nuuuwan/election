@@ -20,7 +20,6 @@ export default function ColumnLatestResult({
   }
 
   const activePDID = electionDisplay.finalPDID;
-
   return (
     <Box>
       <Box sx={STYLE.BODY_HEADER}>

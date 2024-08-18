@@ -8,9 +8,6 @@ import {
   Typography,
 } from "@mui/material";
 
-import FirstPageIcon from "@mui/icons-material/FirstPage";
-import LastPageIcon from "@mui/icons-material/LastPage";
-
 import Replay10Icon from "@mui/icons-material/Replay10";
 import Forward10Icon from "@mui/icons-material/Forward10";
 
@@ -42,11 +39,7 @@ function getBottomNavigationActionConfigs(
   nResults
 ) {
   return [
-    {
-      Icon: FirstPageIcon,
-      onClick: () => setNResultsDisplay(0),
-      disabled: nResultsDisplay === 0,
-    },
+
     {
       Icon: Replay10Icon,
       onClick: () =>
@@ -71,11 +64,7 @@ function getBottomNavigationActionConfigs(
         setNResultsDisplay(Math.min(nResults, nResultsDisplay + N_JUMP_STEPS)),
       disabled: nResultsDisplay === nResults,
     },
-    {
-      Icon: LastPageIcon,
-      onClick: () => setNResultsDisplay(nResults),
-      disabled: nResultsDisplay === nResults,
-    },
+
   ];
 }
 

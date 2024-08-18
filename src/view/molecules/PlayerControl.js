@@ -16,6 +16,8 @@ import Forward10Icon from "@mui/icons-material/Forward10";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
+import CloudSyncIcon from '@mui/icons-material/CloudSync';
+
 import { useState } from "react";
 import { STYLE } from "../../nonview/constants";
 
@@ -84,6 +86,13 @@ function BottomNavigationCustom({
   nResults,
   setNResultsDisplay,
 }) {
+
+  const onClickRefresh = function () {
+    localStorage.clear();
+    window.location.reload();
+  };
+
+
   return (
     <BottomNavigation>
       {getBottomNavigationActionConfigs(
@@ -100,6 +109,11 @@ function BottomNavigationCustom({
           />
         );
       })}
+      <BottomNavigationAction
+        onClick={onClickRefresh}
+        sx={{ color: STYLE.COLOR.DARKER }}
+        icon={<CloudSyncIcon />}
+      />
     </BottomNavigation>
   );
 }
@@ -165,6 +179,8 @@ export default function PlayerControl({
   const onChange = function (__, value) {
     setNResultsDisplayUpdated(value);
   };
+
+
 
   return (
     <Box sx={STYLE_PLAYER_CONTROL}>

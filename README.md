@@ -6,9 +6,19 @@
 
 ### Minor
 
-* Add padding to bottom of columns
 * Estimate Rejected votes etc based on election of same kind. Otherwise they could be off.
-* Replace number of votes with percentage?
+* Change repo/app name to PresPollSL
+
+### One Liners
+
+* Add padding to bottom of columns
+* Replace number of votes with percentage
+* Replace humanized number of votes, with actual number of votes
+* "Cumulative"
+* "Latest Result"
+* Add buttons to move by a single step in slider
+* Add padding above slider
+* Citations on multiple lines
 
 ## Previous Designs
 

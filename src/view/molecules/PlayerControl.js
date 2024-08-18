@@ -88,7 +88,7 @@ function RefreshBotton() {
 
   return (
     <IconButton onClick={onClickRefresh} sx={{ color: STYLE.COLOR.LIGHT }}>
-      <CloudSyncIcon />
+      <CachedIcon />
     </IconButton>
   );
 }

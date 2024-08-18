@@ -33,7 +33,7 @@ export default function BellwetherView({ elections, electionDisplay }) {
   }
 
   return (
-    <Box sx={{ maxWidth: 320, p: 1, margin: "auto" }}>
+    <Box sx={STYLE.MESSAGE}>
       {n === nSame ? <PerfectBellwether n={n} /> : null}
       <PercentageBellwether error={error} />
     </Box>

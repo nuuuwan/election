@@ -1,4 +1,4 @@
-import { Box, Paper } from "@mui/material";
+import { Box,  } from "@mui/material";
 
 import { STYLE } from "../../../nonview/constants";
 import { FinalOutcome } from "../../../nonview/core";
@@ -7,14 +7,8 @@ import FinalOutcomeViewRenderUtils from "./FinalOutcomeViewRenderUtils";
 export default function FinalOutcomeView({ election, nResultsDisplay }) {
   const finalOutcome = new FinalOutcome(election, nResultsDisplay);
   return (
-    <Paper
-      sx={{
-        width: "fit-content",
-        margin: "auto",
-        p: 0.5,
-        backgroundColor: STYLE.COLOR.LIGHTEST,
-        elevation: 2,
-      }}
+    <Box
+      sx={STYLE.MESSAGE}
     >
       {FinalOutcomeViewRenderUtils.renderInsights(finalOutcome).map(function (
         insight,
@@ -26,6 +20,6 @@ export default function FinalOutcomeView({ election, nResultsDisplay }) {
           </Box>
         );
       })}
-    </Paper>
+    </Box>
   );
 }

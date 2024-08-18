@@ -20,4 +20,13 @@ STYLE.BODY_HEADER = {
 STYLE.FONT_SIZE = 14;
 STYLE.FONT_FAMILY = "Lexend Deca";
 
+STYLE.MESSAGE = {
+  padding: 2,
+  margin: "auto",
+  alignContent: "center",
+  alignItems: "center",
+  textAlign: "center",
+  maxWidth: 320,
+}
+
 export default STYLE;

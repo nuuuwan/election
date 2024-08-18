@@ -15,13 +15,10 @@ export default function CitationsView() {
 
   return (
     <Box
-      sx={{
+      sx={Object.assign({
         color: STYLE.COLOR.LIGHTER,
-        alignContent: "center",
-        margin: "auto",
         cursor: "pointer",
-        padding: 2
-      }}
+      }, STYLE.MESSAGE)}
       onClick={onClick}
     >
       {lines.map(function(line, i){

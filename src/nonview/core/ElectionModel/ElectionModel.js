@@ -57,7 +57,7 @@ export default class ElectionModel {
     return { normPDToPartyToPVotes, pError };
   }
 
-  getElectionNotReleasedPrediction() {
+  getProjectedResultList() {
     const { normPDToPartyToPVotes, pError } = this.trainingOutput;
     const lastElection = Election.getPenultimateElection(
       this.elections,
@@ -66,15 +66,6 @@ export default class ElectionModel {
     const lastElectionOfSameType = Election.getPenultimateElectionOfSameType(
       this.elections,
       this.currentElection
-    );
-
-    let election = new Election(
-      this.currentElection.electionType,
-      this.currentElection.date
-    );
-
-    const releasedResultList = this.releasedPDIDList.map((pdID) =>
-      this.currentElection.getResult(pdID)
     );
     const notReleasedResultList = this.nonReleasedPDIDList
       .map(function (pdID) {
@@ -88,14 +79,25 @@ export default class ElectionModel {
       })
       .filter((result) => result !== null);
 
-    election.resultList = [
-      ...releasedResultList,
-      ...notReleasedResultList,
-    ].filter((result) => result);
+      const releasedResultList = this.releasedPDIDList.map((pdID) =>
+        this.currentElection.getResult(pdID)
+      );
+
+      return [
+        ...releasedResultList,
+        ...notReleasedResultList,
+      ].filter((result) => result)
+  }
+
+  getElectionNotReleasedPrediction() {
+    const election = new Election(
+      this.currentElection.electionType,
+      this.currentElection.date
+    );
+    election.resultList =this.getProjectedResultList();
     election.resultList = Election.expand(election.resultList);
     election.resultIdx = Election.buildResultIdx(election.resultList);
     election.isLoaded = true;
-
     return election;
   }
 }

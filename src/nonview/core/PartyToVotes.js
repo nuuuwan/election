@@ -19,9 +19,9 @@ export default class PartyToVotes {
     return new PartyToVotes(partyToVotes);
   }
 
-  static fromList(resultsList) {
+  static fromList(resultList) {
     const partyToVotes = {};
-    for (const result of resultsList) {
+    for (const result of resultList) {
       if (!result) {
         continue;
       }

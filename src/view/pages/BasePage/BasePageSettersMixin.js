@@ -8,11 +8,11 @@ const BasePageSettersMixin = {
     const election = await Election.fromElectionTypeAndDate(electionType, date);
 
     if (!election.isFuture) {
-      if (!election.resultsIdx[activePDID]) {
-        activePDID = election.pdResultsList[nResultsDisplay - 1].entID;
+      if (!election.resultIdx[activePDID]) {
+        activePDID = election.pdResultList[nResultsDisplay - 1].entID;
       }
       nResultsDisplay =
-        election.pdResultsList
+        election.pdResultList
           .map((result) => result.entID)
           .indexOf(activePDID) + 1;
     }
@@ -29,7 +29,7 @@ const BasePageSettersMixin = {
   setActivePDID(activePDID) {
     const { election, db } = this.state;
     const nResultsDisplay =
-      election.pdResultsList.findIndex(
+      election.pdResultList.findIndex(
         (result) => result.entID === activePDID
       ) + 1;
 
@@ -41,7 +41,7 @@ const BasePageSettersMixin = {
 
   setNResultsDisplay(nResultsDisplay) {
     const { election, db } = this.state;
-    const pdIDs = election.pdResultsList.map((pdResult) => pdResult.entID);
+    const pdIDs = election.pdResultList.map((pdResult) => pdResult.entID);
     const activePDID = pdIDs[nResultsDisplay - 1];
 
     const electionDisplay = election.getElectionSubset(nResultsDisplay);

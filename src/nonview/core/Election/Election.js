@@ -11,23 +11,23 @@ class Election extends ElectionBase {
   static MIN_RESULTS = 10;
   constructor(electionType, date) {
     super(electionType, date);
-    this.resultsList = null;
-    this.resultsIdx = null;
+    this.resultList = null;
+    this.resultIdx = null;
     this.isLoaded = false;
   }
   getResults(id) {
-    if (!this.isLoaded || !this.resultsIdx[id]) {
+    if (!this.isLoaded || !this.resultIdx[id]) {
       return null;
     }
-    return this.resultsIdx[id];
+    return this.resultIdx[id];
   }
   async __loadData() {
     if (this.isFuture) {
       await TestElection.loadData(this);
     } else {
-      this.resultsList = await this.getResultsList();
-      this.resultsIdx = Election.buildResultsIdx(this.resultsList);
-      this.isLoaded = this.resultsList.length > Election.MIN_RESULTS;
+      this.resultList = await this.getResultList();
+      this.resultIdx = Election.buildResultsIdx(this.resultList);
+      this.isLoaded = this.resultList.length > Election.MIN_RESULTS;
     }
   }
 
@@ -35,29 +35,29 @@ class Election extends ElectionBase {
     return await WWW.tsv(this.urlData);
   }
 
-  async getResultsList() {
+  async getResultList() {
     const rawData = await this.getRawDataList();
 
     const filteredRawData = rawData.filter(function (d) {
       return d.entity_id.startsWith("EC-") && d.entity_id.length >= 6;
     });
 
-    const resultsList = filteredRawData.map(function (d) {
+    const resultList = filteredRawData.map(function (d) {
       return Result.fromDict(d);
     });
 
-    const expandedResultsList = Election.expand(resultsList);
+    const expandedResultList = Election.expand(resultList);
 
-    const sortedResultsList = expandedResultsList.sort(function (a, b) {
+    const sortedResultList = expandedResultList.sort(function (a, b) {
       return a.summary.valid - b.summary.valid;
     });
 
-    return sortedResultsList;
+    return sortedResultList;
   }
 
-  static buildResultsIdx(resultsList) {
+  static buildResultsIdx(resultList) {
     return Object.fromEntries(
-      resultsList.map((result) => [result.entID, result])
+      resultList.map((result) => [result.entID, result])
     );
   }
 
@@ -92,9 +92,9 @@ class Election extends ElectionBase {
     );
   }
 
-  get pdResultsList() {
+  get pdResultList() {
     const EXCLUDE_PD_IDS = ["EC-11D"];
-    return this.resultsList.filter(function (result) {
+    return this.resultList.filter(function (result) {
       const pdID = result.entID;
       return (
         pdID.length === 6 &&
@@ -104,70 +104,70 @@ class Election extends ElectionBase {
     });
   }
 
-  static buildEDResultsList(pdResultsList) {
-    const edIDToResultsList = pdResultsList.reduce(function (
-      edIDToResultsList,
+  static buildEDResultList(pdResultList) {
+    const edIDToResultList = pdResultList.reduce(function (
+      edIDToResultList,
       pdResult
     ) {
       const pdID = pdResult.entID;
       const edID = pdID.substring(0, 5);
-      if (!edIDToResultsList[edID]) {
-        edIDToResultsList[edID] = [];
+      if (!edIDToResultList[edID]) {
+        edIDToResultList[edID] = [];
       }
-      edIDToResultsList[edID].push(pdResult);
-      return edIDToResultsList;
+      edIDToResultList[edID].push(pdResult);
+      return edIDToResultList;
     },
     {});
-    const edResultsList = Object.entries(edIDToResultsList).map(function ([
+    const edResultList = Object.entries(edIDToResultList).map(function ([
       edID,
-      resultsListForED,
+      resultListForED,
     ]) {
-      return Result.fromList(edID, resultsListForED);
+      return Result.fromList(edID, resultListForED);
     });
-    return edResultsList;
+    return edResultList;
   }
 
-  static buildLKResult(pdResultsList) {
-    return Result.fromList("LK", pdResultsList);
+  static buildLKResult(pdResultList) {
+    return Result.fromList("LK", pdResultList);
   }
 
-  static expand(pdResultsList) {
-    const edResultsList = Election.buildEDResultsList(pdResultsList);
-    const lkResult = Election.buildLKResult(pdResultsList);
-    return [lkResult, ...edResultsList, ...pdResultsList];
+  static expand(pdResultList) {
+    const edResultList = Election.buildEDResultList(pdResultList);
+    const lkResult = Election.buildLKResult(pdResultList);
+    return [lkResult, ...edResultList, ...pdResultList];
   }
 
-  getSubsetElectionByPDResultList(pdResultsList) {
-    const edResultsList = Election.buildEDResultsList(pdResultsList);
-    const lkResult = Election.buildLKResult(pdResultsList);
-    const resultsList = [lkResult, ...edResultsList, ...pdResultsList];
+  getSubsetElectionByPDResultList(pdResultList) {
+    const edResultList = Election.buildEDResultList(pdResultList);
+    const lkResult = Election.buildLKResult(pdResultList);
+    const resultList = [lkResult, ...edResultList, ...pdResultList];
     const election = new Election(this.electionType, this.date);
-    election.resultsList = resultsList;
-    election.resultsIdx = Election.buildResultsIdx(resultsList);
+    election.resultList = resultList;
+    election.resultIdx = Election.buildResultsIdx(resultList);
     election.isLoaded = true;
     return election;
   }
 
   getSubsetElectionByPDIDList(pdIDList) {
-    const pdResultsList = pdIDList
+    const pdResultList = pdIDList
       .map(
         function (pdID) {
-          return this.resultsIdx[pdID];
+          return this.resultIdx[pdID];
         }.bind(this)
       )
       .filter(function (result) {
         return result !== undefined;
       });
-    return this.getSubsetElectionByPDResultList(pdResultsList);
+    return this.getSubsetElectionByPDResultList(pdResultList);
   }
 
   getElectionSubset(nResultsDisplay) {
-    const pdResultsList = this.pdResultsList.slice(0, nResultsDisplay);
-    return this.getSubsetElectionByPDResultList(pdResultsList);
+    const pdResultList = this.pdResultList.slice(0, nResultsDisplay);
+    return this.getSubsetElectionByPDResultList(pdResultList);
   }
 
   getPartyToWins() {
-    return Object.values(this.resultsIdx).reduce(function (
+    return Object.values(this.resultIdx).reduce(function (
       partyToWins,
       result
     ) {
@@ -182,11 +182,11 @@ class Election extends ElectionBase {
   }
 
   get nResults() {
-    return this.pdResultsList.length;
+    return this.pdResultList.length;
   }
 
   get finalResult() {
-    return this.pdResultsList[this.nResults - 1];
+    return this.pdResultList[this.nResults - 1];
   }
 
   get finalPDID() {
@@ -194,11 +194,11 @@ class Election extends ElectionBase {
   }
 
   get resultLK() {
-    return this.resultsIdx["LK"];
+    return this.resultIdx["LK"];
   }
 
   get pdIDList() {
-    return this.pdResultsList.map((result) => result.entID);
+    return this.pdResultList.map((result) => result.entID);
   }
 }
 

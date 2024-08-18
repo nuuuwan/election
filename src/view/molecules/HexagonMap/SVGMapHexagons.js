@@ -20,13 +20,13 @@ function getLabel(name) {
 
 export default function SVGMapHexagons({
   mapData,
-  resultsIdx,
+  resultIdx,
   pdIdx,
   setActivePDID,
 }) {
   const { idx } = mapData;
   return Object.entries(idx).map(function ([entID, [x, y]]) {
-    const result = resultsIdx[entID];
+    const result = resultIdx[entID];
     const ent = pdIdx[entID];
     const label = getLabel(ent.name);
 

@@ -2,9 +2,9 @@ import { Stack, Typography } from "@mui/material";
 import { Party } from "../../nonview/core";
 import { CustomSelect } from "../atoms";
 
-function buildRenderMenuItemInner(resultsIdx, edIdx) {
+function buildRenderMenuItemInner(resultIdx, edIdx) {
   const renderMenuItemInner = function (pd, i) {
-    const result = resultsIdx[pd.id];
+    const result = resultIdx[pd.id];
     if (!result) {
       return null;
     }
@@ -13,7 +13,7 @@ function buildRenderMenuItemInner(resultsIdx, edIdx) {
 
     const edID = pd.id.substring(0, 5);
     const ed = edIdx[edID];
-    const edResult = resultsIdx[edID];
+    const edResult = resultIdx[edID];
     const colorED = Party.fromID(edResult.partyToVotes.winningPartyID).color;
     const variant = pd.name.length > 20 ? "h6" : "h5";
     return (
@@ -49,7 +49,7 @@ export default function PDSelector({
         setActivePDID(pd.id);
       }}
       renderMenuItemInner={buildRenderMenuItemInner(
-        election.resultsIdx,
+        election.resultIdx,
         db.edIdx
       )}
       getDividerKey={function (pd) {

@@ -57,7 +57,7 @@ export default class ElectionBase {
   }
 
   get color() {
-    if (!this.resultsIdx) {
+    if (!this.resultIdx) {
       return STYLE.COLOR.LIGHT;
     }
     const resultLK = this.resultLK;

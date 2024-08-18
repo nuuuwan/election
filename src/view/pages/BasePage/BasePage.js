@@ -48,17 +48,17 @@ export default class BasePage extends Component {
   getActivePDIDAndNResultDisplay({ activePDID, nResultsDisplay, election }) {
     if (activePDID !== undefined) {
       nResultsDisplay =
-        election.pdResultsList
+        election.pdResultList
           .map((result) => result.entID)
           .indexOf(activePDID) + 1;
     } else if (nResultsDisplay !== undefined) {
       if (nResultsDisplay > 0) {
-        activePDID = election.pdResultsList[nResultsDisplay - 1].entID;
+        activePDID = election.pdResultList[nResultsDisplay - 1].entID;
       }
     } else {
       activePDID =
-        election.pdResultsList[election.pdResultsList.length - 1].entID;
-      nResultsDisplay = election.pdResultsList.length;
+        election.pdResultList[election.pdResultList.length - 1].entID;
+      nResultsDisplay = election.pdResultList.length;
     }
     return { activePDID, nResultsDisplay };
   }

@@ -2,7 +2,7 @@ import Election from "./Election";
 
 export default class Bellwether {
   static getStatsForElection(election, entID) {
-    const resultEnt = election.resultsIdx[entID];
+    const resultEnt = election.resultIdx[entID];
     if (!resultEnt) {
       return {
         isSameWinner: false,

@@ -68,10 +68,10 @@ export default class ElectionModel {
       this.currentElection.date
     );
 
-    const releasedResultsList = this.releasedPDIDList.map((pdID) =>
+    const releasedResultList = this.releasedPDIDList.map((pdID) =>
       this.currentElection.getResults(pdID)
     );
-    const notReleasedResultsList = this.nonReleasedPDIDList
+    const notReleasedResultList = this.nonReleasedPDIDList
       .map(function (pdID) {
         return ElectionModelUtils.getSimulatedResult(
           lastElection,
@@ -82,12 +82,12 @@ export default class ElectionModel {
       })
       .filter((result) => result !== null);
 
-    election.resultsList = [
-      ...releasedResultsList,
-      ...notReleasedResultsList,
+    election.resultList = [
+      ...releasedResultList,
+      ...notReleasedResultList,
     ].filter((result) => result);
-    election.resultsList = Election.expand(election.resultsList);
-    election.resultsIdx = Election.buildResultsIdx(election.resultsList);
+    election.resultList = Election.expand(election.resultList);
+    election.resultIdx = Election.buildResultsIdx(election.resultList);
     election.isLoaded = true;
 
     return election;

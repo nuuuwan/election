@@ -18,7 +18,7 @@ export default class TestElection {
     return new Result(data["pd_id"], summary, partyToVotes);
   }
 
-  static gePDResultsList() {
+  static gePDResultList() {
     return PRESPOLLSL2024.filter(function (data) {
       return data["result_time"] !== 0;
     })
@@ -35,12 +35,12 @@ export default class TestElection {
       throw new Error("Election is already loaded: " + election);
     }
 
-    const pdResultsList = TestElection.gePDResultsList();
-    const edResultsList = Election.buildEDResultsList(pdResultsList);
-    const lkResult = Election.buildLKResult(pdResultsList);
+    const pdResultList = TestElection.gePDResultList();
+    const edResultList = Election.buildEDResultList(pdResultList);
+    const lkResult = Election.buildLKResult(pdResultList);
 
-    election.resultsList = [].concat(pdResultsList, edResultsList, [lkResult]);
-    election.resultsIdx = Election.buildResultsIdx(election.resultsList);
+    election.resultList = [].concat(pdResultList, edResultList, [lkResult]);
+    election.resultIdx = Election.buildResultsIdx(election.resultList);
     election.isLoaded = true;
     return election;
   }

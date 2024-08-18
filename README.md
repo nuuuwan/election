@@ -13,12 +13,14 @@
 ### Minor
 
 * Estimate Rejected votes etc based on election of same kind. Otherwise they could be off.
-* Change repo/app name to PresPollSL
-* "Cumulative Total (56% released)"
-* "Result #23 (Latest)"
+* Prediction -> Projection
+* Results -> Result/ResultList
 
 ### One Liners
 
+* Change repo/app name to PresPollSL
+* "Cumulative Total (56% released)"
+* "Result #23 (Latest)"
 * Replace number of votes with percentage ❓
 * Replace humanized number of votes, with actual number of votes ❓
 

@@ -1,12 +1,12 @@
 import SVGMapHexagons from "./SVGMapHexagons";
 import SVGMapBoundaries from "./SVGMapBoundaries";
 
-export default function SVGMap({ mapData, resultsIdx, pdIdx, setActivePDID }) {
+export default function SVGMap({ mapData, resultIdx, pdIdx, setActivePDID }) {
   return (
     <g>
       <SVGMapHexagons
         mapData={mapData}
-        resultsIdx={resultsIdx}
+        resultIdx={resultIdx}
         pdIdx={pdIdx}
         setActivePDID={setActivePDID}
       />

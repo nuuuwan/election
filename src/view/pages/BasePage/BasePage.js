@@ -4,7 +4,7 @@ import { Election, DB } from "../../../nonview/core";
 import { BasePageView } from "../../../view/molecules";
 
 import BasePageSettersMixin from "./BasePageSettersMixin";
-import {  Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { STYLE } from "../../../nonview/constants";
 
 export default class BasePage extends Component {
@@ -31,8 +31,7 @@ export default class BasePage extends Component {
     this.setState(
       newState,
       function () {
-        const { electionType, date, nResultsDisplay, activePDID } =
-          this.state;
+        const { electionType, date, nResultsDisplay, activePDID } = this.state;
         URLContext.set({
           electionType,
           date,
@@ -65,8 +64,7 @@ export default class BasePage extends Component {
   }
 
   async componentDidMount() {
-    let { electionType, date, nResultsDisplay, activePDID } =
-      this.state;
+    let { electionType, date, nResultsDisplay, activePDID } = this.state;
 
     const db = await DB.load();
 
@@ -99,10 +97,14 @@ export default class BasePage extends Component {
   }
 
   render() {
-    const { election, db , electionType, date } = this.state;
+    const { election, db, electionType, date } = this.state;
     if (!election) {
       const tempElection = new Election(electionType, date);
-      return <Typography variant="caption" color={STYLE.COLOR.LIGHT}>Loading {tempElection.title}...</Typography>;
+      return (
+        <Typography variant="caption" color={STYLE.COLOR.LIGHT}>
+          Loading {tempElection.title}...
+        </Typography>
+      );
     }
 
     return (

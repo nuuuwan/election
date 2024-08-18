@@ -11,7 +11,7 @@ export default function PageFooter({
       key={electionDisplay.nResults}
       electionDisplay={electionDisplay}
       election={election}
-       //
+      //
       setNResultsDisplay={setNResultsDisplay}
     />
   );

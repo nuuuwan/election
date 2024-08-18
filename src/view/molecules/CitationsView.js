@@ -2,7 +2,6 @@ import { Box, Typography } from "@mui/material";
 import { VERSION, STYLE } from "../../nonview/constants";
 
 export default function CitationsView() {
-
   const lines = [
     "Source Data by elections.gov.lk",
     "Music by @bensound",
@@ -11,12 +10,19 @@ export default function CitationsView() {
 
   return (
     <Box
-      sx={Object.assign({
-        color: STYLE.COLOR.LIGHTER,
-      }, STYLE.MESSAGE)}
+      sx={Object.assign(
+        {
+          color: STYLE.COLOR.LIGHTER,
+        },
+        STYLE.MESSAGE
+      )}
     >
-      {lines.map(function(line, i){
-        return <Typography key={i} variant="body1">{line}</Typography>;
+      {lines.map(function (line, i) {
+        return (
+          <Typography key={i} variant="body1">
+            {line}
+          </Typography>
+        );
       })}
       <Typography variant="caption">v{VERSION.DATETIME_STR}</Typography>
     </Box>

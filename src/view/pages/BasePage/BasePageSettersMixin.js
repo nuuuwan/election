@@ -42,7 +42,6 @@ const BasePageSettersMixin = {
 
     this.setStateAndContext({ nResultsDisplay, activePDID });
   },
-
 };
 
 export default BasePageSettersMixin;

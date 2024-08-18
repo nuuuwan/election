@@ -17,11 +17,11 @@ function buildRenderMenuItemInner(resultsIdx, edIdx) {
     const colorED = Party.fromID(edResult.partyToVotes.winningPartyID).color;
     const variant = pd.name.length > 20 ? "h6" : "h5";
     return (
-      <Stack direction="row" gap={1} sx={{alignItems: "center"}}>
+      <Stack direction="row" gap={1} sx={{ alignItems: "center" }}>
         <Typography variant={variant} color={colorPD}>
           {pd.name}
         </Typography>
-        <Typography variant="body1" color={colorED} sx={{ opacity: 0.5,  }}>
+        <Typography variant="body1" color={colorED} sx={{ opacity: 0.5 }}>
           {ed.name}
         </Typography>
       </Stack>

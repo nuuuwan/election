@@ -12,7 +12,7 @@ const STYLE = {
 
 const STYLE_GRID = {
   paddingBottom: 10,
-}
+};
 
 function getColumns(election, electionDisplay, db, setActivePDID) {
   return [
@@ -66,7 +66,6 @@ export default function PageBody({
           )}
         </Grid>
       )}
-
     </Box>
   );
 }

@@ -27,6 +27,6 @@ STYLE.MESSAGE = {
   alignItems: "center",
   textAlign: "center",
   maxWidth: 320,
-}
+};
 
 export default STYLE;

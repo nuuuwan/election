@@ -14,10 +14,10 @@ import LastPageIcon from "@mui/icons-material/LastPage";
 import Replay10Icon from "@mui/icons-material/Replay10";
 import Forward10Icon from "@mui/icons-material/Forward10";
 
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
-import CloudSyncIcon from '@mui/icons-material/CloudSync';
+import CloudSyncIcon from "@mui/icons-material/CloudSync";
 
 import { useState } from "react";
 import { STYLE } from "../../nonview/constants";
@@ -30,8 +30,8 @@ function BottomNavigationActionCustom({ Icon, onClick, disabled }) {
     <BottomNavigationAction
       onClick={onClick}
       disabled={disabled}
-      sx={{ color}}
-      icon={<Icon sx={{m:0, p:0}} />}
+      sx={{ color }}
+      icon={<Icon sx={{ m: 0, p: 0 }} />}
     />
   );
 }
@@ -39,9 +39,7 @@ function BottomNavigationActionCustom({ Icon, onClick, disabled }) {
 function getBottomNavigationActionConfigs(
   setNResultsDisplay,
   nResultsDisplay,
-  nResults,
-
-
+  nResults
 ) {
   return [
     {
@@ -57,8 +55,7 @@ function getBottomNavigationActionConfigs(
     },
     {
       Icon: KeyboardArrowLeftIcon,
-      onClick: () =>
-        setNResultsDisplay(Math.max(0, nResultsDisplay - 1)),
+      onClick: () => setNResultsDisplay(Math.max(0, nResultsDisplay - 1)),
       disabled: nResultsDisplay === 0,
     },
 
@@ -83,18 +80,16 @@ function getBottomNavigationActionConfigs(
 }
 
 function RefreshBotton() {
-  
   const onClickRefresh = function () {
     localStorage.clear();
     window.location.reload();
   };
 
-
-  return (     <IconButton
-    onClick={onClickRefresh}
-    sx={{ color: STYLE.COLOR.LIGHT }}
-    
-  ><CloudSyncIcon /></IconButton>)
+  return (
+    <IconButton onClick={onClickRefresh} sx={{ color: STYLE.COLOR.LIGHT }}>
+      <CloudSyncIcon />
+    </IconButton>
+  );
 }
 
 function BottomNavigationCustom({
@@ -102,14 +97,12 @@ function BottomNavigationCustom({
   nResults,
   setNResultsDisplay,
 }) {
-
-
   return (
     <BottomNavigation>
       {getBottomNavigationActionConfigs(
         setNResultsDisplay,
         nResultsDisplay,
-        nResults,
+        nResults
       ).map(function (config, i) {
         return (
           <BottomNavigationActionCustom
@@ -120,7 +113,6 @@ function BottomNavigationCustom({
           />
         );
       })}
-
     </BottomNavigation>
   );
 }
@@ -185,8 +177,6 @@ export default function PlayerControl({
   const onChange = function (__, value) {
     setNResultsDisplayUpdated(value);
   };
-
-
 
   return (
     <Box sx={STYLE_PLAYER_CONTROL}>

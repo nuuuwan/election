@@ -20,8 +20,8 @@ export default function ColumnResultsLK({ election, electionDisplay, db }) {
         elections={db.elections}
         entID={"LK"}
       />
-      
-      <CitationsView/>
+
+      <CitationsView />
     </Box>
   );
 }

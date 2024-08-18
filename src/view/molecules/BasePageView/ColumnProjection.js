@@ -9,7 +9,7 @@ export default function ColumnProjection({
   db,
 }) {
   return (
-    <Box color={STYLE.COLOR.DARK}>
+    <Box color={projectedElection ? projectedElection.color : STYLE.COLOR.LIGHT}>
       <Box sx={STYLE.BODY_HEADER}>
         <Typography variant="caption">Final Result</Typography>
         <Typography variant="h4">Projected</Typography>

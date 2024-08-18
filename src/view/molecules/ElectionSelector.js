@@ -1,13 +1,14 @@
 import { Box, Typography } from "@mui/material";
 
 import { CustomSelect } from "../atoms";
+import { STYLE } from "../../nonview/constants";
 
 function getRenderValue(colorElection) {
   const renderValue = function (election, i) {
     const color =
-      colorElection.date === election.date
+      (colorElection && colorElection.date === election.date )
         ? colorElection.color
-        : election.color;
+        : STYLE.COLOR.LIGHTEST;
     return (
       <Typography variant="h4" sx={{ color: "white", backgroundColor: color }}>
         {election.title}

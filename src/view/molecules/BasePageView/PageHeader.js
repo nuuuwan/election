@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 
 import { ElectionSelector } from "../../molecules";
+import { STYLE } from "../../../nonview/constants";
 
 const STYLE_PAGE_HEADER = {
   SELECTOR: {
@@ -19,7 +20,7 @@ export default function PageHeader({
   db,
   setElection,
 }) {
-  const color = projectedElection.color;
+  const color = projectedElection ? projectedElection.color : STYLE.COLOR.LIGHTEST;
   return (
     <Box
       sx={Object.assign({ backgroundColor: color }, STYLE_PAGE_HEADER.SELECTOR)}

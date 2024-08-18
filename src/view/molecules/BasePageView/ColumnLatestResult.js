@@ -20,10 +20,12 @@ export default function ColumnLatestResult({
   }
 
   const activePDID = electionDisplay.finalPDID;
+  const color = electionDisplay.getResult(activePDID).winningPartyColor;
+  console.debug(color);
   return (
     <Box>
       <Box sx={STYLE.BODY_HEADER}>
-        <Typography variant="caption" component="div" color={STYLE.COLOR.LIGHT}>
+        <Typography variant="caption" component="div" color={color}>
           Latest Result ({electionDisplay.nResults})
         </Typography>
         <PDSelector

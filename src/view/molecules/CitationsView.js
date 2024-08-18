@@ -12,7 +12,7 @@ export default function CitationsView() {
     <Box
       sx={Object.assign(
         {
-          color: STYLE.COLOR.LIGHTER,
+          color: STYLE.COLOR.LIGHTEST,
         },
         STYLE.MESSAGE
       )}

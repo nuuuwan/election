@@ -16,7 +16,6 @@
 
 ### One Liners
 
-* Lighter font for Citations
 * Fix HTML Title
 * Swap Pie Chart and Stats labels
 * Remove date from Election ❓

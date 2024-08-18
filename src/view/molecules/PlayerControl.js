@@ -82,8 +82,9 @@ function getBottomNavigationActionConfigs(
 
 function RefreshButton() {
   const onClickRefresh = function () {
+    console.debug(window.location.pathname);
     localStorage.clear();
-    window.location.reload();
+    window.location.href = '/';
   };
 
   return (

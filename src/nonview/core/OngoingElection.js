@@ -26,7 +26,6 @@ export default class OngoingElection {
 
   static async getPDResultList() {
     const rawDataList = await OngoingElection.getRawData();
-    console.debug({rawDataList});
     return rawDataList.filter(function (data) {
       return data["result_time"] !== 0;
     })

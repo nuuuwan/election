@@ -1,5 +1,9 @@
 # Presidential Elections of Sri Lanka (#PresPollSL) App
 
+## App
+
+[https://nuuuwan.github.io/prespollsl2024/](https://nuuuwan.github.io/prespollsl2024/)
+
 ## TODOs
 
 ### Major

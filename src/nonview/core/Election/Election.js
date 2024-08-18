@@ -107,7 +107,6 @@ class Election extends ElectionBase {
     );
     return previousElections[previousElections.length - 1];
   }
-  
 
   get pdResultList() {
     const EXCLUDE_PD_IDS = ["EC-11D"];

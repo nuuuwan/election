@@ -155,7 +155,13 @@ export default class ElectionModelUtils {
     return normPDToPartyToPVotes;
   }
 
-  static getSimulatedResult(lastElection, lastElectionOfSameType, pdID, normPDToPartyToPVotes, pError) {
+  static getSimulatedResult(
+    lastElection,
+    lastElectionOfSameType,
+    pdID,
+    normPDToPartyToPVotes,
+    pError
+  ) {
     // We assume the summary from the last election is valid.
     if (!lastElection) {
       return null;
@@ -165,15 +171,16 @@ export default class ElectionModelUtils {
     if (!resultLastSameType) {
       return null;
     }
-  
+
     const resultLast = lastElection.getResult(pdID);
     const summaryLast = resultLast.summary;
     const summaryLastSameType = resultLastSameType.summary;
 
-
     const electors = summaryLast.electors;
     const polled = summaryLast.polled;
-    const rejected = Math.round(summaryLast.polled * summaryLastSameType.pRejected);
+    const rejected = Math.round(
+      summaryLast.polled * summaryLastSameType.pRejected
+    );
     const valid = polled - rejected;
 
     const summary = new Summary(valid, rejected, polled, electors);

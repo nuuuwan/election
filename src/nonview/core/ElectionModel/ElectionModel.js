@@ -59,7 +59,10 @@ export default class ElectionModel {
 
   getElectionNotReleasedPrediction() {
     const { normPDToPartyToPVotes, pError } = this.trainingOutput;
-    const lastElection = Election.getPenultimateElection(this.elections, this.currentElection);
+    const lastElection = Election.getPenultimateElection(
+      this.elections,
+      this.currentElection
+    );
     const lastElectionOfSameType = Election.getPenultimateElectionOfSameType(
       this.elections,
       this.currentElection

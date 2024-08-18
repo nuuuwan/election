@@ -13,7 +13,6 @@
 ### Minor
 
 * "Historically, in Matara..."
-* Remove "Too Early to Call"
 * Load election from pdResultList
 
 ### One Liners

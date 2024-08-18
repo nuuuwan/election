@@ -79,14 +79,13 @@ export default class ElectionModel {
       })
       .filter((result) => result !== null);
 
-      const releasedResultList = this.releasedPDIDList.map((pdID) =>
-        this.currentElection.getResult(pdID)
-      );
+    const releasedResultList = this.releasedPDIDList.map((pdID) =>
+      this.currentElection.getResult(pdID)
+    );
 
-      return [
-        ...releasedResultList,
-        ...notReleasedResultList,
-      ].filter((result) => result)
+    return [...releasedResultList, ...notReleasedResultList].filter(
+      (result) => result
+    );
   }
 
   getElectionNotReleasedPrediction() {
@@ -94,7 +93,7 @@ export default class ElectionModel {
       this.currentElection.electionType,
       this.currentElection.date
     );
-    election.resultList =this.getProjectedResultList();
+    election.resultList = this.getProjectedResultList();
     election.resultList = Election.expand(election.resultList);
     election.resultIdx = Election.buildResultIdx(election.resultList);
     election.isLoaded = true;

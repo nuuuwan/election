@@ -39,7 +39,6 @@ function getBottomNavigationActionConfigs(
   nResults
 ) {
   return [
-
     {
       Icon: Replay10Icon,
       onClick: () =>
@@ -64,7 +63,6 @@ function getBottomNavigationActionConfigs(
         setNResultsDisplay(Math.min(nResults, nResultsDisplay + N_JUMP_STEPS)),
       disabled: nResultsDisplay === nResults,
     },
-
   ];
 }
 

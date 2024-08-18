@@ -77,8 +77,6 @@ function getViewBox() {
   return `${minX - 1} ${minY - 2} ${width + 2} ${height + 6}`;
 }
 
-
-
 export default function HexagonMap({ election, db, setActivePDID }) {
   const resultIdx = election.resultIdx;
   const partyToWins = election.getPartyToWins();
@@ -93,19 +91,17 @@ export default function HexagonMap({ election, db, setActivePDID }) {
       <SVGTitles />
       <SVGLegendParty election={election} x={1} y={-2} />
       <SVGLegendPercentages x={2 + nParties / StyleHexagonMap.N_COLS} y={-2} />
-      {getMapDataList().map(
-        function(mapData, i ) {
-          return (
-            <SVGMap
+      {getMapDataList().map(function (mapData, i) {
+        return (
+          <SVGMap
             key={i}
             resultIdx={resultIdx}
             mapData={mapData}
             db={db}
             setActivePDID={setActivePDID}
           />
-          )
-        }
-      )}
+        );
+      })}
     </svg>
   );
 }

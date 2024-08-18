@@ -174,7 +174,12 @@ export default class ElectionModelUtils {
     return new Summary(valid, rejected, polled, electors);
   }
 
-  static getSimulatedPartyToVotes(pdID, summary, normPDToPartyToPVotes, pError) { 
+  static getSimulatedPartyToVotes(
+    pdID,
+    summary,
+    normPDToPartyToPVotes,
+    pError
+  ) {
     const valid = summary.valid;
     const partyToPVotes = normPDToPartyToPVotes[pdID];
     const partyToVotes = Object.entries(partyToPVotes).reduce(
@@ -215,7 +220,10 @@ export default class ElectionModelUtils {
     }
 
     const partyToVotes = ElectionModelUtils.getSimulatedPartyToVotes(
-      pdID, summary, normPDToPartyToPVotes, pError
+      pdID,
+      summary,
+      normPDToPartyToPVotes,
+      pError
     );
 
     return new Result(pdID, summary, partyToVotes);

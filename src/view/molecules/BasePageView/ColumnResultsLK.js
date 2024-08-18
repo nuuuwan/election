@@ -4,7 +4,7 @@ import { STYLE } from "../../../nonview/constants";
 
 import { ResultSingleView } from "../../molecules";
 export default function ColumnResultsLK({ election, electionDisplay, db }) {
-  const subTitleProgress = `${electionDisplay.nResults}/${election.nResults} Results`;
+  const subTitleProgress = `Cumulative Total (${electionDisplay.nResults}/${election.nResults})`;
 
   return (
     <Box color={STYLE.COLOR.LIGHT}>

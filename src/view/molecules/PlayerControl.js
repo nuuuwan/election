@@ -13,8 +13,7 @@ import Forward10Icon from "@mui/icons-material/Forward10";
 
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-
-import CloudSyncIcon from "@mui/icons-material/CloudSync";
+import CachedIcon from "@mui/icons-material/Cached";
 
 import { useState } from "react";
 import { STYLE } from "../../nonview/constants";

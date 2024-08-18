@@ -20,7 +20,6 @@ function getColumns(
   setActivePDID
 ) {
   return [
-
     <ColumnCumulativeResult
       election={election}
       electionDisplay={electionDisplay}

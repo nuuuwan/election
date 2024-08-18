@@ -84,7 +84,7 @@ function RefreshButton() {
   const onClickRefresh = function () {
     console.debug(window.location.pathname);
     localStorage.clear();
-    window.location.href = '/';
+    window.location.href = "/";
   };
 
   return (

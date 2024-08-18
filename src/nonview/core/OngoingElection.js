@@ -5,7 +5,8 @@ import Result from "./Result";
 import Summary from "./Summary";
 
 export default class OngoingElection {
-  static URL = "https://raw.githubusercontent.com/nuuuwan/prespollsl2024_py/main/data/prespollsl2024.json";
+  static URL =
+    "https://raw.githubusercontent.com/nuuuwan/prespollsl2024_py/main/data/prespollsl2024.json";
   static getPDResult(data) {
     const summary = Summary.fromDict(data["summary"]);
 
@@ -18,17 +19,16 @@ export default class OngoingElection {
     return new Result(data["pd_id"], summary, partyToVotes);
   }
 
-
   static async getRawData() {
     return await WWW.json(OngoingElection.URL);
   }
 
-
   static async getPDResultList() {
     const rawDataList = await OngoingElection.getRawData();
-    return rawDataList.filter(function (data) {
-      return data["result_time"] !== 0;
-    })
+    return rawDataList
+      .filter(function (data) {
+        return data["result_time"] !== 0;
+      })
       .sort(function (a, b) {
         return a["result_time"].localeCompare(b["result_time"]);
       })

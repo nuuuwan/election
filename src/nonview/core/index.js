@@ -4,11 +4,11 @@ import DB from "./DB";
 import Election from "./Election";
 import ElectionModel from "./ElectionModel";
 import FinalOutcome from "./FinalOutcome";
+import OngoingElection from "./OngoingElection";
 import Party from "./Party";
 import PartyToVotes from "./PartyToVotes";
 import Result from "./Result";
 import Summary from "./Summary";
-import OngoingElection from "./OngoingElection";
 
 export {
   Bellwether,
@@ -16,9 +16,9 @@ export {
   Election,
   ElectionModel,
   FinalOutcome,
+  OngoingElection,
   Party,
   PartyToVotes,
   Result,
   Summary,
-  OngoingElection,
 };

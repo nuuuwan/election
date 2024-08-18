@@ -4,7 +4,8 @@ import { Election, DB } from "../../../nonview/core";
 import { BasePageView } from "../../../view/molecules";
 
 import BasePageSettersMixin from "./BasePageSettersMixin";
-import { CircularProgress } from "@mui/material";
+import {  Typography } from "@mui/material";
+import { STYLE } from "../../../nonview/constants";
 
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
@@ -98,9 +99,10 @@ export default class BasePage extends Component {
   }
 
   render() {
-    const { election, db } = this.state;
+    const { election, db , electionType, date } = this.state;
     if (!election) {
-      return <CircularProgress />;
+      const tempElection = new Election(electionType, date);
+      return <Typography variant="caption" color={STYLE.COLOR.LIGHT}>Loading {tempElection.title}...</Typography>;
     }
 
     return (

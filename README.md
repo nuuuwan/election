@@ -12,8 +12,6 @@
 
 ### Minor
 
-* Contrast color header
-
 ### One Liners
 
 * Swap Latest and Cumulative Results ❓

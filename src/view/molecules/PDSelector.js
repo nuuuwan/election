@@ -48,6 +48,10 @@ export default function PDSelector({
       onChange={function (pd) {
         setActivePDID(pd.id);
       }}
+      renderValue={buildRenderMenuItemInner(
+        election.resultIdx,
+        db.edIdx
+      )}
       renderMenuItemInner={buildRenderMenuItemInner(
         election.resultIdx,
         db.edIdx

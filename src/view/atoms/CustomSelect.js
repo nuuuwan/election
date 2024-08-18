@@ -14,6 +14,7 @@ const STYLE = {
 function CustomSelectInner({
   value,
   getID,
+  renderValue,
   renderMenuItemInner,
   getDividerKey,
   onChangeInner,
@@ -21,7 +22,11 @@ function CustomSelectInner({
 }) {
   let prevDividerKey;
   return (
-    <Select value={getID(value)} onChange={onChangeInner} sx={STYLE}>
+    <Select value={getID(value)} onChange={onChangeInner} sx={STYLE} renderValue={
+      function(value, i) {
+        return renderValue(dataIdx[value], i);
+      }
+    }>
       {Object.entries(dataIdx).reduce(function (innerItems, [id, data], i) {
         const inner = renderMenuItemInner(data, i);
         const dividerKey = getDividerKey(data);
@@ -60,6 +65,7 @@ export default function CustomSelect({
   onChange,
   dataList,
   getID,
+  renderValue,
   renderMenuItemInner,
   getDividerKey,
   reverse,
@@ -74,6 +80,7 @@ export default function CustomSelect({
     <CustomSelectInner
       value={value}
       getID={getID}
+      renderValue={renderValue}
       renderMenuItemInner={renderMenuItemInner}
       getDividerKey={getDividerKey}
       onChangeInner={onChangeInner}

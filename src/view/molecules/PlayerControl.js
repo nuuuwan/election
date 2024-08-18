@@ -19,6 +19,22 @@ import CloudSyncIcon from "@mui/icons-material/CloudSync";
 import { useState } from "react";
 import { STYLE } from "../../nonview/constants";
 
+const STYLE_PLAYER_CONTROL = {
+  BOX: {
+    position: "fixed",
+    bottom: 0,
+    right: 0,
+    left: 0,
+    zIndex: 2000,
+    paddingTop: 1,
+    backgroundColor: STYLE.COLOR.LIGHTEST,
+  },
+  BOTTOM_NAVIGATION : {
+    backgroundColor: STYLE.COLOR.LIGHTEST,
+  }
+};
+
+
 const N_JUMP_STEPS = 10;
 
 function BottomNavigationActionCustom({ Icon, onClick, disabled }) {
@@ -85,7 +101,7 @@ function BottomNavigationCustom({
   setNResultsDisplay,
 }) {
   return (
-    <BottomNavigation>
+    <BottomNavigation sx={STYLE_PLAYER_CONTROL.BOTTOM_NAVIGATION}>
       {getBottomNavigationActionConfigs(
         setNResultsDisplay,
         nResultsDisplay,
@@ -137,15 +153,6 @@ function CustomSlider({
   );
 }
 
-const STYLE_PLAYER_CONTROL = {
-  position: "fixed",
-  bottom: 0,
-  right: 0,
-  left: 0,
-  zIndex: 2000,
-  paddingTop: 3,
-  backgroundColor: "white",
-};
 
 export default function PlayerControl({
   electionDisplay,
@@ -166,7 +173,7 @@ export default function PlayerControl({
   };
 
   return (
-    <Box sx={STYLE_PLAYER_CONTROL}>
+    <Box sx={STYLE_PLAYER_CONTROL.BOX}>
       <CustomSlider
         nResultsDisplayUpdated={nResultsDisplayUpdated}
         nResults={nResults}

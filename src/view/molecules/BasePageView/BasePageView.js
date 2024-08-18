@@ -17,6 +17,7 @@ export default function BasePageView({
   return (
     <Box sx={{ textAlign: "center" }}>
       <PageHeader
+        election={election}
         electionDisplay={electionDisplay}
         db={db}
         setElection={setElection}

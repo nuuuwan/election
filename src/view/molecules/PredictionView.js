@@ -11,7 +11,6 @@ export default function PredictionView({
       <ResultSingleView
         election={projectedElection}
         entID="LK"
-        chartSize={140}
         elections={db.elections}
       />
       <FinalOutcomeView

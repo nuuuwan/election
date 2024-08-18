@@ -12,9 +12,11 @@
 
 ### Minor
 
+* "Historically, in Matara..."
+* Remove "Too Early to Call"
+
 ### One Liners
 
-* Swap Latest and Cumulative Results ❓
 * Replace number of votes with percentage ❓
 * Replace humanized number of votes, with actual number of votes ❓
 

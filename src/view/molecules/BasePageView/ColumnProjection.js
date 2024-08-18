@@ -9,10 +9,17 @@ export default function ColumnProjection({
   db,
 }) {
   return (
-    <Box
-      
-    >
-      <Box sx={Object.assign({color: projectedElection ? projectedElection.color : STYLE.COLOR.LIGHT}, STYLE.BODY_HEADER)}>
+    <Box>
+      <Box
+        sx={Object.assign(
+          {
+            color: projectedElection
+              ? projectedElection.color
+              : STYLE.COLOR.LIGHT,
+          },
+          STYLE.BODY_HEADER
+        )}
+      >
         <Typography variant="caption">Final Result</Typography>
         <Typography variant="h4">Projected</Typography>
       </Box>

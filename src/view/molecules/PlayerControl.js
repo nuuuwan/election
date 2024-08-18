@@ -80,7 +80,7 @@ function getBottomNavigationActionConfigs(
   ];
 }
 
-function RefreshBotton() {
+function RefreshButton() {
   const onClickRefresh = function () {
     localStorage.clear();
     window.location.reload();
@@ -146,7 +146,7 @@ function CustomSlider({
       <Typography variant="h6" color={STYLE.COLOR.LIGHT}>
         {nResults}
       </Typography>
-      <RefreshBotton />
+      <RefreshButton />
     </Stack>
   );
 }

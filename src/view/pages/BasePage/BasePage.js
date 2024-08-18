@@ -82,6 +82,18 @@ export default class BasePage extends Component {
   
   }
 
+  getDerived(nResultsDisplay, election, db) {
+    const electionDisplay = election.getElectionSubset(nResultsDisplay);
+    
+    let projectedElection;
+    if (nResultsDisplay > 0) {
+      projectedElection = this.getPredictedElection(election, electionDisplay, db);
+    
+    }
+    return { electionDisplay, projectedElection };
+  }
+
+
   async componentDidMount() {
     let { electionType, date, nResultsDisplay, activePDID } = this.state;
 
@@ -94,8 +106,8 @@ export default class BasePage extends Component {
       nResultsDisplay,
       election,
     }));
-    const electionDisplay = election.getElectionSubset(nResultsDisplay);
-    const projectedElection = this.getPredictedElection(election, electionDisplay, db);
+    
+    const { electionDisplay, projectedElection } = this.getDerived(nResultsDisplay, election, db);
 
     this.setStateAndContext({
       electionType,

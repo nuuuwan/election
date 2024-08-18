@@ -26,6 +26,9 @@ let FormatPercent = {
   },
 
   percent(x, minimumFractionDigits = undefined) {
+    if (x < 0.005 && x > 0) {
+      return "<0.5%";
+    }
     const absX = Math.abs(x);
     const sign = x < 0 ? "-" : "";
     return sign + FormatPercent.percentAbs(absX, minimumFractionDigits);

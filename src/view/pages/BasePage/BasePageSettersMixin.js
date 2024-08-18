@@ -2,11 +2,6 @@ import { Election } from "../../../nonview/core";
 
 const BasePageSettersMixin = {
 
-  getDerived(nResultsDisplay, election, db) {
-    const electionDisplay = election.getElectionSubset(nResultsDisplay);
-    const projectedElection = this.getPredictedElection(election, electionDisplay, db);
-    return { electionDisplay, projectedElection };
-  },
 
   async setElection(election0) {
     let { activePDID, nResultsDisplay, db } = this.state;

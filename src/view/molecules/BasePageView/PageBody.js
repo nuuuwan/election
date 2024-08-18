@@ -9,7 +9,6 @@ const STYLE = {
   BOX: { paddingTop: 10 },
   GRID_ITEM: {
     paddingBottom: 10,
-    border: "1px solid #f0f0f0",
   },
 };
 

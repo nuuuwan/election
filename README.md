@@ -16,7 +16,6 @@
 
 ### One Liners
 
-* Swap Pie Chart and Stats labels
 * Remove date from Election ❓
 * Swap Latest and Cumulative Results ❓
 * Replace number of votes with percentage ❓

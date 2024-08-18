@@ -10,10 +10,9 @@ export default function PartyToVotesPieChart({ partyToVotes, chartSize }) {
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
   const data = entries.map(function ([partyID, votes]) {
     const party = Party.fromID(partyID);
-    const pVotes = votes / partyToVotes.totalVotes;
     return {
       id: partyID,
-      value: pVotes,
+      value: votes,
       label: partyID,
       color: party.color || STYLE.COLOR.LIGHT,
     };
@@ -25,7 +24,7 @@ export default function PartyToVotesPieChart({ partyToVotes, chartSize }) {
         series={[
           {
             data,
-            arcLabel: (item) => Format.percentVotes(item.value),
+            arcLabel: (item) => Format.intHumanize(item.value),
             arcLabelMinAngle: 45,
           },
         ]}

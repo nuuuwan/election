@@ -2,6 +2,7 @@ import {
   BottomNavigation,
   BottomNavigationAction,
   Box,
+  IconButton,
   Slider,
   Stack,
   Typography,
@@ -29,8 +30,8 @@ function BottomNavigationActionCustom({ Icon, onClick, disabled }) {
     <BottomNavigationAction
       onClick={onClick}
       disabled={disabled}
-      sx={{ color }}
-      icon={<Icon />}
+      sx={{ color}}
+      icon={<Icon sx={{m:0, p:0}} />}
     />
   );
 }
@@ -81,16 +82,26 @@ function getBottomNavigationActionConfigs(
   ];
 }
 
+function RefreshBotton() {
+  
+  const onClickRefresh = function () {
+    localStorage.clear();
+    window.location.reload();
+  };
+
+
+  return (     <IconButton
+    onClick={onClickRefresh}
+    sx={{ color: STYLE.COLOR.LIGHT }}
+    
+  ><CloudSyncIcon /></IconButton>)
+}
+
 function BottomNavigationCustom({
   nResultsDisplay,
   nResults,
   setNResultsDisplay,
 }) {
-
-  const onClickRefresh = function () {
-    localStorage.clear();
-    window.location.reload();
-  };
 
 
   return (
@@ -109,11 +120,7 @@ function BottomNavigationCustom({
           />
         );
       })}
-      <BottomNavigationAction
-        onClick={onClickRefresh}
-        sx={{ color: STYLE.COLOR.DARKER }}
-        icon={<CloudSyncIcon />}
-      />
+
     </BottomNavigation>
   );
 }
@@ -130,10 +137,8 @@ function CustomSlider({
       gap={2}
       sx={{
         alignItems: "center",
-        p: 0,
-        m: 0,
-        paddingLeft: 2,
-        paddingRight: 2,
+        marginLeft: 2,
+        marginRight: 2,
       }}
     >
       <Typography variant="h6">{nResultsDisplayUpdated}</Typography>
@@ -148,6 +153,7 @@ function CustomSlider({
       <Typography variant="h6" color={STYLE.COLOR.LIGHT}>
         {nResults}
       </Typography>
+      <RefreshBotton />
     </Stack>
   );
 }
@@ -158,8 +164,8 @@ const STYLE_PLAYER_CONTROL = {
   right: 0,
   left: 0,
   zIndex: 2000,
-  backgroundColor: "white",
   paddingTop: 3,
+  backgroundColor: "white",
 };
 
 export default function PlayerControl({

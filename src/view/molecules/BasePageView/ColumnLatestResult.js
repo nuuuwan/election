@@ -42,6 +42,7 @@ export default function ColumnLatestResult({
       <BellwetherView
         elections={db.elections}
         electionDisplay={electionDisplay}
+        db={db}
       />
     </Box>
   );

@@ -6,7 +6,6 @@
 
 ## Minor
 
-* "Historically, in Matara..."
 * Load election from pdResultList
 
 ## One Liners

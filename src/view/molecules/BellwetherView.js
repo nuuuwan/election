@@ -3,39 +3,41 @@ import { Bellwether } from "../../nonview/core";
 import { Format } from "../../nonview/base";
 import { STYLE } from "../../nonview/constants";
 
-function PerfectBellwether({ n }) {
+function PerfectBellwether({ n , ent}) {
   return (
     <Box>
       <Typography variant="h6">Perfect Bellwether</Typography>
       <Typography variant="caption">
-        Results have matched Final National Result in all {n} previous
+        Results in {ent.name} have matched Final National Result in all {n} previous
         Presidential Elections.
       </Typography>
     </Box>
   );
 }
 
-function PercentageBellwether({ error }) {
+function PercentageBellwether({ error, ent }) {
   return (
     <Box color={STYLE.COLOR.LIGHT}>
       <Typography variant="caption">
-        Historically, Party Vote percentages vary from the National Result by{" "}
+        Historically, Party Vote percentages in {ent.name}, have varied from the National Result by{" "}
         {Format.percentError(error)}, on average.
       </Typography>
     </Box>
   );
 }
 
-export default function BellwetherView({ elections, electionDisplay }) {
+export default function BellwetherView({ elections, electionDisplay, db }) {
   const { n, nSame, error } = Bellwether.getStats(elections, electionDisplay);
   if (n === 0) {
     return null;
   }
-
+  const pdID = electionDisplay.finalPDID;
+  const ent = db.pdIdx[pdID];
+  
   return (
     <Box sx={STYLE.MESSAGE}>
-      {n === nSame ? <PerfectBellwether n={n} /> : null}
-      <PercentageBellwether error={error} />
+      {n === nSame ? <PerfectBellwether n={n}  ent={ent}/> : null}
+      <PercentageBellwether error={error} ent={ent} />
     </Box>
   );
 }

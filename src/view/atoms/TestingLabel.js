@@ -1,6 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import { STYLE } from "../../nonview/constants";
-
 
 const STYLE_TESTING_LABEL = {
     BOX: {

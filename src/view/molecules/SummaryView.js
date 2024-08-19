@@ -11,7 +11,7 @@ export default function SummaryView({ summary }) {
       sx={{ margin: "auto", color: STYLE.COLOR.LIGHTER }}
     >
       <LabelledStat
-        label="Electors"
+        label="Reg. Voters"
         valueStr={Format.intHumanize(summary.electors)}
       />
       <LabelledStat

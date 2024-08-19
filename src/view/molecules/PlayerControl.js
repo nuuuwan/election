@@ -2,7 +2,6 @@ import {
   BottomNavigation,
   BottomNavigationAction,
   Box,
-
   Slider,
   Stack,
   Typography,
@@ -16,7 +15,7 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 import { useState } from "react";
 import { STYLE } from "../../nonview/constants";
-import {RefreshButton} from "../../view/atoms";
+import { RefreshButton } from "../../view/atoms";
 
 const STYLE_PLAYER_CONTROL = {
   BOX: {
@@ -79,8 +78,6 @@ function getBottomNavigationActionConfigs(
     },
   ];
 }
-
-
 
 function BottomNavigationCustom({
   nResultsDisplay,

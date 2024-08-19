@@ -143,13 +143,12 @@ export default class BasePage extends Component {
     if (!election) {
       const tempElection = new Election(electionType, date);
       return (
-        <Stack direction="row" gap={1} sx={{alignItems: "center"}}>
+        <Stack direction="row" gap={1} sx={{ alignItems: "center" }}>
           <CircularProgress />
-              <Typography variant="caption" color={STYLE.COLOR.LIGHT}>
-          Loading {tempElection.title}...
-        </Typography>
-          </Stack>
-    
+          <Typography variant="caption" color={STYLE.COLOR.LIGHT}>
+            Loading {tempElection.title}...
+          </Typography>
+        </Stack>
       );
     }
 

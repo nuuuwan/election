@@ -11,7 +11,7 @@ let FormatPercent = {
         minimumFractionDigits = 0;
       } else {
         minimumFractionDigits = 1;
-      }  
+      }
     }
 
     return x.toLocaleString(undefined, {

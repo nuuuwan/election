@@ -21,11 +21,11 @@ function getColumns(
 ) {
   return [
     <ColumnLatestResult
-    election={election}
-    electionDisplay={electionDisplay}
-    db={db}
-    setActivePDID={setActivePDID}
-  />,
+      election={election}
+      electionDisplay={electionDisplay}
+      db={db}
+      setActivePDID={setActivePDID}
+    />,
     <ColumnCumulativeResult
       election={election}
       electionDisplay={electionDisplay}

@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import PageHeader from "./PageHeader";
 import PageBody from "./PageBody";
 import PageFooter from "./PageFooter";
+import {TestingLabel} from "../../../view/atoms"
 
 export default function BasePageView({
   election,
@@ -16,6 +17,7 @@ export default function BasePageView({
 }) {
   return (
     <Box sx={{ textAlign: "center" }}>
+            <TestingLabel election={election} />
       <PageHeader
         electionDisplay={electionDisplay}
         db={db}
@@ -37,6 +39,7 @@ export default function BasePageView({
         //
         setNResultsDisplay={setNResultsDisplay}
       />
+
     </Box>
   );
 }

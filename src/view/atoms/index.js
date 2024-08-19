@@ -2,6 +2,13 @@
 import CustomSelect from "./CustomSelect";
 import LabelledStat from "./LabelledStat";
 import PartyView from "./PartyView";
+import RefreshButton from "./RefreshButton";
 import TestingLabel from "./TestingLabel";
 
-export { CustomSelect, LabelledStat, PartyView, TestingLabel };
+export {
+  CustomSelect,
+  LabelledStat,
+  PartyView,
+  RefreshButton,
+  TestingLabel,
+};

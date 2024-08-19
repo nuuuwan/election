@@ -2,7 +2,7 @@ import {
   BottomNavigation,
   BottomNavigationAction,
   Box,
-  IconButton,
+
   Slider,
   Stack,
   Typography,
@@ -13,10 +13,10 @@ import Forward10Icon from "@mui/icons-material/Forward10";
 
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import CachedIcon from "@mui/icons-material/Cached";
 
 import { useState } from "react";
 import { STYLE } from "../../nonview/constants";
+import {RefreshButton} from "../../view/atoms";
 
 const STYLE_PLAYER_CONTROL = {
   BOX: {
@@ -80,19 +80,7 @@ function getBottomNavigationActionConfigs(
   ];
 }
 
-function RefreshButton() {
-  const onClickRefresh = function () {
-    console.debug(window.location.pathname);
-    localStorage.clear();
-    window.location.href = "/";
-  };
 
-  return (
-    <IconButton onClick={onClickRefresh} sx={{ color: STYLE.COLOR.LIGHT }}>
-      <CachedIcon />
-    </IconButton>
-  );
-}
 
 function BottomNavigationCustom({
   nResultsDisplay,

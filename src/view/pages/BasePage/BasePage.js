@@ -5,7 +5,7 @@ import { BasePageView } from "../../../view/molecules";
 
 import BasePageSettersMixin from "./BasePageSettersMixin";
 import { CircularProgress, Stack, Typography } from "@mui/material";
-import { STYLE } from "../../../nonview/constants";
+import { STYLE, VERSION } from "../../../nonview/constants";
 
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
@@ -143,10 +143,13 @@ export default class BasePage extends Component {
     if (!election) {
       const tempElection = new Election(electionType, date);
       return (
-        <Stack direction="row" gap={1} sx={{ alignItems: "center" }}>
+        <Stack direction="" gap={1} sx={{ alignItems: "center" }}>
           <CircularProgress />
-          <Typography variant="caption" color={STYLE.COLOR.LIGHT}>
-            Loading {tempElection.title}...
+          <Typography variant="body1" color={STYLE.COLOR.LIGHT}>
+            Loading {tempElection.title}
+          </Typography>
+          <Typography variant="caption" color={STYLE.COLOR.LIGHTER}>
+            (v{VERSION.DATETIME_STR})
           </Typography>
         </Stack>
       );

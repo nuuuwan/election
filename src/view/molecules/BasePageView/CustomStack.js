@@ -7,7 +7,7 @@ export default function CustomStack({ children }) {
       justifyContent="space-between"
       alignItems="stretch"
       alignContent="center"
-      spacing={0.5}
+      gap={0.5}
     >
       {children}
     </Stack>

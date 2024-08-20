@@ -70,7 +70,7 @@ export default function PageBody({
             setActivePDID
           ).map(function (column, i) {
             return (
-              <Grid key={i} item xs={12} md={6} xl={3} sx={STYLE.GRID_ITEM}>
+              <Grid item key={i} xs={12} md={6} xl={3} sx={STYLE.GRID_ITEM}>
                 {column}
               </Grid>
             );

@@ -18,13 +18,8 @@ STYLE.COLOR = {
 };
 
 STYLE.MESSAGE = {
-  padding: 0.5,
-  marginTop: 0.5,
-  margin: "auto",
-  alignContent: "center",
-  alignItems: "center",
-  textAlign: "center",
-  maxWidth: 320,
+  padding: 4,
+
 };
 
 export default STYLE;

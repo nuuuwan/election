@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 import { HexagonMap } from "../../molecules";
 
@@ -10,19 +10,15 @@ export default function ColumnMap({
   db,
   setActivePDID,
 }) {
-  const resultLKDisplay = electionDisplay.resultLK;
+
   const subTitleProgress = `${electionDisplay.nResults}/${election.nResults} Results`;
 
   return (
     <CustomStack>
-      <Box
-        sx={{
-          color: resultLKDisplay.winningPartyColor,
-        }}
-      >
-        <Typography variant="caption">{subTitleProgress}</Typography>
+
+        <Typography variant="body1">{subTitleProgress}</Typography>
         <Typography variant="h4">Maps</Typography>
-      </Box>
+  
       <HexagonMap
         election={electionDisplay}
         db={db}

@@ -22,17 +22,20 @@ export default function ColumnLatestResult({
   const color = electionDisplay.getResult(activePDID).winningPartyColor;
   return (
     <CustomStack>
-      <Box>
-        <Typography variant="caption" component="div" color={color}>
+
+        <Typography variant="body1" color={color}>
           Latest Result ({electionDisplay.nResults})
         </Typography>
+        
+        <Box>
         <PDSelector
           election={election}
           activePDID={activePDID}
           db={db}
           setActivePDID={setActivePDID}
         />
-      </Box>
+        </Box>
+
 
       <ResultSingleView
         election={electionDisplay}

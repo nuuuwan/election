@@ -130,7 +130,12 @@ function CustomSlider({
         onChange={onChange}
         onChangeCommitted={onChangeCommitted}
       />
-      <Typography variant="h6" color={STYLE.COLOR.LIGHT} onClick={onClickEndValue} sx={{cursor: (nResults !== nResultsDisplayUpdated ? "pointer" : "")}}>
+      <Typography
+        variant="h6"
+        color={STYLE.COLOR.LIGHT}
+        onClick={onClickEndValue}
+        sx={{ cursor: nResults !== nResultsDisplayUpdated ? "pointer" : "" }}
+      >
         {nResults}
       </Typography>
       <RefreshButton />
@@ -142,7 +147,6 @@ export default function PlayerControl({
   electionDisplay,
   election,
   setNResultsDisplay,
-  
 }) {
   const nResultsDisplay = electionDisplay.nResults;
   const nResults = election.nResults;
@@ -156,10 +160,10 @@ export default function PlayerControl({
   const onChange = function (__, value) {
     setNResultsDisplayUpdated(value);
   };
-  const onClickEndValue = function() {
+  const onClickEndValue = function () {
     setNResultsDisplayUpdated(nResults);
     setNResultsDisplay(nResults);
-  }
+  };
 
   return (
     <Box sx={STYLE_PLAYER_CONTROL.BOX}>

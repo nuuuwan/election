@@ -18,8 +18,8 @@ export default function ColumnCumulativeResult({
   return (
     <CustomStack>
       <Box color={electionDisplay.color}>
-      <Typography variant="body1">{subTitleProgress}</Typography>
-      <Typography variant="h4">Islandwide</Typography>
+        <Typography variant="body1">{subTitleProgress}</Typography>
+        <Typography variant="h4">Islandwide</Typography>
       </Box>
       <ResultSingleView
         election={electionDisplay}

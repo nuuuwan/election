@@ -11,9 +11,9 @@ export default function ColumnProjection({
 }) {
   return (
     <CustomStack>
-            <Box color={projectedElection.color}>
-      <Typography variant="body1">Final Result</Typography>
-      <Typography variant="h4">Projected</Typography>
+      <Box color={projectedElection.color}>
+        <Typography variant="body1">Final Result</Typography>
+        <Typography variant="h4">Projected</Typography>
       </Box>
 
       <PredictionView db={db} projectedElection={projectedElection} />

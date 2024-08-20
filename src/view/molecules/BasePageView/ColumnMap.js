@@ -14,9 +14,9 @@ export default function ColumnMap({
 
   return (
     <CustomStack>
-            <Box color={electionDisplay.color}>
-      <Typography variant="body1">{subTitleProgress}</Typography>
-      <Typography variant="h4">Maps</Typography>
+      <Box color={electionDisplay.color}>
+        <Typography variant="body1">{subTitleProgress}</Typography>
+        <Typography variant="h4">Maps</Typography>
       </Box>
       <HexagonMap
         election={electionDisplay}

@@ -19,7 +19,6 @@ STYLE.COLOR = {
 
 STYLE.MESSAGE = {
   padding: 4,
-
 };
 
 export default STYLE;

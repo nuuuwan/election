@@ -17,9 +17,8 @@ export default function ColumnCumulativeResult({
 
   return (
     <CustomStack>
-
-        <Typography variant="body1">{subTitleProgress}</Typography>
-        <Typography variant="h4">Islandwide</Typography>
+      <Typography variant="body1">{subTitleProgress}</Typography>
+      <Typography variant="h4">Islandwide</Typography>
 
       <ResultSingleView
         election={electionDisplay}

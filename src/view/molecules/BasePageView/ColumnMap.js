@@ -10,15 +10,13 @@ export default function ColumnMap({
   db,
   setActivePDID,
 }) {
-
   const subTitleProgress = `${electionDisplay.nResults}/${election.nResults} Results`;
 
   return (
     <CustomStack>
+      <Typography variant="body1">{subTitleProgress}</Typography>
+      <Typography variant="h4">Maps</Typography>
 
-        <Typography variant="body1">{subTitleProgress}</Typography>
-        <Typography variant="h4">Maps</Typography>
-  
       <HexagonMap
         election={electionDisplay}
         db={db}

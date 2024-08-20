@@ -1,8 +1,9 @@
-import { Box, Stack, Typography } from "@mui/material";
-
-import { STYLE } from "../../../nonview/constants";
+import { Box, Typography } from "@mui/material";
 
 import { HexagonMap } from "../../molecules";
+
+import CustomStack from "./CustomStack";
+
 export default function ColumnMap({
   election,
   electionDisplay,
@@ -13,7 +14,7 @@ export default function ColumnMap({
   const subTitleProgress = `${electionDisplay.nResults}/${election.nResults} Results`;
 
   return (
-    <Stack direction="column" gap={1}>
+    <CustomStack>
       <Box
         sx={{
           color: resultLKDisplay.winningPartyColor,
@@ -27,6 +28,6 @@ export default function ColumnMap({
         db={db}
         setActivePDID={setActivePDID}
       />
-    </Stack>
+    </CustomStack>
   );
 }

@@ -1,9 +1,8 @@
-import { Box, Stack, Typography } from "@mui/material";
-
-import { STYLE } from "../../../nonview/constants";
+import { Box, Typography } from "@mui/material";
 
 import { ResultSingleView, PDSelector } from "..";
 import BellwetherView from "../BellwetherView";
+import CustomStack from "./CustomStack";
 
 export default function ColumnLatestResult({
   election,
@@ -22,9 +21,8 @@ export default function ColumnLatestResult({
   const activePDID = electionDisplay.finalPDID;
   const color = electionDisplay.getResult(activePDID).winningPartyColor;
   return (
-    <Stack direction="column" gap={1}>
-
-    <Box>
+    <CustomStack>
+      <Box>
         <Typography variant="caption" component="div" color={color}>
           Latest Result ({electionDisplay.nResults})
         </Typography>
@@ -34,7 +32,7 @@ export default function ColumnLatestResult({
           db={db}
           setActivePDID={setActivePDID}
         />
-</Box>
+      </Box>
 
       <ResultSingleView
         election={electionDisplay}
@@ -46,6 +44,6 @@ export default function ColumnLatestResult({
         electionDisplay={electionDisplay}
         db={db}
       />
-    </Stack>
+    </CustomStack>
   );
 }

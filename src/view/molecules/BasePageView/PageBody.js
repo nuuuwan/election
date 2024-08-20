@@ -8,7 +8,7 @@ import ColumnProjection from "./ColumnProjection";
 const STYLE = {
   BOX: { paddingTop: 7, paddingBottom: 10 },
   GRID_ITEM: {
-    paddingBottom: 5,
+    paddingBottom: 2,
   },
 };
 

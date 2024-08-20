@@ -1,10 +1,9 @@
-import { Box, Stack, Typography } from "@mui/material";
-import { STYLE } from "../../../nonview/constants";
+import { Box, Typography } from "@mui/material";
+
 import { ResultSingleView, CitationsView } from "..";
 import { Format } from "../../../nonview/base";
-
+import CustomStack from "./CustomStack";
 export default function ColumnCumulativeResult({
-  election,
   electionDisplay,
   db,
   projectedElection,
@@ -17,7 +16,7 @@ export default function ColumnCumulativeResult({
   )} released)`;
 
   return (
-    <Stack direction="column" gap={1}>
+    <CustomStack>
       <Box
         sx={{
           color: electionDisplay.resultLK.winningPartyColor,
@@ -33,6 +32,6 @@ export default function ColumnCumulativeResult({
       />
 
       <CitationsView />
-    </Stack>
+    </CustomStack>
   );
 }

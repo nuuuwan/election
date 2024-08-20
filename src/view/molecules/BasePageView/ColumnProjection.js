@@ -1,30 +1,31 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
+import CustomStack from "./CustomStack";
+
+import { FinalOutcomeView, PredictionView } from "../../molecules";
 import { STYLE } from "../../../nonview/constants";
-
-import { PredictionView } from "../../molecules";
 export default function ColumnProjection({
   projectedElection,
   electionDisplay,
   db,
 }) {
   return (
-    <Stack direction="column" gap={1}>
+    <CustomStack>
       <Box
         sx={{
-            color: projectedElection
-              ? projectedElection.color
-              : STYLE.COLOR.LIGHT,
-          }}
+          color: projectedElection
+            ? projectedElection.color
+            : STYLE.COLOR.LIGHT,
+        }}
       >
         <Typography variant="caption">Final Result</Typography>
         <Typography variant="h4">Projected</Typography>
       </Box>
-      <PredictionView
-        electionDisplay={electionDisplay}
-        db={db}
-        projectedElection={projectedElection}
+      <PredictionView db={db} projectedElection={projectedElection} />
+      <FinalOutcomeView
+        election={projectedElection}
+        nResultsDisplay={electionDisplay.nResults}
       />
-    </Stack>
+    </CustomStack>
   );
 }

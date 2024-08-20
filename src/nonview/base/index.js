@@ -4,7 +4,6 @@ import Color from "./Color";
 import Ent from "./Ent";
 import EntType from "./EntType";
 import Format from "./Format";
-import I18n from "./I18n";
 import MLModel from "./MLModel";
 import MathX from "./MathX";
 import Time from "./Time";
@@ -17,7 +16,6 @@ export {
   Ent,
   EntType,
   Format,
-  I18n,
   MLModel,
   MathX,
   Time,

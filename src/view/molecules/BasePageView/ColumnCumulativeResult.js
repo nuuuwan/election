@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import { ResultSingleView, CitationsView } from "..";
 import { Format } from "../../../nonview/base";
@@ -17,9 +17,10 @@ export default function ColumnCumulativeResult({
 
   return (
     <CustomStack>
+      <Box color={electionDisplay.color}>
       <Typography variant="body1">{subTitleProgress}</Typography>
       <Typography variant="h4">Islandwide</Typography>
-
+      </Box>
       <ResultSingleView
         election={electionDisplay}
         elections={db.elections}

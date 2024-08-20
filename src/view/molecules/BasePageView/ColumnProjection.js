@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 import CustomStack from "./CustomStack";
 
@@ -11,8 +11,10 @@ export default function ColumnProjection({
 }) {
   return (
     <CustomStack>
+            <Box color={projectedElection.color}>
       <Typography variant="body1">Final Result</Typography>
       <Typography variant="h4">Projected</Typography>
+      </Box>
 
       <PredictionView db={db} projectedElection={projectedElection} />
       <FinalOutcomeView

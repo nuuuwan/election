@@ -58,10 +58,13 @@ export default class ElectionBase {
 
   get color() {
     if (!this.resultIdx) {
-      return STYLE.COLOR.LIGHT;
+      return STYLE.COLOR.LIGHTEST;
     }
     const resultLK = this.resultLK;
     const winningPartyID = resultLK.partyToVotes.winningPartyID;
+    if (resultLK.partyToVotes.pWinner < 0.5) {
+      return STYLE.COLOR.LIGHTER;
+    }
     return Party.fromID(winningPartyID).color;
   }
 }

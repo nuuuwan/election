@@ -4,21 +4,18 @@ function gray(x) {
   return "#" + x.repeat(3);
 }
 
+STYLE.FONT_SIZE = 14;
+STYLE.FONT_FAMILY = "Lexend Deca";
+
 STYLE.COLOR = {
   LIGHTEST: gray("e"),
   LIGHTER: gray("c"),
-  LIGHT: gray("8"),
-  DARK: gray("4"),
-  DARKER: gray("2"),
+  LIGHT: gray("a"),
+  MEDIUM: gray("8"),
+  DARK: gray("6"),
+  DARKER: gray("4"),
+  DARKEST: gray("2"),
 };
-
-STYLE.BODY_HEADER = {
-  p: 0.5,
-  height: 65,
-};
-
-STYLE.FONT_SIZE = 14;
-STYLE.FONT_FAMILY = "Lexend Deca";
 
 STYLE.MESSAGE = {
   padding: 0.5,

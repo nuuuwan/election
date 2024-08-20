@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 
 import { STYLE } from "../../../nonview/constants";
 
@@ -9,16 +9,13 @@ export default function ColumnProjection({
   db,
 }) {
   return (
-    <Box>
+    <Stack direction="column" gap={1}>
       <Box
-        sx={Object.assign(
-          {
+        sx={{
             color: projectedElection
               ? projectedElection.color
               : STYLE.COLOR.LIGHT,
-          },
-          STYLE.BODY_HEADER
-        )}
+          }}
       >
         <Typography variant="caption">Final Result</Typography>
         <Typography variant="h4">Projected</Typography>
@@ -28,6 +25,6 @@ export default function ColumnProjection({
         db={db}
         projectedElection={projectedElection}
       />
-    </Box>
+    </Stack>
   );
 }

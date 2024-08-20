@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { STYLE } from "../../../nonview/constants";
 import { ResultSingleView, CitationsView } from "..";
 import { Format } from "../../../nonview/base";
@@ -17,11 +17,11 @@ export default function ColumnCumulativeResult({
   )} released)`;
 
   return (
-    <Box color={STYLE.COLOR.LIGHT}>
+    <Stack direction="column" gap={1}>
       <Box
-        sx={Object.assign({}, STYLE.BODY_HEADER, {
+        sx={{
           color: electionDisplay.resultLK.winningPartyColor,
-        })}
+        }}
       >
         <Typography variant="caption">{subTitleProgress}</Typography>
         <Typography variant="h4">Islandwide</Typography>
@@ -33,6 +33,6 @@ export default function ColumnCumulativeResult({
       />
 
       <CitationsView />
-    </Box>
+    </Stack>
   );
 }

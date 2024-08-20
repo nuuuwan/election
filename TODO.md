@@ -2,6 +2,7 @@
 
 ## Major
 
+* Sinhala & Tamil
 * Move to 3-column formal - which is more in line with Mobile ❓
 
 ## Minor

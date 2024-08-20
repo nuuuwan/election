@@ -3,9 +3,9 @@ import { Party } from "../../nonview/core";
 import { Color } from "../../nonview/base";
 
 const STYLE_LABEL = {
-  padding: 0.25,
+  padding: 0.5,
   margin: 0.25,
-  borderRadius: 1,
+  borderRadius: 2,
   width: "fit-content",
 };
 

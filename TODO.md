@@ -12,6 +12,6 @@
 
 ## One Liners
 
-* "UPF" in hexagon labels BUG
+
 * Replace number of votes with percentage ❓
 * Replace humanized number of votes, with actual number of votes ❓

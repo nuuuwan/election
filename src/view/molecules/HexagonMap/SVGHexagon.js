@@ -7,6 +7,9 @@ function replaceLowercaseVowels(str) {
 }
 
 function getShortLabel(name) {
+  if (name === name.toUpperCase()) {
+    return name;
+  }
   name = name.replace("Postal ", "");
   name = replaceLowercaseVowels(name);
   const words = name.split(" ");

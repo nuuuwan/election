@@ -7,6 +7,7 @@ import ElectionGetters from "./ElectionGetters.js";
 
 import OngoingElection from "../OngoingElection.js";
 import ElectionStaticUtilsMixin from "./ElectionStaticUtilsMixin.js";
+import ElectionStaticLoadedMixin from "./ElectionStaticLoaderMixin.js";
 
 class Election extends ElectionBase {
   static MIN_RESULTS = 10;
@@ -93,64 +94,7 @@ class Election extends ElectionBase {
     });
   }
 
-  static buildEDResultList(pdResultList) {
-    const edIDToResultList = pdResultList.reduce(function (
-      edIDToResultList,
-      pdResult
-    ) {
-      const pdID = pdResult.entID;
-      const edID = pdID.substring(0, 5);
-      if (!edIDToResultList[edID]) {
-        edIDToResultList[edID] = [];
-      }
-      edIDToResultList[edID].push(pdResult);
-      return edIDToResultList;
-    },
-    {});
-    const edResultList = Object.entries(edIDToResultList).map(function ([
-      edID,
-      resultListForED,
-    ]) {
-      return Result.fromList(edID, resultListForED);
-    });
-    return edResultList;
-  }
-
   
-  static buildProvinceResultList(pdResultList) {
-    const provinceIDToResultList = pdResultList.reduce(function (
-      provinceIDToResultList,
-      pdResult
-    ) {
-      const pdID = pdResult.entID;
-      const edID = pdID.substring(0, 5);
-      const provinceID = Election.getProvinceID(edID);
-      if (!provinceIDToResultList[provinceID]) {
-        provinceIDToResultList[provinceID] = [];
-      }
-      provinceIDToResultList[provinceID].push(pdResult);
-      return provinceIDToResultList;
-    },
-    {});
-    const edResultList = Object.entries(provinceIDToResultList).map(function ([
-      edID,
-      resultListForED,
-    ]) {
-      return Result.fromList(edID, resultListForED);
-    });
-    return edResultList;
-  }
-
-  static buildLKResult(pdResultList) {
-    return Result.fromList("LK", pdResultList);
-  }
-
-  static expand(pdResultList) {
-    const edResultList = Election.buildEDResultList(pdResultList);
-    const provinceResultList = Election.buildProvinceResultList(pdResultList);
-    const lkResult = Election.buildLKResult(pdResultList);
-    return [lkResult, ...provinceResultList, ...edResultList, ...pdResultList];
-  }
 
   getSubsetElectionByPDResultList(pdResultList) {
     const resultList = Election.expand(pdResultList);
@@ -213,5 +157,6 @@ class Election extends ElectionBase {
 
 Object.assign(Election.prototype, ElectionGetters);
 Object.assign(Election, ElectionStaticUtilsMixin);
+Object.assign(Election, ElectionStaticLoadedMixin)
 
 export default Election;

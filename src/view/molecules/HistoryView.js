@@ -27,7 +27,7 @@ function HistoryViewRow({ election, entID }) {
         {election.year}
       </Typography>
 
-      <PartyView partyID={winningPartyID} textColor={textColor} />
+      <PartyView partyID={winningPartyID} textColor={textColor} election={election} />
       <Typography variant="caption">{Format.percentVotes(pWinner)}</Typography>
     </Stack>
   );

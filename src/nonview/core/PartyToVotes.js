@@ -73,7 +73,9 @@ export default class PartyToVotes {
 
   get partyToVotesSortedOthered() {
     const N_DISPLAY = 3;
-
+    const MIN_P_VOTES = 0.01;
+    const totalVotes = this.totalVotes;
+    const minVotes = MIN_P_VOTES * totalVotes;
     let nonOther = Object.fromEntries(
       Object.entries(this.partyToVotes)
         .sort(function (a, b) {
@@ -90,7 +92,10 @@ export default class PartyToVotes {
           if (a[0] === Party.UNCERTAIN.id) {
             return true;
           }
-          return i < N_DISPLAY;
+          if ( i >= N_DISPLAY) {
+            return false;
+          };
+          return a[1] >= minVotes;
         })
     );
     const nonOtherVotes = MathX.sum(Object.values(nonOther));

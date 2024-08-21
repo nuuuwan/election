@@ -6,6 +6,7 @@ import EntType from "./EntType";
 import Format from "./Format";
 import MLModel from "./MLModel";
 import MathX from "./MathX";
+import StringX from "./StringX";
 import Time from "./Time";
 import Translate from "./Translate";
 import URLContext from "./URLContext";
@@ -19,6 +20,7 @@ export {
   Format,
   MLModel,
   MathX,
+  StringX,
   Time,
   Translate,
   URLContext,

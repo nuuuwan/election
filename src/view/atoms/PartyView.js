@@ -46,13 +46,16 @@ export default function PartyView({ partyID, pVotes, election }) {
     backgroundColor += Color.getOpacityChar(pVotes);
   }
 
+  const translatedLabel = Translate(label)
+  const shortLabel = translatedLabel.split(" ").reverse()[0].toUpperCase();
+
   return (
     <Typography
       variant="caption"
       sx={Object.assign({}, STYLE_LABEL, { backgroundColor, color: textColor })}
       component="span"
     >
-      {Translate(label)}
+      {shortLabel}
     </Typography>
   );
 }

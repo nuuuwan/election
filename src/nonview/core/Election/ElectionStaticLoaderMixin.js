@@ -1,7 +1,14 @@
 import Result from "../Result.js";
 import ElectionStaticUtilsMixin from "./ElectionStaticUtilsMixin.js";
 
-const ElectionStaticLoadedMixin = {
+const ElectionStaticLoaderMixin = {
+
+  
+   buildResultIdx(resultList) {
+    return Object.fromEntries(
+      resultList.map((result) => [result.entID, result])
+    );
+  },
   buildEDResultList(pdResultList) {
     const edIDToResultList = pdResultList.reduce(function (
       edIDToResultList,
@@ -55,12 +62,12 @@ const ElectionStaticLoadedMixin = {
 
   expand(pdResultList) {
     const edResultList =
-      ElectionStaticLoadedMixin.buildEDResultList(pdResultList);
+      ElectionStaticLoaderMixin.buildEDResultList(pdResultList);
     const provinceResultList =
-      ElectionStaticLoadedMixin.buildProvinceResultList(pdResultList);
-    const lkResult = ElectionStaticLoadedMixin.buildLKResult(pdResultList);
+      ElectionStaticLoaderMixin.buildProvinceResultList(pdResultList);
+    const lkResult = ElectionStaticLoaderMixin.buildLKResult(pdResultList);
     return [lkResult, ...provinceResultList, ...edResultList, ...pdResultList];
   },
 };
 
-export default ElectionStaticLoadedMixin;
+export default ElectionStaticLoaderMixin;

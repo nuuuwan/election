@@ -14,6 +14,18 @@ const ElectionStats = {
         return partyID;
       });
   },
+
+  
+  getPartyToWins() {
+    return Object.values(this.resultIdx).reduce(function (partyToWins, result) {
+      const winningPartyID = result.partyToVotes.winningPartyID;
+      if (!partyToWins[winningPartyID]) {
+        partyToWins[winningPartyID] = 0;
+      }
+      partyToWins[winningPartyID]++;
+      return partyToWins;
+    }, {});
+  },
 };
 
 export default ElectionStats;

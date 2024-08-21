@@ -5,10 +5,13 @@ import Party from "../Party.js";
 export default class ElectionBase {
   static URL_BASE =
     "https://raw.githubusercontent.com/nuuuwan/gig-data/master/gig2_custom_ec_only";
-  constructor(electionType, date) {
-    this.electionType = electionType;
-    this.date = date;
-  }
+    constructor(electionType, date) {
+      this.electionType = electionType;
+      this.date = date;
+      this.resultList = null;
+      this.resultIdx = null;
+      this.isLoaded = false;
+    }
 
   get electionTypeTitle() {
     if (this.electionType === "Presidential") {
@@ -62,5 +65,25 @@ export default class ElectionBase {
       return STYLE.COLOR.LIGHTER;
     }
     return Party.fromID(winningPartyID).color;
+  }
+
+  get nResults() {
+    return this.pdResultList.length;
+  }
+
+  get finalResult() {
+    return this.pdResultList[this.nResults - 1];
+  }
+
+  get finalPDID() {
+    return this.finalResult.entID;
+  }
+
+  get resultLK() {
+    return this.getResult("LK");
+  }
+
+  get pdIDList() {
+    return this.pdResultList.map((result) => result.entID);
   }
 }

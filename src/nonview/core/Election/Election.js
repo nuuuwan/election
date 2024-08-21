@@ -11,12 +11,7 @@ import ElectionStaticLoadedMixin from "./ElectionStaticLoaderMixin.js";
 
 class Election extends ElectionBase {
   static MIN_RESULTS = 10;
-  constructor(electionType, date) {
-    super(electionType, date);
-    this.resultList = null;
-    this.resultIdx = null;
-    this.isLoaded = false;
-  }
+
   getResult(id) {
     if (!this.isLoaded) {
       return null;
@@ -130,25 +125,7 @@ class Election extends ElectionBase {
     }, {});
   }
 
-  get nResults() {
-    return this.pdResultList.length;
-  }
 
-  get finalResult() {
-    return this.pdResultList[this.nResults - 1];
-  }
-
-  get finalPDID() {
-    return this.finalResult.entID;
-  }
-
-  get resultLK() {
-    return this.getResult("LK");
-  }
-
-  get pdIDList() {
-    return this.pdResultList.map((result) => result.entID);
-  }
 }
 
 Object.assign(Election.prototype, ElectionGetters);

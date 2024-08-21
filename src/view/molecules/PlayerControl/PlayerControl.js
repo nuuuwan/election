@@ -1,16 +1,10 @@
-import {
-
-  Box,
-
-} from "@mui/material";
-
+import { Box } from "@mui/material";
 
 import { useState } from "react";
 import { STYLE } from "../../../nonview/constants";
 
 import CustomSlider from "./CustomSlider";
 import BottomNavigationCustom from "./BottomNavigationCustom";
-
 
 const STYLE_PLAYER_CONTROL = {
   BOX: {
@@ -26,10 +20,6 @@ const STYLE_PLAYER_CONTROL = {
     backgroundColor: STYLE.COLOR.LIGHTEST,
   },
 };
-
-
-
-
 
 export default function PlayerControl({
   electionDisplay,

@@ -2,7 +2,6 @@ import { URLContext } from "../../../nonview/base";
 import { Election } from "../../../nonview/core";
 
 const BasePageSettersMixin = {
-
   setStateAndContext(newState, funcRunAfter = undefined) {
     const oldState = this.state;
 

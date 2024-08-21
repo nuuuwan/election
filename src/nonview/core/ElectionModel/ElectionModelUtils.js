@@ -2,13 +2,10 @@ import { MLModel } from "../../base";
 
 import ElectionModelFeatureUtils from "./ElectionModelFeatureUtils";
 
-
 export default class ElectionModelUtils {
   static MIN_RESULTS_FOR_PREDICTION = 1;
   static ERROR_CONF = 0.7;
   static DEFAULT_P_ERROR = 0.2;
-
-
 
   static getPError(Y, yHat) {
     const MIN_P = 0.01;
@@ -70,6 +67,4 @@ export default class ElectionModelUtils {
     }
     return new MLModel(XTrain, YTrain);
   }
-
-  
 }

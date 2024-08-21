@@ -124,8 +124,6 @@ class Election extends ElectionBase {
       return partyToWins;
     }, {});
   }
-
-
 }
 
 Object.assign(Election.prototype, ElectionGetters);

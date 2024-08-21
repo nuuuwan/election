@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { URLContext } from "../../../nonview/base";
-import { Election, DB,  } from "../../../nonview/core";
+import { Election, DB } from "../../../nonview/core";
 import { BasePageView } from "../../../view/molecules";
 
 import BasePageSettersMixin from "./BasePageSettersMixin";
@@ -26,9 +26,6 @@ export default class BasePage extends Component {
     }
     return context;
   }
-
-
-
 
   async componentDidMount() {
     let { electionType, date, nResultsDisplay, activePDID } = this.state;

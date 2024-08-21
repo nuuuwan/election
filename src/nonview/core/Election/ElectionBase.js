@@ -5,13 +5,13 @@ import Party from "../Party.js";
 export default class ElectionBase {
   static URL_BASE =
     "https://raw.githubusercontent.com/nuuuwan/gig-data/master/gig2_custom_ec_only";
-    constructor(electionType, date) {
-      this.electionType = electionType;
-      this.date = date;
-      this.resultList = null;
-      this.resultIdx = null;
-      this.isLoaded = false;
-    }
+  constructor(electionType, date) {
+    this.electionType = electionType;
+    this.date = date;
+    this.resultList = null;
+    this.resultIdx = null;
+    this.isLoaded = false;
+  }
 
   get electionTypeTitle() {
     if (this.electionType === "Presidential") {

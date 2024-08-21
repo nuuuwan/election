@@ -151,15 +151,11 @@ export default class BasePage extends Component {
     return (
       <BasePageView
         key={this.key}
-        //
         lang={lang}
-        //
         election={election}
-        //
         electionDisplay={electionDisplay}
         db={db}
         projectedElection={projectedElection}
-        //
         setLang={this.setLang.bind(this)}
         setActivePDID={this.setActivePDID.bind(this)}
         setElection={this.setElection.bind(this)}

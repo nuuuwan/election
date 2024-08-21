@@ -39,7 +39,6 @@ export default class PartyToVotes {
     return MathX.sum(Object.values(this.partyToVotes));
   }
 
-
   get partyToVotesSorted() {
     return Object.fromEntries(
       Object.entries(this.partyToVotes).sort(function (a, b) {
@@ -57,7 +56,6 @@ export default class PartyToVotes {
     return pVotes[0];
   }
 
-
   get partyToPVotesSorted() {
     const totalVotes = this.totalVotes;
     return Object.fromEntries(
@@ -70,7 +68,7 @@ export default class PartyToVotes {
   }
 
   get partyToVotesSortedOthered() {
-    const N_DISPLAY = 3;
+
     const MIN_P_VOTES = 0.01;
     const totalVotes = this.totalVotes;
     const minVotes = MIN_P_VOTES * totalVotes;
@@ -89,9 +87,6 @@ export default class PartyToVotes {
         .filter(function (a, i) {
           if (a[0] === Party.UNCERTAIN.id) {
             return true;
-          }
-          if (i >= N_DISPLAY) {
-            return false;
           }
           return a[1] >= minVotes;
         })

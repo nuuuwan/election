@@ -1,6 +1,4 @@
-import HEXAGON_MAP_DATA_PD from "./HEXAGON_MAP_DATA_PD";
-import HEXAGON_MAP_DATA_ED from "./HEXAGON_MAP_DATA_ED";
-import HEXAGON_MAP_DATA_PROVINCE from "./HEXAGON_MAP_DATA_PROVINCE";
+
 import { STYLE } from "../../../nonview/constants";
 
 import SVGTitles from "./SVGTitles";
@@ -8,58 +6,17 @@ import SVGLegendPercentages from "./SVGLegendPercentages";
 import SVGLegendParty from "./SVGLegendParty";
 import SVGMap from "./SVGMap";
 import StyleHexagonMap from "./StyleHexagonMap";
+import HexagonMapData from "./HexagonMapData";
 
-function getPDMapData() {
-  return HEXAGON_MAP_DATA_PD;
-}
 
-function offsetData(originalData, idSuffix, [offsetX, offsetY]) {
-  const idx = Object.fromEntries(
-    Object.entries(originalData.idx).map(function ([entID, [x, y]]) {
-      return [entID + idSuffix, [x + offsetX, y + offsetY]];
-    })
-  );
-  const idx2 = Object.fromEntries(
-    Object.entries(originalData.idx2).map(function ([entID, polygons]) {
-      return [
-        entID,
-        polygons.map(function (polygon) {
-          return polygon.map(function ([x, y]) {
-            return [x + offsetX, y + offsetY];
-          });
-        }),
-      ];
-    })
-  );
-  return Object.assign({}, HEXAGON_MAP_DATA_ED, { idx, idx2 });
-}
 
-function getPostalPDMapData() {
-  return offsetData(HEXAGON_MAP_DATA_ED, "P", [9, -0.5]);
-}
-
-function getEDMapData() {
-  return offsetData(HEXAGON_MAP_DATA_ED, "", [-3, 4]);
-}
-
-function getProvinceMapData() {
-  return offsetData(HEXAGON_MAP_DATA_PROVINCE, "", [-3, 16]);
-}
-
-function getMapDataList() {
-  return [
-    getPostalPDMapData(),
-    getPDMapData(),
-    getEDMapData(),
-    getProvinceMapData(),
-  ];
-}
 
 function getViewBox() {
   const mapData = [].concat(
-    Object.values(getPostalPDMapData().idx),
-    Object.values(getPDMapData().idx),
-    Object.values(getEDMapData().idx)
+    Object.values(HexagonMapData.getPostalPDMapData().idx),
+    Object.values(HexagonMapData.getPDMapData().idx),
+    Object.values(HexagonMapData.getEDMapData().idx),
+    Object.values(HexagonMapData.getProvinceMapData().idx),
   );
   const [minX, minY, maxX, maxY] = mapData.reduce(
     function ([minX, minY, maxX, maxY], [x, y]) {
@@ -91,7 +48,7 @@ export default function HexagonMap({ election, db, setActivePDID }) {
       <SVGTitles />
       <SVGLegendParty election={election} x={1} y={-2} />
       <SVGLegendPercentages x={2 + nParties / StyleHexagonMap.N_COLS} y={-2} />
-      {getMapDataList().map(function (mapData, i) {
+      {HexagonMapData.getMapDataList().map(function (mapData, i) {
         return (
           <SVGMap
             key={i}

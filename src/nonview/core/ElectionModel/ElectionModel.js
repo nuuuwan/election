@@ -1,5 +1,6 @@
 import Election from "../Election/Election";
 import ElectionModelFeatureUtils from "./ElectionModelFeatureUtils";
+import ElectionModelProjectionUtils from "./ElectionModelProjectionUtils";
 
 import ElectionModelUtils from "./ElectionModelUtils";
 
@@ -48,7 +49,7 @@ export default class ElectionModel {
     const model = ElectionModelUtils.trainModel(XAll, YAll);
 
     // Evaluate Projection
-    const normPDToPartyToPVotes = ElectionModelUtils.getProjection(
+    const normPDToPartyToPVotes = ElectionModelProjectionUtils.getProjection(
       model,
       this.currentElection,
       this.getXEvaluate(),
@@ -70,7 +71,7 @@ export default class ElectionModel {
     );
     const notReleasedResultList = this.nonReleasedPDIDList
       .map(function (pdID) {
-        return ElectionModelUtils.getSimulatedResult(
+        return ElectionModelProjectionUtils.getSimulatedResult(
           lastElection,
           lastElectionOfSameType,
           pdID,

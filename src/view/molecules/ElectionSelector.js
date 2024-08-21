@@ -10,7 +10,7 @@ function getRenderValue(colorElection) {
         ? colorElection.color
         : STYLE.COLOR.LIGHTEST;
     return (
-      <Typography variant="h4" sx={{ color: "white", backgroundColor: color }}>
+      <Typography variant="h6" sx={{ color: "white", backgroundColor: color }}>
         {election.title}
       </Typography>
     );

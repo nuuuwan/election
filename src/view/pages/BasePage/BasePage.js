@@ -24,27 +24,31 @@ export default class BasePage extends Component {
     if (context.nResultsDisplay) {
       context.nResultsDisplay = parseInt(context.nResultsDisplay);
     }
-
     return context;
   }
 
   setStateAndContext(newState, funcRunAfter = undefined) {
+    const oldState = this.state;
+    
+    const { electionType, date, nResultsDisplay, activePDID, lang } = Object.assign({}, oldState, newState);
+
+    URLContext.set({
+      electionType,
+      date,
+      nResultsDisplay,
+      activePDID,
+      lang,
+    });
+
     this.setState(
       newState,
       function () {
-        const { electionType, date, nResultsDisplay, activePDID, lang } =
-          this.state;
-        URLContext.set({
-          electionType,
-          date,
-          nResultsDisplay,
-          activePDID,
-          lang,
-        });
+
+ 
         if (funcRunAfter) {
           funcRunAfter();
         }
-      }.bind(this)
+      }
     );
   }
 

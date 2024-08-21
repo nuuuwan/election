@@ -1,6 +1,29 @@
+import { URLContext } from "../../../nonview/base";
 import { Election } from "../../../nonview/core";
 
 const BasePageSettersMixin = {
+
+  setStateAndContext(newState, funcRunAfter = undefined) {
+    const oldState = this.state;
+
+    const { electionType, date, nResultsDisplay, activePDID, lang } =
+      Object.assign({}, oldState, newState);
+
+    URLContext.set({
+      electionType,
+      date,
+      nResultsDisplay,
+      activePDID,
+      lang,
+    });
+
+    this.setState(newState, function () {
+      if (funcRunAfter) {
+        funcRunAfter();
+      }
+    });
+  },
+
   async setElection(election0) {
     let { activePDID, nResultsDisplay, db } = this.state;
 

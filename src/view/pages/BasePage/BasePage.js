@@ -26,26 +26,7 @@ export default class BasePage extends Component {
     return context;
   }
 
-  setStateAndContext(newState, funcRunAfter = undefined) {
-    const oldState = this.state;
 
-    const { electionType, date, nResultsDisplay, activePDID, lang } =
-      Object.assign({}, oldState, newState);
-
-    URLContext.set({
-      electionType,
-      date,
-      nResultsDisplay,
-      activePDID,
-      lang,
-    });
-
-    this.setState(newState, function () {
-      if (funcRunAfter) {
-        funcRunAfter();
-      }
-    });
-  }
 
   getActivePDIDAndNResultDisplay({ activePDID, nResultsDisplay, election }) {
     if (activePDID !== undefined) {

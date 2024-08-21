@@ -2,7 +2,6 @@ import { Typography } from "@mui/material";
 import { Party } from "../../nonview/core";
 import { Color, Translate } from "../../nonview/base";
 
-
 const STYLE_LABEL = {
   padding: 0.5,
   margin: 0.25,
@@ -23,8 +22,7 @@ function getLabel(partyID, election) {
 function getStyle(party, pVotes) {
   let backgroundColor = party.isNonParty ? "white" : party.color;
   let textColor = party.isNonParty ? party.color : "white";
-  
-    
+
   if (pVotes) {
     const opacity = Color.getOpacity(pVotes);
     textColor = party.isNonParty
@@ -40,7 +38,6 @@ export default function PartyView({ partyID, pVotes, election }) {
   const party = Party.fromID(partyID);
   const label = getLabel(partyID, election);
   const { backgroundColor, textColor } = getStyle(party, pVotes);
-
 
   const translatedLabel = Translate(label);
   const shortLabel = translatedLabel.split(" ").reverse()[0].toUpperCase();

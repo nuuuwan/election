@@ -3,7 +3,6 @@ import { Party } from "../../../nonview/core";
 import SVGHexagon from "./SVGHexagon";
 import StyleHexagonMap from "./StyleHexagonMap";
 
-
 export default function SVGLegendParty({ election, x, y }) {
   const partyToWins = election.getPartyToWins();
 

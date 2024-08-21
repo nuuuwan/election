@@ -7,11 +7,9 @@ import { TestingLabel } from "../../../view/atoms";
 export default function BasePageView({
   lang,
   election,
-  //
   electionDisplay,
   db,
   projectedElection,
-  //
   setLang,
   setActivePDID,
   setElection,
@@ -31,16 +29,13 @@ export default function BasePageView({
       <PageBody
         election={election}
         electionDisplay={electionDisplay}
-        //
         db={db}
         projectedElection={projectedElection}
-        //
         setActivePDID={setActivePDID}
       />
       <PageFooter
         electionDisplay={electionDisplay}
         election={election}
-        //
         setNResultsDisplay={setNResultsDisplay}
       />
     </Box>

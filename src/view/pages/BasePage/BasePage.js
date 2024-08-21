@@ -4,8 +4,7 @@ import { Election, DB, ElectionModel } from "../../../nonview/core";
 import { BasePageView } from "../../../view/molecules";
 
 import BasePageSettersMixin from "./BasePageSettersMixin";
-import { CircularProgress, Stack, Typography } from "@mui/material";
-import { STYLE, VERSION } from "../../../nonview/constants";
+import LoadingView from "./LoadingView";
 
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
@@ -146,18 +145,7 @@ export default class BasePage extends Component {
       electionDisplay,
     } = this.state;
     if (!election) {
-      const tempElection = new Election(electionType, date);
-      return (
-        <Stack direction="row" gap={1} sx={{ alignItems: "center" }}>
-          <CircularProgress />
-          <Typography variant="body1" color={STYLE.COLOR.LIGHT}>
-            Loading {tempElection.title}
-          </Typography>
-          <Typography variant="caption" color={STYLE.COLOR.LIGHTER}>
-            (v{VERSION.DATETIME_STR})
-          </Typography>
-        </Stack>
-      );
+     return <LoadingView electionType={electionType} date={date} />;
     }
 
     return (

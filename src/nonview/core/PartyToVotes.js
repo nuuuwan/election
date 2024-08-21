@@ -114,10 +114,8 @@ export default class PartyToVotes {
     );
   }
 
-
   get pWinner() {
     const pVotes = Object.values(this.partyToPVotesSorted);
     return pVotes[0];
   }
-
 }

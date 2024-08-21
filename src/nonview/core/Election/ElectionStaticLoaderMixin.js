@@ -2,9 +2,7 @@ import Result from "../Result.js";
 import ElectionStaticUtilsMixin from "./ElectionStaticUtilsMixin.js";
 
 const ElectionStaticLoaderMixin = {
-
-  
-   buildResultIdx(resultList) {
+  buildResultIdx(resultList) {
     return Object.fromEntries(
       resultList.map((result) => [result.entID, result])
     );

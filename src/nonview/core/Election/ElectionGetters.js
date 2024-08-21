@@ -15,7 +15,6 @@ const ElectionStats = {
       });
   },
 
-  
   getPartyToWins() {
     return Object.values(this.resultIdx).reduce(function (partyToWins, result) {
       const winningPartyID = result.partyToVotes.winningPartyID;

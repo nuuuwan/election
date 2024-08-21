@@ -1,4 +1,4 @@
-import { Color, MathX } from "../../../nonview/base";
+import { Color, MathX, Translate } from "../../../nonview/base";
 
 import { STYLE } from "../../../nonview/constants";
 
@@ -7,9 +7,6 @@ function replaceLowercaseVowels(str) {
 }
 
 function getShortLabel(name) {
-  if (name === name.toUpperCase()) {
-    return name;
-  }
   name = name.replace("Postal ", "");
   name = replaceLowercaseVowels(name);
   const words = name.split(" ");
@@ -37,7 +34,8 @@ export default function SVGHexagon({ x, y, color, label, opacity, onClick }) {
   const radius = 1 / Math.cos(Math.PI / 6) ** 2 / 2;
   const points = getPoints(x, y, radius);
   const textColor = Color.getTextColor(color, opacity);
-  const shortLabel = getShortLabel(label);
+  const translatedLabel = Translate(label);
+  const shortLabel = getShortLabel(translatedLabel);
   return (
     <g onClick={onClick}>
       <polygon
@@ -55,7 +53,7 @@ export default function SVGHexagon({ x, y, color, label, opacity, onClick }) {
         alignmentBaseline="middle"
         fill={textColor}
       >
-        <title>{label}</title>
+        <title>{translatedLabel}</title>
         {shortLabel}
       </text>
     </g>

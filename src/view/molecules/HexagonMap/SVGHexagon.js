@@ -2,8 +2,6 @@ import { Color, MathX, Translate, StringX } from "../../../nonview/base";
 
 import { STYLE } from "../../../nonview/constants";
 
-
-
 function getPoints(x, y, radius) {
   const N_SIDES = 6;
 
@@ -29,7 +27,7 @@ export default function SVGHexagon({ x, y, color, label, opacity, onClick }) {
   const points = getPoints(x, y, radius);
   const textColor = Color.getTextColor(color, opacity);
   label = label.replace("Postal ", "");
-  label = label.replace('-', " ")
+  label = label.replace("-", " ");
   const translatedLabel = Translate(label);
   const shortLabel = StringX.getShortLabel(translatedLabel);
   return (

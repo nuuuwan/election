@@ -46,7 +46,7 @@ export default function PartyView({ partyID, pVotes, election }) {
     backgroundColor += Color.getOpacityChar(pVotes);
   }
 
-  const translatedLabel = Translate(label)
+  const translatedLabel = Translate(label);
   const shortLabel = translatedLabel.split(" ").reverse()[0].toUpperCase();
 
   return (

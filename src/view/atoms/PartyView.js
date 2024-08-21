@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import { Party } from "../../nonview/core";
 import { Color, Translate } from "../../nonview/base";
-import { ELECTION_TO_PARTY_TO_LABEL } from "../../nonview/constants";
+
 
 const STYLE_LABEL = {
   padding: 0.5,
@@ -10,34 +10,21 @@ const STYLE_LABEL = {
   width: "fit-content",
 };
 
-export function getLabel(partyID, election) {
+function getLabel(partyID, election) {
   if (partyID === Party.UNCERTAIN.id) {
     return "Error Margin";
   }
   if (partyID === Party.OTHER.id) {
     return "Other";
   }
-
-  let label = partyID;
-  if (!election) {
-    return label;
-  }
-  if (
-    !ELECTION_TO_PARTY_TO_LABEL[election.year] ||
-    !ELECTION_TO_PARTY_TO_LABEL[election.year][partyID]
-  ) {
-    return `-${label}`;
-  }
-
-  return ELECTION_TO_PARTY_TO_LABEL[election.year][partyID] || label;
+  return partyID;
 }
 
-export default function PartyView({ partyID, pVotes, election }) {
-  const party = Party.fromID(partyID);
-
-  const label = getLabel(partyID, election);
+function getStyle(party, pVotes) {
   let backgroundColor = party.isNonParty ? "white" : party.color;
   let textColor = party.isNonParty ? party.color : "white";
+  
+    
   if (pVotes) {
     const opacity = Color.getOpacity(pVotes);
     textColor = party.isNonParty
@@ -45,6 +32,15 @@ export default function PartyView({ partyID, pVotes, election }) {
       : Color.getTextColor(backgroundColor, opacity);
     backgroundColor += Color.getOpacityChar(pVotes);
   }
+
+  return { backgroundColor, textColor };
+}
+
+export default function PartyView({ partyID, pVotes, election }) {
+  const party = Party.fromID(partyID);
+  const label = getLabel(partyID, election);
+  const { backgroundColor, textColor } = getStyle(party, pVotes);
+
 
   const translatedLabel = Translate(label);
   const shortLabel = translatedLabel.split(" ").reverse()[0].toUpperCase();

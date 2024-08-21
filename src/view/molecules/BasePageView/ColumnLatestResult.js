@@ -1,4 +1,4 @@
-import {  Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { Translate } from "../../../nonview/base";
 import {
   ResultSingleView,
@@ -20,12 +20,12 @@ export default function ColumnLatestResult({
       <Typography variant="body1" color={color}>
         {Translate("Latest Result")} ({electionDisplay.nResults})
       </Typography>
-        <PDSelector
-          election={election}
-          activePDID={activePDID}
-          db={db}
-          setActivePDID={setActivePDID}
-        />
+      <PDSelector
+        election={election}
+        activePDID={activePDID}
+        db={db}
+        setActivePDID={setActivePDID}
+      />
       <ResultSingleView
         election={electionDisplay}
         elections={db.elections}

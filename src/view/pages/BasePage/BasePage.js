@@ -145,7 +145,7 @@ export default class BasePage extends Component {
       electionDisplay,
     } = this.state;
     if (!election) {
-     return <LoadingView electionType={electionType} date={date} />;
+      return <LoadingView electionType={electionType} date={date} />;
     }
 
     return (

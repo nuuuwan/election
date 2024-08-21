@@ -23,29 +23,30 @@ function CustomSelectInner({
   let prevDividerKey;
   return (
     <Box>
-    <Select
-      value={getID(value)}
-      onChange={onChangeInner}
-      sx={STYLE}
-      renderValue={function (value, i) {
-        return renderValue(dataIdx[value], i);
-      }}
-    >
-      {Object.entries(dataIdx).reduce(function (innerItems, [id, data], i) {
-        const inner = renderMenuItemInner(data, i);
-        const dividerKey = getDividerKey(data);
-        if (prevDividerKey !== dividerKey && i !== 0) {
-          innerItems.push(<Divider key={`divider-${i}`} />);
-        }
-        prevDividerKey = dividerKey;
-        innerItems.push(
-          <MenuItem key={id} value={id}>
-            {inner}
-          </MenuItem>
-        );
-        return innerItems;
-      }, [])}
-    </Select></Box>
+      <Select
+        value={getID(value)}
+        onChange={onChangeInner}
+        sx={STYLE}
+        renderValue={function (value, i) {
+          return renderValue(dataIdx[value], i);
+        }}
+      >
+        {Object.entries(dataIdx).reduce(function (innerItems, [id, data], i) {
+          const inner = renderMenuItemInner(data, i);
+          const dividerKey = getDividerKey(data);
+          if (prevDividerKey !== dividerKey && i !== 0) {
+            innerItems.push(<Divider key={`divider-${i}`} />);
+          }
+          prevDividerKey = dividerKey;
+          innerItems.push(
+            <MenuItem key={id} value={id}>
+              {inner}
+            </MenuItem>
+          );
+          return innerItems;
+        }, [])}
+      </Select>
+    </Box>
   );
 }
 

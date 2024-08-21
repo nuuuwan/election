@@ -8,7 +8,10 @@ function PerfectBellwether({ n, ent }) {
     <Box>
       <Typography variant="h6">{Translate("Perfect Bellwether")}</Typography>
       <Typography variant="caption">
-        {Translate("Results in %1 have matched Final National Result in all %2 previous Presidential Elections.", [Translate(ent.name), n])}
+        {Translate(
+          "Results in %1 have matched Final National Result in all %2 previous Presidential Elections.",
+          [Translate(ent.name), n]
+        )}
       </Typography>
     </Box>
   );
@@ -18,7 +21,10 @@ function PercentageBellwether({ error, ent }) {
   return (
     <Box color={STYLE.COLOR.LIGHT}>
       <Typography variant="caption">
-        {Translate("Historically, Party Vote percentages in %1, have varied from the National Result by %2, on average.", [Translate(ent.name), Format.percentError(error)])}
+        {Translate(
+          "Historically, Party Vote percentages in %1, have varied from the National Result by %2, on average.",
+          [Translate(ent.name), Format.percentError(error)]
+        )}
       </Typography>
     </Box>
   );

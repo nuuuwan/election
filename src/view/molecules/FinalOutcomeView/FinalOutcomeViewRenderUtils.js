@@ -4,7 +4,6 @@ import { Format, MathX, Translate } from "../../../nonview/base";
 import { FinalOutcome } from "../../../nonview/core";
 import { PartyView } from "../../../view/atoms";
 
-
 function Confidence() {
   return (
     <Typography variant="caption">
@@ -16,11 +15,16 @@ function Confidence() {
 export default class FinalOutcomeViewRenderUtils {
   static renderTooMuchUncertainty() {
     return [
-      <Typography variant="h6">{Translate("Error Margin too High")}</Typography>,
+      <Typography variant="h6">
+        {Translate("Error Margin too High")}
+      </Typography>,
       <Typography variant="caption">
         {Translate("The voting preferences of ")} &gt;
-        {Format.percent(FinalOutcome.P_TOO_MUCH_UNCERTAINTY)} 
-        {Translate(" of votes are within the Error Margin. Please wait for more results")}.
+        {Format.percent(FinalOutcome.P_TOO_MUCH_UNCERTAINTY)}
+        {Translate(
+          " of votes are within the Error Margin. Please wait for more results"
+        )}
+        .
       </Typography>,
     ];
   }
@@ -29,7 +33,8 @@ export default class FinalOutcomeViewRenderUtils {
     const winningPartyID = result.partyToVotes.winningPartyID;
     return [
       <Typography variant="h6">
-        <PartyView partyID={winningPartyID} /> {Translate("wins on 1st preferences")}.
+        <PartyView partyID={winningPartyID} />{" "}
+        {Translate("wins on 1st preferences")}.
       </Typography>,
       <Confidence />,
     ];
@@ -47,7 +52,9 @@ export default class FinalOutcomeViewRenderUtils {
           <td style={{ textAlign: "left", padding: 1, opacity: 0.5 }}>
             <Stack direction="row" gap={0.5} sx={{ alignItems: "center" }}>
               <PartyView partyID={partyID} />
-              <Typography variant="body2">{Translate("wins on 1st preferences")}</Typography>
+              <Typography variant="body2">
+                {Translate("wins on 1st preferences")}
+              </Typography>
             </Stack>
           </td>
         </tr>
@@ -72,7 +79,9 @@ export default class FinalOutcomeViewRenderUtils {
               </Typography>
             </td>
             <td style={{ textAlign: "left", padding: 1, opacity: 0.5 }}>
-              <Typography variant="body2">{Translate("2nd/3rd Preference Counting")}</Typography>
+              <Typography variant="body2">
+                {Translate("2nd/3rd Preference Counting")}
+              </Typography>
             </td>
           </tr>
         </tbody>

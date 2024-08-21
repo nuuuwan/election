@@ -13,23 +13,13 @@ export default function ColumnLatestResult({
   db,
   setActivePDID,
 }) {
-  if (electionDisplay.nResults === 0) {
-    return (
-      <Box>
-        <Typography variant="h6">No results released.</Typography>
-      </Box>
-    );
-  }
-
   const activePDID = electionDisplay.finalPDID;
   const color = electionDisplay.getResult(activePDID).winningPartyColor;
-
   return (
     <CustomStack>
       <Typography variant="body1" color={color}>
         {Translate("Latest Result")} ({electionDisplay.nResults})
       </Typography>
-
       <Box>
         <PDSelector
           election={election}
@@ -38,7 +28,6 @@ export default function ColumnLatestResult({
           setActivePDID={setActivePDID}
         />
       </Box>
-
       <ResultSingleView
         election={electionDisplay}
         elections={db.elections}

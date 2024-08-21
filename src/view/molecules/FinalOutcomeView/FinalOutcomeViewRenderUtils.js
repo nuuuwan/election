@@ -1,8 +1,9 @@
 import { Box, Stack, Typography } from "@mui/material";
 
-import { Format, MathX } from "../../../nonview/base";
+import { Format, MathX, Translate } from "../../../nonview/base";
 import { FinalOutcome } from "../../../nonview/core";
 import { PartyView } from "../../../view/atoms";
+
 
 function Confidence() {
   return (
@@ -15,11 +16,11 @@ function Confidence() {
 export default class FinalOutcomeViewRenderUtils {
   static renderTooMuchUncertainty() {
     return [
-      <Typography variant="h6">Error Margin too High</Typography>,
+      <Typography variant="h6">{Translate("Error Margin too High")}</Typography>,
       <Typography variant="caption">
-        The voting preferences of &gt;
-        {Format.percent(FinalOutcome.P_TOO_MUCH_UNCERTAINTY)} of votes are
-        within the Error Margin. Please wait for more results.
+        {Translate("The voting preferences of ")} &gt;
+        {Format.percent(FinalOutcome.P_TOO_MUCH_UNCERTAINTY)} 
+        {Translate(" of votes are within the Error Margin. Please wait for more results")}.
       </Typography>,
     ];
   }
@@ -28,7 +29,7 @@ export default class FinalOutcomeViewRenderUtils {
     const winningPartyID = result.partyToVotes.winningPartyID;
     return [
       <Typography variant="h6">
-        <PartyView partyID={winningPartyID} /> wins on 1st preferences.
+        <PartyView partyID={winningPartyID} /> {Translate("wins on 1st preferences")}.
       </Typography>,
       <Confidence />,
     ];
@@ -46,7 +47,7 @@ export default class FinalOutcomeViewRenderUtils {
           <td style={{ textAlign: "left", padding: 1, opacity: 0.5 }}>
             <Stack direction="row" gap={0.5} sx={{ alignItems: "center" }}>
               <PartyView partyID={partyID} />
-              <Typography variant="body2">wins on 1st preferences</Typography>
+              <Typography variant="body2">{Translate("wins on 1st preferences")}</Typography>
             </Stack>
           </td>
         </tr>
@@ -71,7 +72,7 @@ export default class FinalOutcomeViewRenderUtils {
               </Typography>
             </td>
             <td style={{ textAlign: "left", padding: 1, opacity: 0.5 }}>
-              <Typography variant="body2">2nd/3rd Preference Count</Typography>
+              <Typography variant="body2">{Translate("2nd/3rd Preference Counting")}</Typography>
             </td>
           </tr>
         </tbody>
@@ -81,9 +82,9 @@ export default class FinalOutcomeViewRenderUtils {
 
   static renderTooCloseToCall(likelyWinnerPartyInfoList, pUncertainHappenning) {
     return [
-      <Typography variant="h6">Too close to call</Typography>,
+      <Typography variant="h6">{Translate("Too close to call")}</Typography>,
       <Typography variant="caption">
-        Possible Outcomes & Probabilities
+        {Translate("Possible Outcomes & Probabilities")}
       </Typography>,
       <Box display="flex" justifyContent="center">
         {FinalOutcomeViewRenderUtils.renderLikelyhoodTable(
@@ -107,7 +108,7 @@ export default class FinalOutcomeViewRenderUtils {
     if (!likelyWinnerPartyInfoList.length) {
       return [
         <Typography variant="h6">
-          2nd/3rd Preference Count Projected
+          {Translate("2nd/3rd Preference Counting Expected")}
         </Typography>,
         <Confidence />,
       ];

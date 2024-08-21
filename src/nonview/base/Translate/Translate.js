@@ -17,7 +17,7 @@ class Translate {
     return DICTIONARY[phrase][lang];
   }
 
-  static getTranslation(phrase) {
+  static getTranslationWithoutParams(phrase) {
     if (typeof phrase !== "string") {
       return phrase;
     }
@@ -26,6 +26,17 @@ class Translate {
       return phrase;
     }
     return Translate.getTranslationInLanguage(phrase, lang);
+  }
+
+  static getTranslation(phrase, params) {
+    let translation = Translate.getTranslationWithoutParams(phrase);
+    if (!params) {
+      return translation;
+    }
+    for (let i = 0; i < params.length; i++) {
+      translation = translation.replace("%" + (i + 1).toString(), params[i]);
+    }
+    return translation;
   }
 }
 

@@ -1,15 +1,14 @@
 import { Box, Typography } from "@mui/material";
 import { Bellwether } from "../../nonview/core";
-import { Format } from "../../nonview/base";
+import { Format, Translate } from "../../nonview/base";
 import { STYLE } from "../../nonview/constants";
 
 function PerfectBellwether({ n, ent }) {
   return (
     <Box>
-      <Typography variant="h6">Perfect Bellwether</Typography>
+      <Typography variant="h6">{Translate("Perfect Bellwether")}</Typography>
       <Typography variant="caption">
-        Results in {ent.name} have matched Final National Result in all {n}{" "}
-        previous Presidential Elections.
+        {Translate("Results in %1 have matched Final National Result in all %2 previous Presidential Elections.", [Translate(ent.name), n])}
       </Typography>
     </Box>
   );
@@ -19,8 +18,7 @@ function PercentageBellwether({ error, ent }) {
   return (
     <Box color={STYLE.COLOR.LIGHT}>
       <Typography variant="caption">
-        Historically, Party Vote percentages in {ent.name}, have varied from the
-        National Result by {Format.percentError(error)}, on average.
+        {Translate("Historically, Party Vote percentages in %1, have varied from the National Result by %2, on average.", [Translate(ent.name), Format.percentError(error)])}
       </Typography>
     </Box>
   );

@@ -29,8 +29,9 @@ export default class BasePage extends Component {
 
   setStateAndContext(newState, funcRunAfter = undefined) {
     const oldState = this.state;
-    
-    const { electionType, date, nResultsDisplay, activePDID, lang } = Object.assign({}, oldState, newState);
+
+    const { electionType, date, nResultsDisplay, activePDID, lang } =
+      Object.assign({}, oldState, newState);
 
     URLContext.set({
       electionType,
@@ -40,16 +41,11 @@ export default class BasePage extends Component {
       lang,
     });
 
-    this.setState(
-      newState,
-      function () {
-
- 
-        if (funcRunAfter) {
-          funcRunAfter();
-        }
+    this.setState(newState, function () {
+      if (funcRunAfter) {
+        funcRunAfter();
       }
-    );
+    });
   }
 
   getActivePDIDAndNResultDisplay({ activePDID, nResultsDisplay, election }) {

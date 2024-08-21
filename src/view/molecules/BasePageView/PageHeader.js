@@ -25,7 +25,7 @@ export default function PageHeader({
   const color = projectedElection
     ? projectedElection.color
     : STYLE.COLOR.LIGHTEST;
-    return (
+  return (
     <Box
       sx={Object.assign({ backgroundColor: color }, STYLE_PAGE_HEADER.SELECTOR)}
     >

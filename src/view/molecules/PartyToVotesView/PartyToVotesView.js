@@ -16,7 +16,10 @@ export default function PartyToVotesView({
     <Stack direction="column" gap={0}>
       <PartyToVotesPieChart partyToVotes={partyToVotes} chartSize={chartSize} />
       <Stack direction="row" gap={4} sx={{ margin: "auto" }}>
-        <PartyToVotesStatsView partyToVotes={partyToVotes} election={election} />
+        <PartyToVotesStatsView
+          partyToVotes={partyToVotes}
+          election={election}
+        />
         {elections ? (
           <HistoryView
             elections={elections}

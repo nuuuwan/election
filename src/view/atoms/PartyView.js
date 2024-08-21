@@ -22,7 +22,10 @@ export function getLabel(partyID, election) {
   if (!election) {
     return label;
   }
-  if (!ELECTION_TO_PARTY_TO_LABEL[election.year] || !ELECTION_TO_PARTY_TO_LABEL[election.year][partyID]) {
+  if (
+    !ELECTION_TO_PARTY_TO_LABEL[election.year] ||
+    !ELECTION_TO_PARTY_TO_LABEL[election.year][partyID]
+  ) {
     return `-${label}`;
   }
 

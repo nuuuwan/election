@@ -92,9 +92,9 @@ export default class PartyToVotes {
           if (a[0] === Party.UNCERTAIN.id) {
             return true;
           }
-          if ( i >= N_DISPLAY) {
+          if (i >= N_DISPLAY) {
             return false;
-          };
+          }
           return a[1] >= minVotes;
         })
     );

@@ -2,7 +2,7 @@ import { Party } from "../../../nonview/core";
 
 import SVGHexagon from "./SVGHexagon";
 import StyleHexagonMap from "./StyleHexagonMap";
-import {getLabel} from '../../../view/atoms/PartyView'
+import { getLabel } from "../../../view/atoms/PartyView";
 
 export default function SVGLegendParty({ election, x, y }) {
   const partyToWins = election.getPartyToWins();

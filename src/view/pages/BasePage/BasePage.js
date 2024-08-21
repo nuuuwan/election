@@ -12,7 +12,7 @@ export default class BasePage extends Component {
     electionType: "Presidential",
     date: "2019-11-16",
     // date: "2024-09-21",
-    lang: "si",
+    lang: "en",
   };
   constructor(props) {
     super(props);

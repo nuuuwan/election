@@ -6,6 +6,7 @@ import ElectionSelector from "./ElectionSelector";
 import FinalOutcomeView from "./FinalOutcomeView";
 import HexagonMap from "./HexagonMap";
 import HistoryView from "./HistoryView";
+import LanguageSelector from "./LanguageSelector";
 import PDSelector from "./PDSelector";
 import PartyToVotesView from "./PartyToVotesView";
 import PlayerControl from "./PlayerControl";
@@ -21,6 +22,7 @@ export {
   FinalOutcomeView,
   HexagonMap,
   HistoryView,
+  LanguageSelector,
   PDSelector,
   PartyToVotesView,
   PlayerControl,

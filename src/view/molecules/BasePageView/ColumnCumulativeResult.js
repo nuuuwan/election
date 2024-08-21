@@ -11,9 +11,11 @@ export default function ColumnCumulativeResult({
   const electorsReleased = electionDisplay.resultLK.summary.electors;
   const electorsProjected = projectedElection.resultLK.summary.electors;
   const pReleased = electorsReleased / electorsProjected;
-  const subTitleProgress = Translate('Cumulative Total') + ` (${Format.percent(
-    pReleased
-  )} ` + Translate('released') + ")";
+  const subTitleProgress =
+    Translate("Cumulative Total") +
+    ` (${Format.percent(pReleased)} ` +
+    Translate("released") +
+    ")";
 
   return (
     <CustomStack>

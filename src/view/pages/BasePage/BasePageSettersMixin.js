@@ -72,6 +72,10 @@ const BasePageSettersMixin = {
       projectedElection,
     });
   },
+
+  setLang(lang) {
+    this.setStateAndContext({ lang });
+  },
 };
 
 export default BasePageSettersMixin;

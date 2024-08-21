@@ -1,5 +1,5 @@
 import { Component } from "react";
-import {  URLContext } from "../../../nonview/base";
+import { URLContext } from "../../../nonview/base";
 import { Election, DB, ElectionModel } from "../../../nonview/core";
 import { BasePageView } from "../../../view/molecules";
 
@@ -32,7 +32,8 @@ export default class BasePage extends Component {
     this.setState(
       newState,
       function () {
-        const { electionType, date, nResultsDisplay, activePDID, lang } = this.state;
+        const { electionType, date, nResultsDisplay, activePDID, lang } =
+          this.state;
         URLContext.set({
           electionType,
           date,
@@ -130,12 +131,13 @@ export default class BasePage extends Component {
   }
 
   get key() {
-    const { electionType, date, activePDID } = this.state;
-    return `${electionType}-${date}-${activePDID}`;
+    const { electionType, date, activePDID, lang } = this.state;
+    return `${electionType}-${date}-${activePDID}-${lang}`;
   }
 
   render() {
     const {
+      lang,
       electionType,
       date,
       election,
@@ -160,12 +162,17 @@ export default class BasePage extends Component {
 
     return (
       <BasePageView
+        key={this.key}
+        //
+        lang={lang}
+        //
         election={election}
         //
         electionDisplay={electionDisplay}
         db={db}
         projectedElection={projectedElection}
         //
+        setLang={this.setLang.bind(this)}
         setActivePDID={this.setActivePDID.bind(this)}
         setElection={this.setElection.bind(this)}
         setNResultsDisplay={this.setNResultsDisplay.bind(this)}

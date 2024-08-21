@@ -1,6 +1,6 @@
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 
-import { ElectionSelector } from "../../molecules";
+import { ElectionSelector, LanguageSelector } from "../../molecules";
 import { STYLE } from "../../../nonview/constants";
 
 const STYLE_PAGE_HEADER = {
@@ -15,9 +15,11 @@ const STYLE_PAGE_HEADER = {
 };
 
 export default function PageHeader({
+  lang,
   electionDisplay,
   projectedElection,
   db,
+  setLang,
   setElection,
 }) {
   const color = projectedElection
@@ -27,12 +29,20 @@ export default function PageHeader({
     <Box
       sx={Object.assign({ backgroundColor: color }, STYLE_PAGE_HEADER.SELECTOR)}
     >
-      <ElectionSelector
-        selectedElection={electionDisplay}
-        colorElection={projectedElection}
-        elections={db.elections}
-        setElection={setElection}
-      />
+      <Stack
+        direction="row"
+        gap={1}
+        alignItems="center"
+        justifyContent="center"
+      >
+        <ElectionSelector
+          selectedElection={electionDisplay}
+          colorElection={projectedElection}
+          elections={db.elections}
+          setElection={setElection}
+        />
+        <LanguageSelector selectedLang={lang} setLang={setLang} />
+      </Stack>
     </Box>
   );
 }

@@ -5,12 +5,14 @@ import PageFooter from "./PageFooter";
 import { TestingLabel } from "../../../view/atoms";
 
 export default function BasePageView({
+  lang,
   election,
   //
   electionDisplay,
   db,
   projectedElection,
   //
+  setLang,
   setActivePDID,
   setElection,
   setNResultsDisplay,
@@ -19,9 +21,11 @@ export default function BasePageView({
     <Box sx={{ textAlign: "center" }}>
       <TestingLabel election={election} />
       <PageHeader
+        lang={lang}
         electionDisplay={electionDisplay}
         db={db}
         setElection={setElection}
+        setLang={setLang}
         projectedElection={projectedElection}
       />
       <PageBody

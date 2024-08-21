@@ -18,11 +18,10 @@ const LANG_TO_LABEL = {
 };
 
 export default function LanguageSelector({ selectedLang, setLang }) {
-    
   return (
     <Stack direction="row" gap={0} sx={STYLE_LANGUAGE_SELECTOR.BOX}>
       {["en", "si", "ta"].map(function (lang) {
-      const isSelected = lang === selectedLang;
+        const isSelected = lang === selectedLang;
         return (
           <Button
             key={lang}

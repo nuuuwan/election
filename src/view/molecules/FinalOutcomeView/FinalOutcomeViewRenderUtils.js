@@ -8,7 +8,7 @@ import { PartyView } from "../../../view/atoms";
 function Confidence() {
   return (
     <Typography variant="caption">
-      &gt;{Format.percent(FinalOutcome.P_BASE)} confidence
+      &gt;{Format.percent(FinalOutcome.P_BASE)} {Translate("Confidence")}
     </Typography>
   );
 }

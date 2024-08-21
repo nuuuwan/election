@@ -1,18 +1,18 @@
 import { Box, Typography } from "@mui/material";
 import { VERSION, STYLE } from "../../nonview/constants";
-
+import { Translate } from "../../nonview/base";
 export default function CitationsView() {
   const lines = [
-    "Source Data by elections.gov.lk",
-    "Music by @bensound",
-    "Visualization & Analysis by @nuuuwan",
+    Translate("Source Data by %1", ["elections.gov.lk"]),
+    Translate("Music by %1", ["@bensound"]),
+    Translate("Visualization & Analysis by %1", ["@nuuuwan"]),
   ];
 
   return (
     <Box
       sx={Object.assign(
         {
-          color: STYLE.COLOR.LIGHTEST,
+          color: STYLE.COLOR.LIGHT,
         },
         STYLE.MESSAGE
       )}

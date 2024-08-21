@@ -39,35 +39,33 @@ export default class PartyToVotes {
     return MathX.sum(Object.values(this.partyToVotes));
   }
 
-  getSortedMajor(pPartyLimit) {
-    const sortedEntries = Object.entries(this.partyToVotes).sort(
-      (a, b) => b[1] - a[1]
-    );
-    const totalVotes = this.totalVotes;
-    let sortedMajorEntries = sortedEntries.filter(
-      (entry) => entry[1] > pPartyLimit * totalVotes
-    );
-
-    const totalMajorVotes = MathX.sum(
-      sortedMajorEntries.map((entry) => entry[1])
-    );
-
-    const otherVotes = totalVotes - totalMajorVotes;
-
-    sortedMajorEntries.push(["Other", otherVotes]);
-
-    return Object.fromEntries(sortedMajorEntries);
-  }
-
-  get winningPartyID() {
-    return Object.keys(this.getSortedMajor(0.001))[0];
-  }
 
   get partyToVotesSorted() {
     return Object.fromEntries(
       Object.entries(this.partyToVotes).sort(function (a, b) {
         return b[1] - a[1];
       })
+    );
+  }
+
+  get winningPartyID() {
+    return Object.keys(this.partyToVotesSorted)[0];
+  }
+
+  get pWinner() {
+    const pVotes = Object.values(this.partyToPVotesSorted);
+    return pVotes[0];
+  }
+
+
+  get partyToPVotesSorted() {
+    const totalVotes = this.totalVotes;
+    return Object.fromEntries(
+      Object.entries(this.partyToVotesSorted)
+        .map(([party, votes]) => [party, votes / totalVotes])
+        .sort(function (a, b) {
+          return b[1] - a[1];
+        })
     );
   }
 
@@ -103,19 +101,7 @@ export default class PartyToVotes {
     return { ...nonOther, Other: otherVotes };
   }
 
-  get partyToPVotesSorted() {
-    const totalVotes = this.totalVotes;
-    return Object.fromEntries(
-      Object.entries(this.partyToVotesSorted)
-        .map(([party, votes]) => [party, votes / totalVotes])
-        .sort(function (a, b) {
-          return b[1] - a[1];
-        })
-    );
-  }
 
-  get pWinner() {
-    const pVotes = Object.values(this.partyToPVotesSorted);
-    return pVotes[0];
-  }
+
+ 
 }

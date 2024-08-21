@@ -15,7 +15,6 @@ export default class ElectionModel {
     this.currentElection = currentElection;
     this.releasedPDIDList = releasedPDIDList;
     this.nonReleasedPDIDList = nonReleasedPDIDList;
-
     this.trainingOutput = this.train();
   }
 
@@ -27,7 +26,6 @@ export default class ElectionModel {
   }
 
   train() {
-    // Common
     const previousElections = Election.getPreviousElections(
       this.elections,
       this.currentElection
@@ -41,21 +39,15 @@ export default class ElectionModel {
       previousElections,
       this.nonReleasedPDIDList
     );
-
-    // Computer Model Error
     const pError = ElectionModelUtils.getPErrorEvaluate(XAll, YAll);
-
-    // Train Model
     const model = ElectionModelUtils.trainModel(XAll, YAll);
 
-    // Evaluate Projection
     const normPDToPartyToPVotes = ElectionModelProjectionUtils.getProjection(
       model,
       this.currentElection,
       this.getXEvaluate(),
       this.nonReleasedPDIDList
     );
-
     return { normPDToPartyToPVotes, pError };
   }
 

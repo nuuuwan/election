@@ -68,7 +68,6 @@ export default class PartyToVotes {
   }
 
   get partyToVotesSortedOthered() {
-
     const MIN_P_VOTES = 0.01;
     const totalVotes = this.totalVotes;
     const minVotes = MIN_P_VOTES * totalVotes;
@@ -81,22 +80,13 @@ export default class PartyToVotes {
           if (b[0] === Party.UNCERTAIN.id) {
             return 1;
           }
-
           return b[1] - a[1];
         })
         .filter(function (a, i) {
-          if (a[0] === Party.UNCERTAIN.id) {
-            return true;
-          }
-          return a[1] >= minVotes;
+          return a[0] === Party.UNCERTAIN.id || a[1] >= minVotes;
         })
     );
     const nonOtherVotes = MathX.sum(Object.values(nonOther));
-    const otherVotes = this.totalVotes - nonOtherVotes;
-    return { ...nonOther, Other: otherVotes };
+    return { ...nonOther, Other: this.totalVotes - nonOtherVotes };
   }
-
-
-
- 
 }

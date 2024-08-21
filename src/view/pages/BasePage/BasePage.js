@@ -32,7 +32,6 @@ export default class BasePage extends Component {
 
     const db = await DB.load();
 
-    // derived
     const election = await Election.fromElectionTypeAndDate(electionType, date);
     ({ activePDID, nResultsDisplay } = this.getActivePDIDAndNResultDisplay({
       activePDID,
@@ -51,12 +50,9 @@ export default class BasePage extends Component {
       date,
       nResultsDisplay,
       activePDID,
-
-      // Derived
       election,
       electionDisplay,
       projectedElection,
-      // Common
       db,
     });
   }

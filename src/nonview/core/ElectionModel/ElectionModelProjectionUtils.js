@@ -1,6 +1,5 @@
 import { MathX } from "../../base";
 import { PartyToVotes, Party, Summary, Result } from "../../../nonview/core";
-
 import ElectionModelNormalizeUtils from "./ElectionModelNormalizeUtils";
 
 export default class ElectionModelProjectionUtils {
@@ -9,13 +8,11 @@ export default class ElectionModelProjectionUtils {
     if (model) {
       YHat = XEvaluate.map((Xi) => model.predict(Xi));
     }
-
     const partyIDList = currentElection.getPartyIDList();
     const pdToPartyToPVotes = YHat.reduce(function (pdToPartyToPVotes, Yi, i) {
       const partyID = partyIDList[i];
       return Yi.reduce(function (pdToPartyToPVotes, pVotes, j) {
         const pdID = nonReleasedPDIDList[j];
-
         if (!pdToPartyToPVotes[pdID]) {
           pdToPartyToPVotes[pdID] = {};
         }
@@ -43,7 +40,6 @@ export default class ElectionModelProjectionUtils {
       summaryLast.polled * summaryLastSameType.pRejected
     );
     const valid = polled - rejected;
-
     return new Summary(valid, rejected, polled, electors);
   }
 
@@ -78,7 +74,6 @@ export default class ElectionModelProjectionUtils {
     normPDToPartyToPVotes,
     pError
   ) {
-    // We assume the summary from the last election is valid.
     if (!lastElection) {
       return null;
     }

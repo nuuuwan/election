@@ -1,4 +1,3 @@
-
 import { STYLE } from "../../../nonview/constants";
 
 import SVGTitles from "./SVGTitles";
@@ -8,15 +7,12 @@ import SVGMap from "./SVGMap";
 import StyleHexagonMap from "./StyleHexagonMap";
 import HexagonMapData from "./HexagonMapData";
 
-
-
-
 function getViewBox() {
   const mapData = [].concat(
     Object.values(HexagonMapData.getPostalPDMapData().idx),
     Object.values(HexagonMapData.getPDMapData().idx),
     Object.values(HexagonMapData.getEDMapData().idx),
-    Object.values(HexagonMapData.getProvinceMapData().idx),
+    Object.values(HexagonMapData.getProvinceMapData().idx)
   );
   const [minX, minY, maxX, maxY] = mapData.reduce(
     function ([minX, minY, maxX, maxY], [x, y]) {

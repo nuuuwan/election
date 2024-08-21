@@ -1,10 +1,11 @@
 import { Component } from "react";
 import { URLContext } from "../../../nonview/base";
-import { Election, DB, ElectionModel } from "../../../nonview/core";
+import { Election, DB,  } from "../../../nonview/core";
 import { BasePageView } from "../../../view/molecules";
 
 import BasePageSettersMixin from "./BasePageSettersMixin";
 import LoadingView from "./LoadingView";
+import BasePageDerivedMixin from "./BasePageDerivedMixin";
 
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
@@ -28,53 +29,6 @@ export default class BasePage extends Component {
 
 
 
-  getActivePDIDAndNResultDisplay({ activePDID, nResultsDisplay, election }) {
-    if (activePDID !== undefined) {
-      nResultsDisplay =
-        election.pdResultList
-          .map((result) => result.entID)
-          .indexOf(activePDID) + 1;
-    } else if (nResultsDisplay !== undefined) {
-      if (nResultsDisplay > 0) {
-        activePDID = election.pdResultList[nResultsDisplay - 1].entID;
-      }
-    } else {
-      activePDID =
-        election.pdResultList[election.pdResultList.length - 1].entID;
-      nResultsDisplay = election.pdResultList.length;
-    }
-    return { activePDID, nResultsDisplay };
-  }
-
-  getPredictedElection(election, electionDisplay, db) {
-    const releasedPDIDList = electionDisplay.pdIDList;
-    const nonReleasedPDIDList = Object.keys(db.pdIdx).filter(
-      (pdID) => !releasedPDIDList.includes(pdID)
-    );
-
-    const electionModel = new ElectionModel(
-      db.elections,
-      election,
-      releasedPDIDList,
-      nonReleasedPDIDList
-    );
-    const projectedElection = electionModel.getElectionNotReleasedPrediction();
-    return projectedElection;
-  }
-
-  getDerived(nResultsDisplay, election, db) {
-    const electionDisplay = election.getElectionSubset(nResultsDisplay);
-
-    let projectedElection;
-    if (nResultsDisplay > 0) {
-      projectedElection = this.getPredictedElection(
-        election,
-        electionDisplay,
-        db
-      );
-    }
-    return { electionDisplay, projectedElection };
-  }
 
   async componentDidMount() {
     let { electionType, date, nResultsDisplay, activePDID } = this.state;
@@ -147,3 +101,4 @@ export default class BasePage extends Component {
 }
 
 Object.assign(BasePage.prototype, BasePageSettersMixin);
+Object.assign(BasePage.prototype, BasePageDerivedMixin);

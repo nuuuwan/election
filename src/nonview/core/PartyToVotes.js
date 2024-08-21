@@ -114,31 +114,10 @@ export default class PartyToVotes {
     );
   }
 
-  getL1Error(otherPartyToVotes) {
-    const partyToPVotesThis = this.partyToPVotes;
-    const partyToPVotesOther = otherPartyToVotes.partyToPVotes;
-    return Object.entries(partyToPVotesThis).reduce(function (
-      error,
-      [party, pVote]
-    ) {
-      const pVoteOther = partyToPVotesOther[party] || 0;
-      return error + Math.abs(pVote - pVoteOther) * pVote;
-    },
-    0);
-  }
-
-  get pMajority() {
-    const pVotes = Object.values(this.partyToPVotesSorted);
-    return pVotes[0] - pVotes[1];
-  }
 
   get pWinner() {
     const pVotes = Object.values(this.partyToPVotesSorted);
     return pVotes[0];
   }
 
-  get votesInMajority() {
-    const votes = Object.values(this.partyToVotesSorted);
-    return votes[0] - Math.ceil(this.totalVotes / 2);
-  }
 }

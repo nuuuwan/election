@@ -1,5 +1,5 @@
 import { Stack, Typography } from "@mui/material";
-
+import {Translate} from "../../nonview/base";
 export default function LabelledStat({ label, valueStr, sx }) {
   return (
     <Stack
@@ -8,7 +8,7 @@ export default function LabelledStat({ label, valueStr, sx }) {
       sx={Object.assign({ alignItems: "center" }, sx)}
     >
       <Typography variant="body2" sx={{ textTransform: "uppercase" }}>
-        {label}
+        {Translate(label)}
       </Typography>
       <Typography variant="h5">{valueStr}</Typography>
     </Stack>

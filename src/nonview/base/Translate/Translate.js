@@ -1,36 +1,38 @@
+import URLContext from '../URLContext';
 import DICTIONARY from './DICTIONARY';
 
-export default class Translate {
+class Translate {
 
-    static TRANSLATE_IDX = Object.fromEntries(
-        ['en', 'si', 'ta'].map((lang) => [lang, new Translate(lang)])
-    )
-    static TRANSLATE =  null;
-
-    constructor(lang) {
-        this.lang = lang;
+    static DEFAULT_LANG = 'en';
+    
+    static getLang() {
+        const context = URLContext.get();
+        return context.lang || Translate.DEFAULT_LANG;
     }
 
-    getTranslationInLanguage(phrase, lang) {
-        if (!DICTIONARY[phrase]) {
-            return phrase;
-        }
-        if (!DICTIONARY[phrase][lang]) {
+    static getTranslationInLanguage(phrase, lang) {
+        if (!DICTIONARY[phrase] ||!DICTIONARY[phrase][lang]) {
+            console.error(phrase)
             return phrase;
         }
         return DICTIONARY[phrase][lang];
     }
 
-    getTranslation(phrase) {
-        if (this.lang === 'en') {
+    static getTranslation(phrase) {
+        if (typeof phrase !== 'string') {
             return phrase;
         }
-        return this.getTranslationInLanguage(phrase, this.lang);
+        const lang = Translate.getLang();
+        if (lang === Translate.DEFAULT_LANG) {
+            return phrase;
+        }
+        return Translate.getTranslationInLanguage(phrase, lang);
     }
 
-    static setLang(lang) {
-        Translate.TRANSLATE = Translate.TRANSLATE_IDX[lang];
-        return Translate.TRANSLATE;
-    }
+
+
 
 }
+
+const t = Translate.getTranslation;
+export default t;

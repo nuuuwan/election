@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { URLContext } from "../../../nonview/base";
+import {  URLContext } from "../../../nonview/base";
 import { Election, DB, ElectionModel } from "../../../nonview/core";
 import { BasePageView } from "../../../view/molecules";
 
@@ -12,6 +12,7 @@ export default class BasePage extends Component {
     electionType: "Presidential",
     date: "2019-11-16",
     // date: "2024-09-21",
+    lang: "si",
   };
   constructor(props) {
     super(props);
@@ -31,12 +32,13 @@ export default class BasePage extends Component {
     this.setState(
       newState,
       function () {
-        const { electionType, date, nResultsDisplay, activePDID } = this.state;
+        const { electionType, date, nResultsDisplay, activePDID, lang } = this.state;
         URLContext.set({
           electionType,
           date,
           nResultsDisplay,
           activePDID,
+          lang,
         });
         if (funcRunAfter) {
           funcRunAfter();
@@ -117,6 +119,7 @@ export default class BasePage extends Component {
       date,
       nResultsDisplay,
       activePDID,
+
       // Derived
       election,
       electionDisplay,

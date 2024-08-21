@@ -7,6 +7,7 @@ import Format from "./Format";
 import MLModel from "./MLModel";
 import MathX from "./MathX";
 import Time from "./Time";
+import Translate from "./Translate";
 import URLContext from "./URLContext";
 import WWW from "./WWW";
 
@@ -19,6 +20,7 @@ export {
   MLModel,
   MathX,
   Time,
+  Translate,
   URLContext,
   WWW,
 };

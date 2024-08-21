@@ -1,8 +1,9 @@
 import { Box, Typography } from "@mui/material";
-
-import { ResultSingleView, PDSelector } from "..";
-import BellwetherView from "../BellwetherView";
+import { Translate } from "../../../nonview/base";
+import { ResultSingleView, PDSelector, BellwetherView } from "../../../view/molecules";
 import CustomStack from "./CustomStack";
+
+
 
 export default function ColumnLatestResult({
   election,
@@ -20,10 +21,12 @@ export default function ColumnLatestResult({
 
   const activePDID = electionDisplay.finalPDID;
   const color = electionDisplay.getResult(activePDID).winningPartyColor;
+
+
   return (
     <CustomStack>
       <Typography variant="body1" color={color}>
-        Latest Result ({electionDisplay.nResults})
+        {Translate('Latest Result')} ({electionDisplay.nResults})
       </Typography>
 
       <Box>

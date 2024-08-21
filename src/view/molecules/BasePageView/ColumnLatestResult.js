@@ -20,14 +20,12 @@ export default function ColumnLatestResult({
       <Typography variant="body1" color={color}>
         {Translate("Latest Result")} ({electionDisplay.nResults})
       </Typography>
-      <Box>
         <PDSelector
           election={election}
           activePDID={activePDID}
           db={db}
           setActivePDID={setActivePDID}
         />
-      </Box>
       <ResultSingleView
         election={electionDisplay}
         elections={db.elections}

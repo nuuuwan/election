@@ -1,4 +1,4 @@
-import { Divider, MenuItem, Select } from "@mui/material";
+import { Box, Divider, MenuItem, Select } from "@mui/material";
 
 const STYLE = {
   border: "none",
@@ -22,6 +22,7 @@ function CustomSelectInner({
 }) {
   let prevDividerKey;
   return (
+    <Box>
     <Select
       value={getID(value)}
       onChange={onChangeInner}
@@ -44,7 +45,7 @@ function CustomSelectInner({
         );
         return innerItems;
       }, [])}
-    </Select>
+    </Select></Box>
   );
 }
 

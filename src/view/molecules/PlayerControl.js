@@ -19,7 +19,7 @@ import { RefreshButton } from "../../view/atoms";
 
 const STYLE_PLAYER_CONTROL = {
   BOX: {
-    position: "fixed",
+    position: "sticky",
     bottom: 0,
     right: 0,
     left: 0,

@@ -5,12 +5,13 @@ import { STYLE } from "../../../nonview/constants";
 
 const STYLE_PAGE_HEADER = {
   SELECTOR: {
-    position: "fixed",
+    position: "sticky",
     top: 0,
     right: 0,
     left: 0,
     zIndex: 3000,
     padding: 1,
+    margin: 0,
   },
 };
 

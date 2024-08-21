@@ -6,6 +6,8 @@ import BasePage from "./view/pages/BasePage/BasePage";
 
 import { STYLE } from "./nonview/constants";
 
+import "./App.css";
+
 const THEME = createTheme({
   typography: {
     fontFamily: STYLE.FONT_FAMILY,

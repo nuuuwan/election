@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 
 const STYLE_TESTING_LABEL = {
   BOX: {
-    position: "fixed",
+    position: "sticky",
     top: 0,
     left: 0,
     bottom: 0,

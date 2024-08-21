@@ -80,8 +80,6 @@ class Election extends ElectionBase {
     return elections;
   }
 
-
-
   get pdResultList() {
     const EXCLUDE_PD_IDS = ["EC-11D"];
     return this.resultList.filter(function (result) {
@@ -93,8 +91,6 @@ class Election extends ElectionBase {
       );
     });
   }
-
-  
 
   getSubsetElectionByPDResultList(pdResultList) {
     const resultList = Election.expand(pdResultList);
@@ -157,6 +153,6 @@ class Election extends ElectionBase {
 
 Object.assign(Election.prototype, ElectionGetters);
 Object.assign(Election, ElectionStaticUtilsMixin);
-Object.assign(Election, ElectionStaticLoadedMixin)
+Object.assign(Election, ElectionStaticLoadedMixin);
 
 export default Election;

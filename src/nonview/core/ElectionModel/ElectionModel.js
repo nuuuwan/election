@@ -1,4 +1,5 @@
 import Election from "../Election/Election";
+import ElectionModelFeatureUtils from "./ElectionModelFeatureUtils";
 
 import ElectionModelUtils from "./ElectionModelUtils";
 
@@ -18,7 +19,7 @@ export default class ElectionModel {
   }
 
   getXEvaluate() {
-    return ElectionModelUtils.getFeatureMatrix(
+    return ElectionModelFeatureUtils.getFeatureMatrix(
       [this.currentElection],
       this.releasedPDIDList
     );
@@ -31,11 +32,11 @@ export default class ElectionModel {
       this.currentElection
     );
 
-    const XAll = ElectionModelUtils.getFeatureMatrixListForElections(
+    const XAll = ElectionModelFeatureUtils.getFeatureMatrixListForElections(
       previousElections,
       this.releasedPDIDList
     );
-    const YAll = ElectionModelUtils.getFeatureMatrixListForElections(
+    const YAll = ElectionModelFeatureUtils.getFeatureMatrixListForElections(
       previousElections,
       this.nonReleasedPDIDList
     );

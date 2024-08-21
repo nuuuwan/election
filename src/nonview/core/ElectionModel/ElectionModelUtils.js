@@ -1,55 +1,13 @@
 import { MLModel, MathX } from "../../base";
 import { PartyToVotes, Party, Summary, Result } from "../../../nonview/core";
+import ElectionModelFeatureUtils from "./ElectionModelFeatureUtils";
 
 export default class ElectionModelUtils {
   static MIN_RESULTS_FOR_PREDICTION = 1;
   static ERROR_CONF = 0.7;
   static DEFAULT_P_ERROR = 0.2;
 
-  static getFeatureVector(election, partyID, pdIDList) {
-    // Returns a vector with the % of votes party(ID) has got for pdIDList, in election election.
-    return pdIDList.map(function (pdID) {
-      const pdResult = election.getResult(pdID);
-      if (!pdResult) {
-        return 0.0;
-      }
-      return pdResult.partyToVotes.partyToPVotesSorted[partyID] || 0.0;
-    });
-  }
-
-  static getFeatureMatrixForElection(modelElection, pdIDLIst) {
-    // Returns a matrix, where each row is getFeatureVector for a party in the election.
-    const partyIDList = modelElection.getPartyIDList();
-    return partyIDList.map(function (partyID) {
-      return ElectionModelUtils.getFeatureVector(
-        modelElection,
-        partyID,
-        pdIDLIst
-      );
-    });
-  }
-
-  static getFeatureMatrixListForElections(elections, pdIDList) {
-    // Returns a list of feature matrices, one for each election.
-    return elections.map(function (election) {
-      return ElectionModelUtils.getFeatureMatrixForElection(election, pdIDList);
-    });
-  }
-  static concatFeatureMatrixList(featureMatrixList) {
-    // Concatenates all feature matrices in featureMatrixList.
-    return featureMatrixList.reduce(function (X, featureMatrix) {
-      return X.concat(featureMatrix);
-    }, []);
-  }
-
-  static getFeatureMatrix(elections, pdIDList) {
-    // Concatenates all feature matrices for all the training elections.
-    return elections.reduce(function (X, election) {
-      return X.concat(
-        ElectionModelUtils.getFeatureMatrixForElection(election, pdIDList)
-      );
-    }, []);
-  }
+ 
   static normalizeSingle(partyToPVotes) {
     const totalPVotes = MathX.sumValues(partyToPVotes);
     return Object.fromEntries(
@@ -91,10 +49,10 @@ export default class ElectionModelUtils {
 
   static getPErrorEvaluate(XAll, YAll) {
     // Evaluate Error
-    const XTrainEvaluate = ElectionModelUtils.concatFeatureMatrixList(
+    const XTrainEvaluate = ElectionModelFeatureUtils.concatFeatureMatrixList(
       XAll.slice(0, -1)
     );
-    const YTrainEvaluate = ElectionModelUtils.concatFeatureMatrixList(
+    const YTrainEvaluate = ElectionModelFeatureUtils.concatFeatureMatrixList(
       YAll.slice(0, -1)
     );
     const canTrainModelEvaluate =
@@ -104,10 +62,10 @@ export default class ElectionModelUtils {
     if (canTrainModelEvaluate) {
       modelEvaluate = new MLModel(XTrainEvaluate, YTrainEvaluate);
     }
-    const XTestEvaluate = ElectionModelUtils.concatFeatureMatrixList(
+    const XTestEvaluate = ElectionModelFeatureUtils.concatFeatureMatrixList(
       XAll.slice(-1)
     );
-    const YTestEvaluate = ElectionModelUtils.concatFeatureMatrixList(
+    const YTestEvaluate = ElectionModelFeatureUtils.concatFeatureMatrixList(
       YAll.slice(-1)
     );
 
@@ -121,8 +79,8 @@ export default class ElectionModelUtils {
   }
 
   static trainModel(XAll, YAll) {
-    const XTrain = ElectionModelUtils.concatFeatureMatrixList(XAll);
-    const YTrain = ElectionModelUtils.concatFeatureMatrixList(YAll);
+    const XTrain = ElectionModelFeatureUtils.concatFeatureMatrixList(XAll);
+    const YTrain = ElectionModelFeatureUtils.concatFeatureMatrixList(YAll);
     const canTrainModel =
       XTrain.length >= ElectionModelUtils.MIN_RESULTS_FOR_PREDICTION;
     if (!canTrainModel) {

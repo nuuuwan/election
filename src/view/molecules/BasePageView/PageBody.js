@@ -6,9 +6,9 @@ import ColumnMap from "./ColumnMap";
 import ColumnProjection from "./ColumnProjection";
 
 const STYLE = {
-  BOX: { paddingTop: 7, paddingBottom: 10 },
+  BOX: { paddingTop: 1, paddingBottom: 1 },
   GRID_ITEM: {
-    paddingBottom: 2,
+    paddingBottom: 1,
   },
 };
 

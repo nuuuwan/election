@@ -3,6 +3,7 @@ import { Box, Typography } from "@mui/material";
 import CustomStack from "./CustomStack";
 
 import { FinalOutcomeView, PredictionView } from "../../molecules";
+import { Translate } from "../../../nonview/base";
 
 export default function ColumnProjection({
   projectedElection,
@@ -12,8 +13,8 @@ export default function ColumnProjection({
   return (
     <CustomStack>
       <Box color={projectedElection.color}>
-        <Typography variant="body1">Final Result</Typography>
-        <Typography variant="h4">Projected</Typography>
+        <Typography variant="body1">{Translate("Final Result")}</Typography>
+        <Typography variant="h4">{Translate("Projected")}</Typography>
       </Box>
 
       <PredictionView db={db} projectedElection={projectedElection} />

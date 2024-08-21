@@ -15,8 +15,10 @@ def filter_phrases(lines):
         line = line.strip()
         if not line:
             continue
-        if line.startswith('0'):
+        alpha_only = ''.join(e for e in line if e.isalpha())
+        if not alpha_only:
             continue
+
         
         words = [word for word in line.split(' ') if not word.startswith('Translate.js')]
         phrase = ' '.join(words)  
@@ -29,6 +31,7 @@ def get_dictionary():
     return JSONFile(DICTIONARY_PATH).read()
 
 def update_dictionary(dictionary):
+    dictionary = dict(sorted(dictionary.items()))
     JSONFile(DICTIONARY_PATH).write(dictionary)
     n = len(dictionary)
     log.info(f'Updated DICTIONARY_PATH to {n} phrases')
@@ -67,10 +70,11 @@ def main():
     for phrase in phrases:
         if phrase not in d:
             entry = {}
+            log.debug(f'"{phrase}" -> ')
             for lang, translator in translator_idx.items():
                 translation = translator.translate(phrase)
                 entry[lang] = translation
-                log.debug(f'{phrase} -> {translation}')
+                log.debug(f'    {lang}: "{translation}"')
             d[phrase] = entry
     update_dictionary(d)
     build_dictionary_js(d)

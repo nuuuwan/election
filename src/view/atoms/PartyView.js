@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { Party } from "../../nonview/core";
-import { Color } from "../../nonview/base";
+import { Color, Translate } from "../../nonview/base";
 
 const STYLE_LABEL = {
   padding: 0.5,
@@ -29,7 +29,7 @@ export default function PartyView({ partyID, pVotes }) {
       sx={Object.assign({}, STYLE_LABEL, { backgroundColor, color: textColor })}
       component="span"
     >
-      {label}
+      {Translate(label)}
     </Typography>
   );
 }

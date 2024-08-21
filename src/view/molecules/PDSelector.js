@@ -1,6 +1,7 @@
 import { Stack, Typography } from "@mui/material";
 import { Party } from "../../nonview/core";
 import { CustomSelect } from "../atoms";
+import { Translate } from "../../nonview/base";
 
 function buildRenderMenuItemInner(resultIdx, edIdx, variant1, variant2) {
   const renderMenuItemInner = function (pd, i) {
@@ -19,10 +20,10 @@ function buildRenderMenuItemInner(resultIdx, edIdx, variant1, variant2) {
     return (
       <Stack direction="row" gap={0.5} sx={{ alignItems: "center" }}>
         <Typography variant={variant1} color={colorPD}>
-          {pd.name}
+          {Translate(pd.name)}
         </Typography>
         <Typography variant={variant2} color={colorED} sx={{ opacity: 0.5 }}>
-          {ed.name}
+          {Translate(ed.name)}
         </Typography>
       </Stack>
     );

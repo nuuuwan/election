@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 
 import { ResultSingleView, CitationsView } from "..";
-import { Format } from "../../../nonview/base";
+import { Format, Translate } from "../../../nonview/base";
 import CustomStack from "./CustomStack";
 export default function ColumnCumulativeResult({
   electionDisplay,
@@ -11,15 +11,15 @@ export default function ColumnCumulativeResult({
   const electorsReleased = electionDisplay.resultLK.summary.electors;
   const electorsProjected = projectedElection.resultLK.summary.electors;
   const pReleased = electorsReleased / electorsProjected;
-  const subTitleProgress = `Cumulative Total (${Format.percent(
+  const subTitleProgress = Translate('Cumulative Total') + ` (${Format.percent(
     pReleased
-  )} released)`;
+  )} ` + Translate('released') + ")";
 
   return (
     <CustomStack>
       <Box color={electionDisplay.color}>
         <Typography variant="body1">{subTitleProgress}</Typography>
-        <Typography variant="h4">Islandwide</Typography>
+        <Typography variant="h4">{Translate("Islandwide")}</Typography>
       </Box>
       <ResultSingleView
         election={electionDisplay}

@@ -1,4 +1,4 @@
-import { Time } from "../../base/index.js";
+import { Time, Translate } from "../../base/index.js";
 import STYLE from "../../constants/STYLE.js";
 import Party from "../Party.js";
 
@@ -22,7 +22,7 @@ export default class ElectionBase {
   }
 
   get title() {
-    return this.year + " " + this.electionTypeTitle;
+    return this.year + " " + Translate(this.electionTypeTitle);
   }
 
   get year() {

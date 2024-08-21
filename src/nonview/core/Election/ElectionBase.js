@@ -10,10 +10,6 @@ export default class ElectionBase {
     this.date = date;
   }
 
-  get id() {
-    return this.date;
-  }
-
   get electionTypeTitle() {
     if (this.electionType === "Presidential") {
       return "Presidential";

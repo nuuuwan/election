@@ -20,10 +20,11 @@ export default class StringX {
 
   // Si
   static isSi(name) {
-    return /^[අ-ෆ]+$/.test(name.split(" ")[0]);
+    const firstChar = name.split(" ")[0].substring(0, 1);
+    return /^[ඁ-෴]+$/.test(firstChar);
   }
   static isConsonentSi(char) {
-    return /^[ක-ෆඅ-උ]$/.test(char);
+    return /^[අ-උක-ෆ]$/.test(char);
   }
 
   static getShortWordSi(word, maxConsonents) {
@@ -48,17 +49,18 @@ export default class StringX {
     if (words.length === 1) {
       return StringX.getShortWordSi(name, 2);
     }
-    return words.map((word) => StringX.getShortWordSi(word, 1)).join("");
+    return words.map((word) => StringX.getShortWordSi(word, 1)).join(".");
   }
 
   // Ta
   static isTa(name) {
-    return /^[அ-௺]+$/.test(name.split(" ")[0]);
+    const firstChar = name.split(" ")[0].substring(0, 1);
+    return /^[அ-௺]+$/.test(firstChar);
   }
   
 
   static isConsonentTa(char) {
-    return /^[க-௺அ-ஹ]$/.test(char);
+    return /^[க-ஹ]$/.test(char);
   }
 
   static getShortWordTa(word, maxConsonents) {
@@ -81,9 +83,9 @@ export default class StringX {
   static getShortLabelTa(name) {
     const words = name.split(" ");
     if (words.length === 1) {
-      return StringX.getShortWordTa(name, 2);
+      return StringX.getShortWordTa(name, 1);
     }
-    return words.map((word) => StringX.getShortWordTa(word, 1)).join("");
+    return words.map((word) => StringX.getShortWordTa(word, 1)).join(".");
   }
 
 

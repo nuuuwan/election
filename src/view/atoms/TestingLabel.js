@@ -2,19 +2,20 @@ import { Box, Typography } from "@mui/material";
 
 const STYLE_TESTING_LABEL = {
   BOX: {
-    position: "sticky",
+    position: "fixed",
     top: 0,
     left: 0,
     bottom: 0,
     right: 0,
+    padding: 10,
     margin: "auto",
     alignItems: "center",
     justifyContent: "center",
     display: "flex",
   },
   LABEL: {
-    fontSize: 60,
-    opacity: 0.1,
+    fontSize: "10vh",
+    opacity: 0.2,
     backgroundColor: "red",
     color: "white",
     padding: 2,

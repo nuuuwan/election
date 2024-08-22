@@ -49,20 +49,9 @@ export default class FinalOutcome {
 
         const x = missingPVotes;
         const mean = pVotes * pUncertain;
-        const variance = pVotes * (1 - pVotes) * pUncertain;
-        const stdev = Math.sqrt(variance);
+        const stdev = mean;
         const p = 1 - normalCDF(x, mean, stdev);
-        console.debug({
-          partyID,
-          pVotes,
-          missingPVotes,
-          pUncertain,
-          x,
-          mean,
-          stdev,
-          pWinning: p,
-        });
-
+        
         return { partyID, p };
       });
 

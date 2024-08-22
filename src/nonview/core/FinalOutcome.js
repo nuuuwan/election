@@ -51,7 +51,7 @@ export default class FinalOutcome {
         const mean = pVotes * pUncertain;
         const stdev = mean;
         const p = 1 - normalCDF(x, mean, stdev);
-        
+
         return { partyID, p };
       });
 

@@ -1,5 +1,4 @@
 export default class StringX {
-
   // En
   static isEn(name) {
     return /^[a-zA-Z]+$/.test(name.split(" ")[0]);
@@ -57,7 +56,6 @@ export default class StringX {
     const firstChar = name.split(" ")[0].substring(0, 1);
     return /^[அ-௺]+$/.test(firstChar);
   }
-  
 
   static isConsonentTa(char) {
     return /^[க-ஹ]$/.test(char);
@@ -88,9 +86,7 @@ export default class StringX {
     return words.map((word) => StringX.getShortWordTa(word, 1)).join(".");
   }
 
-
   // Common
-
 
   static getShortLabel(name) {
     if (StringX.isEn(name)) {
@@ -103,6 +99,5 @@ export default class StringX {
       return StringX.getShortLabelTa(name);
     }
     return name;
-
   }
 }

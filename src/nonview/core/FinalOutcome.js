@@ -1,6 +1,5 @@
 import { Party } from "../../nonview/core";
-
-import { MathX } from "../../nonview/base";
+const normalCDF = require( '@stdlib/stats-base-dists-normal-cdf' );
 
 export default class FinalOutcome {
   static P_BASE = 0.9;
@@ -47,19 +46,17 @@ export default class FinalOutcome {
       })
       .map(function ([partyID, pVotes]) {
         const missingPVotes = 0.5 - pVotes;
-        const ease = pUncertain / missingPVotes;
-        return { partyID, ease };
+        
+        const x = missingPVotes;
+        const mean = pVotes * pUncertain;
+        const variance = pVotes * (1 - pVotes) * pUncertain; 
+        const stdev = Math.sqrt(variance);
+        const p = 1 - normalCDF(x, mean, stdev);
+        console.debug({partyID, pVotes, missingPVotes, pUncertain, x, mean, stdev, pWinning: p});
+
+        return { partyID, p };
       });
 
-    const totalEase =
-      MathX.sum(likelyWinnerPartyInfoList.map(({ ease }) => ease)) + 1;
-
-    const normalizedLikelyWinnerPartyInfoList = likelyWinnerPartyInfoList.map(
-      function ({ partyID, ease }) {
-        return { partyID, p: ease / totalEase };
-      }
-    );
-
-    return normalizedLikelyWinnerPartyInfoList;
+    return likelyWinnerPartyInfoList;
   }
 }

@@ -1,6 +1,5 @@
 import { Box, Stack, Typography } from "@mui/material";
 import { Format, Translate } from "../../../nonview/base";
-import { FinalOutcome } from "../../../nonview/core";
 import { PartyView } from "../../atoms";
 
 function renderLikelyhoodTablePartyRows(likelyWinnerPartyInfoList) {
@@ -9,7 +8,7 @@ function renderLikelyhoodTablePartyRows(likelyWinnerPartyInfoList) {
       <tr key={partyID}>
         <td style={{ textAlign: "right", padding: 1 }}>
           <Typography variant="body1">
-            {Format.percent(p * FinalOutcome.P_BASE)}
+            {Format.percent(p)}
           </Typography>
         </td>
         <td style={{ textAlign: "left", padding: 1, opacity: 0.5 }}>
@@ -36,7 +35,7 @@ function renderLikelyhoodTable(
         <tr>
           <td style={{ textAlign: "right", padding: 1 }}>
             <Typography variant="body1">
-              {Format.percent(pUncertainHappenning * FinalOutcome.P_BASE)}
+              {Format.percent(pUncertainHappenning)}
             </Typography>
           </td>
           <td style={{ textAlign: "left", padding: 1, opacity: 0.5 }}>

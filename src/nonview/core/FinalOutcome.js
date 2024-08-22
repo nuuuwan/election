@@ -1,5 +1,5 @@
 import { Party } from "../../nonview/core";
-const normalCDF = require( '@stdlib/stats-base-dists-normal-cdf' );
+const normalCDF = require("@stdlib/stats-base-dists-normal-cdf");
 
 export default class FinalOutcome {
   static P_BASE = 0.9;
@@ -46,13 +46,22 @@ export default class FinalOutcome {
       })
       .map(function ([partyID, pVotes]) {
         const missingPVotes = 0.5 - pVotes;
-        
+
         const x = missingPVotes;
         const mean = pVotes * pUncertain;
-        const variance = pVotes * (1 - pVotes) * pUncertain; 
+        const variance = pVotes * (1 - pVotes) * pUncertain;
         const stdev = Math.sqrt(variance);
         const p = 1 - normalCDF(x, mean, stdev);
-        console.debug({partyID, pVotes, missingPVotes, pUncertain, x, mean, stdev, pWinning: p});
+        console.debug({
+          partyID,
+          pVotes,
+          missingPVotes,
+          pUncertain,
+          x,
+          mean,
+          stdev,
+          pWinning: p,
+        });
 
         return { partyID, p };
       });

@@ -3,9 +3,9 @@ import { Party } from "../../nonview/core";
 import { Color, Translate } from "../../nonview/base";
 
 const STYLE_LABEL = {
-  padding: 0.5,
+  padding: 0.25,
   margin: 0.25,
-  borderRadius: 2,
+  borderRadius: 1,
   width: "fit-content",
 };
 
@@ -40,7 +40,7 @@ export default function PartyView({ partyID, pVotes, election }) {
   const { backgroundColor, textColor } = getStyle(party, pVotes);
 
   const translatedLabel = Translate(label);
-  const shortLabel = translatedLabel.split(" ").reverse()[0].toUpperCase();
+  const shortLabel = translatedLabel.toUpperCase();
 
   return (
     <Typography

@@ -1,5 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
 
+import {Translate} from "../../../nonview/base";
 import ColumnLatestResult from "./ColumnLatestResult";
 import ColumnCumulativeResult from "./ColumnCumulativeResult";
 import ColumnMap from "./ColumnMap";
@@ -57,9 +58,15 @@ export default function PageBody({
   return (
     <Box sx={STYLE.BOX}>
       {electionDisplay.nResults === 0 ? (
-        <Typography variant="h3" sx={{ paddingTop: 10, paddingBottom: 20 }}>
-          Await results...
+  <Box sx={{ paddingTop: 10, paddingBottom: 20, height: "90vh" }}>
+      <Typography variant="h2" >
+          {election.titleLong}
         </Typography>
+<Typography variant="h5" >
+          {Translate("Await results")}...
+        </Typography>
+
+  </Box>
       ) : (
         <Grid container rowSpacing={4}>
           {getColumns(

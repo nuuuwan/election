@@ -24,6 +24,11 @@ export default class ElectionBase {
     return this.year + " " + Translate(this.electionTypeTitle);
   }
 
+  get titleLong() {
+    return this.year + " " + Translate("Sri Lankan " + this.electionTypeTitle + " Election");
+  }
+
+
   get year() {
     return this.date.substring(0, 4);
   }

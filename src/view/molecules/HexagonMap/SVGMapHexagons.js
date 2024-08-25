@@ -53,7 +53,7 @@ export default function SVGMapHexagons({
         [0, 0]
       )
       .map(function (z) {
-        return z / nPoints; 
+        return z / nPoints;
       });
 
     const ent = db.pdIdx[entID] || db.edIdx[entID] || db.provinceIdx[entID];
@@ -61,27 +61,25 @@ export default function SVGMapHexagons({
 
     const renderedLabel = (
       <SVGHexagonLabel
-          x={x}
-          y={y / Math.cos(Math.PI / 6)}
-          color={color}
-          opacity={opacity}
-          label={label}
-          onClick={onClick}
-        />
+        x={x}
+        y={y / Math.cos(Math.PI / 6)}
+        color={color}
+        opacity={opacity}
+        label={label}
+        onClick={onClick}
+      />
     );
     return { renderedHexagons, renderedLabel };
   });
 
   return (
     <g>
-      {renderedItems.map(function ({ renderedHexagons}, i) {
-        return <g key={"hex"+i}>{renderedHexagons}</g>;
+      {renderedItems.map(function ({ renderedHexagons }, i) {
+        return <g key={"hex" + i}>{renderedHexagons}</g>;
       })}
-      {renderedItems.map(function ({ renderedLabel  }, i) {
-         return <g key={"label"+i}>{renderedLabel}</g>;
+      {renderedItems.map(function ({ renderedLabel }, i) {
+        return <g key={"label" + i}>{renderedLabel}</g>;
       })}
     </g>
   );
-  
-
 }

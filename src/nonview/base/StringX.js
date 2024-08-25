@@ -104,7 +104,7 @@ export default class StringX {
   }
   static getBaseFontSizeFactor(text) {
     if (StringX.isSi(text)) {
-      return 1.1;
+      return 1.3;
     }
     if (StringX.isTa(text)) {
       return 1.1;
@@ -114,7 +114,7 @@ export default class StringX {
 
   static getFontSize(shortLabel) {
     const baseFontSizeFactor = StringX.getBaseFontSizeFactor(shortLabel);
-    const baseFontSize = STYLE.FONT_SIZE * baseFontSizeFactor / 9;
+    const baseFontSize = STYLE.FONT_SIZE * baseFontSizeFactor / 10;
     return baseFontSize / Math.max(shortLabel.length, 3);
   }
 }

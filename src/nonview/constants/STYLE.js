@@ -5,7 +5,7 @@ function gray(x) {
 }
 
 STYLE.FONT_SIZE = 14;
-STYLE.FONT_FAMILY = "Lexend Deca";
+STYLE.FONT_FAMILY = "Freeman";
 
 STYLE.COLOR = {
   LIGHTEST: gray("e"),

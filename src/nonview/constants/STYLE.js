@@ -4,8 +4,8 @@ function gray(x) {
   return "#" + x.repeat(3);
 }
 
-STYLE.FONT_SIZE = 14;
-STYLE.FONT_FAMILY = "Readex Pro";
+STYLE.FONT_SIZE = 12;
+STYLE.FONT_FAMILY = "Signika";
 
 STYLE.COLOR = {
   LIGHTEST: gray("e"),

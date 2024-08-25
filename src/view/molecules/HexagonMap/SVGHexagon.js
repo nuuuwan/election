@@ -36,7 +36,8 @@ export default function SVGHexagon({ x, y, color, label, opacity, onClick }) {
         y={y + 0.1}
         fontSize={StringX.getFontSize(shortLabel)}
         textAnchor="middle"
-        alignmentBaseline="middle"
+        alignmentBaseline="center"
+        dominantBaseline={"center"}
         fill={textColor}
       >
         <title>{translatedLabel}</title>

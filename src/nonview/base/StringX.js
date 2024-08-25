@@ -114,7 +114,7 @@ export default class StringX {
 
   static getFontSize(shortLabel) {
     const baseFontSizeFactor = StringX.getBaseFontSizeFactor(shortLabel);
-    const baseFontSize = STYLE.FONT_SIZE * baseFontSizeFactor / 10;
+    const baseFontSize = STYLE.FONT_SIZE * baseFontSizeFactor / 8;
     return baseFontSize / Math.max(shortLabel.length, 3);
   }
 }

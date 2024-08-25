@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Divider, Stack, Typography } from "@mui/material";
 import { VERSION, STYLE } from "../../nonview/constants";
 import { Translate } from "../../nonview/base";
 export default function CitationsView() {
@@ -9,14 +9,7 @@ export default function CitationsView() {
   ];
 
   return (
-    <Box
-      sx={Object.assign(
-        {
-          color: STYLE.COLOR.LIGHT,
-        },
-        STYLE.MESSAGE
-      )}
-    >
+    <Stack direction="row" gap={1} alignItems="center" justifyContent="center" color={STYLE.COLOR.LIGHT} divider={<Divider orientation="vertical" variant="middle" flexItem  />}>
       {lines.map(function (line, i) {
         return (
           <Typography key={i} variant="body1">
@@ -25,6 +18,6 @@ export default function CitationsView() {
         );
       })}
       <Typography variant="caption">v{VERSION.DATETIME_STR}</Typography>
-    </Box>
+    </Stack>
   );
 }

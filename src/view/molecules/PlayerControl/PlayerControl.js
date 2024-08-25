@@ -1,25 +1,12 @@
 import { Box } from "@mui/material";
 
 import { useState } from "react";
-import { STYLE } from "../../../nonview/constants";
+
 
 import CustomSlider from "./CustomSlider";
 import BottomNavigationCustom from "./BottomNavigationCustom";
 
-const STYLE_PLAYER_CONTROL = {
-  BOX: {
-    position: "sticky",
-    bottom: 0,
-    right: 0,
-    left: 0,
-    zIndex: 2000,
-    paddingTop: 1,
-    backgroundColor: STYLE.COLOR.LIGHTEST,
-  },
-  BOTTOM_NAVIGATION: {
-    backgroundColor: STYLE.COLOR.LIGHTEST,
-  },
-};
+
 
 export default function PlayerControl({
   electionDisplay,
@@ -44,7 +31,7 @@ export default function PlayerControl({
   };
 
   return (
-    <Box sx={STYLE_PLAYER_CONTROL.BOX}>
+    <Box>
       <CustomSlider
         nResultsDisplayUpdated={nResultsDisplayUpdated}
         nResults={nResults}

@@ -3,6 +3,7 @@ import { STYLE } from "../../../nonview/constants";
 import { Party } from "../../../nonview/core";
 
 import SVGHexagon from "./SVGHexagon";
+import SVGHexagonLabel from "./SVGHexagonLabel";
 
 export default function SVGMapHexagons({
   mapData,
@@ -16,36 +17,64 @@ export default function SVGMapHexagons({
     const nPoints = points.length;
     const iLabel = Math.floor(nPoints / 2);
 
-    return points.map(function ([x, y], iPoint) {
-      const result = resultIdx[entID];
-      const ent = db.pdIdx[entID] || db.edIdx[entID] || db.provinceIdx[entID];
-      const label = ent.name;
-      let color = STYLE.COLOR.LIGHTEST;
-      let opacity = 1;
+    const result = resultIdx[entID];
 
-      if (result) {
-        const winningPartyID = result.partyToVotes.winningPartyID;
-        color = Party.fromID(winningPartyID).color;
-        opacity = Color.getOpacity(result.partyToVotes.pWinner);
+    let color = STYLE.COLOR.LIGHTEST;
+    let opacity = 1;
+
+    if (result) {
+      const winningPartyID = result.partyToVotes.winningPartyID;
+      color = Party.fromID(winningPartyID).color;
+      opacity = Color.getOpacity(result.partyToVotes.pWinner);
+    }
+    const onClick = function () {
+      if (entID.length === 6) {
+        setActivePDID(entID);
       }
+    };
 
-      const onClick = function () {
-        if (entID.length === 6) {
-          setActivePDID(entID);
-        }
-      };
+    const renderedHexagons = points.map(function ([x, y], iPoint) {
+
+    
 
       return (
         <SVGHexagon
-          key={entID + "-" + iPoint}
-          x={x}
-          y={y / Math.cos(Math.PI / 6)}
-          color={color}
-          opacity={opacity}
-          label={iLabel === iPoint ? label : ""}
-          onClick={onClick}
-        />
-      );
+       key={iPoint}
+        x={x}
+        y={y / Math.cos(Math.PI / 6)}
+        color={color}
+        opacity={opacity}
+        onClick={onClick}
+      />
+      )
+
+  
     });
+
+    const [x, y] = points.reduce(
+      function ([x, y], [x2, y2]) {
+        return [x + x2, y + y2];
+      },
+      [0, 0]
+    ).map(function (z) {
+      return z / nPoints;
+    });
+
+    const ent = db.pdIdx[entID] || db.edIdx[entID] || db.provinceIdx[entID];
+    const label = ent.name;
+
+    return (
+      <g  key={entID}>
+     {renderedHexagons}
+      <SVGHexagonLabel
+      x={x}
+      y={y / Math.cos(Math.PI / 6)}
+      color={color}
+      opacity={opacity}
+      label={label}
+      onClick={onClick}
+    />
+    </g>
+    );
   });
 }

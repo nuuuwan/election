@@ -5,15 +5,16 @@ import { STYLE } from "../../nonview/constants";
 import { useTheme } from "@emotion/react";
 
 function getRenderValue(colorElection, isSmallScreen) {
- 
-
   const renderValue = function (election, i) {
     const color =
       colorElection && colorElection.date === election.date
         ? colorElection.color
         : STYLE.COLOR.LIGHTEST;
     return (
-      <Typography variant={isSmallScreen ? "h6" : "h2"} sx={{ color: "white", backgroundColor: color }}>
+      <Typography
+        variant={isSmallScreen ? "h6" : "h2"}
+        sx={{ color: "white", backgroundColor: color }}
+      >
         {election.title}
       </Typography>
     );
@@ -37,7 +38,7 @@ export default function ElectionSelector({
   colorElection,
 }) {
   const theme = useTheme();
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const presidentialElections = elections.filter(
     (election) => election.electionType === "Presidential"

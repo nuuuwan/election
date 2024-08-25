@@ -72,14 +72,14 @@ export default class PartyToVotes {
     const MIN_P_VOTES = 0.01;
     const totalVotes = this.totalVotes;
     const minVotes = MIN_P_VOTES * totalVotes;
-    
+
     let nonOther = Object.fromEntries(
       Object.entries(this.partyToVotes)
         .sort(function (a, b) {
           return b[1] - a[1];
         })
         .filter(function (a, i) {
-          return (a[1] >= minVotes && i < MIN_N_DISPLAY) ;
+          return a[1] >= minVotes && i < MIN_N_DISPLAY;
         })
     );
     const nonOtherVotes = MathX.sum(Object.values(nonOther));

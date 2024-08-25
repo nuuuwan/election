@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 
-import { ResultSingleView  } from "..";
+import { ResultSingleView } from "..";
 import { Format, Translate } from "../../../nonview/base";
 import CustomStack from "./CustomStack";
 export default function ColumnCumulativeResult({
@@ -28,8 +28,6 @@ export default function ColumnCumulativeResult({
         elections={db.elections}
         entID={"LK"}
       />
-
-
     </CustomStack>
   );
 }

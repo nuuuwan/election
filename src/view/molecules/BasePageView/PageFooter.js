@@ -2,7 +2,6 @@ import { Box } from "@mui/material";
 import { CitationsView, PlayerControl } from "../../../view/molecules";
 import { STYLE } from "../../../nonview/constants";
 
-
 const STYLE_FOOTER = {
   BOX: {
     position: "fixed",
@@ -13,7 +12,7 @@ const STYLE_FOOTER = {
     backgroundColor: STYLE.COLOR.LIGHTEST,
     padding: 1,
   },
-}
+};
 
 export default function PageFooter({
   electionDisplay,
@@ -23,13 +22,13 @@ export default function PageFooter({
 }) {
   return (
     <Box sx={STYLE_FOOTER.BOX}>
-    <CitationsView />
-    <PlayerControl
-      key={electionDisplay.nResults}
-      electionDisplay={electionDisplay}
-      election={election}
-      setNResultsDisplay={setNResultsDisplay}
-    />
+      <CitationsView />
+      <PlayerControl
+        key={electionDisplay.nResults}
+        electionDisplay={electionDisplay}
+        election={election}
+        setNResultsDisplay={setNResultsDisplay}
+      />
     </Box>
   );
 }

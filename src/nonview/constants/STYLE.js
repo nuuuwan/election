@@ -5,7 +5,7 @@ function gray(x) {
 }
 
 STYLE.FONT_SIZE = 12;
-STYLE.FONT_FAMILY = "Signika";
+STYLE.FONT_FAMILY = "Chau Philomene One";
 
 STYLE.COLOR = {
   LIGHTEST: gray("e"),

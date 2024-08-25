@@ -1,6 +1,5 @@
 import Summary from "./Summary.js";
 import { MathX } from "../base";
-import Party from "./Party.js";
 
 export default class PartyToVotes {
   static NON_PARTY_KEYS = [...Summary.KEYS, "entity_id"];

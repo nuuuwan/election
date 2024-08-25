@@ -39,7 +39,7 @@ export default function SVGMapHexagons({
   
       return (
         <SVGHexagon
-          key={entID}
+          key={entID+'-'+iPoint}
           x={x}
           y={y / Math.cos(Math.PI / 6)}
           color={color}

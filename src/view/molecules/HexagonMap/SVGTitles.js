@@ -2,10 +2,10 @@ import { Translate } from "../../../nonview/base";
 import { STYLE } from "../../../nonview/constants";
 
 const TITLE_INFO_LIST = [
-  { title: "Postal Votes", x: 8.5, y: -2 },
-  { title: "Polling Divisions", x: 2.75, y: 1.25 },
-  { title: "Electoral Districts", x: -3.5, y: 3 },
-  { title: "Provinces", x: -3.5, y: 18 },
+  { title: "Postal Votes", x: 17, y: 4.5 },
+  { title: "Polling Divisions", x: 6, y: 4.5 },
+  { title: "Electoral Districts", x: -1, y: 4.5 },
+  { title: "Provinces", x: -1, y: 15 },
 ];
 
 export default function SVGTitles() {

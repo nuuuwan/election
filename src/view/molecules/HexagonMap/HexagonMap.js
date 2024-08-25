@@ -7,13 +7,11 @@ import SVGMap from "./SVGMap";
 import StyleHexagonMap from "./StyleHexagonMap";
 import HexagonMapData from "./HexagonMapData";
 
-function getViewBox() {
-  const mapData = [].concat(
-    // Object.values(HexagonMapData.getPostalPDMapData().idx),
-    Object.values(HexagonMapData.getPDMapData().idx),
-    // Object.values(HexagonMapData.getEDMapData().idx),
-    // Object.values(HexagonMapData.getProvinceMapData().idx)
-  );
+function getBBox() {
+  const mapData = HexagonMapData.getMapDataList().reduce(
+    function (mapData, { idx }) {
+      return [].concat(mapData, Object.values(idx));
+    },[]);
 
   const [minX, minY, maxX, maxY] = Object.values(mapData).reduce(
     function([minX, minY, maxX, maxY], points) {
@@ -30,27 +28,31 @@ function getViewBox() {
      )
     },
     [Infinity, Infinity, -Infinity, -Infinity]
-  )
+  );
 
+  return [minX-1, minY-2, maxX+1, maxY+10];
+
+}
+
+function getViewBox() {
+  const [minX, minY, maxX, maxY] = getBBox();
   const [width, height] = [maxX - minX, maxY - minY];
-
-  return `${minX - 1} ${minY - 2} ${width + 2} ${height + 6}`;
+  return `${minX} ${minY} ${width} ${height}`;
 }
 
 export default function HexagonMap({ election, db, setActivePDID }) {
   const resultIdx = election.resultIdx;
   const partyToWins = election.getPartyToWins();
   const nParties = Object.keys(partyToWins).length;
+
+
+
+
   return (
     <svg
-      width={"100%"}
-      height={"70vh"}
       viewBox={getViewBox()}
       fontFamily={STYLE.FONT_FAMILY}
     >
-      <SVGTitles />
-      <SVGLegendParty election={election} x={1} y={-2} />
-      <SVGLegendPercentages x={2 + nParties / StyleHexagonMap.N_COLS} y={-2} />
       {HexagonMapData.getMapDataList().map(function (mapData, i) {
         return (
           <SVGMap
@@ -62,6 +64,12 @@ export default function HexagonMap({ election, db, setActivePDID }) {
           />
         );
       })}
+<SVGTitles />
+<SVGLegendParty election={election} x={12} y={6} />
+<SVGLegendPercentages x={13 + nParties / StyleHexagonMap.N_COLS} y={6} />
     </svg>
   );
 }
+
+
+

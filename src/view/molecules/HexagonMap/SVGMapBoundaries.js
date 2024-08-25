@@ -6,7 +6,9 @@ const nGroups = Object.keys(idx2).length;
   return Object.entries(idx2).map(
     function([groupType, groupIDToPolygons], iGroup) {
 
-      const strokeWidth = [1, 0.7, 0.3][nGroups - iGroup - 1] * 0.15;
+      const iStyle = nGroups - iGroup - 1;
+      const strokeWidth = [1, 0.5, 0.1][iStyle] * 0.1;
+      const stroke = STYLE.COLOR.DARKEST;
 
       return Object.entries(groupIDToPolygons).map(function ([groupID, polygons]) {
         return polygons.map(function (polygon) {
@@ -19,7 +21,7 @@ const nGroups = Object.keys(idx2).length;
                 })
                 .join(" ")}
               fill="none"
-              stroke={STYLE.COLOR.DARKER}
+              stroke={stroke}
               strokeWidth={strokeWidth}
             />
           );

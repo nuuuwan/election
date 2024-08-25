@@ -46,9 +46,9 @@ export default class StringX {
   static getShortLabelSi(name) {
     const words = name.split(" ");
     if (words.length === 1) {
-      return StringX.getShortWordSi(name, 2);
+      return StringX.getShortWordSi(name, 1);
     }
-    return words.map((word) => StringX.getShortWordSi(word, 1)).join(".");
+    return words.map((word) => StringX.getShortWordSi(word, 1)).join("");
   }
 
   // Ta
@@ -83,7 +83,7 @@ export default class StringX {
     if (words.length === 1) {
       return StringX.getShortWordTa(name, 1);
     }
-    return words.map((word) => StringX.getShortWordTa(word, 1)).join(".");
+    return words.map((word) => StringX.getShortWordTa(word, 1)).join("");
   }
 
   // Common
@@ -99,5 +99,19 @@ export default class StringX {
       return StringX.getShortLabelTa(name);
     }
     return name;
+  }
+  static getBaseFontSize(text) {
+    if (StringX.isSi(text)) {
+      return 2.0;
+    }
+    if (StringX.isTa(text)) {
+      return 2.5;
+    }
+    return 1.2;
+  }
+
+  static getFontSize(shortLabel) {
+    const baseFontSize = StringX.getBaseFontSize(shortLabel) ;
+    return baseFontSize / Math.max(shortLabel.length, 3);
   }
 }

@@ -16,11 +16,7 @@ function getPoints(x, y, radius) {
     .join(" ");
 }
 
-function getFontSize(shortLabel) {
-  const k = StringX.isEn(shortLabel) ? 1.2 : 2.7;
-  const nMax = StringX.isEn(shortLabel) ? 3 : 6;
-  return k / Math.max(shortLabel.length, nMax);
-}
+
 
 export default function SVGHexagon({ x, y, color, label, opacity, onClick }) {
   const radius = 1 / Math.cos(Math.PI / 6) ** 2 / 2;
@@ -37,12 +33,12 @@ export default function SVGHexagon({ x, y, color, label, opacity, onClick }) {
         fill={color}
         opacity={opacity}
         stroke={STYLE.COLOR.LIGHTER}
-        strokeWidth={0.05}
+        strokeWidth={0.00}
       />
       <text
         x={x}
         y={y + 0.1}
-        fontSize={getFontSize(shortLabel)}
+        fontSize={StringX.getFontSize(shortLabel)}
         textAnchor="middle"
         alignmentBaseline="middle"
         fill={textColor}

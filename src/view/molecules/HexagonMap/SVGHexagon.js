@@ -15,7 +15,7 @@ function getPoints(x, y, radius) {
 }
 
 export default function SVGHexagon({ x, y, color, opacity, onClick }) {
-  const radius = 1 / Math.cos(Math.PI / 6) ** 2 / 2;
+  const radius =  1 / Math.cos(Math.PI / 6) ** 2 / 2;
   const points = getPoints(x, y, radius);
 
   return (

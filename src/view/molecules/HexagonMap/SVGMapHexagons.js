@@ -13,7 +13,7 @@ export default function SVGMapHexagons({
 }) {
   const { idx } = mapData;
 
-  return Object.entries(idx).map(function ([entID, points]) {
+  const renderedItems = Object.entries(idx).map(function ([entID, points]) {
     const nPoints = points.length;
 
     const result = resultIdx[entID];
@@ -45,7 +45,7 @@ export default function SVGMapHexagons({
       );
     });
 
-    const [x, y] = points
+    let [x, y] = points
       .reduce(
         function ([x, y], [x2, y2]) {
           return [x + x2, y + y2];
@@ -53,25 +53,35 @@ export default function SVGMapHexagons({
         [0, 0]
       )
       .map(function (z) {
-        return z / nPoints;
+        return z / nPoints; 
       });
 
     const ent = db.pdIdx[entID] || db.edIdx[entID] || db.provinceIdx[entID];
     const label = ent.name;
 
-    return (
-      <g key={entID}>
-        {renderedHexagons}
-        <SVGHexagonLabel
+    const renderedLabel = (
+      <SVGHexagonLabel
           x={x}
           y={y / Math.cos(Math.PI / 6)}
           color={color}
           opacity={opacity}
           label={label}
           onClick={onClick}
-          zOrder={1000}
         />
-      </g>
     );
+    return { renderedHexagons, renderedLabel };
   });
+
+  return (
+    <g>
+      {renderedItems.map(function ({ renderedHexagons}, i) {
+        return <g key={"hex"+i}>{renderedHexagons}</g>;
+      })}
+      {renderedItems.map(function ({ renderedLabel  }, i) {
+         return <g key={"label"+i}>{renderedLabel}</g>;
+      })}
+    </g>
+  );
+  
+
 }

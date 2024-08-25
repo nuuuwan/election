@@ -15,7 +15,7 @@ export default function SVGMapHexagons({
 
   return Object.entries(idx).map(function ([entID, points]) {
     const nPoints = points.length;
-    const iLabel = Math.floor(nPoints / 2);
+
 
     const result = resultIdx[entID];
 

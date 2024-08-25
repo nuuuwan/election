@@ -8,30 +8,32 @@ import StyleHexagonMap from "./StyleHexagonMap";
 import HexagonMapData from "./HexagonMapData";
 
 function getBBox() {
-  const mapData = HexagonMapData.getMapDataList().reduce(
-    function (mapData, { idx }) {
-      return [].concat(mapData, Object.values(idx));
-    },[]);
+  const mapData = HexagonMapData.getMapDataList().reduce(function (
+    mapData,
+    { idx }
+  ) {
+    return [].concat(mapData, Object.values(idx));
+  },
+  []);
 
   const [minX, minY, maxX, maxY] = Object.values(mapData).reduce(
-    function([minX, minY, maxX, maxY], points) {
-     return points.reduce(
-      function ([minX, minY, maxX, maxY], [x, y]) {
-        return [
-          Math.min(minX, x),
-          Math.min(minY, y),
-          Math.max(maxX, x),
-          Math.max(maxY, y),
-        ];
-      },
-      [minX, minY, maxX, maxY],
-     )
+    function ([minX, minY, maxX, maxY], points) {
+      return points.reduce(
+        function ([minX, minY, maxX, maxY], [x, y]) {
+          return [
+            Math.min(minX, x),
+            Math.min(minY, y),
+            Math.max(maxX, x),
+            Math.max(maxY, y),
+          ];
+        },
+        [minX, minY, maxX, maxY]
+      );
     },
     [Infinity, Infinity, -Infinity, -Infinity]
   );
 
-  return [minX-1, minY-2, maxX+1, maxY+10];
-
+  return [minX - 1, minY - 2, maxX + 1, maxY + 10];
 }
 
 function getViewBox() {
@@ -45,14 +47,8 @@ export default function HexagonMap({ election, db, setActivePDID }) {
   const partyToWins = election.getPartyToWins();
   const nParties = Object.keys(partyToWins).length;
 
-
-
-
   return (
-    <svg
-      viewBox={getViewBox()}
-      fontFamily={STYLE.FONT_FAMILY}
-    >
+    <svg viewBox={getViewBox()} fontFamily={STYLE.FONT_FAMILY}>
       {HexagonMapData.getMapDataList().map(function (mapData, i) {
         return (
           <SVGMap
@@ -64,12 +60,9 @@ export default function HexagonMap({ election, db, setActivePDID }) {
           />
         );
       })}
-<SVGTitles />
-<SVGLegendParty election={election} x={12} y={6} />
-<SVGLegendPercentages x={13 + nParties / StyleHexagonMap.N_COLS} y={6} />
+      <SVGTitles />
+      <SVGLegendParty election={election} x={12} y={6} />
+      <SVGLegendPercentages x={13 + nParties / StyleHexagonMap.N_COLS} y={6} />
     </svg>
   );
 }
-
-
-

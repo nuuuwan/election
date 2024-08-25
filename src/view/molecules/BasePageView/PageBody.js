@@ -21,7 +21,6 @@ function getColumns(
   setActivePDID
 ) {
   return [
-
     <ColumnLatestResult
       election={election}
       electionDisplay={electionDisplay}
@@ -29,11 +28,11 @@ function getColumns(
       setActivePDID={setActivePDID}
     />,
     <ColumnMap
-    election={election}
-    electionDisplay={electionDisplay}
-    db={db}
-    setActivePDID={setActivePDID}
-  />,
+      election={election}
+      electionDisplay={electionDisplay}
+      db={db}
+      setActivePDID={setActivePDID}
+    />,
     <ColumnCumulativeResult
       election={election}
       electionDisplay={electionDisplay}
@@ -45,8 +44,6 @@ function getColumns(
       electionDisplay={electionDisplay}
       db={db}
     />,
-
-
   ];
 }
 

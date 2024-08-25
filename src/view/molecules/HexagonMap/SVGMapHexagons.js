@@ -13,8 +13,6 @@ export default function SVGMapHexagons({
   const { idx } = mapData;
 
   return Object.entries(idx).map(function ([entID, points]) {
-    
-
     const nPoints = points.length;
     const iLabel = Math.floor(nPoints / 2);
 
@@ -24,32 +22,30 @@ export default function SVGMapHexagons({
       const label = ent.name;
       let color = STYLE.COLOR.LIGHTEST;
       let opacity = 1;
-  
+
       if (result) {
         const winningPartyID = result.partyToVotes.winningPartyID;
         color = Party.fromID(winningPartyID).color;
         opacity = Color.getOpacity(result.partyToVotes.pWinner);
       }
-  
+
       const onClick = function () {
         if (entID.length === 6) {
           setActivePDID(entID);
         }
       };
-  
+
       return (
         <SVGHexagon
-          key={entID+'-'+iPoint}
+          key={entID + "-" + iPoint}
           x={x}
           y={y / Math.cos(Math.PI / 6)}
           color={color}
           opacity={opacity}
-          label={(iLabel === iPoint) ? label : ""}
+          label={iLabel === iPoint ? label : ""}
           onClick={onClick}
         />
       );
     });
   });
-
-  
 }

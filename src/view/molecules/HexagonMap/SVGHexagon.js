@@ -16,8 +16,6 @@ function getPoints(x, y, radius) {
     .join(" ");
 }
 
-
-
 export default function SVGHexagon({ x, y, color, label, opacity, onClick }) {
   const radius = 1 / Math.cos(Math.PI / 6) ** 2 / 2;
   const points = getPoints(x, y, radius);
@@ -33,7 +31,7 @@ export default function SVGHexagon({ x, y, color, label, opacity, onClick }) {
         fill={color}
         opacity={opacity}
         stroke={STYLE.COLOR.LIGHTER}
-        strokeWidth={0.00}
+        strokeWidth={0.0}
       />
       <text
         x={x}

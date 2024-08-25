@@ -19,14 +19,13 @@ export default function SVGHexagon({ x, y, color, opacity, onClick }) {
   const points = getPoints(x, y, radius);
 
   return (
-
-      <polygon onClick={onClick}
-        points={points}
-        fill={color}
-        opacity={opacity}
-        stroke={color}
-        strokeWidth={0.01}
-      />
-
+    <polygon
+      onClick={onClick}
+      points={points}
+      fill={color}
+      opacity={opacity}
+      stroke={color}
+      strokeWidth={0.01}
+    />
   );
 }

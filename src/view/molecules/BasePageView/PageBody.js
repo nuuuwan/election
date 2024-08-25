@@ -39,11 +39,11 @@ function getColumns(
       db={db}
     />,
     <ColumnMap
-    election={election}
-    electionDisplay={electionDisplay}
-    db={db}
-    setActivePDID={setActivePDID}
-  />,
+      election={election}
+      electionDisplay={electionDisplay}
+      db={db}
+      setActivePDID={setActivePDID}
+    />,
   ];
 }
 

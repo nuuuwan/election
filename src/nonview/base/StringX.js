@@ -1,3 +1,5 @@
+import { STYLE } from "../constants";
+
 export default class StringX {
   // En
   static isEn(name) {
@@ -100,18 +102,19 @@ export default class StringX {
     }
     return name;
   }
-  static getBaseFontSize(text) {
+  static getBaseFontSizeFactor(text) {
     if (StringX.isSi(text)) {
-      return 2.0;
+      return 1.1;
     }
     if (StringX.isTa(text)) {
-      return 2.5;
+      return 1.1;
     }
-    return 1.2;
+    return 1;
   }
 
   static getFontSize(shortLabel) {
-    const baseFontSize = StringX.getBaseFontSize(shortLabel);
+    const baseFontSizeFactor = StringX.getBaseFontSizeFactor(shortLabel);
+    const baseFontSize = STYLE.FONT_SIZE * baseFontSizeFactor / 9;
     return baseFontSize / Math.max(shortLabel.length, 3);
   }
 }

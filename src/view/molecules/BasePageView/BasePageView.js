@@ -14,6 +14,7 @@ export default function BasePageView({
   setActivePDID,
   setElection,
   setNResultsDisplay,
+  noScroll,
 }) {
   return (
     <Box sx={{ textAlign: "center" }}>
@@ -37,6 +38,7 @@ export default function BasePageView({
         electionDisplay={electionDisplay}
         election={election}
         setNResultsDisplay={setNResultsDisplay}
+        noScroll={noScroll}
       />
     </Box>
   );

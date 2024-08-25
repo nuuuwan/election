@@ -13,6 +13,7 @@ export default class BasePage extends Component {
     date: "2019-11-16",
     // date: "2024-09-21",
     lang: "en",
+    noScroll: false,
   };
   constructor(props) {
     super(props);
@@ -23,6 +24,11 @@ export default class BasePage extends Component {
     let context = URLContext.get();
     if (context.nResultsDisplay) {
       context.nResultsDisplay = parseInt(context.nResultsDisplay);
+    }
+    if (context.noScroll && context.noScroll.toLowerCase() === "true") {
+      context.noScroll = true;
+    } else {
+      context.noScroll = false;
     }
     return context;
   }
@@ -71,6 +77,7 @@ export default class BasePage extends Component {
       db,
       projectedElection,
       electionDisplay,
+      noScroll,
     } = this.state;
     if (!election) {
       return <LoadingView electionType={electionType} date={date} />;
@@ -88,6 +95,7 @@ export default class BasePage extends Component {
         setActivePDID={this.setActivePDID.bind(this)}
         setElection={this.setElection.bind(this)}
         setNResultsDisplay={this.setNResultsDisplay.bind(this)}
+        noScroll={noScroll}
       />
     );
   }

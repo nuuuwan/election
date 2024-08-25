@@ -5,7 +5,7 @@ const BasePageSettersMixin = {
   setStateAndContext(newState, funcRunAfter = undefined) {
     const oldState = this.state;
 
-    const { electionType, date, nResultsDisplay, activePDID, lang } =
+    const { electionType, date, nResultsDisplay, activePDID, lang,noScroll } =
       Object.assign({}, oldState, newState);
 
     URLContext.set({
@@ -14,6 +14,7 @@ const BasePageSettersMixin = {
       nResultsDisplay,
       activePDID,
       lang,
+      noScroll,
     });
 
     this.setState(newState, function () {

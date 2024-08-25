@@ -19,16 +19,20 @@ export default function PageFooter({
   election,
   //
   setNResultsDisplay,
+  noScroll,
 }) {
   return (
     <Box sx={STYLE_FOOTER.BOX}>
       <CitationsView />
+      {noScroll ? null: (
       <PlayerControl
-        key={electionDisplay.nResults}
-        electionDisplay={electionDisplay}
-        election={election}
-        setNResultsDisplay={setNResultsDisplay}
-      />
+      key={electionDisplay.nResults}
+      electionDisplay={electionDisplay}
+      election={election}
+      setNResultsDisplay={setNResultsDisplay}
+    />
+      )}
+
     </Box>
   );
 }

@@ -9,22 +9,29 @@ import HexagonMapData from "./HexagonMapData";
 
 function getViewBox() {
   const mapData = [].concat(
-    Object.values(HexagonMapData.getPostalPDMapData().idx),
+    // Object.values(HexagonMapData.getPostalPDMapData().idx),
     Object.values(HexagonMapData.getPDMapData().idx),
-    Object.values(HexagonMapData.getEDMapData().idx),
-    Object.values(HexagonMapData.getProvinceMapData().idx)
+    // Object.values(HexagonMapData.getEDMapData().idx),
+    // Object.values(HexagonMapData.getProvinceMapData().idx)
   );
-  const [minX, minY, maxX, maxY] = mapData.reduce(
-    function ([minX, minY, maxX, maxY], [x, y]) {
-      return [
-        Math.min(minX, x),
-        Math.min(minY, y),
-        Math.max(maxX, x),
-        Math.max(maxY, y),
-      ];
+
+  const [minX, minY, maxX, maxY] = Object.values(mapData).reduce(
+    function([minX, minY, maxX, maxY], points) {
+     return points.reduce(
+      function ([minX, minY, maxX, maxY], [x, y]) {
+        return [
+          Math.min(minX, x),
+          Math.min(minY, y),
+          Math.max(maxX, x),
+          Math.max(maxY, y),
+        ];
+      },
+      [minX, minY, maxX, maxY],
+     )
     },
     [Infinity, Infinity, -Infinity, -Infinity]
-  );
+  )
+
   const [width, height] = [maxX - minX, maxY - minY];
 
   return `${minX - 1} ${minY - 2} ${width + 2} ${height + 6}`;

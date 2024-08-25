@@ -10,16 +10,22 @@ export default class HexagonMapData {
       })
     );
     const idx2 = Object.fromEntries(
-      Object.entries(originalData.idx2).map(function ([entID, polygons]) {
-        return [
-          entID,
-          polygons.map(function (polygon) {
-            return polygon.map(function ([x, y]) {
-              return [x + offsetX, y + offsetY];
-            });
-          }),
-        ];
-      })
+     Object.entries(originalData.idx2).map(
+      function([groupType,groupIDToPolygons]) {
+        return [groupType, Object.fromEntries(
+          Object.entries(groupIDToPolygons).map(function ([groupID, polygons]) {
+            return [
+              groupID,
+              polygons.map(function (polygon) {
+                return polygon.map(function ([x, y]) {
+                  return [x + offsetX, y + offsetY];
+                });
+              }),
+            ];
+          })
+        )];
+      }
+     )
     );
     return Object.assign({}, HEXAGON_MAP_DATA_ED, { idx, idx2 });
   }
@@ -41,10 +47,10 @@ export default class HexagonMapData {
   }
   static getMapDataList() {
     return [
-      HexagonMapData.getPostalPDMapData(),
+      // HexagonMapData.getPostalPDMapData(),
       HexagonMapData.getPDMapData(),
-      HexagonMapData.getEDMapData(),
-      HexagonMapData.getProvinceMapData(),
+      // HexagonMapData.getEDMapData(),
+      // HexagonMapData.getProvinceMapData(),
     ];
   }
 }

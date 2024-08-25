@@ -1,7 +1,5 @@
 import { Color, MathX, Translate, StringX } from "../../../nonview/base";
 
-import { STYLE } from "../../../nonview/constants";
-
 function getPoints(x, y, radius) {
   const N_SIDES = 6;
 
@@ -30,8 +28,8 @@ export default function SVGHexagon({ x, y, color, label, opacity, onClick }) {
         points={points}
         fill={color}
         opacity={opacity}
-        stroke={STYLE.COLOR.LIGHTER}
-        strokeWidth={0.0}
+        stroke={color}
+        strokeWidth={0.01}
       />
       <text
         x={x}

@@ -10,7 +10,7 @@ function getRenderValue(colorElection) {
         ? colorElection.color
         : STYLE.COLOR.LIGHTEST;
     return (
-      <Typography variant="h6" sx={{ color: "white", backgroundColor: color }}>
+      <Typography variant="h3" sx={{ color: "white", backgroundColor: color }}>
         {election.title}
       </Typography>
     );
@@ -21,7 +21,7 @@ function getRenderValue(colorElection) {
 function renderMenuItemInner(election, i) {
   const color = election.color;
   return (
-    <Typography variant="h4" sx={{ color }}>
+    <Typography variant="h6" sx={{ color }}>
       {election.title}
     </Typography>
   );

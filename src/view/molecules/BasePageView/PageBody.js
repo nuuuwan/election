@@ -7,7 +7,7 @@ import ColumnMap from "./ColumnMap";
 import ColumnProjection from "./ColumnProjection";
 
 const STYLE = {
-  BOX: { paddingTop: 1, paddingBottom: 1 },
+  BOX: { paddingTop: 1, paddingBottom: 20 },
   GRID_ITEM: {
     paddingBottom: 1,
   },

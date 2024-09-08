@@ -1,11 +1,11 @@
 import { Component } from "react";
 import { URLContext } from "../../../nonview/base";
-import { Election, DB } from "../../../nonview/core";
+import { Election, DB, DerivedData } from "../../../nonview/core";
 import { BasePageView } from "../../../view/molecules";
 
 import BasePageSettersMixin from "./BasePageSettersMixin";
 import LoadingView from "./LoadingView";
-import BasePageDerivedMixin from "./BasePageDerivedMixin";
+
 import { DataProvider } from "../../../nonview/core/DataContext";
 
 export default class BasePage extends Component {
@@ -40,13 +40,13 @@ export default class BasePage extends Component {
     const db = await DB.load();
 
     const election = await Election.fromElectionTypeAndDate(electionType, date);
-    ({ activePDID, nResultsDisplay } = this.getActivePDIDAndNResultDisplay({
+    ({ activePDID, nResultsDisplay } = DerivedData.getActivePDIDAndNResultDisplay({
       activePDID,
       nResultsDisplay,
       election,
     }));
 
-    const { electionDisplay, projectedElection } = this.getDerived(
+    const { electionDisplay, projectedElection } = DerivedData.getDerived(
       nResultsDisplay,
       election,
       db
@@ -105,4 +105,4 @@ export default class BasePage extends Component {
 }
 
 Object.assign(BasePage.prototype, BasePageSettersMixin);
-Object.assign(BasePage.prototype, BasePageDerivedMixin);
+

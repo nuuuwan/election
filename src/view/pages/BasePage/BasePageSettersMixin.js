@@ -1,5 +1,5 @@
 import { URLContext } from "../../../nonview/base";
-import { Election } from "../../../nonview/core";
+import { DerivedData, Election } from "../../../nonview/core";
 
 const BasePageSettersMixin = {
   setStateAndContext(newState, funcRunAfter = undefined) {
@@ -39,7 +39,7 @@ const BasePageSettersMixin = {
           .indexOf(activePDID) + 1;
     }
 
-    const { electionDisplay, projectedElection } = this.getDerived(
+    const { electionDisplay, projectedElection } = DerivedData.getDerived(
       nResultsDisplay,
       election,
       db
@@ -60,7 +60,7 @@ const BasePageSettersMixin = {
     const nResultsDisplay =
       election.pdResultList.findIndex((result) => result.entID === activePDID) +
       1;
-    const { electionDisplay, projectedElection } = this.getDerived(
+    const { electionDisplay, projectedElection } = DerivedData.getDerived(
       nResultsDisplay,
       election,
       db
@@ -79,7 +79,7 @@ const BasePageSettersMixin = {
     const pdIDs = election.pdResultList.map((pdResult) => pdResult.entID);
     const activePDID = pdIDs[nResultsDisplay - 1];
 
-    const { electionDisplay, projectedElection } = this.getDerived(
+    const { electionDisplay, projectedElection } = DerivedData.getDerived(
       nResultsDisplay,
       election,
       db

@@ -2,6 +2,7 @@
 import Bellwether from "./Bellwether";
 import DB from "./DB";
 import DataContext from "./DataContext";
+import DerivedData from "./DerivedData";
 import Election from "./Election";
 import ElectionModel from "./ElectionModel";
 import FinalOutcome from "./FinalOutcome";
@@ -15,6 +16,7 @@ export {
   Bellwether,
   DB,
   DataContext,
+  DerivedData,
   Election,
   ElectionModel,
   FinalOutcome,

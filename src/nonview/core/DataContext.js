@@ -5,7 +5,7 @@ import { Election } from ".";
 
 const DataContext = createContext();
 
-export const DataProvider = ({ children }) => {
+export const DataProvider = function ({ children })  {
   const [value, setValue] = useState(null);
 
   useEffect(() => {

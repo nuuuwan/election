@@ -8,7 +8,6 @@ export default function BasePageView({
   lang,
   election,
   electionDisplay,
-  db,
   projectedElection,
   setLang,
   setActivePDID,
@@ -22,7 +21,6 @@ export default function BasePageView({
       <PageHeader
         lang={lang}
         electionDisplay={electionDisplay}
-        db={db}
         setElection={setElection}
         setLang={setLang}
         projectedElection={projectedElection}
@@ -30,7 +28,6 @@ export default function BasePageView({
       <PageBody
         election={election}
         electionDisplay={electionDisplay}
-        db={db}
         projectedElection={projectedElection}
         setActivePDID={setActivePDID}
       />

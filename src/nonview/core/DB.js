@@ -14,7 +14,6 @@ export default class DB {
     const edIdx = await Ent.idxFromType(EntType.ED);
     const provinceIdx = await Ent.idxFromType(EntType.PROVINCE);
     const elections = await Election.listAll();
-
     return new DB(pdIdx, edIdx, provinceIdx, elections);
   }
 }

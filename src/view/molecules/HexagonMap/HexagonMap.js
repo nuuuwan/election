@@ -6,6 +6,8 @@ import SVGLegendParty from "./SVGLegendParty";
 import SVGMap from "./SVGMap";
 import StyleHexagonMap from "./StyleHexagonMap";
 import HexagonMapData from "./HexagonMapData";
+import { useContext } from "react";
+import { DataContext } from "../../../nonview/core";
 
 function getBBox() {
   const mapData = HexagonMapData.getMapDataList().reduce(function (
@@ -42,10 +44,15 @@ function getViewBox() {
   return `${minX} ${minY} ${width} ${height}`;
 }
 
-export default function HexagonMap({ election, db, setActivePDID }) {
+export default function HexagonMap({ election, setActivePDID }) {
   const resultIdx = election.resultIdx;
   const partyToWins = election.getPartyToWins();
   const nParties = Object.keys(partyToWins).length;
+
+  const db = useContext(DataContext);
+  if (!db) {
+    return null;
+  }
 
   return (
     <svg viewBox={getViewBox()} fontFamily={STYLE.FONT_FAMILY}>

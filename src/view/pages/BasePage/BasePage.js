@@ -6,6 +6,7 @@ import { BasePageView } from "../../../view/molecules";
 import BasePageSettersMixin from "./BasePageSettersMixin";
 import LoadingView from "./LoadingView";
 import BasePageDerivedMixin from "./BasePageDerivedMixin";
+import { DataProvider } from "../../../nonview/core/DataContext";
 
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
@@ -84,19 +85,21 @@ export default class BasePage extends Component {
     }
 
     return (
-      <BasePageView
-        key={this.key}
-        lang={lang}
-        election={election}
-        electionDisplay={electionDisplay}
-        db={db}
-        projectedElection={projectedElection}
-        setLang={this.setLang.bind(this)}
-        setActivePDID={this.setActivePDID.bind(this)}
-        setElection={this.setElection.bind(this)}
-        setNResultsDisplay={this.setNResultsDisplay.bind(this)}
-        noScroll={noScroll}
-      />
+      <DataProvider>
+        <BasePageView
+          key={this.key}
+          lang={lang}
+          election={election}
+          electionDisplay={electionDisplay}
+          db={db}
+          projectedElection={projectedElection}
+          setLang={this.setLang.bind(this)}
+          setActivePDID={this.setActivePDID.bind(this)}
+          setElection={this.setElection.bind(this)}
+          setNResultsDisplay={this.setNResultsDisplay.bind(this)}
+          noScroll={noScroll}
+        />
+      </DataProvider>
     );
   }
 }

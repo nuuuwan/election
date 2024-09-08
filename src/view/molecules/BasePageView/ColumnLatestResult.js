@@ -6,15 +6,23 @@ import {
   BellwetherView,
 } from "../../../view/molecules";
 import CustomStack from "./CustomStack";
+import { useContext } from "react";
+import { DataContext } from "../../../nonview/core";
 
 export default function ColumnLatestResult({
   election,
   electionDisplay,
-  db,
+
   setActivePDID,
 }) {
   const activePDID = electionDisplay.finalPDID;
   const color = electionDisplay.getResult(activePDID).winningPartyColor;
+
+  const db = useContext(DataContext);
+  if (!db) {
+    return null;
+  }
+
   return (
     <CustomStack>
       <Typography variant="body1" color={color}>

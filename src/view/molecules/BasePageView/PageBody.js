@@ -1,5 +1,4 @@
 import { Box, Grid, Typography } from "@mui/material";
-
 import { Translate } from "../../../nonview/base";
 import ColumnLatestResult from "./ColumnLatestResult";
 import ColumnCumulativeResult from "./ColumnCumulativeResult";
@@ -16,7 +15,7 @@ const STYLE = {
 function getColumns(
   election,
   electionDisplay,
-  db,
+
   projectedElection,
   setActivePDID
 ) {
@@ -24,24 +23,20 @@ function getColumns(
     <ColumnLatestResult
       election={election}
       electionDisplay={electionDisplay}
-      db={db}
       setActivePDID={setActivePDID}
     />,
     <ColumnCumulativeResult
       election={election}
       electionDisplay={electionDisplay}
-      db={db}
       projectedElection={projectedElection}
     />,
     <ColumnProjection
       projectedElection={projectedElection}
       electionDisplay={electionDisplay}
-      db={db}
     />,
     <ColumnMap
       election={election}
       electionDisplay={electionDisplay}
-      db={db}
       setActivePDID={setActivePDID}
     />,
   ];
@@ -50,7 +45,6 @@ function getColumns(
 export default function PageBody({
   election,
   electionDisplay,
-  db,
   projectedElection,
   setActivePDID,
 }) {
@@ -66,7 +60,7 @@ export default function PageBody({
           {getColumns(
             election,
             electionDisplay,
-            db,
+
             projectedElection,
             setActivePDID
           ).map(function (column, i) {

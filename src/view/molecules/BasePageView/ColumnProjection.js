@@ -8,7 +8,6 @@ import { Translate } from "../../../nonview/base";
 export default function ColumnProjection({
   projectedElection,
   electionDisplay,
-  db,
 }) {
   return (
     <CustomStack>
@@ -17,7 +16,7 @@ export default function ColumnProjection({
         <Typography variant="h4">{Translate("Projected")}</Typography>
       </Box>
 
-      <PredictionView db={db} projectedElection={projectedElection} />
+      <PredictionView projectedElection={projectedElection} />
       <FinalOutcomeView
         election={projectedElection}
         nResultsDisplay={electionDisplay.nResults}

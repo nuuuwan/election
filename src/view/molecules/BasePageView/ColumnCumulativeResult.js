@@ -3,9 +3,11 @@ import { Box, Typography } from "@mui/material";
 import { ResultSingleView } from "..";
 import { Format, Translate } from "../../../nonview/base";
 import CustomStack from "./CustomStack";
+import { useContext } from "react";
+import { DataContext } from "../../../nonview/core";
 export default function ColumnCumulativeResult({
   electionDisplay,
-  db,
+
   projectedElection,
 }) {
   const electorsReleased = electionDisplay.resultLK.summary.electors;
@@ -16,6 +18,11 @@ export default function ColumnCumulativeResult({
     ` (${Format.percent(pReleased)} ` +
     Translate("released") +
     ")";
+
+  const db = useContext(DataContext);
+  if (!db) {
+    return null;
+  }
 
   return (
     <CustomStack>

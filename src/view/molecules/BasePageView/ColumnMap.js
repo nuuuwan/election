@@ -8,7 +8,7 @@ import { Translate } from "../../../nonview/base";
 export default function ColumnMap({
   election,
   electionDisplay,
-  db,
+
   setActivePDID,
 }) {
   const subTitleProgress =
@@ -20,11 +20,7 @@ export default function ColumnMap({
         <Typography variant="body1">{subTitleProgress}</Typography>
         <Typography variant="h4">{Translate("Maps")}</Typography>
       </Box>
-      <HexagonMap
-        election={electionDisplay}
-        db={db}
-        setActivePDID={setActivePDID}
-      />
+      <HexagonMap election={electionDisplay} setActivePDID={setActivePDID} />
     </CustomStack>
   );
 }

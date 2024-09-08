@@ -19,7 +19,6 @@ export default function PageHeader({
   lang,
   electionDisplay,
   projectedElection,
-  db,
   setLang,
   setElection,
 }) {
@@ -39,7 +38,6 @@ export default function PageHeader({
         <ElectionSelector
           selectedElection={electionDisplay}
           colorElection={projectedElection}
-          elections={db.elections}
           setElection={setElection}
         />
         <LanguageSelector selectedLang={lang} setLang={setLang} />

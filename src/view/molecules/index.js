@@ -4,7 +4,7 @@ import BellwetherView from "./BellwetherView";
 import CitationsView from "./CitationsView";
 import ElectionSelector from "./ElectionSelector";
 import FinalOutcomeView from "./FinalOutcomeView";
-import HexMap from "./HexMapView";
+import HexMapView from "./HexMapView";
 import HistoryView from "./HistoryView";
 import LanguageSelector from "./LanguageSelector";
 import PDSelector from "./PDSelector";
@@ -20,7 +20,7 @@ export {
   CitationsView,
   ElectionSelector,
   FinalOutcomeView,
-  HexMap,
+  HexMapView,
   HistoryView,
   LanguageSelector,
   PDSelector,

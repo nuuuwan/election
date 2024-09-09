@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 
-import { DataContext, FinalOutcome } from "../../../nonview/core";
+import {  FinalOutcome } from "../../../nonview/core";
 
 import InsightErrorMarginTooHigh from "./InsightErrorMarginTooHigh";
 import InsightFirstPrefWinner from "./InsightFirstPrefWinner";

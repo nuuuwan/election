@@ -1,5 +1,5 @@
 import { Stack, Typography } from "@mui/material";
-import { DataContext, Party } from "../../nonview/core";
+import {  Party } from "../../nonview/core";
 import { CustomSelect } from "../atoms";
 import { Translate } from "../../nonview/base";
 import { useDataContext } from "../../nonview/core/DataProvider";

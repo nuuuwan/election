@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import { Color, Format } from "../../nonview/base";
-import { DataContext, Election, Party } from "../../nonview/core";
+import {  Election, Party } from "../../nonview/core";
 import { PartyView } from "../../view/atoms";
 import { useDataContext } from "../../nonview/core/DataProvider";
 

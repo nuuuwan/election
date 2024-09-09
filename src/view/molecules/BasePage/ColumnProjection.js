@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 
 import CustomStack from "./CustomStack";
 
-import { FinalOutcomeView, PredictionView } from "../../molecules";
+import { FinalOutcomeView, PredictionView } from "..";
 import { Translate } from "../../../nonview/base";
 
 export default function ColumnProjection() {

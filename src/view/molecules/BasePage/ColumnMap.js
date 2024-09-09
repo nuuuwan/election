@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 
-import { HexagonMap } from "../../molecules";
+import { HexagonMap } from "..";
 
 import CustomStack from "./CustomStack";
 import { Translate } from "../../../nonview/base";

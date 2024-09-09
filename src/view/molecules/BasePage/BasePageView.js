@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import PageHeader from "./PageHeader";
 import PageBody from "./PageBody";
 import PageFooter from "./PageFooter";
-import { TestingLabel } from "../../../view/atoms";
+import { TestingLabel } from "../../atoms";
 
 export default function BasePageView({
   setLang,

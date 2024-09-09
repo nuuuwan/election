@@ -1,6 +1,6 @@
 import { Box, Stack } from "@mui/material";
 
-import { ElectionSelector, LanguageSelector } from "../../molecules";
+import { ElectionSelector, LanguageSelector } from "..";
 
 import { useDataContext } from "../../../nonview/core/DataProvider";
 

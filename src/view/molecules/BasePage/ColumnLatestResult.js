@@ -4,7 +4,7 @@ import {
   ResultSingleView,
   PDSelector,
   BellwetherView,
-} from "../../../view/molecules";
+} from "..";
 import CustomStack from "./CustomStack";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 

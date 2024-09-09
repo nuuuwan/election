@@ -23,14 +23,14 @@ export default class DerivedData {
     return { activePDID, nResultsDisplay };
   }
 
-  static getPredictedElection(election, electionDisplay, db) {
+  static getPredictedElection(election, electionDisplay, pdIdx, elections) {
     const releasedPDIDList = electionDisplay.pdIDList;
-    const nonReleasedPDIDList = Object.keys(db.pdIdx).filter(
+    const nonReleasedPDIDList = Object.keys(pdIdx).filter(
       (pdID) => !releasedPDIDList.includes(pdID)
     );
 
     const electionModel = new ElectionModel(
-      db.elections,
+      elections,
       election,
       releasedPDIDList,
       nonReleasedPDIDList
@@ -39,7 +39,7 @@ export default class DerivedData {
     return projectedElection;
   }
 
-  static getDerived(nResultsDisplay, election, db) {
+  static getDerived(nResultsDisplay, election, pdIdx, elections) {
     const electionDisplay = election.getElectionSubset(nResultsDisplay);
 
     let projectedElection;
@@ -47,7 +47,7 @@ export default class DerivedData {
       projectedElection = DerivedData.getPredictedElection(
         election,
         electionDisplay,
-        db
+        pdIdx, elections
       );
     }
     return { electionDisplay, projectedElection };

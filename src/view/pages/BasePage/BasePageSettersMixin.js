@@ -25,7 +25,7 @@ const BasePageSettersMixin = {
   },
 
   async setElection(election0) {
-    let { activePDID, nResultsDisplay, db } = this.state;
+    let { activePDID, nResultsDisplay, pdIdx, elections } = this.state;
     const { electionType, date } = election0;
 
     const election = await Election.fromElectionTypeAndDate(electionType, date);
@@ -42,7 +42,7 @@ const BasePageSettersMixin = {
     const { electionDisplay, projectedElection } = DerivedData.getDerived(
       nResultsDisplay,
       election,
-      db
+      pdIdx, elections
     );
     this.setStateAndContext({
       electionType,
@@ -56,14 +56,14 @@ const BasePageSettersMixin = {
   },
 
   setActivePDID(activePDID) {
-    const { election, db } = this.state;
+    const { election, pdIdx, elections } = this.state;
     const nResultsDisplay =
       election.pdResultList.findIndex((result) => result.entID === activePDID) +
       1;
     const { electionDisplay, projectedElection } = DerivedData.getDerived(
       nResultsDisplay,
       election,
-      db
+      pdIdx, elections
     );
 
     this.setStateAndContext({
@@ -75,14 +75,14 @@ const BasePageSettersMixin = {
   },
 
   setNResultsDisplay(nResultsDisplay) {
-    const { election, db } = this.state;
+    const { election, pdIdx, elections } = this.state;
     const pdIDs = election.pdResultList.map((pdResult) => pdResult.entID);
     const activePDID = pdIDs[nResultsDisplay - 1];
 
     const { electionDisplay, projectedElection } = DerivedData.getDerived(
       nResultsDisplay,
       election,
-      db
+      pdIdx, elections
     );
     this.setStateAndContext({
       nResultsDisplay,

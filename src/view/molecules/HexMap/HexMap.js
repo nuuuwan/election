@@ -3,7 +3,7 @@ import SVGLegendPercentages from "./SVGLegendPercentages";
 import SVGLegendParty from "./SVGLegendParty";
 import SVGMap from "./SVGMap";
 import StyleHexMap from "./StyleHexMap";
-import HexMapData from "./HexMapData";
+import HexMapData from "./HexMapData/HexMapData";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { THEME_DATA } from "../../_constants/THEME";
 

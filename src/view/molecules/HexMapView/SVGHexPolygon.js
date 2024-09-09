@@ -24,8 +24,8 @@ export default function SVGHexPolygon({ x, y, color, opacity, onClick }) {
       points={points}
       fill={color}
       opacity={opacity}
-      stroke={color}
-      strokeWidth={0.01}
+      stroke={"black"}
+      strokeWidth={0.005}
     />
   );
 }

@@ -77,7 +77,6 @@ export default class BasePage extends Component {
       electionType,
       date,
       election,
-      db,
       projectedElection,
       electionDisplay,
       noScroll,

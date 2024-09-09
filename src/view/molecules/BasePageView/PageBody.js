@@ -4,7 +4,6 @@ import ColumnLatestResult from "./ColumnLatestResult";
 import ColumnCumulativeResult from "./ColumnCumulativeResult";
 import ColumnMap from "./ColumnMap";
 import ColumnProjection from "./ColumnProjection";
-import userEvent from "@testing-library/user-event";
 import { useContext } from "react";
 import { DataContext } from "../../../nonview/core";
 

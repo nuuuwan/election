@@ -8,11 +8,10 @@ const DataContext = createContext();
 export const DataProvider = function ({ children, electionType, date }) {
   const [value, setValue] = useState(null);
 
-  useEffect(() => {
-    const loadValue = async () => {
+  useEffect(function()  {
+    const loadValue = async function ()  {
       try {
         
-
         const pdIdx = await Ent.idxFromType(EntType.PD);
         const edIdx = await Ent.idxFromType(EntType.ED);
         const provinceIdx = await Ent.idxFromType(EntType.PROVINCE);
@@ -23,7 +22,7 @@ export const DataProvider = function ({ children, electionType, date }) {
 
         const value = { pdIdx, edIdx, provinceIdx, elections, election };
         setValue(value);
-        console.debug('DataProvider.loadValue complete.');
+        console.debug('DataProvider.loadValue complete.', {electionType, date});
 
       } catch (err) {
         console.error(err);
@@ -31,9 +30,9 @@ export const DataProvider = function ({ children, electionType, date }) {
     };
 
     loadValue();
-  }, []);
+  }, [electionType, date]);
 
-  return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
+  return <DataContext.Provider value={value} electionType={electionType} date={date}>{children}</DataContext.Provider>;
 };
 
 export default DataContext;

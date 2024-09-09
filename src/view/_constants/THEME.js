@@ -3,7 +3,19 @@ import { createTheme } from "@mui/material";
 export const THEME_DATA =  {
     typography: {
       fontFamily: "Cairo",
-      fontSize: 13,
+      fontSize: 12,
+    },
+    palette: {
+      primary: {
+        main: "#888",
+      },
+      secondary: {
+        main: "#ccc",
+      },
+    },
+    background: {
+      default: "#fff",
+
     },
   }
 

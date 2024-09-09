@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { DataProvider } from "../../nonview/core/DataContext";
+import {DataProvider} from "../../nonview/core";
 import { CustomURLContext } from "../../nonview/core";
 import BasePageView from "../../view/molecules/BasePageView/BasePageView";
-
-console.debug({ DataProvider });
 
 export default function BasePage() {
   const [state, setState] = useState(CustomURLContext.get());

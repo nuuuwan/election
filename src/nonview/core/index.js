@@ -2,6 +2,7 @@
 import Bellwether from "./Bellwether";
 import CustomURLContext from "./CustomURLContext";
 import DataContext from "./DataContext";
+import DataProvider from "./DataProvider";
 import DerivedData from "./DerivedData";
 import Election from "./Election";
 import ElectionModel from "./ElectionModel";
@@ -16,6 +17,7 @@ export {
   Bellwether,
   CustomURLContext,
   DataContext,
+  DataProvider,
   DerivedData,
   Election,
   ElectionModel,

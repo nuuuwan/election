@@ -42,7 +42,7 @@ function getViewBox() {
   return `${minX} ${minY} ${width} ${height}`;
 }
 
-export default function HexMap() {
+export default function HexMapView() {
   const data = useDataContext();
   if (!data) {
     return null;

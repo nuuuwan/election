@@ -4,7 +4,7 @@ import BellwetherView from "./BellwetherView";
 import CitationsView from "./CitationsView";
 import ElectionSelector from "./ElectionSelector";
 import FinalOutcomeView from "./FinalOutcomeView";
-import HexMap from "./HexMap";
+import HexMap from "./HexMapView";
 import HistoryView from "./HistoryView";
 import LanguageSelector from "./LanguageSelector";
 import PDSelector from "./PDSelector";

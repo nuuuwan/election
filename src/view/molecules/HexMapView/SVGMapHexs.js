@@ -5,8 +5,8 @@ import { Party } from "../../../nonview/core";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { useBasePageHandlerContext } from "../BasePage/BasePageHandlerProvider";
 
-import SVGHex from "./SVGHex";
-import SVGHexLabel from "./SVGHexLabel";
+import SVGHexPolygon from "./SVGHexPolygon";
+import SVGHexText from "./SVGHexText";
 
 export default function SVGMapHexs({ mapData }) {
   const { setActivePDID } = useBasePageHandlerContext();
@@ -40,7 +40,7 @@ export default function SVGMapHexs({ mapData }) {
 
     const renderedHexs = points.map(function ([x, y], iPoint) {
       return (
-        <SVGHex
+        <SVGHexPolygon
           key={iPoint}
           x={x}
           y={y / Math.cos(Math.PI / 6)}
@@ -66,7 +66,7 @@ export default function SVGMapHexs({ mapData }) {
     const label = ent.name;
 
     const renderedLabel = (
-      <SVGHexLabel
+      <SVGHexText
         x={x}
         y={y / Math.cos(Math.PI / 6)}
         color={color}

@@ -1,7 +1,7 @@
 import { Color, Format } from "../../../nonview/base";
 
-import SVGHex from "./SVGHex";
-import SVGHexLabel from "./SVGHexLabel";
+import SVGHexPolygon from "./SVGHexPolygon";
+import SVGHexText from "./SVGHexText";
 
 export default function SVGLegendPercentages({ x, y }) {
   const N_COLS = 2;
@@ -16,7 +16,7 @@ export default function SVGLegendPercentages({ x, y }) {
 
     return (
       <g key={i}>
-        <SVGHex
+        <SVGHexPolygon
           key={i}
           x={x1}
           y={y1}
@@ -24,7 +24,7 @@ export default function SVGLegendPercentages({ x, y }) {
           label={Format.percent(p)}
           opacity={Color.getOpacity(p)}
         />
-        <SVGHexLabel
+        <SVGHexText
           x={x1}
           y={y1}
           color={"primary"}

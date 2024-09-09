@@ -14,7 +14,7 @@ function getPoints(x, y, radius) {
     .join(" ");
 }
 
-export default function SVGHex({ x, y, color, opacity, onClick }) {
+export default function SVGHexPolygon({ x, y, color, opacity, onClick }) {
   const radius = 1 / Math.cos(Math.PI / 6) ** 2 / 2;
   const points = getPoints(x, y, radius);
 

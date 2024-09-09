@@ -1,8 +1,20 @@
 import { createTheme } from "@mui/material";
+import CustomURLContext from "../../nonview/core/CustomURLContext";
 
-export const THEME_DATA = {
+function getThemeData() {
+
+  const lang = CustomURLContext.get().lang;
+
+  let fontFamily = 'Cairo';
+  if (lang === "si") {
+    fontFamily = 'Noto Sans Sinhala';
+  } else if (lang === "ta") {
+    fontFamily = 'Noto Sans Tamil';
+  }
+  
+  return {
   typography: {
-    fontFamily: "Cairo",
+    fontFamily,
     fontSize: 12,
   },
   palette: {
@@ -13,8 +25,10 @@ export const THEME_DATA = {
       main: "#888",
     },
   },
-};
+}};
 
+const THEME_DATA = getThemeData();
 const THEME = createTheme(THEME_DATA);
 
+export { THEME_DATA };
 export default THEME;

@@ -23,9 +23,21 @@
     "si": "50%",
     "ta": "50%"
   },
+  "60%": {
+    "si": "60%",
+    "ta": "60%"
+  },
+  "70%": {
+    "si": "70%",
+    "ta": "70%"
+  },
   "75%": {
     "si": "75%",
     "ta": "75%"
+  },
+  "ACTC": {
+    "si": "\u0d85.\u0d89.\u0dad.\u0d9a\u0ddc.",
+    "ta": "\u0b85.\u0b87.\u0ba4.\u0b95\u0bbe."
   },
   "Agalawatta": {
     "si": "\u0d85\u0d9c\u0dbd\u0dc0\u0dad\u0dca\u0dad",
@@ -351,6 +363,10 @@
     "si": "\u0daf\u0dd2\u0dc0\u0dba\u0dd2\u0db1 \u0db4\u0dd4\u0dbb\u0dcf",
     "ta": "\u0ba4\u0bc0\u0bb5\u0bc1 \u0bae\u0bc1\u0bb4\u0bc1\u0bb5\u0ba4\u0bc1\u0bae\u0bcd"
   },
+  "JVP": {
+    "si": "\u0da2.\u0dc0\u0dd2.\u0db4\u0dd9.",
+    "ta": "\u0bae.\u0bb5\u0bbf.\u0bae\u0bc1."
+  },
   "Ja Ela": {
     "si": "\u0da2\u0dcf \u0d87\u0dbd",
     "ta": "\u0b9c\u0bbe \u0b8e\u0bb2"
@@ -592,12 +608,12 @@
     "ta": "\u0bae\u0bc2\u0ba4\u0bc2\u0bb0\u0bcd"
   },
   "NDF": {
-    "si": "NDF",
-    "ta": "NDF"
+    "si": "\u0db1.\u0db4\u0dca\u200d\u0dbb.\u0db4\u0dd9.",
+    "ta": "\u0baa\u0bc1.\u0b9c.\u0bae\u0bc1."
   },
   "NMPP": {
-    "si": "\u0d91\u0db1\u0dca\u0d91\u0db8\u0dca\u0db4\u0dd3\u0db4\u0dd3",
-    "ta": "\u0b8e\u0ba9\u0bcd\u0b8e\u0bae\u0bcd\u0baa\u0bbf\u0baa\u0bbf"
+    "si": "\u0da2\u0dcf.\u0da2.\u0db6.",
+    "ta": "\u0ba4\u0bc7.\u0bae.\u0b9a."
   },
   "Nallur": {
     "si": "\u0db1\u0dbd\u0dca\u0dbd\u0dd6\u0dbb\u0dca",
@@ -664,8 +680,8 @@
     "ta": "\u0bae\u0bb1\u0bcd\u0bb1\u0bb5\u0bc8"
   },
   "PA": {
-    "si": "PA",
-    "ta": "PA"
+    "si": "\u0db4\u0ddc.\u0d91.\u0db4\u0dd9.",
+    "ta": "\u0baa\u0bca.\u0b9c.\u0bae\u0bc1."
   },
   "Paddiruppu": {
     "si": "\u0db4\u0daf\u0dca\u0daf\u0dd2\u0dbb\u0dd4\u0db4\u0dca\u0db4\u0dd4",
@@ -899,9 +915,13 @@
     "si": "\u0dbb\u0dd4\u0dc0\u0db1\u0dca\u0dc0\u0dd0\u0dbd\u0dca\u0dbd",
     "ta": "\u0bb0\u0bc1\u0bb5\u0ba9\u0bcd\u0bb5\u0bc6\u0bb2\u0bcd\u0bb2"
   },
+  "SLFP": {
+    "si": "\u0dc1\u0dca\u200d\u0dbb\u0dd3.\u0dbd\u0d82.\u0db1\u0dd2.\u0db4.",
+    "ta": "\u0b87.\u0b9a\u0bc1.\u0b95."
+  },
   "SLPP": {
     "si": "\u0dc1\u0dca\u200d\u0dbb\u0dd3.\u0dbd\u0d82.\u0db4\u0ddc.\u0db4\u0dd9.",
-    "ta": "\u0b8e\u0bb8\u0bcd.\u0b8e\u0bb2\u0bcd.\u0baa\u0bbf.\u0baa\u0bbf"
+    "ta": "\u0b8e\u0bb8\u0bcd.\u0b8e\u0bb2\u0bcd.\u0baa\u0bbf.\u0baa\u0bbf."
   },
   "Sabaragamuwa": {
     "si": "\u0dc3\u0db6\u0dbb\u0d9c\u0db8\u0dd4\u0dc0",
@@ -976,12 +996,12 @@
     "ta": "\u0bb5\u0bbe\u0b95\u0bcd\u0b95\u0bc1\u0baa\u0bcd\u0baa\u0ba4\u0bbf\u0bb5\u0bc1"
   },
   "UNP": {
-    "si": "\u0d91.\u0da2\u0dcf.\u0db4",
-    "ta": "\u0b90.\u0ba4\u0bc7.\u0b95"
+    "si": "\u0d91.\u0da2\u0dcf.\u0db4.",
+    "ta": "\u0b90.\u0ba4\u0bc7.\u0b95."
   },
   "UPFA": {
-    "si": "\u0d91.\u0da2.\u0db1\u0dd2.\u0dc3",
-    "ta": "UPFA"
+    "si": "\u0d91.\u0da2.\u0db1\u0dd2.\u0dc3.",
+    "ta": "\u0b90.\u0bae.\u0b9a\u0bc1.\u0b95\u0bc2."
   },
   "UPFA 2": {
     "si": "\u0d91\u0da2\u0db1\u0dd2\u0dc3 2",

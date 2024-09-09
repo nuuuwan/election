@@ -1,4 +1,4 @@
-import { URLContext } from "../base";
+import URLContext from "../base/URLContext";
 
 export default class CustomURLContext {
   static DEFAULT_STATE = {

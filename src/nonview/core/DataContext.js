@@ -5,6 +5,43 @@ import { DerivedData, Election } from ".";
 
 const DataContext = createContext();
 
+async function getValue({ electionType, date, activePDID, nResultsDisplay }) {
+  const pdIdx = await Ent.idxFromType(EntType.PD);
+  const edIdx = await Ent.idxFromType(EntType.ED);
+  const provinceIdx = await Ent.idxFromType(EntType.PROVINCE);
+  const elections = await Election.listAll();
+
+  const election = await Election.fromElectionTypeAndDate(electionType, date);
+
+  const {
+    activePDID: activePDIDDerived,
+    nResultsDisplay: nResultsDisplayDerived,
+  } = DerivedData.getActivePDIDAndNResultDisplay(
+    activePDID,
+    nResultsDisplay,
+    election
+  );
+
+  const { electionDisplay, projectedElection } = DerivedData.getDerived(
+    nResultsDisplayDerived,
+    election,
+    pdIdx,
+    elections
+  );
+
+  return {
+    pdIdx,
+    edIdx,
+    provinceIdx,
+    elections,
+    election,
+    activePDID: activePDIDDerived,
+    nResultsDisplay: nResultsDisplayDerived,
+    electionDisplay,
+    projectedElection,
+  };
+}
+
 export const DataProvider = function ({
   children,
   electionType,
@@ -19,54 +56,15 @@ export const DataProvider = function ({
   useEffect(
     function () {
       const loadValue = async function () {
-        console.debug("DataProvider.loadValue complete.", {
-          electionType,
-          date,
-          activePDID,
-          nResultsDisplay,
-          lang,
-          noScroll,
-        });
-
         try {
-          const pdIdx = await Ent.idxFromType(EntType.PD);
-          const edIdx = await Ent.idxFromType(EntType.ED);
-          const provinceIdx = await Ent.idxFromType(EntType.PROVINCE);
-          const elections = await Election.listAll();
-
-          const election = await Election.fromElectionTypeAndDate(
+          const value = await getValue({
             electionType,
-            date
-          );
-
-          const {
-            activePDID: activePDIDDerived,
-            nResultsDisplay: nResultsDisplayDerived,
-          } = DerivedData.getActivePDIDAndNResultDisplay(
+            date,
             activePDID,
             nResultsDisplay,
-            election
-          );
-
-          const { electionDisplay, projectedElection } = DerivedData.getDerived(
-            nResultsDisplayDerived,
-            election,
-            pdIdx,
-            elections
-          );
-
-          const value = {
-            pdIdx,
-            edIdx,
-            provinceIdx,
-            elections,
-            election,
-            activePDID: activePDIDDerived,
-            nResultsDisplay: nResultsDisplayDerived,
-            electionDisplay,
-            projectedElection,
-          };
-
+            lang,
+            noScroll,
+          });
           setValue(value);
         } catch (err) {
           console.error(err);

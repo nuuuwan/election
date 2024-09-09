@@ -15,10 +15,10 @@ export default class Party {
 
   get color() {
     if (this.id === Party.UNCERTAIN.id) {
-      return "secondary";
+      return "lightgray";
     }
     if (this.id === Party.OTHER.id) {
-      return "secondary";
+      return "gray";
     }
     return POLITICAL_PARTY_TO_COLOR[this.id] || "secondary";
   }

@@ -1,10 +1,10 @@
 import { Component } from "react";
 import { URLContext } from "../../../nonview/base";
-import { Election, DB, DerivedData } from "../../../nonview/core";
+
 import { BasePageView } from "../../../view/molecules";
 
 import BasePageSettersMixin from "./BasePageSettersMixin";
-import LoadingView from "./LoadingView";
+
 
 import { DataProvider } from "../../../nonview/core/DataContext";
 
@@ -34,39 +34,6 @@ export default class BasePage extends Component {
     return context;
   }
 
-  async componentDidMount() {
-    let { electionType, date, nResultsDisplay, activePDID } = this.state;
-
-    const election = await Election.fromElectionTypeAndDate(electionType, date);
-
-    const { pdIdx, elections } = await DB.load();
-    
-    ({ activePDID, nResultsDisplay } =
-      DerivedData.getActivePDIDAndNResultDisplay({
-        activePDID,
-        nResultsDisplay,
-        election,
-      }));
-
-    const { electionDisplay, projectedElection } = DerivedData.getDerived(
-      nResultsDisplay,
-      election,
-      pdIdx,
-      elections
-    );
-
-    this.setStateAndContext({
-      electionType,
-      date,
-      nResultsDisplay,
-      activePDID,
-      election,
-      electionDisplay,
-      projectedElection,
-      pdIdx,
-      elections,
-    });
-  }
 
   get key() {
     const { electionType, date, activePDID, lang } = this.state;
@@ -78,29 +45,24 @@ export default class BasePage extends Component {
       lang,
       electionType,
       date,
-      election,
-      projectedElection,
-      electionDisplay,
       noScroll,
       activePDID,
       nResultsDisplay,
     } = this.state;
-    if (!election) {
-      return <LoadingView electionType={electionType} date={date} />;
-    }
-
+    
     return (
       <DataProvider electionType={electionType} date={date} activePDID={activePDID} nResultsDisplay={nResultsDisplay}>
         <BasePageView
           key={this.key}
           lang={lang}
-          electionDisplay={electionDisplay}
-          projectedElection={projectedElection}
+          electionType={electionType}
+          date={date}
+          noScroll={noScroll}
+        
           setLang={this.setLang.bind(this)}
           setActivePDID={this.setActivePDID.bind(this)}
           setElection={this.setElection.bind(this)}
-          setNResultsDisplay={this.setNResultsDisplay.bind(this)}
-          noScroll={noScroll}
+          setNResultsDisplay={this.setNResultsDisplay.bind(this)}  
         />
       </DataProvider>
     );

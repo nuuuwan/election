@@ -3,17 +3,30 @@ import PageHeader from "./PageHeader";
 import PageBody from "./PageBody";
 import PageFooter from "./PageFooter";
 import { TestingLabel } from "../../../view/atoms";
+import LoadingView from "../../pages/BasePage/LoadingView";
+import { useContext } from "react";
+import { DataContext } from "../../../nonview/core";
 
 export default function BasePageView({
   lang,
-  electionDisplay,
-  projectedElection,
+  noScroll,
+  electionType,
+  date,
+
   setLang,
   setActivePDID,
   setElection,
   setNResultsDisplay,
-  noScroll,
+  
 }) {
+
+  const data = useContext(DataContext);
+  if (!data) {
+    return <LoadingView electionType={electionType} date={date} />;
+  }
+
+  const {electionDisplay,projectedElection } = data;
+
   return (
     <Box sx={{ textAlign: "center" }}>
       <TestingLabel />

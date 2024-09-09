@@ -40,6 +40,7 @@ export default class BasePage extends Component {
     const db = await DB.load();
 
     const election = await Election.fromElectionTypeAndDate(electionType, date);
+    
     ({ activePDID, nResultsDisplay } =
       DerivedData.getActivePDIDAndNResultDisplay({
         activePDID,
@@ -86,13 +87,11 @@ export default class BasePage extends Component {
     }
 
     return (
-      <DataProvider>
+      <DataProvider electionType={electionType} date={date}>
         <BasePageView
           key={this.key}
           lang={lang}
-          election={election}
           electionDisplay={electionDisplay}
-          db={db}
           projectedElection={projectedElection}
           setLang={this.setLang.bind(this)}
           setActivePDID={this.setActivePDID.bind(this)}

@@ -16,7 +16,6 @@ const STYLE_FOOTER = {
 
 export default function PageFooter({
   electionDisplay,
-  election,
   //
   setNResultsDisplay,
   noScroll,
@@ -28,7 +27,6 @@ export default function PageFooter({
         <PlayerControl
           key={electionDisplay.nResults}
           electionDisplay={electionDisplay}
-          election={election}
           setNResultsDisplay={setNResultsDisplay}
         />
       )}

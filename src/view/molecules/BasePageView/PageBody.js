@@ -4,6 +4,9 @@ import ColumnLatestResult from "./ColumnLatestResult";
 import ColumnCumulativeResult from "./ColumnCumulativeResult";
 import ColumnMap from "./ColumnMap";
 import ColumnProjection from "./ColumnProjection";
+import userEvent from "@testing-library/user-event";
+import { useContext } from "react";
+import { DataContext } from "../../../nonview/core";
 
 const STYLE = {
   BOX: { paddingTop: 1, paddingBottom: 20 },
@@ -43,11 +46,16 @@ function getColumns(
 }
 
 export default function PageBody({
-  election,
   electionDisplay,
   projectedElection,
   setActivePDID,
 }) {
+  const data = useContext(DataContext);
+  if (!data) {
+    return null;
+  }
+  const { election } = data;
+  
   return (
     <Box sx={STYLE.BOX}>
       {electionDisplay.nResults === 0 ? (

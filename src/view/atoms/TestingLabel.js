@@ -1,4 +1,6 @@
 import { Box, Typography } from "@mui/material";
+import { useContext } from "react";
+import { DataContext } from "../../nonview/core";
 
 const STYLE_TESTING_LABEL = {
   BOX: {
@@ -23,7 +25,12 @@ const STYLE_TESTING_LABEL = {
   },
 };
 
-export default function TestingLabel({ election }) {
+export default function TestingLabel() {
+  const data = useContext(DataContext)
+  if (!data) {
+    return null;
+  }
+  const { election } = data;
   if (!election.isFuture) {
     return null;
   }

@@ -5,21 +5,26 @@ import { Election } from ".";
 
 const DataContext = createContext();
 
-export const DataProvider = function ({ children }) {
+export const DataProvider = function ({ children, electionType, date }) {
   const [value, setValue] = useState(null);
 
   useEffect(() => {
     const loadValue = async () => {
       try {
-        console.debug('DataProvider.loadValue');
         
+
         const pdIdx = await Ent.idxFromType(EntType.PD);
         const edIdx = await Ent.idxFromType(EntType.ED);
         const provinceIdx = await Ent.idxFromType(EntType.PROVINCE);
         const elections = await Election.listAll();
 
-        const value = { pdIdx, edIdx, provinceIdx, elections };
+        const election = await Election.fromElectionTypeAndDate(electionType, date);
+    
+
+        const value = { pdIdx, edIdx, provinceIdx, elections, election };
         setValue(value);
+        console.debug('DataProvider.loadValue complete.');
+
       } catch (err) {
         console.error(err);
       }

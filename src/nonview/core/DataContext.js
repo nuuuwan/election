@@ -11,6 +11,8 @@ export const DataProvider = function ({ children }) {
   useEffect(() => {
     const loadValue = async () => {
       try {
+        console.debug('DataProvider.loadValue');
+        
         const pdIdx = await Ent.idxFromType(EntType.PD);
         const edIdx = await Ent.idxFromType(EntType.ED);
         const provinceIdx = await Ent.idxFromType(EntType.PROVINCE);

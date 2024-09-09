@@ -1,11 +1,12 @@
 import React, { createContext, useState, useEffect } from "react";
 
 import { Ent, EntType } from "../base";
-import { Election } from ".";
+import { DerivedData, Election } from ".";
 
 const DataContext = createContext();
 
-export const DataProvider = function ({ children, electionType, date }) {
+export const DataProvider = function ({ children, electionType, date, activePDID,
+  nResultsDisplay, }) {
   const [value, setValue] = useState(null);
 
   useEffect(
@@ -22,11 +23,29 @@ export const DataProvider = function ({ children, electionType, date }) {
             date
           );
 
-          const value = { pdIdx, edIdx, provinceIdx, elections, election };
+          const { activePDID: activePDIDDerived, nResultsDisplay: nResultsDisplayDerived } =
+            DerivedData.getActivePDIDAndNResultDisplay({
+              activePDID,
+              nResultsDisplay,
+              election,
+            });
+      
+          const { electionDisplay, projectedElection } = DerivedData.getDerived(
+            nResultsDisplay,
+            election,
+            pdIdx,
+            elections,
+
+          );
+      
+
+          const value = { pdIdx, edIdx, provinceIdx, elections, election ,             activePDIDDerived,
+            nResultsDisplayDerived,
+            electionDisplay, projectedElection,};
           setValue(value);
           console.debug("DataProvider.loadValue complete.", {
-            electionType,
-            date,
+            electionType, date, activePDID,
+  nResultsDisplay
           });
         } catch (err) {
           console.error(err);
@@ -35,11 +54,12 @@ export const DataProvider = function ({ children, electionType, date }) {
 
       loadValue();
     },
-    [electionType, date]
+    [electionType, date, activePDID,
+      nResultsDisplay]
   );
 
   return (
-    <DataContext.Provider value={value} electionType={electionType} date={date}>
+    <DataContext.Provider value={value} >
       {children}
     </DataContext.Provider>
   );

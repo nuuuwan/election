@@ -37,9 +37,10 @@ export default class BasePage extends Component {
   async componentDidMount() {
     let { electionType, date, nResultsDisplay, activePDID } = this.state;
 
-    const { pdIdx, elections } = await DB.load();
     const election = await Election.fromElectionTypeAndDate(electionType, date);
 
+    const { pdIdx, elections } = await DB.load();
+    
     ({ activePDID, nResultsDisplay } =
       DerivedData.getActivePDIDAndNResultDisplay({
         activePDID,
@@ -81,13 +82,15 @@ export default class BasePage extends Component {
       projectedElection,
       electionDisplay,
       noScroll,
+      activePDID,
+      nResultsDisplay,
     } = this.state;
     if (!election) {
       return <LoadingView electionType={electionType} date={date} />;
     }
 
     return (
-      <DataProvider electionType={electionType} date={date}>
+      <DataProvider electionType={electionType} date={date} activePDID={activePDID} nResultsDisplay={nResultsDisplay}>
         <BasePageView
           key={this.key}
           lang={lang}

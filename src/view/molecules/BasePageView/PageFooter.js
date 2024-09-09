@@ -18,14 +18,14 @@ const STYLE_FOOTER = {
 
 export default function PageFooter({
   setNResultsDisplay,
-  noScroll,
+
 }) {
 
   const data = useContext(DataContext);
   if (!data) {
     return null;
   }
-  const { nResultsDisplay } = data;
+  const { nResultsDisplay , noScroll} = data;
 
 
   return (

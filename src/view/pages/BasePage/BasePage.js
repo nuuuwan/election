@@ -25,13 +25,12 @@ export default class BasePage extends Component {
         date={date}
         activePDID={activePDID}
         nResultsDisplay={nResultsDisplay}
+        lang={lang}
+        noScroll={noScroll}
       >
         <BasePageView
           key={key}
-          lang={lang}
-          electionType={electionType}
-          date={date}
-          noScroll={noScroll}
+         
           setLang={this.setLang.bind(this)}
           setActivePDID={this.setActivePDID.bind(this)}
           setElection={this.setElection.bind(this)}

@@ -18,7 +18,7 @@ const STYLE_PAGE_HEADER = {
 };
 
 export default function PageHeader({
-  lang,
+
   setLang,
   setElection,
 }) {
@@ -46,7 +46,7 @@ export default function PageHeader({
           colorElection={projectedElection}
           setElection={setElection}
         />
-        <LanguageSelector selectedLang={lang} setLang={setLang} />
+        <LanguageSelector setLang={setLang} />
       </Stack>
     </Box>
   );

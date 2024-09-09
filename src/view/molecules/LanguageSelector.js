@@ -1,4 +1,6 @@
 import { Button, Stack } from "@mui/material";
+import { useContext } from "react";
+import { DataContext } from "../../nonview/core";
 
 const STYLE_LANGUAGE_SELECTOR = {
   BOX: {},
@@ -17,7 +19,14 @@ const LANG_TO_LABEL = {
   ta: "த",
 };
 
-export default function LanguageSelector({ selectedLang, setLang }) {
+export default function LanguageSelector({ setLang }) {
+  
+  const data = useContext(DataContext);
+  if (!data) {
+    return null;
+  }
+  const { lang: selectedLang } = data;
+
   return (
     <Stack direction="row" gap={0} sx={STYLE_LANGUAGE_SELECTOR.BOX}>
       {["en", "si", "ta"].map(function (lang) {

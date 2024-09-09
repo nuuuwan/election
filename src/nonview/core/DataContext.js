@@ -11,6 +11,8 @@ export const DataProvider = function ({
   date,
   activePDID,
   nResultsDisplay,
+  lang,
+  noScroll,
 }) {
   const [value, setValue] = useState(null);
 
@@ -22,6 +24,8 @@ export const DataProvider = function ({
           date,
           activePDID,
           nResultsDisplay,
+          lang,
+          noScroll,
         });
 
         try {
@@ -71,7 +75,12 @@ export const DataProvider = function ({
 
       loadValue();
     },
-    [electionType, date, activePDID, nResultsDisplay]
+    [    electionType,
+      date,
+      activePDID,
+      nResultsDisplay,
+      lang,
+      noScroll,]
   );
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

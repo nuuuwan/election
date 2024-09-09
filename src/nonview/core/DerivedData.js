@@ -47,7 +47,8 @@ export default class DerivedData {
       projectedElection = DerivedData.getPredictedElection(
         election,
         electionDisplay,
-        pdIdx, elections
+        pdIdx,
+        elections
       );
     }
     return { electionDisplay, projectedElection };

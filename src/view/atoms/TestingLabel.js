@@ -26,7 +26,7 @@ const STYLE_TESTING_LABEL = {
 };
 
 export default function TestingLabel() {
-  const data = useContext(DataContext)
+  const data = useContext(DataContext);
   if (!data) {
     return null;
   }

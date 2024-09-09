@@ -37,10 +37,9 @@ export default class BasePage extends Component {
   async componentDidMount() {
     let { electionType, date, nResultsDisplay, activePDID } = this.state;
 
-
-    const {pdIdx, elections} = await DB.load();
+    const { pdIdx, elections } = await DB.load();
     const election = await Election.fromElectionTypeAndDate(electionType, date);
-    
+
     ({ activePDID, nResultsDisplay } =
       DerivedData.getActivePDIDAndNResultDisplay({
         activePDID,
@@ -51,7 +50,8 @@ export default class BasePage extends Component {
     const { electionDisplay, projectedElection } = DerivedData.getDerived(
       nResultsDisplay,
       election,
-      pdIdx, elections
+      pdIdx,
+      elections
     );
 
     this.setStateAndContext({
@@ -62,7 +62,8 @@ export default class BasePage extends Component {
       election,
       electionDisplay,
       projectedElection,
-      pdIdx, elections,
+      pdIdx,
+      elections,
     });
   }
 

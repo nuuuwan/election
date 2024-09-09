@@ -54,7 +54,7 @@ export default function PageBody({
     return null;
   }
   const { election } = data;
-  
+
   return (
     <Box sx={STYLE.BOX}>
       {electionDisplay.nResults === 0 ? (

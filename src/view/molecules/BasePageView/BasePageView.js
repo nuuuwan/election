@@ -16,7 +16,7 @@ export default function BasePageView({
 }) {
   return (
     <Box sx={{ textAlign: "center" }}>
-      <TestingLabel  />
+      <TestingLabel />
       <PageHeader
         lang={lang}
         electionDisplay={electionDisplay}

@@ -42,7 +42,8 @@ const BasePageSettersMixin = {
     const { electionDisplay, projectedElection } = DerivedData.getDerived(
       nResultsDisplay,
       election,
-      pdIdx, elections
+      pdIdx,
+      elections
     );
     this.setStateAndContext({
       electionType,
@@ -63,7 +64,8 @@ const BasePageSettersMixin = {
     const { electionDisplay, projectedElection } = DerivedData.getDerived(
       nResultsDisplay,
       election,
-      pdIdx, elections
+      pdIdx,
+      elections
     );
 
     this.setStateAndContext({
@@ -82,7 +84,8 @@ const BasePageSettersMixin = {
     const { electionDisplay, projectedElection } = DerivedData.getDerived(
       nResultsDisplay,
       election,
-      pdIdx, elections
+      pdIdx,
+      elections
     );
     this.setStateAndContext({
       nResultsDisplay,

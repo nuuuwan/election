@@ -4,8 +4,7 @@ import ColumnLatestResult from "./ColumnLatestResult";
 import ColumnCumulativeResult from "./ColumnCumulativeResult";
 import ColumnMap from "./ColumnMap";
 import ColumnProjection from "./ColumnProjection";
-import { useContext } from "react";
-import { DataContext } from "../../../nonview/core";
+import { useDataContext } from "../../../nonview/core/DataProvider";
 
 const STYLE = {
   BOX: { paddingTop: 1, paddingBottom: 20 },
@@ -24,7 +23,7 @@ function getColumns(setActivePDID) {
 }
 
 export default function PageBody({ setActivePDID }) {
-  const data = useContext(DataContext);
+  const data = useDataContext();
   if (!data) {
     return null;
   }

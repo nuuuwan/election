@@ -3,10 +3,9 @@ import { Box, Typography } from "@mui/material";
 import { ResultSingleView } from "..";
 import { Format, Translate } from "../../../nonview/base";
 import CustomStack from "./CustomStack";
-import { useContext } from "react";
-import { DataContext } from "../../../nonview/core";
+import { useDataContext } from "../../../nonview/core/DataProvider";
 export default function ColumnCumulativeResult() {
-  const data = useContext(DataContext);
+  const data = useDataContext();
   if (!data) {
     return null;
   }

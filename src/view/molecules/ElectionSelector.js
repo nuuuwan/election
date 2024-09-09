@@ -3,8 +3,9 @@ import { Box, Typography, useMediaQuery } from "@mui/material";
 import { CustomSelect } from "../atoms";
 
 import { useTheme } from "@emotion/react";
-import { useContext } from "react";
-import { DataContext } from "../../nonview/core";
+import { useDataContext } from "../../nonview/core/DataProvider";
+
+
 
 function getRenderValue(colorElection, isSmallScreen) {
   const renderValue = function (election, i) {
@@ -34,7 +35,7 @@ export default function ElectionSelector({ setElection, colorElection }) {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
-  const data = useContext(DataContext);
+  const data = useDataContext();
   if (!data) {
     return null;
   }

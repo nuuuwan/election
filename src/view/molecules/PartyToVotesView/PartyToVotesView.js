@@ -2,11 +2,10 @@ import { Stack } from "@mui/material";
 import PartyToVotesPieChart from "./PartyToVotesPieChart";
 import PartyToVotesStatsView from "./PartyToVotesStatsView";
 import { HistoryView } from "../../../view/molecules";
-import { useContext } from "react";
-import { DataContext } from "../../../nonview/core";
+import { useDataContext } from "../../../nonview/core/DataProvider";
 
 export default function PartyToVotesView({ entID, chartSize, result }) {
-  const data = useContext(DataContext);
+  const data = useDataContext();
   if (!data) {
     return null;
   }

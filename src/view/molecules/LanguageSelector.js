@@ -1,6 +1,7 @@
 import { Button, Stack } from "@mui/material";
-import { useContext } from "react";
-import { DataContext } from "../../nonview/core";
+import { useDataContext } from "../../nonview/core/DataProvider";
+
+
 
 const STYLE_LANGUAGE_SELECTOR = {
   BOX: {},
@@ -20,7 +21,7 @@ const LANG_TO_LABEL = {
 };
 
 export default function LanguageSelector({ setLang }) {
-  const data = useContext(DataContext);
+  const data = useDataContext();
   if (!data) {
     return null;
   }

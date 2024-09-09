@@ -2,7 +2,8 @@ import { Stack, Typography } from "@mui/material";
 import { Color, Format } from "../../nonview/base";
 import { DataContext, Election, Party } from "../../nonview/core";
 import { PartyView } from "../../view/atoms";
-import { useContext } from "react";
+import { useDataContext } from "../../nonview/core/DataProvider";
+
 
 const N_DISPLAY = 3;
 
@@ -35,7 +36,7 @@ function HistoryViewRow({ entID, electionForRow }) {
 }
 
 export default function HistoryView({ entID }) {
-  const data = useContext(DataContext);
+  const data = useDataContext();
   if (!data) {
     return null;
   }

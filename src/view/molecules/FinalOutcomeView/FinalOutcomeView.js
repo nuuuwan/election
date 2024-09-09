@@ -7,7 +7,8 @@ import InsightFirstPrefWinner from "./InsightFirstPrefWinner";
 import InsightTooCloseToCall from "./InsightTooCloseToCall";
 import { MathX, Translate } from "../../../nonview/base";
 import Confidence from "./Confidence";
-import { useContext } from "react";
+import { useDataContext } from "../../../nonview/core/DataProvider";
+
 
 function FinalOutcomeViewComplexPref({ finalOutcome }) {
   const likelyWinnerPartyInfoList = finalOutcome.likelyWinnerPartyInfoList;
@@ -34,7 +35,7 @@ function FinalOutcomeViewComplexPref({ finalOutcome }) {
 }
 
 export default function FinalOutcomeView() {
-  const data = useContext(DataContext);
+  const data = useDataContext();
   if (!data) {
     return null;
   }

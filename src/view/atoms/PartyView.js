@@ -1,7 +1,8 @@
 import { Typography } from "@mui/material";
-import { DataContext, Party } from "../../nonview/core";
+import { Party } from "../../nonview/core";
 import { Color, Translate } from "../../nonview/base";
-import { useContext } from "react";
+import { useDataContext } from "../../nonview/core/DataProvider";
+
 
 const STYLE_LABEL = {
   padding: 0.25,
@@ -36,7 +37,7 @@ function getStyle(party, pVotes) {
 }
 
 export default function PartyView({ partyID, pVotes }) {
-  const data = useContext(DataContext);
+  const data = useDataContext();
   if (!data) {
     return null;
   }

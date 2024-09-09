@@ -6,11 +6,10 @@ import {
   BellwetherView,
 } from "../../../view/molecules";
 import CustomStack from "./CustomStack";
-import { useContext } from "react";
-import { DataContext } from "../../../nonview/core";
+import { useDataContext } from "../../../nonview/core/DataProvider";
 
 export default function ColumnLatestResult({ setActivePDID }) {
-  const data = useContext(DataContext);
+  const data = useDataContext();
   if (!data) {
     return null;
   }

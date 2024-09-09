@@ -4,8 +4,7 @@ import SVGLegendParty from "./SVGLegendParty";
 import SVGMap from "./SVGMap";
 import StyleHexagonMap from "./StyleHexagonMap";
 import HexagonMapData from "./HexagonMapData";
-import { useContext } from "react";
-import { DataContext } from "../../../nonview/core";
+import { useDataContext } from "../../../nonview/core/DataProvider";
 import { THEME_DATA } from "../../_constants/THEME";
 
 function getBBox() {
@@ -44,7 +43,7 @@ function getViewBox() {
 }
 
 export default function HexagonMap({ setActivePDID }) {
-  const data = useContext(DataContext);
+  const data = useDataContext();
   if (!data) {
     return null;
   }

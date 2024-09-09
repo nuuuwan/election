@@ -2,8 +2,7 @@ import { Box, Stack } from "@mui/material";
 
 import { ElectionSelector, LanguageSelector } from "../../molecules";
 
-import { useContext } from "react";
-import { DataContext } from "../../../nonview/core";
+import { useDataContext } from "../../../nonview/core/DataProvider";
 
 const STYLE_PAGE_HEADER = {
   SELECTOR: {
@@ -18,7 +17,7 @@ const STYLE_PAGE_HEADER = {
 };
 
 export default function PageHeader({ setLang, setElection }) {
-  const data = useContext(DataContext);
+  const data = useDataContext();
   if (!data) {
     return null;
   }

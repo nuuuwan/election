@@ -1,8 +1,9 @@
 import { Box, Typography } from "@mui/material";
-import { Bellwether, DataContext } from "../../nonview/core";
+import { Bellwether } from "../../nonview/core";
 import { Format, Translate } from "../../nonview/base";
+import { useDataContext } from "../../nonview/core/DataProvider";
 
-import { useContext } from "react";
+
 
 function PerfectBellwether({ n, ent }) {
   return (
@@ -32,7 +33,7 @@ function PercentageBellwether({ error, ent }) {
 }
 
 export default function BellwetherView() {
-  const data = useContext(DataContext);
+  const data = useDataContext();
   if (!data) {
     return null;
   }

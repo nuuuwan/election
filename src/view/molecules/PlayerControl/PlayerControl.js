@@ -1,15 +1,14 @@
 import { Box } from "@mui/material";
-import { useContext, useState } from "react";
+import {  useState } from "react";
 
 import CustomSlider from "./CustomSlider";
-import BottomNavigationCustom from "./BottomNavigationCustom";
-import { DataContext } from "../../../nonview/core";
+import BottomNavigationCustom from "./BottomNavigationCustom";import { useDataContext } from "../../../nonview/core/DataProvider";
 
 export default function PlayerControl({ setNResultsDisplay, nResultsDisplay }) {
   const [nResultsDisplayUpdated, setNResultsDisplayUpdated] =
     useState(nResultsDisplay);
 
-  const data = useContext(DataContext);
+  const data = useDataContext();
   if (!data) {
     return null;
   }

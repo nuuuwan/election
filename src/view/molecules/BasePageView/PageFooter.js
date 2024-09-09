@@ -1,7 +1,6 @@
 import { Box } from "@mui/material";
 
-import { useContext } from "react";
-import { DataContext } from "../../../nonview/core";
+import { useDataContext } from "../../../nonview/core/DataProvider";
 import { CitationsView, PlayerControl } from "../../../view/molecules";
 
 const STYLE_FOOTER = {
@@ -17,7 +16,7 @@ const STYLE_FOOTER = {
 };
 
 export default function PageFooter({ setNResultsDisplay }) {
-  const data = useContext(DataContext);
+  const data = useDataContext();
   if (!data) {
     return null;
   }

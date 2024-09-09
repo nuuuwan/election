@@ -1,15 +1,16 @@
 import { Stack } from "@mui/material";
 import SummaryView from "../../view/molecules/SummaryView";
 import PartyToVotesView from "./PartyToVotesView/PartyToVotesView";
-import { useContext } from "react";
-import { DataContext } from "../../nonview/core";
+import { useDataContext } from "../../nonview/core/DataProvider";
+
+
 
 export default function ResultSingleView({
   entID,
   chartSize,
   isProjected = false,
 }) {
-  const data = useContext(DataContext);
+  const data = useDataContext();
   if (!data) {
     return null;
   }

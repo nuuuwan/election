@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 
 import { Ent, EntType } from "../base";
 import { DerivedData, Election } from ".";
-import DataContext from "./DataContext";
+
+const DataContext = createContext();
 
 async function getValue({ electionType, date, activePDID, nResultsDisplay }) {
   const pdIdx = await Ent.idxFromType(EntType.PD);
@@ -77,3 +78,8 @@ export default function DataProvider({
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 }
+
+export function useDataContext() {
+  return useContext(DataContext);
+}
+

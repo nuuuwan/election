@@ -1,12 +1,13 @@
-import { useContext } from "react";
-import { DataContext, Party } from "../../../nonview/core";
+
+import {  Party } from "../../../nonview/core";
+import { useDataContext } from "../../../nonview/core/DataProvider";
 
 import SVGHexagon from "./SVGHexagon";
 import StyleHexagonMap from "./StyleHexagonMap";
 import SVGHexagonLabel from "./SVGHexagonLabel";
 
 export default function SVGLegendParty({ x, y }) {
-  const data = useContext(DataContext);
+  const data = useDataContext();
   if (!data) {
     return null;
   }

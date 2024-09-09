@@ -1,13 +1,6 @@
 import { Color, Translate, StringX } from "../../../nonview/base";
 
-export default function SVGHexLabel({
-  x,
-  y,
-  color,
-  label,
-  opacity,
-  onClick,
-}) {
+export default function SVGHexLabel({ x, y, color, label, opacity, onClick }) {
   const textColor = Color.getTextColor(color, opacity);
   label = label.replace("Postal ", "");
   label = label.replace("-", " ");

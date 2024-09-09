@@ -1,7 +1,7 @@
-import HEXMAP_DATA_ED from "./HEXMAP_DATA_ED";
-import HEXMAP_DATA_PD from "./HEXMAP_DATA_PD";
-import HEXMAP_DATA_PROVINCE from "./HEXMAP_DATA_PROVINCE";
-import HEXMAP_DATA_POSTAL_PD from "./HEXMAP_DATA_POSTAL_PD";
+import HEXMAP_DATA_ED from "./HEXMAP_DATA_ED_UNITS";
+import HEXMAP_DATA_PD from "./HEXMAP_DATA_PD_UNITS";
+import HEXMAP_DATA_PROVINCE from "./HEXMAP_DATA_PROVINCE_UNITS";
+import HEXMAP_DATA_POSTAL_PD from "./HEXMAP_DATA_ED_UNITS";
 
 export default class HexMapData {
   static offsetData(originalData, idSuffix, [offsetX, offsetY]) {

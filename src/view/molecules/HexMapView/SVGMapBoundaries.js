@@ -7,8 +7,8 @@ export default function SVGMapBoundaries({ mapData }) {
     iGroup
   ) {
     const iStyle = nGroups - iGroup - 1;
-    const strokeWidth = [1, 0.5, 0.2][iStyle] * 0.1;
-    const stroke = "primary";
+    const strokeWidth = [1, 0.5, 0.25][iStyle] * 0.1;
+    const stroke = "black";
 
     return Object.entries(groupIDToPolygons).map(function ([
       groupID,

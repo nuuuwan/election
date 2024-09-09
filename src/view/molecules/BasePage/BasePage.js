@@ -8,8 +8,7 @@ export default function BasePage() {
   const [state, setState] = useState(CustomURLContext.get());
 
   const updateState = function (newState) {
-    const oldState = state;
-    const newState0 = Object.assign({}, oldState, newState);
+    const newState0 = Object.assign({}, state, newState);
     CustomURLContext.set(newState0);
     setState(newState0);
   };
@@ -24,7 +23,8 @@ export default function BasePage() {
   };
 
   const setNResultsDisplay = function (nResultsDisplay) {
-    updateState({ nResultsDisplay });
+    const activePDID = undefined;
+    updateState({ nResultsDisplay, activePDID });
   };
 
   const setLang = function (lang) {

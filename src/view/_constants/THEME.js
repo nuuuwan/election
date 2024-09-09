@@ -12,11 +12,7 @@ export const THEME_DATA =  {
       secondary: {
         main: "#cccccc",
       },
-    },
-    background: {
-      default: "#ffffff",
-
-    },
+    }
   }
 
 const THEME = createTheme(THEME_DATA);

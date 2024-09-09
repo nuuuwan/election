@@ -24,12 +24,10 @@ export default function PageHeader({ setLang, setElection }) {
   }
   const { projectedElection } = data;
 
-  const color = projectedElection
-    ? projectedElection.color
-    : "secondary";
+
   return (
     <Box
-      sx={Object.assign({ backgroundColor: color }, STYLE_PAGE_HEADER.SELECTOR)}
+      sx={STYLE_PAGE_HEADER.SELECTOR}
     >
       <Stack
         direction="row"

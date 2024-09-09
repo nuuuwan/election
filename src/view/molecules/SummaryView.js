@@ -7,8 +7,8 @@ export default function SummaryView({ summary }) {
   return (
     <Stack
       direction="row"
-      gap={2}
-      sx={{ margin: "auto", color: "secondary" }}
+      gap={2}      
+      sx={{ margin: "auto"}}
     >
       <LabelledStat
         label="Reg. Voters"

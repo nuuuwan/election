@@ -11,11 +11,11 @@ function getRenderValue(colorElection, isSmallScreen) {
     const color =
       colorElection && colorElection.date === election.date
         ? colorElection.color
-        : "secondary";
+        : "primary";
     return (
       <Typography
         variant={isSmallScreen ? "h6" : "h2"}
-        sx={{ color: "white", backgroundColor: color }}
+      color={color}
       >
         {election.title}
       </Typography>
@@ -27,7 +27,7 @@ function getRenderValue(colorElection, isSmallScreen) {
 function renderMenuItemInner(election, i) {
   const color = election.color;
   return (
-    <Typography variant="h6" sx={{ color }}>
+    <Typography variant="h6" color={color}>
       {election.title}
     </Typography>
   );

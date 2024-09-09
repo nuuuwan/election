@@ -33,7 +33,7 @@ function getBBox() {
     [Infinity, Infinity, -Infinity, -Infinity]
   );
 
-  return [minX - 2, minY - 2, maxX +2, maxY + 4];
+  return [minX - 2, minY - 2, maxX + 2, maxY + 4];
 }
 
 function getViewBox() {
@@ -55,13 +55,12 @@ export default function HexMapView() {
   console.debug(getViewBox());
   return (
     <svg viewBox={getViewBox()} fontFamily={THEME_DATA.typography.fontFamily}>
-        <SVGTitles /> 
-     <SVGLegendParty x={-3} y={-1} />
-      <SVGLegendPercentages x={-2 +  nParties / StyleHexMap.N_COLS} y={-1} /> 
+      <SVGTitles />
+      <SVGLegendParty x={-3} y={-1} />
+      <SVGLegendPercentages x={-2 + nParties / StyleHexMap.N_COLS} y={-1} />
       {HexMapData.getMapDataList().map(function (mapData, i) {
         return <SVGMap key={i} mapData={mapData} />;
       })}
-     
     </svg>
   );
 }

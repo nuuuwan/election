@@ -51,7 +51,7 @@ export default function SVGMapHexs({ mapData }) {
       );
     });
 
-    const [x,y] = points[Math.floor(nPoints / 2)];
+    const [x, y] = points[Math.floor(nPoints / 2)];
 
     const ent = pdIdx[entID] || edIdx[entID] || provinceIdx[entID];
     const label = ent.name;

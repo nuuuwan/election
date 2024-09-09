@@ -29,7 +29,6 @@ export default function PageFooter() {
         <PlayerControl
           key={nResultsDisplay}
           nResultsDisplay={nResultsDisplay}
-
         />
       )}
     </Box>

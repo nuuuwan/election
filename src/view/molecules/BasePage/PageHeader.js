@@ -31,11 +31,8 @@ export default function PageHeader() {
         alignItems="center"
         justifyContent="center"
       >
-        <ElectionSelector
-          colorElection={projectedElection}
-
-        />
-        <LanguageSelector  />
+        <ElectionSelector colorElection={projectedElection} />
+        <LanguageSelector />
       </Stack>
     </Box>
   );

@@ -20,13 +20,12 @@ const LANG_TO_LABEL = {
 };
 
 export default function LanguageSelector() {
-  const {setLang} = useBasePageHandlerContext();
+  const { setLang } = useBasePageHandlerContext();
   const data = useDataContext();
   if (!data) {
     return null;
   }
   const { lang: selectedLang } = data;
-  
 
   return (
     <Stack direction="row" gap={0} sx={STYLE_LANGUAGE_SELECTOR.BOX}>

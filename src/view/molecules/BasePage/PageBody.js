@@ -15,7 +15,7 @@ const STYLE = {
 
 function getColumns() {
   return [
-    <ColumnLatestResult  />,
+    <ColumnLatestResult />,
     <ColumnCumulativeResult />,
     <ColumnProjection />,
     <ColumnMap />,

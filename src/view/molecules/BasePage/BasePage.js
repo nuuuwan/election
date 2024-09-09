@@ -43,17 +43,16 @@ export default function BasePage() {
       lang={lang}
       noScroll={noScroll}
     >
-      <BasePageHandlerProvider value={{
-        setLang,
-        setActivePDID,
-        setElection,
-        setNResultsDisplay,
-      }}>
-       <BasePageView
-
-      />
-
-</BasePageHandlerProvider>
-         </DataProvider>
+      <BasePageHandlerProvider
+        value={{
+          setLang,
+          setActivePDID,
+          setElection,
+          setNResultsDisplay,
+        }}
+      >
+        <BasePageView />
+      </BasePageHandlerProvider>
+    </DataProvider>
   );
 }

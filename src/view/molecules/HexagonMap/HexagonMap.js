@@ -55,9 +55,7 @@ export default function HexagonMap() {
   return (
     <svg viewBox={getViewBox()} fontFamily={THEME_DATA.typography.fontFamily}>
       {HexagonMapData.getMapDataList().map(function (mapData, i) {
-        return (
-          <SVGMap key={i} mapData={mapData} />
-        );
+        return <SVGMap key={i} mapData={mapData} />;
       })}
       <SVGTitles />
       <SVGLegendParty x={12} y={6} />

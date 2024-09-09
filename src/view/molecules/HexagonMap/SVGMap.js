@@ -1,7 +1,7 @@
 import SVGMapHexagons from "./SVGMapHexagons";
 import SVGMapBoundaries from "./SVGMapBoundaries";
 
-export default function SVGMap({ mapData  }) {
+export default function SVGMap({ mapData }) {
   return (
     <g>
       {" "}

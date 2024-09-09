@@ -33,7 +33,7 @@ function buildRenderMenuItemInner(resultIdx, edIdx, variant1, variant2) {
   return renderMenuItemInner;
 }
 export default function PDSelector({ activePDID }) {
-  const {setActivePDID} = useBasePageHandlerContext();
+  const { setActivePDID } = useBasePageHandlerContext();
   const data = useDataContext();
   if (!data) {
     return null;

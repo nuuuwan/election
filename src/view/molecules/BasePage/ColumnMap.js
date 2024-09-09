@@ -22,7 +22,7 @@ export default function ColumnMap() {
         <Typography variant="body1">{subTitleProgress}</Typography>
         <Typography variant="h4">{Translate("Maps")}</Typography>
       </Box>
-      <HexagonMap  />
+      <HexagonMap />
     </CustomStack>
   );
 }

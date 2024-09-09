@@ -8,11 +8,8 @@ import { useBasePageHandlerContext } from "../BasePage/BasePageHandlerProvider";
 import SVGHexagon from "./SVGHexagon";
 import SVGHexagonLabel from "./SVGHexagonLabel";
 
-export default function SVGMapHexagons({
-  mapData,
-
-}) {
-  const {setActivePDID} = useBasePageHandlerContext();
+export default function SVGMapHexagons({ mapData }) {
+  const { setActivePDID } = useBasePageHandlerContext();
   const data = useDataContext();
   if (!data) {
     return null;

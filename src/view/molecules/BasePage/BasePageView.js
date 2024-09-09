@@ -8,9 +8,9 @@ export default function BasePageView() {
   return (
     <Box sx={{ textAlign: "center" }}>
       <TestingLabel />
-      <PageHeader  />
+      <PageHeader />
       <PageBody />
-      <PageFooter  />
+      <PageFooter />
     </Box>
   );
 }

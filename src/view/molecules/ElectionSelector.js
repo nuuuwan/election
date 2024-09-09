@@ -31,7 +31,7 @@ function renderMenuItemInner(election, i) {
 }
 
 export default function ElectionSelector({ colorElection }) {
-  const {setElection} = useBasePageHandlerContext();
+  const { setElection } = useBasePageHandlerContext();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 

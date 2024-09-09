@@ -6,10 +6,10 @@ import BottomNavigationCustom from "./BottomNavigationCustom";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { useBasePageHandlerContext } from "../BasePage/BasePageHandlerProvider";
 
-export default function PlayerControl({  nResultsDisplay }) {
+export default function PlayerControl({ nResultsDisplay }) {
   const [nResultsDisplayUpdated, setNResultsDisplayUpdated] =
     useState(nResultsDisplay);
-  const {setNResultsDisplay} = useBasePageHandlerContext();
+  const { setNResultsDisplay } = useBasePageHandlerContext();
   const data = useDataContext();
   if (!data) {
     return null;

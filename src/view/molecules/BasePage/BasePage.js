@@ -31,20 +31,12 @@ export default function BasePage() {
     updateState({ lang });
   };
 
-  const { electionType, date, activePDID, nResultsDisplay, lang, noScroll } =
-    state;
+
 
   return (
-    <DataProvider
-      electionType={electionType}
-      date={date}
-      activePDID={activePDID}
-      nResultsDisplay={nResultsDisplay}
-      lang={lang}
-      noScroll={noScroll}
-    >
+    <DataProvider state={state}>
       <BasePageHandlerProvider
-        value={{
+        handlers={{
           setLang,
           setActivePDID,
           setElection,

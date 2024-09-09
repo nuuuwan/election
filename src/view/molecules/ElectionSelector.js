@@ -4,7 +4,7 @@ import { CustomSelect } from "../atoms";
 
 import { useTheme } from "@emotion/react";
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { useBasePageHandlerContext } from "./BasePage/BasePageHandlerProvider";
+import { useBasePageHandlerContext } from "../../view/molecules/BasePage/BasePageHandlerProvider";
 
 function getRenderValue(colorElection, isSmallScreen) {
   const renderValue = function (election, i) {

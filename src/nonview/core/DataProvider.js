@@ -5,7 +5,9 @@ import { DerivedData, Election } from ".";
 
 const DataContext = createContext();
 
-async function getValue({ electionType, date, activePDID, nResultsDisplay }) {
+async function getValue(state) {
+  const { electionType, date, activePDID, nResultsDisplay } = state;
+
   const pdIdx = await Ent.idxFromType(EntType.PD);
   const edIdx = await Ent.idxFromType(EntType.ED);
   const provinceIdx = await Ent.idxFromType(EntType.PROVINCE);
@@ -43,28 +45,16 @@ async function getValue({ electionType, date, activePDID, nResultsDisplay }) {
 }
 
 export default function DataProvider({
-  children,
-  electionType,
-  date,
-  activePDID,
-  nResultsDisplay,
-  lang,
-  noScroll,
+  children, state
 }) {
   const [value, setValue] = useState(null);
 
   useEffect(
     function () {
       const loadValue = async function () {
+ 
         try {
-          const value = await getValue({
-            electionType,
-            date,
-            activePDID,
-            nResultsDisplay,
-            lang,
-            noScroll,
-          });
+          const value = await getValue(state);
           setValue(value);
         } catch (err) {
           console.error(err);
@@ -73,7 +63,7 @@ export default function DataProvider({
 
       loadValue();
     },
-    [electionType, date, activePDID, nResultsDisplay, lang, noScroll]
+    [state]
   );
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

@@ -5,8 +5,8 @@ import { Party } from "../../../nonview/core";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { useBasePageHandlerContext } from "../BasePage/BasePageHandlerProvider";
 
-import SVGHexPolygon from "./SVGHexPolygon";
-import SVGHexText from "./SVGHexText";
+import SVGHexPolygon from "./SVGHex";
+import SVGHexText from "./SVGHexLabel";
 
 export default function SVGMapHexs({ mapData }) {
   const { setActivePDID } = useBasePageHandlerContext();

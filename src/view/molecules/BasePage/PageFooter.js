@@ -10,7 +10,7 @@ const STYLE_FOOTER = {
     right: 0,
     left: 0,
     zIndex: 2000,
-    backgroundColor: "secondary",
+    backgroundColor: "white",
     padding: 1,
   },
 };

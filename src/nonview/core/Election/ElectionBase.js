@@ -65,12 +65,12 @@ export default class ElectionBase {
 
   get color() {
     if (!this.resultIdx) {
-      return "secondary";
+      return "gray";
     }
     const resultLK = this.resultLK;
     const winningPartyID = resultLK.partyToVotes.winningPartyID;
     if (resultLK.partyToVotes.pWinner < 0.5) {
-      return "secondary";
+      return "gray";
     }
     return Party.fromID(winningPartyID).color;
   }

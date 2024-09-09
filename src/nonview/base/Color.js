@@ -1,4 +1,4 @@
-import { STYLE } from "../constants";
+
 import MathX from "./MathX";
 export default class Color {
   static getOpacity(p) {
@@ -16,10 +16,8 @@ export default class Color {
   }
 
   static getTextColor(color, opacity) {
-    return color === STYLE.COLOR.LIGHTEST
-      ? STYLE.COLOR.LIGHTER
-      : opacity > 0.5
-      ? "white"
-      : STYLE.COLOR.DARK;
+    return  opacity > 0.5
+      ? "secondary"
+      : "primary";
   }
 }

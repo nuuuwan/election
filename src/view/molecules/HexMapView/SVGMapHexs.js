@@ -24,7 +24,7 @@ export default function SVGMapHexs({ mapData }) {
 
     const result = resultIdx[entID];
 
-    let color = "secondary";
+    let color = "ghostwhite";
     let opacity = 1;
 
     if (result) {

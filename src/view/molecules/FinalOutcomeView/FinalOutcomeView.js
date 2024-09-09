@@ -9,7 +9,7 @@ import { MathX, Translate } from "../../../nonview/base";
 import Confidence from "./Confidence";
 import { useContext } from "react";
 
-function FinalOutcomeViewComplexPref({finalOutcome}) {
+function FinalOutcomeViewComplexPref({ finalOutcome }) {
   const likelyWinnerPartyInfoList = finalOutcome.likelyWinnerPartyInfoList;
   if (!likelyWinnerPartyInfoList.length) {
     return (
@@ -40,7 +40,10 @@ export default function FinalOutcomeView() {
   }
 
   const { projectedElection, electionDisplay } = data;
-  const finalOutcome = new FinalOutcome(projectedElection, electionDisplay.nResults);
+  const finalOutcome = new FinalOutcome(
+    projectedElection,
+    electionDisplay.nResults
+  );
 
   if (finalOutcome.isTooMuchUncertainty) {
     return <InsightErrorMarginTooHigh />;
@@ -54,5 +57,4 @@ export default function FinalOutcomeView() {
   }
 
   return <FinalOutcomeViewComplexPref finalOutcome={finalOutcome} />;
-
 }

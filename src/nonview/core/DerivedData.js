@@ -1,8 +1,11 @@
 import { ElectionModel } from "../../nonview/core";
 
 export default class DerivedData {
-  
-  static   getActivePDIDAndNResultDisplay({ activePDID, nResultsDisplay, election }) {
+  static getActivePDIDAndNResultDisplay({
+    activePDID,
+    nResultsDisplay,
+    election,
+  }) {
     if (activePDID !== undefined) {
       nResultsDisplay =
         election.pdResultList
@@ -49,6 +52,4 @@ export default class DerivedData {
     }
     return { electionDisplay, projectedElection };
   }
-};
-
-
+}

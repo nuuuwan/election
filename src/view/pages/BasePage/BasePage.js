@@ -40,11 +40,12 @@ export default class BasePage extends Component {
     const db = await DB.load();
 
     const election = await Election.fromElectionTypeAndDate(electionType, date);
-    ({ activePDID, nResultsDisplay } = DerivedData.getActivePDIDAndNResultDisplay({
-      activePDID,
-      nResultsDisplay,
-      election,
-    }));
+    ({ activePDID, nResultsDisplay } =
+      DerivedData.getActivePDIDAndNResultDisplay({
+        activePDID,
+        nResultsDisplay,
+        election,
+      }));
 
     const { electionDisplay, projectedElection } = DerivedData.getDerived(
       nResultsDisplay,
@@ -105,4 +106,3 @@ export default class BasePage extends Component {
 }
 
 Object.assign(BasePage.prototype, BasePageSettersMixin);
-

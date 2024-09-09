@@ -6,6 +6,7 @@ export default function SVGHexText({ x, y, color, label, opacity, onClick }) {
   label = label.replace("-", " ");
   const translatedLabel = Translate(label);
   const shortLabel = StringX.getShortLabel(translatedLabel);
+
   return (
     <text
       onClick={onClick}

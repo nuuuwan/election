@@ -52,7 +52,6 @@ export default function HexMapView() {
   const partyToWins = electionDisplay.getPartyToWins();
   const nParties = Object.keys(partyToWins).length;
 
-  console.debug(getViewBox());
   return (
     <svg viewBox={getViewBox()} fontFamily={THEME_DATA.typography.fontFamily}>
       <SVGTitles />

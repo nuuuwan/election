@@ -7,7 +7,7 @@ function PerfectBellwether({ n, ent }) {
   return (
     <Box>
       <Typography variant="h6">{Translate("Perfect Bellwether")}</Typography>
-      <Typography variant="caption">
+      <Typography variant="caption" color="secondary">
         {Translate(
           "Results in %1 have matched Final National Result in all %2 previous Presidential Elections.",
           [Translate(ent.name), n]
@@ -19,8 +19,8 @@ function PerfectBellwether({ n, ent }) {
 
 function PercentageBellwether({ error, ent }) {
   return (
-    <Box color={"secondary"}>
-      <Typography variant="caption">
+    <Box >
+      <Typography variant="caption" color="secondary">
         {Translate(
           "Historically, Party Vote percentages in %1, have varied from the National Result by %2, on average.",
           [Translate(ent.name), Format.percentError(error)]
@@ -45,7 +45,7 @@ export default function BellwetherView() {
   const ent = pdIdx[pdID];
 
   return (
-    <Box>
+    <Box sx={{paddingLeft: 10, paddingRight: 10}}>
       {n === nSame ? <PerfectBellwether n={n} ent={ent} /> : null}
       <PercentageBellwether error={error} ent={ent} />
     </Box>

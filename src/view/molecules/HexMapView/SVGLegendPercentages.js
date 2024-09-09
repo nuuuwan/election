@@ -6,7 +6,7 @@ import SVGHexText from "./SVGHexText";
 export default function SVGLegendPercentages({ x, y }) {
   const N_COLS = 2;
 
-  return [0.25, 0.5, 0.75].map(function (p, i) {
+  return [0.5, 0.6, 0.7].map(function (p, i) {
     const [x1, y1] = [
       x + parseInt(i / N_COLS),
       y +
@@ -20,7 +20,7 @@ export default function SVGLegendPercentages({ x, y }) {
           key={i}
           x={x1}
           y={y1}
-          color={"secondary"}
+          color={"black"}
           label={Format.percent(p)}
           opacity={Color.getOpacity(p)}
         />

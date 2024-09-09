@@ -1,4 +1,5 @@
-import { URLContext } from "../../../nonview/base";
+
+import CustomURLContext from "../../../nonview/core/CustomURLContext";
 
 
 const BasePageSettersMixin = {
@@ -8,7 +9,7 @@ const BasePageSettersMixin = {
     const { electionType, date, nResultsDisplay, activePDID, lang, noScroll } =
       Object.assign({}, oldState, newState);
 
-    URLContext.set({
+    CustomURLContext.set({
       electionType,
       date,
       nResultsDisplay,

@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { URLContext } from "../../../nonview/base";
+
 
 import { BasePageView } from "../../../view/molecules";
 
@@ -7,6 +7,7 @@ import BasePageSettersMixin from "./BasePageSettersMixin";
 
 
 import { DataProvider } from "../../../nonview/core/DataContext";
+import CustomURLContext from "../../../nonview/core/CustomURLContext";
 
 export default class BasePage extends Component {
   static DEFAULT_STATE = {
@@ -18,20 +19,7 @@ export default class BasePage extends Component {
   };
   constructor(props) {
     super(props);
-    this.state = Object.assign({}, BasePage.DEFAULT_STATE, this.getContext());
-  }
-
-  getContext() {
-    let context = URLContext.get();
-    if (context.nResultsDisplay) {
-      context.nResultsDisplay = parseInt(context.nResultsDisplay);
-    }
-    if (context.noScroll && context.noScroll.toLowerCase() === "true") {
-      context.noScroll = true;
-    } else {
-      context.noScroll = false;
-    }
-    return context;
+    this.state = Object.assign({}, BasePage.DEFAULT_STATE, CustomURLContext.get());
   }
 
 

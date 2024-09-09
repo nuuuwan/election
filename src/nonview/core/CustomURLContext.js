@@ -1,6 +1,14 @@
 import { URLContext } from "../base";
 
 export default class CustomURLContext {
+
+    static DEFAULT_STATE = {
+        electionType: "Presidential",
+        date: "2019-11-16",
+        // date: "2024-09-21",
+        lang: "en",
+        noScroll: false,
+      };
     
   static get() {
     let context = URLContext.get();
@@ -12,7 +20,7 @@ export default class CustomURLContext {
     } else {
       context.noScroll = false;
     }
-    return context;
+    return Object.assign({}, CustomURLContext.DEFAULT_STATE, context);
   }
 
   static set(data) {

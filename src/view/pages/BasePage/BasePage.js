@@ -10,16 +10,10 @@ import { DataProvider } from "../../../nonview/core/DataContext";
 import CustomURLContext from "../../../nonview/core/CustomURLContext";
 
 export default class BasePage extends Component {
-  static DEFAULT_STATE = {
-    electionType: "Presidential",
-    date: "2019-11-16",
-    // date: "2024-09-21",
-    lang: "en",
-    noScroll: false,
-  };
+
   constructor(props) {
     super(props);
-    this.state = Object.assign({}, BasePage.DEFAULT_STATE, CustomURLContext.get());
+    this.state = CustomURLContext.get();
   }
 
 

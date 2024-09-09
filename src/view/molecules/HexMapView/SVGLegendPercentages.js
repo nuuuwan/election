@@ -1,7 +1,7 @@
 import { Color, Format } from "../../../nonview/base";
 
-import SVGHexPolygon from "./SVGHex";
-import SVGHexText from "./SVGHexLabel";
+import SVGHexPolygon from "./SVGHexPolygon";
+import SVGHexText from "./SVGHexText";
 
 export default function SVGLegendPercentages({ x, y }) {
   const N_COLS = 2;

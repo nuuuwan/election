@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 
 import { ThemeProvider } from "@mui/material/styles";
-
-import BasePage from "./view/pages/BasePage/BasePage";
-
+import { BasePage } from "./view/molecules";
 import { THEME } from "./view/_constants";
 
 import "./App.css";

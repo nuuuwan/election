@@ -7,14 +7,14 @@ export const THEME_DATA =  {
     },
     palette: {
       primary: {
-        main: "#888",
+        main: "#888888",
       },
       secondary: {
-        main: "#ccc",
+        main: "#cccccc",
       },
     },
     background: {
-      default: "#fff",
+      default: "#ffffff",
 
     },
   }

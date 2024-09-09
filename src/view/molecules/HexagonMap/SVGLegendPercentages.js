@@ -1,4 +1,3 @@
-
 import { Color, Format } from "../../../nonview/base";
 
 import SVGHexagon from "./SVGHexagon";

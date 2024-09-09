@@ -1,5 +1,5 @@
 import { Stack, CircularProgress, Typography } from "@mui/material";
-import {  VERSION } from "../../../nonview/constants";
+import { VERSION } from "../../../nonview/constants";
 import { Election } from "../../../nonview/core";
 
 export default function LoadingView({ electionType, date }) {

@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import {  VERSION } from "../../nonview/constants";
+import { VERSION } from "../../nonview/constants";
 import { Translate } from "../../nonview/base";
 export default function CitationsView() {
   const lines = [

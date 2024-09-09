@@ -1,5 +1,3 @@
-
-
 const COLOR_TO_POLITICAL_PARTIES = {
   "#008": ["SLFP", "PA", "UPFA", "SLPP-R"],
   "#080": ["UNP", "NDF"],

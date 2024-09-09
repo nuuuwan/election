@@ -1,4 +1,3 @@
-
 export default function SVGMapBoundaries({ mapData }) {
   const { idx2 } = mapData;
 

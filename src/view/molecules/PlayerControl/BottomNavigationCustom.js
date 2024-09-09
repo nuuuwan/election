@@ -7,7 +7,6 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import BottomNavigationActionCustom from "./BottomNavigationActionCustom";
 
-
 const N_JUMP_STEPS = 10;
 
 function getBottomNavigationActionConfigs(

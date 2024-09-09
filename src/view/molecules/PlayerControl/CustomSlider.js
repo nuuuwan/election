@@ -1,6 +1,5 @@
 import { Slider, Stack, Typography } from "@mui/material";
 
-
 import { RefreshButton } from "../../atoms";
 
 export default function CustomSlider({

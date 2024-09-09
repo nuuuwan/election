@@ -1,6 +1,5 @@
 import { THEME_DATA } from "../../view/_constants/THEME";
 
-
 export default class StringX {
   // En
   static isEn(name) {
@@ -115,7 +114,8 @@ export default class StringX {
 
   static getFontSize(shortLabel) {
     const baseFontSizeFactor = StringX.getBaseFontSizeFactor(shortLabel);
-    const baseFontSize = (THEME_DATA.typography.fontSize * baseFontSizeFactor) / 8;
+    const baseFontSize =
+      (THEME_DATA.typography.fontSize * baseFontSizeFactor) / 8;
     return baseFontSize / Math.max(shortLabel.length, 3);
   }
 }

@@ -13,10 +13,7 @@ function getRenderValue(colorElection, isSmallScreen) {
         ? colorElection.color
         : "primary";
     return (
-      <Typography
-        variant={isSmallScreen ? "h6" : "h2"}
-      color={color}
-      >
+      <Typography variant={isSmallScreen ? "h6" : "h2"} color={color}>
         {election.title}
       </Typography>
     );

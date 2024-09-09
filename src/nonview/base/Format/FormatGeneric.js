@@ -1,7 +1,6 @@
 import { MathX } from "..";
 import { THEME_DATA } from "../../../view/_constants/THEME";
 
-
 let FormatGeneric = {
   getFontSize(x, valueRange, fontSizeRange) {
     x = Math.abs(x);

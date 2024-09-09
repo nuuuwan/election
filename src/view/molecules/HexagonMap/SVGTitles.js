@@ -1,6 +1,5 @@
 import { Translate } from "../../../nonview/base";
 
-
 const TITLE_INFO_LIST = [
   { title: "Postal Votes", x: 17, y: 4.5 },
   { title: "Polling Divisions", x: 6, y: 4.5 },

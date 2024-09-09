@@ -1,7 +1,5 @@
 import { BottomNavigationAction } from "@mui/material";
 
-
-
 export default function BottomNavigationActionCustom({
   Icon,
   onClick,

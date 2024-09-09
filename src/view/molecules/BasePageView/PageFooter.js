@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 
 import { useContext } from "react";
 import { DataContext } from "../../../nonview/core";
-import {CitationsView, PlayerControl} from "../../../view/molecules";
+import { CitationsView, PlayerControl } from "../../../view/molecules";
 
 const STYLE_FOOTER = {
   BOX: {

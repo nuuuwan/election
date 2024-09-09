@@ -1,4 +1,3 @@
-
 import MathX from "./MathX";
 export default class Color {
   static getOpacity(p) {
@@ -16,8 +15,6 @@ export default class Color {
   }
 
   static getTextColor(color, opacity) {
-    return  opacity > 0.5
-      ? "secondary"
-      : "primary";
+    return opacity > 0.5 ? "secondary" : "primary";
   }
 }

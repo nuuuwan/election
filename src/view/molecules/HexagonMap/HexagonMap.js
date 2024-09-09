@@ -1,5 +1,3 @@
-
-
 import SVGTitles from "./SVGTitles";
 import SVGLegendPercentages from "./SVGLegendPercentages";
 import SVGLegendParty from "./SVGLegendParty";

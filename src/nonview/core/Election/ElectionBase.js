@@ -1,5 +1,5 @@
 import { Time, Translate } from "../../base/index.js";
-import STYLE from "../../constants/STYLE.js";
+
 import Party from "../Party.js";
 
 export default class ElectionBase {
@@ -65,12 +65,12 @@ export default class ElectionBase {
 
   get color() {
     if (!this.resultIdx) {
-      return STYLE.COLOR.LIGHTEST;
+      return "secondary";
     }
     const resultLK = this.resultLK;
     const winningPartyID = resultLK.partyToVotes.winningPartyID;
     if (resultLK.partyToVotes.pWinner < 0.5) {
-      return STYLE.COLOR.LIGHTER;
+      return "secondary";
     }
     return Party.fromID(winningPartyID).color;
   }

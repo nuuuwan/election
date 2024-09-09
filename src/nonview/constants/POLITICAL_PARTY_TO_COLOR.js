@@ -1,4 +1,4 @@
-import STYLE from "./STYLE";
+
 
 const COLOR_TO_POLITICAL_PARTIES = {
   "#008": ["SLFP", "PA", "UPFA", "SLPP-R"],
@@ -27,7 +27,7 @@ const COLOR_TO_POLITICAL_PARTIES = {
   "#808": ["SLMP"],
   "#666": ["Other"],
   "#042": ["DUNF"],
-  [STYLE.COLOR.LIGHT]: ["INDI", "IND1", "IND2"],
+  "#888": ["INDI", "IND1", "IND2"],
 };
 
 const POLITICAL_PARTY_TO_COLOR = Object.entries(

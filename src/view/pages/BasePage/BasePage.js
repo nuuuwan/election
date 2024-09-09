@@ -23,11 +23,6 @@ export default class BasePage extends Component {
   }
 
 
-  get key() {
-    const { electionType, date, activePDID, lang } = this.state;
-    return `${electionType}-${date}-${activePDID}-${lang}`;
-  }
-
   render() {
     const {
       lang,
@@ -37,11 +32,13 @@ export default class BasePage extends Component {
       activePDID,
       nResultsDisplay,
     } = this.state;
+
+    const key = `${electionType}-${date}-${activePDID}-${lang}`;
     
     return (
       <DataProvider electionType={electionType} date={date} activePDID={activePDID} nResultsDisplay={nResultsDisplay}>
         <BasePageView
-          key={this.key}
+          key={key}
           lang={lang}
           electionType={electionType}
           date={date}

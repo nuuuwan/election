@@ -3,6 +3,7 @@ import React, { createContext, useState, useEffect } from "react";
 import { Ent, EntType } from "../base";
 import { DerivedData, Election } from ".";
 
+
 const DataContext = createContext();
 
 export const DataProvider = function ({ children, electionType, date, activePDID,
@@ -12,6 +13,11 @@ export const DataProvider = function ({ children, electionType, date, activePDID
   useEffect(
     function () {
       const loadValue = async function () {
+        console.debug("DataProvider.loadValue complete.", {
+          electionType, date, activePDID,
+nResultsDisplay
+        });
+
         try {
           const pdIdx = await Ent.idxFromType(EntType.PD);
           const edIdx = await Ent.idxFromType(EntType.ED);
@@ -24,29 +30,25 @@ export const DataProvider = function ({ children, electionType, date, activePDID
           );
 
           const { activePDID: activePDIDDerived, nResultsDisplay: nResultsDisplayDerived } =
-            DerivedData.getActivePDIDAndNResultDisplay({
+            DerivedData.getActivePDIDAndNResultDisplay(
               activePDID,
               nResultsDisplay,
               election,
-            });
-      
-          const { electionDisplay, projectedElection } = DerivedData.getDerived(
-            nResultsDisplay,
-            election,
-            pdIdx,
-            elections,
+            );
+            
+          const { electionDisplay, projectedElection } = DerivedData.getDerived(nResultsDisplayDerived, election, pdIdx, elections
 
           );
-      
 
-          const value = { pdIdx, edIdx, provinceIdx, elections, election ,             activePDIDDerived,
-            nResultsDisplayDerived,
+
+          const value = { pdIdx, edIdx, provinceIdx, elections, election ,             activePDID: activePDIDDerived,
+            nResultsDisplay: nResultsDisplayDerived,
             electionDisplay, projectedElection,};
+
+
+
           setValue(value);
-          console.debug("DataProvider.loadValue complete.", {
-            electionType, date, activePDID,
-  nResultsDisplay
-          });
+          
         } catch (err) {
           console.error(err);
         }

@@ -16,7 +16,7 @@ const STYLE_PAGE_HEADER = {
   },
 };
 
-export default function PageHeader({ setLang, setElection }) {
+export default function PageHeader() {
   const data = useDataContext();
   if (!data) {
     return null;
@@ -33,9 +33,9 @@ export default function PageHeader({ setLang, setElection }) {
       >
         <ElectionSelector
           colorElection={projectedElection}
-          setElection={setElection}
+
         />
-        <LanguageSelector setLang={setLang} />
+        <LanguageSelector  />
       </Stack>
     </Box>
   );

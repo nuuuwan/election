@@ -4,18 +4,13 @@ import PageBody from "./PageBody";
 import PageFooter from "./PageFooter";
 import { TestingLabel } from "../../atoms";
 
-export default function BasePageView({
-  setLang,
-  setActivePDID,
-  setElection,
-  setNResultsDisplay,
-}) {
+export default function BasePageView() {
   return (
     <Box sx={{ textAlign: "center" }}>
       <TestingLabel />
-      <PageHeader setElection={setElection} setLang={setLang} />
-      <PageBody setActivePDID={setActivePDID} />
-      <PageFooter x setNResultsDisplay={setNResultsDisplay} />
+      <PageHeader  />
+      <PageBody />
+      <PageFooter  />
     </Box>
   );
 }

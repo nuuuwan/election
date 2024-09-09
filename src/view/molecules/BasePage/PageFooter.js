@@ -15,7 +15,7 @@ const STYLE_FOOTER = {
   },
 };
 
-export default function PageFooter({ setNResultsDisplay }) {
+export default function PageFooter() {
   const data = useDataContext();
   if (!data) {
     return null;
@@ -29,7 +29,7 @@ export default function PageFooter({ setNResultsDisplay }) {
         <PlayerControl
           key={nResultsDisplay}
           nResultsDisplay={nResultsDisplay}
-          setNResultsDisplay={setNResultsDisplay}
+
         />
       )}
     </Box>

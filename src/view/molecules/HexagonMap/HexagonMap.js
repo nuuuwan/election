@@ -42,7 +42,7 @@ function getViewBox() {
   return `${minX} ${minY} ${width} ${height}`;
 }
 
-export default function HexagonMap({ setActivePDID }) {
+export default function HexagonMap() {
   const data = useDataContext();
   if (!data) {
     return null;
@@ -56,7 +56,7 @@ export default function HexagonMap({ setActivePDID }) {
     <svg viewBox={getViewBox()} fontFamily={THEME_DATA.typography.fontFamily}>
       {HexagonMapData.getMapDataList().map(function (mapData, i) {
         return (
-          <SVGMap key={i} mapData={mapData} setActivePDID={setActivePDID} />
+          <SVGMap key={i} mapData={mapData} />
         );
       })}
       <SVGTitles />

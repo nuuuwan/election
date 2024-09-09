@@ -1,5 +1,6 @@
 import { Button, Stack } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
+import { useBasePageHandlerContext } from "./BasePage/BasePageHandlerProvider";
 
 const STYLE_LANGUAGE_SELECTOR = {
   BOX: {},
@@ -18,12 +19,14 @@ const LANG_TO_LABEL = {
   ta: "த",
 };
 
-export default function LanguageSelector({ setLang }) {
+export default function LanguageSelector() {
+  const {setLang} = useBasePageHandlerContext();
   const data = useDataContext();
   if (!data) {
     return null;
   }
   const { lang: selectedLang } = data;
+  
 
   return (
     <Stack direction="row" gap={0} sx={STYLE_LANGUAGE_SELECTOR.BOX}>

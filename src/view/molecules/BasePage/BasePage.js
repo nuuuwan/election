@@ -2,6 +2,7 @@ import { useState } from "react";
 import { DataProvider } from "../../../nonview/core";
 import { CustomURLContext } from "../../../nonview/core";
 import BasePageView from "./BasePageView";
+import BasePageHandlerProvider from "./BasePageHandlerProvider";
 
 export default function BasePage() {
   const [state, setState] = useState(CustomURLContext.get());
@@ -42,12 +43,17 @@ export default function BasePage() {
       lang={lang}
       noScroll={noScroll}
     >
-      <BasePageView
-        setLang={setLang}
-        setActivePDID={setActivePDID}
-        setElection={setElection}
-        setNResultsDisplay={setNResultsDisplay}
+      <BasePageHandlerProvider value={{
+        setLang,
+        setActivePDID,
+        setElection,
+        setNResultsDisplay,
+      }}>
+       <BasePageView
+
       />
-    </DataProvider>
+
+</BasePageHandlerProvider>
+         </DataProvider>
   );
 }

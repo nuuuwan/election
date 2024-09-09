@@ -6,7 +6,7 @@ import CustomStack from "./CustomStack";
 import { Translate } from "../../../nonview/base";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 
-export default function ColumnMap({ setActivePDID }) {
+export default function ColumnMap() {
   const data = useDataContext();
   if (!data) {
     return null;
@@ -22,7 +22,7 @@ export default function ColumnMap({ setActivePDID }) {
         <Typography variant="body1">{subTitleProgress}</Typography>
         <Typography variant="h4">{Translate("Maps")}</Typography>
       </Box>
-      <HexagonMap setActivePDID={setActivePDID} />
+      <HexagonMap  />
     </CustomStack>
   );
 }

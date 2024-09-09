@@ -13,16 +13,16 @@ const STYLE = {
   },
 };
 
-function getColumns(setActivePDID) {
+function getColumns() {
   return [
-    <ColumnLatestResult setActivePDID={setActivePDID} />,
+    <ColumnLatestResult  />,
     <ColumnCumulativeResult />,
     <ColumnProjection />,
-    <ColumnMap setActivePDID={setActivePDID} />,
+    <ColumnMap />,
   ];
 }
 
-export default function PageBody({ setActivePDID }) {
+export default function PageBody() {
   const data = useDataContext();
   if (!data) {
     return null;
@@ -38,7 +38,7 @@ export default function PageBody({ setActivePDID }) {
         </Box>
       ) : (
         <Grid container rowSpacing={4}>
-          {getColumns(setActivePDID).map(function (column, i) {
+          {getColumns().map(function (column, i) {
             return (
               <Grid item key={i} xs={12} md={6} xl={3} sx={STYLE.GRID_ITEM}>
                 {column}

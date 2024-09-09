@@ -3,6 +3,7 @@ import { Color } from "../../../nonview/base";
 import { Party } from "../../../nonview/core";
 
 import { useDataContext } from "../../../nonview/core/DataProvider";
+import { useBasePageHandlerContext } from "../BasePage/BasePageHandlerProvider";
 
 import SVGHexagon from "./SVGHexagon";
 import SVGHexagonLabel from "./SVGHexagonLabel";
@@ -10,8 +11,8 @@ import SVGHexagonLabel from "./SVGHexagonLabel";
 export default function SVGMapHexagons({
   mapData,
 
-  setActivePDID,
 }) {
+  const {setActivePDID} = useBasePageHandlerContext();
   const data = useDataContext();
   if (!data) {
     return null;

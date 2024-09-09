@@ -4,6 +4,7 @@ import { CustomSelect } from "../atoms";
 
 import { useTheme } from "@emotion/react";
 import { useDataContext } from "../../nonview/core/DataProvider";
+import { useBasePageHandlerContext } from "./BasePage/BasePageHandlerProvider";
 
 function getRenderValue(colorElection, isSmallScreen) {
   const renderValue = function (election, i) {
@@ -29,7 +30,8 @@ function renderMenuItemInner(election, i) {
   );
 }
 
-export default function ElectionSelector({ setElection, colorElection }) {
+export default function ElectionSelector({ colorElection }) {
+  const {setElection} = useBasePageHandlerContext();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 

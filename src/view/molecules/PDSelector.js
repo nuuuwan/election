@@ -3,6 +3,7 @@ import { Party } from "../../nonview/core";
 import { CustomSelect } from "../atoms";
 import { Translate } from "../../nonview/base";
 import { useDataContext } from "../../nonview/core/DataProvider";
+import { useBasePageHandlerContext } from "./BasePage/BasePageHandlerProvider";
 
 function buildRenderMenuItemInner(resultIdx, edIdx, variant1, variant2) {
   const renderMenuItemInner = function (pd, i) {
@@ -31,7 +32,8 @@ function buildRenderMenuItemInner(resultIdx, edIdx, variant1, variant2) {
   };
   return renderMenuItemInner;
 }
-export default function PDSelector({ activePDID, setActivePDID }) {
+export default function PDSelector({ activePDID }) {
+  const {setActivePDID} = useBasePageHandlerContext();
   const data = useDataContext();
   if (!data) {
     return null;

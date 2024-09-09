@@ -15,7 +15,7 @@ export default class Color {
   }
 
   static getTextColor(color, opacity) {
-    if (color === 'ghostwhite') {
+    if (color === "ghostwhite") {
       return "lightgray";
     }
     return opacity > 0.5 ? "white" : "black";

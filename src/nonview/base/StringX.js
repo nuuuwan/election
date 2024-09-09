@@ -46,7 +46,7 @@ export default class StringX {
   }
 
   static getShortLabelSi(name) {
-    const words = name.split(" ").slice(0,1);
+    const words = name.split(" ").slice(0, 1);
     if (words.length === 1) {
       return StringX.getShortWordSi(name, 1);
     }
@@ -81,7 +81,7 @@ export default class StringX {
   }
 
   static getShortLabelTa(name) {
-    const words = name.split(" ").slice(0,1);;
+    const words = name.split(" ").slice(0, 1);
     if (words.length === 1) {
       return StringX.getShortWordTa(name, 1);
     }

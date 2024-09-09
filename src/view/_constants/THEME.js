@@ -2,30 +2,30 @@ import { createTheme } from "@mui/material";
 import CustomURLContext from "../../nonview/core/CustomURLContext";
 
 function getThemeData() {
-
   const lang = CustomURLContext.get().lang;
 
-  let fontFamily = 'Cairo';
+  let fontFamily = "Cairo";
   if (lang === "si") {
-    fontFamily = 'Noto Sans Sinhala';
+    fontFamily = "Noto Sans Sinhala";
   } else if (lang === "ta") {
-    fontFamily = 'Noto Sans Tamil';
+    fontFamily = "Noto Sans Tamil";
   }
-  
+
   return {
-  typography: {
-    fontFamily,
-    fontSize: 12,
-  },
-  palette: {
-    primary: {
-      main: "#444",
+    typography: {
+      fontFamily,
+      fontSize: 12,
     },
-    secondary: {
-      main: "#888",
+    palette: {
+      primary: {
+        main: "#444",
+      },
+      secondary: {
+        main: "#888",
+      },
     },
-  },
-}};
+  };
+}
 
 const THEME_DATA = getThemeData();
 const THEME = createTheme(THEME_DATA);

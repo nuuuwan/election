@@ -4,14 +4,15 @@ import PartyToVotesView from "./PartyToVotesView/PartyToVotesView";
 import { useContext } from "react";
 import { DataContext } from "../../nonview/core";
 
-export default function ResultSingleView({ entID, chartSize }) {
+export default function ResultSingleView({ entID, chartSize, isProjected=false }) {
   const data = useContext(DataContext);
   if (!data) {
     return null;
   }
 
-  const { election } = data;
-  const result = election.getResult(entID);
+  const { election, projectedElection } = data;
+  console.debug({isProjected});
+  const result = (isProjected? projectedElection : election).getResult(entID);
 
   if (!result) {
     return null;

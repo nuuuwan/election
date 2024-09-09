@@ -1,6 +1,6 @@
 import { Color, Translate, StringX } from "../../../nonview/base";
 
-export default function SVGHexagonLabel({
+export default function SVGHexLabel({
   x,
   y,
   color,

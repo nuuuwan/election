@@ -1,9 +1,9 @@
-import HEXAGON_MAP_DATA_ED from "./HEXAGON_MAP_DATA_ED";
-import HEXAGON_MAP_DATA_PD from "./HEXAGON_MAP_DATA_PD";
-import HEXAGON_MAP_DATA_PROVINCE from "./HEXAGON_MAP_DATA_PROVINCE";
-import HEXAGON_MAP_DATA_POSTAL_PD from "./HEXAGON_MAP_DATA_POSTAL_PD";
+import HEXMAP_DATA_ED from "./HEXMAP_DATA_ED";
+import HEXMAP_DATA_PD from "./HEXMAP_DATA_PD";
+import HEXMAP_DATA_PROVINCE from "./HEXMAP_DATA_PROVINCE";
+import HEXMAP_DATA_POSTAL_PD from "./HEXMAP_DATA_POSTAL_PD";
 
-export default class HexagonMapData {
+export default class HexMapData {
   static offsetData(originalData, idSuffix, [offsetX, offsetY]) {
     const idx = Object.fromEntries(
       Object.entries(originalData.idx).map(function ([entID, points]) {
@@ -40,30 +40,30 @@ export default class HexagonMapData {
         ];
       })
     );
-    return Object.assign({}, HEXAGON_MAP_DATA_ED, { idx, idx2 });
+    return Object.assign({}, HEXMAP_DATA_ED, { idx, idx2 });
   }
 
   static getPDMapData() {
-    return HEXAGON_MAP_DATA_PD;
+    return HEXMAP_DATA_PD;
   }
 
   static getPostalPDMapData() {
-    return HexagonMapData.offsetData(HEXAGON_MAP_DATA_POSTAL_PD, "P", [17, 5]);
+    return HexMapData.offsetData(HEXMAP_DATA_POSTAL_PD, "P", [17, 5]);
   }
 
   static getEDMapData() {
-    return HexagonMapData.offsetData(HEXAGON_MAP_DATA_ED, "", [-2, 4.5]);
+    return HexMapData.offsetData(HEXMAP_DATA_ED, "", [-2, 4.5]);
   }
 
   static getProvinceMapData() {
-    return HexagonMapData.offsetData(HEXAGON_MAP_DATA_PROVINCE, "", [-1, 14]);
+    return HexMapData.offsetData(HEXMAP_DATA_PROVINCE, "", [-1, 14]);
   }
   static getMapDataList() {
     return [
-      HexagonMapData.getPostalPDMapData(),
-      HexagonMapData.getPDMapData(),
-      HexagonMapData.getEDMapData(),
-      HexagonMapData.getProvinceMapData(),
+      HexMapData.getPostalPDMapData(),
+      HexMapData.getPDMapData(),
+      HexMapData.getEDMapData(),
+      HexMapData.getProvinceMapData(),
     ];
   }
 }

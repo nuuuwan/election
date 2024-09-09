@@ -1,4 +1,4 @@
-import SVGMapHexagons from "./SVGMapHexagons";
+import SVGMapHexs from "./SVGMapHexs";
 import SVGMapBoundaries from "./SVGMapBoundaries";
 
 export default function SVGMap({ mapData }) {
@@ -6,7 +6,7 @@ export default function SVGMap({ mapData }) {
     <g>
       {" "}
       <SVGMapBoundaries mapData={mapData} />
-      <SVGMapHexagons mapData={mapData} />
+      <SVGMapHexs mapData={mapData} />
     </g>
   );
 }

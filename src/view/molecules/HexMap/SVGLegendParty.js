@@ -1,9 +1,9 @@
 import { Party } from "../../../nonview/core";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 
-import SVGHexagon from "./SVGHexagon";
-import StyleHexagonMap from "./StyleHexagonMap";
-import SVGHexagonLabel from "./SVGHexagonLabel";
+import SVGHex from "./SVGHex";
+import StyleHexMap from "./StyleHexMap";
+import SVGHexLabel from "./SVGHexLabel";
 
 export default function SVGLegendParty({ x, y }) {
   const data = useDataContext();
@@ -21,23 +21,23 @@ export default function SVGLegendParty({ x, y }) {
       const party = Party.fromID(partyID);
 
       const [x1, y1] = [
-        x + parseInt(i / StyleHexagonMap.N_COLS),
+        x + parseInt(i / StyleHexMap.N_COLS),
         y +
-          ((i % StyleHexagonMap.N_COLS) +
-            (parseInt(i / StyleHexagonMap.N_COLS) % 2 === 1 ? 0.5 : 0)) /
+          ((i % StyleHexMap.N_COLS) +
+            (parseInt(i / StyleHexMap.N_COLS) % 2 === 1 ? 0.5 : 0)) /
             Math.cos(Math.PI / 6),
       ];
 
       return (
         <g key={partyID}>
-          <SVGHexagon
+          <SVGHex
             x={x1}
             y={y1}
             color={party.color}
             label={partyID}
             opacity={1}
           />
-          <SVGHexagonLabel
+          <SVGHexLabel
             x={x1}
             y={y1}
             color={party.color}

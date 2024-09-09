@@ -2,13 +2,13 @@ import SVGTitles from "./SVGTitles";
 import SVGLegendPercentages from "./SVGLegendPercentages";
 import SVGLegendParty from "./SVGLegendParty";
 import SVGMap from "./SVGMap";
-import StyleHexagonMap from "./StyleHexagonMap";
-import HexagonMapData from "./HexagonMapData";
+import StyleHexMap from "./StyleHexMap";
+import HexMapData from "./HexMapData";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { THEME_DATA } from "../../_constants/THEME";
 
 function getBBox() {
-  const mapData = HexagonMapData.getMapDataList().reduce(function (
+  const mapData = HexMapData.getMapDataList().reduce(function (
     mapData,
     { idx }
   ) {
@@ -42,7 +42,7 @@ function getViewBox() {
   return `${minX} ${minY} ${width} ${height}`;
 }
 
-export default function HexagonMap() {
+export default function HexMap() {
   const data = useDataContext();
   if (!data) {
     return null;
@@ -54,12 +54,12 @@ export default function HexagonMap() {
 
   return (
     <svg viewBox={getViewBox()} fontFamily={THEME_DATA.typography.fontFamily}>
-      {HexagonMapData.getMapDataList().map(function (mapData, i) {
+      {HexMapData.getMapDataList().map(function (mapData, i) {
         return <SVGMap key={i} mapData={mapData} />;
       })}
       <SVGTitles />
       <SVGLegendParty x={12} y={6} />
-      <SVGLegendPercentages x={13 + nParties / StyleHexagonMap.N_COLS} y={6} />
+      <SVGLegendPercentages x={13 + nParties / StyleHexMap.N_COLS} y={6} />
     </svg>
   );
 }

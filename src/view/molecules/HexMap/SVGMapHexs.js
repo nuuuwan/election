@@ -5,10 +5,10 @@ import { Party } from "../../../nonview/core";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { useBasePageHandlerContext } from "../BasePage/BasePageHandlerProvider";
 
-import SVGHexagon from "./SVGHexagon";
-import SVGHexagonLabel from "./SVGHexagonLabel";
+import SVGHex from "./SVGHex";
+import SVGHexLabel from "./SVGHexLabel";
 
-export default function SVGMapHexagons({ mapData }) {
+export default function SVGMapHexs({ mapData }) {
   const { setActivePDID } = useBasePageHandlerContext();
   const data = useDataContext();
   if (!data) {
@@ -38,9 +38,9 @@ export default function SVGMapHexagons({ mapData }) {
       }
     };
 
-    const renderedHexagons = points.map(function ([x, y], iPoint) {
+    const renderedHexs = points.map(function ([x, y], iPoint) {
       return (
-        <SVGHexagon
+        <SVGHex
           key={iPoint}
           x={x}
           y={y / Math.cos(Math.PI / 6)}
@@ -66,7 +66,7 @@ export default function SVGMapHexagons({ mapData }) {
     const label = ent.name;
 
     const renderedLabel = (
-      <SVGHexagonLabel
+      <SVGHexLabel
         x={x}
         y={y / Math.cos(Math.PI / 6)}
         color={color}
@@ -75,13 +75,13 @@ export default function SVGMapHexagons({ mapData }) {
         onClick={onClick}
       />
     );
-    return { renderedHexagons, renderedLabel };
+    return { renderedHexs, renderedLabel };
   });
 
   return (
     <g>
-      {renderedItems.map(function ({ renderedHexagons }, i) {
-        return <g key={"hex" + i}>{renderedHexagons}</g>;
+      {renderedItems.map(function ({ renderedHexs }, i) {
+        return <g key={"hex" + i}>{renderedHexs}</g>;
       })}
       {renderedItems.map(function ({ renderedLabel }, i) {
         return <g key={"label" + i}>{renderedLabel}</g>;

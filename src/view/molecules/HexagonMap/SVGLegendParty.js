@@ -5,12 +5,11 @@ import SVGHexagon from "./SVGHexagon";
 import StyleHexagonMap from "./StyleHexagonMap";
 
 export default function SVGLegendParty({ x, y }) {
-
   const data = useContext(DataContext);
   if (!data) {
     return null;
   }
-  const {election} = data;
+  const { election } = data;
   const partyToWins = election.getPartyToWins();
 
   return Object.entries(partyToWins)

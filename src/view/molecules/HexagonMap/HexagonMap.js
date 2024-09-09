@@ -44,32 +44,25 @@ function getViewBox() {
   return `${minX} ${minY} ${width} ${height}`;
 }
 
-export default function HexagonMap({  setActivePDID }) {
+export default function HexagonMap({ setActivePDID }) {
   const data = useContext(DataContext);
   if (!data) {
     return null;
   }
   const { electionDisplay } = data;
 
-
-
   const partyToWins = electionDisplay.getPartyToWins();
   const nParties = Object.keys(partyToWins).length;
-
 
   return (
     <svg viewBox={getViewBox()} fontFamily={STYLE.FONT_FAMILY}>
       {HexagonMapData.getMapDataList().map(function (mapData, i) {
         return (
-          <SVGMap
-            key={i}
-            mapData={mapData}
-            setActivePDID={setActivePDID}
-          />
+          <SVGMap key={i} mapData={mapData} setActivePDID={setActivePDID} />
         );
       })}
       <SVGTitles />
-      <SVGLegendParty  x={12} y={6} />
+      <SVGLegendParty x={12} y={6} />
       <SVGLegendPercentages x={13 + nParties / StyleHexagonMap.N_COLS} y={6} />
     </svg>
   );

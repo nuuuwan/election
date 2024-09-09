@@ -15,10 +15,10 @@ export default function SVGMapHexagons({
   if (!data) {
     return null;
   }
-  const {  election, pdIdx, edIdx, provinceIdx } = data;
+  const { election, pdIdx, edIdx, provinceIdx } = data;
   const resultIdx = election.resultIdx;
 
-  const { idx,  } = mapData;
+  const { idx } = mapData;
 
   const renderedItems = Object.entries(idx).map(function ([entID, points]) {
     const nPoints = points.length;

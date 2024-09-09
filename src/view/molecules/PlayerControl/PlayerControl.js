@@ -1,13 +1,12 @@
 import { Box } from "@mui/material";
-
 import { useContext, useState } from "react";
 
 import CustomSlider from "./CustomSlider";
 import BottomNavigationCustom from "./BottomNavigationCustom";
 import { DataContext } from "../../../nonview/core";
 
-export default function PlayerControl({ electionDisplay, setNResultsDisplay }) {
-  const nResultsDisplay = electionDisplay.nResults;
+
+export default function PlayerControl({ setNResultsDisplay, nResultsDisplay }) {
   const [nResultsDisplayUpdated, setNResultsDisplayUpdated] =
     useState(nResultsDisplay);
 
@@ -15,8 +14,7 @@ export default function PlayerControl({ electionDisplay, setNResultsDisplay }) {
   if (!data) {
     return null;
   }
-  const { election } = data;
-
+  const {  election} = data;
   const nResults = election.nResults;
 
   const onChangeCommitted = function (__, value) {

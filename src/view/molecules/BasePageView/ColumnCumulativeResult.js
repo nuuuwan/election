@@ -5,11 +5,13 @@ import { Format, Translate } from "../../../nonview/base";
 import CustomStack from "./CustomStack";
 import { useContext } from "react";
 import { DataContext } from "../../../nonview/core";
-export default function ColumnCumulativeResult({
-  electionDisplay,
+export default function ColumnCumulativeResult() {
+  const data = useContext(DataContext);
+  if (!data) {
+    return null;
+  }
+  const { electionDisplay, projectedElection } = data;
 
-  projectedElection,
-}) {
   const electorsReleased = electionDisplay.resultLK.summary.electors;
   const electorsProjected = projectedElection.resultLK.summary.electors;
   const pReleased = electorsReleased / electorsProjected;
@@ -19,10 +21,6 @@ export default function ColumnCumulativeResult({
     Translate("released") +
     ")";
 
-  const db = useContext(DataContext);
-  if (!db) {
-    return null;
-  }
 
   return (
     <CustomStack>
@@ -31,8 +29,7 @@ export default function ColumnCumulativeResult({
         <Typography variant="h4">{Translate("Islandwide")}</Typography>
       </Box>
       <ResultSingleView
-        election={electionDisplay}
-        elections={db.elections}
+
         entID={"LK"}
       />
     </CustomStack>

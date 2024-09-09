@@ -34,7 +34,7 @@ function renderMenuItemInner(election, i) {
 }
 
 export default function ElectionSelector({
-  selectedElection,
+
   setElection,
   colorElection,
 }) {
@@ -45,7 +45,7 @@ export default function ElectionSelector({
   if (!data) {
     return null;
   }
-  const { elections } = data;
+  const { elections, electionDisplay } = data;
 
   const presidentialElections = elections.filter(
     (election) => election.electionType === "Presidential"
@@ -54,7 +54,7 @@ export default function ElectionSelector({
   return (
     <Box>
       <CustomSelect
-        value={selectedElection}
+        value={electionDisplay}
         onChange={setElection}
         dataList={presidentialElections}
         getID={function (election) {

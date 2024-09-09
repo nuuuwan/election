@@ -1,12 +1,15 @@
 import { Stack, Typography } from "@mui/material";
 import { Color, Format } from "../../nonview/base";
-import { Election, Party } from "../../nonview/core";
+import { DataContext, Election, Party } from "../../nonview/core";
 import { PartyView } from "../../view/atoms";
+import { useContext } from "react";
 
 const N_DISPLAY = 3;
 
-function HistoryViewRow({ election, entID }) {
-  const result = election.getResult(entID);
+function HistoryViewRow({  entID,electionForRow }) {
+
+
+  const result = electionForRow.getResult(entID);
   if (!result) {
     return null;
   }
@@ -24,20 +27,26 @@ function HistoryViewRow({ election, entID }) {
       sx={{ color, alignItems: "center", opacity }}
     >
       <Typography variant="caption" sx={{ fontSize: "50%" }}>
-        {election.year}
+        {electionForRow.year}
       </Typography>
 
       <PartyView
         partyID={winningPartyID}
         textColor={textColor}
-        election={election}
+
       />
       <Typography variant="caption">{Format.percentVotes(pWinner)}</Typography>
     </Stack>
   );
 }
 
-export default function HistoryView({ elections, election, entID }) {
+export default function HistoryView({  entID }) {
+  const data = useContext(DataContext);
+  if (!data) {
+    return null;
+  }
+  const { election, elections } = data;
+
   const previousElections = Election.getPreviousElectionsOfSameType(
     elections,
     election
@@ -55,8 +64,8 @@ export default function HistoryView({ elections, election, entID }) {
 
   return (
     <Stack direction="column" gap={1}>
-      {displayElections.map(function (election, i) {
-        return <HistoryViewRow key={i} election={election} entID={entID} />;
+      {displayElections.map(function (electionForRow, i) {
+        return <HistoryViewRow key={i} electionForRow={electionForRow} entID={entID} />;
       })}
     </Stack>
   );

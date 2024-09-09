@@ -2,6 +2,8 @@ import { Box, Stack } from "@mui/material";
 
 import { ElectionSelector, LanguageSelector } from "../../molecules";
 import { STYLE } from "../../../nonview/constants";
+import { useContext } from "react";
+import { DataContext } from "../../../nonview/core";
 
 const STYLE_PAGE_HEADER = {
   SELECTOR: {
@@ -17,11 +19,16 @@ const STYLE_PAGE_HEADER = {
 
 export default function PageHeader({
   lang,
-  electionDisplay,
-  projectedElection,
   setLang,
   setElection,
 }) {
+  const data = useContext(DataContext);
+  if (!data) {
+    return null;
+  }
+  const { projectedElection } = data;
+
+
   const color = projectedElection
     ? projectedElection.color
     : STYLE.COLOR.LIGHTEST;
@@ -36,7 +43,6 @@ export default function PageHeader({
         justifyContent="center"
       >
         <ElectionSelector
-          selectedElection={electionDisplay}
           colorElection={projectedElection}
           setElection={setElection}
         />

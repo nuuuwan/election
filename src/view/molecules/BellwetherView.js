@@ -1,7 +1,8 @@
 import { Box, Typography } from "@mui/material";
-import { Bellwether } from "../../nonview/core";
+import { Bellwether, DataContext } from "../../nonview/core";
 import { Format, Translate } from "../../nonview/base";
 import { STYLE } from "../../nonview/constants";
+import { useContext } from "react";
 
 function PerfectBellwether({ n, ent }) {
   return (
@@ -30,13 +31,20 @@ function PercentageBellwether({ error, ent }) {
   );
 }
 
-export default function BellwetherView({ elections, electionDisplay, db }) {
+export default function BellwetherView() {
+  const data = useContext(DataContext);
+  if (!data) {
+    return null;
+  }
+  const { pdIdx, electionDisplay,elections } = data;
+
+
   const { n, nSame, error } = Bellwether.getStats(elections, electionDisplay);
   if (n === 0) {
     return null;
   }
   const pdID = electionDisplay.finalPDID;
-  const ent = db.pdIdx[pdID];
+  const ent = pdIdx[pdID];
 
   return (
     <Box sx={STYLE.MESSAGE}>

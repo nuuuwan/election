@@ -1,7 +1,8 @@
 import { Stack, Typography } from "@mui/material";
-import { Party } from "../../nonview/core";
+import { DataContext, Party } from "../../nonview/core";
 import { CustomSelect } from "../atoms";
 import { Translate } from "../../nonview/base";
+import { useContext } from "react";
 
 function buildRenderMenuItemInner(resultIdx, edIdx, variant1, variant2) {
   const renderMenuItemInner = function (pd, i) {
@@ -31,15 +32,20 @@ function buildRenderMenuItemInner(resultIdx, edIdx, variant1, variant2) {
   return renderMenuItemInner;
 }
 export default function PDSelector({
-  election,
-  db,
+
   activePDID,
   setActivePDID,
 }) {
+  const data = useContext(DataContext);
+  if (!data) {
+    return null;
+  }
+  const { election,pdIdx,edIdx } = data;
+
   return (
     <CustomSelect
-      dataList={Object.values(db.pdIdx)}
-      value={db.pdIdx[activePDID]}
+      dataList={Object.values(pdIdx)}
+      value={pdIdx[activePDID]}
       getID={function (pd) {
         if (!pd) {
           return null;
@@ -51,13 +57,13 @@ export default function PDSelector({
       }}
       renderValue={buildRenderMenuItemInner(
         election.resultIdx,
-        db.edIdx,
+        edIdx,
         "h6",
         "body1"
       )}
       renderMenuItemInner={buildRenderMenuItemInner(
         election.resultIdx,
-        db.edIdx,
+        edIdx,
         "body1",
         "body2"
       )}

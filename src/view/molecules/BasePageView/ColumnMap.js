@@ -4,13 +4,20 @@ import { HexagonMap } from "../../molecules";
 
 import CustomStack from "./CustomStack";
 import { Translate } from "../../../nonview/base";
+import { useContext } from "react";
+import { DataContext } from "../../../nonview/core";
 
 export default function ColumnMap({
-  election,
-  electionDisplay,
+
 
   setActivePDID,
 }) {
+  const data = useContext(DataContext);
+  if (!data) {
+    return null;
+  }
+  const { election, electionDisplay } = data;
+
   const subTitleProgress =
     `${electionDisplay.nResults}/${election.nResults} ` + Translate("Results");
 

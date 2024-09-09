@@ -10,18 +10,21 @@ import { useContext } from "react";
 import { DataContext } from "../../../nonview/core";
 
 export default function ColumnLatestResult({
-  election,
-  electionDisplay,
+
 
   setActivePDID,
 }) {
+
+  const data = useContext(DataContext);
+  if (!data) {
+    return null;
+  }
+  const { electionDisplay,  } = data;
+
+
   const activePDID = electionDisplay.finalPDID;
   const color = electionDisplay.getResult(activePDID).winningPartyColor;
 
-  const db = useContext(DataContext);
-  if (!db) {
-    return null;
-  }
 
   return (
     <CustomStack>
@@ -29,20 +32,17 @@ export default function ColumnLatestResult({
         {Translate("Latest Result")} ({electionDisplay.nResults})
       </Typography>
       <PDSelector
-        election={election}
+
         activePDID={activePDID}
-        db={db}
+
         setActivePDID={setActivePDID}
       />
       <ResultSingleView
-        election={electionDisplay}
-        elections={db.elections}
+
         entID={activePDID}
       />
       <BellwetherView
-        elections={db.elections}
-        electionDisplay={electionDisplay}
-        db={db}
+
       />
     </CustomStack>
   );

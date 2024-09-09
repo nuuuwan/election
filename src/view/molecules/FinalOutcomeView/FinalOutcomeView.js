@@ -1,15 +1,24 @@
 import { Box, Typography } from "@mui/material";
 
-import { FinalOutcome } from "../../../nonview/core";
+import { DataContext, FinalOutcome } from "../../../nonview/core";
 
 import InsightErrorMarginTooHigh from "./InsightErrorMarginTooHigh";
 import InsightFirstPrefWinner from "./InsightFirstPrefWinner";
 import InsightTooCloseToCall from "./InsightTooCloseToCall";
 import { MathX, Translate } from "../../../nonview/base";
 import Confidence from "./Confidence";
+import { useContext } from "react";
 
-export default function FinalOutcomeView({ election, nResultsDisplay }) {
-  const finalOutcome = new FinalOutcome(election, nResultsDisplay);
+export default function FinalOutcomeView() {
+
+  const data = useContext(DataContext);
+  if (!data) {
+    return null;
+  }
+
+  const { projectedElection, electionDisplay } = data;
+  const nResultsDisplay = electionDisplay.nResults;
+  const finalOutcome = new FinalOutcome(projectedElection, nResultsDisplay);
 
   if (finalOutcome.isTooMuchUncertainty) {
     return <InsightErrorMarginTooHigh />;

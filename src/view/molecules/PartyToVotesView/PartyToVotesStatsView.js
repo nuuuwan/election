@@ -3,7 +3,7 @@ import { Format } from "../../../nonview/base";
 import { Party } from "../../../nonview/core";
 import { LabelledStat, PartyView } from "../../atoms";
 
-export default function PartyToVotesStatsView({ partyToVotes, election }) {
+export default function PartyToVotesStatsView({ partyToVotes,  }) {
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
   const totalVotes = partyToVotes.totalVotes;
 
@@ -19,7 +19,7 @@ export default function PartyToVotesStatsView({ partyToVotes, election }) {
               <PartyView
                 partyID={partyID}
                 pVotes={pVotes}
-                election={election}
+
               />
             }
             valueStr={Format.intHumanize(votes)}

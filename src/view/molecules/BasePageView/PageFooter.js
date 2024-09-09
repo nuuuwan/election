@@ -1,6 +1,8 @@
 import { Box } from "@mui/material";
 import { CitationsView, PlayerControl } from "../../../view/molecules";
 import { STYLE } from "../../../nonview/constants";
+import { useContext } from "react";
+import { DataContext } from "../../../nonview/core";
 
 const STYLE_FOOTER = {
   BOX: {
@@ -15,18 +17,24 @@ const STYLE_FOOTER = {
 };
 
 export default function PageFooter({
-  electionDisplay,
-  //
   setNResultsDisplay,
   noScroll,
 }) {
+
+  const data = useContext(DataContext);
+  if (!data) {
+    return null;
+  }
+  const { nResultsDisplay } = data;
+
+
   return (
     <Box sx={STYLE_FOOTER.BOX}>
       <CitationsView />
       {noScroll ? null : (
         <PlayerControl
-          key={electionDisplay.nResults}
-          electionDisplay={electionDisplay}
+          key={nResultsDisplay}
+          nResultsDisplay={nResultsDisplay}
           setNResultsDisplay={setNResultsDisplay}
         />
       )}

@@ -31,16 +31,12 @@ function buildRenderMenuItemInner(resultIdx, edIdx, variant1, variant2) {
   };
   return renderMenuItemInner;
 }
-export default function PDSelector({
-
-  activePDID,
-  setActivePDID,
-}) {
+export default function PDSelector({ activePDID, setActivePDID }) {
   const data = useContext(DataContext);
   if (!data) {
     return null;
   }
-  const { election,pdIdx,edIdx } = data;
+  const { election, pdIdx, edIdx } = data;
 
   return (
     <CustomSelect

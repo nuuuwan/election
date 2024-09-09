@@ -7,11 +7,7 @@ import { Translate } from "../../../nonview/base";
 import { useContext } from "react";
 import { DataContext } from "../../../nonview/core";
 
-export default function ColumnMap({
-
-
-  setActivePDID,
-}) {
+export default function ColumnMap({ setActivePDID }) {
   const data = useContext(DataContext);
   if (!data) {
     return null;

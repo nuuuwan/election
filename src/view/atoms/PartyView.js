@@ -35,7 +35,7 @@ function getStyle(party, pVotes) {
   return { backgroundColor, textColor };
 }
 
-export default function PartyView({ partyID, pVotes,  }) {
+export default function PartyView({ partyID, pVotes }) {
   const data = useContext(DataContext);
   if (!data) {
     return null;

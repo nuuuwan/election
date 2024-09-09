@@ -17,17 +17,12 @@ const STYLE_PAGE_HEADER = {
   },
 };
 
-export default function PageHeader({
-
-  setLang,
-  setElection,
-}) {
+export default function PageHeader({ setLang, setElection }) {
   const data = useContext(DataContext);
   if (!data) {
     return null;
   }
   const { projectedElection } = data;
-
 
   const color = projectedElection
     ? projectedElection.color

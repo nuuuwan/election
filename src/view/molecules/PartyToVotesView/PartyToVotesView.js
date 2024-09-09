@@ -5,12 +5,7 @@ import { HistoryView } from "../../../view/molecules";
 import { useContext } from "react";
 import { DataContext } from "../../../nonview/core";
 
-export default function PartyToVotesView({
-
-  entID,
-  chartSize,
-
-}) {
+export default function PartyToVotesView({ entID, chartSize }) {
   const data = useContext(DataContext);
   if (!data) {
     return null;
@@ -23,16 +18,8 @@ export default function PartyToVotesView({
     <Stack direction="column" gap={0}>
       <PartyToVotesPieChart partyToVotes={partyToVotes} chartSize={chartSize} />
       <Stack direction="row" gap={4} sx={{ margin: "auto" }}>
-        <PartyToVotesStatsView
-          partyToVotes={partyToVotes}
-
-        />
-        {elections ? (
-          <HistoryView
-
-            entID={entID}
-          />
-        ) : null}
+        <PartyToVotesStatsView partyToVotes={partyToVotes} />
+        {elections ? <HistoryView entID={entID} /> : null}
       </Stack>
     </Stack>
   );

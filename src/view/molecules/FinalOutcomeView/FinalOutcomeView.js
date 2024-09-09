@@ -10,7 +10,6 @@ import Confidence from "./Confidence";
 import { useContext } from "react";
 
 export default function FinalOutcomeView() {
-
   const data = useContext(DataContext);
   if (!data) {
     return null;

@@ -33,11 +33,7 @@ function renderMenuItemInner(election, i) {
   );
 }
 
-export default function ElectionSelector({
-
-  setElection,
-  colorElection,
-}) {
+export default function ElectionSelector({ setElection, colorElection }) {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 

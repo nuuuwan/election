@@ -16,17 +16,12 @@ const STYLE_FOOTER = {
   },
 };
 
-export default function PageFooter({
-  setNResultsDisplay,
-
-}) {
-
+export default function PageFooter({ setNResultsDisplay }) {
   const data = useContext(DataContext);
   if (!data) {
     return null;
   }
-  const { nResultsDisplay , noScroll} = data;
-
+  const { nResultsDisplay, noScroll } = data;
 
   return (
     <Box sx={STYLE_FOOTER.BOX}>

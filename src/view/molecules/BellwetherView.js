@@ -36,8 +36,7 @@ export default function BellwetherView() {
   if (!data) {
     return null;
   }
-  const { pdIdx, electionDisplay,elections } = data;
-
+  const { pdIdx, electionDisplay, elections } = data;
 
   const { n, nSame, error } = Bellwether.getStats(elections, electionDisplay);
   if (n === 0) {

@@ -5,8 +5,6 @@ import PageFooter from "./PageFooter";
 import { TestingLabel } from "../../../view/atoms";
 
 export default function BasePageView({
-
-
   setLang,
   setActivePDID,
   setElection,
@@ -15,19 +13,9 @@ export default function BasePageView({
   return (
     <Box sx={{ textAlign: "center" }}>
       <TestingLabel />
-      <PageHeader
-
-
-        setElection={setElection}
-        setLang={setLang}
-
-      />
+      <PageHeader setElection={setElection} setLang={setLang} />
       <PageBody setActivePDID={setActivePDID} />
-      <PageFooter
-x
-        setNResultsDisplay={setNResultsDisplay}
-
-      />
+      <PageFooter x setNResultsDisplay={setNResultsDisplay} />
     </Box>
   );
 }

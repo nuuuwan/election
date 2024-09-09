@@ -21,17 +21,13 @@ export default function ColumnCumulativeResult() {
     Translate("released") +
     ")";
 
-
   return (
     <CustomStack>
       <Box color={electionDisplay.color}>
         <Typography variant="body1">{subTitleProgress}</Typography>
         <Typography variant="h4">{Translate("Islandwide")}</Typography>
       </Box>
-      <ResultSingleView
-
-        entID={"LK"}
-      />
+      <ResultSingleView entID={"LK"} />
     </CustomStack>
   );
 }

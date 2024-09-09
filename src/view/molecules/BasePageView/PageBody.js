@@ -14,40 +14,21 @@ const STYLE = {
   },
 };
 
-function getColumns(
-
-
-
-  setActivePDID
-) {
+function getColumns(setActivePDID) {
   return [
-    <ColumnLatestResult
-
-      setActivePDID={setActivePDID}
-    />,
-    <ColumnCumulativeResult
-
-
-    />,
-    <ColumnProjection
-
-    />,
-    <ColumnMap
-
-      setActivePDID={setActivePDID}
-    />,
+    <ColumnLatestResult setActivePDID={setActivePDID} />,
+    <ColumnCumulativeResult />,
+    <ColumnProjection />,
+    <ColumnMap setActivePDID={setActivePDID} />,
   ];
 }
 
-export default function PageBody({
-
-  setActivePDID,
-}) {
+export default function PageBody({ setActivePDID }) {
   const data = useContext(DataContext);
   if (!data) {
     return null;
   }
-  const { election, electionDisplay,  } = data;
+  const { election, electionDisplay } = data;
 
   return (
     <Box sx={STYLE.BOX}>
@@ -58,10 +39,7 @@ export default function PageBody({
         </Box>
       ) : (
         <Grid container rowSpacing={4}>
-          {getColumns(
-
-            setActivePDID
-          ).map(function (column, i) {
+          {getColumns(setActivePDID).map(function (column, i) {
             return (
               <Grid item key={i} xs={12} md={6} xl={3} sx={STYLE.GRID_ITEM}>
                 {column}

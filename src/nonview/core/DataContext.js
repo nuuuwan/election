@@ -75,12 +75,7 @@ export const DataProvider = function ({
 
       loadValue();
     },
-    [    electionType,
-      date,
-      activePDID,
-      nResultsDisplay,
-      lang,
-      noScroll,]
+    [electionType, date, activePDID, nResultsDisplay, lang, noScroll]
   );
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

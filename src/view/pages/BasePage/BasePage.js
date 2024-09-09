@@ -30,7 +30,6 @@ export default class BasePage extends Component {
       >
         <BasePageView
           key={key}
-         
           setLang={this.setLang.bind(this)}
           setActivePDID={this.setActivePDID.bind(this)}
           setElection={this.setElection.bind(this)}

@@ -5,7 +5,6 @@ import CustomSlider from "./CustomSlider";
 import BottomNavigationCustom from "./BottomNavigationCustom";
 import { DataContext } from "../../../nonview/core";
 
-
 export default function PlayerControl({ setNResultsDisplay, nResultsDisplay }) {
   const [nResultsDisplayUpdated, setNResultsDisplayUpdated] =
     useState(nResultsDisplay);
@@ -14,7 +13,7 @@ export default function PlayerControl({ setNResultsDisplay, nResultsDisplay }) {
   if (!data) {
     return null;
   }
-  const {  election} = data;
+  const { election } = data;
   const nResults = election.nResults;
 
   const onChangeCommitted = function (__, value) {

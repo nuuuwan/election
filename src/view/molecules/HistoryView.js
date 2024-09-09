@@ -6,9 +6,7 @@ import { useContext } from "react";
 
 const N_DISPLAY = 3;
 
-function HistoryViewRow({  entID,electionForRow }) {
-
-
+function HistoryViewRow({ entID, electionForRow }) {
   const result = electionForRow.getResult(entID);
   if (!result) {
     return null;
@@ -30,17 +28,13 @@ function HistoryViewRow({  entID,electionForRow }) {
         {electionForRow.year}
       </Typography>
 
-      <PartyView
-        partyID={winningPartyID}
-        textColor={textColor}
-
-      />
+      <PartyView partyID={winningPartyID} textColor={textColor} />
       <Typography variant="caption">{Format.percentVotes(pWinner)}</Typography>
     </Stack>
   );
 }
 
-export default function HistoryView({  entID }) {
+export default function HistoryView({ entID }) {
   const data = useContext(DataContext);
   if (!data) {
     return null;
@@ -65,7 +59,13 @@ export default function HistoryView({  entID }) {
   return (
     <Stack direction="column" gap={1}>
       {displayElections.map(function (electionForRow, i) {
-        return <HistoryViewRow key={i} electionForRow={electionForRow} entID={entID} />;
+        return (
+          <HistoryViewRow
+            key={i}
+            electionForRow={electionForRow}
+            entID={entID}
+          />
+        );
       })}
     </Stack>
   );

@@ -20,7 +20,6 @@ const LANG_TO_LABEL = {
 };
 
 export default function LanguageSelector({ setLang }) {
-  
   const data = useContext(DataContext);
   if (!data) {
     return null;

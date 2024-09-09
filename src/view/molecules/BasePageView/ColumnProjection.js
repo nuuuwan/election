@@ -8,15 +8,13 @@ import { Translate } from "../../../nonview/base";
 export default function ColumnProjection() {
   return (
     <CustomStack>
-      <Box >
+      <Box>
         <Typography variant="body1">{Translate("Final Result")}</Typography>
         <Typography variant="h4">{Translate("Projected")}</Typography>
       </Box>
 
-      <PredictionView  />
-      <FinalOutcomeView
-
-      />
+      <PredictionView />
+      <FinalOutcomeView />
     </CustomStack>
   );
 }

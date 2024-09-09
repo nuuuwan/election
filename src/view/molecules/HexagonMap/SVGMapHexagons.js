@@ -15,8 +15,8 @@ export default function SVGMapHexagons({
   if (!data) {
     return null;
   }
-  const { election, pdIdx, edIdx, provinceIdx } = data;
-  const resultIdx = election.resultIdx;
+  const { electionDisplay, pdIdx, edIdx, provinceIdx } = data;
+  const resultIdx = electionDisplay.resultIdx;
 
   const { idx } = mapData;
 

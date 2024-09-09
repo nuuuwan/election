@@ -1,4 +1,4 @@
-import React, {  useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import { Ent, EntType } from "../base";
 import { DerivedData, Election } from ".";
@@ -41,7 +41,7 @@ async function getValue({ electionType, date, activePDID, nResultsDisplay }) {
   };
 }
 
-export default function  DataProvider({
+export default function DataProvider({
   children,
   electionType,
   date,
@@ -76,6 +76,4 @@ export default function  DataProvider({
   );
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
-};
-
-
+}

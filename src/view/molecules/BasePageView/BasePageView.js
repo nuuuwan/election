@@ -12,7 +12,6 @@ export default function BasePageView({
   setElection,
   setNResultsDisplay,
 }) {
-
   const data = useContext(DataContext);
   console.debug(data);
 

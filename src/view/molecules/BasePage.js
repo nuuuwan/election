@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {DataProvider} from "../../nonview/core";
+import { DataProvider } from "../../nonview/core";
 import { CustomURLContext } from "../../nonview/core";
 import BasePageView from "../../view/molecules/BasePageView/BasePageView";
 

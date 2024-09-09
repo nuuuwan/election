@@ -1,22 +1,14 @@
 import { ElectionModel } from "../../nonview/core";
 
 export default class DerivedData {
-  static getActivePDIDAndNResultDisplay(
-    activePDID,
-    nResultsDisplay,
-    election,
-  ) {
-
-
+  static getActivePDIDAndNResultDisplay(activePDID, nResultsDisplay, election) {
     if (activePDID) {
       nResultsDisplay =
         election.pdResultList
           .map((result) => result.entID)
           .indexOf(activePDID) + 1;
     } else if (nResultsDisplay) {
-      
-        activePDID = election.pdResultList[nResultsDisplay - 1].entID;
-     
+      activePDID = election.pdResultList[nResultsDisplay - 1].entID;
     } else {
       activePDID =
         election.pdResultList[election.pdResultList.length - 1].entID;

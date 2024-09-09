@@ -17,16 +17,7 @@ export default function BasePageView({
   setActivePDID,
   setElection,
   setNResultsDisplay,
-  
 }) {
-
-  const data = useContext(DataContext);
-  if (!data) {
-    return <LoadingView electionType={electionType} date={date} />;
-  }
-
-  const {electionDisplay,projectedElection } = data;
-
   return (
     <Box sx={{ textAlign: "center" }}>
       <TestingLabel />
@@ -37,11 +28,7 @@ export default function BasePageView({
         setLang={setLang}
         projectedElection={projectedElection}
       />
-      <PageBody
-        electionDisplay={electionDisplay}
-        projectedElection={projectedElection}
-        setActivePDID={setActivePDID}
-      />
+      <PageBody setActivePDID={setActivePDID} />
       <PageFooter
         electionDisplay={electionDisplay}
         setNResultsDisplay={setNResultsDisplay}

@@ -1,6 +1,4 @@
-
 import CustomURLContext from "../../../nonview/core/CustomURLContext";
-
 
 const BasePageSettersMixin = {
   setStateAndContext(newState, funcRunAfter = undefined) {
@@ -26,33 +24,23 @@ const BasePageSettersMixin = {
   },
 
   async setElection(election0) {
-   const { electionType, date } = election0;
+    const { electionType, date } = election0;
 
-
-  
     this.setStateAndContext({
       electionType,
       date,
-
     });
   },
 
   setActivePDID(activePDID) {
-
-
-
     this.setStateAndContext({
       activePDID,
-
     });
   },
 
   setNResultsDisplay(nResultsDisplay) {
-
-
     this.setStateAndContext({
       nResultsDisplay,
-
     });
   },
 

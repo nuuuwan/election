@@ -3,19 +3,25 @@ import React, { createContext, useState, useEffect } from "react";
 import { Ent, EntType } from "../base";
 import { DerivedData, Election } from ".";
 
-
 const DataContext = createContext();
 
-export const DataProvider = function ({ children, electionType, date, activePDID,
-  nResultsDisplay, }) {
+export const DataProvider = function ({
+  children,
+  electionType,
+  date,
+  activePDID,
+  nResultsDisplay,
+}) {
   const [value, setValue] = useState(null);
 
   useEffect(
     function () {
       const loadValue = async function () {
         console.debug("DataProvider.loadValue complete.", {
-          electionType, date, activePDID,
-nResultsDisplay
+          electionType,
+          date,
+          activePDID,
+          nResultsDisplay,
         });
 
         try {
@@ -29,26 +35,35 @@ nResultsDisplay
             date
           );
 
-          const { activePDID: activePDIDDerived, nResultsDisplay: nResultsDisplayDerived } =
-            DerivedData.getActivePDIDAndNResultDisplay(
-              activePDID,
-              nResultsDisplay,
-              election,
-            );
-            
-          const { electionDisplay, projectedElection } = DerivedData.getDerived(nResultsDisplayDerived, election, pdIdx, elections
-
+          const {
+            activePDID: activePDIDDerived,
+            nResultsDisplay: nResultsDisplayDerived,
+          } = DerivedData.getActivePDIDAndNResultDisplay(
+            activePDID,
+            nResultsDisplay,
+            election
           );
 
+          const { electionDisplay, projectedElection } = DerivedData.getDerived(
+            nResultsDisplayDerived,
+            election,
+            pdIdx,
+            elections
+          );
 
-          const value = { pdIdx, edIdx, provinceIdx, elections, election ,             activePDID: activePDIDDerived,
+          const value = {
+            pdIdx,
+            edIdx,
+            provinceIdx,
+            elections,
+            election,
+            activePDID: activePDIDDerived,
             nResultsDisplay: nResultsDisplayDerived,
-            electionDisplay, projectedElection,};
-
-
+            electionDisplay,
+            projectedElection,
+          };
 
           setValue(value);
-          
         } catch (err) {
           console.error(err);
         }
@@ -56,15 +71,10 @@ nResultsDisplay
 
       loadValue();
     },
-    [electionType, date, activePDID,
-      nResultsDisplay]
+    [electionType, date, activePDID, nResultsDisplay]
   );
 
-  return (
-    <DataContext.Provider value={value} >
-      {children}
-    </DataContext.Provider>
-  );
+  return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 };
 
 export default DataContext;

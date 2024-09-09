@@ -44,15 +44,18 @@ function getViewBox() {
   return `${minX} ${minY} ${width} ${height}`;
 }
 
-export default function HexagonMap({ election, setActivePDID }) {
-  const resultIdx = election.resultIdx;
-  const partyToWins = election.getPartyToWins();
-  const nParties = Object.keys(partyToWins).length;
-
-  const db = useContext(DataContext);
-  if (!db) {
+export default function HexagonMap({  setActivePDID }) {
+  const data = useContext(DataContext);
+  if (!data) {
     return null;
   }
+  const { electionDisplay } = data;
+
+
+
+  const partyToWins = electionDisplay.getPartyToWins();
+  const nParties = Object.keys(partyToWins).length;
+
 
   return (
     <svg viewBox={getViewBox()} fontFamily={STYLE.FONT_FAMILY}>
@@ -60,15 +63,13 @@ export default function HexagonMap({ election, setActivePDID }) {
         return (
           <SVGMap
             key={i}
-            resultIdx={resultIdx}
             mapData={mapData}
-            db={db}
             setActivePDID={setActivePDID}
           />
         );
       })}
       <SVGTitles />
-      <SVGLegendParty election={election} x={12} y={6} />
+      <SVGLegendParty  x={12} y={6} />
       <SVGLegendPercentages x={13 + nParties / StyleHexagonMap.N_COLS} y={6} />
     </svg>
   );

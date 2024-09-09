@@ -23,7 +23,7 @@ export default function ColumnMap({ setActivePDID }) {
         <Typography variant="body1">{subTitleProgress}</Typography>
         <Typography variant="h4">{Translate("Maps")}</Typography>
       </Box>
-      <HexagonMap election={electionDisplay} setActivePDID={setActivePDID} />
+      <HexagonMap  setActivePDID={setActivePDID} />
     </CustomStack>
   );
 }

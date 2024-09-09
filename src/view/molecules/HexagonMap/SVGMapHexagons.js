@@ -1,17 +1,24 @@
+import { useContext } from "react";
 import { Color } from "../../../nonview/base";
 import { STYLE } from "../../../nonview/constants";
-import { Party } from "../../../nonview/core";
+import { DataContext, Party } from "../../../nonview/core";
 
 import SVGHexagon from "./SVGHexagon";
 import SVGHexagonLabel from "./SVGHexagonLabel";
 
 export default function SVGMapHexagons({
   mapData,
-  resultIdx,
-  db,
+
   setActivePDID,
 }) {
-  const { idx } = mapData;
+  const data = useContext(DataContext);
+  if (!data) {
+    return null;
+  }
+  const {  election, pdIdx, edIdx, provinceIdx } = data;
+  const resultIdx = election.resultIdx;
+
+  const { idx,  } = mapData;
 
   const renderedItems = Object.entries(idx).map(function ([entID, points]) {
     const nPoints = points.length;
@@ -56,7 +63,7 @@ export default function SVGMapHexagons({
         return z / nPoints;
       });
 
-    const ent = db.pdIdx[entID] || db.edIdx[entID] || db.provinceIdx[entID];
+    const ent = pdIdx[entID] || edIdx[entID] || provinceIdx[entID];
     const label = ent.name;
 
     const renderedLabel = (

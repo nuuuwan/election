@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 
-import { HexMap } from "..";
+import HexMapView from "../../../view/molecules/HexMapView/HexMapView";
 
 import CustomStack from "./CustomStack";
 import { Translate } from "../../../nonview/base";
@@ -22,7 +22,7 @@ export default function ColumnMap() {
         <Typography variant="body1">{subTitleProgress}</Typography>
         <Typography variant="h4">{Translate("Maps")}</Typography>
       </Box>
-      <HexMap />
+      <HexMapView />
     </CustomStack>
   );
 }

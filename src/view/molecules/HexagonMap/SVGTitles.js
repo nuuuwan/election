@@ -1,5 +1,5 @@
 import { Translate } from "../../../nonview/base";
-import { STYLE } from "../../../nonview/constants";
+
 
 const TITLE_INFO_LIST = [
   { title: "Postal Votes", x: 17, y: 4.5 },
@@ -10,7 +10,7 @@ const TITLE_INFO_LIST = [
 
 export default function SVGTitles() {
   return (
-    <g fontSize={0.67} textAnchor="start" fill={STYLE.COLOR.LIGHT}>
+    <g fontSize={0.67} textAnchor="start" fill={"secondary"}>
       {TITLE_INFO_LIST.map(function ({ title, x, y }, i) {
         return (
           <text key={i} x={x} y={y}>

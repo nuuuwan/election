@@ -1,5 +1,6 @@
 import { MathX } from "..";
-import { STYLE } from "../../../nonview/constants";
+import { THEME_DATA } from "../../../view/_constants/THEME";
+
 
 let FormatGeneric = {
   getFontSize(x, valueRange, fontSizeRange) {
@@ -22,7 +23,7 @@ let FormatGeneric = {
 
   getColor(x, valueRange) {
     const minValue = valueRange[0];
-    return x < minValue ? STYLE.COLOR.LIGHT : "inherit";
+    return x < minValue ? "secondary" : "inherit";
   },
 
   formatWithStyle(
@@ -43,7 +44,7 @@ let FormatGeneric = {
   },
 };
 
-FormatGeneric.DEFAULT_FONT_SIZE = STYLE.FONT_SIZE;
+FormatGeneric.DEFAULT_FONT_SIZE = THEME_DATA.typography.fontSize;
 FormatGeneric.DEFAULT_FONT_SIZE_RANGE = [
   FormatGeneric.DEFAULT_FONT_SIZE,
   FormatGeneric.DEFAULT_FONT_SIZE * 2,

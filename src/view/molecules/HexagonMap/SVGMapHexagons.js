@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Color } from "../../../nonview/base";
-import { STYLE } from "../../../nonview/constants";
+
 import { DataContext, Party } from "../../../nonview/core";
 
 import SVGHexagon from "./SVGHexagon";
@@ -25,7 +25,7 @@ export default function SVGMapHexagons({
 
     const result = resultIdx[entID];
 
-    let color = STYLE.COLOR.LIGHTEST;
+    let color = "secondary";
     let opacity = 1;
 
     if (result) {

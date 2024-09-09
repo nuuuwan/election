@@ -1,4 +1,4 @@
-import { STYLE } from "../../../nonview/constants";
+
 import { Color, Format } from "../../../nonview/base";
 
 import SVGHexagon from "./SVGHexagon";
@@ -21,14 +21,14 @@ export default function SVGLegendPercentages({ x, y }) {
           key={i}
           x={x1}
           y={y1}
-          color={STYLE.COLOR.LIGHT}
+          color={"secondary"}
           label={Format.percent(p)}
           opacity={Color.getOpacity(p)}
         />
         <SVGHexagonLabel
           x={x1}
           y={y1}
-          color={STYLE.COLOR.DARK}
+          color={"primary"}
           label={Format.percent(p)}
           opacity={1}
         />

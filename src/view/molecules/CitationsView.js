@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { STYLE, VERSION } from "../../nonview/constants";
+import {  VERSION } from "../../nonview/constants";
 import { Translate } from "../../nonview/base";
 export default function CitationsView() {
   const lines = [
@@ -12,7 +12,7 @@ export default function CitationsView() {
   const content = lines.join(" · ");
 
   return (
-    <Typography variant="caption" color={STYLE.COLOR.LIGHTER}>
+    <Typography variant="caption" color={"secondary"}>
       {content}
     </Typography>
   );

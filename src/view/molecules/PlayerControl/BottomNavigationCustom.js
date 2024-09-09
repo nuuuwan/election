@@ -6,7 +6,7 @@ import Forward10Icon from "@mui/icons-material/Forward10";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import BottomNavigationActionCustom from "./BottomNavigationActionCustom";
-import { STYLE } from "../../../nonview/constants";
+
 
 const N_JUMP_STEPS = 10;
 
@@ -43,7 +43,7 @@ function getBottomNavigationActionConfigs(
   ];
 }
 const STYLE_INNER = {
-  backgroundColor: STYLE.COLOR.LIGHTEST,
+  backgroundColor: "secondary",
 };
 
 export default function BottomNavigationCustom({

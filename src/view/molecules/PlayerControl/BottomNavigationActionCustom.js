@@ -1,13 +1,13 @@
 import { BottomNavigationAction } from "@mui/material";
 
-import { STYLE } from "../../../nonview/constants";
+
 
 export default function BottomNavigationActionCustom({
   Icon,
   onClick,
   disabled,
 }) {
-  const color = disabled ? STYLE.COLOR.LIGHTER : STYLE.COLOR.DARKER;
+  const color = disabled ? "secondary" : "primary";
   return (
     <BottomNavigationAction
       onClick={onClick}

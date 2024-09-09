@@ -1,10 +1,12 @@
 import { createTheme } from "@mui/material";
 
-const THEME = createTheme({
-  typography: {
-    fontFamily: "Cairo",
-    fontSize: 13,
-  },
-});
+export const THEME_DATA =  {
+    typography: {
+      fontFamily: "Cairo",
+      fontSize: 13,
+    },
+  }
+
+const THEME = createTheme(THEME_DATA);
 
 export default THEME;

@@ -1,6 +1,6 @@
 import { Slider, Stack, Typography } from "@mui/material";
 
-import { STYLE } from "../../../nonview/constants";
+
 import { RefreshButton } from "../../atoms";
 
 export default function CustomSlider({
@@ -31,7 +31,7 @@ export default function CustomSlider({
       />
       <Typography
         variant="h6"
-        color={STYLE.COLOR.LIGHT}
+        color={"secondary"}
         onClick={onClickEndValue}
         sx={{ cursor: nResults !== nResultsDisplayUpdated ? "pointer" : "" }}
       >

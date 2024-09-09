@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { Bellwether, DataContext } from "../../nonview/core";
 import { Format, Translate } from "../../nonview/base";
-import { STYLE } from "../../nonview/constants";
+
 import { useContext } from "react";
 
 function PerfectBellwether({ n, ent }) {
@@ -20,7 +20,7 @@ function PerfectBellwether({ n, ent }) {
 
 function PercentageBellwether({ error, ent }) {
   return (
-    <Box color={STYLE.COLOR.LIGHT}>
+    <Box color={"secondary"}>
       <Typography variant="caption">
         {Translate(
           "Historically, Party Vote percentages in %1, have varied from the National Result by %2, on average.",
@@ -46,7 +46,7 @@ export default function BellwetherView() {
   const ent = pdIdx[pdID];
 
   return (
-    <Box sx={STYLE.MESSAGE}>
+    <Box >
       {n === nSame ? <PerfectBellwether n={n} ent={ent} /> : null}
       <PercentageBellwether error={error} ent={ent} />
     </Box>

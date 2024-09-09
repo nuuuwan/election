@@ -2,8 +2,9 @@ import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
 import { Party } from "../../../nonview/core";
 import { Format } from "../../../nonview/base";
 
-import { STYLE } from "../../../nonview/constants";
+
 import { Box } from "@mui/material";
+import { THEME_DATA } from "../../_constants/THEME";
 
 export default function PartyToVotesPieChart({ partyToVotes, chartSize }) {
   chartSize = chartSize || 210;
@@ -15,7 +16,7 @@ export default function PartyToVotesPieChart({ partyToVotes, chartSize }) {
       id: partyID,
       value: votes / totalVotes,
       label: partyID,
-      color: party.color || STYLE.COLOR.LIGHT,
+      color: party.color || "secondary",
     };
   });
 
@@ -33,7 +34,7 @@ export default function PartyToVotesPieChart({ partyToVotes, chartSize }) {
           [`& .${pieArcLabelClasses.root}`]: {
             fill: "white",
             fontSize: chartSize / 9,
-            fontFamily: STYLE.FONT_FAMILY,
+            fontFamily: THEME_DATA.typography.fontFamily,
           },
         }}
         slotProps={{ legend: { hidden: true } }}

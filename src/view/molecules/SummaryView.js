@@ -1,14 +1,14 @@
 import { Stack } from "@mui/material";
 import { Format } from "../../nonview/base";
 import LabelledStat from "../atoms/LabelledStat";
-import { STYLE } from "../../nonview/constants";
+
 
 export default function SummaryView({ summary }) {
   return (
     <Stack
       direction="row"
       gap={2}
-      sx={{ margin: "auto", color: STYLE.COLOR.LIGHTER }}
+      sx={{ margin: "auto", color: "secondary" }}
     >
       <LabelledStat
         label="Reg. Voters"

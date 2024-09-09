@@ -1,4 +1,4 @@
-import { STYLE } from "../../../nonview/constants";
+
 export default function SVGMapBoundaries({ mapData }) {
   const { idx2 } = mapData;
 
@@ -9,7 +9,7 @@ export default function SVGMapBoundaries({ mapData }) {
   ) {
     const iStyle = nGroups - iGroup - 1;
     const strokeWidth = [1, 0.5, 0.2][iStyle] * 0.1;
-    const stroke = STYLE.COLOR.DARKEST;
+    const stroke = "primary";
 
     return Object.entries(groupIDToPolygons).map(function ([
       groupID,

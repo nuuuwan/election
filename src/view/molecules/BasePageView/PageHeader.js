@@ -1,7 +1,7 @@
 import { Box, Stack } from "@mui/material";
 
 import { ElectionSelector, LanguageSelector } from "../../molecules";
-import { STYLE } from "../../../nonview/constants";
+
 import { useContext } from "react";
 import { DataContext } from "../../../nonview/core";
 
@@ -26,7 +26,7 @@ export default function PageHeader({ setLang, setElection }) {
 
   const color = projectedElection
     ? projectedElection.color
-    : STYLE.COLOR.LIGHTEST;
+    : "secondary";
   return (
     <Box
       sx={Object.assign({ backgroundColor: color }, STYLE_PAGE_HEADER.SELECTOR)}

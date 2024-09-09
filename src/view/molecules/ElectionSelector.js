@@ -1,7 +1,7 @@
 import { Box, Typography, useMediaQuery } from "@mui/material";
 
 import { CustomSelect } from "../atoms";
-import { STYLE } from "../../nonview/constants";
+
 import { useTheme } from "@emotion/react";
 import { useContext } from "react";
 import { DataContext } from "../../nonview/core";
@@ -11,7 +11,7 @@ function getRenderValue(colorElection, isSmallScreen) {
     const color =
       colorElection && colorElection.date === election.date
         ? colorElection.color
-        : STYLE.COLOR.LIGHTEST;
+        : "secondary";
     return (
       <Typography
         variant={isSmallScreen ? "h6" : "h2"}

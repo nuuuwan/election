@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
-import { CitationsView, PlayerControl } from "../../../view/molecules";
-import { STYLE } from "../../../nonview/constants";
+
 import { useContext } from "react";
 import { DataContext } from "../../../nonview/core";
+import {CitationsView, PlayerControl} from "../../../view/molecules";
 
 const STYLE_FOOTER = {
   BOX: {
@@ -11,7 +11,7 @@ const STYLE_FOOTER = {
     right: 0,
     left: 0,
     zIndex: 2000,
-    backgroundColor: STYLE.COLOR.LIGHTEST,
+    backgroundColor: "secondary",
     padding: 1,
   },
 };

@@ -1,4 +1,4 @@
-import { STYLE } from "../../../nonview/constants";
+
 
 import SVGTitles from "./SVGTitles";
 import SVGLegendPercentages from "./SVGLegendPercentages";
@@ -8,6 +8,7 @@ import StyleHexagonMap from "./StyleHexagonMap";
 import HexagonMapData from "./HexagonMapData";
 import { useContext } from "react";
 import { DataContext } from "../../../nonview/core";
+import { THEME_DATA } from "../../_constants/THEME";
 
 function getBBox() {
   const mapData = HexagonMapData.getMapDataList().reduce(function (
@@ -55,7 +56,7 @@ export default function HexagonMap({ setActivePDID }) {
   const nParties = Object.keys(partyToWins).length;
 
   return (
-    <svg viewBox={getViewBox()} fontFamily={STYLE.FONT_FAMILY}>
+    <svg viewBox={getViewBox()} fontFamily={THEME_DATA.typography.fontFamily}>
       {HexagonMapData.getMapDataList().map(function (mapData, i) {
         return (
           <SVGMap key={i} mapData={mapData} setActivePDID={setActivePDID} />

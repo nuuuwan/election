@@ -9,26 +9,7 @@ import { MathX, Translate } from "../../../nonview/base";
 import Confidence from "./Confidence";
 import { useContext } from "react";
 
-export default function FinalOutcomeView() {
-  const data = useContext(DataContext);
-  if (!data) {
-    return null;
-  }
-
-  const { projectedElection, electionDisplay } = data;
-  const nResultsDisplay = electionDisplay.nResults;
-  const finalOutcome = new FinalOutcome(projectedElection, nResultsDisplay);
-
-  if (finalOutcome.isTooMuchUncertainty) {
-    return <InsightErrorMarginTooHigh />;
-  }
-  if (finalOutcome.hasFirstPrefWinner) {
-    return (
-      <InsightFirstPrefWinner
-        winningPartyID={finalOutcome.result.partyToVotes.winningPartyID}
-      />
-    );
-  }
+function FinalOutcomeViewComplexPref({finalOutcome}) {
   const likelyWinnerPartyInfoList = finalOutcome.likelyWinnerPartyInfoList;
   if (!likelyWinnerPartyInfoList.length) {
     return (
@@ -50,4 +31,28 @@ export default function FinalOutcomeView() {
       pUncertainHappenning={pUncertainHappenning}
     />
   );
+}
+
+export default function FinalOutcomeView() {
+  const data = useContext(DataContext);
+  if (!data) {
+    return null;
+  }
+
+  const { projectedElection, electionDisplay } = data;
+  const finalOutcome = new FinalOutcome(projectedElection, electionDisplay.nResults);
+
+  if (finalOutcome.isTooMuchUncertainty) {
+    return <InsightErrorMarginTooHigh />;
+  }
+  if (finalOutcome.hasFirstPrefWinner) {
+    return (
+      <InsightFirstPrefWinner
+        winningPartyID={finalOutcome.result.partyToVotes.winningPartyID}
+      />
+    );
+  }
+
+  return <FinalOutcomeViewComplexPref finalOutcome={finalOutcome} />;
+
 }

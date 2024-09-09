@@ -3,8 +3,6 @@ import { Bellwether } from "../../nonview/core";
 import { Format, Translate } from "../../nonview/base";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
-
-
 function PerfectBellwether({ n, ent }) {
   return (
     <Box>

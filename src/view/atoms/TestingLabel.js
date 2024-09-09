@@ -1,8 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
-
-
 const STYLE_TESTING_LABEL = {
   BOX: {
     position: "fixed",

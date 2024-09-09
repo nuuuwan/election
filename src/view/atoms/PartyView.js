@@ -3,7 +3,6 @@ import { Party } from "../../nonview/core";
 import { Color, Translate } from "../../nonview/base";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
-
 const STYLE_LABEL = {
   padding: 0.25,
   margin: 0.25,

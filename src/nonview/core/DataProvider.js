@@ -82,4 +82,3 @@ export default function DataProvider({
 export function useDataContext() {
   return useContext(DataContext);
 }
-

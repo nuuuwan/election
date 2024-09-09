@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 
-import {  FinalOutcome } from "../../../nonview/core";
+import { FinalOutcome } from "../../../nonview/core";
 
 import InsightErrorMarginTooHigh from "./InsightErrorMarginTooHigh";
 import InsightFirstPrefWinner from "./InsightFirstPrefWinner";
@@ -8,7 +8,6 @@ import InsightTooCloseToCall from "./InsightTooCloseToCall";
 import { MathX, Translate } from "../../../nonview/base";
 import Confidence from "./Confidence";
 import { useDataContext } from "../../../nonview/core/DataProvider";
-
 
 function FinalOutcomeViewComplexPref({ finalOutcome }) {
   const likelyWinnerPartyInfoList = finalOutcome.likelyWinnerPartyInfoList;

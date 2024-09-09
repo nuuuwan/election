@@ -1,9 +1,8 @@
-
 import { Color } from "../../../nonview/base";
 
-import {  Party } from "../../../nonview/core";
+import { Party } from "../../../nonview/core";
 
-import {useDataContext} from "../../../nonview/core/DataProvider";
+import { useDataContext } from "../../../nonview/core/DataProvider";
 
 import SVGHexagon from "./SVGHexagon";
 import SVGHexagonLabel from "./SVGHexagonLabel";

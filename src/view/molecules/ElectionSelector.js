@@ -5,8 +5,6 @@ import { CustomSelect } from "../atoms";
 import { useTheme } from "@emotion/react";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
-
-
 function getRenderValue(colorElection, isSmallScreen) {
   const renderValue = function (election, i) {
     const color =

@@ -4,7 +4,6 @@ import PageBody from "./PageBody";
 import PageFooter from "./PageFooter";
 import { TestingLabel } from "../../../view/atoms";
 
-
 export default function BasePageView({
   setLang,
   setActivePDID,

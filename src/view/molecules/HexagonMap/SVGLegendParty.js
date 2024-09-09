@@ -1,5 +1,4 @@
-
-import {  Party } from "../../../nonview/core";
+import { Party } from "../../../nonview/core";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 
 import SVGHexagon from "./SVGHexagon";

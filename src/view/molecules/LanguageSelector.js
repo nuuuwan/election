@@ -1,8 +1,6 @@
 import { Button, Stack } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
-
-
 const STYLE_LANGUAGE_SELECTOR = {
   BOX: {},
   BUTTON: {

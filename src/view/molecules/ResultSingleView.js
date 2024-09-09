@@ -3,8 +3,6 @@ import SummaryView from "../../view/molecules/SummaryView";
 import PartyToVotesView from "./PartyToVotesView/PartyToVotesView";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
-
-
 export default function ResultSingleView({
   entID,
   chartSize,

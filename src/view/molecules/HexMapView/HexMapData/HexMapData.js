@@ -48,15 +48,15 @@ export default class HexMapData {
   }
 
   static getPostalPDMapData() {
-    return HexMapData.offsetData(HEXMAP_DATA_POSTAL_PD, "P", [17, 5]);
+    return HexMapData.offsetData(HEXMAP_DATA_POSTAL_PD, "P", [10, 0]);
   }
 
   static getEDMapData() {
-    return HexMapData.offsetData(HEXMAP_DATA_ED, "", [-2, 4.5]);
+    return HexMapData.offsetData(HEXMAP_DATA_ED, "", [-3, 2]);
   }
 
   static getProvinceMapData() {
-    return HexMapData.offsetData(HEXMAP_DATA_PROVINCE, "", [-1, 14]);
+    return HexMapData.offsetData(HEXMAP_DATA_PROVINCE, "", [-3, 16]);
   }
   static getMapDataList() {
     return [

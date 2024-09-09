@@ -8,7 +8,6 @@ import { useBasePageHandlerContext } from "../../view/molecules/BasePage/BasePag
 
 function getRenderValue(colorElection, isSmallScreen) {
   const renderValue = function (election, i) {
-
     return (
       <Typography variant={isSmallScreen ? "h6" : "h2"} color="white">
         {election.title}

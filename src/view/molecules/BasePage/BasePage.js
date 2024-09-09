@@ -31,8 +31,6 @@ export default function BasePage() {
     updateState({ lang });
   };
 
-
-
   return (
     <DataProvider state={state}>
       <BasePageHandlerProvider

@@ -10,6 +10,6 @@ export default function BasePageHandlerProvider({ children, handlers }) {
   );
 }
 
-export const useBasePageHandlerContext = function() {
+export const useBasePageHandlerContext = function () {
   return useContext(BasePageHandlerProviderContext);
 };

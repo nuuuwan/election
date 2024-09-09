@@ -44,15 +44,12 @@ async function getValue(state) {
   };
 }
 
-export default function DataProvider({
-  children, state
-}) {
+export default function DataProvider({ children, state }) {
   const [value, setValue] = useState(null);
 
   useEffect(
     function () {
       const loadValue = async function () {
- 
         try {
           const value = await getValue(state);
           setValue(value);

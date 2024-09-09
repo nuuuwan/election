@@ -5,13 +5,12 @@ import { HistoryView } from "../../../view/molecules";
 import { useContext } from "react";
 import { DataContext } from "../../../nonview/core";
 
-export default function PartyToVotesView({ entID, chartSize }) {
+export default function PartyToVotesView({ entID, chartSize, result }) {
   const data = useContext(DataContext);
   if (!data) {
     return null;
   }
-  const { election, elections } = data;
-  const result = election.getResult(entID);
+  const {  elections } = data;
   const partyToVotes = result.partyToVotes;
 
   return (

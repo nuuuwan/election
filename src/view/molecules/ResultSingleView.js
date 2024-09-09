@@ -10,18 +10,19 @@ export default function ResultSingleView({ entID, chartSize, isProjected=false }
     return null;
   }
 
-  const { election, projectedElection } = data;
-  console.debug({isProjected});
-  const result = (isProjected? projectedElection : election).getResult(entID);
+  const { electionDisplay, projectedElection } = data;
+
+  const result = (isProjected? projectedElection : electionDisplay).getResult(entID);
 
   if (!result) {
     return null;
   }
 
+
   return (
     <Stack direction="column" gap={0}>
       <SummaryView summary={result.summary} />
-      <PartyToVotesView entID={entID} chartSize={chartSize} />
+      <PartyToVotesView result={result} entID={entID} chartSize={chartSize} />
     </Stack>
   );
 }

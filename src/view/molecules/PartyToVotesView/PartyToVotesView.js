@@ -10,7 +10,7 @@ export default function PartyToVotesView({ entID, chartSize, result }) {
   if (!data) {
     return null;
   }
-  const {  elections } = data;
+  const { elections } = data;
   const partyToVotes = result.partyToVotes;
 
   return (

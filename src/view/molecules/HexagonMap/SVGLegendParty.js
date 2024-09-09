@@ -20,37 +20,30 @@ export default function SVGLegendParty({ x, y }) {
     .map(function ([partyID, nWins], i) {
       const party = Party.fromID(partyID);
 
-      const [x1 ,y1] = [
+      const [x1, y1] = [
         x + parseInt(i / StyleHexagonMap.N_COLS),
         y +
-        ((i % StyleHexagonMap.N_COLS) +
-          (parseInt(i / StyleHexagonMap.N_COLS) % 2 === 1 ? 0.5 : 0)) /
-          Math.cos(Math.PI / 6),
-      ]
-        
+          ((i % StyleHexagonMap.N_COLS) +
+            (parseInt(i / StyleHexagonMap.N_COLS) % 2 === 1 ? 0.5 : 0)) /
+            Math.cos(Math.PI / 6),
+      ];
+
       return (
-        <g  key={partyID}>
-        <SVGHexagon
-         
-          x={x1}
-          y={
-            y1
-          }
-          color={party.color}
-          label={partyID}
-          opacity={1}
-        />
-      <SVGHexagonLabel 
-
-x={x1}
-y={
-  y1
-}
-        color={party.color}
-        label={partyID}
-        opacity={1}
-      />
-
+        <g key={partyID}>
+          <SVGHexagon
+            x={x1}
+            y={y1}
+            color={party.color}
+            label={partyID}
+            opacity={1}
+          />
+          <SVGHexagonLabel
+            x={x1}
+            y={y1}
+            color={party.color}
+            label={partyID}
+            opacity={1}
+          />
         </g>
       );
     });

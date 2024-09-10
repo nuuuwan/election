@@ -29,14 +29,14 @@ export default function ColumnLatestResult() {
       <LatestResultTitle />
       <PDSelector activePDID={activePDID} />
 
-      <Grid container rowGap={1} gap={0}>
+      <Grid container rowGap={3} >
         {entIDs.map(function (entID, iEnt) {
           const result = electionDisplay.resultIdx[entID];
           const partyToVotes = result.partyToVotes;
 
           return (
             <Grid item xs={12} md={6} xl={6} key={entID}>
-              <Stack direction="column" gap={1} alignItems="center">
+              <Stack direction="column" gap={0.1} alignItems="center">
                 <CumResultsTitle entID={entID} />
                 <SummaryView summary={result.summary} />
 

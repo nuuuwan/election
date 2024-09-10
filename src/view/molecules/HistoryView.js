@@ -46,7 +46,7 @@ export default function HistoryView({ entID }) {
     previousElection
   ) {
     return previousElection.getSubsetElectionByPDIDList(election.pdIDList);
-  });
+  }).reverse();
 
   return (
     <Stack direction="row" gap={0.5}>

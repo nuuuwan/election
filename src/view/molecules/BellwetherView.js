@@ -45,7 +45,7 @@ export default function BellwetherView() {
   const ent = pdIdx[pdID];
 
   return (
-    <Box sx={{ paddingLeft: 10, paddingRight: 10 }}>
+    <Box sx={{ maxWidth: 320 }}>
       {n === nSame ? <PerfectBellwether n={n} ent={ent} /> : null}
       <PercentageBellwether error={error} ent={ent} />
     </Box>

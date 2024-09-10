@@ -14,7 +14,11 @@ export default function PartyToVotesView({ entID, chartSize, result }) {
 
   return (
     <Stack direction="column" gap={0}>
-      <PartyToVotesBarChart partyToVotes={partyToVotes} chartSize={chartSize} title={entID} />
+      <PartyToVotesBarChart
+        partyToVotes={partyToVotes}
+        chartSize={chartSize}
+        title={entID}
+      />
       <Stack direction="row" gap={4} sx={{ margin: "auto" }}>
         <PartyToVotesStatsView partyToVotes={partyToVotes} />
         {elections ? <HistoryView entID={entID} /> : null}

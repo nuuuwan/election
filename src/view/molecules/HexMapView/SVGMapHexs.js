@@ -1,92 +1,19 @@
-import { Color, EntType } from "../../../nonview/base";
+import { Color,  } from "../../../nonview/base";
 
 import { Party } from "../../../nonview/core";
+import ActivePDUtils from "../../../nonview/core/ActivePDUtils";
 
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { useBasePageHandlerContext } from "../BasePage/BasePageHandlerProvider";
 
-import SVGHexPolygon from "./SVGHexPolygon";
+import SVGHexPolygonGroup from "./SVGHexPolygonGroup";
 import SVGHexText from "./SVGHexText";
 
-function getRenderedHexs({ points, color, opacity, onClick }) {
-  return points.map(function ([x, y], iPoint) {
-    return (
-      <SVGHexPolygon
-        key={iPoint}
-        x={x}
-        y={y / Math.cos(Math.PI / 6)}
-        color={color}
-        opacity={opacity}
-        onClick={onClick}
-      />
-    );
-  });
-}
 
-function getRenderedHexLabel({
-  points,
-  entID,
-  allRegionIdx,
-  color,
-  opacity,
-  onClick,
-}) {
-  const nPoints = points.length;
-  const [x, y] = points[Math.floor(nPoints / 2)];
-
-  const ent = allRegionIdx[entID];
-  const label = ent.name;
-
-  return (
-    <SVGHexText
-      x={x}
-      y={y / Math.cos(Math.PI / 6)}
-      color={color}
-      opacity={opacity}
-      label={label}
-      onClick={onClick}
-    />
-  );
-}
-
-function getNewActivePDIDForED({ resultList, pdIdx, entID }) {
-  for (let result of resultList.reverse()) {
-    const pdEnt = pdIdx[result.entID];
-    if (pdEnt && pdEnt.d.ed_id === entID) {
-      return result.entID;
-    }
-  }
-  return null;
-}
-
-function getNewActivePDIDForProvince({ resultList, pdIdx, entID }) {
-  for (let result of resultList.reverse()) {
-    const pdEnt = pdIdx[result.entID];
-    if (pdEnt && pdEnt.d.province_id === entID) {
-      return result.entID;
-    }
-  }
-  return null;
-}
-
-function getNewActivePDID({ resultList, pdIdx, entID }) {
-  const entType = EntType.fromID(entID);
-
-  switch (entType) {
-    case EntType.PD:
-      return entID;
-    case EntType.ED:
-      return getNewActivePDIDForED({ resultList, pdIdx, entID });
-    case EntType.PROVINCE:
-      return getNewActivePDIDForProvince({ resultList, pdIdx, entID });
-    default:
-      return null;
-  }
-}
 
 function getOnClick({ entID, setActivePDID, pdIdx, resultList }) {
   return function () {
-    const newActivePDID = getNewActivePDID({
+    const newActivePDID = ActivePDUtils.getNewActivePDID({
       resultList,
       pdIdx,
       entID,
@@ -120,21 +47,32 @@ function getRenderedItem({ entID, points, data, setActivePDID }) {
     resultList,
   });
 
+  const nPoints = points.length;
+  const [x, y] = points[Math.floor(nPoints / 2)];
+
+  const ent = allRegionIdx[entID];
+  const label = ent.name;
+
+
   return {
-    renderedHexs: getRenderedHexs({
-      points,
-      color,
-      opacity,
-      onClick,
-    }),
-    renderedLabel: getRenderedHexLabel({
-      points,
-      entID,
-      allRegionIdx,
-      color,
-      opacity,
-      onClick,
-    }),
+    renderedHexs: (
+      <SVGHexPolygonGroup 
+        points={points} 
+        color={color} 
+        opacity={opacity} 
+        onClick={onClick}
+      />
+    ),
+    renderedLabel: (
+      <SVGHexText
+        x={x}
+        y={y / Math.cos(Math.PI / 6)}
+        color={color}
+        opacity={opacity}
+        label={label}
+        onClick={onClick}
+      />
+    ),
   };
 }
 

@@ -46,11 +46,12 @@ export default class StringX {
   }
 
   static getShortLabelSi(name) {
-    const words = name.split(" ").slice(0, 1);
+    const maxConsonents = 2;
+    const words = name.split(" ").slice(0, maxConsonents);
     if (words.length === 1) {
-      return StringX.getShortWordSi(name, 1);
+      return StringX.getShortWordSi(name, maxConsonents);
     }
-    return words.map((word) => StringX.getShortWordSi(word, 1)).join("");
+    return words.map((word) => StringX.getShortWordSi(word, 1)).join("/");
   }
 
   // Ta
@@ -81,11 +82,12 @@ export default class StringX {
   }
 
   static getShortLabelTa(name) {
-    const words = name.split(" ").slice(0, 1);
+    const maxConsonents = 2;
+    const words = name.split(" ").slice(0, maxConsonents);
     if (words.length === 1) {
-      return StringX.getShortWordTa(name, 1);
+      return StringX.getShortWordTa(name, maxConsonents);
     }
-    return words.map((word) => StringX.getShortWordTa(word, 1)).join("");
+    return words.map((word) => StringX.getShortWordTa(word, 1)).join("/");
   }
 
   // Common

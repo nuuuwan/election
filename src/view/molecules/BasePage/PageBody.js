@@ -1,4 +1,4 @@
-import { Box, Grid,  } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 
 import ColumnLatestResult from "./ColumnLatestResult";
 import ColumnCumulativeResult from "./ColumnCumulativeResult";
@@ -33,7 +33,7 @@ export default function PageBody() {
   return (
     <Box sx={STYLE.BOX}>
       <IfElse condition={electionDisplay.nResults === 0}>
-       <NoResultsAlert />
+        <NoResultsAlert />
         <Grid container rowSpacing={4}>
           {getColumns().map(function (column, i) {
             return (
@@ -43,7 +43,7 @@ export default function PageBody() {
             );
           })}
         </Grid>
-        </IfElse> 
+      </IfElse>
     </Box>
   );
 }

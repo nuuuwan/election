@@ -1,5 +1,5 @@
 import { Party } from "../../nonview/core";
-import { Format, StringX, Translate } from "../../nonview/base";
+import { Format,  } from "../../nonview/base";
 
 import { Box } from "@mui/material";
 import { THEME_DATA } from "../../view/_constants/THEME";
@@ -11,12 +11,12 @@ export default function MultiResultsBarChart({ resultsElection, entIDs }) {
   if (!data) {
     return null;
   }
-  const { allRegionIdx } = data;
 
-  const result = resultsElection.resultIdx["LK"];
+
+  const result = resultsElection.resultIdx[entIDs[0]];
   const partyToVotes = result.partyToVotes;
-  const entries = Object.entries(partyToVotes.partyToVotes);
-  const series = entries.reverse().map(function ([partyID, votes]) {
+  const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
+  const series = entries.map(function ([partyID, votes]) {
     const party = Party.fromID(partyID);
     return {
       data: entIDs.map(function (entID) {
@@ -33,22 +33,11 @@ export default function MultiResultsBarChart({ resultsElection, entIDs }) {
     };
   });
 
-  const axisLabels = entIDs.map(function (entID, i) {
-    const entTypeLabel = ["PD", "ED", "Pr.", ""][i];
-    const translatedName = Translate(allRegionIdx[entID].name);
-    let label = translatedName;
-    if (label.length > 12) {
-      label = StringX.getShortLabel(label);
-    }
-
-    return label + " " + Translate(entTypeLabel);
-  });
-
-  const chartSize = 320;
+  const axisLabels = [""];
   return (
     <Box sx={{ display: "flex", p: 1 }}>
       <BarChart
-        xAxis={[
+        yAxis={[
           {
             scaleType: "band",
             data: axisLabels,
@@ -69,19 +58,19 @@ export default function MultiResultsBarChart({ resultsElection, entIDs }) {
           }
           return Format.percentVotes(pVotes);
         }}
-        layout="vertical"
-        leftAxis={null}
-        width={chartSize}
-        height={chartSize * 10 / 16}
+        layout="horizontal"
+        bottomAxis={null}
+        width={240}
+        height={80}
         sx={{
           [`& .${barLabelClasses.root}`]: {
             fill: "white",
-            fontSize: chartSize / 15,
+            fontSize: THEME_DATA.typography.fontSize * 2,
             fontFamily: THEME_DATA.typography.fontFamily,
           },
         }}
         slotProps={{ legend: { hidden: true } }}
-        margin={{ top: 0, right: 0, bottom: 30, left: 0 }}
+        margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
       />
     </Box>
   );

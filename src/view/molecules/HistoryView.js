@@ -56,7 +56,7 @@ export default function HistoryView({ entID }) {
 
 
   return (
-    <Stack direction="row" gap={1}>
+    <Stack direction="row" gap={0.5}>
       {previousElectionsDisplay.map(function (electionForRow, i) {
         return (
           <HistoryViewRow

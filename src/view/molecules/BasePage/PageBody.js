@@ -1,7 +1,7 @@
 import { Box, Grid } from "@mui/material";
 
 import ColumnLatestResult from "./ColumnLatestResult";
-import ColumnCumulativeResult from "./ColumnCumulativeResult";
+
 import ColumnMap from "./ColumnMap";
 import ColumnProjection from "./ColumnProjection";
 import { useDataContext } from "../../../nonview/core/DataProvider";

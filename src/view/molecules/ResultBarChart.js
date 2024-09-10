@@ -18,6 +18,8 @@ function getAxis() {
         fontSize: THEME_DATA.typography.fontSize * 0.7,
         fontFamily: THEME_DATA.typography.fontFamily,
       },
+      categoryGapRatio: 0,
+      barGapRatio: 0,
     },
   ];
 }
@@ -57,14 +59,14 @@ export default function ResultBarChart({ resultsElection, entID }) {
     const party = Party.fromID(partyID);
     const pVotes = votes / totalVotes;
 
-    const originalColor = party.color;
-    const colorWithAlpha = Color.getColorWithAlpha(originalColor, Color.getOpacity(pVotes));
+
+
 
     return {
       data: [pVotes],
       label: partyID,
       stack: "Common",
-      color: colorWithAlpha,
+      color: party.color,
     };
   });
 

@@ -4,7 +4,7 @@ import LabelledStat from "../atoms/LabelledStat";
 
 export default function SummaryView({ summary }) {
   return (
-    <Stack direction="row" gap={2} sx={{ margin: "auto" }}>
+    <Stack direction="row" gap={2} sx={{ margin: "auto", opacity: 0.25 }}>
       <LabelledStat
         label="Reg. Voters"
         valueStr={Format.intHumanize(summary.electors)}

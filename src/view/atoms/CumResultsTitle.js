@@ -57,8 +57,12 @@ export default function ColumnLatestResult({ entID }) {
 
   if (nResultsReleased === nResultsTotal) {
     label += ` (${Translate("Final")})`;
+  
+    
+  
   }
 
+  
   return (
     <Box>
       <Typography variant="h5" color={color}>

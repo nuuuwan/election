@@ -1,5 +1,5 @@
 import { Party } from "../../nonview/core";
-import { Format } from "../../nonview/base";
+import { Color, Format } from "../../nonview/base";
 
 import { Box } from "@mui/material";
 import { THEME_DATA } from "../_constants/THEME";
@@ -57,11 +57,14 @@ export default function ResultBarChart({ resultsElection, entID }) {
     const party = Party.fromID(partyID);
     const pVotes = votes / totalVotes;
 
+    const originalColor = party.color;
+    const colorWithAlpha = Color.getColorWithAlpha(originalColor, Color.getOpacity(pVotes));
+
     return {
       data: [pVotes],
       label: partyID,
       stack: "Common",
-      color: party.color,
+      color: colorWithAlpha,
     };
   });
 

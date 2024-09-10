@@ -4,8 +4,6 @@ import { Election, Party } from "../../nonview/core";
 import { PartyView } from "../../view/atoms";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
-
-
 function HistoryViewRow({ entID, electionForRow }) {
   const result = electionForRow.getResult(entID);
   if (!result) {
@@ -19,17 +17,15 @@ function HistoryViewRow({ entID, electionForRow }) {
   const textColor = Color.getTextColor(color, opacity);
 
   return (
-    <Stack
-      direction="column"
-      gap={0}
-      sx={{ color, alignItems: "center" }}
-    >
+    <Stack direction="column" gap={0} sx={{ color, alignItems: "center" }}>
       <Typography variant="caption" sx={{ fontSize: "67%" }}>
         {electionForRow.year}
       </Typography>
 
       <PartyView partyID={winningPartyID} textColor={textColor} />
-      <Typography variant="caption" sx={{ fontSize: "67%" }}>{Format.percentVotes(pWinner)}</Typography>
+      <Typography variant="caption" sx={{ fontSize: "67%" }}>
+        {Format.percentVotes(pWinner)}
+      </Typography>
     </Stack>
   );
 }
@@ -51,9 +47,6 @@ export default function HistoryView({ entID }) {
   ) {
     return previousElection.getSubsetElectionByPDIDList(election.pdIDList);
   });
-
-
-
 
   return (
     <Stack direction="row" gap={0.5}>

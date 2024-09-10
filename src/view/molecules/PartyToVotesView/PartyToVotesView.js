@@ -1,11 +1,9 @@
 import { Stack } from "@mui/material";
 import PartyToVotesStatsView from "./PartyToVotesStatsView";
 
-
 import PartyToVotesPieChart from "./PartyToVotesPieChart";
 
 export default function PartyToVotesView({ entID, chartSize, result }) {
-
   const partyToVotes = result.partyToVotes;
 
   return (
@@ -16,9 +14,7 @@ export default function PartyToVotesView({ entID, chartSize, result }) {
         title={entID}
       />
 
-        <PartyToVotesStatsView partyToVotes={partyToVotes} />
-
-
+      <PartyToVotesStatsView partyToVotes={partyToVotes} />
     </Stack>
   );
 }

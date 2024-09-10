@@ -15,11 +15,7 @@ const STYLE = {
 };
 
 function getColumns() {
-  return [
-    <ColumnLatestResult />,
-    <ColumnProjection />,
-    <ColumnMap />,
-  ];
+  return [<ColumnLatestResult />, <ColumnProjection />, <ColumnMap />];
 }
 
 export default function PageBody() {
@@ -33,7 +29,7 @@ export default function PageBody() {
     <Box sx={STYLE.BOX}>
       <IfElse condition={electionDisplay.nResults === 0}>
         <NoResultsAlert />
-        <Grid container >
+        <Grid container>
           {getColumns().map(function (column, i) {
             return (
               <Grid item key={i} xs={12} md={6} xl={4} sx={STYLE.GRID_ITEM}>

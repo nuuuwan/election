@@ -1,5 +1,5 @@
 import { Party } from "../../nonview/core";
-import { Format,  } from "../../nonview/base";
+import { Format } from "../../nonview/base";
 
 import { Box } from "@mui/material";
 import { THEME_DATA } from "../../view/_constants/THEME";
@@ -11,7 +11,6 @@ export default function MultiResultsBarChart({ resultsElection, entIDs }) {
   if (!data) {
     return null;
   }
-
 
   const result = resultsElection.resultIdx[entIDs[0]];
   const partyToVotes = result.partyToVotes;

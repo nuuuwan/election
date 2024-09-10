@@ -6,7 +6,7 @@ import { useDataContext } from "../../nonview/core/DataProvider";
 const STYLE_LABEL = {
   padding: 0.25,
   margin: 0.125,
-  borderRadius:1,
+  borderRadius: 1,
   width: 21,
   textAlign: "center",
 };

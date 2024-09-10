@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
 import { Party } from "../../nonview/core";
-import { EntType, ProvinceUtils, Translate } from "../../nonview/base";
+import { EntType, Translate } from "../../nonview/base";
 
 export default function ColumnLatestResult({ entID }) {
   const data = useDataContext();
@@ -21,32 +21,7 @@ export default function ColumnLatestResult({ entID }) {
 
   const entType = EntType.fromID(entID);
 
-  let nResultsTotal = 0;
-  let nResultsReleased = 0;
-
-  for (let [id, ent] of Object.entries(pdIdx)) {
-    let parentID;
-    if (entType === EntType.PD) {
-      parentID = ent.d.pd_id;
-    } else if (entType === EntType.ED) {
-      parentID = ent.d.ed_id;
-    } else if (entType === EntType.PROVINCE) {
-      parentID = ent.d.province_id;
-      // HACK! To fix bug in postal data
-      if (parentID === "None") {
-        parentID = ProvinceUtils.getProvinceIDForEDID(ent.d.ed_id);
-      }
-    } else {
-      parentID = "LK";
-    }
-
-    if (parentID === entID) {
-      nResultsTotal++;
-      if (electionDisplay.resultIdx[id]) {
-        nResultsReleased++;
-      }
-    }
-  }
+const { nResultsTotal, nResultsReleased } = electionDisplay.getReleaseStats(entID, pdIdx);
 
   let label = "";
   if (nResultsTotal > 1) {

@@ -1,3 +1,4 @@
+import { EntType, ProvinceUtils } from "../../base";
 import Result from "../Result";
 
 const ElectionStats = {
@@ -25,6 +26,40 @@ const ElectionStats = {
       return partyToWins;
     }, {});
   },
+
+  getReleaseStats(entID, pdIdx) {
+    const entType = EntType.fromID(entID);
+
+    let nResultsTotal = 0;
+    let nResultsReleased = 0;
+  
+    for (let [id, ent] of Object.entries(pdIdx)) {
+      let parentID;
+      if (entType === EntType.PD) {
+        parentID = ent.d.pd_id;
+      } else if (entType === EntType.ED) {
+        parentID = ent.d.ed_id;
+      } else if (entType === EntType.PROVINCE) {
+        parentID = ent.d.province_id;
+        // HACK! To fix bug in postal data
+        if (parentID === "None") {
+          parentID = ProvinceUtils.getProvinceIDForEDID(ent.d.ed_id);
+        }
+      } else {
+        parentID = "LK";
+      }
+  
+      if (parentID === entID) {
+        nResultsTotal++;
+        if (this.resultIdx[id]) {
+          nResultsReleased++;
+        }
+      }
+
+     
+    } return { nResultsTotal, nResultsReleased };
+  }
+
 };
 
 export default ElectionStats;

@@ -47,7 +47,7 @@ export default function BestBellwetherView() {
   )
     .filter(function (info) {
       return (
-        info.error < 0.05 && info.nSame > info.n * 0.5 && info.entID !== "LK"
+        info.error < 0.1 && info.nSame > info.n * 0.5 && info.entID !== "LK"
       );
     })
     .slice(0, N_DISPLAY);

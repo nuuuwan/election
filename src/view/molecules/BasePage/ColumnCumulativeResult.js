@@ -1,9 +1,7 @@
 
 
 import { ResultSingleView } from "..";
-
 import CustomStack from "./CustomStack";
-
 import { CumResultsTitle } from "../../atoms";
 export default function ColumnCumulativeResult() {
 

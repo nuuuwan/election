@@ -1,5 +1,5 @@
 import { Party } from "../../nonview/core";
-import {  Format } from "../../nonview/base";
+import { Format } from "../../nonview/base";
 
 import { Box } from "@mui/material";
 import { THEME_DATA } from "../_constants/THEME";
@@ -58,9 +58,6 @@ export default function ResultBarChart({ resultsElection, entID }) {
   const series = entries.map(function ([partyID, votes]) {
     const party = Party.fromID(partyID);
     const pVotes = votes / totalVotes;
-
-
-
 
     return {
       data: [pVotes],

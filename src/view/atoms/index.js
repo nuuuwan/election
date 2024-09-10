@@ -10,6 +10,7 @@ import NoResultsAlert from "./NoResultsAlert";
 import PartyView from "./PartyView";
 import ProjectionTitle from "./ProjectionTitle";
 import RefreshButton from "./RefreshButton";
+import ResultsReleasedView from "./ResultsReleasedView";
 import TestingLabel from "./TestingLabel";
 
 export {
@@ -24,5 +25,6 @@ export {
   PartyView,
   ProjectionTitle,
   RefreshButton,
+  ResultsReleasedView,
   TestingLabel,
 };

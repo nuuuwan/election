@@ -22,26 +22,22 @@ export default class Color {
   }
 
   static getRGB(color) {
-          const tempElement = document.createElement('div');
-      tempElement.style.color = color;
-      document.body.appendChild(tempElement);
-    
-      const computedColor = window.getComputedStyle(tempElement).color;
-    
-      document.body.removeChild(tempElement);
-    
-      const match = computedColor.match(/\d+/g);
-    
-        const [r, g, b] = match.map(Number);
-        return [r, g, b];
-      
-    
+    const tempElement = document.createElement("div");
+    tempElement.style.color = color;
+    document.body.appendChild(tempElement);
+
+    const computedColor = window.getComputedStyle(tempElement).color;
+
+    document.body.removeChild(tempElement);
+
+    const match = computedColor.match(/\d+/g);
+
+    const [r, g, b] = match.map(Number);
+    return [r, g, b];
   }
 
   static getColorWithAlpha(color, alpha) {
     const [r, g, b] = Color.getRGB(color);
     return `rgba(${r},${g},${b},${alpha})`;
   }
-  
-
 }

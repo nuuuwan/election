@@ -5,9 +5,7 @@ import { DerivedData, Election } from ".";
 
 const DataContext = createContext();
 
-async function getValue(state) {
-  const { electionType, date, activePDID, nResultsDisplay } = state;
-
+async function getValueEnts() {
   const pdIdx = await Ent.idxFromType(EntType.PD);
   const edIdx = await Ent.idxFromType(EntType.ED);
   const provinceIdx = await Ent.idxFromType(EntType.PROVINCE);
@@ -19,9 +17,23 @@ async function getValue(state) {
     provinceIdx
   );
 
+  return { pdIdx, edIdx, provinceIdx, allRegionIdx };
+}
+
+async function getValueElections({ electionType, date }) {
   const elections = await Election.listAll();
 
   const election = await Election.fromElectionTypeAndDate(electionType, date);
+  return { elections, election };
+}
+
+async function getValue({ electionType, date, activePDID, nResultsDisplay }) {
+  const { pdIdx, edIdx, provinceIdx, allRegionIdx } = await getValueEnts();
+
+  const { elections, election } = await getValueElections({
+    electionType,
+    date,
+  });
 
   const {
     activePDID: activePDIDDerived,
@@ -40,16 +52,16 @@ async function getValue(state) {
   );
 
   return {
+    election,
+    electionDisplay,
+    elections,
+    projectedElection,
     pdIdx,
     edIdx,
     provinceIdx,
-    elections,
-    election,
+    allRegionIdx,
     activePDID: activePDIDDerived,
     nResultsDisplay: nResultsDisplayDerived,
-    electionDisplay,
-    projectedElection,
-    allRegionIdx,
   };
 }
 

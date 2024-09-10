@@ -1,15 +1,9 @@
-import { Color,  } from "../../../nonview/base";
-
-import { Party } from "../../../nonview/core";
-import ActivePDUtils from "../../../nonview/core/ActivePDUtils";
-
+import { Color } from "../../../nonview/base";
+import { Party, ActivePDUtils } from "../../../nonview/core";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { useBasePageHandlerContext } from "../BasePage/BasePageHandlerProvider";
-
 import SVGHexPolygonGroup from "./SVGHexPolygonGroup";
 import SVGHexText from "./SVGHexText";
-
-
 
 function getOnClick({ entID, setActivePDID, pdIdx, resultList }) {
   return function () {
@@ -26,17 +20,12 @@ function getOnClick({ entID, setActivePDID, pdIdx, resultList }) {
 
 function getRenderedItem({ entID, points, data, setActivePDID }) {
   const { election, electionDisplay, pdIdx, allRegionIdx } = data;
-  const resultIdx = electionDisplay.resultIdx;
-  const resultList = election.resultList;
-  const isComplete = electionDisplay.isComplete(entID, pdIdx);
+  const result = electionDisplay.resultIdx[entID];
 
   let color = "ghostwhite";
   let opacity = 1;
-
-  const result = resultIdx[entID];
-  if (isComplete && result) {
-    const winningPartyID = result.partyToVotes.winningPartyID;
-    color = Party.fromID(winningPartyID).color;
+  if (electionDisplay.isComplete(entID, pdIdx) && result) {
+    color = Party.fromID(result.partyToVotes.winningPartyID).color;
     opacity = Color.getOpacity(result.partyToVotes.pWinner);
   }
 
@@ -44,22 +33,16 @@ function getRenderedItem({ entID, points, data, setActivePDID }) {
     entID,
     setActivePDID,
     pdIdx,
-    resultList,
+    resultList: election.resultList,
   });
 
-  const nPoints = points.length;
-  const [x, y] = points[Math.floor(nPoints / 2)];
-
-  const ent = allRegionIdx[entID];
-  const label = ent.name;
-
-
+  const [x, y] = points[Math.floor(points.length / 2)];
   return {
     renderedHexs: (
-      <SVGHexPolygonGroup 
-        points={points} 
-        color={color} 
-        opacity={opacity} 
+      <SVGHexPolygonGroup
+        points={points}
+        color={color}
+        opacity={opacity}
         onClick={onClick}
       />
     ),
@@ -69,7 +52,7 @@ function getRenderedItem({ entID, points, data, setActivePDID }) {
         y={y / Math.cos(Math.PI / 6)}
         color={color}
         opacity={opacity}
-        label={label}
+        label={allRegionIdx[entID].name}
         onClick={onClick}
       />
     ),

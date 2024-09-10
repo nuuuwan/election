@@ -4,6 +4,7 @@ import CustomSelect from "./CustomSelect";
 import IfElse from "./IfElse";
 import LabelledStat from "./LabelledStat";
 import LatestResultTitle from "./LatestResultTitle";
+import LoadingLabel from "./LoadingLabel";
 import MapTitle from "./MapTitle";
 import NoResultsAlert from "./NoResultsAlert";
 import PartyView from "./PartyView";
@@ -17,6 +18,7 @@ export {
   IfElse,
   LabelledStat,
   LatestResultTitle,
+  LoadingLabel,
   MapTitle,
   NoResultsAlert,
   PartyView,

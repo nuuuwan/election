@@ -1,4 +1,4 @@
-import { Color } from "../../../nonview/base";
+import { Color, EntType } from "../../../nonview/base";
 
 import { Party } from "../../../nonview/core";
 
@@ -14,8 +14,9 @@ export default function SVGMapHexs({ mapData }) {
   if (!data) {
     return null;
   }
-  const { electionDisplay, pdIdx, edIdx, provinceIdx } = data;
+  const { election, electionDisplay, pdIdx, edIdx, provinceIdx,  } = data;
   const resultIdx = electionDisplay.resultIdx;
+  const resultList = election.resultList;
 
   const { idx } = mapData;
 
@@ -33,8 +34,25 @@ export default function SVGMapHexs({ mapData }) {
       opacity = Color.getOpacity(result.partyToVotes.pWinner);
     }
     const onClick = function () {
-      if (entID.length === 6) {
-        setActivePDID(entID);
+      const entType = EntType.fromID(entID);
+      if (entType === EntType.PD) {
+        setActivePDID(entID); 
+      } else if (entType === EntType.ED) {
+        for (let result of resultList.reverse()) {
+          const pdEnt = pdIdx[result.entID];
+          if (pdEnt && pdEnt.d.ed_id === entID) {
+            setActivePDID(result.entID);
+            break;
+          }
+        }
+      } else if (entType === EntType.PROVINCE) {
+        for (let result of resultList.reverse()) {
+          const pdEnt = pdIdx[result.entID];
+          if (pdEnt && pdEnt.d.province_id === entID) {
+            setActivePDID(result.entID);
+            break;
+          }
+        }
       }
     };
 

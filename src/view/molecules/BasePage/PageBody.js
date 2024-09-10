@@ -15,7 +15,7 @@ const STYLE = {
 };
 
 function getColumns() {
-  return [<ColumnLatestResult />, <ColumnProjection />, <ColumnMap />];
+  return [<ColumnLatestResult />, <ColumnMap />, <ColumnProjection />, ];
 }
 
 export default function PageBody() {

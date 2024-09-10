@@ -49,7 +49,7 @@ export default function HistoryView({ entID }) {
   }).reverse();
 
   return (
-    <Stack direction="row" gap={0.5}>
+    <Stack direction="row" gap={0.5} sx={{opacity: 0.33}}>
       {previousElectionsDisplay.map(function (electionForRow, i) {
         return (
           <HistoryViewRow

@@ -24,7 +24,7 @@ export default function ResultSingleView({
   }
 
   return (
-    <Stack direction="column" gap={0}>
+    <Stack direction="column" gap={2}>
       <SummaryView summary={result.summary} />
       <PartyToVotesView result={result} entID={entID} chartSize={chartSize} />
     </Stack>

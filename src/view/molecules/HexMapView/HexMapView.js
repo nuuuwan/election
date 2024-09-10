@@ -33,7 +33,7 @@ function getBBox() {
     [Infinity, Infinity, -Infinity, -Infinity]
   );
 
-  return [minX - 3.5, minY - 2.5, maxX + 3.5, maxY + 4.5];
+  return [minX - 5, minY - 2, maxX + 5, maxY + 4.5];
 }
 
 function getViewBox() {

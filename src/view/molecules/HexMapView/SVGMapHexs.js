@@ -18,17 +18,19 @@ export default function SVGMapHexs({ mapData }) {
   const resultIdx = electionDisplay.resultIdx;
   const resultList = election.resultList;
 
+
   const { idx } = mapData;
 
   const renderedItems = Object.entries(idx).map(function ([entID, points]) {
     const nPoints = points.length;
-
-    const result = resultIdx[entID];
+    const isComplete = electionDisplay.isComplete(entID, pdIdx);
+    
 
     let color = "ghostwhite";
     let opacity = 1;
 
-    if (result) {
+    if (isComplete) {
+      const result = resultIdx[entID];
       const winningPartyID = result.partyToVotes.winningPartyID;
       color = Party.fromID(winningPartyID).color;
       opacity = Color.getOpacity(result.partyToVotes.pWinner);

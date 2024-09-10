@@ -10,7 +10,7 @@ export default function PartyToVotesBarChart({
   partyToVotes,
   chartSize,
 }) {
-  chartSize = chartSize || 320;
+  chartSize = chartSize || 480;
   const totalVotes = partyToVotes.totalVotes;
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
   const series = entries.reverse().map(function ([partyID, votes]) {

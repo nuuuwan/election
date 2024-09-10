@@ -58,6 +58,11 @@ const ElectionStats = {
 
      
     } return { nResultsTotal, nResultsReleased };
+  },
+
+  isComplete(entID, pdIdx) {
+    const { nResultsTotal, nResultsReleased } = this.getReleaseStats(entID, pdIdx);
+    return nResultsReleased === nResultsTotal;
   }
 
 };

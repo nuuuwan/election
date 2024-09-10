@@ -4,7 +4,7 @@ import { useDataContext } from "../../nonview/core/DataProvider";
 import { Party } from "../../nonview/core";
 import { EntType, Translate } from "../../nonview/base";
 
-export default function ColumnLatestResult({ entID }) {
+export default function CumResultsTitle({ entID }) {
   const data = useDataContext();
   if (!data) {
     return null;

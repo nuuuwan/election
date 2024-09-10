@@ -2,6 +2,7 @@
 import BasePage from "./BasePage";
 import BellwetherView from "./BellwetherView";
 import CitationsView from "./CitationsView";
+import CumResultsView from "./CumResultsView";
 import ElectionSelector from "./ElectionSelector";
 import FinalOutcomeView from "./FinalOutcomeView";
 import HexMapView from "./HexMapView";
@@ -19,6 +20,7 @@ export {
   BasePage,
   BellwetherView,
   CitationsView,
+  CumResultsView,
   ElectionSelector,
   FinalOutcomeView,
   HexMapView,

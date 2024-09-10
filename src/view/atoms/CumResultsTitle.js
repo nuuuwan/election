@@ -3,30 +3,7 @@ import { useDataContext } from "../../nonview/core/DataProvider";
 
 import { Party } from "../../nonview/core";
 import { EntType, Translate } from "../../nonview/base";
-
-function ResultsReleasedView({ entID, pdIdx, electionDisplay }) {
-  const { nResultsTotal, nResultsReleased } = electionDisplay.getReleaseStats(
-    entID,
-    pdIdx
-  );
-
-  let label = "";
-  if (nResultsTotal > 1) {
-    label = `${nResultsReleased}/${nResultsTotal} ${Translate(
-      "Results Released"
-    )}`;
-  }
-
-  if (nResultsReleased === nResultsTotal) {
-    label += ` (${Translate("Final")})`;
-  }
-
-  return (
-    <Typography variant="body1" color={"secondary"}>
-      {label}
-    </Typography>
-  );
-}
+import ResultsReleasedView from "./ResultsReleasedView";
 
 export default function CumResultsTitle({ entID }) {
   const data = useDataContext();

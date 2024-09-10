@@ -33,7 +33,7 @@ export default function PageBody() {
     <Box sx={STYLE.BOX}>
       <IfElse condition={electionDisplay.nResults === 0}>
         <NoResultsAlert />
-        <Grid container rowSpacing={3}>
+        <Grid container >
           {getColumns().map(function (column, i) {
             return (
               <Grid item key={i} xs={12} md={6} xl={4} sx={STYLE.GRID_ITEM}>

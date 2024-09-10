@@ -2,6 +2,17 @@ export default class EntType {
   constructor(name) {
     this.name = name;
   }
+
+  get shortName() {
+    if (this.name === "country") {
+      return "";
+    }
+    if (this.name === "province") {
+      return "Pr.";
+    }
+    return this.name.toUpperCase();
+  }
+
   static fromIDLK(entID) {
     if (entID.substring(0, 2) !== "LK") {
       return null;

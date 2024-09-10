@@ -1,7 +1,7 @@
-import { Grid, Stack, Typography } from "@mui/material";
-import { ProvinceUtils, Translate } from "../../../nonview/base";
+import { Grid, Stack,  } from "@mui/material";
+import { ProvinceUtils,  } from "../../../nonview/base";
 import { useDataContext } from "../../../nonview/core/DataProvider";
-import { LatestResultTitle } from "../../../view/atoms";
+import { CumResultsTitle, LatestResultTitle } from "../../../view/atoms";
 import {
   PDSelector,
   BellwetherView,
@@ -11,14 +11,14 @@ import {
 } from "../../../view/molecules";
 import CustomStack from "./CustomStack";
 import PartyToVotesStatsView from "../PartyToVotesView/PartyToVotesStatsView";
-import { Party } from "../../../nonview/core";
+
 
 export default function ColumnLatestResult() {
   const data = useDataContext();
   if (!data) {
     return null;
   }
-  const { electionDisplay, elections, allRegionIdx } = data;
+  const { electionDisplay, elections,  } = data;
   const activePDID = electionDisplay.finalPDID;
   const activeEDID = activePDID.substring(0, 5);
   const activeProvinceID = ProvinceUtils.getProvinceIDForEDID(activeEDID);
@@ -34,19 +34,11 @@ export default function ColumnLatestResult() {
         {entIDs.map(function (entID, iEnt) {
           const result = electionDisplay.resultIdx[entID];
           const partyToVotes = result.partyToVotes;
-          const ent = allRegionIdx[entID];
-          const entName = ent.name;
-          const winningPartyID = partyToVotes.winningPartyID;
-          const color = Party.fromID(winningPartyID).color;
-
-          const entTypeLabel = ["PD", "ED", "Pr.", ""][iEnt];
 
           return (
             <Grid item xs={12} md={6} xl={6} key={entID}>
               <Stack direction="column" gap={1} alignItems="center">
-                <Typography variant="h6" color={color}>
-                  {Translate(entName)} {Translate(entTypeLabel)}
-                </Typography>
+                <CumResultsTitle entID={entID}  />
                 <SummaryView summary={result.summary} />
 
                 <MultiResultsBarChart

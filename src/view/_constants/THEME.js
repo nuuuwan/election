@@ -5,16 +5,19 @@ function getThemeData() {
   const lang = CustomURLContext.get().lang;
 
   let fontFamily = "Cairo";
+  let fontSize = 11;
   if (lang === "si") {
     fontFamily = "Noto Sans Sinhala";
+    fontSize =11;
   } else if (lang === "ta") {
     fontFamily = "Noto Sans Tamil";
+    fontSize = 11;
   }
 
   return {
     typography: {
       fontFamily,
-      fontSize: 11,
+      fontSize,
     },
     palette: {
       primary: {

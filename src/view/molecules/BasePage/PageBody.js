@@ -1,5 +1,5 @@
-import { Box, Grid, Typography } from "@mui/material";
-import { Translate } from "../../../nonview/base";
+import { Box, Grid,  } from "@mui/material";
+
 import ColumnLatestResult from "./ColumnLatestResult";
 import ColumnCumulativeResult from "./ColumnCumulativeResult";
 import ColumnMap from "./ColumnMap";

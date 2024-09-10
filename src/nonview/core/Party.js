@@ -20,7 +20,7 @@ export default class Party {
     if (this.id === Party.OTHER.id) {
       return "gray";
     }
-    return POLITICAL_PARTY_TO_COLOR[this.id] || "secondary";
+    return POLITICAL_PARTY_TO_COLOR[this.id] || "ghostwhite";
   }
 
   get isNonParty() {

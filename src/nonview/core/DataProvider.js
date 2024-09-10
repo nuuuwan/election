@@ -11,6 +11,9 @@ async function getValue(state) {
   const pdIdx = await Ent.idxFromType(EntType.PD);
   const edIdx = await Ent.idxFromType(EntType.ED);
   const provinceIdx = await Ent.idxFromType(EntType.PROVINCE);
+
+  const allRegionIdx = Object.assign({'LK': {name: 'Sri Lanka'}}, pdIdx, edIdx, provinceIdx);
+
   const elections = await Election.listAll();
 
   const election = await Election.fromElectionTypeAndDate(electionType, date);
@@ -41,6 +44,7 @@ async function getValue(state) {
     nResultsDisplay: nResultsDisplayDerived,
     electionDisplay,
     projectedElection,
+    allRegionIdx,
   };
 }
 

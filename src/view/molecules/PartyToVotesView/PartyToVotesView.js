@@ -2,7 +2,7 @@ import { Stack } from "@mui/material";
 import PartyToVotesStatsView from "./PartyToVotesStatsView";
 import { HistoryView } from "../../../view/molecules";
 import { useDataContext } from "../../../nonview/core/DataProvider";
-import PartyToVotesBarChart from "./PartyToVotesBarChart";
+import PartyToVotesPieChart from "./PartyToVotesPieChart";
 
 export default function PartyToVotesView({ entID, chartSize, result }) {
   const data = useDataContext();
@@ -14,7 +14,7 @@ export default function PartyToVotesView({ entID, chartSize, result }) {
 
   return (
     <Stack direction="column" gap={0}>
-      <PartyToVotesBarChart
+      <PartyToVotesPieChart
         partyToVotes={partyToVotes}
         chartSize={chartSize}
         title={entID}

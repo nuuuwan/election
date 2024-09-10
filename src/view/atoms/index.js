@@ -3,8 +3,10 @@ import CumResultsTitle from "./CumResultsTitle";
 import CustomSelect from "./CustomSelect";
 import LabelledStat from "./LabelledStat";
 import LatestResultTitle from "./LatestResultTitle";
+import MapTitle from "./MapTitle";
 import PartyView from "./PartyView";
+import ProjectionTitle from "./ProjectionTitle";
 import RefreshButton from "./RefreshButton";
 import TestingLabel from "./TestingLabel";
 
-export { CumResultsTitle, CustomSelect, LabelledStat, LatestResultTitle, PartyView, RefreshButton, TestingLabel };
+export { CumResultsTitle, CustomSelect, LabelledStat, LatestResultTitle, MapTitle, PartyView,  ProjectionTitle, RefreshButton, TestingLabel };

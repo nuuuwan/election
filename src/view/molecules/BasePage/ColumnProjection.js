@@ -1,17 +1,15 @@
-import { Box, Typography } from "@mui/material";
+
 
 import CustomStack from "./CustomStack";
 
 import { FinalOutcomeView, PredictionView } from "..";
-import { Translate } from "../../../nonview/base";
+
+import { ProjectionTitle } from "../../atoms";
 
 export default function ColumnProjection() {
   return (
     <CustomStack>
-      <Box>
-        <Typography variant="body1">{Translate("Final Result")}</Typography>
-        <Typography variant="h4">{Translate("Projected")}</Typography>
-      </Box>
+      <ProjectionTitle />
 
       <PredictionView />
       <FinalOutcomeView />

@@ -21,7 +21,10 @@ export default function ColumnLatestResult({ entID }) {
 
   const entType = EntType.fromID(entID);
 
-const { nResultsTotal, nResultsReleased } = electionDisplay.getReleaseStats(entID, pdIdx);
+  const { nResultsTotal, nResultsReleased } = electionDisplay.getReleaseStats(
+    entID,
+    pdIdx
+  );
 
   let label = "";
   if (nResultsTotal > 1) {

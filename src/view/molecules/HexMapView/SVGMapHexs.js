@@ -18,13 +18,11 @@ export default function SVGMapHexs({ mapData }) {
   const resultIdx = electionDisplay.resultIdx;
   const resultList = election.resultList;
 
-
   const { idx } = mapData;
 
   const renderedItems = Object.entries(idx).map(function ([entID, points]) {
     const nPoints = points.length;
     const isComplete = electionDisplay.isComplete(entID, pdIdx);
-    
 
     let color = "ghostwhite";
     let opacity = 1;

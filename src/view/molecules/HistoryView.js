@@ -42,14 +42,16 @@ export default function HistoryView({ entID }) {
     electionDisplay
   );
 
-  const previousElectionsDisplay = previousElections.map(function (
-    previousElection
-  ) {
-    return previousElection.getSubsetElectionByPDIDList(electionDisplay.pdIDList);
-  }).reverse();
+  const previousElectionsDisplay = previousElections
+    .map(function (previousElection) {
+      return previousElection.getSubsetElectionByPDIDList(
+        electionDisplay.pdIDList
+      );
+    })
+    .reverse();
 
   return (
-    <Stack direction="row" gap={0.5} sx={{opacity: 0.33}}>
+    <Stack direction="row" gap={0.5} sx={{ opacity: 0.33 }}>
       {previousElectionsDisplay.map(function (electionForRow, i) {
         return (
           <HistoryViewRow

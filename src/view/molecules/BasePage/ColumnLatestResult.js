@@ -29,7 +29,7 @@ export default function ColumnLatestResult() {
       <LatestResultTitle />
       <PDSelector activePDID={activePDID} />
 
-      <Grid container rowGap={3} >
+      <Grid container rowGap={3}>
         {entIDs.map(function (entID, iEnt) {
           const result = electionDisplay.resultIdx[entID];
           const partyToVotes = result.partyToVotes;

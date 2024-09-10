@@ -32,7 +32,7 @@ const ElectionStats = {
 
     let nResultsTotal = 0;
     let nResultsReleased = 0;
-  
+
     for (let [id, ent] of Object.entries(pdIdx)) {
       let parentID;
       if (entType === EntType.PD) {
@@ -48,23 +48,24 @@ const ElectionStats = {
       } else {
         parentID = "LK";
       }
-  
+
       if (parentID === entID) {
         nResultsTotal++;
         if (this.resultIdx[id]) {
           nResultsReleased++;
         }
       }
-
-     
-    } return { nResultsTotal, nResultsReleased };
+    }
+    return { nResultsTotal, nResultsReleased };
   },
 
   isComplete(entID, pdIdx) {
-    const { nResultsTotal, nResultsReleased } = this.getReleaseStats(entID, pdIdx);
+    const { nResultsTotal, nResultsReleased } = this.getReleaseStats(
+      entID,
+      pdIdx
+    );
     return nResultsReleased === nResultsTotal;
-  }
-
+  },
 };
 
 export default ElectionStats;

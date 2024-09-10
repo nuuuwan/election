@@ -29,6 +29,7 @@ export default function BasePage() {
 
   const setLang = function (lang) {
     updateState({ lang });
+    window.location.reload();
   };
 
   return (

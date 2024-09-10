@@ -13,11 +13,9 @@ export default function MapTitle() {
     `${electionDisplay.nResults}/${election.nResults} ` + Translate("Results");
 
   return (
-
-      <Box color={electionDisplay.color}>
-        <Typography variant="body1">{subTitleProgress}</Typography>
-        <Typography variant="h4">{Translate("Maps")}</Typography>
-      </Box>
-
+    <Box color={electionDisplay.color}>
+      <Typography variant="body1">{subTitleProgress}</Typography>
+      <Typography variant="h4">{Translate("Maps")}</Typography>
+    </Box>
   );
 }

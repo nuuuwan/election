@@ -9,4 +9,14 @@ import ProjectionTitle from "./ProjectionTitle";
 import RefreshButton from "./RefreshButton";
 import TestingLabel from "./TestingLabel";
 
-export { CumResultsTitle, CustomSelect, LabelledStat, LatestResultTitle, MapTitle, PartyView,  ProjectionTitle, RefreshButton, TestingLabel };
+export {
+  CumResultsTitle,
+  CustomSelect,
+  LabelledStat,
+  LatestResultTitle,
+  MapTitle,
+  PartyView,
+  ProjectionTitle,
+  RefreshButton,
+  TestingLabel,
+};

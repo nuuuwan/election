@@ -19,11 +19,9 @@ export default function CumResultsTitle() {
     ")";
 
   return (
-
-      <Box color={electionDisplay.color}>
-        <Typography variant="body1">{subTitleProgress}</Typography>
-        <Typography variant="h4">{Translate("Islandwide")}</Typography>
-      </Box>
-
+    <Box color={electionDisplay.color}>
+      <Typography variant="body1">{subTitleProgress}</Typography>
+      <Typography variant="h4">{Translate("Islandwide")}</Typography>
+    </Box>
   );
 }

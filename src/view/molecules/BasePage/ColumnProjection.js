@@ -1,5 +1,3 @@
-
-
 import CustomStack from "./CustomStack";
 
 import { FinalOutcomeView, PredictionView } from "..";

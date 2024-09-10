@@ -13,10 +13,8 @@ export default function LatestResultTitle() {
   const color = electionDisplay.getResult(activePDID).winningPartyColor;
 
   return (
-
-      <Typography variant="body1" color={color}>
-        {Translate("Latest Result")} ({electionDisplay.nResults})
-      </Typography>
-
+    <Typography variant="body1" color={color}>
+      {Translate("Latest Result")} ({electionDisplay.nResults})
+    </Typography>
   );
 }

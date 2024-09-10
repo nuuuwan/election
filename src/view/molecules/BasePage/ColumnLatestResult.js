@@ -1,7 +1,10 @@
-
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { LatestResultTitle } from "../../../view/atoms";
-import { ResultSingleView, PDSelector, BellwetherView } from "../../../view/molecules";
+import {
+  ResultSingleView,
+  PDSelector,
+  BellwetherView,
+} from "../../../view/molecules";
 import CustomStack from "./CustomStack";
 
 export default function ColumnLatestResult() {

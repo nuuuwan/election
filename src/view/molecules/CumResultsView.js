@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Card, Paper, Stack } from "@mui/material";
 
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { CumResultsTitle } from "../../view/atoms";
@@ -17,7 +17,8 @@ export default function CumResultsView({ entID }) {
   const partyToVotes = result.partyToVotes;
 
   return (
-    <Stack direction="column" gap={0.1} alignItems="center">
+    <Card sx={{p:1, m:1}} variant="outlined">
+    <Stack direction="column" gap={1} alignItems="center">
       <CumResultsTitle entID={entID} />
       <SummaryView summary={result.summary} />
 
@@ -26,5 +27,6 @@ export default function CumResultsView({ entID }) {
       <PartyToVotesStatsView partyToVotes={partyToVotes} />
       {elections ? <HistoryView entID={entID} /> : null}
     </Stack>
+    </Card>
   );
 }

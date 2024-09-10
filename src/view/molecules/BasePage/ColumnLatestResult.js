@@ -27,7 +27,7 @@ export default function ColumnLatestResult() {
       <LatestResultTitle />
       <PDSelector activePDID={activePDID} />
 
-      <Grid container rowGap={3}>
+      <Grid container>
         {entIDs.map(function (entID) {
           return (
             <Grid item xs={12} md={6} xl={6} key={entID}>

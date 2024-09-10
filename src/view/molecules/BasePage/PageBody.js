@@ -17,7 +17,6 @@ const STYLE = {
 function getColumns() {
   return [
     <ColumnLatestResult />,
-    <ColumnCumulativeResult />,
     <ColumnProjection />,
     <ColumnMap />,
   ];
@@ -34,10 +33,10 @@ export default function PageBody() {
     <Box sx={STYLE.BOX}>
       <IfElse condition={electionDisplay.nResults === 0}>
         <NoResultsAlert />
-        <Grid container rowSpacing={4}>
+        <Grid container rowSpacing={3}>
           {getColumns().map(function (column, i) {
             return (
-              <Grid item key={i} xs={12} md={6} xl={3} sx={STYLE.GRID_ITEM}>
+              <Grid item key={i} xs={12} md={6} xl={4} sx={STYLE.GRID_ITEM}>
                 {column}
               </Grid>
             );

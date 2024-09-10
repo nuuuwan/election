@@ -27,28 +27,30 @@ const ElectionStats = {
     }, {});
   },
 
-  getReleaseStats(entID, pdIdx) {
+  getParentID(entID, pdEnt) {
     const entType = EntType.fromID(entID);
+    switch (entType) {
+      case EntType.PD:
+        return pdEnt.d.ed_id;
+      case EntType.ED:
+        return pdEnt.d.ed_id;
+      case EntType.PROVINCE:
+        // HACK! To fix bug in postal data
+        return (
+          pdEnt.d.province_id ||
+          ProvinceUtils.getProvinceIDForEDID(pdEnt.d.ed_id)
+        );
+      default:
+        return "LK";
+    }
+  },
 
+  getReleaseStats(entID, pdIdx) {
     let nResultsTotal = 0;
     let nResultsReleased = 0;
 
     for (let [id, ent] of Object.entries(pdIdx)) {
-      let parentID;
-      if (entType === EntType.PD) {
-        parentID = ent.d.pd_id;
-      } else if (entType === EntType.ED) {
-        parentID = ent.d.ed_id;
-      } else if (entType === EntType.PROVINCE) {
-        parentID = ent.d.province_id;
-        // HACK! To fix bug in postal data
-        if (parentID === "None") {
-          parentID = ProvinceUtils.getProvinceIDForEDID(ent.d.ed_id);
-        }
-      } else {
-        parentID = "LK";
-      }
-
+      const parentID = this.getParentID(entID, ent);
       if (parentID === entID) {
         nResultsTotal++;
         if (this.resultIdx[id]) {

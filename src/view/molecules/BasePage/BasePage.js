@@ -4,15 +4,7 @@ import { CustomURLContext } from "../../../nonview/core";
 import BasePageView from "./BasePageView";
 import BasePageHandlerProvider from "./BasePageHandlerProvider";
 
-export default function BasePage() {
-  const [state, setState] = useState(CustomURLContext.get());
-
-  const updateState = function (newState) {
-    const newState0 = Object.assign({}, state, newState);
-    CustomURLContext.set(newState0);
-    setState(newState0);
-  };
-
+function getHandlers(updateState) {
   const setElection = function (election0) {
     const { electionType, date } = election0;
     updateState({ electionType, date });
@@ -23,8 +15,7 @@ export default function BasePage() {
   };
 
   const setNResultsDisplay = function (nResultsDisplay) {
-    const activePDID = undefined;
-    updateState({ nResultsDisplay, activePDID });
+    updateState({ nResultsDisplay, activePDID: undefined });
   };
 
   const setLang = function (lang) {
@@ -32,16 +23,26 @@ export default function BasePage() {
     window.location.reload();
   };
 
+  return {
+    setLang,
+    setActivePDID,
+    setElection,
+    setNResultsDisplay,
+  };
+}
+
+export default function BasePage() {
+  const [state, setState] = useState(CustomURLContext.get());
+
+  const updateState = function (newState) {
+    const newState0 = Object.assign({}, state, newState);
+    CustomURLContext.set(newState0);
+    setState(newState0);
+  };
+
   return (
     <DataProvider state={state}>
-      <BasePageHandlerProvider
-        handlers={{
-          setLang,
-          setActivePDID,
-          setElection,
-          setNResultsDisplay,
-        }}
-      >
+      <BasePageHandlerProvider handlers={getHandlers(updateState)}>
         <BasePageView />
       </BasePageHandlerProvider>
     </DataProvider>

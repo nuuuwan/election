@@ -22,11 +22,11 @@ function BestBellwetherItem({ info }) {
       <PartyView partyID={winningPartyID} />
       <Typography variant="caption" component="span">
         {Format.percent(info.error)}
-        </Typography>
+      </Typography>
       <Typography variant="caption" component="span">
         {`${info.nSame}/${info.n}`}
       </Typography>
-      
+
       <EntView entID={info.entID} />
     </Stack>
   );
@@ -44,22 +44,26 @@ export default function BestBellwetherView() {
     elections,
     electionDisplay,
     pdIdx
-  ).filter(
-    function(info) {
-        return info.error < 0.05 && info.nSame > info.n * 0.5 && info.entID !== 'LK';
-    }
-  ).slice(0, N_DISPLAY);
+  )
+    .filter(function (info) {
+      return (
+        info.error < 0.05 && info.nSame > info.n * 0.5 && info.entID !== "LK"
+      );
+    })
+    .slice(0, N_DISPLAY);
 
-  const n = Math.min(bestBellwetherInfoList.length, N_DISPLAY)
-  if (n ===0 ) {
+  const n = Math.min(bestBellwetherInfoList.length, N_DISPLAY);
+  if (n === 0) {
     return null;
   }
 
   return (
     <Stack direction="column" alignItems="left" gap={0}>
-      <Typography variant="h6">{Translate("Top Bellwether Results")}</Typography>
+      <Typography variant="h6">
+        {Translate("Top Bellwether Results")}
+      </Typography>
       <Typography variant="caption" color="secondary">
-        {Translate('Ordered by Error')}
+        {Translate("Ordered by Error")}
       </Typography>
       {bestBellwetherInfoList.map(function (info, i) {
         return <BestBellwetherItem key={i} info={info} />;

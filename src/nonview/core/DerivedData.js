@@ -8,8 +8,11 @@ export default class DerivedData {
           .map((result) => result.entID)
           .indexOf(activePDID) + 1;
     } else if (nResultsDisplay || nResultsDisplay === 0) {
-      if (nResultsDisplay > 0 && nResultsDisplay <= election.pdResultList.length) {
-      activePDID = election.pdResultList[nResultsDisplay - 1].entID;
+      if (
+        nResultsDisplay > 0 &&
+        nResultsDisplay <= election.pdResultList.length
+      ) {
+        activePDID = election.pdResultList[nResultsDisplay - 1].entID;
       }
     } else {
       activePDID =

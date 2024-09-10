@@ -22,8 +22,8 @@ export default function PageHeader() {
     return null;
   }
   const { projectedElection } = data;
-  
-  const color = projectedElection? projectedElection.color : "grey";
+
+  const color = projectedElection ? projectedElection.color : "grey";
 
   return (
     <Box

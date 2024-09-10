@@ -1,5 +1,5 @@
-import { Grid, Stack,  } from "@mui/material";
-import { ProvinceUtils,  } from "../../../nonview/base";
+import { Grid, Stack } from "@mui/material";
+import { ProvinceUtils } from "../../../nonview/base";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { CumResultsTitle, LatestResultTitle } from "../../../view/atoms";
 import {
@@ -12,13 +12,12 @@ import {
 import CustomStack from "./CustomStack";
 import PartyToVotesStatsView from "../PartyToVotesView/PartyToVotesStatsView";
 
-
 export default function ColumnLatestResult() {
   const data = useDataContext();
   if (!data) {
     return null;
   }
-  const { electionDisplay, elections,  } = data;
+  const { electionDisplay, elections } = data;
   const activePDID = electionDisplay.finalPDID;
   const activeEDID = activePDID.substring(0, 5);
   const activeProvinceID = ProvinceUtils.getProvinceIDForEDID(activeEDID);
@@ -38,7 +37,7 @@ export default function ColumnLatestResult() {
           return (
             <Grid item xs={12} md={6} xl={6} key={entID}>
               <Stack direction="column" gap={1} alignItems="center">
-                <CumResultsTitle entID={entID}  />
+                <CumResultsTitle entID={entID} />
                 <SummaryView summary={result.summary} />
 
                 <MultiResultsBarChart

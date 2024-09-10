@@ -4,13 +4,12 @@ import { useDataContext } from "../../nonview/core/DataProvider";
 import { Party } from "../../nonview/core";
 import { EntType, ProvinceUtils, Translate } from "../../nonview/base";
 
-
-export default function ColumnLatestResult({entID}) {
+export default function ColumnLatestResult({ entID }) {
   const data = useDataContext();
   if (!data) {
     return null;
   }
-  const { electionDisplay,  allRegionIdx, pdIdx } = data;
+  const { electionDisplay, allRegionIdx, pdIdx } = data;
 
   const result = electionDisplay.resultIdx[entID];
   const partyToVotes = result.partyToVotes;
@@ -31,7 +30,6 @@ export default function ColumnLatestResult({entID}) {
       parentID = ent.d.pd_id;
     } else if (entType === EntType.ED) {
       parentID = ent.d.ed_id;
-            
     } else if (entType === EntType.PROVINCE) {
       parentID = ent.d.province_id;
       // HACK! To fix bug in postal data
@@ -43,7 +41,6 @@ export default function ColumnLatestResult({entID}) {
     }
 
     if (parentID === entID) {
-
       nResultsTotal++;
       if (electionDisplay.resultIdx[id]) {
         nResultsReleased++;
@@ -52,8 +49,10 @@ export default function ColumnLatestResult({entID}) {
   }
 
   let label = "";
-  if (nResultsTotal > 1)  {
-    label = `${nResultsReleased}/${nResultsTotal} ${Translate("Results Released")}`; ;
+  if (nResultsTotal > 1) {
+    label = `${nResultsReleased}/${nResultsTotal} ${Translate(
+      "Results Released"
+    )}`;
   }
 
   if (nResultsReleased === nResultsTotal) {
@@ -61,15 +60,13 @@ export default function ColumnLatestResult({entID}) {
   }
 
   return (
-        <Box>
-        <Typography variant="h5" color={color}>
-          {Translate(entName)}{" "}{Translate(entType.shortName)}
-
-        </Typography>
-        <Typography variant="body1" color={"secondary"}>
-          
-          {label}
-        </Typography>
-      </Box>
+    <Box>
+      <Typography variant="h5" color={color}>
+        {Translate(entName)} {Translate(entType.shortName)}
+      </Typography>
+      <Typography variant="body1" color={"secondary"}>
+        {label}
+      </Typography>
+    </Box>
   );
 }

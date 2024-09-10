@@ -14,7 +14,7 @@ export default function SVGMapHexs({ mapData }) {
   if (!data) {
     return null;
   }
-  const { election, electionDisplay, pdIdx, edIdx, provinceIdx,  } = data;
+  const { election, electionDisplay, pdIdx, edIdx, provinceIdx } = data;
   const resultIdx = electionDisplay.resultIdx;
   const resultList = election.resultList;
 
@@ -36,7 +36,7 @@ export default function SVGMapHexs({ mapData }) {
     const onClick = function () {
       const entType = EntType.fromID(entID);
       if (entType === EntType.PD) {
-        setActivePDID(entID); 
+        setActivePDID(entID);
       } else if (entType === EntType.ED) {
         for (let result of resultList.reverse()) {
           const pdEnt = pdIdx[result.entID];

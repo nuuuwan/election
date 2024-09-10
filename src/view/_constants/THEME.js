@@ -14,7 +14,7 @@ function getThemeData() {
   return {
     typography: {
       fontFamily,
-      fontSize: 12,
+      fontSize: 11,
     },
     palette: {
       primary: {

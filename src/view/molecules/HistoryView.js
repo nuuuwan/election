@@ -11,6 +11,11 @@ function HistoryViewRow({ entID, electionForRow }) {
   }
 
   const winningPartyID = result.partyToVotes.winningPartyID;
+
+  if (!winningPartyID) {
+    return null;
+  }
+
   const pWinner = result.partyToVotes.pWinner;
   const color = Party.fromID(winningPartyID).color;
   const opacity = Color.getOpacity(pWinner);
@@ -51,7 +56,7 @@ export default function HistoryView({ entID }) {
     .reverse();
 
   return (
-    <Stack direction="row" gap={0.5} >
+    <Stack direction="row" gap={0.5}>
       {previousElectionsDisplay.map(function (electionForRow, i) {
         return (
           <HistoryViewRow

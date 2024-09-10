@@ -22,11 +22,13 @@ export default function PageHeader() {
     return null;
   }
   const { projectedElection } = data;
+  
+  const color = projectedElection? projectedElection.color : "grey";
 
   return (
     <Box
       sx={Object.assign(STYLE_PAGE_HEADER.SELECTOR, {
-        backgroundColor: projectedElection.color,
+        backgroundColor: color,
       })}
     >
       <Stack

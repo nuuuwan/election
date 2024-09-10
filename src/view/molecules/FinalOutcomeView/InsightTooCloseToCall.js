@@ -9,7 +9,7 @@ function renderLikelyhoodTablePartyRows(likelyWinnerPartyInfoList) {
         <td style={{ textAlign: "right", padding: 1 }}>
           <Typography variant="body1">{Format.percent(p)}</Typography>
         </td>
-        <td style={{ textAlign: "left", padding: 1, opacity: 0.5 }}>
+        <td style={{ textAlign: "left", padding: 1}}>
           <Stack direction="row" gap={0.5} sx={{ alignItems: "center" }}>
             <PartyView partyID={partyID} />
             <Typography variant="body2">
@@ -36,7 +36,7 @@ function renderLikelyhoodTable(
               {Format.percent(pUncertainHappenning)}
             </Typography>
           </td>
-          <td style={{ textAlign: "left", padding: 1, opacity: 0.5 }}>
+          <td style={{ textAlign: "left", padding: 1 }}>
             <Typography variant="body2">
               {Translate("2nd/3rd Preference Counting")}
             </Typography>
@@ -54,7 +54,7 @@ export default function InsightTooCloseToCall({
   return (
     <Box>
       <Typography variant="h6">{Translate("Too close to call")}</Typography>
-      <Typography variant="caption">
+      <Typography variant="caption" color="secondary">
         {Translate("Possible Outcomes & Probabilities")}
       </Typography>
       <Box display="flex" justifyContent="center">

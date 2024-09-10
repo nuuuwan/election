@@ -6,7 +6,7 @@ import { Box } from "@mui/material";
 import { THEME_DATA } from "../../_constants/THEME";
 
 export default function PartyToVotesPieChart({ partyToVotes, chartSize }) {
-  chartSize = chartSize || 320;
+  chartSize = chartSize || 240;
   const totalVotes = partyToVotes.totalVotes;
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
   const data = entries.map(function ([partyID, votes]) {

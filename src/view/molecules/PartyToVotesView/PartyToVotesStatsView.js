@@ -17,7 +17,7 @@ export default function PartyToVotesStatsView({ partyToVotes }) {
             key={partyID}
             label={<PartyView partyID={partyID} pVotes={pVotes} />}
             valueStr={Format.intHumanize(votes)}
-            sx={{ color, m:0.5 }}
+            sx={{ color, m: 0.5 }}
           />
         );
       })}

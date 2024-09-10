@@ -26,25 +26,37 @@ export default class Bellwether {
       error: error,
     };
   }
-  static getStats(elections, electionDisplay) {
-    const entID = electionDisplay.finalPDID;
+  static getStats(elections, election, entID) {
     const previousElectionsOfSameType = Election.getPreviousElectionsOfSameType(
       elections,
-      electionDisplay
+      election
     );
 
     const n = previousElectionsOfSameType.length;
-    return previousElectionsOfSameType.reduce(
-      function ({ n, nSame, error }, election) {
+    const { nSame, error } = previousElectionsOfSameType.reduce(
+      function ({ nSame, error }, election) {
         const { isSameWinner, error: errorElection } =
           Bellwether.getStatsForElection(election, entID);
         return {
-          n: n,
           nSame: nSame + (isSameWinner ? 1 : 0),
           error: error + errorElection / n,
         };
       },
-      { n, nSame: 0, error: 0 }
+      { nSame: 0, error: 0 }
     );
+    return { entID, n, nSame, pSame: nSame / n, error };
+  }
+
+  static getBestBellwetherInfoList(elections, election, pdIdx) {
+    return election.resultList
+      .filter(function (result) {
+        return election.isComplete(result.entID, pdIdx);
+      })
+      .map(function (result) {
+        return Bellwether.getStats(elections, election, result.entID);
+      })
+      .sort(function (a, b) {
+        return a.error - b.error;
+      });
   }
 }

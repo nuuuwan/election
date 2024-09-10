@@ -1,7 +1,7 @@
 import { Stack } from "@mui/material";
 
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { CumResultsTitle } from "../../view/atoms";
+import { EntView } from "../../view/atoms";
 import { ResultBarChart, HistoryView, SummaryView } from ".";
 
 import PartyToVotesStatsView from "../../view/molecules/PartyToVotesView/PartyToVotesStatsView";
@@ -30,7 +30,7 @@ export default function CumResultsView({ entID }) {
       alignItems="center"
       sx={{ m: 1, p: 1, backgroundColor }}
     >
-      <CumResultsTitle entID={entID} />
+      <EntView entID={entID} />
       <SummaryView summary={result.summary} />
 
       <ResultBarChart resultsElection={electionDisplay} entID={entID} />

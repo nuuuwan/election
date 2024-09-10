@@ -46,7 +46,7 @@ export default function PartyView({ partyID, pVotes }) {
   const label = getLabel(partyID, election);
   const { backgroundColor, textColor } = getStyle(party, pVotes);
 
-  const translatedLabel = Translate(label);
+  const translatedLabel = Translate(label) || "";
   const shortLabel = translatedLabel.toUpperCase();
 
   return (

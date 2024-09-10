@@ -2,8 +2,11 @@ import FormatGeneric from "./FormatGeneric";
 
 let FormatPercent = {
   percentAbs(x, minimumFractionDigits = undefined) {
+    if (!x) {
+      return '';
+    }
     if (x < 0.000001) {
-      return "-";
+      return "0.0%";
     }
 
     if (minimumFractionDigits === undefined) {

@@ -49,47 +49,42 @@ function getRenderedHexLabel({
   );
 }
 
-function getNewActivePDIDForED({resultList, pdIdx, entID}) {
+function getNewActivePDIDForED({ resultList, pdIdx, entID }) {
   for (let result of resultList.reverse()) {
     const pdEnt = pdIdx[result.entID];
     if (pdEnt && pdEnt.d.ed_id === entID) {
-      return result.entID
+      return result.entID;
     }
   }
   return null;
 }
 
-function getNewActivePDIDForProvince({resultList, pdIdx, entID}) {
+function getNewActivePDIDForProvince({ resultList, pdIdx, entID }) {
   for (let result of resultList.reverse()) {
     const pdEnt = pdIdx[result.entID];
     if (pdEnt && pdEnt.d.province_id === entID) {
-     return result.entID
+      return result.entID;
     }
   }
- return null;
+  return null;
 }
 
-function getNewActivePDID ({resultList, pdIdx, entID}) {
+function getNewActivePDID({ resultList, pdIdx, entID }) {
   const entType = EntType.fromID(entID);
 
-  switch(entType) {
+  switch (entType) {
     case EntType.PD:
       return entID;
     case EntType.ED:
-      return getNewActivePDIDForED({resultList, pdIdx, entID}) ;
+      return getNewActivePDIDForED({ resultList, pdIdx, entID });
     case EntType.PROVINCE:
-      return getNewActivePDIDForProvince({resultList, pdIdx, entID});
+      return getNewActivePDIDForProvince({ resultList, pdIdx, entID });
     default:
       return null;
   }
 }
 
-function getOnClick({
-  entID,
-  setActivePDID,
-  pdIdx,
-  resultList,
-}) {
+function getOnClick({ entID, setActivePDID, pdIdx, resultList }) {
   return function () {
     const newActivePDID = getNewActivePDID({
       resultList,
@@ -100,15 +95,9 @@ function getOnClick({
       setActivePDID(newActivePDID);
     }
   };
-
 }
 
-function getRenderedItem({
-  entID,
-  points,
-  data,
-  setActivePDID,
-}) {
+function getRenderedItem({ entID, points, data, setActivePDID }) {
   const { election, electionDisplay, pdIdx, allRegionIdx } = data;
   const resultIdx = electionDisplay.resultIdx;
   const resultList = election.resultList;

@@ -7,7 +7,8 @@ const STYLE_LABEL = {
   padding: 0.25,
   margin: 0.25,
   borderRadius: 1,
-  width: "fit-content",
+  width: 24,
+  textAlign: "center",
 };
 
 function getLabel(partyID, election) {

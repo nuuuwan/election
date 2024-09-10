@@ -5,6 +5,7 @@ import { CumResultsTitle } from "../../view/atoms";
 import { ResultBarChart, HistoryView, SummaryView } from ".";
 
 import PartyToVotesStatsView from "../../view/molecules/PartyToVotesView/PartyToVotesStatsView";
+import ResultsReleasedView from "../atoms/ResultsReleasedView";
 
 export default function CumResultsView({ entID }) {
   const data = useDataContext();
@@ -26,6 +27,7 @@ export default function CumResultsView({ entID }) {
 
       <PartyToVotesStatsView partyToVotes={partyToVotes} />
       {elections ? <HistoryView entID={entID} /> : null}
+      <ResultsReleasedView entID={entID} />
     </Stack>
     </Card>
   );

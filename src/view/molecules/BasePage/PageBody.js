@@ -5,6 +5,7 @@ import ColumnCumulativeResult from "./ColumnCumulativeResult";
 import ColumnMap from "./ColumnMap";
 import ColumnProjection from "./ColumnProjection";
 import { useDataContext } from "../../../nonview/core/DataProvider";
+import { IfElse, NoResultsAlert } from "../../atoms";
 
 const STYLE = {
   BOX: { paddingTop: 1, paddingBottom: 20 },
@@ -27,16 +28,12 @@ export default function PageBody() {
   if (!data) {
     return null;
   }
-  const { election, electionDisplay } = data;
+  const { electionDisplay } = data;
 
   return (
     <Box sx={STYLE.BOX}>
-      {electionDisplay.nResults === 0 ? (
-        <Box sx={{ paddingTop: 10, paddingBottom: 20, height: "90vh" }}>
-          <Typography variant="h2">{election.titleLong}</Typography>
-          <Typography variant="h5">{Translate("Await results")}...</Typography>
-        </Box>
-      ) : (
+      <IfElse condition={electionDisplay.nResults === 0}>
+       <NoResultsAlert />
         <Grid container rowSpacing={4}>
           {getColumns().map(function (column, i) {
             return (
@@ -46,7 +43,7 @@ export default function PageBody() {
             );
           })}
         </Grid>
-      )}
+        </IfElse> 
     </Box>
   );
 }

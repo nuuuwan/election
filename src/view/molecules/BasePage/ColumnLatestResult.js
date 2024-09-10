@@ -3,7 +3,6 @@ import { ProvinceUtils } from "../../../nonview/base";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { LatestResultTitle } from "../../../view/atoms";
 import {
-
   PDSelector,
   BellwetherView,
   MultiResultsBarChart,
@@ -18,16 +17,13 @@ export default function ColumnLatestResult() {
   if (!data) {
     return null;
   }
-  const { electionDisplay , elections} = data;
+  const { electionDisplay, elections } = data;
   const activePDID = electionDisplay.finalPDID;
   const activeEDID = activePDID.substring(0, 5);
-  const activeProvinceID = ProvinceUtils.getProvinceIDForEDID(
-    activeEDID
-  )
+  const activeProvinceID = ProvinceUtils.getProvinceIDForEDID(activeEDID);
 
   const result = electionDisplay.resultIdx[activePDID];
   const partyToVotes = result.partyToVotes;
-
 
   return (
     <CustomStack>
@@ -36,9 +32,10 @@ export default function ColumnLatestResult() {
 
       <SummaryView summary={result.summary} />
 
-
-      <MultiResultsBarChart resultsElection={electionDisplay} entIDs={[activePDID, activeEDID, activeProvinceID, 'LK']} />
-
+      <MultiResultsBarChart
+        resultsElection={electionDisplay}
+        entIDs={[activePDID, activeEDID, activeProvinceID, "LK"]}
+      />
 
       <Stack direction="row" gap={4} sx={{ margin: "auto" }}>
         <PartyToVotesStatsView partyToVotes={partyToVotes} />

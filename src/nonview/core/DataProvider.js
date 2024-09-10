@@ -12,7 +12,12 @@ async function getValue(state) {
   const edIdx = await Ent.idxFromType(EntType.ED);
   const provinceIdx = await Ent.idxFromType(EntType.PROVINCE);
 
-  const allRegionIdx = Object.assign({'LK': {name: 'Sri Lanka'}}, pdIdx, edIdx, provinceIdx);
+  const allRegionIdx = Object.assign(
+    { LK: { name: "Sri Lanka" } },
+    pdIdx,
+    edIdx,
+    provinceIdx
+  );
 
   const elections = await Election.listAll();
 

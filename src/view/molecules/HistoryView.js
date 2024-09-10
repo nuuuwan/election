@@ -4,7 +4,7 @@ import { Election, Party } from "../../nonview/core";
 import { PartyView } from "../../view/atoms";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
-const N_DISPLAY = 3;
+
 
 function HistoryViewRow({ entID, electionForRow }) {
   const result = electionForRow.getResult(entID);
@@ -22,7 +22,7 @@ function HistoryViewRow({ entID, electionForRow }) {
     <Stack
       direction="column"
       gap={0}
-      sx={{ color, alignItems: "center", opacity }}
+      sx={{ color, alignItems: "center" }}
     >
       <Typography variant="caption" sx={{ fontSize: "50%" }}>
         {electionForRow.year}
@@ -52,13 +52,12 @@ export default function HistoryView({ entID }) {
     return previousElection.getSubsetElectionByPDIDList(election.pdIDList);
   });
 
-  const displayElections = previousElectionsDisplay
-    .reverse()
-    .slice(0, N_DISPLAY);
+
+
 
   return (
-    <Stack direction="column" gap={1}>
-      {displayElections.map(function (electionForRow, i) {
+    <Stack direction="row" gap={1}>
+      {previousElectionsDisplay.map(function (electionForRow, i) {
         return (
           <HistoryViewRow
             key={i}

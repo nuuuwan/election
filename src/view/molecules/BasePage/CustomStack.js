@@ -5,7 +5,7 @@ export default function CustomStack({ children }) {
     <Stack
       direction="column"
       justifyContent="space-between"
-      alignItems="stretch"
+      alignItems="center"
       alignContent="center"
       gap={1}
     >

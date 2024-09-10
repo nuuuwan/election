@@ -37,10 +37,9 @@ export default function ColumnLatestResult() {
         entIDs={[activePDID, activeEDID, activeProvinceID, "LK"]}
       />
 
-      <Stack direction="row" gap={4} sx={{ margin: "auto" }}>
         <PartyToVotesStatsView partyToVotes={partyToVotes} />
         {elections ? <HistoryView entID={activePDID} /> : null}
-      </Stack>
+
 
       <BellwetherView />
     </CustomStack>

@@ -72,7 +72,7 @@ export default function MultiResultsBarChart({ resultsElection, entIDs }) {
         layout="vertical"
         leftAxis={null}
         width={chartSize}
-        height={chartSize}
+        height={chartSize * 10 / 16}
         sx={{
           [`& .${barLabelClasses.root}`]: {
             fill: "white",

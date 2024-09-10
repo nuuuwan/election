@@ -13,16 +13,16 @@ export default function PartyToVotesView({ entID, chartSize, result }) {
   const partyToVotes = result.partyToVotes;
 
   return (
-    <Stack direction="column" gap={0}>
+    <Stack direction="column" gap={0} alignItems="center">
       <PartyToVotesPieChart
         partyToVotes={partyToVotes}
         chartSize={chartSize}
         title={entID}
       />
-      <Stack direction="row" gap={4} sx={{ margin: "auto" }}>
+
         <PartyToVotesStatsView partyToVotes={partyToVotes} />
         {elections ? <HistoryView entID={entID} /> : null}
-      </Stack>
+
     </Stack>
   );
 }

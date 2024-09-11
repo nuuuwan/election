@@ -14,10 +14,6 @@ const STYLE = {
   },
 };
 
-function getColumns() {
-  return [<ColumnLatestResult />, <ColumnMap />, <ColumnProjection />];
-}
-
 export default function PageBody() {
   const data = useDataContext();
   if (!data) {
@@ -30,13 +26,15 @@ export default function PageBody() {
       <IfElse condition={electionDisplay.nResults === 0}>
         <NoResultsAlert />
         <Grid container>
-          {getColumns().map(function (column, i) {
-            return (
-              <Grid item key={i} xs={12} md={6} xl={4} sx={STYLE.GRID_ITEM}>
-                {column}
+              <Grid item xs={12} md={12} xl={4} sx={STYLE.GRID_ITEM}>
+              <ColumnLatestResult />
               </Grid>
-            );
-          })}
+              <Grid item xs={12} md={6} xl={4} sx={STYLE.GRID_ITEM}>
+              <ColumnMap />
+              </Grid>
+              <Grid item xs={12} md={6} xl={4} sx={STYLE.GRID_ITEM}>
+              <ColumnProjection />
+              </Grid>
         </Grid>
       </IfElse>
     </Box>

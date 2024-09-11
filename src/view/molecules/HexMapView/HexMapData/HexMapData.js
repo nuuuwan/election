@@ -48,22 +48,26 @@ export default class HexMapData {
   }
 
   static getPostalPDMapData() {
-    return HexMapData.offsetData(HEXMAP_DATA_POSTAL_PD, "P", [10, 0]);
+    return HexMapData.offsetData(HEXMAP_DATA_POSTAL_PD, "P", [-5, 2]);
+  }
+
+
+  static getProvinceMapData() {
+    return HexMapData.offsetData(HEXMAP_DATA_PROVINCE, "", [-5, 9]);
   }
 
   static getEDMapData() {
-    return HexMapData.offsetData(HEXMAP_DATA_ED, "", [-3, 2]);
+    return HexMapData.offsetData(HEXMAP_DATA_ED, "", [-5, 14]);
   }
 
-  static getProvinceMapData() {
-    return HexMapData.offsetData(HEXMAP_DATA_PROVINCE, "", [-3, 16]);
-  }
+
   static getMapDataList() {
     return [
-      HexMapData.getPostalPDMapData(),
       HexMapData.getPDMapData(),
-      HexMapData.getEDMapData(),
+      HexMapData.getPostalPDMapData(),
+
       HexMapData.getProvinceMapData(),
+      HexMapData.getEDMapData(),
     ];
   }
 }

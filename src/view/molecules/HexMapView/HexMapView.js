@@ -33,14 +33,20 @@ function getBBox() {
     [Infinity, Infinity, -Infinity, -Infinity]
   );
 
-  return [minX - 4.5, minY - 2, maxX + 4.5, maxY + 4];
+  return [minX - 1, minY - 2, maxX + 1, maxY + 4];
+}
+
+function getViewBoxDims() {
+  const [minX, minY, maxX, maxY] = getBBox();
+  const [width, height] = [maxX - minX, maxY - minY];
+  return [minX, minY, width, height];
 }
 
 function getViewBox() {
-  const [minX, minY, maxX, maxY] = getBBox();
-  const [width, height] = [maxX - minX, maxY - minY];
+  const [minX, minY, width, height] = getViewBoxDims();
   return `${minX} ${minY} ${width} ${height}`;
 }
+
 
 export default function HexMapView() {
   const data = useDataContext();
@@ -52,14 +58,24 @@ export default function HexMapView() {
   const partyToWins = electionDisplay.getPartyToWins();
   const nParties = Object.keys(partyToWins).length;
 
+  const [minX, minY, width, height ] = getViewBoxDims();
+
   return (
     <svg viewBox={getViewBox()} fontFamily={THEME_DATA.typography.fontFamily}>
-      <SVGTitles />
-      <SVGLegendParty x={-3} y={-1} />
-      <SVGLegendPercentages x={-2 + nParties / StyleHexMap.N_COLS} y={-1} />
+      <rect x={minX} y={minY} width={width} height={height} fill={"#fff"} />
+
+
       {HexMapData.getMapDataList().map(function (mapData, i) {
         return <SVGMap key={i} mapData={mapData} />;
       })}
+
+
+<SVGTitles />
+<SVGLegendParty x={9} y={3} />
+<SVGLegendPercentages x={10 + nParties / StyleHexMap.N_COLS} y={3} />
+
     </svg>
   );
 }
+
+

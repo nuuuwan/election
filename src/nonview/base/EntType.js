@@ -27,9 +27,9 @@ export default class EntType {
       case "district":
         return "District";
       case "pd":
-        return "Polling Division";
+        return "P. Division";
       case "ed":
-        return "Electoral District";
+        return "E. District";
       default:
         return this.name;
     }

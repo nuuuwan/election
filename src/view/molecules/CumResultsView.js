@@ -29,7 +29,7 @@ export default function CumResultsView({ entID }) {
       alignItems="center"
       sx={{ m: 1, p: 1, backgroundColor }}
     >
-      <EntView entID={entID} />
+      <EntView entID={entID} useLongName={true} />
       <SummaryView summary={result.summary} />
 
       <ResultBarChart resultsElection={electionDisplay} entID={entID} />

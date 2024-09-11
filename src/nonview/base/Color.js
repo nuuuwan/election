@@ -1,8 +1,8 @@
 import MathX from "./MathX";
 export default class Color {
   static getOpacity(p) {
-    const [minOpacity, maxOpacity] = [0, 1.0];
-    const [minP, maxP] = [0.333, 1.0];
+    const [minOpacity, maxOpacity] = [0.2, 1.0];
+    const [minP, maxP] = [0.5, 0.7];
     const p2 = MathX.forceRange((p - minP) / (maxP - minP), 0, 1);
     const opacity2 = minOpacity + (maxOpacity - minOpacity) * p2;
     const opacity = MathX.forceRange(opacity2, minOpacity, maxOpacity);
@@ -18,7 +18,7 @@ export default class Color {
     if (color === "ghostwhite") {
       return "lightgray";
     }
-    return opacity > 0.5 ? "white" : "black";
+    return opacity > 0.6 ? "white" : "black";
   }
 
   static getRGB(color) {

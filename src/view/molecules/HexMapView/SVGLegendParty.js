@@ -28,9 +28,9 @@ export default function SVGLegendParty({ x, y }) {
           y={y1}
           color={color}
           label={partyID}
-          opacity={1}
+
         />
-        <SVGHexText x={x1} y={y1} color={color} label={partyID} opacity={1} />
+        <SVGHexText x={x1} y={y1} color={"white"} label={partyID} opacity={1} />
       </g>
     );
   });

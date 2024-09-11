@@ -1,7 +1,7 @@
-import { Color, Translate, StringX } from "../../../nonview/base";
+import { Translate, StringX } from "../../../nonview/base";
 
-export default function SVGHexText({ x, y, color, label, opacity, onClick }) {
-  const textColor = Color.getTextColor(color, opacity);
+export default function SVGHexText({ x, y, color, label, onClick }) {
+
   label = label.replace("Postal ", "");
   label = label.replace("-", " ");
   const translatedLabel = Translate(label);
@@ -16,7 +16,7 @@ export default function SVGHexText({ x, y, color, label, opacity, onClick }) {
       textAnchor="middle"
       alignmentBaseline="center"
       dominantBaseline={"center"}
-      fill={textColor}
+      fill={color}
     >
       <title>{translatedLabel}</title>
       {shortLabel}

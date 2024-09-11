@@ -14,6 +14,8 @@ export default function SVGLegendPercentages({ x, y }) {
           Math.cos(Math.PI / 6),
     ];
 
+    const opacity = Color.getOpacity(p);
+
     return (
       <g key={i}>
         <SVGHexPolygon
@@ -22,14 +24,13 @@ export default function SVGLegendPercentages({ x, y }) {
           y={y1}
           color={"black"}
           label={Format.percent(p)}
-          opacity={Color.getOpacity(p)}
+          opacity={opacity}
         />
         <SVGHexText
           x={x1}
           y={y1}
-          color={"primary"}
           label={Format.percent(p)}
-          opacity={1}
+          color={Color.getTextColor("black", opacity)}
         />
       </g>
     );

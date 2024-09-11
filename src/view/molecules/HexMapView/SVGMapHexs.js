@@ -50,8 +50,7 @@ function getRenderedItem({ entID, points, data, setActivePDID }) {
       <SVGHexText
         x={x}
         y={y / Math.cos(Math.PI / 6)}
-        color={color}
-        opacity={opacity}
+        color={Color.getTextColor(color, opacity)}
         label={allRegionIdx[entID].name}
         onClick={onClick}
       />

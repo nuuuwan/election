@@ -13,6 +13,7 @@ import PDSelector from "./PDSelector";
 import PartyToVotesView from "./PartyToVotesView";
 import PlayerControl from "./PlayerControl";
 import PredictionView from "./PredictionView";
+import ProjectedResultPieChart from "./ProjectedResultPieChart";
 import ResultBarChart from "./ResultBarChart";
 import ResultSingleView from "./ResultSingleView";
 import SummaryView from "./SummaryView";
@@ -32,6 +33,7 @@ export {
   PartyToVotesView,
   PlayerControl,
   PredictionView,
+  ProjectedResultPieChart,
   ResultBarChart,
   ResultSingleView,
   SummaryView,

@@ -51,7 +51,6 @@ export default class HexMapData {
     return HexMapData.offsetData(HEXMAP_DATA_POSTAL_PD, "P", [-5, 2]);
   }
 
-
   static getProvinceMapData() {
     return HexMapData.offsetData(HEXMAP_DATA_PROVINCE, "", [-5, 9]);
   }
@@ -59,7 +58,6 @@ export default class HexMapData {
   static getEDMapData() {
     return HexMapData.offsetData(HEXMAP_DATA_ED, "", [-5, 14]);
   }
-
 
   static getMapDataList() {
     return [

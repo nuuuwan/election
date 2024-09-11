@@ -4,7 +4,7 @@ import { FinalOutcome } from "../../../nonview/core";
 
 export default function InsightErrorMarginTooHigh() {
   return (
-    <Box sx={{ maxWidth: "33%" }}>
+    <Box sx={{ maxWidth: 320 }}>
       <Typography variant="h6">{Translate("Error Margin too High")}</Typography>
       <Typography variant="caption">
         {Translate("The voting preferences of")} &gt;

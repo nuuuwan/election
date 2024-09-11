@@ -31,7 +31,6 @@ export default function CumResultsView({ entID }) {
     >
       <EntView entID={entID} useLongName={true} />
       <SummaryView summary={result.summary} />
-
       <ResultBarChart resultsElection={electionDisplay} entID={entID} />
       <PartyToVotesStatsView partyToVotes={result.partyToVotes} />
 

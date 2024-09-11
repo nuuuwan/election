@@ -26,6 +26,9 @@ let FormatPercent = {
   percentVotes(x) {
     let minimumFractionDigits = 0;
     const diffX = Math.abs(x - 0.5);
+    if (diffX === 0) {
+      return "50%";
+    }
     if (diffX < 0.01) {
       minimumFractionDigits = Math.ceil(-Math.log10(diffX) - 2);
     }
@@ -60,5 +63,14 @@ let FormatPercent = {
       fontSizeRange
     );
   },
+
+  percentVotesRange(p1, p2) {
+    const s1 = FormatPercent.percentVotes(p1);
+    const s2 = FormatPercent.percentVotes(p2);
+    if (s1 === s2 || !s2) {
+      return s1;
+    }
+    return s1.substring(0, s1.length - 1) + " - " + s2;
+  }
 };
 export default FormatPercent;

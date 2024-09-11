@@ -47,7 +47,6 @@ function getViewBox() {
   return `${minX} ${minY} ${width} ${height}`;
 }
 
-
 export default function HexMapView() {
   const data = useDataContext();
   if (!data) {
@@ -58,24 +57,19 @@ export default function HexMapView() {
   const partyToWins = electionDisplay.getPartyToWins();
   const nParties = Object.keys(partyToWins).length;
 
-  const [minX, minY, width, height ] = getViewBoxDims();
+  const [minX, minY, width, height] = getViewBoxDims();
 
   return (
     <svg viewBox={getViewBox()} fontFamily={THEME_DATA.typography.fontFamily}>
       <rect x={minX} y={minY} width={width} height={height} fill={"#fff"} />
 
-
       {HexMapData.getMapDataList().map(function (mapData, i) {
         return <SVGMap key={i} mapData={mapData} />;
       })}
 
-
-<SVGTitles />
-<SVGLegendParty x={9} y={3} />
-<SVGLegendPercentages x={10 + nParties / StyleHexMap.N_COLS} y={3} />
-
+      <SVGTitles />
+      <SVGLegendParty x={9} y={3} />
+      <SVGLegendPercentages x={10 + nParties / StyleHexMap.N_COLS} y={3} />
     </svg>
   );
 }
-
-

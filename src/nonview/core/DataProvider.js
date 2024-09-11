@@ -27,7 +27,14 @@ async function getValueElections({ electionType, date }) {
   return { elections, election };
 }
 
-async function getValue({ electionType, date, activePDID, nResultsDisplay, noScroll, lang }) {
+async function getValue({
+  electionType,
+  date,
+  activePDID,
+  nResultsDisplay,
+  noScroll,
+  lang,
+}) {
   const { pdIdx, edIdx, provinceIdx, allRegionIdx } = await getValueEnts();
 
   const { elections, election } = await getValueElections({
@@ -62,7 +69,10 @@ async function getValue({ electionType, date, activePDID, nResultsDisplay, noScr
     allRegionIdx,
     activePDID: activePDIDDerived,
     nResultsDisplay: nResultsDisplayDerived,
-    electionType, date, noScroll, lang,
+    electionType,
+    date,
+    noScroll,
+    lang,
   };
 }
 

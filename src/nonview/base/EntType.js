@@ -4,7 +4,7 @@ export default class EntType {
   }
 
   get shortName() {
-    switch(this.name) {
+    switch (this.name) {
       case "country":
         return "";
       case "province":
@@ -16,11 +16,10 @@ export default class EntType {
       default:
         return this.name.toUpperCase();
     }
-
   }
 
   get longName() {
-    switch(this.name) {
+    switch (this.name) {
       case "country":
         return "";
       case "province":
@@ -35,7 +34,6 @@ export default class EntType {
         return this.name;
     }
   }
-
 
   static fromIDLK(entID) {
     if (entID.substring(0, 2) !== "LK") {

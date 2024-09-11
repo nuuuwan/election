@@ -4,14 +4,38 @@ export default class EntType {
   }
 
   get shortName() {
-    if (this.name === "country") {
-      return "";
+    switch(this.name) {
+      case "country":
+        return "";
+      case "province":
+        return "Pr.";
+      case "pd":
+        return "PD";
+      case "ed":
+        return "ED";
+      default:
+        return this.name.toUpperCase();
     }
-    if (this.name === "province") {
-      return "Pr.";
-    }
-    return this.name.toUpperCase();
+
   }
+
+  get longName() {
+    switch(this.name) {
+      case "country":
+        return "";
+      case "province":
+        return "Province";
+      case "district":
+        return "District";
+      case "pd":
+        return "Polling Division";
+      case "ed":
+        return "Electoral District";
+      default:
+        return this.name;
+    }
+  }
+
 
   static fromIDLK(entID) {
     if (entID.substring(0, 2) !== "LK") {

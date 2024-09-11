@@ -7,10 +7,8 @@ Object.assign(
   Format,
   FormatGeneric,
 
-
   FormatInt,
-  FormatPercent,
-
+  FormatPercent
 );
 
 export default Format;

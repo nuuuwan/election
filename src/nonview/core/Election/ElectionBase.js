@@ -1,7 +1,5 @@
 import { Time, Translate } from "../../base/index.js";
 
-
-
 export default class ElectionBase {
   static URL_BASE =
     "https://raw.githubusercontent.com/nuuuwan/gig-data/master/gig2_custom_ec_only";

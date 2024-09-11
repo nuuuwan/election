@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { Bellwether,  } from "../../nonview/core";
+import { Bellwether } from "../../nonview/core";
 import EntView from "../atoms/EntView";
 
 import { PartyView } from "../atoms";
@@ -13,8 +13,7 @@ function BestBellwetherItem({ info }) {
   }
   const { electionDisplay } = data;
 
-  const winningPartyID =
-    electionDisplay.resultIdx[info.entID].winningPartyID;
+  const winningPartyID = electionDisplay.resultIdx[info.entID].winningPartyID;
   const color = electionDisplay.resultIdx[info.entID].color;
 
   return (
@@ -58,7 +57,10 @@ export default function BestBellwetherView() {
   }
 
   return (
-    <Stack direction="column" sx={{maxWidth: 240, margin: "auto", alignItems:"left"}}>
+    <Stack
+      direction="column"
+      sx={{ maxWidth: 240, margin: "auto", alignItems: "left" }}
+    >
       <Typography variant="h6">
         {Translate("Top Bellwether Results")}
       </Typography>

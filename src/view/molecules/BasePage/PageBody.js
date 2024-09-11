@@ -26,15 +26,15 @@ export default function PageBody() {
       <IfElse condition={electionDisplay.nResults === 0}>
         <NoResultsAlert />
         <Grid container>
-              <Grid item xs={12} md={12} xl={4} sx={STYLE.GRID_ITEM}>
-              <ColumnLatestResult />
-              </Grid>
-              <Grid item xs={12} md={6} xl={4} sx={STYLE.GRID_ITEM}>
-              <ColumnMap />
-              </Grid>
-              <Grid item xs={12} md={6} xl={4} sx={STYLE.GRID_ITEM}>
-              <ColumnProjection />
-              </Grid>
+          <Grid item xs={12} md={12} xl={4} sx={STYLE.GRID_ITEM}>
+            <ColumnLatestResult />
+          </Grid>
+          <Grid item xs={12} md={6} xl={4} sx={STYLE.GRID_ITEM}>
+            <ColumnMap />
+          </Grid>
+          <Grid item xs={12} md={6} xl={4} sx={STYLE.GRID_ITEM}>
+            <ColumnProjection />
+          </Grid>
         </Grid>
       </IfElse>
     </Box>

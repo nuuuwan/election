@@ -23,13 +23,7 @@ export default function SVGLegendParty({ x, y }) {
 
     return (
       <g key={partyID}>
-        <SVGHexPolygon
-          x={x1}
-          y={y1}
-          color={color}
-          label={partyID}
-
-        />
+        <SVGHexPolygon x={x1} y={y1} color={color} label={partyID} />
         <SVGHexText x={x1} y={y1} color={"white"} label={partyID} opacity={1} />
       </g>
     );

@@ -4,7 +4,7 @@ import { FinalOutcomeView, PredictionView } from "..";
 
 import { ProjectionTitle } from "../../atoms";
 import BestBellwetherView from "../BestBellwetherView";
-import { Grid,  } from "@mui/material";
+import { Grid } from "@mui/material";
 
 export default function ColumnProjection() {
   return (
@@ -12,12 +12,12 @@ export default function ColumnProjection() {
       <ProjectionTitle />
 
       <PredictionView />
-      <Grid container >
-        <Grid item xs={12} md={6} xl={6} >
-        <FinalOutcomeView />
+      <Grid container>
+        <Grid item xs={12} md={6} xl={6}>
+          <FinalOutcomeView />
         </Grid>
-        <Grid item xs={12} md={6} xl={6} >
-        <BestBellwetherView />
+        <Grid item xs={12} md={6} xl={6}>
+          <BestBellwetherView />
         </Grid>
       </Grid>
     </CustomStack>

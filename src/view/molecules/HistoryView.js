@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import { Format } from "../../nonview/base";
-import { Election,  } from "../../nonview/core";
+import { Election } from "../../nonview/core";
 import { PartyView } from "../../view/atoms";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
@@ -17,8 +17,6 @@ function HistoryViewRow({ entID, electionForRow }) {
 
   const pWinner = result.partyToVotes.pWinner;
   const color = result.color;
-
-
 
   return (
     <Stack direction="column" gap={0} sx={{ color, alignItems: "center" }}>

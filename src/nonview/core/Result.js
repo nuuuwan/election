@@ -1,7 +1,6 @@
 import Summary from "./Summary";
 import PartyToVotes from "./PartyToVotes";
 
-
 export default class Result {
   constructor(entID, summary, partyToVotes) {
     this.entID = entID;
@@ -33,6 +32,6 @@ export default class Result {
   }
 
   get pWinner() {
-    return this.partyToVotes.pWinner
+    return this.partyToVotes.pWinner;
   }
 }

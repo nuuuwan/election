@@ -1,7 +1,7 @@
-import {  Party } from "../../nonview/core";
+import { Party } from "../../nonview/core";
 import { Color, Format } from "../../nonview/base";
 
-import { Box, } from "@mui/material";
+import { Box } from "@mui/material";
 import { THEME_DATA } from "../_constants/THEME";
 import { BarChart, barLabelClasses } from "@mui/x-charts";
 import { useDataContext } from "../../nonview/core/DataProvider";
@@ -24,7 +24,6 @@ function getAxis() {
     },
   ];
 }
-
 
 function getStyle() {
   return {
@@ -51,11 +50,9 @@ export default function ProjectedResultBarChart() {
   const pVotesExtra = uncertainVotes / totalVotes;
 
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
-  
 
-  const getBarLabel = function() {
+  const getBarLabel = function () {
     return function (item, context) {
-      
       const pVotes = item.value;
       if (pVotes === pVotesExtra) {
         return "";
@@ -64,23 +61,18 @@ export default function ProjectedResultBarChart() {
       if (pVotes < 0.2) {
         return "";
       }
-  
+
       return Format.percentVotesRange(pVotes, pVotes + pVotesExtra);
     };
-  }
-  
-
+  };
 
   const series = entries.reduce(function (series, [partyID, votes]) {
     const party = Party.fromID(partyID);
     if (party.isNonParty) {
       return series;
     }
-   
+
     const pVotes = votes / totalVotes;
-
-
-    
 
     series.push({
       data: [pVotes],
@@ -91,24 +83,22 @@ export default function ProjectedResultBarChart() {
     const colorWithAlpha = Color.getColorWithAlpha(party.color, 0.5);
     series.push({
       data: [pVotesExtra],
-      label: partyID + '-Max',
+      label: partyID + "-Max",
       color: colorWithAlpha,
       stack: partyID,
     });
-
 
     return series;
   }, []);
 
   const valueFormatter = function (value) {
-
-     return Format.percentVotes(value);
+    return Format.percentVotes(value);
   };
 
   return (
     <Box sx={{ p: 0, m: 0 }}>
       <BarChart
-        xAxis={[{label: "% Votes", valueFormatter}]}
+        xAxis={[{ label: "% Votes", valueFormatter }]}
         yAxis={getAxis()}
         series={series}
         barLabel={getBarLabel()}

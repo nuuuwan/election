@@ -1,6 +1,6 @@
 import CustomStack from "./CustomStack";
 
-import { FinalOutcomeView,  SummaryView } from "..";
+import { FinalOutcomeView, SummaryView } from "..";
 
 import { ProjectionTitle } from "../../atoms";
 import BestBellwetherView from "../BestBellwetherView";
@@ -16,33 +16,25 @@ export default function ColumnProjection() {
   if (!data) {
     return null;
   }
-  const {projectedElection} = data;
+  const { projectedElection } = data;
   const resultLK = projectedElection.resultLK;
-
 
   return (
     <CustomStack>
       <ProjectionTitle />
 
-
       <SummaryView summary={resultLK.summary} />
       <ProjectedResultBarChart />
       <PartyToVotesStatsView partyToVotes={resultLK.partyToVotes} />
 
-      <Grid container >
-      <Grid item xs={12} md={6} >
-          
-
-
-
-      <FinalOutcomeView />
-
-
+      <Grid container>
+        <Grid item xs={12} md={6}>
+          <FinalOutcomeView />
         </Grid>
-      
-        <Grid item xs={12} md={6} >
 
-      <BestBellwetherView /></Grid>
+        <Grid item xs={12} md={6}>
+          <BestBellwetherView />
+        </Grid>
       </Grid>
     </CustomStack>
   );

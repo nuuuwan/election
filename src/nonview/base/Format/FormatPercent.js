@@ -71,6 +71,6 @@ let FormatPercent = {
       return s1;
     }
     return s1.substring(0, s1.length - 1) + " - " + s2;
-  }
+  },
 };
 export default FormatPercent;

@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { EntType, Translate } from "../../nonview/base";
 
-export default function EntView({ entID }) {
+export default function EntView({ entID , useLongName=false}) {
   const data = useDataContext();
   if (!data) {
     return null;
@@ -12,9 +12,11 @@ export default function EntView({ entID }) {
   const ent = allRegionIdx[entID];
   const entType = EntType.fromID(entID);
 
+  const label = useLongName ? entType.longName : entType.shortName;
+
   return (
     <Typography variant="h6">
-      {Translate(ent.name)} {Translate(entType.shortName)}
+      {Translate(ent.name)} <span style={{fontSize: "67%", opacity: 0.5}}>{Translate(label)}</span>
     </Typography>
   );
 }

@@ -24,7 +24,7 @@ export default class Result {
     return new Result(entID, summary, partyToVotes);
   }
 
-  get winningPartyColor() {
-    return Party.fromID(this.partyToVotes.winningPartyID).color;
+  get color() {
+    return this.partyToVotes.color;
   }
 }

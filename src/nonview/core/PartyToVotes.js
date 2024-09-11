@@ -1,5 +1,6 @@
 import Summary from "./Summary.js";
 import { MathX } from "../base";
+import Party from "./Party.js";
 
 export default class PartyToVotes {
   static NON_PARTY_KEYS = [...Summary.KEYS, "entity_id"];
@@ -48,6 +49,10 @@ export default class PartyToVotes {
 
   get winningPartyID() {
     return Object.keys(this.partyToVotesSorted)[0];
+  }
+
+  get color() {
+    return Party.fromID(this.winningPartyID).color;
   }
 
   get pWinner() {

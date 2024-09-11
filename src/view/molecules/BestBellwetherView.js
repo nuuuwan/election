@@ -15,25 +15,27 @@ function BestBellwetherRow({ info }) {
 
   const winningPartyID = electionDisplay.resultIdx[info.entID].winningPartyID;
 
-
   return (
-    <tr style={{textAlign: "left"}}>
-     {[
-      <PartyView partyID={winningPartyID} />,
-     
-      <Typography variant="caption" component="span">
-        {Format.percent(info.error)}
-      </Typography>,
-     
-      <Typography variant="caption" component="span">
-        {`${info.nSame}/${info.n}`}
-      </Typography>,
-      
-      <EntView entID={info.entID} />,
-     ].map(function(item, i) {
-      return <td key={i} style={{padding: 2}}>{item}</td>;
-     })}
-      
+    <tr style={{ textAlign: "left" }}>
+      {[
+        <PartyView partyID={winningPartyID} />,
+
+        <Typography variant="caption" component="span">
+          {Format.percent(info.error)}
+        </Typography>,
+
+        <Typography variant="caption" component="span">
+          {`${info.nSame}/${info.n}`}
+        </Typography>,
+
+        <EntView entID={info.entID} />,
+      ].map(function (item, i) {
+        return (
+          <td key={i} style={{ padding: 2 }}>
+            {item}
+          </td>
+        );
+      })}
     </tr>
   );
 }
@@ -64,10 +66,7 @@ export default function BestBellwetherView() {
   }
 
   return (
-    <Stack
-      direction="column"
-  sx={{alignItems: "center" }}
-    >
+    <Stack direction="column" sx={{ alignItems: "center" }}>
       <Typography variant="h6">
         {Translate("Top Bellwether Results")}
       </Typography>
@@ -76,10 +75,10 @@ export default function BestBellwetherView() {
       </Typography>
       <table>
         <tbody>
-      {bestBellwetherInfoList.map(function (info, i) {
-        return <BestBellwetherRow key={i} info={info} />;
-      })}
-      </tbody>
+          {bestBellwetherInfoList.map(function (info, i) {
+            return <BestBellwetherRow key={i} info={info} />;
+          })}
+        </tbody>
       </table>
     </Stack>
   );

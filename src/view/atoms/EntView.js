@@ -13,7 +13,7 @@ export default function EntView({ entID }) {
   const entType = EntType.fromID(entID);
 
   return (
-    <Typography variant="h6" >
+    <Typography variant="h6">
       {Translate(ent.name)} {Translate(entType.shortName)}
     </Typography>
   );

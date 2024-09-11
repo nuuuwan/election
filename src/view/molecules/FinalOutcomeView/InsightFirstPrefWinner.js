@@ -6,7 +6,7 @@ export default function InsightFirstPrefWinner({ winningPartyID }) {
   return (
     <Box>
       <Typography variant="h6">
-        <PartyView partyID={winningPartyID} />{" "}
+        <PartyView partyID={winningPartyID} />
         {Translate("wins on 1st preferences")}.
       </Typography>
       <Confidence />

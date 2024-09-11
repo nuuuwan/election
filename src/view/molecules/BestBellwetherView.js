@@ -58,7 +58,7 @@ export default function BestBellwetherView() {
   }
 
   return (
-    <Stack direction="column" alignItems="left" gap={0}>
+    <Stack direction="column" sx={{maxWidth: 240, margin: "auto", alignItems:"left"}}>
       <Typography variant="h6">
         {Translate("Top Bellwether Results")}
       </Typography>

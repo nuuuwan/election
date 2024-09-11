@@ -4,7 +4,7 @@ import { FinalOutcomeView, PredictionView } from "..";
 
 import { ProjectionTitle } from "../../atoms";
 import BestBellwetherView from "../BestBellwetherView";
-import { Grid, Stack } from "@mui/material";
+import { Grid,  } from "@mui/material";
 
 export default function ColumnProjection() {
   return (

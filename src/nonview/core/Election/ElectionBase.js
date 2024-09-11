@@ -1,6 +1,6 @@
 import { Time, Translate } from "../../base/index.js";
 
-import Party from "../Party.js";
+
 
 export default class ElectionBase {
   static URL_BASE =

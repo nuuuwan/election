@@ -1,5 +1,5 @@
 import { Color } from "../../../nonview/base";
-import { Party, ActivePDUtils } from "../../../nonview/core";
+import {  ActivePDUtils } from "../../../nonview/core";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { useBasePageHandlerContext } from "../BasePage/BasePageHandlerProvider";
 import SVGHexPolygonGroup from "./SVGHexPolygonGroup";
@@ -25,8 +25,8 @@ function getRenderedItem({ entID, points, data, setActivePDID }) {
   let color = "ghostwhite";
   let opacity = 1;
   if (electionDisplay.isComplete(entID, pdIdx) && result) {
-    color = Party.fromID(result.partyToVotes.winningPartyID).color;
-    opacity = Color.getOpacity(result.partyToVotes.pWinner);
+    color = result.color;
+    opacity = Color.getOpacity(result.pWinner);
   }
 
   const onClick = getOnClick({

@@ -12,12 +12,12 @@ function buildRenderMenuItemInner(resultIdx, edIdx, variant1, variant2) {
       return null;
     }
 
-    const colorPD = Party.fromID(result.partyToVotes.winningPartyID).color;
+    const colorPD = result.color;
 
     const edID = pd.id.substring(0, 5);
     const ed = edIdx[edID];
     const edResult = resultIdx[edID];
-    const colorED = Party.fromID(edResult.partyToVotes.winningPartyID).color;
+    const colorED = edResult.color;
 
     return (
       <Stack direction="row" gap={0.5} sx={{ alignItems: "center" }}>

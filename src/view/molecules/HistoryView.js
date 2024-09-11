@@ -11,13 +11,12 @@ function HistoryViewRow({ entID, electionForRow }) {
   }
 
   const winningPartyID = result.partyToVotes.winningPartyID;
-
   if (!winningPartyID) {
     return null;
   }
 
   const pWinner = result.partyToVotes.pWinner;
-  const color = Party.fromID(winningPartyID).color;
+  const color = result.color;
   const opacity = Color.getOpacity(pWinner);
   const textColor = Color.getTextColor(color, opacity);
 

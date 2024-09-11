@@ -6,7 +6,7 @@ import EntView from "../atoms/EntView";
 import { PartyView } from "../atoms";
 import { Format, Translate } from "../../nonview/base";
 
-function BestBellwetherItem({ info }) {
+function BestBellwetherRow({ info }) {
   const data = useDataContext();
   if (!data) {
     return null;
@@ -14,20 +14,27 @@ function BestBellwetherItem({ info }) {
   const { electionDisplay } = data;
 
   const winningPartyID = electionDisplay.resultIdx[info.entID].winningPartyID;
-  const color = electionDisplay.resultIdx[info.entID].color;
+
 
   return (
-    <Stack direction="row" gap={1} alignItems="center" sx={{ color }}>
-      <PartyView partyID={winningPartyID} />
+    <tr style={{textAlign: "left"}}>
+     {[
+      <PartyView partyID={winningPartyID} />,
+     
       <Typography variant="caption" component="span">
         {Format.percent(info.error)}
-      </Typography>
+      </Typography>,
+     
       <Typography variant="caption" component="span">
         {`${info.nSame}/${info.n}`}
-      </Typography>
-
-      <EntView entID={info.entID} />
-    </Stack>
+      </Typography>,
+      
+      <EntView entID={info.entID} />,
+     ].map(function(item, i) {
+      return <td key={i} style={{padding: 2}}>{item}</td>;
+     })}
+      
+    </tr>
   );
 }
 
@@ -59,17 +66,21 @@ export default function BestBellwetherView() {
   return (
     <Stack
       direction="column"
-      sx={{ maxWidth: 240, margin: "auto", alignItems: "left" }}
+  sx={{alignItems: "center" }}
     >
       <Typography variant="h6">
         {Translate("Top Bellwether Results")}
       </Typography>
       <Typography variant="caption" color="secondary">
-        {Translate("Ordered by Error")}
+        {Translate("Ordered by Deviation from Final National Result")}
       </Typography>
+      <table>
+        <tbody>
       {bestBellwetherInfoList.map(function (info, i) {
-        return <BestBellwetherItem key={i} info={info} />;
+        return <BestBellwetherRow key={i} info={info} />;
       })}
+      </tbody>
+      </table>
     </Stack>
   );
 }

@@ -4,7 +4,7 @@ import { useDataContext } from "../../nonview/core/DataProvider";
 import { EntView } from "../../view/atoms";
 import { ResultBarChart, HistoryView, SummaryView } from ".";
 
-import PartyToVotesStatsView from "../../view/molecules/PartyToVotesView/PartyToVotesStatsView";
+import PartyToVotesStatsView from "../../view/molecules/PartyToVotesStatsView";
 import ResultsReleasedView from "../atoms/ResultsReleasedView";
 
 import { Color, EntType } from "../../nonview/base";

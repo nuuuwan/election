@@ -1,12 +1,11 @@
 import CustomStack from "./CustomStack";
 
-import { FinalOutcomeView, SummaryView } from "..";
+import { FinalOutcomeView, PartyToVotesStatsView, SummaryView } from "..";
 
 import { ProjectionTitle } from "../../atoms";
 import BestBellwetherView from "../BestBellwetherView";
 
 import ProjectedResultBarChart from "../ProjectedResultPieChart";
-import PartyToVotesStatsView from "../PartyToVotesView/PartyToVotesStatsView";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 
 import { Grid } from "@mui/material";

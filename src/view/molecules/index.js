@@ -10,12 +10,10 @@ import HexMapView from "./HexMapView";
 import HistoryView from "./HistoryView";
 import LanguageSelector from "./LanguageSelector";
 import PDSelector from "./PDSelector";
-import PartyToVotesView from "./PartyToVotesView";
+import PartyToVotesStatsView from "./PartyToVotesStatsView";
 import PlayerControl from "./PlayerControl";
-import PredictionView from "./PredictionView";
 import ProjectedResultPieChart from "./ProjectedResultPieChart";
 import ResultBarChart from "./ResultBarChart";
-import ResultSingleView from "./ResultSingleView";
 import SummaryView from "./SummaryView";
 
 export {
@@ -30,11 +28,9 @@ export {
   HistoryView,
   LanguageSelector,
   PDSelector,
-  PartyToVotesView,
+  PartyToVotesStatsView,
   PlayerControl,
-  PredictionView,
   ProjectedResultPieChart,
   ResultBarChart,
-  ResultSingleView,
   SummaryView,
 };

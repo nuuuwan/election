@@ -1,10 +1,10 @@
-import {  Stack, Typography } from "@mui/material";
+import {  Grid, Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CumResultsView from "./CumResultsView";
 
 import { CustomPagination } from "../atoms";
 
-const N_DISPLAY = 3;
+const N_DISPLAY = 6;
 
 export default function LatestResultListView() {
   const data = useDataContext();
@@ -26,12 +26,18 @@ export default function LatestResultListView() {
   return (
     <Stack direction="column" alignItems="center">
       <Typography variant="h4">Results</Typography>
-
       <CustomPagination />
 
+      <Grid container spacing={1}>
       {resultListDisplay.map(function (result) {
-        return <CumResultsView key={result.entID} entID={result.entID} />;
+ 
+        return (
+          <Grid item xs={12} md={6} xl={6}  key={result.entID} >
+            <CumResultsView entID={result.entID} />
+          </Grid> 
+        );
       })}
+      </Grid>
     </Stack>
   );
 }

@@ -1,10 +1,11 @@
-import { Stack, Typography } from "@mui/material";
+import { Card, Stack, Typography } from "@mui/material";
 
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { EntView } from "../../view/atoms";
 import { ResultBarChart, HistoryView, SummaryView } from ".";
 
 import PartyToVotesStatsView from "../../view/molecules/PartyToVotesStatsView";
+import { Color } from "../../nonview/base";
 
 export default function CumResultsView({ entID }) {
   const data = useDataContext();
@@ -15,16 +16,20 @@ export default function CumResultsView({ entID }) {
 
   const result = election.resultIdx[entID];
   const resultNum = election.pdResultList.indexOf(result);
-  const color = result.color;
 
+  const opacity = Color.getOpacity(result.pWinner);
+  const backgroundColor = Color.getColorWithAlpha(result.color, opacity);
+  const color = Color.getTextColor(backgroundColor, opacity);
   return (
+    <Card  sx={{ m: 1, p:1}}>
+   
     <Stack
       direction="column"
       gap={0.5}
       alignItems="center"
-      sx={{ m: 0.5, p: 0.5 }}
+     
     >
-      <Stack direction="row" gap={1} alignItems="center" sx={{ color }}>
+      <Stack direction="row" gap={1} sx={{ backgroundColor, color, width: "100%", p:1 , alignItems:"center" , justifyContent:"center"}}>
         <Typography variant="body1">{resultNum + 1}.</Typography>
         <EntView entID={entID} useLongName={true} />
       </Stack>
@@ -35,5 +40,7 @@ export default function CumResultsView({ entID }) {
 
       {elections ? <HistoryView entID={entID} /> : null}
     </Stack>
+    </Card>
+   
   );
 }

@@ -29,6 +29,7 @@ export default function LatestResultListView() {
       <Typography variant="h4">Results</Typography>
 
       <Pagination
+        key={nResultsDisplay}
         count={n}
         defaultPage={nResultsDisplay}
         siblingCount={1}

@@ -11,7 +11,8 @@ export default function LatestResultListView() {
     }
     const { electionDisplay } = data;
    const resultList = electionDisplay.resultList;
-    const resultListDisplay = resultList.reverse().slice(0, N_DISPLAY);
+   const n = resultList.length;
+    const resultListDisplay = resultList.slice(n-N_DISPLAY, n).reverse();
     return (
       <Box>
         {resultListDisplay.map(function (result) {

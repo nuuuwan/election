@@ -1,14 +1,15 @@
-import CustomStack from "./CustomStack";
-
-import { FinalOutcomeView, PartyToVotesStatsView, SummaryView } from "..";
-
-import { ProjectionTitle } from "../../atoms";
-import BestBellwetherView from "../BestBellwetherView";
-
-import ProjectedResultBarChart from "../ProjectedResultPieChart";
-import { useDataContext } from "../../../nonview/core/DataProvider";
-
 import { Grid } from "@mui/material";
+
+import { useDataContext } from "../../../nonview/core/DataProvider";
+import { ProjectionTitle } from "../../../view/atoms";
+import {
+  BestBellwetherView,
+  FinalOutcomeView,
+  PartyToVotesStatsView,
+  SummaryView,
+  ProjectedResultBarChart,
+} from "../../../view/molecules";
+import CustomStack from "./CustomStack";
 
 export default function ColumnProjection() {
   const data = useDataContext();

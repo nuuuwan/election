@@ -1,8 +1,6 @@
 import { Box, Stack } from "@mui/material";
-
-import { ElectionSelector, LanguageSelector } from "..";
-
 import { useDataContext } from "../../../nonview/core/DataProvider";
+import { ElectionSelector, LanguageSelector } from "../../../view/atoms";
 
 const STYLE_PAGE_HEADER = {
   SELECTOR: {

@@ -1,6 +1,6 @@
 import { Button, Stack } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { useBasePageHandlerContext } from "./BasePage/BasePageHandlerProvider";
+import { useBasePageHandlerContext } from "../../view/pages/BasePage/BasePageHandlerProvider";
 
 const STYLE_LANGUAGE_SELECTOR = {
   BOX: {},

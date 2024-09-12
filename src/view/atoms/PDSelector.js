@@ -2,7 +2,7 @@ import { Stack, Typography } from "@mui/material";
 import { CustomSelect } from "../atoms";
 import { Translate } from "../../nonview/base";
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { useBasePageHandlerContext } from "./BasePage/BasePageHandlerProvider";
+import { useBasePageHandlerContext } from "../../view/pages/BasePage/BasePageHandlerProvider";
 
 function buildRenderMenuItemInner(resultIdx, edIdx, variant1, variant2) {
   const renderMenuItemInner = function (pd, i) {

@@ -4,7 +4,7 @@ import { useState } from "react";
 import CustomSlider from "./CustomSlider";
 import BottomNavigationCustom from "./BottomNavigationCustom";
 import { useDataContext } from "../../../nonview/core/DataProvider";
-import { useBasePageHandlerContext } from "../BasePage/BasePageHandlerProvider";
+import { useBasePageHandlerContext } from "../../../view/pages/BasePage/BasePageHandlerProvider";
 
 export default function PlayerControl({ nResultsDisplay }) {
   const [nResultsDisplayUpdated, setNResultsDisplayUpdated] =

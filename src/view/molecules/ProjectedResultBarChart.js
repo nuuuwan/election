@@ -88,9 +88,9 @@ export default function ProjectedResultBarChart() {
         label: partyID + "-Max",
         color: colorWithAlpha,
         stack: partyID,
-      });  
+      });
     }
-    
+
     return series;
   }, []);
 

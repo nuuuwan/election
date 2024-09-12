@@ -6,9 +6,6 @@ import { ResultBarChart, HistoryView, SummaryView } from ".";
 
 import PartyToVotesStatsView from "../../view/molecules/PartyToVotesStatsView";
 
-
-
-
 export default function CumResultsView({ entID }) {
   const data = useDataContext();
   if (!data) {
@@ -27,11 +24,11 @@ export default function CumResultsView({ entID }) {
       alignItems="center"
       sx={{ m: 0.5, p: 0.5 }}
     >
-      <Stack direction="row" gap={1} alignItems="center" sx={{color}}> 
-      <Typography variant="body1">{resultNum + 1}.</Typography>
-      <EntView entID={entID} useLongName={true} />
+      <Stack direction="row" gap={1} alignItems="center" sx={{ color }}>
+        <Typography variant="body1">{resultNum + 1}.</Typography>
+        <EntView entID={entID} useLongName={true} />
       </Stack>
-      
+
       <SummaryView summary={result.summary} />
       <ResultBarChart resultsElection={election} entID={entID} />
       <PartyToVotesStatsView partyToVotes={result.partyToVotes} />

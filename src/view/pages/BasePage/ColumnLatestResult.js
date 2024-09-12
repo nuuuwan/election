@@ -1,10 +1,12 @@
 import { Grid } from "@mui/material";
 import { ProvinceUtils } from "../../../nonview/base";
 import { useDataContext } from "../../../nonview/core/DataProvider";
-import { LatestResultTitle, PDSelector, CustomStack } from "../../../view/atoms";
+import {
+  LatestResultTitle,
+  PDSelector,
+  CustomStack,
+} from "../../../view/atoms";
 import { BellwetherView, CumResultsView } from "../../../view/molecules";
-
-
 
 export default function ColumnLatestResult() {
   const data = useDataContext();

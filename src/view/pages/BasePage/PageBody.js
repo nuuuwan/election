@@ -1,7 +1,11 @@
 import { Box, Grid } from "@mui/material";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { IfElse, MapTitle, NoResultsAlert, CustomStack } from "../../atoms";
-import { ProjectionView, HexMapView, LatestResultListView } from "../../molecules";
+import {
+  ProjectionView,
+  HexMapView,
+  LatestResultListView,
+} from "../../molecules";
 
 const STYLE = {
   BOX: { paddingTop: 1, paddingBottom: 20 },
@@ -26,10 +30,10 @@ export default function PageBody() {
             <LatestResultListView />
           </Grid>
           <Grid item xs={12} md={6} xl={4} sx={STYLE.GRID_ITEM}>
-          <CustomStack>
-      <MapTitle />
-      <HexMapView />
-    </CustomStack>
+            <CustomStack>
+              <MapTitle />
+              <HexMapView />
+            </CustomStack>
           </Grid>
           <Grid item xs={12} md={6} xl={4} sx={STYLE.GRID_ITEM}>
             <ProjectionView />

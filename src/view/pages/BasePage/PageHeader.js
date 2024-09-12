@@ -29,11 +29,7 @@ export default function PageHeader() {
         backgroundColor: color,
       })}
     >
-      <Stack
-        direction="row"
-        gap={1}
-        alignItems="center"
-      >
+      <Stack direction="row" gap={1} alignItems="center">
         <ElectionSelector colorElection={projectedElection} />
         <LanguageSelector />
       </Stack>

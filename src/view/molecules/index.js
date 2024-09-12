@@ -7,9 +7,8 @@ import HexMapView from "./HexMapView";
 import HistoryView from "./HistoryView";
 import LatestResultListView from "./LatestResultListView";
 import PartyToVotesStatsView from "./PartyToVotesStatsView";
-
 import ProjectedResultBarChart from "./ProjectedResultBarChart";
-import ProjectionView  from "./ProjectionView";
+import ProjectionView from "./ProjectionView";
 import ResultBarChart from "./ResultBarChart";
 import SummaryView from "./SummaryView";
 
@@ -22,7 +21,6 @@ export {
   HistoryView,
   LatestResultListView,
   PartyToVotesStatsView,
-
   ProjectedResultBarChart,
   ProjectionView,
   ResultBarChart,

@@ -2,7 +2,6 @@ import { Box } from "@mui/material";
 
 import { CitationsView } from "../../../view/atoms";
 
-
 const STYLE_FOOTER = {
   BOX: {
     position: "fixed",
@@ -16,12 +15,9 @@ const STYLE_FOOTER = {
 };
 
 export default function PageFooter() {
-
-
   return (
     <Box sx={STYLE_FOOTER.BOX}>
       <CitationsView />
-
     </Box>
   );
 }

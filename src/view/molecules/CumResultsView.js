@@ -5,7 +5,7 @@ import { EntView } from "../../view/atoms";
 import { ResultBarChart, HistoryView, SummaryView } from ".";
 
 import PartyToVotesStatsView from "../../view/molecules/PartyToVotesStatsView";
-import ResultsReleasedView from "../atoms/ResultsReleasedView";
+
 
 
 
@@ -14,25 +14,26 @@ export default function CumResultsView({ entID }) {
   if (!data) {
     return null;
   }
-  const { electionDisplay, elections } = data;
+  const { election, elections } = data;
 
-  const result = electionDisplay.resultIdx[entID];
-  const resultNum = electionDisplay.pdResultList.indexOf(result);
+  const result = election.resultIdx[entID];
+  const resultNum = election.pdResultList.indexOf(result);
+  const color = result.color;
 
   return (
     <Stack
       direction="column"
-      gap={1}
+      gap={0.5}
       alignItems="center"
-      sx={{ m: 1, p: 1 }}
+      sx={{ m: 0.5, p: 0.5 }}
     >
-      <Stack direction="row" gap={1} alignItems="center"> 
+      <Stack direction="row" gap={1} alignItems="center" sx={{color}}> 
       <Typography variant="body1">{resultNum + 1}.</Typography>
       <EntView entID={entID} useLongName={true} />
       </Stack>
       
       <SummaryView summary={result.summary} />
-      <ResultBarChart resultsElection={electionDisplay} entID={entID} />
+      <ResultBarChart resultsElection={election} entID={entID} />
       <PartyToVotesStatsView partyToVotes={result.partyToVotes} />
 
       {elections ? <HistoryView entID={entID} /> : null}

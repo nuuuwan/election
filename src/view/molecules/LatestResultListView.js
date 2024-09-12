@@ -1,27 +1,42 @@
-import { Box, Typography,  } from "@mui/material";
+import { Box, Pagination, Stack, Typography,  } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CumResultsView from "./CumResultsView";
+import { useBasePageHandlerContext } from "../pages/BasePage/BasePageHandlerProvider";
 
-const N_DISPLAY = 5;
+const N_DISPLAY = 3;
 
 export default function LatestResultListView() {
     const data = useDataContext();
+    const handlers = useBasePageHandlerContext();
+
     if (!data) {
       return null;
     }
-    const { electionDisplay } = data;
-   const pdResultList = electionDisplay.pdResultList;
+    const { election, nResultsDisplay } = data;
+   const pdResultList = election.pdResultList;
    const n = pdResultList.length;
-    const resultListDisplay = pdResultList.slice(n-N_DISPLAY, n).reverse();
+    const resultListDisplay = pdResultList.slice(Math.max(0, nResultsDisplay-N_DISPLAY), nResultsDisplay).reverse();
+
+
+    const {setNResultsDisplay} = handlers;
+    const onChange = function(event, value) {
+      setNResultsDisplay(value);
+    }
 
     return (
-      <Box>
+      <Stack direction="column" alignItems="center">
         <Typography variant="h4">Results</Typography>
+
+        <Pagination count={n} defaultPage={nResultsDisplay} siblingCount={1} boundaryCount={1} onChange={onChange} justifyContent="center"/>
+
+
+
         {resultListDisplay.map(function (result) {
+
           return (
             <CumResultsView key={result.entID} entID={result.entID} />
           );
         })}
-      </Box>
+      </Stack>
     );
 }

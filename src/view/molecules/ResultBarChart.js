@@ -75,8 +75,8 @@ export default function ResultBarChart({ resultsElection, entID }) {
         barLabel={getBarLabel()}
         layout="horizontal"
         bottomAxis={null}
-        width={240}
-        height={80}
+        width={280}
+        height={50}
         sx={getStyle()}
         slotProps={{ legend: { hidden: true } }}
         margin={{ top: 0, right: 0, bottom: 0, left: 0 }}

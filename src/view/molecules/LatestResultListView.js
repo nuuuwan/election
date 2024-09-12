@@ -16,7 +16,7 @@ export default function LatestResultListView() {
 
     return (
       <Box>
-        <Typography variant="h4">Latest Results</Typography>
+        <Typography variant="h4">Results</Typography>
         {resultListDisplay.map(function (result) {
           return (
             <CumResultsView key={result.entID} entID={result.entID} />

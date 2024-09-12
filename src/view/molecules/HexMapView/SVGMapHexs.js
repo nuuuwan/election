@@ -19,12 +19,12 @@ function getOnClick({ entID, setActivePDID, pdIdx, resultList }) {
 }
 
 function getRenderedItem({ entID, points, data, setActivePDID }) {
-  const { election, electionDisplay, pdIdx, allRegionIdx } = data;
-  const result = electionDisplay.resultIdx[entID];
+  const { election, pdIdx, allRegionIdx } = data;
+  const result = election.resultIdx[entID];
 
   let color = "ghostwhite";
   let opacity = 1;
-  if (electionDisplay.isComplete(entID, pdIdx) && result) {
+  if (election.isComplete(entID, pdIdx) && result) {
     color = result.color;
     opacity = Color.getOpacity(result.pWinner);
   }

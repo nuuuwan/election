@@ -52,9 +52,9 @@ export default function HexMapView() {
   if (!data) {
     return null;
   }
-  const { electionDisplay } = data;
+  const { election } = data;
 
-  const partyToWins = electionDisplay.getPartyToWins();
+  const partyToWins = election.getPartyToWins();
   const nParties = Object.keys(partyToWins).length;
 
   const [minX, minY, width, height] = getViewBoxDims();

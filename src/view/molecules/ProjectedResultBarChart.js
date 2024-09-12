@@ -80,14 +80,17 @@ export default function ProjectedResultBarChart() {
       color: party.color,
       stack: partyID,
     });
-    const colorWithAlpha = Color.getColorWithAlpha(party.color, 0.5);
-    series.push({
-      data: [pVotesExtra],
-      label: partyID + "-Max",
-      color: colorWithAlpha,
-      stack: partyID,
-    });
 
+    if (pVotesExtra) {
+      const colorWithAlpha = Color.getColorWithAlpha(party.color, 0.5);
+      series.push({
+        data: [pVotesExtra],
+        label: partyID + "-Max",
+        color: colorWithAlpha,
+        stack: partyID,
+      });  
+    }
+    
     return series;
   }, []);
 

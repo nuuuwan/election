@@ -30,11 +30,11 @@ export default function CumResultsView({ entID }) {
       <Typography variant="body1">{resultNum + 1}.</Typography>
       <EntView entID={entID} useLongName={true} />
       </Stack>
+      
       <SummaryView summary={result.summary} />
       <ResultBarChart resultsElection={electionDisplay} entID={entID} />
       <PartyToVotesStatsView partyToVotes={result.partyToVotes} />
 
-      <ResultsReleasedView entID={entID} />
       {elections ? <HistoryView entID={entID} /> : null}
     </Stack>
   );

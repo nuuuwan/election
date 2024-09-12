@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { ProjectionTitle } from "../atoms";
+import { ProjectionTitle, CustomStack } from "../atoms";
 import {
   BestBellwetherView,
   FinalOutcomeView,
@@ -9,7 +9,6 @@ import {
   SummaryView,
   ProjectedResultBarChart,
 } from ".";
-import CustomStack from "../pages/BasePage/CustomStack";
 
 export default function ProjectionView() {
   const data = useDataContext();

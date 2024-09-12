@@ -5,8 +5,8 @@ import ColumnLatestResult from "./ColumnLatestResult";
 
 import ProjectionView from "../../molecules/ProjectionView";
 import { useDataContext } from "../../../nonview/core/DataProvider";
-import { IfElse, MapTitle, NoResultsAlert } from "../../atoms";
-import CustomStack from "./CustomStack";
+import { IfElse, MapTitle, NoResultsAlert, CustomStack } from "../../atoms";
+
 import { HexMapView } from "../../molecules";
 
 const STYLE = {

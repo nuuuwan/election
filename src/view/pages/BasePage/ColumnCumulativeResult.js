@@ -1,6 +1,6 @@
 import { ResultSingleView } from "..";
-import CustomStack from "./CustomStack";
-import { CumResultsTitle } from "../../atoms";
+
+import { CumResultsTitle, CustomStack } from "../../atoms";
 export default function ColumnCumulativeResult() {
   return (
     <CustomStack>

@@ -1,4 +1,4 @@
-import { Box, Pagination, Stack, Typography,  } from "@mui/material";
+import {  Pagination, Stack, Typography,  } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CumResultsView from "./CumResultsView";
 import { useBasePageHandlerContext } from "../pages/BasePage/BasePageHandlerProvider";

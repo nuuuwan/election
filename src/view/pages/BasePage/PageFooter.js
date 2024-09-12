@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
-import { useDataContext } from "../../../nonview/core/DataProvider";
+
 import { CitationsView } from "../../../view/atoms";
-import { PlayerControl } from "../../../view/molecules";
+
 
 const STYLE_FOOTER = {
   BOX: {
@@ -16,21 +16,12 @@ const STYLE_FOOTER = {
 };
 
 export default function PageFooter() {
-  const data = useDataContext();
-  if (!data) {
-    return null;
-  }
-  const { nResultsDisplay, noScroll } = data;
+
 
   return (
     <Box sx={STYLE_FOOTER.BOX}>
       <CitationsView />
-      {noScroll ? null : (
-        <PlayerControl
-          key={nResultsDisplay}
-          nResultsDisplay={nResultsDisplay}
-        />
-      )}
+
     </Box>
   );
 }

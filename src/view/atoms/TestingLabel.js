@@ -11,7 +11,6 @@ const STYLE_TESTING_LABEL = {
     padding: 10,
     margin: "auto",
     alignItems: "center",
-    justifyContent: "center",
     display: "flex",
   },
   LABEL: {

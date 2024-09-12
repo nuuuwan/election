@@ -33,7 +33,6 @@ export default function PageHeader() {
         direction="row"
         gap={1}
         alignItems="center"
-        justifyContent="center"
       >
         <ElectionSelector colorElection={projectedElection} />
         <LanguageSelector />

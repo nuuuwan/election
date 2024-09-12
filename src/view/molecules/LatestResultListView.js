@@ -27,7 +27,7 @@ export default function LatestResultListView() {
       <Stack direction="column" alignItems="center">
         <Typography variant="h4">Results</Typography>
 
-        <Pagination count={n} defaultPage={nResultsDisplay} siblingCount={1} boundaryCount={1} onChange={onChange} justifyContent="center"/>
+        <Pagination count={n} defaultPage={nResultsDisplay} siblingCount={1} boundaryCount={1} onChange={onChange} />
 
 
 

@@ -1,17 +1,17 @@
 import { Grid } from "@mui/material";
 
-import { useDataContext } from "../../../nonview/core/DataProvider";
-import { ProjectionTitle } from "../../../view/atoms";
+import { useDataContext } from "../../nonview/core/DataProvider";
+import { ProjectionTitle } from "../atoms";
 import {
   BestBellwetherView,
   FinalOutcomeView,
   PartyToVotesStatsView,
   SummaryView,
   ProjectedResultBarChart,
-} from "../../../view/molecules";
-import CustomStack from "./CustomStack";
+} from ".";
+import CustomStack from "../pages/BasePage/CustomStack";
 
-export default function ColumnProjection() {
+export default function ProjectionView() {
   const data = useDataContext();
   if (!data) {
     return null;

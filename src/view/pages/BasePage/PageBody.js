@@ -3,7 +3,7 @@ import { Box, Grid } from "@mui/material";
 import ColumnLatestResult from "./ColumnLatestResult";
 
 import ColumnMap from "./ColumnMap";
-import ColumnProjection from "./ColumnProjection";
+import ProjectionView from "../../molecules/ProjectionView";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { IfElse, NoResultsAlert } from "../../atoms";
 
@@ -33,7 +33,7 @@ export default function PageBody() {
             <ColumnMap />
           </Grid>
           <Grid item xs={12} md={6} xl={4} sx={STYLE.GRID_ITEM}>
-            <ColumnProjection />
+            <ProjectionView />
           </Grid>
         </Grid>
       </IfElse>

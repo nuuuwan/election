@@ -17,7 +17,7 @@ export default function CumResultsView({ entID }) {
   const { electionDisplay, elections } = data;
 
   const result = electionDisplay.resultIdx[entID];
-  const resultNum = electionDisplay.resultList.indexOf(result);
+  const resultNum = electionDisplay.pdResultList.indexOf(result);
 
   return (
     <Stack
@@ -26,8 +26,10 @@ export default function CumResultsView({ entID }) {
       alignItems="center"
       sx={{ m: 1, p: 1 }}
     >
-      <Typography variant="h4">{resultNum + 1}</Typography>
+      <Stack direction="row" gap={1} alignItems="center"> 
+      <Typography variant="body1">{resultNum + 1}.</Typography>
       <EntView entID={entID} useLongName={true} />
+      </Stack>
       <SummaryView summary={result.summary} />
       <ResultBarChart resultsElection={electionDisplay} entID={entID} />
       <PartyToVotesStatsView partyToVotes={result.partyToVotes} />

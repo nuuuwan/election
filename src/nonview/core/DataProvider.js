@@ -2,7 +2,7 @@ import React, { useState, useEffect, createContext, useContext } from "react";
 
 import { Ent, EntType } from "../base";
 import { CustomURLContext, DerivedData, Election } from ".";
-import { GROUP_ID_TO_PD_ID } from "../constants";
+import { GROUP_ID_TO_PD_ID_LIST } from "../constants";
 
 const DataContext = createContext();
 
@@ -11,7 +11,7 @@ async function getValueEnts() {
   const edIdx = await Ent.idxFromType(EntType.ED);
   const provinceIdx = await Ent.idxFromType(EntType.PROVINCE);
   const ezIdx = Object.fromEntries(
-    Object.keys(GROUP_ID_TO_PD_ID).map(function (ezID) {
+    Object.keys(GROUP_ID_TO_PD_ID_LIST).map(function (ezID) {
       return [ezID, new Ent({ id: ezID, name: ezID })];
     })
   );

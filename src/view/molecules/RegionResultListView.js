@@ -16,7 +16,7 @@ function RegionResultListViewGroup({title, entIDList1}) {
       return (
 
      
-        <Grid item xs={12} md={3} xl={2}  key={entID} >
+        <Grid item xs={12} md={12} xl={6}  key={entID} >
           <CumResultsView entID={entID} />
         </Grid> 
       );

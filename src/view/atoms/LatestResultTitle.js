@@ -7,9 +7,7 @@ export default function LatestResultTitle() {
   if (!data) {
     return null;
   }
-  const { electionDisplay } = data;
-
-  const activePDID = electionDisplay.finalPDID;
+  const { electionDisplay,activePDID } = data;
   const color = electionDisplay.getResult(activePDID).winningPartyColor;
 
   return (

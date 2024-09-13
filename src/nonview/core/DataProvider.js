@@ -42,16 +42,22 @@ async function getValue({
     date,
   });
 
+
+
+
   const activePDIDDerived = DerivedData.getActivePDID(
     activePDID,
     nResultsDisplay,
     election
   );
 
+
+
   const nResultsDisplayDerived = DerivedData.getNResultsDisplay(
     nResultsDisplay,
     election
   );
+  
 
   const { electionDisplay, electionProjected } = DerivedData.getDerived(
     nResultsDisplayDerived,

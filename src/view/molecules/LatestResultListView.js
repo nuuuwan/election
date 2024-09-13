@@ -8,16 +8,16 @@ export default function LatestResultListView() {
   if (!data) {
     return null;
   }
-  const { election, nResultsDisplay, pdIdx } = data;
-  const pdResultList = election.pdResultList;
-
-  const resultPD = pdResultList[nResultsDisplay - 1];
+  const { pdIdx , electionDisplay, activePDID} = data;
+  const resultPD = electionDisplay.resultIdx[activePDID];
   const pdEnt = pdIdx[resultPD.entID];
 
-  const resultIdx = election.resultIdx;
+  const resultIdx = electionDisplay.resultIdx;
   const resultED = resultIdx[pdEnt.d.ed_id];
   const resultProvince = resultIdx[pdEnt.d.province_id];
   const resultLK = resultIdx["LK"];
+
+  const iResult = electionDisplay.pdIDList.indexOf(activePDID) + 1;
 
   return (
     <Stack
@@ -26,11 +26,14 @@ export default function LatestResultListView() {
       sx={{ color: resultPD.color }}
     >
       <Typography variant="h4">
-        <span style={{ opacity: 0.5 }}>Result</span> #{nResultsDisplay}
+        <span style={{ opacity: 0.5 }}>Result</span> #{iResult}
       </Typography>
 
       <Grid container spacing={1}>
         {[resultPD, resultED, resultProvince, resultLK].map(function (result) {
+          if (!result) {
+            return null;
+          }
           return (
             <Grid item xs={12} md={6} xl={6} key={result.entID}>
               <CumResultsView entID={result.entID} />

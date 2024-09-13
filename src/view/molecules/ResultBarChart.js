@@ -45,10 +45,6 @@ function getStyle() {
 }
 
 export default function ResultBarChart({ resultsElection, entID }) {
-  const data = useDataContext();
-  if (!data) {
-    return null;
-  }
 
   const result = resultsElection.resultIdx[entID];
   const partyToVotes = result.partyToVotes;

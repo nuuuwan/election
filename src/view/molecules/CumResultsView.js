@@ -13,9 +13,12 @@ export default function CumResultsView({ entID }) {
   if (!data) {
     return null;
   }
-  const { election, elections } = data;
+  const { electionDisplay, elections } = data;
 
-  const result = election.resultIdx[entID];
+  const result = electionDisplay.resultIdx[entID];
+  if (!result) {
+    return null;
+  }
 
   return (
     <Box sx={{ m: 0, p: 0, color: result.color }}>
@@ -23,7 +26,7 @@ export default function CumResultsView({ entID }) {
         <Grid container sx={{ justifyContent: "center", alignItems: "center" }}>
           {[
             <EntView entID={entID} useLongName={true} />,
-            <ResultBarChart resultsElection={election} entID={entID} />,
+            <ResultBarChart resultsElection={electionDisplay} entID={entID} />,
             <PartyToVotesStatsView partyToVotes={result.partyToVotes} />,
             <SummaryView summary={result.summary} />,
             elections ? <HistoryView entID={entID} /> : null,

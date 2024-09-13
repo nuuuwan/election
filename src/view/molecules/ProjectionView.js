@@ -14,8 +14,8 @@ export default function ProjectionView() {
   if (!data) {
     return null;
   }
-  const { projectedElection } = data;
-  const resultLK = projectedElection.resultLK;
+  const { electionProjected } = data;
+  const resultLK = electionProjected.resultLK;
 
   return (
     <CustomStack>

@@ -41,9 +41,9 @@ export default function ProjectedResultBarChart() {
     return null;
   }
 
-  const { projectedElection } = data;
+  const { electionProjected } = data;
 
-  const result = projectedElection.resultLK;
+  const result = electionProjected.resultLK;
   const partyToVotes = result.partyToVotes;
   const totalVotes = partyToVotes.totalVotes;
   const uncertainVotes = partyToVotes.partyToVotes[Party.UNCERTAIN.id];

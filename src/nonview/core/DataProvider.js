@@ -51,7 +51,7 @@ async function getValue({
     election
   );
 
-  const { electionDisplay, projectedElection } = DerivedData.getDerived(
+  const { electionDisplay, electionProjected } = DerivedData.getDerived(
     nResultsDisplayDerived,
     election,
     pdIdx,
@@ -62,7 +62,7 @@ async function getValue({
     election,
     electionDisplay,
     elections,
-    projectedElection,
+    electionProjected,
     pdIdx,
     edIdx,
     provinceIdx,

@@ -39,9 +39,9 @@ export default function FinalOutcomeView() {
     return null;
   }
 
-  const { projectedElection, electionDisplay } = data;
+  const { electionProjected, electionDisplay } = data;
   const finalOutcome = new FinalOutcome(
-    projectedElection,
+    electionProjected,
     electionDisplay.nResults
   );
 

@@ -34,22 +34,22 @@ export default class DerivedData {
       releasedPDIDList,
       nonReleasedPDIDList
     );
-    const projectedElection = electionModel.getElectionNotReleasedPrediction();
-    return projectedElection;
+    const electionProjected = electionModel.getElectionNotReleasedPrediction();
+    return electionProjected;
   }
 
   static getDerived(nResultsDisplay, election, pdIdx, elections) {
     const electionDisplay = election.getElectionSubset(nResultsDisplay);
 
-    let projectedElection;
+    let electionProjected;
     if (nResultsDisplay > 0) {
-      projectedElection = DerivedData.getPredictedElection(
+      electionProjected = DerivedData.getPredictedElection(
         election,
         electionDisplay,
         pdIdx,
         elections
       );
     }
-    return { electionDisplay, projectedElection };
+    return { electionDisplay, electionProjected };
   }
 }

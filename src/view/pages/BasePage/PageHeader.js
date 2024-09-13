@@ -19,9 +19,9 @@ export default function PageHeader() {
   if (!data) {
     return null;
   }
-  const { projectedElection } = data;
+  const { electionProjected } = data;
 
-  const color = projectedElection ? projectedElection.color : "grey";
+  const color = electionProjected ? electionProjected.color : "grey";
 
   return (
     <Box
@@ -35,7 +35,7 @@ export default function PageHeader() {
         alignItems="center"
         justifyContent="center"
       >
-        <ElectionSelector colorElection={projectedElection} />
+        <ElectionSelector colorElection={electionProjected} />
         <LanguageSelector />
       </Stack>
     </Box>

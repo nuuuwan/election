@@ -28,7 +28,6 @@ export default function RegionResultListView() {
   }
   const { provinceIdx, edIdx, pdIdx, elections, election } = data;
 
-
   const infoList = Bellwether.getBestBellwetherInfoList(
     elections,
     election,
@@ -47,10 +46,7 @@ export default function RegionResultListView() {
 
   return (
     <Stack direction="column" alignItems="center">
-           <RegionResultListViewGroup
-        title="Islandwide"
-        entIDList1={['LK']}
-      />
+      <RegionResultListViewGroup title="Islandwide" entIDList1={["LK"]} />
       <RegionResultListViewGroup
         title="Provinces"
         entIDList1={Object.keys(provinceIdx)}
@@ -59,7 +55,7 @@ export default function RegionResultListView() {
         title="Electoral Districts"
         entIDList1={Object.keys(edIdx)}
       />
-       <RegionResultListViewGroup title="Bellwethers" entIDList1={entIDList3} />
+      <RegionResultListViewGroup title="Bellwethers" entIDList1={entIDList3} />
     </Stack>
   );
 }

@@ -1,4 +1,4 @@
-import { Box, Grid, Stack,  } from "@mui/material";
+import { Box, Grid, Stack } from "@mui/material";
 
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { EntView } from "../../view/atoms";
@@ -20,18 +20,19 @@ export default function CumResultsView({ entID }) {
   return (
     <Box sx={{ m: 1, p: 1 }}>
       <Stack direction="column">
-        <Grid container sx={{ justifyContent: "center", alignItems: "center"}}>
+        <Grid container sx={{ justifyContent: "center", alignItems: "center" }}>
           {[
-           <EntView entID={entID} useLongName={true} />,
-              <ResultBarChart resultsElection={election} entID={entID} />,
+            <EntView entID={entID} useLongName={true} />,
+            <ResultBarChart resultsElection={election} entID={entID} />,
             <PartyToVotesStatsView partyToVotes={result.partyToVotes} />,
             <SummaryView summary={result.summary} />,
             elections ? <HistoryView entID={entID} /> : null,
           ].map(function (item, i) {
             return (
               <Grid2 item xs={12} md={12} xl={2} key={i}>
-                <Box sx={{margin: 0.25, marginLeft:1, marginRight: 1 }}>
-                {item}</Box>
+                <Box sx={{ margin: 0.25, marginLeft: 1, marginRight: 1 }}>
+                  {item}
+                </Box>
               </Grid2>
             );
           })}

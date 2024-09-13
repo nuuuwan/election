@@ -15,11 +15,11 @@ export default function EntView({ entID, useLongName = false }) {
   const label = useLongName ? entType.longName : entType.shortName;
 
   return (
-    <Stack direction="column" sx={{width: 200, justifyContent: "left"}}>
-    <Typography variant="h5">
-      {Translate(ent.name)}
-    </Typography>
-      <Typography variant="body1" color="secondary">{Translate(label)}</Typography>
-      </Stack>
+    <Stack direction="column" sx={{ width: 200, justifyContent: "left" }}>
+      <Typography variant="h5">{Translate(ent.name)}</Typography>
+      <Typography variant="body1" color="secondary">
+        {Translate(label)}
+      </Typography>
+    </Stack>
   );
 }

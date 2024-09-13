@@ -30,7 +30,7 @@ export default function CumResultsView({ entID }) {
      
     >
       <Stack direction="row" gap={1} sx={{ backgroundColor, color, width: "100%", p:1 , alignItems:"center" , justifyContent:"center"}}>
-        <Typography variant="body1">{resultNum + 1}.</Typography>
+        {resultNum > 0 ? (<Typography variant="body1">{resultNum + 1}.</Typography>) : null}
         <EntView entID={entID} useLongName={true} />
       </Stack>
 

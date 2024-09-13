@@ -9,6 +9,7 @@ import LatestResultListView from "./LatestResultListView";
 import PartyToVotesStatsView from "./PartyToVotesStatsView";
 import ProjectedResultBarChart from "./ProjectedResultBarChart";
 import ProjectionView from "./ProjectionView";
+import RegionResultListView from "./RegionResultListView";
 import ResultBarChart from "./ResultBarChart";
 import SummaryView from "./SummaryView";
 
@@ -23,6 +24,7 @@ export {
   PartyToVotesStatsView,
   ProjectedResultBarChart,
   ProjectionView,
+  RegionResultListView,
   ResultBarChart,
   SummaryView,
 };

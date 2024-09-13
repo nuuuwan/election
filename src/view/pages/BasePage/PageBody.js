@@ -5,6 +5,7 @@ import {
   ProjectionView,
   HexMapView,
   LatestResultListView,
+  RegionResultListView,
 } from "../../molecules";
 
 const STYLE = {
@@ -38,7 +39,14 @@ export default function PageBody() {
           <Grid item xs={12} md={6} xl={4} sx={STYLE.GRID_ITEM}>
             <ProjectionView />
           </Grid>
+
+          <Grid item xs={12} md={12} xl={12} sx={STYLE.GRID_ITEM}>
+            <RegionResultListView />
+            </Grid>
+
         </Grid>
+
+
       </IfElse>
     </Box>
   );

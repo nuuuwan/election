@@ -4,7 +4,7 @@ import CumResultsView from "./CumResultsView";
 
 import { CustomPagination } from "../atoms";
 
-const N_DISPLAY = 6;
+
 
 export default function LatestResultListView() {
   const data = useDataContext();
@@ -12,31 +12,30 @@ export default function LatestResultListView() {
   if (!data) {
     return null;
   }
-  const { election, nResultsDisplay } = data;
+  const { election, nResultsDisplay, pdIdx } = data;
   const pdResultList = election.pdResultList;
 
-  const resultListDisplay = pdResultList
-    .slice(Math.max(0, nResultsDisplay - N_DISPLAY), nResultsDisplay)
-    .reverse();
+  const resultPD = pdResultList[nResultsDisplay - 1];
+  const pdEnt = pdIdx[resultPD.entID];
 
-    
+  const resultIdx = election.resultIdx;
+  const resultED = resultIdx[pdEnt.d.ed_id];
+  const resultProvince = resultIdx[pdEnt.d.province_id];
+  const resultLK = resultIdx["LK"];
 
   return (
     <Stack direction="column" alignItems="center">
-      <Typography variant="h4">Results</Typography>
+      <Typography variant="h4">Latest Result</Typography>
       <CustomPagination />
 
       <Grid container spacing={1}>
-        {resultListDisplay.map(function (result) {
+        {[resultPD, resultED, resultProvince, resultLK].map(function (result) {
 
-          const resultNum = pdResultList.indexOf(result) + 1;
+   
           const color = result.color;
           return (
-            <Grid item xs={12} md={6} xl={6} key={result.entID} color={color}>
-              <Stack direction="column" gap={0}>
-              <Typography variant="caption">{resultNum}</Typography>
-              <CumResultsView entID={result.entID} />
-              </Stack>
+            <Grid item xs={12} md={6} xl={6} key={result.entID} color={color} > 
+                        <CumResultsView entID={result.entID} />
             </Grid>
           );
         })}

@@ -37,17 +37,17 @@ export default function HistoryView({ entID }) {
   if (!data) {
     return null;
   }
-  const { electionDisplay, elections } = data;
+  const { election, elections } = data;
 
   const previousElections = Election.getPreviousElectionsOfSameType(
     elections,
-    electionDisplay
+    election
   );
 
   const previousElectionsDisplay = previousElections
     .map(function (previousElection) {
       return previousElection.getSubsetElectionByPDIDList(
-        electionDisplay.pdIDList
+        election.pdIDList
       );
     })
     .reverse();

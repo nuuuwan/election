@@ -45,7 +45,7 @@ export default function RegionResultListView() {
     .map((x) => x.entID);
 
   return (
-    <Stack direction="column" alignItems="center">
+    <Stack direction="column" alignItems="center" gap={5}>
       <RegionResultListViewGroup title="Islandwide" entIDList1={["LK"]} />
       <RegionResultListViewGroup
         title="Provinces"

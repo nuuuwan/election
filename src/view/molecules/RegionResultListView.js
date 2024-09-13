@@ -2,13 +2,22 @@ import { Box, Grid, Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CumResultsView from "./CumResultsView";
 import { Bellwether } from "../../nonview/core";
+import { ArrayX } from "../../nonview/base";
 
-function RegionResultListViewGroup({ title, entIDList1 }) {
+function RegionResultListViewGroup({ title, entIDList }) {
+  const data = useDataContext();
+  if (!data) {
+    return null;
+  }
+  const { election } = data;
+  const resultIdx = election.resultIdx;
   return (
     <Box>
       <Typography variant="h4">{title}</Typography>
       <Grid container spacing={1}>
-        {entIDList1.map(function (entID) {
+        {ArrayX.sort(entIDList, function(entID) {
+          return -resultIdx[entID].summary.valid;
+        }).map(function (entID) {
           return (
             <Grid item xs={12} md={12} xl={12} key={entID}>
               <CumResultsView entID={entID} />
@@ -35,7 +44,7 @@ export default function RegionResultListView() {
   );
 
   const N_DISPLAY = 12;
-  const entIDList3 = infoList
+  const bellwetherEntIDList = infoList
     .filter(function (info) {
       return (
         info.error < 0.1 && info.nSame > info.n * 0.5 && info.entID !== "LK"
@@ -46,16 +55,16 @@ export default function RegionResultListView() {
 
   return (
     <Stack direction="column" alignItems="center" gap={5}>
-      <RegionResultListViewGroup title="Islandwide" entIDList1={["LK"]} />
+      <RegionResultListViewGroup title="Islandwide" entIDList={["LK"]} />
       <RegionResultListViewGroup
         title="Provinces"
-        entIDList1={Object.keys(provinceIdx)}
+        entIDList={Object.keys(provinceIdx)}
       />
       <RegionResultListViewGroup
         title="Electoral Districts"
-        entIDList1={Object.keys(edIdx)}
+        entIDList={Object.keys(edIdx)}
       />
-      <RegionResultListViewGroup title="Bellwethers" entIDList1={entIDList3} />
+      <RegionResultListViewGroup title="Historical Bellwethers" entIDList={bellwetherEntIDList} />
     </Stack>
   );
 }

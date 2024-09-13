@@ -1,7 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { Translate } from "../../nonview/base";
 
 export default function ResultsReleasedView({ entID }) {
   const data = useDataContext();

@@ -4,12 +4,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emotion/react": "^11.13.0",
+    "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
-    "@mui/icons-material": "^5.16.7",
+    "@mui/icons-material": "^6.1.0",
     "@mui/material": "^6.1.0",
-    "@mui/styled-engine-sc": "^6.0.0-alpha.18",
-    "@mui/x-charts": "^7.12.0",
+    "@mui/styled-engine-sc": "^6.1.0",
+    "@mui/x-charts": "^7.17.0",
     "@stdlib/stats-base-dists-normal-cdf": "^0.2.2",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -18,7 +18,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
-    "styled-components": "^6.1.12",
+    "styled-components": "^6.1.13",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

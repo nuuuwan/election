@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
 import { Translate } from "../../nonview/base";
@@ -15,20 +15,27 @@ export default function ResultsReleasedView({ entID }) {
     pdIdx
   );
 
-  let label = "";
+  let title = "";
+  let subTitle = "";
   if (nResultsTotal > 1) {
-    label = `${nResultsReleased}/${nResultsTotal} ${Translate(
-      "Results Released"
+    title = `${nResultsReleased}/${nResultsTotal}`;
+    subTitle = `${Translate(
+      "Released"
     )}`;
   }
 
   if (nResultsReleased === nResultsTotal) {
-    label += ` (${Translate("Final")})`;
+    subTitle += ` (${Translate("Final")})`;
   }
 
   return (
-    <Typography variant="body1" color={"secondary"}>
-      {label}
+    <Box >
+      <Typography variant="body1" color={"secondary"}>
+      {title}
     </Typography>
+    <Typography variant="caption" color={"secondary"}>
+      {subTitle}
+    </Typography>
+    </Box>
   );
 }

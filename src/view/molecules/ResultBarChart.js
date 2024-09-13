@@ -4,7 +4,7 @@ import { Format } from "../../nonview/base";
 import { Box } from "@mui/material";
 import { THEME_DATA } from "../_constants/THEME";
 import { BarChart, barLabelClasses } from "@mui/x-charts";
-import { useDataContext } from "../../nonview/core/DataProvider";
+
 
 function getAxis() {
   return [

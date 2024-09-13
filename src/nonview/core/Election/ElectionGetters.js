@@ -36,10 +36,12 @@ const ElectionStats = {
         return pdEnt.d.ed_id;
       case EntType.PROVINCE:
         // HACK! To fix bug in postal data
-        return (
-          pdEnt.d.province_id ||
-          ProvinceUtils.getProvinceIDForEDID(pdEnt.d.ed_id)
-        );
+        const provinceID1 = pdEnt.d.province_id;
+        if (provinceID1 && provinceID1 !== "None") {
+          return provinceID1;
+        }
+        return ProvinceUtils.getProvinceIDForEDID(pdEnt.d.ed_id);
+
       default:
         return "LK";
     }

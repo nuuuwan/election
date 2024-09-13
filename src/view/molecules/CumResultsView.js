@@ -1,7 +1,7 @@
-import { Box, Grid, Stack } from "@mui/material";
+import { Box, Container, Grid, Stack } from "@mui/material";
 
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { EntView } from "../../view/atoms";
+import { EntView, ResultsReleasedView } from "../../view/atoms";
 import { ResultBarChart, HistoryView, SummaryView } from ".";
 
 import PartyToVotesStatsView from "../../view/molecules/PartyToVotesStatsView";
@@ -13,7 +13,7 @@ export default function CumResultsView({ entID }) {
   if (!data) {
     return null;
   }
-  const { electionDisplay, elections } = data;
+  const { electionDisplay } = data;
 
   const result = electionDisplay.resultIdx[entID];
   if (!result) {
@@ -29,13 +29,14 @@ export default function CumResultsView({ entID }) {
             <ResultBarChart resultsElection={electionDisplay} entID={entID} />,
             <PartyToVotesStatsView partyToVotes={result.partyToVotes} />,
             <SummaryView summary={result.summary} />,
-            elections ? <HistoryView entID={entID} /> : null,
+            <HistoryView entID={entID} />,
+            <ResultsReleasedView entID={entID} />,
           ].map(function (item, i) {
             return (
-              <Grid2 item xs={12} md={12} xl={2} key={i}>
-                <Box sx={{ margin: 0.25, marginLeft: 1, marginRight: 1 }}>
+              <Grid2 item xs={12} md={12} xl={2} key={i} sx={{justifyContent: "center", margin: 0.25, marginLeft: 1, marginRight: 1, minWidth: 100}} >
+
                   {item}
-                </Box>
+
               </Grid2>
             );
           })}

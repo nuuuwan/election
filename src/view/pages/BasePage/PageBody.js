@@ -1,6 +1,6 @@
 import { Box, Grid } from "@mui/material";
 import { useDataContext } from "../../../nonview/core/DataProvider";
-import { IfElse, NoResultsAlert,  } from "../../atoms";
+import { IfElse, NoResultsAlert } from "../../atoms";
 import {
   ProjectionView,
   HexMapView,
@@ -31,9 +31,7 @@ export default function PageBody() {
             <LatestResultListView />
           </Grid>
           <Grid item xs={12} md={6} xl={4} sx={STYLE.GRID_ITEM}>
-   
-              <HexMapView />
-  
+            <HexMapView />
           </Grid>
           <Grid item xs={12} md={6} xl={4} sx={STYLE.GRID_ITEM}>
             <ProjectionView />

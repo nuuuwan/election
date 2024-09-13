@@ -1,26 +1,26 @@
 import { ElectionModel } from "../../nonview/core";
 
 export default class DerivedData {
-  static getActivePDIDAndNResultDisplay(activePDID, nResultsDisplay, election) {
+  static getActivePDID(activePDID, nResultsDisplay, election) {
     if (activePDID) {
-      nResultsDisplay =
-        election.pdResultList
-          .map((result) => result.entID)
-          .indexOf(activePDID) + 1;
-    } else if (nResultsDisplay || nResultsDisplay === 0) {
+      return activePDID;
+    } 
       if (
-        nResultsDisplay > 0 &&
-        nResultsDisplay <= election.pdResultList.length
+        nResultsDisplay
       ) {
-        activePDID = election.pdResultList[nResultsDisplay - 1].entID;
+        return election.pdResultList[nResultsDisplay - 1].entID;
       }
-    } else {
-      activePDID =
-        election.pdResultList[election.pdResultList.length - 1].entID;
-      nResultsDisplay = election.pdResultList.length;
-    }
-    return { activePDID, nResultsDisplay };
+      return election.pdResultList[election.pdResultList.length - 1].entID;
   }
+
+
+  static getNResultsDisplay(nResultsDisplay, election) {
+    if (nResultsDisplay || nResultsDisplay === 0) {
+      return nResultsDisplay;
+    } 
+    return election.pdResultList.length;
+  }
+
 
   static getPredictedElection(election, electionDisplay, pdIdx, elections) {
     const releasedPDIDList = electionDisplay.pdIDList;

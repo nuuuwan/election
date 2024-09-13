@@ -3,30 +3,28 @@ import { useDataContext } from "../../nonview/core/DataProvider";
 
 import { useBasePageHandlerContext } from "../pages/BasePage/BasePageHandlerProvider";
 
+function CustomPaginationItem({ getColor, ...props }) {
+  const color = getColor(props.page);
 
-function CustomPaginationItem ({getColor, ...props})  {
-    const color = getColor(props.page);
-    
-    return (
-      <PaginationItem
-        {...props}
-        sx={{
-            color,
-            
+  return (
+    <PaginationItem
+      {...props}
+      sx={{
+        color,
 
-          '&.Mui-selected': {
-            backgroundColor: color,
-            color: 'white',
-          },
-          '&:hover': {
-            backgroundColor: color,
-            opacity: 0.8,
-            color: 'white',
-          },
-        }}
-      />
-    );
-  };
+        "&.Mui-selected": {
+          backgroundColor: color,
+          color: "white",
+        },
+        "&:hover": {
+          backgroundColor: color,
+          opacity: 0.8,
+          color: "white",
+        },
+      }}
+    />
+  );
+}
 
 export default function CustomPagination() {
   const data = useDataContext();
@@ -44,15 +42,15 @@ export default function CustomPagination() {
     setNResultsDisplay(value);
   };
 
-  const getColor =function(page) {
+  const getColor = function (page) {
     if (!page) {
-        return "gray";
+      return "gray";
     }
-    if (!pdResultList[page-1]) {
-        return "gray";
+    if (!pdResultList[page - 1]) {
+      return "gray";
     }
-    return pdResultList[page-1].color
-  }
+    return pdResultList[page - 1].color;
+  };
 
   return (
     <Pagination
@@ -62,8 +60,9 @@ export default function CustomPagination() {
       siblingCount={1}
       boundaryCount={1}
       onChange={onChange}
-      renderItem={(item) => <CustomPaginationItem {...item} getColor={getColor}  />}
-  
+      renderItem={(item) => (
+        <CustomPaginationItem {...item} getColor={getColor} />
+      )}
     />
   );
 }

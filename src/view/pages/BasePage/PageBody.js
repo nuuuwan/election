@@ -42,11 +42,8 @@ export default function PageBody() {
 
           <Grid item xs={12} md={12} xl={12} sx={STYLE.GRID_ITEM}>
             <RegionResultListView />
-            </Grid>
-
+          </Grid>
         </Grid>
-
-
       </IfElse>
     </Box>
   );

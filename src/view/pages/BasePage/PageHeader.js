@@ -11,7 +11,6 @@ const STYLE_PAGE_HEADER = {
     zIndex: 3000,
     padding: 1,
     margin: 0,
-
   },
 };
 
@@ -30,7 +29,12 @@ export default function PageHeader() {
         backgroundColor: color,
       })}
     >
-      <Stack direction="row" gap={1} alignItems="center" justifyContent="center">
+      <Stack
+        direction="row"
+        gap={1}
+        alignItems="center"
+        justifyContent="center"
+      >
         <ElectionSelector colorElection={projectedElection} />
         <LanguageSelector />
       </Stack>

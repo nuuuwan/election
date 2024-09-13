@@ -1,4 +1,5 @@
 import { EntType, ProvinceUtils } from "../../base";
+import { PD_ID_TO_GROUP_ID } from "../../constants";
 import Result from "../Result";
 
 const ElectionStats = {
@@ -28,20 +29,18 @@ const ElectionStats = {
   },
 
   getParentID(entID, pdEnt) {
+
     const entType = EntType.fromID(entID);
+
     switch (entType) {
       case EntType.PD:
         return pdEnt.d.ed_id;
       case EntType.ED:
         return pdEnt.d.ed_id;
       case EntType.PROVINCE:
-        // HACK! To fix bug in postal data
-        const provinceID1 = pdEnt.d.province_id;
-        if (provinceID1 && provinceID1 !== "None") {
-          return provinceID1;
-        }
-        return ProvinceUtils.getProvinceIDForEDID(pdEnt.d.ed_id);
-
+        return ProvinceUtils.getProvinceIDForPDEnt(pdEnt);
+      case EntType.EZ:
+        return PD_ID_TO_GROUP_ID[pdEnt.id];
       default:
         return "LK";
     }
@@ -53,6 +52,7 @@ const ElectionStats = {
 
     for (let [id, ent] of Object.entries(pdIdx)) {
       const parentID = this.getParentID(entID, ent);
+ 
       if (parentID === entID) {
         nResultsTotal++;
         if (this.resultIdx[id]) {

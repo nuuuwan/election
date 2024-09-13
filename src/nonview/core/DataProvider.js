@@ -1,7 +1,8 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 
 import { Ent, EntType } from "../base";
-import { DerivedData, Election } from ".";
+import { CustomURLContext, DerivedData, Election } from ".";
+import { GROUP_ID_TO_PD_ID } from "../constants";
 
 const DataContext = createContext();
 
@@ -9,15 +10,23 @@ async function getValueEnts() {
   const pdIdx = await Ent.idxFromType(EntType.PD);
   const edIdx = await Ent.idxFromType(EntType.ED);
   const provinceIdx = await Ent.idxFromType(EntType.PROVINCE);
+  const ezIdx = Object.fromEntries(
+    Object.keys(GROUP_ID_TO_PD_ID).map(function (ezID) {
+      return [ezID, new Ent({ id: ezID, name: ezID})];
+    })
+  )
+
+
 
   const allRegionIdx = Object.assign(
     { LK: { name: "Sri Lanka" } },
     pdIdx,
     edIdx,
-    provinceIdx
+    provinceIdx,
+    ezIdx
   );
 
-  return { pdIdx, edIdx, provinceIdx, allRegionIdx };
+  return { pdIdx, edIdx, provinceIdx, ezIdx, allRegionIdx };
 }
 
 async function getValueElections({ electionType, date }) {
@@ -35,7 +44,7 @@ async function getValue({
 
   lang,
 }) {
-  const { pdIdx, edIdx, provinceIdx, allRegionIdx } = await getValueEnts();
+  const { pdIdx, edIdx, provinceIdx, ezIdx, allRegionIdx } = await getValueEnts();
 
   const { elections, election } = await getValueElections({
     electionType,
@@ -66,6 +75,14 @@ async function getValue({
     elections
   );
 
+  CustomURLContext.set({
+    electionType,
+    date,
+    activePDID: activePDIDDerived,
+    nResultsDisplay: nResultsDisplayDerived,
+    lang,
+  })
+
   return {
     election,
     electionDisplay,
@@ -74,6 +91,7 @@ async function getValue({
     pdIdx,
     edIdx,
     provinceIdx,
+    ezIdx,
     allRegionIdx,
     activePDID: activePDIDDerived,
     nResultsDisplay: nResultsDisplayDerived,

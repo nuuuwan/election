@@ -1,6 +1,8 @@
 import { Grid, Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CumResultsView from "./CumResultsView";
+import { ProvinceUtils } from "../../nonview/base";
+import { PD_ID_TO_GROUP_ID } from "../../nonview/constants";
 
 export default function LatestResultListView() {
   const data = useDataContext();
@@ -14,8 +16,13 @@ export default function LatestResultListView() {
 
   const resultIdx = electionDisplay.resultIdx;
   const resultED = resultIdx[pdEnt.d.ed_id];
-  const resultProvince = resultIdx[pdEnt.d.province_id];
+  const resultProvince = resultIdx[ProvinceUtils.getProvinceIDForPDEnt(pdEnt)];
   const resultLK = resultIdx["LK"];
+
+  const resultEZ = resultIdx[PD_ID_TO_GROUP_ID[activePDID]];
+  if (!resultEZ) {
+    console.debug(activePDID);
+  }
 
   const iResult = electionDisplay.pdIDList.indexOf(activePDID) + 1;
 
@@ -30,7 +37,7 @@ export default function LatestResultListView() {
       </Typography>
 
       <Grid container spacing={1}>
-        {[resultPD, resultED, resultProvince, resultLK].map(function (result) {
+        {[resultPD, resultED, resultProvince, resultLK, resultEZ].map(function (result) {
           if (!result) {
             return null;
           }

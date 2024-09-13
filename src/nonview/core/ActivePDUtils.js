@@ -1,4 +1,4 @@
-import { EntType } from "../base";
+import { EntType, ProvinceUtils } from "../base";
 
 export default class ActivePDUtils {
   static getNewActivePDIDForED({ resultList, pdIdx, entID }) {
@@ -14,7 +14,7 @@ export default class ActivePDUtils {
   static getNewActivePDIDForProvince({ resultList, pdIdx, entID }) {
     for (let result of resultList.reverse()) {
       const pdEnt = pdIdx[result.entID];
-      if (pdEnt && pdEnt.d.province_id === entID) {
+      if (ProvinceUtils.getProvinceIDForPDEnt(pdEnt) === entID) {
         return result.entID;
       }
     }

@@ -9,8 +9,11 @@ export default function EntView({ entID, useLongName = false }) {
   }
   const { allRegionIdx } = data;
 
+  
   const ent = allRegionIdx[entID];
+
   const entType = EntType.fromID(entID);
+
 
   const label = useLongName ? entType.longName : entType.shortName;
 

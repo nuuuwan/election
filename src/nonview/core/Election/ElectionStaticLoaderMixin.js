@@ -1,5 +1,6 @@
 import Result from "../Result.js";
 import ElectionStaticUtilsMixin from "./ElectionStaticUtilsMixin.js";
+import PD_ID_TO_GROUP_ID from "../../constants/PD_ID_TO_GROUP_ID.js";
 
 const ElectionStaticLoaderMixin = {
   buildResultIdx(resultList) {
@@ -28,6 +29,31 @@ const ElectionStaticLoaderMixin = {
       return Result.fromList(edID, resultListForED);
     });
     return edResultList;
+  },
+
+  buildEZResultList(pdResultList) {
+    const ezIDToResultList = pdResultList.reduce(function (
+      ezIDToResultList,
+      pdResult
+    ) {
+      const pdID = pdResult.entID;
+      const ezID = PD_ID_TO_GROUP_ID[pdID];
+
+      if (!ezIDToResultList[ezID]) {
+        ezIDToResultList[ezID] = [];
+      }
+      ezIDToResultList[ezID].push(pdResult);
+      return ezIDToResultList;
+    },
+    {});
+    const ezResultList = Object.entries(ezIDToResultList).map(function ([
+      ezID,
+      resultListForEZ,
+    ]) {
+      return Result.fromList(ezID, resultListForEZ);
+    });
+
+    return ezResultList;
   },
 
   buildProvinceResultList(pdResultList) {
@@ -64,7 +90,13 @@ const ElectionStaticLoaderMixin = {
     const provinceResultList =
       ElectionStaticLoaderMixin.buildProvinceResultList(pdResultList);
     const lkResult = ElectionStaticLoaderMixin.buildLKResult(pdResultList);
-    return [lkResult, ...provinceResultList, ...edResultList, ...pdResultList];
+
+    const ezResultList = ElectionStaticLoaderMixin.buildEZResultList(
+      pdResultList
+    );
+    
+
+    return [lkResult, ...provinceResultList, ...edResultList, ...pdResultList, ...ezResultList];
   },
 };
 

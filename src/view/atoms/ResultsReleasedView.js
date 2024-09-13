@@ -14,6 +14,9 @@ export default function ResultsReleasedView({ entID }) {
     entID,
     pdIdx
   );
+  
+
+  
   if (nResultsTotal <= 1) {
     return null;
   }

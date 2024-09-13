@@ -25,4 +25,13 @@ export default class ProvinceUtils {
       "EC-22": "LK-9",
     }[edID];
   }
+
+  static getProvinceIDForPDEnt(pdEnt) {
+    const provinceID1 = pdEnt.d.province_id;
+    if (provinceID1 && provinceID1 !== "None") {
+      return provinceID1;
+    }
+    return ProvinceUtils.getProvinceIDForEDID(pdEnt.d.ed_id);
+
+  }
 }

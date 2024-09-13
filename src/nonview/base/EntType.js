@@ -30,6 +30,8 @@ export default class EntType {
         return "Polling Division";
       case "ed":
         return "Electoral District";
+      case "ez":
+        return "Electoral Zone";
       default:
         return this.name;
     }
@@ -69,7 +71,7 @@ export default class EntType {
   }
 
   static fromID(entID) {
-    return EntType.fromIDLK(entID) || EntType.fromIDEC(entID);
+    return EntType.fromIDLK(entID) || EntType.fromIDEC(entID)|| EntType.EZ;
   }
 }
 
@@ -78,3 +80,4 @@ EntType.PROVINCE = new EntType("province");
 EntType.DISTRICT = new EntType("district");
 EntType.PD = new EntType("pd");
 EntType.ED = new EntType("ed");
+EntType.EZ = new EntType("ez");

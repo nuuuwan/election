@@ -33,7 +33,7 @@ export default function CumResultsView({ entID }) {
             <ResultsReleasedView entID={entID} />,
           ].map(function (item, i) {
             return (
-              <Grid2 item xs={12} md={12} xl={2} key={i} sx={{justifyContent: "center", margin: 0.25, marginLeft: 1, marginRight: 1, minWidth: 100}} >
+              <Grid2 item xs={12} md={12} xl={2} key={i} sx={{padding: 0.5, minWidth: 200}} >
 
                   {item}
 

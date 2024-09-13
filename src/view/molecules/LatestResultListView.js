@@ -14,7 +14,7 @@ export default function LatestResultListView() {
   }
   const { election, nResultsDisplay } = data;
   const pdResultList = election.pdResultList;
-  const n = pdResultList.length;
+
   const resultListDisplay = pdResultList
     .slice(Math.max(0, nResultsDisplay - N_DISPLAY), nResultsDisplay)
     .reverse();

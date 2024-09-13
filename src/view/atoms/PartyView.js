@@ -3,8 +3,8 @@ import { Party } from "../../nonview/core";
 import { Translate } from "../../nonview/base";
 
 const STYLE_LABEL = {
-  padding: 0.33,
-  margin: 0.17,
+  padding: 0.3,
+  margin: 0.1,
   borderRadius: 1,
   width: "fit-content",
   textAlign: "center",

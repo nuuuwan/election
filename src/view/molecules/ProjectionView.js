@@ -3,7 +3,7 @@ import { Grid } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { ProjectionTitle, CustomStack } from "../atoms";
 import {
-  BestBellwetherView,
+
   FinalOutcomeView,
   PartyToVotesStatsView,
   SummaryView,
@@ -26,15 +26,7 @@ export default function ProjectionView() {
       <ProjectedResultBarChart />
       <PartyToVotesStatsView partyToVotes={resultLK.partyToVotes} />
 
-      <Grid container>
-        <Grid item xs={12} md={6}>
-          <FinalOutcomeView />
-        </Grid>
-
-        <Grid item xs={12} md={6}>
-          <BestBellwetherView />
-        </Grid>
-      </Grid>
+      <FinalOutcomeView />
     </CustomStack>
   );
 }

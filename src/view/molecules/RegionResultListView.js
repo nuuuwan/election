@@ -10,7 +10,7 @@ function RegionResultListViewGroup({ title, entIDList1 }) {
       <Grid container spacing={1}>
         {entIDList1.map(function (entID) {
           return (
-            <Grid item xs={12} md={12} xl={6} key={entID}>
+            <Grid item xs={12} md={12} xl={12} key={entID}>
               <CumResultsView entID={entID} />
             </Grid>
           );
@@ -27,8 +27,7 @@ export default function RegionResultListView() {
     return null;
   }
   const { provinceIdx, edIdx, pdIdx, elections, election } = data;
-  const entIDList1 = ["LK"].concat(Object.keys(provinceIdx));
-  const entIDList2 = Object.keys(edIdx);
+
 
   const infoList = Bellwether.getBestBellwetherInfoList(
     elections,
@@ -48,15 +47,19 @@ export default function RegionResultListView() {
 
   return (
     <Stack direction="column" alignItems="center">
-      <RegionResultListViewGroup title="Bellwethers" entIDList1={entIDList3} />
+           <RegionResultListViewGroup
+        title="Islandwide"
+        entIDList1={['LK']}
+      />
       <RegionResultListViewGroup
-        title="Islandwide & Provinces"
-        entIDList1={entIDList1}
+        title="Provinces"
+        entIDList1={Object.keys(provinceIdx)}
       />
       <RegionResultListViewGroup
         title="Electoral Districts"
-        entIDList1={entIDList2}
+        entIDList1={Object.keys(edIdx)}
       />
+       <RegionResultListViewGroup title="Bellwethers" entIDList1={entIDList3} />
     </Stack>
   );
 }

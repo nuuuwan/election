@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { EntType, Translate } from "../../nonview/base";
 
@@ -15,9 +15,11 @@ export default function EntView({ entID, useLongName = false }) {
   const label = useLongName ? entType.longName : entType.shortName;
 
   return (
-    <Typography variant="h6">
-      {Translate(ent.name)}{" "}
-      <span style={{ fontSize: "67%", opacity: 0.5 }}>{Translate(label)}</span>
+    <Stack direction="column" sx={{width: 200, justifyContent: "left"}}>
+    <Typography variant="h5">
+      {Translate(ent.name)}
     </Typography>
+      <Typography variant="body1" color="secondary">{Translate(label)}</Typography>
+      </Stack>
   );
 }

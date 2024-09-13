@@ -1,9 +1,6 @@
-
-
 import { useDataContext } from "../../nonview/core/DataProvider";
-import {  CustomStack } from "../atoms";
+import { CustomStack } from "../atoms";
 import {
-
   FinalOutcomeView,
   PartyToVotesStatsView,
   SummaryView,
@@ -22,7 +19,9 @@ export default function ProjectionView() {
 
   return (
     <CustomStack>
-       <Typography variant="h4">{Translate("Final Result Projected")}</Typography>
+      <Typography variant="h4">
+        {Translate("Final Result Projected")}
+      </Typography>
 
       <SummaryView summary={resultLK.summary} />
       <ProjectedResultBarChart />

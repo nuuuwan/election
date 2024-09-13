@@ -46,9 +46,7 @@ export default function HistoryView({ entID }) {
 
   const previousElectionsDisplay = previousElections
     .map(function (previousElection) {
-      return previousElection.getSubsetElectionByPDIDList(
-        election.pdIDList
-      );
+      return previousElection.getSubsetElectionByPDIDList(election.pdIDList);
     })
     .reverse();
 

@@ -2,10 +2,6 @@ import { Grid, Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CumResultsView from "./CumResultsView";
 
-
-
-
-
 export default function LatestResultListView() {
   const data = useDataContext();
 
@@ -24,18 +20,20 @@ export default function LatestResultListView() {
   const resultLK = resultIdx["LK"];
 
   return (
-    <Stack direction="column" alignItems="center" sx={{color: resultPD.color}}>
-      <Typography variant="h4"><span style={{opacity: 0.5}}>Result</span> #{nResultsDisplay}</Typography>
-
+    <Stack
+      direction="column"
+      alignItems="center"
+      sx={{ color: resultPD.color }}
+    >
+      <Typography variant="h4">
+        <span style={{ opacity: 0.5 }}>Result</span> #{nResultsDisplay}
+      </Typography>
 
       <Grid container spacing={1}>
         {[resultPD, resultED, resultProvince, resultLK].map(function (result) {
-
-   
-
           return (
-            <Grid item xs={12} md={6} xl={6} key={result.entID} > 
-                        <CumResultsView entID={result.entID} />
+            <Grid item xs={12} md={6} xl={6} key={result.entID}>
+              <CumResultsView entID={result.entID} />
             </Grid>
           );
         })}

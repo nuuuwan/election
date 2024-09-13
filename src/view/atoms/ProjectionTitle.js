@@ -1,4 +1,4 @@
-import {  Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { Translate } from "../../nonview/base";
 
 export default function ProjectionTitle() {

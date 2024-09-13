@@ -55,7 +55,10 @@ export default function RegionResultListView() {
         title="Electoral Districts"
         entIDList={Object.keys(edIdx)}
       />
-      <RegionResultListViewGroup title="Historical Bellwethers" entIDList={bellwetherEntIDList} />
+      <RegionResultListViewGroup
+        title="Historical Bellwethers"
+        entIDList={bellwetherEntIDList}
+      />
     </Stack>
   );
 }

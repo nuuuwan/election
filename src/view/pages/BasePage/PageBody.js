@@ -1,6 +1,6 @@
 import { Box, Grid } from "@mui/material";
 import { useDataContext } from "../../../nonview/core/DataProvider";
-import { IfElse,  NoResultsAlert, CustomStack } from "../../atoms";
+import { IfElse, NoResultsAlert, CustomStack } from "../../atoms";
 import {
   ProjectionView,
   HexMapView,
@@ -32,12 +32,10 @@ export default function PageBody() {
           </Grid>
           <Grid item xs={12} md={6} xl={4} sx={STYLE.GRID_ITEM}>
             <CustomStack>
-
               <HexMapView />
             </CustomStack>
           </Grid>
           <Grid item xs={12} md={6} xl={4} sx={STYLE.GRID_ITEM}>
-            
             <ProjectionView />
           </Grid>
 

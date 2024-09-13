@@ -16,7 +16,7 @@ export default function CumResultsView({ entID }) {
   const { election, elections } = data;
 
   const result = election.resultIdx[entID];
-  
+
   return (
     <Box sx={{ m: 0, p: 0, color: result.color }}>
       <Stack direction="column">

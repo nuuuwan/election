@@ -9,7 +9,9 @@ export default function PartyToVotesStatsView({ partyToVotes }) {
   return (
     <Stack direction="row" gap={0}>
       {entries.map(function ([partyID, votes], i) {
-        const color = Party.fromID(partyID).color;
+
+
+        const color=  Party.fromID(partyID).color
         return (
           <LabelledStat
             key={partyID}

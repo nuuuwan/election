@@ -2,22 +2,13 @@ import { Box, Grid, Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CumResultsView from "./CumResultsView";
 import { Bellwether } from "../../nonview/core";
-import { ArrayX } from "../../nonview/base";
 
 function RegionResultListViewGroup({ title, entIDList }) {
-  const data = useDataContext();
-  if (!data) {
-    return null;
-  }
-  const { election } = data;
-  const resultIdx = election.resultIdx;
   return (
     <Box>
       <Typography variant="h4">{title}</Typography>
       <Grid container spacing={1}>
-        {ArrayX.sort(entIDList, function(entID) {
-          return -resultIdx[entID].summary.valid;
-        }).map(function (entID) {
+        {entIDList.map(function (entID) {
           return (
             <Grid item xs={12} md={12} xl={12} key={entID}>
               <CumResultsView entID={entID} />

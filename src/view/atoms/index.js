@@ -10,7 +10,7 @@ import LabelledStat from "./LabelledStat";
 import LanguageSelector from "./LanguageSelector";
 import LatestResultTitle from "./LatestResultTitle";
 import LoadingLabel from "./LoadingLabel";
-import MapTitle from "./MapTitle";
+
 import NoResultsAlert from "./NoResultsAlert";
 import PDSelector from "./PDSelector";
 import PartyView from "./PartyView";
@@ -31,7 +31,7 @@ export {
   LanguageSelector,
   LatestResultTitle,
   LoadingLabel,
-  MapTitle,
+
   NoResultsAlert,
   PDSelector,
   PartyView,

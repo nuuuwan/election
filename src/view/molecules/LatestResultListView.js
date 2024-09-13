@@ -32,9 +32,9 @@ export default function LatestResultListView() {
         {[resultPD, resultED, resultProvince, resultLK].map(function (result) {
 
    
-          const color = result.color;
+
           return (
-            <Grid item xs={12} md={6} xl={6} key={result.entID} color={color} > 
+            <Grid item xs={12} md={6} xl={6} key={result.entID} > 
                         <CumResultsView entID={result.entID} />
             </Grid>
           );

@@ -1,7 +1,7 @@
 
 
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { ProjectionTitle, CustomStack } from "../atoms";
+import {  CustomStack } from "../atoms";
 import {
 
   FinalOutcomeView,
@@ -9,6 +9,8 @@ import {
   SummaryView,
   ProjectedResultBarChart,
 } from ".";
+import { Typography } from "@mui/material";
+import { Translate } from "../../nonview/base";
 
 export default function ProjectionView() {
   const data = useDataContext();
@@ -20,7 +22,7 @@ export default function ProjectionView() {
 
   return (
     <CustomStack>
-      <ProjectionTitle />
+       <Typography variant="h4">{Translate("Final Result Projected")}</Typography>
 
       <SummaryView summary={resultLK.summary} />
       <ProjectedResultBarChart />

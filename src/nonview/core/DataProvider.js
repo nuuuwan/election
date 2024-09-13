@@ -32,7 +32,7 @@ async function getValue({
   date,
   activePDID,
   nResultsDisplay,
-  noScroll,
+
   lang,
 }) {
   const { pdIdx, edIdx, provinceIdx, allRegionIdx } = await getValueEnts();
@@ -71,7 +71,7 @@ async function getValue({
     nResultsDisplay: nResultsDisplayDerived,
     electionType,
     date,
-    noScroll,
+
     lang,
   };
 }

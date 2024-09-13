@@ -18,7 +18,7 @@ export default function CumResultsView({ entID }) {
   const result = election.resultIdx[entID];
 
   return (
-    <Box sx={{ m: 1, p: 1 }}>
+    <Box sx={{ m: 0, p: 0 }}>
       <Stack direction="column">
         <Grid container sx={{ justifyContent: "center", alignItems: "center" }}>
           {[

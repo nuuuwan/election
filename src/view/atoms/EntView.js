@@ -17,7 +17,7 @@ export default function EntView({ entID, useLongName = false }) {
   return (
     <Stack direction="column" sx={{ width: 200, justifyContent: "left" }}>
       <Typography variant="h5">{Translate(ent.name)}</Typography>
-      <Typography variant="body1" color="secondary">
+      <Typography variant="body1" sx={{opacity: 0.5}}>
         {Translate(label)}
       </Typography>
     </Stack>

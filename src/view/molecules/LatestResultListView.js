@@ -19,6 +19,8 @@ export default function LatestResultListView() {
     .slice(Math.max(0, nResultsDisplay - N_DISPLAY), nResultsDisplay)
     .reverse();
 
+    
+
   return (
     <Stack direction="column" alignItems="center">
       <Typography variant="h4">Results</Typography>
@@ -26,9 +28,15 @@ export default function LatestResultListView() {
 
       <Grid container spacing={1}>
         {resultListDisplay.map(function (result) {
+
+          const resultNum = pdResultList.indexOf(result) + 1;
+          const color = result.color;
           return (
-            <Grid item xs={12} md={6} xl={6} key={result.entID}>
+            <Grid item xs={12} md={6} xl={6} key={result.entID} color={color}>
+              <Stack direction="column" gap={0}>
+              <Typography variant="caption">{resultNum}</Typography>
               <CumResultsView entID={result.entID} />
+              </Stack>
             </Grid>
           );
         })}

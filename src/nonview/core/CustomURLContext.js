@@ -6,7 +6,6 @@ export default class CustomURLContext {
     date: "2019-11-16",
     // date: "2024-09-21",
     lang: "en",
-
   };
 
   static get() {

@@ -22,20 +22,10 @@ const idx = {
     "EC-11B",
     "EC-14B",
     "EC-06A",
-    "EC-06P"
+    "EC-06P",
   ],
-  "Muslim >50%": [
-    "EC-13C",
-    "EC-13B",
-    "EC-14C",
-    "EC-16A",
-    "EC-13D",
-    "EC-01B"
-  ],
-  "Sinhala-Non-Buddhist >50%": [
-    "EC-02B",
-    "EC-16E"
-  ],
+  "Muslim >50%": ["EC-13C", "EC-13B", "EC-14C", "EC-16A", "EC-13D", "EC-01B"],
+  "Sinhala-Non-Buddhist >50%": ["EC-02B", "EC-16E"],
   " No Majority": [
     "EC-01A",
     "EC-14P",
@@ -44,7 +34,7 @@ const idx = {
     "EC-13P",
     "EC-16P",
     "EC-02I",
-    "EC-16D"
+    "EC-16D",
   ],
   "Sinhala-Buddhist 50-77%": [
     "EC-19C",
@@ -84,7 +74,7 @@ const idx = {
     "EC-04E",
     "EC-04H",
     "EC-22G",
-    "EC-03A"
+    "EC-03A",
   ],
   "Sinhala-Buddhist 77-88%": [
     "EC-01I",
@@ -123,7 +113,7 @@ const idx = {
     "EC-15F",
     "EC-02H",
     "EC-19B",
-    "EC-08A"
+    "EC-08A",
   ],
   "Sinhala-Buddhist 88-95%": [
     "EC-21B",
@@ -161,7 +151,7 @@ const idx = {
     "EC-22B",
     "EC-22C",
     "EC-17E",
-    "EC-07P"
+    "EC-07P",
   ],
   "Sinhala-Buddhist >94%": [
     "EC-03H",
@@ -195,7 +185,7 @@ const idx = {
     "EC-07B",
     "EC-09A",
     "EC-07J",
-    "EC-09B"
-  ]
-}
+    "EC-09B",
+  ],
+};
 export default idx;

@@ -29,7 +29,6 @@ const ElectionStats = {
   },
 
   getParentID(entID, pdEnt) {
-
     const entType = EntType.fromID(entID);
 
     switch (entType) {
@@ -52,7 +51,7 @@ const ElectionStats = {
 
     for (let [id, ent] of Object.entries(pdIdx)) {
       const parentID = this.getParentID(entID, ent);
- 
+
       if (parentID === entID) {
         nResultsTotal++;
         if (this.resultIdx[id]) {

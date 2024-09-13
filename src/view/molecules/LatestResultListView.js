@@ -10,7 +10,7 @@ export default function LatestResultListView() {
   if (!data) {
     return null;
   }
-  const { pdIdx , electionDisplay, activePDID} = data;
+  const { pdIdx, electionDisplay, activePDID } = data;
   const resultPD = electionDisplay.resultIdx[activePDID];
   const pdEnt = pdIdx[resultPD.entID];
 
@@ -37,7 +37,9 @@ export default function LatestResultListView() {
       </Typography>
 
       <Grid container spacing={1}>
-        {[resultPD, resultED, resultProvince, resultLK, resultEZ].map(function (result) {
+        {[resultPD, resultED, resultProvince, resultLK, resultEZ].map(function (
+          result
+        ) {
           if (!result) {
             return null;
           }

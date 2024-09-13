@@ -1,4 +1,4 @@
-import { Box,  Grid, Stack } from "@mui/material";
+import { Box, Grid, Stack } from "@mui/material";
 
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { EntView, ResultsReleasedView } from "../../view/atoms";
@@ -33,10 +33,15 @@ export default function CumResultsView({ entID }) {
             <ResultsReleasedView entID={entID} />,
           ].map(function (item, i) {
             return (
-              <Grid2 item xs={12} md={12} xl={2} key={i} sx={{padding: 0.5, minWidth: 200}} >
-
-                  {item}
-
+              <Grid2
+                item
+                xs={12}
+                md={12}
+                xl={2}
+                key={i}
+                sx={{ padding: 0.5, minWidth: 200 }}
+              >
+                {item}
               </Grid2>
             );
           })}

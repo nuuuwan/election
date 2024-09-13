@@ -71,7 +71,7 @@ export default class EntType {
   }
 
   static fromID(entID) {
-    return EntType.fromIDLK(entID) || EntType.fromIDEC(entID)|| EntType.EZ;
+    return EntType.fromIDLK(entID) || EntType.fromIDEC(entID) || EntType.EZ;
   }
 }
 

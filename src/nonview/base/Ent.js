@@ -38,10 +38,8 @@ export default class Ent {
       return Ent.LK;
     }
 
-    
     const entType = EntType.fromID(entID);
 
-    
     const entIndex = await Ent.idxFromType(entType);
     let ent = entIndex[entID];
     if (!ent) {

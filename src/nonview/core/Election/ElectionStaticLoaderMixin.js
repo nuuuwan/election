@@ -91,12 +91,16 @@ const ElectionStaticLoaderMixin = {
       ElectionStaticLoaderMixin.buildProvinceResultList(pdResultList);
     const lkResult = ElectionStaticLoaderMixin.buildLKResult(pdResultList);
 
-    const ezResultList = ElectionStaticLoaderMixin.buildEZResultList(
-      pdResultList
-    );
-    
+    const ezResultList =
+      ElectionStaticLoaderMixin.buildEZResultList(pdResultList);
 
-    return [lkResult, ...provinceResultList, ...edResultList, ...pdResultList, ...ezResultList];
+    return [
+      lkResult,
+      ...provinceResultList,
+      ...edResultList,
+      ...pdResultList,
+      ...ezResultList,
+    ];
   },
 };
 

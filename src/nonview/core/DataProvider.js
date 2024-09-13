@@ -12,11 +12,9 @@ async function getValueEnts() {
   const provinceIdx = await Ent.idxFromType(EntType.PROVINCE);
   const ezIdx = Object.fromEntries(
     Object.keys(GROUP_ID_TO_PD_ID).map(function (ezID) {
-      return [ezID, new Ent({ id: ezID, name: ezID})];
+      return [ezID, new Ent({ id: ezID, name: ezID })];
     })
-  )
-
-
+  );
 
   const allRegionIdx = Object.assign(
     { LK: { name: "Sri Lanka" } },
@@ -44,15 +42,13 @@ async function getValue({
 
   lang,
 }) {
-  const { pdIdx, edIdx, provinceIdx, ezIdx, allRegionIdx } = await getValueEnts();
+  const { pdIdx, edIdx, provinceIdx, ezIdx, allRegionIdx } =
+    await getValueEnts();
 
   const { elections, election } = await getValueElections({
     electionType,
     date,
   });
-
-
-
 
   const activePDIDDerived = DerivedData.getActivePDID(
     activePDID,
@@ -60,13 +56,10 @@ async function getValue({
     election
   );
 
-
-
   const nResultsDisplayDerived = DerivedData.getNResultsDisplay(
     nResultsDisplay,
     election
   );
-  
 
   const { electionDisplay, electionProjected } = DerivedData.getDerived(
     nResultsDisplayDerived,
@@ -81,7 +74,7 @@ async function getValue({
     activePDID: activePDIDDerived,
     nResultsDisplay: nResultsDisplayDerived,
     lang,
-  })
+  });
 
   return {
     election,

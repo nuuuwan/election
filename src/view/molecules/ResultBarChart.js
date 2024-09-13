@@ -5,7 +5,6 @@ import { Box } from "@mui/material";
 import { THEME_DATA } from "../_constants/THEME";
 import { BarChart, barLabelClasses } from "@mui/x-charts";
 
-
 function getAxis() {
   return [
     {
@@ -45,7 +44,6 @@ function getStyle() {
 }
 
 export default function ResultBarChart({ resultsElection, entID }) {
-
   const result = resultsElection.resultIdx[entID];
   const partyToVotes = result.partyToVotes;
   const totalVotes = partyToVotes.totalVotes;

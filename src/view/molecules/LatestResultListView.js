@@ -2,7 +2,7 @@ import { Grid, Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CumResultsView from "./CumResultsView";
 
-import { CustomPagination } from "../atoms";
+
 
 
 
@@ -24,9 +24,9 @@ export default function LatestResultListView() {
   const resultLK = resultIdx["LK"];
 
   return (
-    <Stack direction="column" alignItems="center">
-      <Typography variant="h4">Latest Result</Typography>
-      <CustomPagination />
+    <Stack direction="column" alignItems="center" sx={{color: resultPD.color}}>
+      <Typography variant="h4"><span style={{opacity: 0.5}}>Result</span> #{nResultsDisplay}</Typography>
+
 
       <Grid container spacing={1}>
         {[resultPD, resultED, resultProvince, resultLK].map(function (result) {

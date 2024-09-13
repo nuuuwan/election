@@ -25,43 +25,31 @@ export default function CumResultsView({ entID }) {
     <PartyToVotesStatsView partyToVotes={result.partyToVotes} />,
 
     <HistoryView entID={entID} />,
-  
+
     <ResultsReleasedView entID={entID} />,
   ];
 
   return (
-   
-      <Grid2
-        container
-        sx={{ width: '100%', color: result.color }} 
-        justifyContent="center"
-        alignContent="center"
-        alignItems="center"
-     >
-        {contentList.map(function (content, i) {
-          return (
-            <Grid2
-              item
-              key={i}
-
-              xs={12} 
-              md={6}  
-              xl={2}  
-
-              
-          
+    <Grid2
+      container
+      sx={{ width: "100%", color: result.color }}
+      justifyContent="center"
+      alignContent="center"
+      alignItems="center"
+    >
+      {contentList.map(function (content, i) {
+        return (
+          <Grid2 item key={i} xs={12} md={6} xl={2}>
+            <Box
+              sx={{ minWidth: 200, p: 0.5 }}
+              display="flex"
+              justifyContent="center"
             >
-              <Box
-                sx={{ minWidth: 200, p: 0.5 }}
-                display="flex"
-                justifyContent="center"
-              >
-                {content}
-              </Box>
-            </Grid2>
-          );
-        })}
-      </Grid2>
-   
+              {content}
+            </Box>
+          </Grid2>
+        );
+      })}
+    </Grid2>
   );
 }

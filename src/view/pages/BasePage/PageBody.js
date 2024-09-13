@@ -10,7 +10,6 @@ import {
 
 const STYLE = {
   BOX: { paddingTop: 1, paddingBottom: 20 },
-
 };
 
 export default function PageBody() {
@@ -25,17 +24,17 @@ export default function PageBody() {
       <IfElse condition={electionDisplay.nResults === 0}>
         <NoResultsAlert />
         <Grid2 container>
-          <Grid2 size={{ xs: 12, md: 6, xl: 4 }} >
+          <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
             <LatestResultListView />
           </Grid2>
-          <Grid2 size={{ xs: 12, md: 6, xl: 4 }} >
+          <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
             <HexMapView />
           </Grid2>
-          <Grid2 size={{ xs: 12, md: 6, xl: 4 }} >
+          <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
             <ProjectionView />
           </Grid2>
 
-          <Grid2 size={{ xs: 12, md: 12, xl:12 }} >
+          <Grid2 size={{ xs: 12, md: 12, xl: 12 }}>
             <RegionResultListView />
           </Grid2>
         </Grid2>

@@ -21,9 +21,13 @@ function RegionResultListViewGroup({ title, entIDList }) {
   return (
     <Box>
       <Typography variant="h4">{title}</Typography>
-      <Grid2 container spacing={1}       justifyContent="center"
-      alignContent="center"
-      alignItems="center">
+      <Grid2
+        container
+        spacing={1}
+        justifyContent="center"
+        alignContent="center"
+        alignItems="center"
+      >
         {ArrayX.sort(entIDList, function (entID) {
           const result = electionDisplay.resultIdx[entID];
           if (!result) {
@@ -33,9 +37,15 @@ function RegionResultListViewGroup({ title, entIDList }) {
           return -partyToVotes.partyToPVotesSorted[winnerPartyID];
         }).map(function (entID) {
           return (
-            <Grid2 xs={12} md={12} xl={12} key={entID}       justifyContent="center"
-            alignContent="center"
-            alignItems="center" >
+            <Grid2
+              xs={12}
+              md={12}
+              xl={12}
+              key={entID}
+              justifyContent="center"
+              alignContent="center"
+              alignItems="center"
+            >
               <CumResultsView entID={entID} />
             </Grid2>
           );

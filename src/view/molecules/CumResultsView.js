@@ -39,16 +39,16 @@ export default function CumResultsView({ entID }) {
     >
       {contentList.map(function (content, i) {
         return (
-          <Grid2 key={i} xs={12} md={6} xl={2}
-          justifyContent="center"
-          alignContent="center"
-          alignItems="center"
+          <Grid2
+            key={i}
+            xs={12}
+            md={6}
+            xl={2}
+            justifyContent="center"
+            alignContent="center"
+            alignItems="center"
           >
-            <Box
-              sx={{ minWidth: 200, p: 0.5 }}
-              display="flex"
-  
-            >
+            <Box sx={{ minWidth: 200, p: 0.5 }} display="flex">
               {content}
             </Box>
           </Grid2>

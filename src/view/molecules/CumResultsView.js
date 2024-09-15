@@ -1,4 +1,4 @@
-import { Box, Card, Stack } from "@mui/material";
+import { Box, Card,  } from "@mui/material";
 
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { EntView, ResultsReleasedView } from "../../view/atoms";
@@ -31,15 +31,12 @@ export default function CumResultsView({ entID, direction = "column" }) {
     <HistoryView entID={entID} />,
   ];
 
+  if (direction === "column") {
+    
+
   return (
-    <Card variant="outlined" sx={{p:0}}>
-    <Stack
-      direction={direction}
-      justifyContent="center"
-      alignItems="center"
-      alignContent="center"
-      gap={1}
-    >
+    <Card variant="outlined" sx={{p:1}}>
+
       {contentList.map(function (content, i) {
         return (
           <Box
@@ -54,6 +51,24 @@ export default function CumResultsView({ entID, direction = "column" }) {
           </Box>
         );
       })}
-    </Stack></Card>
+</Card>
   );
+
+}
+  return (
+    <tr>
+       {contentList.map(function (content, i) {
+        return (
+          <td
+            key={i}
+            style={{padding: 12, borderBottom: "1px solid #eee"}}
+          >
+            {content}
+          </td>
+        );
+      })}
+    </tr>
+  )
+
+
 }

@@ -21,39 +21,37 @@ function RegionResultListViewGroup({ title, entIDList }) {
   const isMobile = window.innerWidth < 1080;
   const direction = isMobile ? "column" : "row";
 
+  const sortedEntIDs = ArrayX.sort(entIDList, function (entID) {
+    const result = electionDisplay.resultIdx[entID];
+    if (!result) {
+      return 0;
+    }
+    const partyToVotes = result.partyToVotes;
+    return -partyToVotes.partyToPVotesSorted[winnerPartyID];
+  });
+
   return (
     <Box>
       <Typography variant="h3">{Translate(title)}</Typography>
-      <Grid2
-        container
-        spacing={1}
-        justifyContent="center"
-        alignContent="center"
-        alignItems="center"
-      >
-        {ArrayX.sort(entIDList, function (entID) {
-          const result = electionDisplay.resultIdx[entID];
-          if (!result) {
-            return 0;
-          }
-          const partyToVotes = result.partyToVotes;
-          return -partyToVotes.partyToPVotesSorted[winnerPartyID];
-        }).map(function (entID) {
-          return (
-            <Grid2
-              xs={12}
-              md={12}
-              xl={12}
-              key={entID}
-              justifyContent="center"
-              alignContent="center"
-              alignItems="center"
-            >
-              <CumResultsView entID={entID} direction={direction} />
-            </Grid2>
-          );
-        })}
+
+      {isMobile ? (
+
+<Grid2 container spacing={2} rowSpacing={3} justifyContent="center">
+        {sortedEntIDs.map(function (entID) {
+          return <Grid2 key={entID}> <CumResultsView entID={entID} direction={direction} /></Grid2>;
+        })}   
+
       </Grid2>
+
+      ) :(
+
+      <table>
+        {sortedEntIDs.map(function (entID) {
+
+              return <CumResultsView key={entID} entID={entID} direction={direction} />
+
+         })}
+         </table>)}
     </Box>
   );
 }

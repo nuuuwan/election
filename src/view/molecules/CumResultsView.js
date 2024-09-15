@@ -32,19 +32,18 @@ export default function CumResultsView({ entID }) {
   return (
     <Grid2
       container
-      sx={{ width: "100%" }}
       justifyContent="center"
     >
       {contentList.map(function (content, i) {
         return (
           <Grid2
             key={i}
-            wrap="nowrap"
-          
+            
           >
             <Box sx={{ minWidth: 200, p: 0.5 }}             
               justifyContent="center"
-            display="flex">
+              display="flex"
+            >
               {content}
             </Box>
           </Grid2>

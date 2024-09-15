@@ -19,21 +19,20 @@ export default function ResultsReleasedView({ entID }) {
   }
 
   const title = (
-    <Stack direction="row" sx={{ alignItems: "center" }}>
+    <Stack direction="row" alignItems="center">
       <Typography variant="h6">{nResultsReleased}</Typography>
       <Typography variant="caption">/{nResultsTotal}</Typography>
     </Stack>
   );
 
-  const subTitle =
-    nResultsReleased === nResultsTotal ? <CheckCircleIcon /> : null;
 
   return (
-    <Stack direction="column" sx={{ alignItems: "center" }}>
+    <Stack direction="row" alignItems="center">
+      {nResultsReleased === nResultsTotal ? <CheckCircleIcon /> : null}
       <Typography variant="body1" color={"secondary"}>
         {title}
       </Typography>
-      <Typography variant="caption">{subTitle}</Typography>
+
     </Stack>
   );
 }

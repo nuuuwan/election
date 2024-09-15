@@ -20,10 +20,6 @@ export default function LatestResultListView() {
   const resultLK = resultIdx["LK"];
 
   const resultEZ = resultIdx[PD_ID_TO_GROUP_ID[activePDID]];
-  if (!resultEZ) {
-    console.debug(activePDID);
-  }
-
   const iResult = electionDisplay.pdIDList.indexOf(activePDID) + 1;
 
   return (

@@ -34,8 +34,6 @@ export default function CumResultsView({ entID }) {
       container
       sx={{ width: "100%" }}
       justifyContent="center"
-      alignContent="center"
-      alignItems="center"
     >
       {contentList.map(function (content, i) {
         return (
@@ -44,11 +42,11 @@ export default function CumResultsView({ entID }) {
             xs={12}
             md={6}
             xl={2}
-            justifyContent="center"
-            alignContent="center"
-            alignItems="center"
+
           >
-            <Box sx={{ minWidth: 200, p: 0.5 }} display="flex">
+            <Box sx={{ minWidth: 200, p: 0.5 }}             
+              justifyContent="center"
+            display="flex">
               {content}
             </Box>
           </Grid2>

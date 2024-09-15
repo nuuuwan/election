@@ -39,10 +39,8 @@ export default function CumResultsView({ entID }) {
         return (
           <Grid2
             key={i}
-            xs={12}
-            md={6}
-            xl={2}
-
+            wrap="nowrap"
+          
           >
             <Box sx={{ minWidth: 200, p: 0.5 }}             
               justifyContent="center"

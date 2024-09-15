@@ -2,8 +2,8 @@ import { POLITICAL_PARTY_TO_COLOR } from "../constants";
 
 export default class Party {
   static OTHER = new Party("Other", "Other");
-  static UNCERTAIN = new Party("Uncertain", "Uncertain");
-  static NON_PARTY_ID_LIST = [Party.OTHER.id, Party.UNCERTAIN.id];
+  static ERROR = new Party("Error", "Error");
+  static NON_PARTY_ID_LIST = [Party.OTHER.id, Party.ERROR.id];
 
   constructor(id) {
     this.id = id;
@@ -14,7 +14,7 @@ export default class Party {
   }
 
   get color() {
-    if (this.id === Party.UNCERTAIN.id) {
+    if (this.id === Party.ERROR.id) {
       return "lightgray";
     }
     if (this.id === Party.OTHER.id) {

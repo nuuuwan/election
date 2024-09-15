@@ -10,8 +10,8 @@ export default function SVGLegendParty({ x, y }) {
   if (!data) {
     return null;
   }
-  const { election } = data;
-  return Object.keys(election.getPartyToWins()).map(function (partyID, i) {
+  const { electionDisplay } = data;
+  return Object.keys(electionDisplay.getPartyToWins()).map(function (partyID, i) {
     const color = Party.fromID(partyID).color;
     const [x1, y1] = [
       x + parseInt(i / StyleHexMap.N_COLS),

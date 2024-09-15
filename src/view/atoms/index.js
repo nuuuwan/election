@@ -13,8 +13,9 @@ import PDSelector from "./PDSelector";
 import PartyView from "./PartyView";
 import ProjectionTitle from "./ProjectionTitle";
 import RefreshButton from "./RefreshButton";
+import ResultsReleasedTitle from "./ResultsReleasedTitle";
 import ResultsReleasedView from "./ResultsReleasedView";
-import TestingLabel from "./TestingLabel";
+
 
 export {
   CitationsView,
@@ -31,6 +32,7 @@ export {
   PartyView,
   ProjectionTitle,
   RefreshButton,
+  ResultsReleasedTitle,
   ResultsReleasedView,
-  TestingLabel,
+
 };

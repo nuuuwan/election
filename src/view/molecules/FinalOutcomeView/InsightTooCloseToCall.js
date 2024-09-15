@@ -24,7 +24,7 @@ function renderLikelyhoodTablePartyRows(likelyWinnerPartyInfoList) {
 
 function renderLikelyhoodTable(
   likelyWinnerPartyInfoList,
-  pUncertainHappenning
+  pErrorHappenning
 ) {
   return (
     <table>
@@ -33,7 +33,7 @@ function renderLikelyhoodTable(
         <tr>
           <td style={{ textAlign: "right", padding: 1 }}>
             <Typography variant="body1">
-              {Format.percent(pUncertainHappenning)}
+              {Format.percent(pErrorHappenning)}
             </Typography>
           </td>
           <td style={{ textAlign: "left", padding: 1 }}>
@@ -49,7 +49,7 @@ function renderLikelyhoodTable(
 
 export default function InsightTooCloseToCall({
   likelyWinnerPartyInfoList,
-  pUncertainHappenning,
+  pErrorHappenning,
 }) {
   return (
     <Box>
@@ -58,7 +58,7 @@ export default function InsightTooCloseToCall({
         {Translate("Possible Outcomes & Probabilities")}
       </Typography>
       <Box display="flex" justifyContent="center">
-        {renderLikelyhoodTable(likelyWinnerPartyInfoList, pUncertainHappenning)}
+        {renderLikelyhoodTable(likelyWinnerPartyInfoList, pErrorHappenning)}
       </Box>
     </Box>
   );

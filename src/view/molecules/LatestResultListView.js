@@ -1,7 +1,7 @@
-import { Grid2, Stack } from "@mui/material";
+import { Grid2, Stack,  } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CumResultsView from "./CumResultsView";
-import { ProvinceUtils } from "../../nonview/base";
+import { ProvinceUtils,  } from "../../nonview/base";
 import { PDSelector } from "../atoms";
 
 export default function LatestResultListView() {
@@ -21,6 +21,7 @@ export default function LatestResultListView() {
 
   return (
     <Stack direction="column" sx={{ color: resultPD.color }}>
+
       <PDSelector />
 
       <Grid2 container spacing={2} rowSpacing={3} justifyContent="center">

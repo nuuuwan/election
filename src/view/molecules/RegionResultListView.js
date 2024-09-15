@@ -32,7 +32,7 @@ function RegionResultListViewGroup({ title, entIDList }) {
 
   return (
     <Box>
-      <Typography variant="h3">{Translate(title)}</Typography>
+      <Typography variant="h4">{Translate(title)}</Typography>
 
       {isMobile ? (
         <Grid2 container spacing={2} rowSpacing={3} justifyContent="center">

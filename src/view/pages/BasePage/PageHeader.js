@@ -11,6 +11,7 @@ const STYLE_PAGE_HEADER = {
     zIndex: 3000,
     padding: 1,
     margin: 0,
+    backgroundColor: "white",
   },
 };
 
@@ -21,13 +22,9 @@ export default function PageHeader() {
   }
   const { electionProjected } = data;
 
-  const color = electionProjected ? electionProjected.color : "grey";
-
   return (
     <Box
-      sx={Object.assign(STYLE_PAGE_HEADER.SELECTOR, {
-        backgroundColor: color,
-      })}
+      sx={STYLE_PAGE_HEADER.SELECTOR}
     >
       <Stack
         direction="row"

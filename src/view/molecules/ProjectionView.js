@@ -1,28 +1,39 @@
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { CustomStack } from "../atoms";
+import { CustomStack, ProjectionTitle } from "../atoms";
 import {
   FinalOutcomeView,
   PartyToVotesStatsView,
   SummaryView,
   ProjectedResultBarChart,
 } from ".";
-import { Typography } from "@mui/material";
-import { Translate } from "../../nonview/base";
+
+import { FinalOutcome } from "../../nonview/core";
+import InsightErrorMarginTooHigh from "./FinalOutcomeView/InsightErrorMarginTooHigh";
 
 export default function ProjectionView() {
   const data = useDataContext();
   if (!data) {
     return null;
   }
-  const { electionProjected } = data;
+  const { electionProjected, electionDisplay } = data;
   const resultLK = electionProjected.resultLK;
+
+  const finalOutcome = new FinalOutcome(
+    electionProjected,
+    electionDisplay.nResults
+  );
+
+  if (finalOutcome.isTooEarlyToCall) {
+    return <CustomStack>
+      <ProjectionTitle />
+      <InsightErrorMarginTooHigh />
+    </CustomStack>;
+  }
 
   return (
     <CustomStack>
-      <Typography variant="h3">
-        {Translate("Final Result Projected")}
-      </Typography>
-
+     
+     <ProjectionTitle />
       <SummaryView summary={resultLK.summary} />
       <ProjectedResultBarChart />
       <PartyToVotesStatsView partyToVotes={resultLK.partyToVotes} />

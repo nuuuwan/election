@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Grid2, Stack, Typography } from "@mui/material";
 import { Format } from "../../nonview/base";
 import { Election } from "../../nonview/core";
 import { PartyView } from "../../view/atoms";
@@ -20,12 +20,12 @@ function HistoryViewRow({ entID, electionForRow }) {
 
   return (
     <Stack direction="column" gap={0} sx={{ color, alignItems: "center" }}>
-      <Typography variant="caption" sx={{ fontSize: "50%" }}>
+      <Typography variant="caption" sx={{ fontSize: "67%" }}>
         {electionForRow.year}
       </Typography>
 
-      <PartyView partyID={winningPartyID} sx={{ fontSize: "40%", width: 16 }} />
-      <Typography variant="caption" sx={{ fontSize: "50%" }}>
+      <PartyView partyID={winningPartyID}/>
+      <Typography variant="caption" sx={{ fontSize: "67%" }}>
         {Format.percentVotes(pWinner)}
       </Typography>
     </Stack>
@@ -51,16 +51,17 @@ export default function HistoryView({ entID }) {
     .reverse();
 
   return (
-    <Stack direction="row" gap={0.5}>
+    <Grid2 container gap={0.5} rowGap={0.1}>
       {previousElectionsDisplay.map(function (electionForRow, i) {
         return (
+          <Grid2 key={i}>
           <HistoryViewRow
-            key={i}
+            
             electionForRow={electionForRow}
             entID={entID}
-          />
+          /></Grid2>
         );
       })}
-    </Stack>
+    </Grid2>
   );
 }

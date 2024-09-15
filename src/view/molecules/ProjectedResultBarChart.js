@@ -46,7 +46,7 @@ export default function ProjectedResultBarChart() {
   const result = electionProjected.resultLK;
   const partyToVotes = result.partyToVotes;
   const totalVotes = partyToVotes.totalVotes;
-  const uncertainVotes = partyToVotes.partyToVotes[Party.UNCERTAIN.id];
+  const uncertainVotes = partyToVotes.partyToVotes[Party.ERROR.id];
   const pVotesExtra = uncertainVotes / totalVotes;
 
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
@@ -111,7 +111,7 @@ export default function ProjectedResultBarChart() {
         sx={getStyle()}
         grid={{ vertical: true }}
         slotProps={{ legend: { hidden: true } }}
-        margin={{ top: 0, right: 10, bottom: 30, left: 0 }}
+        margin={{ top: 0, right: 10, bottom: 40, left: 0 }}
       />
     </Box>
   );

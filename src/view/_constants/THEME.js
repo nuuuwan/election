@@ -4,14 +4,14 @@ import CustomURLContext from "../../nonview/core/CustomURLContext";
 function getThemeData() {
   const lang = CustomURLContext.get().lang;
 
-  let fontFamily = "Cairo";
-  let fontSize = 11;
+  let fontFamily = "ABeeZee";
+  let fontSize = 12;
   if (lang === "si") {
     fontFamily = "Noto Sans Sinh.";
-    fontSize = 9;
+    fontSize = 12;
   } else if (lang === "ta") {
     fontFamily = "Noto Sans Tamil";
-    fontSize = 8;
+    fontSize = 12;
   }
 
   return {

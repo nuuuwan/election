@@ -3,7 +3,7 @@ const normalCDF = require("@stdlib/stats-base-dists-normal-cdf");
 
 export default class FinalOutcome {
   static P_BASE = 0.9;
-  static P_TOO_MUCH_UNCERTAINTY = 0.25;
+  static P_TOO_MUCH_ERRORTY = 0.25;
   static MIN_N_RESULTS = 30;
 
   constructor(election, nResultsDisplay) {
@@ -19,9 +19,9 @@ export default class FinalOutcome {
     return this.result.partyToVotes.pWinner || 0.0;
   }
 
-  get pUncertain() {
+  get pError() {
     return (
-      this.result.partyToVotes.partyToPVotesSorted[Party.UNCERTAIN.id] || 0.0
+      this.result.partyToVotes.partyToPVotesSorted[Party.ERROR.id] || 0.0
     );
   }
 
@@ -29,8 +29,8 @@ export default class FinalOutcome {
     return this.nResultsDisplay <= FinalOutcome.MIN_N_RESULTS;
   }
 
-  get isTooMuchUncertainty() {
-    return this.pUncertain > FinalOutcome.P_TOO_MUCH_UNCERTAINTY;
+  get isTooMuchErrorty() {
+    return this.pError > FinalOutcome.P_TOO_MUCH_ERRORTY;
   }
 
   get hasFirstPrefWinner() {
@@ -38,18 +38,18 @@ export default class FinalOutcome {
   }
 
   get likelyWinnerPartyInfoList() {
-    const pUncertain = this.pUncertain;
+    const pError = this.pError;
     const likelyWinnerPartyInfoList = Object.entries(
       this.result.partyToVotes.partyToPVotesSorted
     )
       .filter(function ([partyID, pVotes]) {
-        return pVotes + pUncertain > 0.5 && partyID !== Party.UNCERTAIN.id;
+        return pVotes + pError > 0.5 && partyID !== Party.ERROR.id;
       })
       .map(function ([partyID, pVotes]) {
         const missingPVotes = 0.5 - pVotes;
 
         const x = missingPVotes;
-        const mean = pVotes * pUncertain;
+        const mean = pVotes * pError;
         const stdev = mean;
         const p = 1 - normalCDF(x, mean, stdev);
 

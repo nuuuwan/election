@@ -59,10 +59,10 @@ export default class ElectionModelProjectionUtils {
         const kError = Math.max(0, 1 - pError);
         const votesMin = Math.round(pVotes * kError * valid);
         partyToVotes[partyID] = votesMin;
-        partyToVotes[Party.UNCERTAIN.id] += votes - votesMin;
+        partyToVotes[Party.ERROR.id] += votes - votesMin;
         return partyToVotes;
       },
-      { [Party.UNCERTAIN.id]: 0 }
+      { [Party.ERROR.id]: 0 }
     );
     return new PartyToVotes(partyToVotes);
   }

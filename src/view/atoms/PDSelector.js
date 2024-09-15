@@ -19,7 +19,7 @@ function buildRenderMenuItemInner(resultIdx, edIdx, variant1, variant2) {
     const colorED = edResult.color;
 
     return (
-      <Stack direction="row" gap={0.5} sx={{ alignItems: "center" }}>
+      <Stack direction="row" gap={0.5} alignItems="center">
         <Typography variant={variant1} color={colorPD}>
           {Translate(pd.name)}
         </Typography>

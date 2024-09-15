@@ -8,7 +8,7 @@ export default function InsightErrorMarginTooHigh() {
       <Typography variant="h6">{Translate("Error Margin too High")}</Typography>
       <Typography variant="caption">
         {Translate("The voting preferences of")} &gt;
-        {Format.percent(FinalOutcome.P_TOO_MUCH_UNCERTAINTY)}
+        {Format.percent(FinalOutcome.P_TOO_MUCH_ERRORTY)}
         {Translate(
           "of votes are within the Error Margin. Please wait for more results"
         )}

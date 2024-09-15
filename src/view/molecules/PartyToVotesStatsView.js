@@ -9,9 +9,7 @@ export default function PartyToVotesStatsView({ partyToVotes }) {
   return (
     <Stack direction="row" gap={0.5}>
       {entries
-        .filter(function ([partyID, votes]) {
-          return !Party.fromID(partyID).isNonParty;
-        })
+        
         .map(function ([partyID, votes], i) {
           const color = Party.fromID(partyID).color;
           return (

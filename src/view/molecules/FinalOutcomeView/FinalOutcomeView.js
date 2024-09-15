@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 
 import { FinalOutcome } from "../../../nonview/core";
 
-import InsightErrorMarginTooHigh from "./InsightErrorMarginTooHigh";
+
 import InsightFirstPrefWinner from "./InsightFirstPrefWinner";
 import InsightTooCloseToCall from "./InsightTooCloseToCall";
 import { MathX, Translate } from "../../../nonview/base";
@@ -22,13 +22,13 @@ function FinalOutcomeViewComplexPref({ finalOutcome }) {
     );
   }
 
-  const pUncertainHappenning =
+  const pErrorHappenning =
     1 - MathX.sum(likelyWinnerPartyInfoList.map(({ p }) => p));
 
   return (
     <InsightTooCloseToCall
       likelyWinnerPartyInfoList={likelyWinnerPartyInfoList}
-      pUncertainHappenning={pUncertainHappenning}
+      pErrorHappenning={pErrorHappenning}
     />
   );
 }
@@ -45,9 +45,7 @@ export default function FinalOutcomeView() {
     electionDisplay.nResults
   );
 
-  if (finalOutcome.isTooMuchUncertainty) {
-    return <InsightErrorMarginTooHigh />;
-  }
+
   if (finalOutcome.hasFirstPrefWinner) {
     return (
       <InsightFirstPrefWinner

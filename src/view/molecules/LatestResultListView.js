@@ -34,10 +34,8 @@ export default function LatestResultListView() {
 
       <Grid2
         container
-        spacing={1}
-        justifyContent="center"
-        alignContent="center"
-        alignItems="center"
+        spacing={2}
+        rowSpacing={3}
       >
         {[resultPD, resultED, resultProvince, resultLK, resultEZ].map(function (
           result
@@ -54,6 +52,7 @@ export default function LatestResultListView() {
               justifyContent="center"
               alignContent="center"
               alignItems="center"
+              
             >
               <CumResultsView entID={result.entID} />
             </Grid2>

@@ -20,12 +20,12 @@ export default function CumResultsView({ entID }) {
 
   const contentList = [
     <EntView entID={entID} useLongName={true} />,
-    <SummaryView summary={result.summary} />,
     <ResultBarChart resultsElection={electionDisplay} entID={entID} />,
     <PartyToVotesStatsView partyToVotes={result.partyToVotes} />,
 
     <HistoryView entID={entID} />,
-
+    
+    <SummaryView summary={result.summary} />,
     <ResultsReleasedView entID={entID} />,
   ];
 

@@ -1,7 +1,7 @@
-import { Grid2, Stack,  } from "@mui/material";
+import { Grid2, Stack } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CumResultsView from "./CumResultsView";
-import { ProvinceUtils,  } from "../../nonview/base";
+import { ProvinceUtils } from "../../nonview/base";
 import { PDSelector } from "../atoms";
 
 export default function LatestResultListView() {

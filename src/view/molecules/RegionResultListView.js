@@ -35,23 +35,25 @@ function RegionResultListViewGroup({ title, entIDList }) {
       <Typography variant="h3">{Translate(title)}</Typography>
 
       {isMobile ? (
-
-<Grid2 container spacing={2} rowSpacing={3} justifyContent="center">
-        {sortedEntIDs.map(function (entID) {
-          return <Grid2 key={entID}> <CumResultsView entID={entID} direction={direction} /></Grid2>;
-        })}   
-
-      </Grid2>
-
-      ) :(
-
-      <table>
-        {sortedEntIDs.map(function (entID) {
-
-              return <CumResultsView key={entID} entID={entID} direction={direction} />
-
-         })}
-         </table>)}
+        <Grid2 container spacing={2} rowSpacing={3} justifyContent="center">
+          {sortedEntIDs.map(function (entID) {
+            return (
+              <Grid2 key={entID}>
+                {" "}
+                <CumResultsView entID={entID} direction={direction} />
+              </Grid2>
+            );
+          })}
+        </Grid2>
+      ) : (
+        <table>
+          {sortedEntIDs.map(function (entID) {
+            return (
+              <CumResultsView key={entID} entID={entID} direction={direction} />
+            );
+          })}
+        </table>
+      )}
     </Box>
   );
 }
@@ -91,7 +93,7 @@ export default function RegionResultListView() {
     Ethnicity: Object.keys(ezIdx),
     Provinces: Object.keys(provinceIdx),
     "Electoral Districts": Object.keys(edIdx),
-    "Bellwethers": bellwetherEntIDList,
+    Bellwethers: bellwetherEntIDList,
     "Latest Results": latestResults,
   };
 

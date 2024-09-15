@@ -2,7 +2,7 @@ import { Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { EntType, Translate } from "../../nonview/base";
 
-export default function EntView({ entID, useLongName = false, sx={} }) {
+export default function EntView({ entID, useLongName = false, sx = {} }) {
   const data = useDataContext();
   if (!data) {
     return null;
@@ -16,7 +16,13 @@ export default function EntView({ entID, useLongName = false, sx={} }) {
   const label = useLongName ? entType.longName : entType.shortName;
 
   return (
-    <Stack direction="column" sx={Object.assign({ justifyContent: "left", width:"100%", margin: 0, padding: 0 }, sx)}>
+    <Stack
+      direction="column"
+      sx={Object.assign(
+        { justifyContent: "left", width: "100%", margin: 0, padding: 0 },
+        sx
+      )}
+    >
       <Typography variant="h5">{Translate(ent.name)}</Typography>
       <Typography variant="body1" sx={{ opacity: 0.5 }}>
         {Translate(label)}

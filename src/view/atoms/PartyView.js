@@ -1,7 +1,6 @@
 import { Typography } from "@mui/material";
 import { Party } from "../../nonview/core";
 
-
 const STYLE_LABEL = {
   padding: 0.3,
   margin: 0.0,
@@ -12,7 +11,6 @@ const STYLE_LABEL = {
 
 export default function PartyView({ partyID, sx }) {
   const party = Party.fromID(partyID);
-
 
   return (
     <Typography

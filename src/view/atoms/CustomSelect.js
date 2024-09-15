@@ -22,7 +22,7 @@ function CustomSelectInner({
 }) {
   let prevDividerKey;
   return (
-    <Box sx={{minHeight: 50}}>
+    <Box sx={{ minHeight: 50 }}>
       <Select
         value={getID(value)}
         onChange={onChangeInner}

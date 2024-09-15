@@ -2,7 +2,6 @@ import { Box, Typography } from "@mui/material";
 
 import { FinalOutcome } from "../../../nonview/core";
 
-
 import InsightFirstPrefWinner from "./InsightFirstPrefWinner";
 import InsightTooCloseToCall from "./InsightTooCloseToCall";
 import { MathX, Translate } from "../../../nonview/base";
@@ -44,7 +43,6 @@ export default function FinalOutcomeView() {
     electionProjected,
     electionDisplay.nResults
   );
-
 
   if (finalOutcome.hasFirstPrefWinner) {
     return (

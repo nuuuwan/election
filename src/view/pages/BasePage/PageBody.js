@@ -1,6 +1,6 @@
 import { Box, Grid2, Typography } from "@mui/material";
 import { useDataContext } from "../../../nonview/core/DataProvider";
-import { IfElse, NoResultsAlert, ResultsReleasedTitle,  } from "../../atoms";
+import { IfElse, NoResultsAlert, ResultsReleasedTitle } from "../../atoms";
 import {
   ProjectionView,
   HexMapView,
@@ -24,17 +24,14 @@ export default function PageBody() {
       <IfElse condition={electionDisplay.nResults === 0}>
         <NoResultsAlert />
         <Grid2 container>
-    
           <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
             <Typography variant="h4">
-
-<ResultsReleasedTitle mode="percent" />
-
+              <ResultsReleasedTitle mode="percent" />
             </Typography>
             <HexMapView />
           </Grid2>
           <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
-          <ResultsReleasedTitle mode="n" />
+            <ResultsReleasedTitle mode="n" />
             <LatestResultListView />
           </Grid2>
           <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>

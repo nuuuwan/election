@@ -24,7 +24,7 @@ function HistoryViewRow({ entID, electionForRow }) {
         {electionForRow.year}
       </Typography>
 
-      <PartyView partyID={winningPartyID}/>
+      <PartyView partyID={winningPartyID} />
       <Typography variant="caption" sx={{ fontSize: "67%" }}>
         {Format.percentVotes(pWinner)}
       </Typography>
@@ -55,11 +55,8 @@ export default function HistoryView({ entID }) {
       {previousElectionsDisplay.map(function (electionForRow, i) {
         return (
           <Grid2 key={i}>
-          <HistoryViewRow
-            
-            electionForRow={electionForRow}
-            entID={entID}
-          /></Grid2>
+            <HistoryViewRow electionForRow={electionForRow} entID={entID} />
+          </Grid2>
         );
       })}
     </Grid2>

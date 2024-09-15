@@ -24,16 +24,17 @@ export default function ProjectionView() {
   );
 
   if (finalOutcome.isTooEarlyToCall) {
-    return <CustomStack>
-      <ProjectionTitle />
-      <InsightErrorMarginTooHigh />
-    </CustomStack>;
+    return (
+      <CustomStack>
+        <ProjectionTitle />
+        <InsightErrorMarginTooHigh />
+      </CustomStack>
+    );
   }
 
   return (
     <CustomStack>
-     
-     <ProjectionTitle />
+      <ProjectionTitle />
       <SummaryView summary={resultLK.summary} />
       <ProjectedResultBarChart />
       <PartyToVotesStatsView partyToVotes={resultLK.partyToVotes} />

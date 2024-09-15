@@ -1,4 +1,4 @@
-import { Box,  } from "@mui/material";
+import { Box } from "@mui/material";
 
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { EntView, ResultsReleasedView } from "../../view/atoms";
@@ -16,14 +16,14 @@ export default function CumResultsView({ entID, direction = "column" }) {
 
   const isActiveEnt = activePDID === entID;
 
-
-
   const result = electionDisplay.resultIdx[entID];
   if (!result) {
     return null;
   }
 
-  const backgroundColor = isActiveEnt ?  Color.getColorWithAlpha(result.color, 0.05) : "white";
+  const backgroundColor = isActiveEnt
+    ? Color.getColorWithAlpha(result.color, 0.05)
+    : "white";
 
   const border = isActiveEnt ? "5px solid " + result.color : "";
 
@@ -33,7 +33,7 @@ export default function CumResultsView({ entID, direction = "column" }) {
       useLongName={true}
       sx={{ color: result.color, p: 0.5 }}
     />,
-   
+
     <SummaryView summary={result.summary} />,
 
     <ResultBarChart resultsElection={electionDisplay} entID={entID} />,
@@ -44,7 +44,7 @@ export default function CumResultsView({ entID, direction = "column" }) {
 
   if (direction === "column") {
     return (
-      <Box sx={{ p: 1, backgroundColor,border, borderRadius: 6 }}>
+      <Box sx={{ p: 1, backgroundColor, border, borderRadius: 6 }}>
         {contentList.map(function (content, i) {
           return (
             <Box

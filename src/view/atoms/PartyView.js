@@ -13,7 +13,7 @@ export default function PartyView({ partyID, sx }) {
   const party = Party.fromID(partyID);
   let label = partyID;
   if (label.length > 4) {
-    label = label.substring(0, 3) + '.';
+    label = label.substring(0, 3) + ".";
   }
 
   return (

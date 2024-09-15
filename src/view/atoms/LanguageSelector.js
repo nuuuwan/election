@@ -13,18 +13,16 @@ const STYLE_LANGUAGE_SELECTOR = {
 };
 
 const LANG_TO_LABEL = {
-
   si: "සිං",
   ta: "த",
   en: "En",
 };
 
 const LANG_TO_COLOR = {
-
   si: "#800",
   ta: "#f80",
   en: "#080",
-}
+};
 
 export default function LanguageSelector() {
   const { setLang } = useBasePageHandlerContext();
@@ -33,7 +31,6 @@ export default function LanguageSelector() {
     return null;
   }
   const { lang: selectedLang } = data;
- 
 
   return (
     <Stack direction="row" gap={0} sx={STYLE_LANGUAGE_SELECTOR.BOX}>
@@ -46,7 +43,7 @@ export default function LanguageSelector() {
             onClick={function () {
               setLang(lang);
             }}
-            sx={Object.assign({color}, STYLE_LANGUAGE_SELECTOR.BUTTON)}
+            sx={Object.assign({ color }, STYLE_LANGUAGE_SELECTOR.BUTTON)}
             disabled={isSelected}
           >
             {LANG_TO_LABEL[lang]}

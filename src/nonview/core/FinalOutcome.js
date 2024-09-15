@@ -20,9 +20,7 @@ export default class FinalOutcome {
   }
 
   get pError() {
-    return (
-      this.result.partyToVotes.partyToPVotesSorted[Party.ERROR.id] || 0.0
-    );
+    return this.result.partyToVotes.partyToPVotesSorted[Party.ERROR.id] || 0.0;
   }
 
   get isTooEarlyToCall() {

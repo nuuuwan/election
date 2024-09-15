@@ -16,7 +16,6 @@ import RefreshButton from "./RefreshButton";
 import ResultsReleasedTitle from "./ResultsReleasedTitle";
 import ResultsReleasedView from "./ResultsReleasedView";
 
-
 export {
   CitationsView,
   CustomSelect,
@@ -34,5 +33,4 @@ export {
   RefreshButton,
   ResultsReleasedTitle,
   ResultsReleasedView,
-
 };

@@ -106,7 +106,7 @@ export default function ProjectedResultBarChart() {
         series={series}
         barLabel={getBarLabel()}
         layout="horizontal"
-        width={320}
+        width={400}
         height={280}
         sx={getStyle()}
         grid={{ vertical: true }}

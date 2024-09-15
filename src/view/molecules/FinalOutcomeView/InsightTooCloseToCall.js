@@ -22,10 +22,7 @@ function renderLikelyhoodTablePartyRows(likelyWinnerPartyInfoList) {
   });
 }
 
-function renderLikelyhoodTable(
-  likelyWinnerPartyInfoList,
-  pErrorHappenning
-) {
+function renderLikelyhoodTable(likelyWinnerPartyInfoList, pErrorHappenning) {
   return (
     <table>
       <tbody>

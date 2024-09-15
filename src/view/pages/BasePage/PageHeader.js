@@ -23,9 +23,7 @@ export default function PageHeader() {
   const { electionProjected } = data;
 
   return (
-    <Box
-      sx={STYLE_PAGE_HEADER.SELECTOR}
-    >
+    <Box sx={STYLE_PAGE_HEADER.SELECTOR}>
       <Stack
         direction="row"
         gap={1}

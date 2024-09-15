@@ -8,19 +8,17 @@ export default function PartyToVotesStatsView({ partyToVotes }) {
 
   return (
     <Stack direction="row" gap={0.5}>
-      {entries
-        
-        .map(function ([partyID, votes], i) {
-          const color = Party.fromID(partyID).color;
-          return (
-            <LabelledStat
-              key={partyID}
-              label={<PartyView partyID={partyID} />}
-              stat={Format.intHumanize(votes)}
-              sx={{ color }}
-            />
-          );
-        })}
+      {entries.map(function ([partyID, votes], i) {
+        const color = Party.fromID(partyID).color;
+        return (
+          <LabelledStat
+            key={partyID}
+            label={<PartyView partyID={partyID} />}
+            stat={Format.intHumanize(votes)}
+            sx={{ color }}
+          />
+        );
+      })}
     </Stack>
   );
 }

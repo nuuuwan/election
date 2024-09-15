@@ -6,7 +6,7 @@ const STYLE_LABEL = {
   padding: 0.3,
   margin: 0.0,
   borderRadius: 1,
-  width: 28,
+  width: 24,
   textAlign: "center",
 };
 

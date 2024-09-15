@@ -1,4 +1,4 @@
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import { Box, Grid2, Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CumResultsView from "./CumResultsView";
 import { Bellwether } from "../../nonview/core";
@@ -21,18 +21,22 @@ function RegionResultListViewGroup({ title, entIDList }) {
   return (
     <Box>
       <Typography variant="h4">{title}</Typography>
-      <Grid container spacing={1}>
+      <Grid2 container spacing={1}>
         {ArrayX.sort(entIDList, function (entID) {
-          const partyToVotes = electionDisplay.resultIdx[entID].partyToVotes;
+          const result = electionDisplay.resultIdx[entID];
+          if (!result) {
+            return 0;
+          }
+          const partyToVotes = result.partyToVotes;
           return -partyToVotes.partyToPVotesSorted[winnerPartyID];
         }).map(function (entID) {
           return (
-            <Grid item xs={12} md={12} xl={12} key={entID}>
+            <Grid2 xs={12} md={12} xl={12} key={entID}>
               <CumResultsView entID={entID} />
-            </Grid>
+            </Grid2>
           );
         })}
-      </Grid>
+      </Grid2>
     </Box>
   );
 }

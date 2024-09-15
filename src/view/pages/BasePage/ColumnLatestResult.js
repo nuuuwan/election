@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid2 } from "@mui/material";
 import { ProvinceUtils } from "../../../nonview/base";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import {
@@ -25,15 +25,15 @@ export default function ColumnLatestResult() {
       <LatestResultTitle />
       <PDSelector activePDID={activePDID} />
 
-      <Grid container>
+      <Grid2 container>
         {entIDs.map(function (entID) {
           return (
-            <Grid item xs={12} md={6} xl={6} key={entID}>
+            <Grid2 xs={12} md={6} xl={6} key={entID}>
               <CumResultsView entID={entID} />
-            </Grid>
+            </Grid2>
           );
         })}
-      </Grid>
+      </Grid2>
 
       <BellwetherView />
     </CustomStack>

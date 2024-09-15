@@ -1,4 +1,4 @@
-import { Grid, Stack, Typography } from "@mui/material";
+import { Grid2, Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CumResultsView from "./CumResultsView";
 import { ProvinceUtils } from "../../nonview/base";
@@ -25,7 +25,7 @@ export default function LatestResultListView() {
   }
 
   const iResult = electionDisplay.pdIDList.indexOf(activePDID) + 1;
-
+  
   return (
     <Stack
       direction="column"
@@ -36,7 +36,7 @@ export default function LatestResultListView() {
         <span style={{ opacity: 0.5 }}>Result</span> #{iResult}
       </Typography>
 
-      <Grid container spacing={1}>
+      <Grid2 container spacing={1}>
         {[resultPD, resultED, resultProvince, resultLK, resultEZ].map(function (
           result
         ) {
@@ -44,12 +44,12 @@ export default function LatestResultListView() {
             return null;
           }
           return (
-            <Grid item xs={12} md={6} xl={6} key={result.entID}>
+            <Grid2 xs={12} md={6} xl={6} key={result.entID}>
               <CumResultsView entID={result.entID} />
-            </Grid>
+            </Grid2>
           );
         })}
-      </Grid>
+      </Grid2>
     </Stack>
   );
 }

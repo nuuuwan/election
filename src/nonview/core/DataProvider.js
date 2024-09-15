@@ -39,7 +39,6 @@ async function getValue({
   date,
   activePDID,
   nResultsDisplay,
-
   lang,
 }) {
   const { pdIdx, edIdx, provinceIdx, ezIdx, allRegionIdx } =

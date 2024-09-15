@@ -18,7 +18,7 @@ export default function PageBody() {
     return null;
   }
   const { electionDisplay } = data;
-
+  
   return (
     <Box sx={STYLE.BOX}>
       <IfElse condition={electionDisplay.nResults === 0}>

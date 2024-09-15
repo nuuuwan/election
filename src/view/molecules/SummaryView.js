@@ -9,14 +9,8 @@ export default function SummaryView({ summary }) {
         label="Reg. Voters"
         stat={Format.intHumanize(summary.electors)}
       />
-      <LabelledStat
-        label="Turnout"
-        stat={Format.percent(summary.pTurnout)}
-      />
-      <LabelledStat
-        label="Rejected"
-        stat={Format.percent(summary.pRejected)}
-      />
+      <LabelledStat label="Turnout" stat={Format.percent(summary.pTurnout)} />
+      <LabelledStat label="Rejected" stat={Format.percent(summary.pRejected)} />
     </Stack>
   );
 }

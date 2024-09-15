@@ -64,11 +64,7 @@ const ElectionStats = {
           electors += electorsResult;
           electorsReleased += electorsResult;
         } else {
-          if (
-            electionPrevious &&
-            electionPrevious.resultIdx &&
-            electionPrevious.resultIdx[id]
-          ) {
+          if (electionPrevious) {
             electors += electionPrevious.resultIdx[id].summary.electors;
           }
         }

@@ -19,31 +19,16 @@ export default class EntType {
   }
 
   get longName() {
-    return {
-      country: "",
-      province: "Province",
-      district: "District",
-      pd: "Polling Division",
-      ed: "Electoral District",
-      ez: "Electoral Zone",
-    }[this.name];
-
-    switch (this.name) {
-      case "country":
-        return "";
-      case "province":
-        return "Province";
-      case "district":
-        return "District";
-      case "pd":
-        return "Polling Division";
-      case "ed":
-        return "Electoral District";
-      case "ez":
-        return "Electoral Zone";
-      default:
-        return this.name;
-    }
+    return (
+      {
+        country: "",
+        province: "Province",
+        district: "District",
+        pd: "Polling Division",
+        ed: "Electoral District",
+        ez: "Electoral Zone",
+      }[this.name] || this.name
+    );
   }
 
   static fromIDLK(entID) {

@@ -48,8 +48,8 @@ export default function LatestResultListView() {
           return (
             <Grid2
               xs={12}
-              md={6}
-              xl={6}
+              md={12}
+              xl={12}
               key={result.entID}
               justifyContent="center"
               alignContent="center"

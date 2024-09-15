@@ -42,7 +42,7 @@ export default function CumResultsView({ entID, direction="column" }) {
         return (
 
             <Box key={i}
-              sx={{ height: 50, width: 250, p: 0.2, m: 0.1 }}
+              sx={{ height: 50, width: 200, p: 0.2, m: 0.1 }}
               justifyContent="center"
               alignItems="center"
               alignContent="center"

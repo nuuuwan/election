@@ -28,8 +28,8 @@ export default function ResultsReleasedView({ entID }) {
 
   return (
     <Stack direction="row" alignItems="center" gap={1} sx={{ color: "gray" }}>
-      <LabelledStat label="Results" valueStr={pdDetails} />
-      <LabelledStat label="Votes" valueStr={Format.percent(pElectors)} />
+      <LabelledStat label="Results" stat={pdDetails} />
+      <LabelledStat label="Votes" stat={Format.percent(pElectors)} />
     </Stack>
   );
 }

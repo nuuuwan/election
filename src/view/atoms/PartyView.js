@@ -4,9 +4,9 @@ import { Translate } from "../../nonview/base";
 
 const STYLE_LABEL = {
   padding: 0.3,
-  margin: 0.1,
+  margin: 0.0,
   borderRadius: 1,
-  width: "fit-content",
+  width: 28,
   textAlign: "center",
 };
 

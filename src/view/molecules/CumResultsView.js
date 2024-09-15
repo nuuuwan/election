@@ -40,7 +40,7 @@ export default function CumResultsView({ entID }) {
         return (
           <Grid2 key={i}>
             <Box
-              sx={{ height: 50, width: 200, p: 1 }}
+              sx={{ height: 50, width: 250, p: 1 }}
               justifyContent="center"
               alignItems="center"
               alignContent="center"

@@ -7,15 +7,15 @@ export default function SummaryView({ summary }) {
     <Stack direction="row" gap={2} sx={{ margin: "auto", color: "gray" }}>
       <LabelledStat
         label="Reg. Voters"
-        valueStr={Format.intHumanize(summary.electors)}
+        stat={Format.intHumanize(summary.electors)}
       />
       <LabelledStat
         label="Turnout"
-        valueStr={Format.percent(summary.pTurnout)}
+        stat={Format.percent(summary.pTurnout)}
       />
       <LabelledStat
         label="Rejected"
-        valueStr={Format.percent(summary.pRejected)}
+        stat={Format.percent(summary.pRejected)}
       />
     </Stack>
   );

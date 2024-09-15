@@ -10,13 +10,10 @@ export default function ResultsReleasedView({ entID }) {
   }
   const { electionDisplay, pdIdx, electionPrevious } = data;
 
-  const { nResultsTotal, nResultsReleased, pElectors } = electionDisplay.getReleaseStats(
-    entID,
-    pdIdx,
-    electionPrevious,
-  );
+  const { nResultsTotal, nResultsReleased, pElectors } =
+    electionDisplay.getReleaseStats(entID, pdIdx, electionPrevious);
 
-  console.debug({electionPrevious});
+  console.debug({ electionPrevious });
 
   if (nResultsTotal <= 1) {
     return null;
@@ -29,11 +26,13 @@ export default function ResultsReleasedView({ entID }) {
     </Stack>
   );
 
-
   return (
-    <Stack direction="row" alignItems="center" gap={1} sx={{color: "gray"}}>
+    <Stack direction="row" alignItems="center" gap={1} sx={{ color: "gray" }}>
       <LabelledStat label="Results Released" valueStr={pdDetails} />
-      <LabelledStat label="Votes Counted" valueStr={Format.percent(pElectors)} />
+      <LabelledStat
+        label="Votes Counted"
+        valueStr={Format.percent(pElectors)}
+      />
     </Stack>
   );
 }

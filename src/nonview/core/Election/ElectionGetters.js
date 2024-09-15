@@ -62,24 +62,27 @@ const ElectionStats = {
           nResultsReleased++;
           const electorsResult = result.summary.electors;
           electors += electorsResult;
-          electorsReleased += electorsResult
-
+          electorsReleased += electorsResult;
         } else {
-          if (electionPrevious && electionPrevious.resultIdx && electionPrevious.resultIdx[id]) {
+          if (
+            electionPrevious &&
+            electionPrevious.resultIdx &&
+            electionPrevious.resultIdx[id]
+          ) {
             electors += electionPrevious.resultIdx[id].summary.electors;
           }
         }
       }
     }
-    const pElectors = electorsReleased / Math.max(1,  electors  );
-    return { nResultsTotal, nResultsReleased,pElectors };
+    const pElectors = electorsReleased / Math.max(1, electors);
+    return { nResultsTotal, nResultsReleased, pElectors };
   },
 
   isComplete(entID, pdIdx, electionPrevious) {
     const { nResultsTotal, nResultsReleased } = this.getReleaseStats(
       entID,
       pdIdx,
-      electionPrevious,
+      electionPrevious
     );
     return nResultsReleased === nResultsTotal;
   },

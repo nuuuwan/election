@@ -37,7 +37,7 @@ function getStyle() {
   return {
     [`& .${barLabelClasses.root}`]: {
       fill: "white",
-      fontSize: THEME_DATA.typography.fontSize * 2,
+      fontSize: THEME_DATA.typography.fontSize * 1.5,
       fontFamily: THEME_DATA.typography.fontFamily,
     },
   };

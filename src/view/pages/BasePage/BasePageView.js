@@ -17,6 +17,7 @@ export default function BasePageView() {
       <PageHeader />
       <PageBody />
       <PageFooter />
+
     </Box>
   );
 }

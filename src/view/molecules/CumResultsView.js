@@ -6,7 +6,7 @@ import { ResultBarChart, HistoryView, SummaryView } from ".";
 
 import PartyToVotesStatsView from "../../view/molecules/PartyToVotesStatsView";
 
-export default function CumResultsView({ entID, direction="column" }) {
+export default function CumResultsView({ entID, direction = "column" }) {
   const data = useDataContext();
   if (!data) {
     return null;
@@ -40,17 +40,16 @@ export default function CumResultsView({ entID, direction="column" }) {
     >
       {contentList.map(function (content, i) {
         return (
-
-            <Box key={i}
-              sx={{ height: 50, width: 200, p: 0.2, m: 0.1 }}
-              justifyContent="center"
-              alignItems="center"
-              alignContent="center"
-              display="flex"
-            >
-              {content}
-            </Box>
-
+          <Box
+            key={i}
+            sx={{ height: 50, width: 200, p: 0.2, m: 0.1 }}
+            justifyContent="center"
+            alignItems="center"
+            alignContent="center"
+            display="flex"
+          >
+            {content}
+          </Box>
         );
       })}
     </Stack>

@@ -3,7 +3,6 @@ import { useDataContext } from "../../nonview/core/DataProvider";
 import CumResultsView from "./CumResultsView";
 import { ProvinceUtils } from "../../nonview/base";
 
-
 export default function LatestResultListView() {
   const data = useDataContext();
 
@@ -19,29 +18,16 @@ export default function LatestResultListView() {
   const resultProvince = resultIdx[ProvinceUtils.getProvinceIDForPDEnt(pdEnt)];
   const resultLK = resultIdx["LK"];
 
-
   const iResult = electionDisplay.pdIDList.indexOf(activePDID) + 1;
 
   return (
-    <Stack
-      direction="column"
-      sx={{ color: resultPD.color }}
-
-    >
+    <Stack direction="column" sx={{ color: resultPD.color }}>
       <Typography variant="h3">
         <span style={{ opacity: 0.5 }}>Result</span> #{iResult}
       </Typography>
 
-      <Grid2
-        container
-        spacing={2}
-        rowSpacing={3}
-        justifyContent="center"
-
-      >
-        {[resultPD, resultED, resultProvince, resultLK, ].map(function (
-          result
-        ) {
+      <Grid2 container spacing={2} rowSpacing={3} justifyContent="center">
+        {[resultPD, resultED, resultProvince, resultLK].map(function (result) {
           if (!result) {
             return null;
           }
@@ -54,7 +40,6 @@ export default function LatestResultListView() {
               justifyContent="center"
               alignContent="center"
               alignItems="center"
-              
             >
               <CumResultsView entID={result.entID} />
             </Grid2>

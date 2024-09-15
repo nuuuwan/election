@@ -46,7 +46,7 @@ function RegionResultListViewGroup({ title, entIDList }) {
               alignContent="center"
               alignItems="center"
             >
-              <CumResultsView entID={entID} direction="row"/>
+              <CumResultsView entID={entID} direction="row" />
             </Grid2>
           );
         })}

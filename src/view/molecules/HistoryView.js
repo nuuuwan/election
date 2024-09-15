@@ -24,7 +24,7 @@ function HistoryViewRow({ entID, electionForRow }) {
         {electionForRow.year}
       </Typography>
 
-      <PartyView partyID={winningPartyID} sx={{fontSize:"40%", width: 16}} />
+      <PartyView partyID={winningPartyID} sx={{ fontSize: "40%", width: 16 }} />
       <Typography variant="caption" sx={{ fontSize: "50%" }}>
         {Format.percentVotes(pWinner)}
       </Typography>

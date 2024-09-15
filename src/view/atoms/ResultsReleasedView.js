@@ -20,17 +20,16 @@ export default function ResultsReleasedView({ entID }) {
   const pdDetails = (
     <Stack direction="row" alignItems="center">
       <Typography variant="h6">{nResultsReleased}</Typography>
-      <Typography variant="h6" sx={{opacity: 0.5}}>/{nResultsTotal}</Typography>
+      <Typography variant="h6" sx={{ opacity: 0.5 }}>
+        /{nResultsTotal}
+      </Typography>
     </Stack>
   );
 
   return (
     <Stack direction="row" alignItems="center" gap={1} sx={{ color: "gray" }}>
       <LabelledStat label="Results" valueStr={pdDetails} />
-      <LabelledStat
-        label="Votes"
-        valueStr={Format.percent(pElectors)}
-      />
+      <LabelledStat label="Votes" valueStr={Format.percent(pElectors)} />
     </Stack>
   );
 }

@@ -30,24 +30,20 @@ export default function CumResultsView({ entID }) {
   ];
 
   return (
-
     <Grid2
       container
       justifyContent="center"
       alignItems="center"
       alignContent="center"
-
     >
       {contentList.map(function (content, i) {
         return (
-          <Grid2
-            key={i}
-            
-          >
-            <Box sx={{ height: 50, width: 200, p: 1}}             
-                    justifyContent="center"
-                    alignItems="center"
-                    alignContent="center"
+          <Grid2 key={i}>
+            <Box
+              sx={{ height: 50, width: 200, p: 1 }}
+              justifyContent="center"
+              alignItems="center"
+              alignContent="center"
               display="flex"
             >
               {content}
@@ -56,6 +52,5 @@ export default function CumResultsView({ entID }) {
         );
       })}
     </Grid2>
-
   );
 }

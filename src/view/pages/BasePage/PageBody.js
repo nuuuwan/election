@@ -24,10 +24,10 @@ export default function PageBody() {
       <IfElse condition={electionDisplay.nResults === 0}>
         <NoResultsAlert />
         <Grid2 container>
-          <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
+          <Grid2 size={{ xs: 12, md: 6, xl: 4 }} >
             <LatestResultListView />
           </Grid2>
-          <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
+          <Grid2 size={{ xs: 12, md: 6, xl: 4}} >
             <HexMapView />
           </Grid2>
           <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>

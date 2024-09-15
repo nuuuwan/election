@@ -31,17 +31,19 @@ function buildRenderMenuItemInner(resultIdx, edIdx, variant1, variant2) {
   };
   return renderMenuItemInner;
 }
-export default function PDSelector({ activePDID }) {
+export default function PDSelector() {
   const { setActivePDID } = useBasePageHandlerContext();
   const data = useDataContext();
   if (!data) {
     return null;
   }
-  const { election, pdIdx, edIdx } = data;
+  const { electionDisplay, pdIdx, edIdx, activePDID } = data;
 
   return (
     <CustomSelect
-      dataList={Object.values(pdIdx)}
+      dataList={Object.values(pdIdx).filter(function (pd) {
+        return electionDisplay.resultIdx[pd.id];
+      })}
       value={pdIdx[activePDID]}
       getID={function (pd) {
         if (!pd) {
@@ -53,13 +55,13 @@ export default function PDSelector({ activePDID }) {
         setActivePDID(pd.id);
       }}
       renderValue={buildRenderMenuItemInner(
-        election.resultIdx,
+        electionDisplay.resultIdx,
         edIdx,
         "h6",
         "body1"
       )}
       renderMenuItemInner={buildRenderMenuItemInner(
-        election.resultIdx,
+        electionDisplay.resultIdx,
         edIdx,
         "body1",
         "body2"

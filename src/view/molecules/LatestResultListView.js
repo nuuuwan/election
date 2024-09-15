@@ -1,7 +1,8 @@
-import { Grid2, Stack, Typography } from "@mui/material";
+import { Grid2, Stack,  } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CumResultsView from "./CumResultsView";
 import { ProvinceUtils,  } from "../../nonview/base";
+import { PDSelector } from "../atoms";
 
 export default function LatestResultListView() {
   const data = useDataContext();
@@ -18,13 +19,9 @@ export default function LatestResultListView() {
   const resultProvince = resultIdx[ProvinceUtils.getProvinceIDForPDEnt(pdEnt)];
   const resultLK = resultIdx["LK"];
 
-  const iResult = electionDisplay.pdIDList.indexOf(activePDID) + 1;
-
   return (
     <Stack direction="column" sx={{ color: resultPD.color }}>
-      <Typography variant="h3">
-        #{iResult}
-      </Typography>
+      <PDSelector />
 
       <Grid2 container spacing={2} rowSpacing={3} justifyContent="center">
         {[resultPD, resultED, resultProvince, resultLK].map(function (result) {

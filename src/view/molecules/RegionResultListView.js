@@ -20,7 +20,7 @@ function RegionResultListViewGroup({ title, entIDList }) {
 
   return (
     <Box>
-      <Typography variant="h4">{title}</Typography>
+      <Typography variant="h3">{title}</Typography>
       <Grid2
         container
         spacing={1}
@@ -86,32 +86,29 @@ export default function RegionResultListView() {
     .reverse()
     .map((x) => x.entID);
 
+
+  const groupToEntIDList = {
+    "Island": ["LK"],
+    "Ethnicity": Object.keys(ezIdx),
+    "Provinces": Object.keys(provinceIdx),
+    "Electoral Districts": Object.keys(edIdx),
+    "Historical Bellwethers": bellwetherEntIDList,
+    "Latest Results": latestResults,
+  };
+  
+
   return (
     <Stack direction="column" alignItems="center" gap={5}>
-      <RegionResultListViewGroup title="Islandwide" entIDList={["LK"]} />
+      
+{Object.entries(groupToEntIDList).map(function ([title, entIDList]) {
+        return (
+          <RegionResultListViewGroup
+            key={title}
+            title={title}
+            entIDList={entIDList}
+          />
+);})}
 
-      <RegionResultListViewGroup
-        title="Ethnicity"
-        entIDList={Object.keys(ezIdx)}
-      />
-
-      <RegionResultListViewGroup
-        title="Provinces"
-        entIDList={Object.keys(provinceIdx)}
-      />
-      <RegionResultListViewGroup
-        title="Electoral Districts"
-        entIDList={Object.keys(edIdx)}
-      />
-      <RegionResultListViewGroup
-        title="Historical Bellwethers"
-        entIDList={bellwetherEntIDList}
-      />
-
-      <RegionResultListViewGroup
-        title="Latest Results"
-        entIDList={latestResults}
-      />
     </Stack>
   );
 }

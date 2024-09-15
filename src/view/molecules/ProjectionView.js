@@ -19,7 +19,7 @@ export default function ProjectionView() {
 
   return (
     <CustomStack>
-      <Typography variant="h4">
+      <Typography variant="h3">
         {Translate("Final Result Projected")}
       </Typography>
 

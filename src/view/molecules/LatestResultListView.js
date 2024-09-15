@@ -28,7 +28,7 @@ export default function LatestResultListView() {
       alignItems="center"
       sx={{ color: resultPD.color }}
     >
-      <Typography variant="h4">
+      <Typography variant="h3">
         <span style={{ opacity: 0.5 }}>Result</span> #{iResult}
       </Typography>
 

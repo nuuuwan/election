@@ -3,6 +3,6 @@ import { Translate } from "../../nonview/base";
 
 export default function ProjectionTitle() {
   return (
-    <Typography variant="h4">{Translate("Final Result Projected")}</Typography>
+    <Typography variant="h3">{Translate("Final Result Projected")}</Typography>
   );
 }

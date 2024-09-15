@@ -1,4 +1,4 @@
-import { Box, Grid2 } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { EntView, ResultsReleasedView } from "../../view/atoms";
@@ -6,7 +6,7 @@ import { ResultBarChart, HistoryView, SummaryView } from ".";
 
 import PartyToVotesStatsView from "../../view/molecules/PartyToVotesStatsView";
 
-export default function CumResultsView({ entID }) {
+export default function CumResultsView({ entID, direction="column" }) {
   const data = useDataContext();
   if (!data) {
     return null;
@@ -20,26 +20,28 @@ export default function CumResultsView({ entID }) {
 
   const contentList = [
     <EntView entID={entID} useLongName={true} />,
+
+    <SummaryView summary={result.summary} />,
+
     <ResultBarChart resultsElection={electionDisplay} entID={entID} />,
     <PartyToVotesStatsView partyToVotes={result.partyToVotes} />,
 
-    <HistoryView entID={entID} />,
-
-    <SummaryView summary={result.summary} />,
     <ResultsReleasedView entID={entID} />,
+
+    <HistoryView entID={entID} />,
   ];
 
   return (
-    <Grid2
-      container
+    <Stack
+      direction={direction}
       justifyContent="center"
       alignItems="center"
       alignContent="center"
     >
       {contentList.map(function (content, i) {
         return (
-          <Grid2 key={i}>
-            <Box
+
+            <Box key={i}
               sx={{ height: 50, width: 250, p: 0.5, m: 0.1 }}
               justifyContent="center"
               alignItems="center"
@@ -48,9 +50,9 @@ export default function CumResultsView({ entID }) {
             >
               {content}
             </Box>
-          </Grid2>
+
         );
       })}
-    </Grid2>
+    </Stack>
   );
 }

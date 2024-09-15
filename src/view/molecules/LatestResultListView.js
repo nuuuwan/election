@@ -25,7 +25,7 @@ export default function LatestResultListView() {
   }
 
   const iResult = electionDisplay.pdIDList.indexOf(activePDID) + 1;
-  
+
   return (
     <Stack
       direction="column"

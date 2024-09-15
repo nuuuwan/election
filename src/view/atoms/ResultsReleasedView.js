@@ -25,7 +25,6 @@ export default function ResultsReleasedView({ entID }) {
     </Stack>
   );
 
-
   return (
     <Stack direction="row" alignItems="center">
       {nResultsReleased === nResultsTotal ? <CheckCircleIcon /> : null}

@@ -70,7 +70,7 @@ export default function ResultBarChart({ resultsElection, entID }) {
         layout="horizontal"
         bottomAxis={null}
         width={200}
-        height={40}
+        height={50}
         sx={getStyle()}
         slotProps={{ legend: { hidden: true } }}
         margin={{ top: 0, right: 0, bottom: 0, left: 0 }}

@@ -7,7 +7,7 @@ export default function PartyToVotesStatsView({ partyToVotes }) {
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
 
   return (
-    <Stack direction="row" gap={0}>
+    <Stack direction="row" sx={{alignItems: "center"}}>
       {entries.map(function ([partyID, votes], i) {
         const color = Party.fromID(partyID).color;
         return (
@@ -15,7 +15,7 @@ export default function PartyToVotesStatsView({ partyToVotes }) {
             key={partyID}
             label={<PartyView partyID={partyID} />}
             valueStr={Format.intHumanize(votes)}
-            sx={{ color, m: 0.5 }}
+            sx={{ color, m: 0.5, marginBottom: 1.5  }}
           />
         );
       })}

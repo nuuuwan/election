@@ -1,4 +1,4 @@
-import { Box, Grid2 } from "@mui/material";
+import { Box, Paper, Grid2 } from "@mui/material";
 
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { EntView, ResultsReleasedView } from "../../view/atoms";
@@ -30,9 +30,13 @@ export default function CumResultsView({ entID }) {
   ];
 
   return (
+
     <Grid2
       container
       justifyContent="center"
+      alignItems="center"
+      alignContent="center"
+
     >
       {contentList.map(function (content, i) {
         return (
@@ -40,8 +44,10 @@ export default function CumResultsView({ entID }) {
             key={i}
             
           >
-            <Box sx={{ minWidth: 200, p: 0.5 }}             
-              justifyContent="center"
+            <Box sx={{ height: 50, width: 200, p: 1}}             
+                    justifyContent="center"
+                    alignItems="center"
+                    alignContent="center"
               display="flex"
             >
               {content}
@@ -50,5 +56,6 @@ export default function CumResultsView({ entID }) {
         );
       })}
     </Grid2>
+
   );
 }

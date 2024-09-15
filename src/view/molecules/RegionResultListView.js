@@ -18,6 +18,9 @@ function RegionResultListViewGroup({ title, entIDList }) {
   const resultLK = electionDisplay.resultIdx["LK"];
   const winnerPartyID = resultLK.winningPartyID;
 
+  const isMobile = window.innerWidth < 1080;
+  const direction = isMobile ? "column" : "row";
+
   return (
     <Box>
       <Typography variant="h3">{Translate(title)}</Typography>
@@ -46,7 +49,7 @@ function RegionResultListViewGroup({ title, entIDList }) {
               alignContent="center"
               alignItems="center"
             >
-              <CumResultsView entID={entID} direction="row" />
+              <CumResultsView entID={entID} direction={direction} />
             </Grid2>
           );
         })}
@@ -90,7 +93,7 @@ export default function RegionResultListView() {
     Ethnicity: Object.keys(ezIdx),
     Provinces: Object.keys(provinceIdx),
     "Electoral Districts": Object.keys(edIdx),
-    "Historical Bellwethers": bellwetherEntIDList,
+    "Bellwethers": bellwetherEntIDList,
     "Latest Results": latestResults,
   };
 

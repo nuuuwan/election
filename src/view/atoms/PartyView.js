@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { Party } from "../../nonview/core";
-import { Translate } from "../../nonview/base";
+
 
 const STYLE_LABEL = {
   padding: 0.3,
@@ -13,8 +13,6 @@ const STYLE_LABEL = {
 export default function PartyView({ partyID, sx }) {
   const party = Party.fromID(partyID);
 
-  const translatedLabel = Translate(partyID) || "";
-  const shortLabel = translatedLabel.toUpperCase();
 
   return (
     <Typography
@@ -27,7 +25,7 @@ export default function PartyView({ partyID, sx }) {
       )}
       component="span"
     >
-      {shortLabel}
+      {partyID}
     </Typography>
   );
 }

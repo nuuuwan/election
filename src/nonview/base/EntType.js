@@ -21,7 +21,7 @@ export default class EntType {
   get longName() {
     return (
       {
-        country: "",
+        country: "Islandwide",
         province: "Province",
         district: "District",
         pd: "Polling Division",

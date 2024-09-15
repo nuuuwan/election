@@ -86,29 +86,26 @@ export default function RegionResultListView() {
     .reverse()
     .map((x) => x.entID);
 
-
   const groupToEntIDList = {
-    "Island": ["LK"],
-    "Ethnicity": Object.keys(ezIdx),
-    "Provinces": Object.keys(provinceIdx),
+    Island: ["LK"],
+    Ethnicity: Object.keys(ezIdx),
+    Provinces: Object.keys(provinceIdx),
     "Electoral Districts": Object.keys(edIdx),
     "Historical Bellwethers": bellwetherEntIDList,
     "Latest Results": latestResults,
   };
-  
 
   return (
     <Stack direction="column" alignItems="center" gap={5}>
-      
-{Object.entries(groupToEntIDList).map(function ([title, entIDList]) {
+      {Object.entries(groupToEntIDList).map(function ([title, entIDList]) {
         return (
           <RegionResultListViewGroup
             key={title}
             title={title}
             entIDList={entIDList}
           />
-);})}
-
+        );
+      })}
     </Stack>
   );
 }

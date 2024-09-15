@@ -2,7 +2,7 @@ import { Box, Grid2, Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CumResultsView from "./CumResultsView";
 import { Bellwether } from "../../nonview/core";
-import { ArrayX } from "../../nonview/base";
+import { ArrayX, Translate } from "../../nonview/base";
 
 function RegionResultListViewGroup({ title, entIDList }) {
   const data = useDataContext();
@@ -20,7 +20,7 @@ function RegionResultListViewGroup({ title, entIDList }) {
 
   return (
     <Box>
-      <Typography variant="h3">{title}</Typography>
+      <Typography variant="h3">{Translate(title)}</Typography>
       <Grid2
         container
         spacing={1}

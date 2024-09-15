@@ -26,7 +26,7 @@ const idx = {
   ],
   "Muslim >50%": ["EC-13C", "EC-13B", "EC-14C", "EC-16A", "EC-13D", "EC-01B"],
   "Sinhala-Non-Buddhist >50%": ["EC-02B", "EC-16E"],
-  " No Majority": [
+  "No Majority": [
     "EC-01A",
     "EC-14P",
     "EC-01E",

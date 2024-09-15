@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { Format } from "../../nonview/base";
+import { Format, Translate } from "../../nonview/base";
 import LabelledStat from "./LabelledStat";
 
 export default function ResultsReleasedView({ entID }) {
@@ -14,7 +14,7 @@ export default function ResultsReleasedView({ entID }) {
     electionDisplay.getReleaseStats(entID, pdIdx, electionPrevious);
 
   if (nResultsTotal <= 1) {
-    return <Typography variant="h6">Final Result</Typography>;
+    return <Typography variant="h6">{Translate("Final Result")}</Typography>;
   }
 
   const pdDetails = (

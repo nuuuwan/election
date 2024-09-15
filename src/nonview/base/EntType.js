@@ -26,7 +26,7 @@ export default class EntType {
         district: "District",
         pd: "Polling Division",
         ed: "Electoral District",
-        ez: "Electoral Zone",
+        ez: "Ethnicity",
       }[this.name] || this.name
     );
   }

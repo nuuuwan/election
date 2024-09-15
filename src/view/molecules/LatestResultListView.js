@@ -1,7 +1,7 @@
 import { Grid2, Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CumResultsView from "./CumResultsView";
-import { ProvinceUtils } from "../../nonview/base";
+import { ProvinceUtils,  } from "../../nonview/base";
 
 export default function LatestResultListView() {
   const data = useDataContext();
@@ -23,7 +23,7 @@ export default function LatestResultListView() {
   return (
     <Stack direction="column" sx={{ color: resultPD.color }}>
       <Typography variant="h3">
-        <span style={{ opacity: 0.5 }}>Result</span> #{iResult}
+        #{iResult}
       </Typography>
 
       <Grid2 container spacing={2} rowSpacing={3} justifyContent="center">

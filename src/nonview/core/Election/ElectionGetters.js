@@ -45,27 +45,41 @@ const ElectionStats = {
     }
   },
 
-  getReleaseStats(entID, pdIdx) {
+  getReleaseStats(entID, pdIdx, electionPrevious) {
     let nResultsTotal = 0;
     let nResultsReleased = 0;
+
+    let electors = 0;
+    let electorsReleased = 0;
 
     for (let [id, ent] of Object.entries(pdIdx)) {
       const parentID = this.getParentID(entID, ent);
 
       if (parentID === entID) {
         nResultsTotal++;
-        if (this.resultIdx[id]) {
+        const result = this.resultIdx[id];
+        if (result) {
           nResultsReleased++;
+          const electorsResult = result.summary.electors;
+          electors += electorsResult;
+          electorsReleased += electorsResult
+
+        } else {
+          if (electionPrevious && electionPrevious.resultIdx && electionPrevious.resultIdx[id]) {
+            electors += electionPrevious.resultIdx[id].summary.electors;
+          }
         }
       }
     }
-    return { nResultsTotal, nResultsReleased };
+    const pElectors = electorsReleased / Math.max(1,  electors  );
+    return { nResultsTotal, nResultsReleased,pElectors };
   },
 
-  isComplete(entID, pdIdx) {
+  isComplete(entID, pdIdx, electionPrevious) {
     const { nResultsTotal, nResultsReleased } = this.getReleaseStats(
       entID,
-      pdIdx
+      pdIdx,
+      electionPrevious,
     );
     return nResultsReleased === nResultsTotal;
   },

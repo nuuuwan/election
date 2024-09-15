@@ -31,7 +31,13 @@ async function getValueElections({ electionType, date }) {
   const elections = await Election.listAll();
 
   const election = await Election.fromElectionTypeAndDate(electionType, date);
-  return { elections, election };
+
+  const electionPrevious = Election.getPenultimateElectionOfSameType(
+    elections,
+    election
+  );
+
+  return { elections, election, electionPrevious };
 }
 
 async function getValue({
@@ -44,7 +50,7 @@ async function getValue({
   const { pdIdx, edIdx, provinceIdx, ezIdx, allRegionIdx } =
     await getValueEnts();
 
-  const { elections, election } = await getValueElections({
+  const { elections, election, electionPrevious } = await getValueElections({
     electionType,
     date,
   });
@@ -80,6 +86,7 @@ async function getValue({
     electionDisplay,
     elections,
     electionProjected,
+    electionPrevious,
     pdIdx,
     edIdx,
     provinceIdx,

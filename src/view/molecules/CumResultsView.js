@@ -32,7 +32,7 @@ export default function CumResultsView({ entID }) {
   return (
     <Grid2
       container
-      sx={{ width: "100%", color: result.color }}
+      sx={{ width: "100%" }}
       justifyContent="center"
       alignContent="center"
       alignItems="center"

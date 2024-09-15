@@ -29,10 +29,7 @@ export default function ResultsReleasedView({ entID }) {
   return (
     <Stack direction="row" alignItems="center">
       {nResultsReleased === nResultsTotal ? <CheckCircleIcon /> : null}
-      <Typography variant="body1" color={"secondary"}>
-        {title}
-      </Typography>
-
+      {title}
     </Stack>
   );
 }

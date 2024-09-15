@@ -25,7 +25,7 @@ const idx = {
     "EC-06P",
   ],
   "Muslim >50%": ["EC-13C", "EC-13B", "EC-14C", "EC-16A", "EC-13D", "EC-01B"],
-  "Sinhala-Non-Buddhist >50%": ["EC-02B", "EC-16E"],
+  "Sinh.-Non-Bud. >50%": ["EC-02B", "EC-16E"],
   "No Majority": [
     "EC-01A",
     "EC-14P",
@@ -36,7 +36,7 @@ const idx = {
     "EC-02I",
     "EC-16D",
   ],
-  "Sinhala-Buddhist 50-77%": [
+  "Sinh.-Bud. 50-77%": [
     "EC-19C",
     "EC-19I",
     "EC-06B",
@@ -76,7 +76,7 @@ const idx = {
     "EC-22G",
     "EC-03A",
   ],
-  "Sinhala-Buddhist 77-88%": [
+  "Sinh.-Bud. 77-88%": [
     "EC-01I",
     "EC-22I",
     "EC-05P",
@@ -115,7 +115,7 @@ const idx = {
     "EC-19B",
     "EC-08A",
   ],
-  "Sinhala-Buddhist 88-95%": [
+  "Sinh.-Bud. 88-95%": [
     "EC-21B",
     "EC-03D",
     "EC-18B",
@@ -153,7 +153,7 @@ const idx = {
     "EC-17E",
     "EC-07P",
   ],
-  "Sinhala-Buddhist >94%": [
+  "Sinh.-Bud. >94%": [
     "EC-03H",
     "EC-08P",
     "EC-03C",

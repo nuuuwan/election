@@ -1,4 +1,4 @@
-import { Box, Stack } from "@mui/material";
+import { Box, Card, Stack } from "@mui/material";
 
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { EntView, ResultsReleasedView } from "../../view/atoms";
@@ -19,30 +19,32 @@ export default function CumResultsView({ entID, direction = "column" }) {
   }
 
   const contentList = [
-    <EntView entID={entID} useLongName={true} />,
-
+    <EntView entID={entID} useLongName={true} sx={{color:"white", backgroundColor: result.color, width: 200, height: 45, p:0.5}}/>,
+    <ResultsReleasedView entID={entID} />,
     <SummaryView summary={result.summary} />,
 
     <ResultBarChart resultsElection={electionDisplay} entID={entID} />,
     <PartyToVotesStatsView partyToVotes={result.partyToVotes} />,
 
-    <ResultsReleasedView entID={entID} />,
+
 
     <HistoryView entID={entID} />,
   ];
 
   return (
+    <Card variant="outlined" sx={{p:0}}>
     <Stack
       direction={direction}
       justifyContent="center"
       alignItems="center"
       alignContent="center"
+      gap={1}
     >
       {contentList.map(function (content, i) {
         return (
           <Box
             key={i}
-            sx={{ height: 50, width: 200, p: 0.2, m: 0.1 }}
+            sx={{ width: 200, height: 45, p: 0.0, m: 0.0 }}
             justifyContent="center"
             alignItems="center"
             alignContent="center"
@@ -52,6 +54,6 @@ export default function CumResultsView({ entID, direction = "column" }) {
           </Box>
         );
       })}
-    </Stack>
+    </Stack></Card>
   );
 }

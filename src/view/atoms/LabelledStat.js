@@ -16,7 +16,7 @@ export default function LabelledStat({ label, stat, sx }) {
   }
 
   return (
-    <Stack direction="column" gap={0.5} sx={sx}>
+    <Stack direction="column" gap={0.5} sx={Object.assign({alignItems: "center"}, sx)}>
       {renderedStat}
       {renderedLabel}
     </Stack>

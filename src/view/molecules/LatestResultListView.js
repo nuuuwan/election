@@ -36,7 +36,11 @@ export default function LatestResultListView() {
         <span style={{ opacity: 0.5 }}>Result</span> #{iResult}
       </Typography>
 
-      <Grid2 container spacing={1}>
+      <Grid2 container spacing={1}
+            justifyContent="center"
+            alignContent="center"
+            alignItems="center"
+      >
         {[resultPD, resultED, resultProvince, resultLK, resultEZ].map(function (
           result
         ) {
@@ -44,7 +48,12 @@ export default function LatestResultListView() {
             return null;
           }
           return (
-            <Grid2 xs={12} md={6} xl={6} key={result.entID}>
+            <Grid2 xs={12} md={6} xl={6} key={result.entID} 
+            
+            justifyContent="center"
+            alignContent="center"
+            alignItems="center"
+            >
               <CumResultsView entID={result.entID} />
             </Grid2>
           );

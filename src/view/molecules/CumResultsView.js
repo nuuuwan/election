@@ -19,7 +19,7 @@ export default function CumResultsView({ entID, direction = "column" }) {
   }
 
   const contentList = [
-    <EntView entID={entID} useLongName={true} sx={{color:"white", backgroundColor: result.color, width: 200, height: 45, p:0.5}}/>,
+    <EntView entID={entID} useLongName={true} sx={{color:result.color, p:0.5}}/>,
     <ResultsReleasedView entID={entID} />,
     <SummaryView summary={result.summary} />,
 

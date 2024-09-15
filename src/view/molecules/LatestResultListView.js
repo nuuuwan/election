@@ -2,7 +2,7 @@ import { Grid2, Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CumResultsView from "./CumResultsView";
 import { ProvinceUtils } from "../../nonview/base";
-import { PD_ID_TO_GROUP_ID } from "../../nonview/constants";
+
 
 export default function LatestResultListView() {
   const data = useDataContext();
@@ -25,8 +25,8 @@ export default function LatestResultListView() {
   return (
     <Stack
       direction="column"
-      alignItems="center"
       sx={{ color: resultPD.color }}
+
     >
       <Typography variant="h3">
         <span style={{ opacity: 0.5 }}>Result</span> #{iResult}
@@ -36,6 +36,8 @@ export default function LatestResultListView() {
         container
         spacing={2}
         rowSpacing={3}
+        justifyContent="center"
+
       >
         {[resultPD, resultED, resultProvince, resultLK, ].map(function (
           result

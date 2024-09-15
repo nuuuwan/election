@@ -4,7 +4,7 @@ import CustomURLContext from "../../nonview/core/CustomURLContext";
 function getThemeData() {
   const lang = CustomURLContext.get().lang;
 
-  let fontFamily = "ABeeZee";
+  let fontFamily = "Alata";
   let fontSize = 12;
   if (lang === "si") {
     fontFamily = "Noto Sans Sinh.";

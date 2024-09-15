@@ -87,7 +87,6 @@ export default function RegionResultListView() {
     .map((x) => x.entID);
 
   const groupToEntIDList = {
-    Island: ["LK"],
     Ethnicity: Object.keys(ezIdx),
     Provinces: Object.keys(provinceIdx),
     "Electoral Districts": Object.keys(edIdx),

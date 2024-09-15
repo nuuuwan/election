@@ -19,7 +19,7 @@ export default function LatestResultListView() {
   const resultProvince = resultIdx[ProvinceUtils.getProvinceIDForPDEnt(pdEnt)];
   const resultLK = resultIdx["LK"];
 
-  const resultEZ = resultIdx[PD_ID_TO_GROUP_ID[activePDID]];
+
   const iResult = electionDisplay.pdIDList.indexOf(activePDID) + 1;
 
   return (
@@ -37,7 +37,7 @@ export default function LatestResultListView() {
         spacing={2}
         rowSpacing={3}
       >
-        {[resultPD, resultED, resultProvince, resultLK, resultEZ].map(function (
+        {[resultPD, resultED, resultProvince, resultLK, ].map(function (
           result
         ) {
           if (!result) {

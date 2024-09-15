@@ -24,7 +24,7 @@ export default function CumResultsView({ entID }) {
     <PartyToVotesStatsView partyToVotes={result.partyToVotes} />,
 
     <HistoryView entID={entID} />,
-    
+
     <SummaryView summary={result.summary} />,
     <ResultsReleasedView entID={entID} />,
   ];
@@ -40,7 +40,7 @@ export default function CumResultsView({ entID }) {
         return (
           <Grid2 key={i}>
             <Box
-              sx={{ height: 50, width: 250, p: 1 }}
+              sx={{ height: 50, width: 250, p: 0.5, m:0.1 }}
               justifyContent="center"
               alignItems="center"
               alignContent="center"

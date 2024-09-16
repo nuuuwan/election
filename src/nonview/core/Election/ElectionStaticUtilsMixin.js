@@ -57,7 +57,7 @@ const ElectionStaticUtilsMixin = {
         elections,
         currentElection
       );
-      return ArrayX.last(previousElections);
+    return ArrayX.last(previousElections);
   },
 };
 

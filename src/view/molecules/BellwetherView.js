@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Alert, Box, Typography } from "@mui/material";
 import { Bellwether } from "../../nonview/core";
 import { Format, Translate } from "../../nonview/base";
 import { useDataContext } from "../../nonview/core/DataProvider";
@@ -37,11 +37,15 @@ export default function BellwetherView() {
 
   return (
     <Box sx={{ maxWidth: 600 }}>
-      <Typography variant="caption">
-        {getNumBellwetherText({ n, nSame, ent }) +
-          " " +
+      <Alert severity="info" sx={{ marginTop: 1, textAlign: "left" }}>
+        <Typography variant="h6">
+        {getNumBellwetherText({ n, nSame, ent }) }
+        </Typography>
+        <Typography variant="body1">
+        {
           getPercentageBellwetherText({ error })}
-      </Typography>
+        </Typography>
+      </Alert>
     </Box>
   );
 }

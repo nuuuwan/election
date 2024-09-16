@@ -14,14 +14,14 @@ export default function ResultsReleasedTitle({ mode = "percent" }) {
     electionDisplay.getReleaseStats(entID, pdIdx, electionPrevious);
 
   const isIncomplete = nResultsReleased < nResultsTotal;  
-  let asterisk = "";
+
   let alert = null;
   if(isIncomplete){
-    asterisk = "*";
-    const warning = asterisk + Translate("Estimate, based on registered voter statistics.");
+
+    const warning = Translate("This is an Estimate, based on registered voter statistics, from previous elections.");
     alert = (
-      <Alert severity="warning" sx={{ marginTop: 1 }}>
-        <Typography variant="body1" >
+      <Alert severity="warning" sx={{ marginTop: 1, textAlign: "left" }}>
+        <Typography variant="h6" >
           {warning}
         </Typography>
       </Alert>
@@ -33,7 +33,7 @@ export default function ResultsReleasedTitle({ mode = "percent" }) {
     return (
       <Box sx={{marginBottom: 2}}>
         <Typography variant="h4" color="secondary" >
-          {Format.percent(pElectors)} {Translate("Votes Counted")}{asterisk}
+          {Format.percent(pElectors)} {Translate("Votes Counted")}
         </Typography>
         {alert}
       </Box>

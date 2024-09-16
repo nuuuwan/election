@@ -1,4 +1,4 @@
-import { Alert, Box, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Translate } from "../../nonview/base";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CustomAlert from "./CustomAlert";

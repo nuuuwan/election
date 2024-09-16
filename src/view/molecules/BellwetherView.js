@@ -44,8 +44,16 @@ export default function BellwetherView() {
   const ent = pdIdx[activePDID];
 
   return (
-    <Box sx={{ maxWidth: 600}}>
-      <Alert severity="info" sx={{ marginTop: 1, textAlign: "justify", maxWidth: 400, margin: "auto" }}>
+    <Box sx={{ maxWidth: 600 }}>
+      <Alert
+        severity="info"
+        sx={{
+          marginTop: 1,
+          textAlign: "justify",
+          maxWidth: 400,
+          margin: "auto",
+        }}
+      >
         {n === nSame ? <PerfectBellwetherView /> : null}
         <Typography variant="h6">
           {getNumBellwetherText({ n, nSame, ent })}

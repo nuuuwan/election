@@ -1,7 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { Translate } from "../../../nonview/base";
 
-
 export default function InsightErrorMarginTooHigh() {
   return (
     <Box sx={{ maxWidth: 320 }}>

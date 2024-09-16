@@ -4,6 +4,10 @@ import Party from "./Party.js";
 
 export default class PartyToVotes {
   static NON_PARTY_KEYS = [...Summary.KEYS, "entity_id"];
+
+  static MIN_N_DISPLAY = 3;
+  static MIN_P_VOTES = 0.1;
+
   constructor(partyToVotes) {
     this.partyToVotes = partyToVotes;
   }
@@ -72,10 +76,9 @@ export default class PartyToVotes {
   }
 
   get partyToVotesSortedOthered() {
-    const MIN_N_DISPLAY = 3;
-    const MIN_P_VOTES = 0.1;
+
     const totalVotes = this.totalVotes;
-    const minVotes = MIN_P_VOTES * totalVotes;
+    const minVotes = PartyToVotes.MIN_P_VOTES * totalVotes;
 
     let nonOther = Object.fromEntries(
       Object.entries(this.partyToVotes)
@@ -83,7 +86,7 @@ export default class PartyToVotes {
           return b[1] - a[1];
         })
         .filter(function (a, i) {
-          return a[1] >= minVotes && i < MIN_N_DISPLAY;
+          return a[1] >= minVotes && i < PartyToVotes.MIN_N_DISPLAY;
         })
     );
     const nonOtherVotes = MathX.sum(Object.values(nonOther));

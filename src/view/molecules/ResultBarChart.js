@@ -1,4 +1,4 @@
-import { Party } from "../../nonview/core";
+import { Party, PartyToVotes } from "../../nonview/core";
 import { Format } from "../../nonview/base";
 
 import { Box } from "@mui/material";
@@ -19,7 +19,7 @@ function getAxis() {
 function getBarLabel() {
   return function (item, context) {
     const pVotes = item.value;
-    if (pVotes < 0.1) {
+    if (pVotes < PartyToVotes.MIN_P_VOTES) {
       return "";
     }
     return Format.percent(pVotes);

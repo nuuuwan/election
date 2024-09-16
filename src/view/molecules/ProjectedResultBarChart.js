@@ -2,7 +2,7 @@ import { BarChart, barLabelClasses } from "@mui/x-charts";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { Box } from "@mui/material";
 
-import { Party } from "../../nonview/core";
+import { Party, PartyToVotes } from "../../nonview/core";
 import { Color, Format } from "../../nonview/base";
 
 import { THEME_DATA } from "../_constants/THEME";
@@ -47,9 +47,9 @@ function getBarLabel(electionProjected) {
 
     if (pVotes === pVotesExtra) {
       return "";
-    }
+    } 
 
-    if (pVotes < 0.1) {
+    if (pVotes + pVotesExtra < PartyToVotes.MIN_P_VOTES) {
       return "";
     }
 

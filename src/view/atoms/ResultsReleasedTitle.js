@@ -1,6 +1,7 @@
 import { Alert, Box, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { Format, Translate } from "../../nonview/base";
+import CustomAlert from "./CustomAlert";
 
 export function ResultsReleasedAlert() {
   const data = useDataContext();
@@ -26,15 +27,12 @@ export function ResultsReleasedAlert() {
     "This is an Estimate, based on registered voter statistics, from previous elections."
   );
   return (
-    <Alert
-      severity="info"
-      sx={{ marginTop: 1, textAlign: "justify", maxWidth: 400, margin: "auto" }}
-    >
+    <CustomAlert>
       <Typography variant="h6" sx={{ fontWeight: "bold" }}>
         {title}
       </Typography>
       <Typography variant="body1">{body}</Typography>
-    </Alert>
+    </CustomAlert>
   );
 }
 

@@ -2,6 +2,7 @@ import { Alert, Box, Typography } from "@mui/material";
 import { Bellwether } from "../../nonview/core";
 import { Format, Translate } from "../../nonview/base";
 import { useDataContext } from "../../nonview/core/DataProvider";
+import { CustomAlert } from "../atoms";
 
 function PerfectBellwetherView() {
   return (
@@ -45,15 +46,7 @@ export default function BellwetherView() {
 
   return (
     <Box sx={{ maxWidth: 600 }}>
-      <Alert
-        severity="info"
-        sx={{
-          marginTop: 1,
-          textAlign: "justify",
-          maxWidth: 480,
-          margin: "auto",
-        }}
-      >
+      <CustomAlert>
         {n === nSame ? <PerfectBellwetherView /> : null}
         <Typography variant="h6">
           {getNumBellwetherText({ n, nSame, ent })}
@@ -64,7 +57,7 @@ export default function BellwetherView() {
             "Note, however, previous results are not necessarily indicative of future results."
           )}
         </Typography>
-      </Alert>
+      </CustomAlert>
     </Box>
   );
 }

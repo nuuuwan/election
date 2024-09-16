@@ -1,6 +1,7 @@
 import { Alert, Box, Typography } from "@mui/material";
 import { Translate } from "../../nonview/base";
 import { useDataContext } from "../../nonview/core/DataProvider";
+import CustomAlert from "./CustomAlert";
 
 export function ProjectionAlert() {
   const data = useDataContext();
@@ -23,10 +24,7 @@ export function ProjectionAlert() {
   }
 
   return (
-    <Alert
-      severity="info"
-      sx={{ marginTop: 1, textAlign: "justify", maxWidth: 400, margin: "auto" }}
-    >
+    <CustomAlert>
       <Typography variant="h6">
         {Translate(
           "This projection has been made by a simple AI Model, based on released results, and historical data."
@@ -41,7 +39,7 @@ export function ProjectionAlert() {
           "This is not an official result, and might differ significantly from final result."
         )}
       </Typography>
-    </Alert>
+    </CustomAlert>
   );
 }
 

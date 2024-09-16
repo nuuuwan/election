@@ -52,18 +52,24 @@ export default function ResultsReleasedTitle({ mode = "percent" }) {
   if (mode === "percent") {
     return (
       <Box sx={{ marginBottom: 2 }}>
-        <Typography variant="h3" color="secondary">
-          {Format.percent(pElectors)} {Translate("Votes Counted")}
+        <Typography variant="h3" color="gray">
+          <span style={{color: "black"}}>
+          {Format.percent(pElectors)}
+          </span>{" "} 
+          {Translate("Released")}
         </Typography>
       </Box>
     );
   }
 
   return (
-    <Typography variant="h3" color="secondary" sx={{ marginBottom: 2 }}>
-      {nResultsReleased}
-      {"/"}
-      {nResultsTotal} {Translate("Results Released")}
+    <Typography variant="h3" color="gray" sx={{ marginBottom: 2 }}>
+       {Translate("Result")}{" "}
+       <span style={{color: "black"}}>
+       {nResultsReleased}
+          </span>{" "} 
+      {" of "}
+      {nResultsTotal}
     </Typography>
   );
 }

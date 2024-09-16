@@ -46,7 +46,7 @@ export default function ResultsReleasedView({ entID }) {
       sx={{ color: "gray" }}
     >
       <LabelledStat label="Results" stat={pdDetails} />
-      <LabelledStat label="Votes" stat={Format.percent(pElectors)} />
+      <LabelledStat label="Released" stat={Format.percent(pElectors)} />
       {isComplete && "✓"}
     </Stack>
   );

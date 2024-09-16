@@ -19,5 +19,7 @@ export default class CustomURLContext {
 
   static set(data) {
     URLContext.set(data);
+    const year = data.date.split("-")[0];
+    window.document.title = `#PresPollSL${year} (${data.nResultsDisplay})`;
   }
 }

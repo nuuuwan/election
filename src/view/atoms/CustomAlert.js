@@ -4,7 +4,7 @@ export default function CustomAlert({ children }) {
   return (
     <Alert
       severity="info"
-      sx={{ marginTop: 1, textAlign: "justify", maxWidth: 320, margin: "auto" }}
+      sx={{ p: 2, textAlign: "justify", m: 3, borderRadius: 3 }}
     >
       {children}
     </Alert>

@@ -7,7 +7,7 @@ import BasePageHandlerProvider from "./BasePageHandlerProvider";
 function getHandlers(updateState) {
   const setElection = function (election0) {
     const { electionType, date } = election0;
-    updateState({ electionType, date });
+    updateState({ electionType, date, nResultsDisplay: null });
   };
 
   const setActivePDID = function (activePDID) {

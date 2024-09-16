@@ -123,7 +123,7 @@ export default function ProjectedResultBarChart() {
         sx={getStyle()}
         grid={{ vertical: true }}
         slotProps={{ legend: { hidden: true } }}
-        margin={{ top: 0, right: 10, bottom: 60, left: 0 }}
+        margin={{ top: 0, right: 10, bottom: 40, left: 0 }}
       />
     </Box>
   );

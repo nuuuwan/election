@@ -37,13 +37,12 @@ export function ProjectionAlert() {
         {Translate(
           "The results presented have 90% confidence, which means that they could be wrong 10% of the time."
         )}
-      </Typography>
-
-      <Typography variant="body1">
-        {Translate(
+               {Translate(
           "This is not an official result, and might differ significantly from final result."
         )}
       </Typography>
+
+
     </Alert>
   );
 }
@@ -71,7 +70,7 @@ export default function ProjectionTitle() {
 
   return (
     <Box>
-      <Typography variant="h4" color="secondary">
+      <Typography variant="h3" color="secondary">
         {Translate(title)}
       </Typography>
     </Box>

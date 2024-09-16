@@ -1,6 +1,6 @@
 import { Grid2, Stack, Typography } from "@mui/material";
-import { Format, Translate } from "../../nonview/base";
-import { Bellwether, Election } from "../../nonview/core";
+import { Format,  } from "../../nonview/base";
+import {  Election } from "../../nonview/core";
 import { PartyView } from "../../view/atoms";
 import { useDataContext } from "../../nonview/core/DataProvider";
 

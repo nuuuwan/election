@@ -1,5 +1,5 @@
 import { Stack, Typography } from "@mui/material";
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+
 
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { Format, Translate } from "../../nonview/base";
@@ -36,7 +36,7 @@ export default function ResultsReleasedView({ entID }) {
   );
 
   const isComplete = nResultsReleased === nResultsTotal;
-  const color = electionDisplay.resultIdx[entID].color;
+
 
   return (
     <Stack
@@ -47,7 +47,7 @@ export default function ResultsReleasedView({ entID }) {
     >
       <LabelledStat label="Results" stat={pdDetails} />
       <LabelledStat label="Votes" stat={Format.percent(pElectors)} />
-      {isComplete && <CheckCircleIcon sx={{color}} />}
+      {isComplete && "✓"}
     </Stack>
   );
 }

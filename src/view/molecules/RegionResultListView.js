@@ -1,13 +1,13 @@
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { Box, Grid2,  } from "@mui/material";
+import { Box, Grid2 } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import {
   CumResultsColumnView,
   CumResultsViewTableRowView,
 } from "./CumResultsView";
 import { Bellwether } from "../../nonview/core";
-import { ArrayX,  } from "../../nonview/base";
+import { ArrayX } from "../../nonview/base";
 import { CustomSelect } from "../atoms";
 import { useState } from "react";
 
@@ -47,7 +47,7 @@ function getSortedEntIDs({ entIDList, electionDisplay }) {
   });
 }
 
-function RegionResultListViewGroup({  entIDList }) {
+function RegionResultListViewGroup({ entIDList }) {
   const data = useDataContext();
   const theme = useTheme();
   const isSmallerScreen = useMediaQuery(theme.breakpoints.down("lg"));
@@ -72,17 +72,16 @@ function RegionResultListViewGroup({  entIDList }) {
   );
 }
 
-
 function getProvinceEntIDList(data) {
-  return Object.keys(data.provinceIdx)
+  return Object.keys(data.provinceIdx);
 }
 
 function getElectoralDistrictEntIDList(data) {
-  return Object.keys(data.edIdx)
+  return Object.keys(data.edIdx);
 }
 
 function getEthnicityEntIDList(data) {
-  return Object.keys(data.ezIdx)
+  return Object.keys(data.ezIdx);
 }
 
 function getBellwetherEntIDList(data) {
@@ -101,17 +100,15 @@ function getBellwetherEntIDList(data) {
     })
     .slice(0, 10)
     .map((x) => x.entID);
-} 
-
-
+}
 
 function getGroupToEntIDListGetter() {
   return {
     Provinces: getProvinceEntIDList,
-    'Electoral Districts': getElectoralDistrictEntIDList,
+    "Electoral Districts": getElectoralDistrictEntIDList,
     Ethnicities: getEthnicityEntIDList,
-    Bellwethers: getBellwetherEntIDList
-  }
+    Bellwethers: getBellwetherEntIDList,
+  };
 }
 
 export default function RegionResultListView() {
@@ -126,25 +123,21 @@ export default function RegionResultListView() {
     return null;
   }
 
-
   return (
-    <Box sx={{      borderTop: '1px solid #eee',}}>
+    <Box sx={{ borderTop: "1px solid #eee" }}>
       <CustomSelect value={group} onChange={setGroup} dataList={groupList} />
 
-    <Box
-    sx={{
-      justifyContent: 'center',
-      alignItems: 'center',
-      display: 'flex',
-
-    }}
-  >
-
-
-          <RegionResultListViewGroup
-            entIDList={groupToEntIDListGetter[group](data)}
-          />
-    </Box>
+      <Box
+        sx={{
+          justifyContent: "center",
+          alignItems: "center",
+          display: "flex",
+        }}
+      >
+        <RegionResultListViewGroup
+          entIDList={groupToEntIDListGetter[group](data)}
+        />
+      </Box>
     </Box>
   );
 }

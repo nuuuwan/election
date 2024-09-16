@@ -34,7 +34,7 @@ export default function ResultsReleasedTitle({ mode = "percent" }) {
   }
 
   return (
-    <Typography variant="h4" color="secondary">
+    <Typography variant="h4" color="secondary" sx={{marginBottom: 2}}>
       {nResultsReleased}
       {"/"}
       {nResultsTotal} {Translate("Results Released")}

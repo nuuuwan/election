@@ -2,7 +2,7 @@ import { Grid2, Stack } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CumResultsView from "./CumResultsView";
 import { ProvinceUtils } from "../../nonview/base";
-import { PDSelector } from "../atoms";
+
 
 export default function LatestResultListView() {
   const data = useDataContext();
@@ -20,8 +20,7 @@ export default function LatestResultListView() {
 
   return (
     <Stack direction="column" sx={{ color: resultPD.color }}>
-      <PDSelector />
-      <Grid2 container justifyContent="center">
+     <Grid2 container justifyContent="center">
         {[resultPD, resultED, resultProvince, resultLK].map(function (result) {
           return (
             <Grid2 key={result.entID}>

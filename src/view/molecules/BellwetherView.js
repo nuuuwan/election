@@ -1,4 +1,4 @@
-import {  Box, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Bellwether } from "../../nonview/core";
 import { Format, Translate } from "../../nonview/base";
 import { useDataContext } from "../../nonview/core/DataProvider";

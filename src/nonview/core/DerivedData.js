@@ -19,7 +19,11 @@ export default class DerivedData {
   }
 
   static getNResultsDisplay(nResultsDisplay, election) {
-    if ((nResultsDisplay || nResultsDisplay === 0) && nResultsDisplay >= 0 && nResultsDisplay < election.pdResultList.length) {
+    if (
+      (nResultsDisplay || nResultsDisplay === 0) &&
+      nResultsDisplay >= 0 &&
+      nResultsDisplay < election.pdResultList.length
+    ) {
       return nResultsDisplay;
     }
     return election.pdResultList.length;

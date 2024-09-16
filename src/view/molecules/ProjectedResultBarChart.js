@@ -44,7 +44,7 @@ function getBarLabel(electionProjected) {
 
   return function (item, __) {
     const pVotes = item.value;
-    
+
     if (pVotes === pVotesExtra) {
       return "";
     }

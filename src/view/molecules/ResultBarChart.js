@@ -43,7 +43,6 @@ export default function ResultBarChart({ resultsElection, entID }) {
 
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
 
-
   const series = entries.map(function ([partyID, votes]) {
     const party = Party.fromID(partyID);
     const pVotes = votes / totalVotes;

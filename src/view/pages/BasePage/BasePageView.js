@@ -10,7 +10,7 @@ export default function BasePageView() {
   if (!data) {
     return <LoadingLabel />;
   }
-  
+
   return (
     <Box sx={{ textAlign: "center" }}>
       <PageHeader />

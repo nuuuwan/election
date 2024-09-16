@@ -28,7 +28,7 @@ export default function PageHeader() {
   const { electionProjected } = data;
   const backgroundColor = electionProjected.color;
   return (
-    <Box sx={Object.assign({backgroundColor}, STYLE_PAGE_HEADER.SELECTOR)}>
+    <Box sx={Object.assign({ backgroundColor }, STYLE_PAGE_HEADER.SELECTOR)}>
       <Stack
         direction="row"
         gap={1}

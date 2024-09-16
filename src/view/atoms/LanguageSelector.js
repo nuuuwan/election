@@ -19,7 +19,6 @@ const LANG_TO_LABEL = {
   en: "En",
 };
 
-
 export default function LanguageSelector() {
   const { setLang } = useBasePageHandlerContext();
   const data = useDataContext();
@@ -39,7 +38,10 @@ export default function LanguageSelector() {
             onClick={function () {
               setLang(lang);
             }}
-            sx={Object.assign({ color:"white" }, STYLE_LANGUAGE_SELECTOR.BUTTON)}
+            sx={Object.assign(
+              { color: "white" },
+              STYLE_LANGUAGE_SELECTOR.BUTTON
+            )}
             disabled={isSelected}
           >
             {LANG_TO_LABEL[lang]}

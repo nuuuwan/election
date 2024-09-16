@@ -4,9 +4,6 @@ import CumResultsView from "./CumResultsView";
 import { ProvinceUtils } from "../../nonview/base";
 import { PDSelector } from "../atoms";
 
-
-
-
 export default function LatestResultListView() {
   const data = useDataContext();
   if (!data) {

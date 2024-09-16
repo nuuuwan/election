@@ -47,7 +47,7 @@ function getBarLabel(pVotesExtra) {
 
     return Format.percentVotesRange(pVotes, pVotes + pVotesExtra);
   };
-};
+}
 
 function getSeries(electionProjected) {
   const result = electionProjected.resultLK;
@@ -85,7 +85,6 @@ function getSeries(electionProjected) {
 
     return series;
   }, []);
-
 }
 
 export default function ProjectedResultBarChart() {

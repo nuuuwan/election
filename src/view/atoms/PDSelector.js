@@ -4,7 +4,7 @@ import { Translate } from "../../nonview/base";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { useBasePageHandlerContext } from "../../view/pages/BasePage/BasePageHandlerProvider";
 
-function buildRenderMenuItemInner(resultIdx, edIdx, ) {
+function buildRenderMenuItemInner(resultIdx, edIdx) {
   const renderMenuItemInner = function (pd, i) {
     const result = resultIdx[pd.id];
     if (!result) {
@@ -47,16 +47,13 @@ export default function PDSelector() {
       })}
       value={pdIdx[activePDID]}
       getID={(pd) => pd?.name}
-      onChange={ (pd) => setActivePDID(pd.id)}
-      renderValue={buildRenderMenuItemInner(
-        electionDisplay.resultIdx,
-        edIdx,
-      )}
+      onChange={(pd) => setActivePDID(pd.id)}
+      renderValue={buildRenderMenuItemInner(electionDisplay.resultIdx, edIdx)}
       renderMenuItemInner={buildRenderMenuItemInner(
         electionDisplay.resultIdx,
-        edIdx,
+        edIdx
       )}
-      getDividerKey={(pd) =>  pd.name.substring(0, 1)}
+      getDividerKey={(pd) => pd.name.substring(0, 1)}
     />
   );
 }

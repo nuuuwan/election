@@ -64,7 +64,13 @@ async function getValue(state) {
     nResultsDisplay: nResultsDisplayDerived,
   };
   CustomURLContext.set(newState);
-  return Object.assign({}, newState, entValues, electionValues, derivedElectionValues);
+  return Object.assign(
+    {},
+    newState,
+    entValues,
+    electionValues,
+    derivedElectionValues
+  );
 }
 
 export default function DataProvider({ children, state }) {

@@ -7,8 +7,7 @@ import { ResultBarChart, HistoryView, SummaryView } from ".";
 import PartyToVotesStatsView from "../../view/molecules/PartyToVotesStatsView";
 import { Color } from "../../nonview/base";
 
-
-function getContentList({entID, result, electionDisplay}) {
+function getContentList({ entID, result, electionDisplay }) {
   return [
     <EntView
       entID={entID}
@@ -22,18 +21,17 @@ function getContentList({entID, result, electionDisplay}) {
     <PartyToVotesStatsView partyToVotes={result.partyToVotes} />,
     <ResultsReleasedView entID={entID} />,
     <HistoryView entID={entID} />,
-  ]
+  ];
 }
 
-export function CumResultsColumnView({entID, }) {
-
+export function CumResultsColumnView({ entID }) {
   const data = useDataContext();
   if (!data) {
     return null;
   }
   const { electionDisplay, activePDID } = data;
   const result = electionDisplay.resultIdx[entID];
-  const contentList = getContentList({entID, result, electionDisplay});
+  const contentList = getContentList({ entID, result, electionDisplay });
 
   const isActiveEnt = activePDID === entID;
   const backgroundColor = isActiveEnt
@@ -41,7 +39,6 @@ export function CumResultsColumnView({entID, }) {
     : "white";
 
   const border = isActiveEnt ? "5px solid " + result.color : "";
-
 
   return (
     <Box sx={{ p: 1, backgroundColor, border, borderRadius: 6 }}>
@@ -63,17 +60,17 @@ export function CumResultsColumnView({entID, }) {
   );
 }
 
-export function CumResultsViewTableRowView({entID}) {
+export function CumResultsViewTableRowView({ entID }) {
   const data = useDataContext();
   if (!data) {
     return null;
   }
   const { electionDisplay } = data;
   const result = electionDisplay.resultIdx[entID];
-  const contentList = getContentList({entID, result, electionDisplay});
+  const contentList = getContentList({ entID, result, electionDisplay });
 
-return (
-  <tr>
+  return (
+    <tr>
       {contentList.map(function (content, i) {
         return (
           <td key={i} style={{ padding: 12, borderBottom: "1px solid #eee" }}>
@@ -82,15 +79,12 @@ return (
         );
       })}
     </tr>
-)
+  );
 }
-
 
 export default function CumResultsView({ entID, direction = "column" }) {
   if (direction === "column") {
-    return <CumResultsColumnView entID={entID}  />;
+    return <CumResultsColumnView entID={entID} />;
   }
-  return (
-    <CumResultsViewTableRowView entID={entID} />
-  );
+  return <CumResultsViewTableRowView entID={entID} />;
 }

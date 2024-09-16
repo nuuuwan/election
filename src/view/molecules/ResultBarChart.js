@@ -22,7 +22,7 @@ function getBarLabel() {
     if (pVotes < 0.1) {
       return "";
     }
-    return Format.percentVotes(pVotes);
+    return Format.percent(pVotes);
   };
 }
 

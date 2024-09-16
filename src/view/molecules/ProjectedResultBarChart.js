@@ -30,7 +30,7 @@ function getStyle() {
   return {
     [`& .${barLabelClasses.root}`]: {
       fill: "white",
-      fontSize: THEME_DATA.typography.fontSize * 3,
+      fontSize: THEME_DATA.typography.fontSize * 2,
       fontFamily: THEME_DATA.typography.fontFamily,
     },
   };
@@ -44,11 +44,12 @@ function getBarLabel(electionProjected) {
 
   return function (item, __) {
     const pVotes = item.value;
+    
     if (pVotes === pVotesExtra) {
       return "";
     }
 
-    if (pVotes < 0.2) {
+    if (pVotes < 0.1) {
       return "";
     }
 

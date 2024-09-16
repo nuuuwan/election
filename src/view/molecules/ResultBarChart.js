@@ -19,18 +19,18 @@ function getAxis() {
 function getBarLabel() {
   return function (item, context) {
     const pVotes = item.value;
-    if (pVotes < 0.25) {
+    if (pVotes < 0.1) {
       return "";
     }
     return Format.percentVotes(pVotes);
   };
 }
 
-function getStyle() {
+function getStyle(smallestP) {
   return {
     [`& .${barLabelClasses.root}`]: {
       fill: "white",
-      fontSize: THEME_DATA.typography.fontSize * 2,
+      fontSize: THEME_DATA.typography.fontSize * 1.4,
       fontFamily: THEME_DATA.typography.fontFamily,
     },
   };
@@ -42,6 +42,8 @@ export default function ResultBarChart({ resultsElection, entID }) {
   const totalVotes = partyToVotes.totalVotes;
 
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
+
+
   const series = entries.map(function ([partyID, votes]) {
     const party = Party.fromID(partyID);
     const pVotes = votes / totalVotes;

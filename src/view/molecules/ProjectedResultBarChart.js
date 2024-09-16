@@ -34,15 +34,22 @@ function getStyle() {
     },
   };
 }
+function getBarLabel(pVotesExtra) {
+  return function (item, __) {
+    const pVotes = item.value;
+    if (pVotes === pVotesExtra) {
+      return "";
+    }
 
-export default function ProjectedResultBarChart() {
-  const data = useDataContext();
-  if (!data) {
-    return null;
-  }
+    if (pVotes < 0.2) {
+      return "";
+    }
 
-  const { electionProjected } = data;
+    return Format.percentVotesRange(pVotes, pVotes + pVotesExtra);
+  };
+};
 
+function getSeries(electionProjected) {
   const result = electionProjected.resultLK;
   const partyToVotes = result.partyToVotes;
   const totalVotes = partyToVotes.totalVotes;
@@ -51,22 +58,7 @@ export default function ProjectedResultBarChart() {
 
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
 
-  const getBarLabel = function () {
-    return function (item, context) {
-      const pVotes = item.value;
-      if (pVotes === pVotesExtra) {
-        return "";
-      }
-
-      if (pVotes < 0.2) {
-        return "";
-      }
-
-      return Format.percentVotesRange(pVotes, pVotes + pVotesExtra);
-    };
-  };
-
-  const series = entries.reduce(function (series, [partyID, votes]) {
+  return entries.reduce(function (series, [partyID, votes]) {
     const party = Party.fromID(partyID);
     if (party.isNonParty) {
       return series;
@@ -94,6 +86,15 @@ export default function ProjectedResultBarChart() {
     return series;
   }, []);
 
+}
+
+export default function ProjectedResultBarChart() {
+  const data = useDataContext();
+  if (!data) {
+    return null;
+  }
+  const { electionProjected } = data;
+
   const valueFormatter = function (value) {
     return Format.percentVotes(value);
   };
@@ -103,7 +104,7 @@ export default function ProjectedResultBarChart() {
       <BarChart
         xAxis={[{ label: "% Votes", valueFormatter }]}
         yAxis={getAxis()}
-        series={series}
+        series={getSeries(electionProjected)}
         barLabel={getBarLabel()}
         layout="horizontal"
         width={400}

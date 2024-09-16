@@ -1,71 +1,78 @@
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { Box, Grid2, Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
-import CumResultsView from "./CumResultsView";
+import { CumResultsColumnView, CumResultsViewTableRowView } from "./CumResultsView";
 import { Bellwether } from "../../nonview/core";
 import { ArrayX, Translate } from "../../nonview/base";
 
-function RegionResultListViewGroup({ title, entIDList }) {
-  const data = useDataContext();
-  if (!data) {
-    return null;
-  }
-
-  if (!entIDList) {
-    return null;
-  }
-
-  const { electionDisplay } = data;
-  const resultLK = electionDisplay.resultIdx["LK"];
-  const winnerPartyID = resultLK.winningPartyID;
-
-  const isMobile = window.innerWidth < 1080;
-  const direction = isMobile ? "column" : "row";
-
-  const sortedEntIDs = ArrayX.sort(entIDList, function (entID) {
-    const result = electionDisplay.resultIdx[entID];
-    if (!result) {
-      return 0;
-    }
-    const partyToVotes = result.partyToVotes;
-    return -partyToVotes.partyToPVotesSorted[winnerPartyID];
-  });
-
-  return (
-    <Box>
-      <Typography variant="h4">{Translate(title)}</Typography>
-
-      {isMobile ? (
-        <Grid2 container spacing={2} rowSpacing={3} justifyContent="center">
+function RegionResultListColumnViewGroup ({sortedEntIDs}) {
+return (
+  <Grid2 container spacing={2} rowSpacing={3} justifyContent="center">
           {sortedEntIDs.map(function (entID) {
             return (
               <Grid2 key={entID}>
-                {" "}
-                <CumResultsView entID={entID} direction={direction} />
+                <CumResultsColumnView entID={entID} />
               </Grid2>
             );
           })}
         </Grid2>
+)
+}
+
+function RegionResultListTableView({sortedEntIDs}) {
+return (
+  <table>
+  {sortedEntIDs.map(function (entID) {
+    return (
+      <CumResultsViewTableRowView key={entID} entID={entID} />
+    );
+  })}
+</table>
+)
+}
+
+function getSortedEntIDs({entIDList, electionDisplay}) {
+
+  const winnerPartyID = electionDisplay.resultIdx["LK"].winningPartyID;
+
+  return ArrayX.sort(entIDList, function (entID) {
+    const result = electionDisplay.resultIdx[entID];
+    if (!result) {
+      return 0;
+    }
+    return -result.partyToVotes.partyToPVotesSorted[winnerPartyID];
+  });
+}
+
+function RegionResultListViewGroup({ title, entIDList }) {
+  const data = useDataContext();
+  const theme = useTheme();
+  const isSmallerScreen = useMediaQuery(theme.breakpoints.down('lg'));
+  
+  if (!data) {
+    return null;
+  }
+  if (!entIDList) {
+    return null;
+  }
+  const { electionDisplay } = data;
+  const sortedEntIDs = getSortedEntIDs({entIDList, electionDisplay});
+
+  return (
+    <Box>
+      <Typography variant="h4">{Translate(title)}</Typography>
+      {isSmallerScreen ? (
+         <RegionResultListColumnViewGroup sortedEntIDs={sortedEntIDs} />
       ) : (
-        <table>
-          {sortedEntIDs.map(function (entID) {
-            return (
-              <CumResultsView key={entID} entID={entID} direction={direction} />
-            );
-          })}
-        </table>
+        <RegionResultListTableView sortedEntIDs={sortedEntIDs} />
       )}
     </Box>
   );
 }
 
-export default function RegionResultListView() {
-  const data = useDataContext();
-
-  if (!data) {
-    return null;
-  }
+function getGroupToEntIDList(data) {
   const { provinceIdx, edIdx, pdIdx, ezIdx, elections, electionDisplay } = data;
-
   const infoList = Bellwether.getBestBellwetherInfoList(
     elections,
     electionDisplay,
@@ -89,13 +96,26 @@ export default function RegionResultListView() {
     .reverse()
     .map((x) => x.entID);
 
-  const groupToEntIDList = {
-    Ethnicity: Object.keys(ezIdx),
-    Provinces: Object.keys(provinceIdx),
-    "Electoral Districts": Object.keys(edIdx),
-    Bellwethers: bellwetherEntIDList,
-    "Latest Results": latestResults,
-  };
+return {
+  Ethnicity: Object.keys(ezIdx),
+  Provinces: Object.keys(provinceIdx),
+  "Electoral Districts": Object.keys(edIdx),
+  Bellwethers: bellwetherEntIDList,
+  "Latest Results": latestResults,
+}
+}
+
+export default function RegionResultListView() {
+  const data = useDataContext();
+
+  if (!data) {
+    return null;
+  }
+
+
+
+
+  const groupToEntIDList =getGroupToEntIDList(data);
 
   return (
     <Stack direction="column" alignItems="center" gap={5}>

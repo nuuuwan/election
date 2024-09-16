@@ -25,7 +25,7 @@ function getContentList({entID, result, electionDisplay}) {
   ]
 }
 
-function CumResultsColumnView({entID, }) {
+export function CumResultsColumnView({entID, }) {
 
   const data = useDataContext();
   if (!data) {
@@ -63,7 +63,7 @@ function CumResultsColumnView({entID, }) {
   );
 }
 
-function CumResultsViewTableRowView({entID}) {
+export function CumResultsViewTableRowView({entID}) {
   const data = useDataContext();
   if (!data) {
     return null;

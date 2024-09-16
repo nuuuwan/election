@@ -13,7 +13,10 @@ export default function ResultsReleasedTitle({ mode = "percent" }) {
   const { nResultsTotal, nResultsReleased, pElectors } =
     electionDisplay.getReleaseStats(entID, pdIdx, electionPrevious);
 
+  const isComplete = nResultsTotal ===  nResultsReleased
+
   if (mode === "percent") {
+    const smallPrint = isComplete ? Translate("Final Result") : Translate("Estimate, based on registered voter statistics.")
     return (
       <Box>
         <Typography variant="h4" color="secondary">
@@ -24,7 +27,7 @@ export default function ResultsReleasedTitle({ mode = "percent" }) {
           color="secondary"
           sx={{ m: 1, marginLeft: 10, marginRight: 10 }}
         >
-          {Translate("*Estimate, which may change with more results.")}
+          *{smallPrint}
         </Typography>
       </Box>
     );

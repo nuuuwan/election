@@ -6,6 +6,7 @@ import {
   HexMapView,
   LatestResultListView,
   RegionResultListView,
+  BellwetherView,
 } from "../../molecules";
 
 const STYLE = {
@@ -33,6 +34,7 @@ export default function PageBody() {
           <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
             <ResultsReleasedTitle mode="n" />
             <LatestResultListView />
+            <BellwetherView />
           </Grid2>
           <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
             <ProjectionView />

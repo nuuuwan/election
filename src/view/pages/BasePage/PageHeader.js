@@ -26,7 +26,7 @@ export default function PageHeader() {
     return null;
   }
   const { electionProjected } = data;
-  const backgroundColor = electionProjected.color;
+  const backgroundColor = electionProjected?.color || "gray";
   return (
     <Box sx={Object.assign({ backgroundColor }, STYLE_PAGE_HEADER.SELECTOR)}>
       <Stack

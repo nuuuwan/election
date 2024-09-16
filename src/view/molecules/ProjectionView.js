@@ -36,11 +36,13 @@ export default function ProjectionView() {
   return (
     <CustomStack>
       <ProjectionTitle />
-      <SummaryView summary={resultLK.summary} />
-      <ProjectedResultBarChart />
-      <PartyToVotesStatsView partyToVotes={resultLK.partyToVotes} />
-
       <FinalOutcomeView />
+   
+      <PartyToVotesStatsView partyToVotes={resultLK.partyToVotes} />
+      <ProjectedResultBarChart />
+      <SummaryView summary={resultLK.summary} />
+
+
       <ProjectionAlert />
     </CustomStack>
   );

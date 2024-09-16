@@ -1,10 +1,12 @@
+import { BarChart, barLabelClasses } from "@mui/x-charts";
+import { useDataContext } from "../../nonview/core/DataProvider";
+import { Box,  } from "@mui/material";
+
 import { Party } from "../../nonview/core";
 import { Color, Format } from "../../nonview/base";
 
-import { Box } from "@mui/material";
+
 import { THEME_DATA } from "../_constants/THEME";
-import { BarChart, barLabelClasses } from "@mui/x-charts";
-import { useDataContext } from "../../nonview/core/DataProvider";
 
 function getAxis() {
   return [
@@ -16,7 +18,7 @@ function getAxis() {
       tickLabelPlacement: "middle",
       tickLabelStyle: {
         wordWrap: "break-word",
-        fontSize: THEME_DATA.typography.fontSize * 0.7,
+        fontSize: THEME_DATA.typography.fontSize,
         fontFamily: THEME_DATA.typography.fontFamily,
       },
       categoryGapRatio: 0.1,
@@ -29,7 +31,7 @@ function getStyle() {
   return {
     [`& .${barLabelClasses.root}`]: {
       fill: "white",
-      fontSize: THEME_DATA.typography.fontSize * 2,
+      fontSize: THEME_DATA.typography.fontSize * 3,
       fontFamily: THEME_DATA.typography.fontFamily,
     },
   };
@@ -51,7 +53,11 @@ function getBarLabel(electionProjected) {
       return "";
     }
 
-    return Format.percentVotesRange(pVotes, pVotes + pVotesExtra);
+    const hasWon = pVotes > 0.5;
+    const text = Format.percentVotesRange(pVotes, pVotes + pVotesExtra);
+
+    return text + (hasWon ? " ✓" : "");
+
   };
 }
 

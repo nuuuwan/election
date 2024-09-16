@@ -92,7 +92,7 @@ export default function CustomSelect({
   getDividerKey,
   reverse,
 }) {
-  getID = getID ||defaultGetID
+  getID = getID || defaultGetID;
   const dataIdx = getDataIdx(dataList, getID, reverse);
 
   const onChangeInner = function (event) {
@@ -102,9 +102,9 @@ export default function CustomSelect({
     <CustomSelectInner
       value={value}
       getID={getID}
-      renderValue={renderValue ||defaultRenderValue}
-      renderMenuItemInner={renderMenuItemInner ||defaultRenderMenuItemInner}
-      getDividerKey={getDividerKey ||defaultGetDividerKey}
+      renderValue={renderValue || defaultRenderValue}
+      renderMenuItemInner={renderMenuItemInner || defaultRenderMenuItemInner}
+      getDividerKey={getDividerKey || defaultGetDividerKey}
       onChangeInner={onChangeInner}
       dataIdx={dataIdx}
     />

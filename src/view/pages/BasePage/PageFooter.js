@@ -8,9 +8,9 @@ const STYLE_FOOTER = {
     bottom: 0,
     right: 0,
     left: 0,
-    zIndex: 1000,
+    zIndex: 4000,
     backgroundColor: "white",
-    padding: 1,
+    padding: 2,
   },
 };
 

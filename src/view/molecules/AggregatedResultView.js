@@ -47,7 +47,7 @@ function getSortedEntIDs({ entIDList, electionDisplay }) {
   });
 }
 
-function RegionResultListViewGroup({ entIDList }) {
+function AggregatedResultViewGroup({ entIDList }) {
   const data = useDataContext();
   const theme = useTheme();
   const isSmallerScreen = useMediaQuery(theme.breakpoints.down("lg"));
@@ -111,7 +111,7 @@ function getGroupToEntIDListGetter() {
   };
 }
 
-export default function RegionResultListView() {
+export default function AggregatedResultView() {
   const data = useDataContext();
 
   const groupToEntIDListGetter = getGroupToEntIDListGetter(data);
@@ -124,7 +124,7 @@ export default function RegionResultListView() {
   }
 
   return (
-    <Box sx={{ borderTop: "1px solid #eee" }}>
+    <Box>
       <CustomSelect value={group} onChange={setGroup} dataList={groupList} />
 
       <Box
@@ -134,7 +134,7 @@ export default function RegionResultListView() {
           display: "flex",
         }}
       >
-        <RegionResultListViewGroup
+        <AggregatedResultViewGroup
           entIDList={groupToEntIDListGetter[group](data)}
         />
       </Box>

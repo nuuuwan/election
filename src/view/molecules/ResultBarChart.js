@@ -10,13 +10,6 @@ function getAxis() {
     {
       scaleType: "band",
       data: [""],
-      tickPlacement: "middle",
-      tickLabelPlacement: "middle",
-      tickLabelStyle: {
-        wordWrap: "break-word",
-        fontSize: THEME_DATA.typography.fontSize * 0.7,
-        fontFamily: THEME_DATA.typography.fontFamily,
-      },
       categoryGapRatio: 0,
       barGapRatio: 0,
     },
@@ -26,7 +19,7 @@ function getAxis() {
 function getBarLabel() {
   return function (item, context) {
     const pVotes = item.value;
-    if (pVotes < 0.2) {
+    if (pVotes < 0.25) {
       return "";
     }
     return Format.percentVotes(pVotes);
@@ -37,7 +30,7 @@ function getStyle() {
   return {
     [`& .${barLabelClasses.root}`]: {
       fill: "white",
-      fontSize: THEME_DATA.typography.fontSize * 1.5,
+      fontSize: THEME_DATA.typography.fontSize * 2,
       fontFamily: THEME_DATA.typography.fontFamily,
     },
   };
@@ -69,7 +62,7 @@ export default function ResultBarChart({ resultsElection, entID }) {
         barLabel={getBarLabel()}
         layout="horizontal"
         bottomAxis={null}
-        width={180}
+        width={200}
         height={50}
         sx={getStyle()}
         slotProps={{ legend: { hidden: true } }}

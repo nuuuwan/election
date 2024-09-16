@@ -50,7 +50,7 @@ export default function InsightTooCloseToCall({
 }) {
   return (
     <Box>
-      <Typography variant="h6">{Translate("Too close to call")}</Typography>
+      <Typography variant="h4">{Translate("Too close to call")}</Typography>
       <Typography variant="caption" color="secondary">
         {Translate("Possible Outcomes & Probabilities")}
       </Typography>

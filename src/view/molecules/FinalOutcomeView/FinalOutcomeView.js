@@ -13,7 +13,7 @@ function FinalOutcomeViewComplexPref({ finalOutcome }) {
   if (!likelyWinnerPartyInfoList.length) {
     return (
       <Box>
-        <Typography variant="h6">
+        <Typography variant="h4">
           {Translate("2nd/3rd Preference Counting Expected")}
         </Typography>
         <Confidence />

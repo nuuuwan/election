@@ -50,7 +50,7 @@ export default function BellwetherView() {
         sx={{
           marginTop: 1,
           textAlign: "justify",
-          maxWidth: 400,
+          maxWidth: 480,
           margin: "auto",
         }}
       >
@@ -58,8 +58,11 @@ export default function BellwetherView() {
         <Typography variant="h6">
           {getNumBellwetherText({ n, nSame, ent })}
         </Typography>
-        <Typography variant="h6">
+        <Typography variant="body1">
           {getPercentageBellwetherText({ error })}
+        </Typography>
+        <Typography variant="body1">
+          {Translate("Note, however, previous results are not necessarily indicative of future results.")}
         </Typography>
       </Alert>
     </Box>

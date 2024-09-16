@@ -19,11 +19,6 @@ const LANG_TO_LABEL = {
   en: "En",
 };
 
-const LANG_TO_COLOR = {
-  si: "#800",
-  ta: "#f80",
-  en: "#080",
-};
 
 export default function LanguageSelector() {
   const { setLang } = useBasePageHandlerContext();
@@ -37,14 +32,14 @@ export default function LanguageSelector() {
     <Stack direction="row" gap={0} sx={STYLE_LANGUAGE_SELECTOR.BOX}>
       {["si", "ta", "en"].map(function (lang) {
         const isSelected = lang === selectedLang;
-        const color = LANG_TO_COLOR[lang];
+
         return (
           <Button
             key={lang}
             onClick={function () {
               setLang(lang);
             }}
-            sx={Object.assign({ color }, STYLE_LANGUAGE_SELECTOR.BUTTON)}
+            sx={Object.assign({ color:"white" }, STYLE_LANGUAGE_SELECTOR.BUTTON)}
             disabled={isSelected}
           >
             {LANG_TO_LABEL[lang]}

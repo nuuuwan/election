@@ -1,6 +1,6 @@
 import Cache from "./Cache.js";
 
-const CACHE_VERSION = "v20240221";
+
 
 const JSON_HEADERS = {
   headers: {
@@ -26,7 +26,7 @@ export default class WWW {
   }
 
   static async json(url) {
-    return Cache.get(`WWW.json.${CACHE_VERSION}.${url}`, async function () {
+    return Cache.get(url, async function () {
       return WWW.jsonNonCache(url);
     });
   }
@@ -54,7 +54,7 @@ export default class WWW {
   }
 
   static async tsv(url) {
-    return Cache.get(`WWW.tsv.${CACHE_VERSION}.${url}`, async function () {
+    return Cache.get(url, async function () {
       return WWW.tsvNonCache(url);
     });
   }

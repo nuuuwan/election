@@ -11,7 +11,7 @@ class Translate {
 
   static getTranslationInLanguage(phrase, lang) {
     if (!DICTIONARY[phrase] || !DICTIONARY[phrase][lang]) {
-      console.error(phrase);
+      console.warn(phrase);
       return phrase;
     }
     return DICTIONARY[phrase][lang];

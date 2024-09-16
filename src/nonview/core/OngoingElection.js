@@ -20,7 +20,7 @@ export default class OngoingElection {
   }
 
   static async getRawData() {
-    return await WWW.jsonNonCache(OngoingElection.URL);
+    return await WWW.json(OngoingElection.URL);
   }
 
   static async getPDResultList() {

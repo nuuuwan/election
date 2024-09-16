@@ -1,9 +1,10 @@
 import { Grid2, Stack, Typography } from "@mui/material";
-import { Format } from "../../nonview/base";
+import { Format, Translate } from "../../nonview/base";
 import { Bellwether, Election } from "../../nonview/core";
 import { PartyView } from "../../view/atoms";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CancelIcon from "@mui/icons-material/Cancel";
+
 
 function HistoryViewRow({ entID, electionForRow }) {
   const result = electionForRow.getResult(entID);
@@ -47,6 +48,9 @@ function BellwetherShortView({ entID }) {
       <Typography variant="h6" color="secondary">
         {nSame}/{n}
       </Typography>
+      <Typography variant="caption" color="secondary">
+        {Translate("Bellwether")}
+      </Typography> 
       <Typography variant="body1" color="secondary">
         {error ? "±" + Format.percent(error) : ""}
       </Typography>

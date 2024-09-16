@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Alert, Box, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { Format, Translate } from "../../nonview/base";
 
@@ -13,22 +13,24 @@ export default function ResultsReleasedTitle({ mode = "percent" }) {
   const { nResultsTotal, nResultsReleased, pElectors } =
     electionDisplay.getReleaseStats(entID, pdIdx, electionPrevious);
 
-  const isComplete = nResultsTotal ===  nResultsReleased
+  const isIncomplete = nResultsReleased < nResultsTotal;  
+  let asterisk = "";
+  let warning = "";
+  if(isIncomplete){
+    asterisk = "*";
+    warning = asterisk + Translate("Estimate, based on registered voter statistics.");
+  }
 
   if (mode === "percent") {
-    const smallPrint = isComplete ? Translate("Final Result") : Translate("Estimate, based on registered voter statistics.")
+
     return (
       <Box>
         <Typography variant="h4" color="secondary">
-          {Format.percent(pElectors)} {Translate("Votes Counted")}*
+          {Format.percent(pElectors)} {Translate("Votes Counted")}{asterisk}
         </Typography>
-        <Typography
-          variant="body1"
-          color="secondary"
-          sx={{ m: 1, marginLeft: 10, marginRight: 10 }}
-        >
-          *{smallPrint}
-        </Typography>
+        <Alert severity="warning" sx={{ m: 1 }}>
+          {warning}
+        </Alert>
       </Box>
     );
   }

@@ -75,13 +75,13 @@ export default function HistoryView({ entID }) {
   return (
     <Stack
       direction="row"
-      gap={1}
+      gap={0.1}
       alignItems="center"
     >
-      <Grid2 container alignItems="center" gap={1}>
+      <Grid2 container alignItems="center" gap={0.1}>
         {previousElectionsDisplay.map(function (electionForRow, i) {
           return (
-            <Grid2 key={i} sx={{ width: 40 }}>
+            <Grid2 key={i} sx={{ width: 48 }}>
               <HistoryViewRow electionForRow={electionForRow} entID={entID} />
             </Grid2>
           );

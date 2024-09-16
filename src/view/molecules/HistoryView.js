@@ -1,6 +1,6 @@
 import { Grid2, Stack, Typography } from "@mui/material";
 import { Format } from "../../nonview/base";
-import { Election } from "../../nonview/core";
+import { Bellwether, Election } from "../../nonview/core";
 import { PartyView } from "../../view/atoms";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
@@ -32,6 +32,28 @@ function HistoryViewRow({ entID, electionForRow }) {
   );
 }
 
+function BellwetherShortView({entID}) {
+  const data = useDataContext();
+  if (!data) {
+    return null;
+  }
+  const { election, elections } = data;
+
+  
+  const  { n, nSame, error } = Bellwether.getStats(elections, election, entID);
+
+return (
+  <Stack direction="column">
+        <Typography variant="caption" color="secondary">
+          {nSame}/{n}
+        </Typography>
+        <Typography variant="caption" color="secondary">
+        {error ? "±" + Format.percent(error) :""}
+        </Typography>
+        </Stack>
+)
+}
+
 export default function HistoryView({ entID }) {
   const data = useDataContext();
   if (!data) {
@@ -51,7 +73,7 @@ export default function HistoryView({ entID }) {
     .reverse();
 
   return (
-    <Grid2 container gap={0.5} rowGap={0.1}>
+    <Grid2 container gap={0.5} rowGap={0.1} sx={{alignItems: "center"}}>
       {previousElectionsDisplay.map(function (electionForRow, i) {
         return (
           <Grid2 key={i}>
@@ -59,6 +81,9 @@ export default function HistoryView({ entID }) {
           </Grid2>
         );
       })}
+      <Grid2>
+        <BellwetherShortView entID={entID} />
+      </Grid2>
     </Grid2>
   );
 }

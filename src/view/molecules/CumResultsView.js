@@ -14,12 +14,13 @@ function getContentList({ entID, result, electionDisplay }) {
       useLongName={true}
       sx={{ color: result.color, p: 0.5 }}
     />,
+<ResultsReleasedView entID={entID} />,
 
-    <SummaryView summary={result.summary} />,
-
-    <ResultBarChart resultsElection={electionDisplay} entID={entID} />,
     <PartyToVotesStatsView partyToVotes={result.partyToVotes} />,
-    <ResultsReleasedView entID={entID} />,
+    <ResultBarChart resultsElection={electionDisplay} entID={entID} />,
+   
+    <SummaryView summary={result.summary} />,
+    
     <HistoryView entID={entID} />,
   ];
 }
@@ -50,7 +51,7 @@ export function CumResultsColumnView({ entID }) {
         return (
           <Box
             key={i}
-            sx={{}}
+            sx={{ height: 50}}
             justifyContent="center"
             alignItems="center"
             alignContent="center"

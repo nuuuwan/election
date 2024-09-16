@@ -32,7 +32,7 @@ function getBBox() {
     [Infinity, Infinity, -Infinity, -Infinity]
   );
 
-  return [minX - 2, minY - 1, maxX + 1, maxY + 8];
+  return [minX - 2, minY - 1, maxX + 1, maxY + 4];
 }
 
 function getViewBoxDims() {

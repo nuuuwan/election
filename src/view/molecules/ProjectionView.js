@@ -9,6 +9,7 @@ import {
 
 import { FinalOutcome } from "../../nonview/core";
 import InsightErrorMarginTooHigh from "./FinalOutcomeView/InsightErrorMarginTooHigh";
+import { ProjectionAlert } from "../atoms/ProjectionTitle";
 
 export default function ProjectionView() {
   const data = useDataContext();
@@ -40,6 +41,7 @@ export default function ProjectionView() {
       <PartyToVotesStatsView partyToVotes={resultLK.partyToVotes} />
 
       <FinalOutcomeView />
+      <ProjectionAlert />
     </CustomStack>
   );
 }

@@ -3,8 +3,8 @@ const normalCDF = require("@stdlib/stats-base-dists-normal-cdf");
 
 export default class FinalOutcome {
   static P_BASE = 0.9;
-  static P_TOO_MUCH_ERRORTY = 0.25;
-  static MIN_N_RESULTS = 30;
+  static P_TOO_MUCH_ERRORTY = 0.2;
+  static MIN_N_RESULTS = 46;
 
   constructor(election, nResultsDisplay) {
     this.election = election;

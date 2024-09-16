@@ -2,7 +2,8 @@ import { Alert, Box, Typography } from "@mui/material";
 import { Translate } from "../../nonview/base";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
-export default function ProjectionTitle() {
+
+export function ProjectionAlert() {
   const data = useDataContext();
   if (!data) {
     return null;
@@ -18,14 +19,13 @@ export default function ProjectionTitle() {
 
   const isComplete = nResultsReleased === nResultsTotal;
 
-  let title = "Final Result";
+  if (isComplete) {
+    return null;
+  }
 
-  let alert = null;
-  if (!isComplete) {
-    title = "Projected Final Result";
 
-    alert = (
-      <Alert severity="warning" sx={{ marginTop: 1, textAlign: "justify" }}>
+    return (
+      <Alert severity="info" sx={{ marginTop: 1, textAlign: "justify", maxWidth: 400, margin: "auto" }}>
         <Typography variant="h6">
           {Translate(
             "This projection has been made by a simple AI Model, based on released results, and historical data."
@@ -45,6 +45,30 @@ export default function ProjectionTitle() {
         </Typography>
       </Alert>
     );
+
+
+
+}
+
+export default function ProjectionTitle() {
+  const data = useDataContext();
+  if (!data) {
+    return null;
+  }
+  const { electionDisplay, pdIdx, electionPrevious } = data;
+
+  const entID = "LK";
+  const { nResultsTotal, nResultsReleased } = electionDisplay.getReleaseStats(
+    entID,
+    pdIdx,
+    electionPrevious
+  );
+
+  const isComplete = nResultsReleased === nResultsTotal;
+
+  let title = "Final Result";
+  if (!isComplete) {
+    title = "Projected Final Result";
   }
 
   return (
@@ -53,7 +77,7 @@ export default function ProjectionTitle() {
         {Translate(title)}
       </Typography>
 
-      {alert}
+
     </Box>
   );
 }

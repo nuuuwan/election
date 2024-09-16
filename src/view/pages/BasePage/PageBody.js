@@ -8,6 +8,7 @@ import {
   AggregatedResultView,
   BellwetherView,
 } from "../../molecules";
+import { ResultsReleasedAlert } from "../../atoms/ResultsReleasedTitle";
 
 const STYLE = {
   BOX: { paddingTop: 1, paddingBottom: 20 },
@@ -30,6 +31,7 @@ export default function PageBody() {
               <ResultsReleasedTitle mode="percent" />
             </Typography>
             <HexMapView />
+            <ResultsReleasedAlert />
           </Grid2>
           <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
             <ResultsReleasedTitle mode="n" />

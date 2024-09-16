@@ -3,13 +3,13 @@ import { Format, Translate } from "../../nonview/base";
 import { Bellwether, Election } from "../../nonview/core";
 import { PartyView } from "../../view/atoms";
 import { useDataContext } from "../../nonview/core/DataProvider";
-import CancelIcon from "@mui/icons-material/Cancel";
+
 
 
 function HistoryViewRow({ entID, electionForRow }) {
   const result = electionForRow.getResult(entID);
   if (!result) {
-    return <CancelIcon sx={{ color: "gray" }} />;
+    return null
   }
 
   const winningPartyID = result.partyToVotes.winningPartyID;
@@ -27,36 +27,14 @@ function HistoryViewRow({ entID, electionForRow }) {
       </Typography>
 
       <PartyView partyID={winningPartyID} />
-      <Typography variant="caption" sx={{ fontSize: "80%" }}>
-        {Format.percentVotes(pWinner)}
+      <Typography variant="caption" sx={{ fontSize: "64%" }}>
+        {Format.percent(pWinner)}
       </Typography>
     </Stack>
   );
 }
 
-function BellwetherShortView({ entID }) {
-  const data = useDataContext();
-  if (!data) {
-    return null;
-  }
-  const { election, elections } = data;
 
-  const { n, nSame, error } = Bellwether.getStats(elections, election, entID);
-
-  return (
-    <Stack direction="column">
-      <Typography variant="h6" color="secondary">
-        {nSame}/{n}
-      </Typography>
-      <Typography variant="caption" color="secondary">
-        {Translate("Bellwether")}
-      </Typography> 
-      <Typography variant="body1" color="secondary">
-        {error ? "±" + Format.percent(error) : ""}
-      </Typography>
-    </Stack>
-  );
-}
 
 export default function HistoryView({ entID }) {
   const data = useDataContext();
@@ -77,17 +55,18 @@ export default function HistoryView({ entID }) {
   });
 
   return (
-    <Stack direction="row" gap={0.1} alignItems="center">
-      <Grid2 container alignItems="center" gap={0.1}>
+    <Stack direction="column" alignItems="center">      <Grid2 container alignItems="center" gap={0.1}>
         {previousElectionsDisplay.map(function (electionForRow, i) {
           return (
-            <Grid2 key={i} sx={{ width: 48 }}>
+            <Grid2 key={i} sx={{ width: "fit-content" }}>
               <HistoryViewRow electionForRow={electionForRow} entID={entID} />
             </Grid2>
           );
         })}
       </Grid2>
-      <BellwetherShortView entID={entID} />
-    </Stack>
+
+  
+      </Stack>
   );
 }
+

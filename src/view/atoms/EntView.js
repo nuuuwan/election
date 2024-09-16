@@ -23,8 +23,8 @@ export default function EntView({ entID, useLongName = false, sx = {} }) {
         sx
       )}
     >
-      <Typography variant="h5">{Translate(ent.name)}</Typography>
-      <Typography variant="body1" sx={{ opacity: 0.5 }}>
+      <Typography variant="h4">{Translate(ent.name)}</Typography>
+      <Typography variant="h6" sx={{ opacity: 0.5 }}>
         {Translate(label)}
       </Typography>
     </Stack>

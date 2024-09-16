@@ -1,15 +1,13 @@
 import { Grid2, Stack, Typography } from "@mui/material";
-import { Format,  } from "../../nonview/base";
-import {  Election } from "../../nonview/core";
+import { Format } from "../../nonview/base";
+import { Election } from "../../nonview/core";
 import { PartyView } from "../../view/atoms";
 import { useDataContext } from "../../nonview/core/DataProvider";
-
-
 
 function HistoryViewRow({ entID, electionForRow }) {
   const result = electionForRow.getResult(entID);
   if (!result) {
-    return null
+    return null;
   }
 
   const winningPartyID = result.partyToVotes.winningPartyID;
@@ -34,8 +32,6 @@ function HistoryViewRow({ entID, electionForRow }) {
   );
 }
 
-
-
 export default function HistoryView({ entID }) {
   const data = useDataContext();
   if (!data) {
@@ -55,7 +51,9 @@ export default function HistoryView({ entID }) {
   });
 
   return (
-    <Stack direction="column" alignItems="center">      <Grid2 container alignItems="center" gap={0.1}>
+    <Stack direction="column" alignItems="center">
+      {" "}
+      <Grid2 container alignItems="center" gap={0.1}>
         {previousElectionsDisplay.map(function (electionForRow, i) {
           return (
             <Grid2 key={i} sx={{ width: "fit-content" }}>
@@ -64,9 +62,6 @@ export default function HistoryView({ entID }) {
           );
         })}
       </Grid2>
-
-  
-      </Stack>
+    </Stack>
   );
 }
-

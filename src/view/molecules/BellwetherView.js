@@ -60,9 +60,10 @@ export default function BellwetherView() {
         </Typography>
         <Typography variant="body1">
           {getPercentageBellwetherText({ error })}
-          {Translate("Note, however, previous results are not necessarily indicative of future results.")}
+          {Translate(
+            "Note, however, previous results are not necessarily indicative of future results."
+          )}
         </Typography>
-
       </Alert>
     </Box>
   );

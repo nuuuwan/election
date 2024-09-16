@@ -22,7 +22,6 @@ export default class Cache {
       return JSON.parse(hotItem);
     }
 
-
     const coldItem = fallback();
     try {
       localStorage.setItem(cacheKey, JSON.stringify(coldItem));

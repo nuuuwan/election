@@ -37,12 +37,10 @@ export function ProjectionAlert() {
         {Translate(
           "The results presented have 90% confidence, which means that they could be wrong 10% of the time."
         )}
-               {Translate(
+        {Translate(
           "This is not an official result, and might differ significantly from final result."
         )}
       </Typography>
-
-
     </Alert>
   );
 }

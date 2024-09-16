@@ -28,9 +28,11 @@ function RegionResultListColumnViewGroup({ sortedEntIDs }) {
 function RegionResultListTableView({ sortedEntIDs }) {
   return (
     <table>
+      <tbody>
       {sortedEntIDs.map(function (entID) {
         return <CumResultsViewTableRowView key={entID} entID={entID} />;
       })}
+      </tbody>
     </table>
   );
 }

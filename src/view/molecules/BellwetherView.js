@@ -5,7 +5,7 @@ import { useDataContext } from "../../nonview/core/DataProvider";
 
 function PerfectBellwetherView() {
   return (
-    <Typography variant="h6" sx={{fontWeight: "bold"}}>
+    <Typography variant="h5" sx={{fontWeight: "bold"}}>
       {Translate("Perfect Bellwether")}
     </Typography>
   );
@@ -48,10 +48,10 @@ export default function BellwetherView() {
     <Box sx={{ maxWidth: 600 }}>
       <Alert severity="info" sx={{ marginTop: 1, textAlign: "justify" }}>
         {n === nSame ? <PerfectBellwetherView /> : null}
-        <Typography variant="body1">
+        <Typography variant="h6">
         {getNumBellwetherText({ n, nSame, ent }) }
         </Typography>
-        <Typography variant="body1">
+        <Typography variant="h6">
         {
           getPercentageBellwetherText({ error })}
         </Typography>

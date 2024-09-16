@@ -107,11 +107,11 @@ export default function ProjectedResultBarChart() {
         barLabel={getBarLabel()}
         layout="horizontal"
         width={320}
-        height={280}
+        height={240}
         sx={getStyle()}
         grid={{ vertical: true }}
         slotProps={{ legend: { hidden: true } }}
-        margin={{ top: 0, right: 10, bottom: 40, left: 0 }}
+        margin={{ top: 0, right: 10, bottom: 60, left: 0 }}
       />
     </Box>
   );

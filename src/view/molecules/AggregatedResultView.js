@@ -1,13 +1,13 @@
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { Box, Grid2 } from "@mui/material";
+import { Box, Grid2, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import {
   CumResultsColumnView,
   CumResultsViewTableRowView,
 } from "./CumResultsView";
 import { Bellwether } from "../../nonview/core";
-import { ArrayX } from "../../nonview/base";
+import { ArrayX, Translate } from "../../nonview/base";
 import { CustomSelect } from "../atoms";
 import { useState } from "react";
 
@@ -125,6 +125,7 @@ export default function AggregatedResultView() {
 
   return (
     <Box>
+      <Typography variant="body1">{Translate("Aggregated Election Results")}</Typography>
       <CustomSelect value={group} onChange={setGroup} dataList={groupList} />
 
       <Box

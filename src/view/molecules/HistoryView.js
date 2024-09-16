@@ -75,7 +75,7 @@ export default function HistoryView({ entID }) {
     <Grid2 container>
       {previousElectionsDisplay.map(function (electionForRow, i) {
         return (
-          <Grid2 key={i} xs={3} xl={3} sx={{width: 40}}>
+          <Grid2 key={i} xs={3} xl={3} sx={{width: 48}}>
             <HistoryViewRow electionForRow={electionForRow} entID={entID} />
           </Grid2>
         );

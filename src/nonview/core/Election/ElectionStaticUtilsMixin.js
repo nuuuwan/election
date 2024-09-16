@@ -1,3 +1,5 @@
+import { ArrayX } from "../../base";
+
 const ElectionStaticUtilsMixin = {
   getProvinceID(edID) {
     return {
@@ -46,7 +48,7 @@ const ElectionStaticUtilsMixin = {
       elections,
       currentElection
     );
-    return previousElections[previousElections.length - 1];
+    return ArrayX.last(previousElections);
   },
 
   getPenultimateElectionOfSameType(elections, currentElection) {
@@ -55,7 +57,7 @@ const ElectionStaticUtilsMixin = {
         elections,
         currentElection
       );
-    return previousElections[previousElections.length - 1];
+      return ArrayX.last(previousElections);
   },
 };
 

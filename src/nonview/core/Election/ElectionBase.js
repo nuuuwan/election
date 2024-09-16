@@ -1,4 +1,4 @@
-import { Time, Translate } from "../../base/index.js";
+import { ArrayX, Time, Translate } from "../../base/index.js";
 
 export default class ElectionBase {
   static URL_BASE =
@@ -73,7 +73,7 @@ export default class ElectionBase {
   }
 
   get finalResult() {
-    return this.pdResultList[this.nResults - 1];
+    return ArrayX.last(this.pdResultList);
   }
 
   get finalPDID() {

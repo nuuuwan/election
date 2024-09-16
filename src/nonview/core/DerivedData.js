@@ -1,4 +1,5 @@
 import { ElectionModel } from "../../nonview/core";
+import { ArrayX } from "../base";
 
 export default class DerivedData {
   static getActivePDID(activePDID, nResultsDisplay, election) {
@@ -14,7 +15,7 @@ export default class DerivedData {
     if (nResultsDisplay) {
       return election.pdResultList[nResultsDisplay - 1].entID;
     }
-    return election.pdResultList[election.pdResultList.length - 1].entID;
+    return ArrayX.last(election.pdResultList).entID;
   }
 
   static getNResultsDisplay(nResultsDisplay, election) {

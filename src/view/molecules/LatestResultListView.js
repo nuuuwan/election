@@ -3,7 +3,6 @@ import { useDataContext } from "../../nonview/core/DataProvider";
 import CumResultsView from "./CumResultsView";
 import { ProvinceUtils } from "../../nonview/base";
 
-
 export default function LatestResultListView() {
   const data = useDataContext();
   if (!data) {
@@ -20,7 +19,7 @@ export default function LatestResultListView() {
 
   return (
     <Stack direction="column" sx={{ color: resultPD.color }}>
-     <Grid2 container justifyContent="center">
+      <Grid2 container justifyContent="center">
         {[resultPD, resultED, resultProvince, resultLK].map(function (result) {
           return (
             <Grid2 key={result.entID}>

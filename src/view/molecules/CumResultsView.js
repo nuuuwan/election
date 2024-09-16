@@ -34,7 +34,7 @@ export function CumResultsColumnView({ entID }) {
   if (!result) {
     return null;
   }
-  
+
   const contentList = getContentList({ entID, result, electionDisplay });
 
   const isActiveEnt = activePDID === entID;
@@ -45,7 +45,7 @@ export function CumResultsColumnView({ entID }) {
   const border = isActiveEnt ? "5px solid " + result.color : "";
 
   return (
-    <Box sx={{ backgroundColor, border, borderRadius: 6, width: 240, p:1 }}>
+    <Box sx={{ backgroundColor, border, borderRadius: 6, width: 240, p: 1 }}>
       {contentList.map(function (content, i) {
         return (
           <Box

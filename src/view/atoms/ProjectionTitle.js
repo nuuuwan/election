@@ -10,45 +10,42 @@ export default function ProjectionTitle() {
   const { electionDisplay, pdIdx, electionPrevious } = data;
 
   const entID = "LK";
-  const { nResultsTotal, nResultsReleased,  } =
-    electionDisplay.getReleaseStats(entID, pdIdx, electionPrevious);
+  const { nResultsTotal, nResultsReleased } = electionDisplay.getReleaseStats(
+    entID,
+    pdIdx,
+    electionPrevious
+  );
 
-    const isComplete = nResultsReleased === nResultsTotal;
+  const isComplete = nResultsReleased === nResultsTotal;
 
-    let title = "Final Result";
+  let title = "Final Result";
 
-    let alert = null;
-    if (!isComplete) {
-      title = "Projected Final Result";
+  let alert = null;
+  if (!isComplete) {
+    title = "Projected Final Result";
 
-      alert = (
-        <Alert severity="warning" sx={{ marginTop: 1, textAlign: "justify" }}>
-        <Typography variant="h6" >
-          
-        {Translate(
-          "This projection has been made by a simple AI Model, based on released results, and historical data."
-        )}
+    alert = (
+      <Alert severity="warning" sx={{ marginTop: 1, textAlign: "justify" }}>
+        <Typography variant="h6">
+          {Translate(
+            "This projection has been made by a simple AI Model, based on released results, and historical data."
+          )}
         </Typography>
 
-
-        <Typography variant="body1" >
-          
+        <Typography variant="body1">
           {Translate(
             "The results presented have 90% confidence, which means that they could be wrong 10% of the time."
           )}
-            </Typography>
-      
+        </Typography>
 
-        <Typography variant="body1" >
-          
-        {Translate(
-          "This is not an official result, and might differ significantly from final result."
-        )}
-          </Typography>
-
+        <Typography variant="body1">
+          {Translate(
+            "This is not an official result, and might differ significantly from final result."
+          )}
+        </Typography>
       </Alert>
-      )
-    }
+    );
+  }
 
   return (
     <Box>
@@ -56,7 +53,7 @@ export default function ProjectionTitle() {
         {Translate(title)}
       </Typography>
 
-    {alert}
+      {alert}
     </Box>
   );
 }

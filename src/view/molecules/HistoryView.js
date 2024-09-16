@@ -3,12 +3,12 @@ import { Format } from "../../nonview/base";
 import { Bellwether, Election } from "../../nonview/core";
 import { PartyView } from "../../view/atoms";
 import { useDataContext } from "../../nonview/core/DataProvider";
-import CancelIcon from '@mui/icons-material/Cancel';
+import CancelIcon from "@mui/icons-material/Cancel";
 
 function HistoryViewRow({ entID, electionForRow }) {
   const result = electionForRow.getResult(entID);
   if (!result) {
-    return <CancelIcon sx={{color: "gray"}} />;
+    return <CancelIcon sx={{ color: "gray" }} />;
   }
 
   const winningPartyID = result.partyToVotes.winningPartyID;
@@ -43,7 +43,7 @@ function BellwetherShortView({ entID }) {
   const { n, nSame, error } = Bellwether.getStats(elections, election, entID);
 
   return (
-    <Stack direction="column" >
+    <Stack direction="column">
       <Typography variant="h6" color="secondary">
         {nSame}/{n}
       </Typography>
@@ -73,11 +73,7 @@ export default function HistoryView({ entID }) {
   });
 
   return (
-    <Stack
-      direction="row"
-      gap={0.1}
-      alignItems="center"
-    >
+    <Stack direction="row" gap={0.1} alignItems="center">
       <Grid2 container alignItems="center" gap={0.1}>
         {previousElectionsDisplay.map(function (electionForRow, i) {
           return (
@@ -86,7 +82,6 @@ export default function HistoryView({ entID }) {
             </Grid2>
           );
         })}
-        
       </Grid2>
       <BellwetherShortView entID={entID} />
     </Stack>

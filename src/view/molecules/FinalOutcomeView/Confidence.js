@@ -10,10 +10,13 @@ export default function Confidence() {
   }
   const { electionDisplay, pdIdx, electionPrevious } = data;
 
-  const { nResultsTotal, nResultsReleased } =
-    electionDisplay.getReleaseStats("LK", pdIdx, electionPrevious);
+  const { nResultsTotal, nResultsReleased } = electionDisplay.getReleaseStats(
+    "LK",
+    pdIdx,
+    electionPrevious
+  );
 
-  const isComplete = nResultsReleased === nResultsTotal;  
+  const isComplete = nResultsReleased === nResultsTotal;
   if (isComplete) {
     return null;
   }

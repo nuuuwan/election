@@ -3,11 +3,20 @@ import { Bellwether } from "../../nonview/core";
 import { Format, Translate } from "../../nonview/base";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
+function PerfectBellwetherView() {
+  return (
+    <Typography variant="h6" sx={{fontWeight: "bold"}}>
+      {Translate("Perfect Bellwether")}
+    </Typography>
+  );
+}
+
 function getNumBellwetherText({ n, nSame, ent }) {
   return Translate(
     "Results in %1 have matched the Final National Result in %2/%3 previous Presidential Elections.",
     [Translate(ent.name), nSame, n]
   );
+
 }
 
 function getPercentageBellwetherText({ error }) {
@@ -37,8 +46,9 @@ export default function BellwetherView() {
 
   return (
     <Box sx={{ maxWidth: 600 }}>
-      <Alert severity="info" sx={{ marginTop: 1, textAlign: "left" }}>
-        <Typography variant="h6">
+      <Alert severity="info" sx={{ marginTop: 1, textAlign: "justify" }}>
+        {n === nSame ? <PerfectBellwetherView /> : null}
+        <Typography variant="body1">
         {getNumBellwetherText({ n, nSame, ent }) }
         </Typography>
         <Typography variant="body1">

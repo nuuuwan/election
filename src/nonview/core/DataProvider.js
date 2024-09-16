@@ -64,6 +64,7 @@ async function getValue(state) {
     nResultsDisplay: nResultsDisplayDerived,
   };
   CustomURLContext.set(newState);
+  console.debug("🤑", "DataProvider.getValue");
   return Object.assign(
     {},
     newState,

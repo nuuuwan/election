@@ -15,22 +15,27 @@ export default function ResultsReleasedTitle({ mode = "percent" }) {
 
   const isIncomplete = nResultsReleased < nResultsTotal;  
   let asterisk = "";
-  let warning = "";
+  let alert = null;
   if(isIncomplete){
     asterisk = "*";
-    warning = asterisk + Translate("Estimate, based on registered voter statistics.");
+    const warning = asterisk + Translate("Estimate, based on registered voter statistics.");
+    alert = (
+      <Alert severity="warning" sx={{ marginTop: 1 }}>
+        <Typography variant="body1" >
+          {warning}
+        </Typography>
+      </Alert>
+    );
   }
 
   if (mode === "percent") {
 
     return (
-      <Box>
-        <Typography variant="h4" color="secondary">
+      <Box sx={{marginBottom: 2}}>
+        <Typography variant="h4" color="secondary" >
           {Format.percent(pElectors)} {Translate("Votes Counted")}{asterisk}
         </Typography>
-        <Alert severity="warning" sx={{ m: 1 }}>
-          {warning}
-        </Alert>
+        {alert}
       </Box>
     );
   }

@@ -14,8 +14,11 @@ export default function ResultsReleasedView({ entID }) {
     electionDisplay.getReleaseStats(entID, pdIdx, electionPrevious);
 
   if (nResultsTotal <= 1) {
-    return <Typography variant="h6">{Translate("Final Result")}</Typography>;
+    return <Typography variant="h6" sx={{opacity: 0.2}}>{Translate("Final Result")}</Typography>;
   }
+
+  const isComplete = nResultsReleased === nResultsTotal;
+  const opacity = isComplete ? 0.2 : 1;
 
   const pdDetails = (
     <Stack direction="row" alignItems="center">
@@ -27,7 +30,7 @@ export default function ResultsReleasedView({ entID }) {
   );
 
   return (
-    <Stack direction="row" alignItems="center" gap={3}>
+    <Stack direction="row" alignItems="center" gap={3} sx={{opacity, color: "black"}}>
       <LabelledStat label="Results" stat={pdDetails} />
       <LabelledStat label="Votes" stat={Format.percent(pElectors)} />
     </Stack>

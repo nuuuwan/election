@@ -27,6 +27,9 @@ function getThemeData() {
         main: "#888",
       },
     },
+    HEXMAP: {
+      N_COLS: 2,
+    }
   };
 }
 

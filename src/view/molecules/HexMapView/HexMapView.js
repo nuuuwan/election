@@ -2,10 +2,10 @@ import SVGTitles from "./SVGTitles";
 import SVGLegendPercentages from "./SVGLegendPercentages";
 import SVGLegendParty from "./SVGLegendParty";
 import SVGMap from "./SVGMap";
-import StyleHexMap from "./StyleHexMap";
 import HexMapData from "./HexMapData/HexMapData";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { THEME_DATA } from "../../_constants/THEME";
+
 
 function getBBox() {
   const mapData = HexMapData.getMapDataList().reduce(function (
@@ -69,7 +69,7 @@ export default function HexMapView() {
 
       <SVGTitles />
       <SVGLegendParty x={9} y={3} />
-      <SVGLegendPercentages x={10 + nParties / StyleHexMap.N_COLS} y={3} />
+      <SVGLegendPercentages x={10 + nParties / THEME_DATA.HEXMAP.N_COLS} y={3} />
     </svg>
   );
 }

@@ -1,8 +1,8 @@
 import { Party } from "../../../nonview/core";
 import { useDataContext } from "../../../nonview/core/DataProvider";
+import { THEME_DATA } from "../../_constants/THEME";
 
 import SVGHexPolygon from "./SVGHexPolygon";
-import StyleHexMap from "./StyleHexMap";
 import SVGHexText from "./SVGHexText";
 
 export default function SVGLegendParty({ x, y }) {
@@ -17,10 +17,10 @@ export default function SVGLegendParty({ x, y }) {
   ) {
     const color = Party.fromID(partyID).color;
     const [x1, y1] = [
-      x + parseInt(i / StyleHexMap.N_COLS),
+      x + parseInt(i / THEME_DATA.HEXMAP.N_COLS),
       y +
-        ((i % StyleHexMap.N_COLS) +
-          (parseInt(i / StyleHexMap.N_COLS) % 2 === 1 ? 0.5 : 0)) /
+        ((i % THEME_DATA.HEXMAP.N_COLS) +
+          (parseInt(i / THEME_DATA.HEXMAP.N_COLS) % 2 === 1 ? 0.5 : 0)) /
           Math.cos(Math.PI / 6),
     ];
 

@@ -37,7 +37,6 @@ export default function PageBody() {
           <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
             <ProjectionView />
           </Grid2>
-
           <Grid2 size={{ xs: 12, md: 12, xl: 12 }}>
             <RegionResultListView />
           </Grid2>

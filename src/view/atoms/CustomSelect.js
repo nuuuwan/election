@@ -1,4 +1,5 @@
-import { Box, Divider, MenuItem, Select } from "@mui/material";
+import { Box, Divider, MenuItem, Select, Typography } from "@mui/material";
+import { Translate } from "../../nonview/base";
 
 const STYLE = {
   border: "none",
@@ -75,6 +76,19 @@ export default function CustomSelect({
   getDividerKey,
   reverse,
 }) {
+  getID = getID || function (data) {
+    return data;
+  }
+  renderValue = renderValue || function (data) {
+    return <Typography variant="h4">{Translate(data)}</Typography>;
+  }
+  renderMenuItemInner = renderMenuItemInner || function (data) {
+    return <Typography variant="body1">{Translate(data)}</Typography>;
+  }
+  getDividerKey = getDividerKey || function (data) {
+    return null;
+  }
+
   const dataIdx = getDataIdx(dataList, getID, reverse);
 
   const onChangeInner = function (event) {

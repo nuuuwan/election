@@ -1,13 +1,15 @@
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { Box, Grid2, Stack, Typography } from "@mui/material";
+import { Box, Grid2,  } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import {
   CumResultsColumnView,
   CumResultsViewTableRowView,
 } from "./CumResultsView";
 import { Bellwether } from "../../nonview/core";
-import { ArrayX, Translate } from "../../nonview/base";
+import { ArrayX,  } from "../../nonview/base";
+import { CustomSelect } from "../atoms";
+import { useState } from "react";
 
 function RegionResultListColumnViewGroup({ sortedEntIDs }) {
   return (
@@ -45,7 +47,7 @@ function getSortedEntIDs({ entIDList, electionDisplay }) {
   });
 }
 
-function RegionResultListViewGroup({ title, entIDList }) {
+function RegionResultListViewGroup({  entIDList }) {
   const data = useDataContext();
   const theme = useTheme();
   const isSmallerScreen = useMediaQuery(theme.breakpoints.down("lg"));
@@ -61,7 +63,6 @@ function RegionResultListViewGroup({ title, entIDList }) {
 
   return (
     <Box>
-      <Typography variant="h4">{Translate(title)}</Typography>
       {isSmallerScreen ? (
         <RegionResultListColumnViewGroup sortedEntIDs={sortedEntIDs} />
       ) : (
@@ -71,60 +72,79 @@ function RegionResultListViewGroup({ title, entIDList }) {
   );
 }
 
-function getGroupToEntIDList(data) {
-  const { provinceIdx, edIdx, pdIdx, ezIdx, elections, electionDisplay } = data;
+
+function getProvinceEntIDList(data) {
+  return Object.keys(data.provinceIdx)
+}
+
+function getElectoralDistrictEntIDList(data) {
+  return Object.keys(data.edIdx)
+}
+
+function getEthnicityEntIDList(data) {
+  return Object.keys(data.ezIdx)
+}
+
+function getBellwetherEntIDList(data) {
+  const { elections, electionDisplay, pdIdx } = data;
   const infoList = Bellwether.getBestBellwetherInfoList(
     elections,
     electionDisplay,
     pdIdx
   );
 
-  const N_DISPLAY = 10;
-  const bellwetherEntIDList = infoList
+  return infoList
     .filter(function (info) {
       return (
         info.error < 0.1 && info.nSame > info.n * 0.5 && info.entID !== "LK"
       );
     })
-    .slice(0, N_DISPLAY)
+    .slice(0, 10)
     .map((x) => x.entID);
+} 
 
-  const pdResultList = electionDisplay.pdResultList;
-  const nAll = electionDisplay.pdResultList.length;
-  const latestResults = pdResultList
-    .splice(nAll - N_DISPLAY, nAll)
-    .reverse()
-    .map((x) => x.entID);
 
+
+function getGroupToEntIDListGetter() {
   return {
-    Ethnicity: Object.keys(ezIdx),
-    Provinces: Object.keys(provinceIdx),
-    "Electoral Districts": Object.keys(edIdx),
-    Bellwethers: bellwetherEntIDList,
-    "Latest Results": latestResults,
-  };
+    Provinces: getProvinceEntIDList,
+    'Electoral Districts': getElectoralDistrictEntIDList,
+    Ethnicities: getEthnicityEntIDList,
+    Bellwethers: getBellwetherEntIDList
+  }
 }
 
 export default function RegionResultListView() {
   const data = useDataContext();
 
+  const groupToEntIDListGetter = getGroupToEntIDListGetter(data);
+  const groupList = Object.keys(groupToEntIDListGetter);
+
+  const [group, setGroup] = useState(groupList[0]);
+
   if (!data) {
     return null;
   }
 
-  const groupToEntIDList = getGroupToEntIDList(data);
 
   return (
-    <Stack direction="column" alignItems="center" gap={5}>
-      {Object.entries(groupToEntIDList).map(function ([title, entIDList]) {
-        return (
+    <Box sx={{      borderTop: '1px solid #eee',}}>
+      <CustomSelect value={group} onChange={setGroup} dataList={groupList} />
+
+    <Box
+    sx={{
+      justifyContent: 'center',
+      alignItems: 'center',
+      display: 'flex',
+
+    }}
+  >
+
+
           <RegionResultListViewGroup
-            key={title}
-            title={title}
-            entIDList={entIDList}
+            entIDList={groupToEntIDListGetter[group](data)}
           />
-        );
-      })}
-    </Stack>
+    </Box>
+    </Box>
   );
 }

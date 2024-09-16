@@ -12,6 +12,7 @@ const STYLE_PAGE_HEADER = {
     padding: 1,
     margin: 0,
     backgroundColor: "white",
+    borderBottom: "1px solid #eee",
   },
 };
 
@@ -29,6 +30,7 @@ export default function PageHeader() {
         gap={1}
         alignItems="center"
         justifyContent="center"
+        alignContent="center"
       >
         <ElectionSelector colorElection={electionProjected} />
         <LanguageSelector />

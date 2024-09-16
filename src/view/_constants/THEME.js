@@ -7,7 +7,7 @@ function getThemeData() {
   let fontFamily = "Andika";
   let fontSize = 12;
   if (lang === "si") {
-    fontFamily = "Noto Sans Sinh.";
+    fontFamily = "Noto Sans Sinhala";
     fontSize = 12;
   } else if (lang === "ta") {
     fontFamily = "Noto Sans Tamil";

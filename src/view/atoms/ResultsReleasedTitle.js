@@ -22,7 +22,7 @@ export function ResultsReleasedAlert() {
     return null;
   }
 
-  const title = Translate("Votes Counted");
+  const title = Translate("Percentage Released");
   const body = Translate(
     "This is an Estimate, based on registered voter statistics, from previous elections."
   );

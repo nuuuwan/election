@@ -44,7 +44,7 @@ function BellwetherShortView({ entID }) {
 
   return (
     <Stack direction="column" >
-      <Typography variant="body1" color="secondary">
+      <Typography variant="h6" color="secondary">
         {nSame}/{n}
       </Typography>
       <Typography variant="body1" color="secondary">

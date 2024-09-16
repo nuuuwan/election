@@ -34,7 +34,14 @@ function getStyle() {
     },
   };
 }
-function getBarLabel(pVotesExtra) {
+function getBarLabel(electionProjected) {
+
+  const result = electionProjected.resultLK;
+  const partyToVotes = result.partyToVotes;
+  const totalVotes = partyToVotes.totalVotes;
+  const uncertainVotes = partyToVotes.partyToVotes[Party.ERROR.id];
+  const pVotesExtra = uncertainVotes / totalVotes;
+
   return function (item, __) {
     const pVotes = item.value;
     if (pVotes === pVotesExtra) {
@@ -98,13 +105,14 @@ export default function ProjectedResultBarChart() {
     return Format.percentVotes(value);
   };
 
+
   return (
     <Box sx={{ p: 0, m: 0 }}>
       <BarChart
         xAxis={[{ label: "% Votes", valueFormatter }]}
         yAxis={getAxis()}
         series={getSeries(electionProjected)}
-        barLabel={getBarLabel()}
+        barLabel={getBarLabel(electionProjected)}
         layout="horizontal"
         width={320}
         height={240}

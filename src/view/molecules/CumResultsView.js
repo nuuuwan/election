@@ -31,6 +31,10 @@ export function CumResultsColumnView({ entID }) {
   }
   const { electionDisplay, activePDID } = data;
   const result = electionDisplay.resultIdx[entID];
+  if (!result) {
+    return null;
+  }
+  
   const contentList = getContentList({ entID, result, electionDisplay });
 
   const isActiveEnt = activePDID === entID;
@@ -67,6 +71,9 @@ export function CumResultsViewTableRowView({ entID }) {
   }
   const { electionDisplay } = data;
   const result = electionDisplay.resultIdx[entID];
+  if (!result) {
+    return null;
+  }
   const contentList = getContentList({ entID, result, electionDisplay });
 
   return (

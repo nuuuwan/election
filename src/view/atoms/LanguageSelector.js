@@ -8,7 +8,8 @@ const STYLE_LANGUAGE_SELECTOR = {
     p: 0,
     m: 0,
     minWidth: 0,
-    width: 32,
+    width: 40,
+    fontSize: 20,
   },
 };
 

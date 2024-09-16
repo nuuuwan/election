@@ -9,9 +9,19 @@ export default function ProjectionTitle() {
       </Typography>
 
       <Alert severity="warning" sx={{ marginTop: 1 }}>
-        {Translate(
-          "*Projection by AI Model, based on released results, and historical data. This is not an official result, and might differ significantly from final result."
+        <Typography variant="body1" >
+          
+        *{Translate(
+          "This projection has been made by a simple AI Model, based on released results, and historical data."
         )}
+        </Typography>
+        <Typography variant="body1" >
+          
+        {Translate(
+          "This is not an official result, and might differ significantly from final result."
+        )}
+          </Typography>
+      
       </Alert>
     </Box>
   );

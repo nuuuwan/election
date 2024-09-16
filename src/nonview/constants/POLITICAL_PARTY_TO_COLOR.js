@@ -1,7 +1,8 @@
 const COLOR_TO_POLITICAL_PARTIES = {
   "#008": ["SLFP", "PA", "UPFA", "SLPP-R"],
-  "#080": ["UNP", "NDF"],
-  "#8c0": ["SJB"],
+  "#0c0": ["UNP", "NDF"],
+  "#080": ["SJB"],
+
   "#800": ["SLPP"],
   "#f80": ["ACTC", "Ind-R"],
   "#f90": ["JHU", "SU", "OPPP"],
@@ -26,6 +27,10 @@ const COLOR_TO_POLITICAL_PARTIES = {
   "#666": ["Other"],
   "#042": ["DUNF"],
   "#888": ["INDI", "IND1", "IND2"],
+
+  // 2024
+  "#f82": ["RW"],
+  "#06c": ["CPSL"],
 };
 
 const POLITICAL_PARTY_TO_COLOR = Object.entries(

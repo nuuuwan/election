@@ -125,7 +125,9 @@ export default function AggregatedResultView() {
 
   return (
     <Box>
-      <Typography variant="body1">{Translate("Aggregated Election Results")}</Typography>
+      <Typography variant="body1">
+        {Translate("Aggregated Election Results")}
+      </Typography>
       <CustomSelect value={group} onChange={setGroup} dataList={groupList} />
 
       <Box

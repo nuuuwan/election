@@ -46,7 +46,7 @@ export function CumResultsColumnView({ entID }) {
         return (
           <Box
             key={i}
-            sx={{ }}
+            sx={{}}
             justifyContent="center"
             alignItems="center"
             alignContent="center"

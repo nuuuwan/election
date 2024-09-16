@@ -35,7 +35,6 @@ function getStyle() {
   };
 }
 function getBarLabel(electionProjected) {
-
   const result = electionProjected.resultLK;
   const partyToVotes = result.partyToVotes;
   const totalVotes = partyToVotes.totalVotes;
@@ -104,7 +103,6 @@ export default function ProjectedResultBarChart() {
   const valueFormatter = function (value) {
     return Format.percentVotes(value);
   };
-
 
   return (
     <Box sx={{ p: 0, m: 0 }}>

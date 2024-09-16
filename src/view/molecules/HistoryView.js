@@ -4,7 +4,6 @@ import { Bellwether, Election } from "../../nonview/core";
 import { PartyView } from "../../view/atoms";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
-
 function HistoryViewRow({ entID, electionForRow }) {
   const result = electionForRow.getResult(entID);
   if (!result) {
@@ -43,7 +42,7 @@ function BellwetherShortView({ entID }) {
   const { n, nSame, error } = Bellwether.getStats(elections, election, entID);
 
   return (
-    <Stack direction="column" sx={{m: 0, p: 0}}>
+    <Stack direction="column" sx={{ m: 0, p: 0 }}>
       <Typography variant="body1" color="secondary">
         {nSame}/{n}
       </Typography>
@@ -66,23 +65,29 @@ export default function HistoryView({ entID }) {
     election
   );
 
-  const previousElectionsDisplay = previousElections
-    .map(function (previousElection) {
-      return previousElection.getSubsetElectionByPDIDList(election.pdIDList);
-    });
+  const previousElectionsDisplay = previousElections.map(function (
+    previousElection
+  ) {
+    return previousElection.getSubsetElectionByPDIDList(election.pdIDList);
+  });
 
   return (
-    <Stack direction="row" gap={0.1} sx={{  m:0.5, marginLeft: 2, marginRight: 2 }} alignItems="center">
-    <Grid2 container alignItems="center">
-      {previousElectionsDisplay.map(function (electionForRow, i) {
-        return (
-          <Grid2 key={i} sx={{width: 40}}>
-            <HistoryViewRow electionForRow={electionForRow} entID={entID} />
-          </Grid2>
-        );
-      })}
- <BellwetherShortView entID={entID} />
-    </Grid2>
+    <Stack
+      direction="row"
+      gap={0.1}
+      sx={{ m: 0.5, marginLeft: 2, marginRight: 2 }}
+      alignItems="center"
+    >
+      <Grid2 container alignItems="center">
+        {previousElectionsDisplay.map(function (electionForRow, i) {
+          return (
+            <Grid2 key={i} sx={{ width: 40 }}>
+              <HistoryViewRow electionForRow={electionForRow} entID={entID} />
+            </Grid2>
+          );
+        })}
+        <BellwetherShortView entID={entID} />
+      </Grid2>
     </Stack>
   );
 }

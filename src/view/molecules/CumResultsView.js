@@ -39,13 +39,13 @@ export function CumResultsColumnView({ entID }) {
 
   const isActiveEnt = activePDID === entID;
   const backgroundColor = isActiveEnt
-    ? Color.getColorWithAlpha(result.color, 0.05)
+    ? Color.getColorWithAlpha(result.color, 0.1)
     : "white";
 
-  const border = isActiveEnt ? "5px solid " + result.color : "";
+
 
   return (
-    <Box sx={{ backgroundColor, border, borderRadius: 4, width: 240, p: 1 }}>
+    <Box sx={{ backgroundColor,  borderRadius: 4, width: 240, p: 1.5 }}>
       {contentList.map(function (content, i) {
         return (
           <Box

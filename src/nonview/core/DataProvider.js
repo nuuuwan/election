@@ -6,7 +6,7 @@ import { GROUP_ID_TO_PD_ID_LIST } from "../constants";
 
 const DataContext = createContext();
 
-async function getValueEnts() {
+async function getEntValues() {
   const pdIdx = await Ent.idxFromType(EntType.PD);
   const edIdx = await Ent.idxFromType(EntType.ED);
   const provinceIdx = await Ent.idxFromType(EntType.PROVINCE);
@@ -27,7 +27,7 @@ async function getValueEnts() {
   return { pdIdx, edIdx, provinceIdx, ezIdx, allRegionIdx };
 }
 
-async function getValueElections({ electionType, date }) {
+async function getElectionValues({ electionType, date }) {
   const elections = await Election.listAll();
 
   const election = await Election.fromElectionTypeAndDate(electionType, date);
@@ -40,65 +40,31 @@ async function getValueElections({ electionType, date }) {
   return { elections, election, electionPrevious };
 }
 
-async function getValue({
-  electionType,
-  date,
-  activePDID,
-  nResultsDisplay,
-  lang,
-}) {
-  const { pdIdx, edIdx, provinceIdx, ezIdx, allRegionIdx } =
-    await getValueEnts();
-
-  const { elections, election, electionPrevious } = await getValueElections({
-    electionType,
-    date,
-  });
-
+async function getValue(state) {
+  const entValues = await getEntValues();
+  const electionValues = await getElectionValues(state);
   const activePDIDDerived = DerivedData.getActivePDID(
-    activePDID,
-    nResultsDisplay,
-    election
+    state.activePDID,
+    state.nResultsDisplay,
+    electionValues.election
   );
-
   const nResultsDisplayDerived = DerivedData.getNResultsDisplay(
-    nResultsDisplay,
-    election
+    state.nResultsDisplay,
+    electionValues.election
   );
-
-  const { electionDisplay, electionProjected } = DerivedData.getDerived(
+  const derivedElectionValues = DerivedData.getDerived(
     nResultsDisplayDerived,
-    election,
-    pdIdx,
-    elections
+    electionValues.election,
+    entValues.pdIdx,
+    electionValues.elections
   );
-
-  CustomURLContext.set({
-    electionType,
-    date,
+  const newState = {
+    ...state,
     activePDID: activePDIDDerived,
     nResultsDisplay: nResultsDisplayDerived,
-    lang,
-  });
-
-  return {
-    election,
-    electionDisplay,
-    elections,
-    electionProjected,
-    electionPrevious,
-    pdIdx,
-    edIdx,
-    provinceIdx,
-    ezIdx,
-    allRegionIdx,
-    activePDID: activePDIDDerived,
-    nResultsDisplay: nResultsDisplayDerived,
-    electionType,
-    date,
-
-    lang,
   };
+  CustomURLContext.set(newState);
+  return Object.assign({}, newState, entValues, electionValues, derivedElectionValues);
 }
 
 export default function DataProvider({ children, state }) {

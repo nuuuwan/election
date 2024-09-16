@@ -22,6 +22,7 @@ export default class WWW {
   static async jsonNonCache(url) {
     const response = await fetch(url, JSON_HEADERS);
     const dataJson = await response.json();
+    console.debug('❄️-WWW.jsonNonCache', url);
     return dataJson;
   }
 
@@ -50,6 +51,7 @@ export default class WWW {
         }, {});
       })
       .filter((data) => data);
+    console.debug('❄️-WWW.tsvNonCache', url);
     return dataList;
   }
 

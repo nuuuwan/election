@@ -42,7 +42,7 @@ export default function PageBody() {
             <ProjectionView />
           </Grid2>
         </Grid2>
-        <Box sx={{ marginTop: 5, p: 1, borderTop: "1px solid #eee" }}>
+        <Box sx={{ marginTop: 15, p: 1, borderTop: "1px solid #eee" }}>
           <AggregatedResultView />
         </Box>
       </IfElse>

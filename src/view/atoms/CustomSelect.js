@@ -66,6 +66,22 @@ function getDataIdx(dataList, getID, reverse) {
   return dataIdx;
 }
 
+function defaultGetID(data) {
+  return data;
+}
+
+function defaultRenderValue(data) {
+  return <Typography variant="h4">{Translate(data)}</Typography>;
+}
+
+function defaultRenderMenuItemInner(data) {
+  return <Typography variant="body1">{Translate(data)}</Typography>;
+}
+
+function defaultGetDividerKey(data) {
+  return null;
+}
+
 export default function CustomSelect({
   value,
   onChange,
@@ -76,40 +92,19 @@ export default function CustomSelect({
   getDividerKey,
   reverse,
 }) {
-  getID =
-    getID ||
-    function (data) {
-      return data;
-    };
-  renderValue =
-    renderValue ||
-    function (data) {
-      return <Typography variant="h4">{Translate(data)}</Typography>;
-    };
-  renderMenuItemInner =
-    renderMenuItemInner ||
-    function (data) {
-      return <Typography variant="body1">{Translate(data)}</Typography>;
-    };
-  getDividerKey =
-    getDividerKey ||
-    function (data) {
-      return null;
-    };
-
+  getID = getID ||defaultGetID
   const dataIdx = getDataIdx(dataList, getID, reverse);
 
   const onChangeInner = function (event) {
-    const id = event.target.value;
-    onChange(dataIdx[id]);
+    onChange(dataIdx[event.target.value]);
   };
   return (
     <CustomSelectInner
       value={value}
       getID={getID}
-      renderValue={renderValue}
-      renderMenuItemInner={renderMenuItemInner}
-      getDividerKey={getDividerKey}
+      renderValue={renderValue ||defaultRenderValue}
+      renderMenuItemInner={renderMenuItemInner ||defaultRenderMenuItemInner}
+      getDividerKey={getDividerKey ||defaultGetDividerKey}
       onChangeInner={onChangeInner}
       dataIdx={dataIdx}
     />

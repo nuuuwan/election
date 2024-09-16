@@ -41,12 +41,12 @@ export function CumResultsColumnView({ entID }) {
   const border = isActiveEnt ? "5px solid " + result.color : "";
 
   return (
-    <Box sx={{ p: 1, backgroundColor, border, borderRadius: 6 }}>
+    <Box sx={{ backgroundColor, border, borderRadius: 6, width: 260 }}>
       {contentList.map(function (content, i) {
         return (
           <Box
             key={i}
-            sx={{ p: 0.3, m: 0.15 }}
+            sx={{ }}
             justifyContent="center"
             alignItems="center"
             alignContent="center"

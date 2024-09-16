@@ -42,7 +42,7 @@ function BellwetherShortView({ entID }) {
   const { n, nSame, error } = Bellwether.getStats(elections, election, entID);
 
   return (
-    <Stack direction="column">
+    <Stack direction="column" sx={{m: 0, p: 0}}>
       <Typography variant="caption" color="secondary">
         {nSame}/{n}
       </Typography>
@@ -68,21 +68,20 @@ export default function HistoryView({ entID }) {
   const previousElectionsDisplay = previousElections
     .map(function (previousElection) {
       return previousElection.getSubsetElectionByPDIDList(election.pdIDList);
-    })
-    .reverse();
+    });
 
   return (
-    <Grid2 container gap={0.5} rowGap={0.1} sx={{ alignItems: "center" }}>
+    <Stack direction="row" gap={0.1} sx={{ alignItems: "center", m:0.5, marginLeft: 2, marginRight: 2 }}>
+    <Grid2 container>
       {previousElectionsDisplay.map(function (electionForRow, i) {
         return (
-          <Grid2 key={i}>
+          <Grid2 key={i} xs={3} xl={3} sx={{width: 40}}>
             <HistoryViewRow electionForRow={electionForRow} entID={entID} />
           </Grid2>
         );
       })}
-      <Grid2>
-        <BellwetherShortView entID={entID} />
-      </Grid2>
-    </Grid2>
+ 
+    </Grid2><BellwetherShortView entID={entID} />
+    </Stack>
   );
 }

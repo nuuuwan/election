@@ -5,13 +5,13 @@ function getThemeData() {
   const lang = CustomURLContext.get().lang;
 
   let fontFamily = "Andika";
-  let fontSize = 12;
+  let fontSize = 10;
   if (lang === "si") {
     fontFamily = "Noto Sans Sinhala";
-    fontSize = 12;
+    fontSize = 9;
   } else if (lang === "ta") {
     fontFamily = "Noto Sans Tamil";
-    fontSize = 12;
+    fontSize = 9;
   }
 
   return {

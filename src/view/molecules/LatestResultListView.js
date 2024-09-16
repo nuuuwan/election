@@ -21,7 +21,7 @@ export default function LatestResultListView() {
   return (
     <Stack direction="column" sx={{ color: resultPD.color }}>
       <PDSelector />
-      <Grid2 container spacing={2} justifyContent="center">
+      <Grid2 container justifyContent="center">
         {[resultPD, resultED, resultProvince, resultLK].map(function (result) {
           return (
             <Grid2 key={result.entID}>

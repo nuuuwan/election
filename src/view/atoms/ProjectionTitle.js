@@ -22,13 +22,23 @@ export default function ProjectionTitle() {
       title = "Projected Final Result";
 
       alert = (
-        <Alert severity="warning" sx={{ marginTop: 1, textAlign: "left" }}>
+        <Alert severity="warning" sx={{ marginTop: 1, textAlign: "justify" }}>
         <Typography variant="h6" >
           
         {Translate(
           "This projection has been made by a simple AI Model, based on released results, and historical data."
         )}
         </Typography>
+
+
+        <Typography variant="body1" >
+          
+          {Translate(
+            "The results presented have 90% confidence, which means that they could be wrong 10% of the time."
+          )}
+            </Typography>
+      
+
         <Typography variant="body1" >
           
         {Translate(
@@ -36,13 +46,6 @@ export default function ProjectionTitle() {
         )}
           </Typography>
 
-          <Typography variant="body1" >
-          
-          {Translate(
-            "The results presented have 90% confidence, which means that they could be wrong 10% of the time."
-          )}
-            </Typography>
-      
       </Alert>
       )
     }

@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Alert, Box, Typography } from "@mui/material";
 import { Translate } from "../../nonview/base";
 
 export default function ProjectionTitle() {
@@ -8,15 +8,11 @@ export default function ProjectionTitle() {
         {Translate("Projected Final Result*")}
       </Typography>
 
-      <Typography
-        variant="body1"
-        color="secondary"
-        sx={{ m: 1, marginLeft: 10, marginRight: 10 }}
-      >
+      <Alert severity="warning" sx={{ marginTop: 1 }}>
         {Translate(
-          "*By AI Model, based on released and historocal results. Not official. Might vary from final result, sometimes significantly."
+          "*Projection by AI Model, based on released results, and historical data. This is not an official result, and might differ significantly from final result."
         )}
-      </Typography>
+      </Alert>
     </Box>
   );
 }

@@ -1,4 +1,6 @@
 import { Stack, Typography } from "@mui/material";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { Format, Translate } from "../../nonview/base";
 import LabelledStat from "./LabelledStat";
@@ -21,8 +23,7 @@ export default function ResultsReleasedView({ entID }) {
     );
   }
 
-  const isComplete = nResultsReleased === nResultsTotal;
-  const opacity = isComplete ? 0.2 : 1;
+  
 
   const pdDetails = (
     <Stack direction="row" alignItems="center">
@@ -30,18 +31,23 @@ export default function ResultsReleasedView({ entID }) {
       <Typography variant="h6" sx={{ opacity: 0.5 }}>
         /{nResultsTotal}
       </Typography>
+
     </Stack>
   );
+
+  const isComplete = nResultsReleased === nResultsTotal;
+  const color = electionDisplay.resultIdx[entID].color;
 
   return (
     <Stack
       direction="row"
       alignItems="center"
       gap={3}
-      sx={{ opacity, color: "black" }}
+      sx={{ color: "gray" }}
     >
       <LabelledStat label="Results" stat={pdDetails} />
       <LabelledStat label="Votes" stat={Format.percent(pElectors)} />
+      {isComplete && <CheckCircleIcon sx={{color}} />}
     </Stack>
   );
 }

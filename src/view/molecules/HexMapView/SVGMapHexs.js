@@ -5,14 +5,15 @@ import { useBasePageHandlerContext } from "../../../view/pages/BasePage/BasePage
 import SVGHexPolygonGroup from "./SVGHexPolygonGroup";
 import SVGHexText from "./SVGHexText";
 
-function getOnClick({ entID, setActivePDID, pdIdx, resultList }) {
+function getOnClick({ entID, setActivePDID, pdIdx, pdResultList, resultIdx }) {
   return function () {
     const newActivePDID = ActivePDUtils.getNewActivePDID({
-      resultList,
+      pdResultList,
       pdIdx,
       entID,
     });
-    if (newActivePDID) {
+
+    if (newActivePDID && resultIdx[newActivePDID]) {
       setActivePDID(newActivePDID);
     }
   };
@@ -33,7 +34,8 @@ function getRenderedItem({ entID, points, data, setActivePDID }) {
     entID,
     setActivePDID,
     pdIdx,
-    resultList: electionDisplay.resultList,
+    pdResultList: electionDisplay.pdResultList,
+    resultIdx: electionDisplay.resultIdx,
   });
 
   const [x, y] = points[Math.floor(points.length / 2)];

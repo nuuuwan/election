@@ -24,7 +24,7 @@ export function ProjectionAlert() {
   }
 
   return (
-    <CustomAlert>
+    <CustomAlert severity="warning">
       <Typography variant="body1">
         {Translate(
           "This projection has been made by a Machine Learning Model, based on released results, and historical data. "
@@ -34,7 +34,7 @@ export function ProjectionAlert() {
           "The results presented have 90% confidence, which means that they could be wrong 10% of the time. "
         )}
         {Translate(
-          "This is not an official result, and might differ significantly from final result. "
+          "This is not an official result, and might differ significantly from the final result. "
         )}
         {Translate("See open source code for details. ")}
         <Link href="https://github.com/nuuuwan/prespoll">

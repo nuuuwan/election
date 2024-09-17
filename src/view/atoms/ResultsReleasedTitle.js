@@ -23,7 +23,7 @@ export function ResultsReleasedAlert() {
   }
 
   return (
-    <CustomAlert>
+    <CustomAlert severity="warning">
       <Typography variant="body1">
         {Translate(
           '"Percentage Released", is an Estimate, based on registered voter statistics, from previous elections.'

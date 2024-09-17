@@ -14,9 +14,9 @@ import PDSelector from "./PDSelector";
 import PartyView from "./PartyView";
 import ProjectionTitle from "./ProjectionTitle";
 import RefreshButton from "./RefreshButton";
+import ResultTimeView from "./ResultTimeView";
 import ResultsReleasedTitle from "./ResultsReleasedTitle";
 import ResultsReleasedView from "./ResultsReleasedView";
-import ResultTimeView from "./ResultTimeView";
 import TestingAlert from "./TestingAlert";
 
 export {
@@ -35,8 +35,8 @@ export {
   PartyView,
   ProjectionTitle,
   RefreshButton,
+  ResultTimeView,
   ResultsReleasedTitle,
   ResultsReleasedView,
-  ResultTimeView,
   TestingAlert,
 };

@@ -6,9 +6,7 @@ import { CustomAlert } from "../atoms";
 
 function PerfectBellwetherView() {
   return (
-    <Typography variant="h6">
-      {Translate("Perfect Bellwether")}
-    </Typography>
+    <Typography variant="h6">{Translate("Perfect Bellwether")}</Typography>
   );
 }
 

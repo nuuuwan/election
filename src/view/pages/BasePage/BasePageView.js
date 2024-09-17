@@ -13,7 +13,7 @@ export default function BasePageView() {
 
   return (
     <Box sx={{ textAlign: "center" }}>
-      <TestingAlert/>
+      <TestingAlert />
       <PageHeader />
       <PageBody />
       <PageFooter />

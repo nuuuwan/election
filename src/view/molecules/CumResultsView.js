@@ -2,8 +2,13 @@ import { Box } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
 import { Color } from "../../nonview/base";
-import { ResultBarChart, HistoryView, SummaryView, PartyToVotesStatsView } from "../../view/molecules";
-import { EntView, ResultsReleasedView,ResultTimeView } from "../../view/atoms";
+import {
+  ResultBarChart,
+  HistoryView,
+  SummaryView,
+  PartyToVotesStatsView,
+} from "../../view/molecules";
+import { EntView, ResultsReleasedView, ResultTimeView } from "../../view/atoms";
 
 function getContentList({ entID, result, electionDisplay }) {
   return [
@@ -12,7 +17,6 @@ function getContentList({ entID, result, electionDisplay }) {
       useLongName={true}
       sx={{ color: result.color, p: 0.5 }}
     />,
-
 
     <PartyToVotesStatsView partyToVotes={result.partyToVotes} />,
     <ResultBarChart resultsElection={electionDisplay} entID={entID} />,

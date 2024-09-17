@@ -22,13 +22,13 @@ export function ResultsReleasedAlert() {
     return null;
   }
 
-
-
   return (
     <CustomAlert>
-      <Typography variant="body1">{Translate(
-    "\"Percentage Released\", is an Estimate, based on registered voter statistics, from previous elections."
-  )}</Typography>
+      <Typography variant="body1">
+        {Translate(
+          '"Percentage Released", is an Estimate, based on registered voter statistics, from previous elections.'
+        )}
+      </Typography>
     </CustomAlert>
   );
 }
@@ -57,14 +57,10 @@ export default function ResultsReleasedTitle({ mode = "percent" }) {
 
   return (
     <Typography variant="h3" color="gray" sx={{ marginBottom: 2 }}>
-      
       <span style={{ color: "black" }}>
-      {Translate("%1 of %2", [
-        nResultsReleased,
-        nResultsTotal,
-      ])}</span>{" "}
-        {Translate("Results Released")}
-
+        {Translate("%1 of %2", [nResultsReleased, nResultsTotal])}
+      </span>{" "}
+      {Translate("Results Released")}
     </Typography>
   );
 }

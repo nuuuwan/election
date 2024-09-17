@@ -36,11 +36,10 @@ export function ProjectionAlert() {
         {Translate(
           "This is not an official result, and might differ significantly from final result. "
         )}
-        {Translate(
-          "See open source code for details. "
-        )}
+        {Translate("See open source code for details. ")}
         <Link href="https://github.com/nuuuwan/prespoll">
-        {Translate("Source Code")}</Link>
+          {Translate("Source Code")}
+        </Link>
       </Typography>
     </CustomAlert>
   );

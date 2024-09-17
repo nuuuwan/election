@@ -1,6 +1,11 @@
 import { Box, Grid2, Typography } from "@mui/material";
 import { useDataContext } from "../../../nonview/core/DataProvider";
-import { CustomAlert, IfElse, NoResultsAlert, ResultsReleasedTitle } from "../../atoms";
+import {
+  CustomAlert,
+  IfElse,
+  NoResultsAlert,
+  ResultsReleasedTitle,
+} from "../../atoms";
 import {
   ProjectionView,
   HexMapView,
@@ -37,12 +42,13 @@ export default function PageBody() {
 
             <CustomAlert>
               <Typography variant="body1">
-                {Translate("Click on hexagons for Polling Division and Postal Vote results, or the most recent result for Provinces and Electoral Districts."
-)}</Typography>            </CustomAlert>
+                {Translate(
+                  "Click on hexagons for Polling Division and Postal Vote results, or the most recent result for Provinces and Electoral Districts."
+                )}
+              </Typography>{" "}
+            </CustomAlert>
 
             <ResultsReleasedAlert />
-
-   
           </Grid2>
           <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
             <ResultsReleasedTitle mode="n" />

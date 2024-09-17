@@ -16,7 +16,12 @@ export default class OngoingElection {
     subsetPartyToVotes["OTHERS"] = otherVotes;
     const partyToVotes = PartyToVotes.fromDict(subsetPartyToVotes);
 
-    return new Result(data["pd_id"], summary, partyToVotes, data["result_time"]);
+    return new Result(
+      data["pd_id"],
+      summary,
+      partyToVotes,
+      data["result_time"]
+    );
   }
 
   static async getRawData() {
@@ -28,12 +33,10 @@ export default class OngoingElection {
     return rawDataList
       .filter(function (data) {
         return data["result_time"] !== 0;
-      }).sort(
-        function (a, b) {
-          
+      })
+      .sort(function (a, b) {
         return (a.resultTime || "").localeCompare(b.resultTime || "");
-        }
-      )
+      })
       .map(function (data) {
         return OngoingElection.getPDResult(data);
       });
@@ -47,7 +50,7 @@ export default class OngoingElection {
     const pdResultList = await OngoingElection.getPDResultList();
     election.resultList = Election.expand(pdResultList);
     election.resultIdx = Election.buildResultIdx(election.resultList);
-    election.isLoaded = true;  
+    election.isLoaded = true;
     return election;
   }
 }

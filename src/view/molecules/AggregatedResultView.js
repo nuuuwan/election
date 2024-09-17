@@ -17,7 +17,7 @@ import {
   CumResultsViewTableRowView,
 } from "./CumResultsView";
 import { Bellwether } from "../../nonview/core";
-import { ArrayX, Translate } from "../../nonview/base";
+import { Translate } from "../../nonview/base";
 import { CustomSelect } from "../atoms";
 import { useState } from "react";
 

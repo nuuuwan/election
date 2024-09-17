@@ -11,6 +11,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import BugReportIcon from '@mui/icons-material/BugReport';
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { ElectionSelector } from "../../../view/atoms";
 import { useState } from "react";
@@ -113,7 +114,7 @@ function CustomMenu() {
 
         <MenuItemLink label="Source Code" href="https://github.com/nuuuwan/prespoll/" Icon={GitHubIcon} />
 
-        <MenuItemLink label="Report Bugs" href="https://github.com/nuuuwan/prespoll/issues" Icon={GitHubIcon} />
+        <MenuItemLink label="Report Bugs" href="https://github.com/nuuuwan/prespoll/issues" Icon={BugReportIcon} />
 
         <Divider />
         <MenuItem onClick={onClickRefresh}>

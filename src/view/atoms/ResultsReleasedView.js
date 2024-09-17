@@ -1,7 +1,7 @@
 import { Stack, Typography } from "@mui/material";
 
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { Format, Translate } from "../../nonview/base";
+import { Format,  } from "../../nonview/base";
 import LabelledStat from "./LabelledStat";
 
 export default function ResultsReleasedView({ entID }) {

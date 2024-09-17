@@ -70,41 +70,34 @@ function RegionResultListTableView({ sortedEntIDs }) {
   );
 }
 
-function getSortedEntIDs({ entIDList, electionDisplay }) {
-  const winnerPartyID = electionDisplay.resultIdx["LK"].winningPartyID;
-
-  return ArrayX.sort(entIDList, function (entID) {
-    const result = electionDisplay.resultIdx[entID];
-    if (!result) {
-      return 0;
-    }
-    return -result.partyToVotes.partyToPVotesSorted[winnerPartyID];
-  });
-}
 
 function AggregatedResultViewGroup({ entIDList }) {
-  const data = useDataContext();
+
   const theme = useTheme();
   const isSmallerScreen = useMediaQuery(theme.breakpoints.down("lg"));
 
-  if (!data) {
-    return null;
-  }
   if (!entIDList) {
     return null;
   }
-  const { electionDisplay } = data;
-  const sortedEntIDs = getSortedEntIDs({ entIDList, electionDisplay });
+
+
 
   return (
     <Box>
       {isSmallerScreen ? (
-        <RegionResultListColumnViewGroup sortedEntIDs={sortedEntIDs} />
+        <RegionResultListColumnViewGroup sortedEntIDs={entIDList} />
       ) : (
-        <RegionResultListTableView sortedEntIDs={sortedEntIDs} />
+        <RegionResultListTableView sortedEntIDs={entIDList} />
       )}
     </Box>
   );
+}
+
+function getLatestEntIDList(data) {
+  const N_LATEST = 10;
+  const {electionDisplay} = data;
+  const latestResults = electionDisplay.pdResultList.slice().reverse().slice(0, N_LATEST);
+  return latestResults.map(result => result.entID);
 }
 
 function getProvinceEntIDList(data) {
@@ -139,6 +132,7 @@ function getBellwetherEntIDList(data) {
 
 function getGroupToEntIDListGetter() {
   return {
+    "Latest Results": getLatestEntIDList,
     Provinces: getProvinceEntIDList,
     "Electoral Districts": getElectoralDistrictEntIDList,
     Ethnicities: getEthnicityEntIDList,

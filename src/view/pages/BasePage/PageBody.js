@@ -34,11 +34,14 @@ export default function PageBody() {
             </Typography>
 
             <HexMapView />
-            <ResultsReleasedAlert />
+
             <CustomAlert>
               <Typography variant="body1">
                 {Translate("Click on hexagons for Polling Division and Postal Vote results, or the most recent result for Provinces and Electoral Districts."
 )}</Typography>            </CustomAlert>
+
+            <ResultsReleasedAlert />
+
    
           </Grid2>
           <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>

@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, TableCell, TableRow } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
 import { Color } from "../../nonview/base";
@@ -82,15 +82,15 @@ export function CumResultsViewTableRowView({ entID }) {
   const contentList = getContentList({ entID, result, electionDisplay });
 
   return (
-    <tr>
+    <TableRow>
       {contentList.map(function (content, i) {
         return (
-          <td key={i} style={{ padding: 12, borderBottom: "1px solid #eee" }}>
+          <TableCell key={i} style={{ padding: 12, borderBottom: "1px solid #eee" }}>
             {content}
-          </td>
+          </TableCell>
         );
       })}
-    </tr>
+    </TableRow>
   );
 }
 

@@ -1,6 +1,6 @@
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { Box, Grid2, Typography } from "@mui/material";
+import { Box, Grid2, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import {
   CumResultsColumnView,
@@ -27,13 +27,28 @@ function RegionResultListColumnViewGroup({ sortedEntIDs }) {
 
 function RegionResultListTableView({ sortedEntIDs }) {
   return (
-    <table>
-      <tbody>
+    <TableContainer>
+    <Table  >
+      <TableHead>
+        <TableRow>
+        {["Region or Group", "Votes by Party", "%", "Summary", "Past History", "Release Status", "Time Updated"].map(
+          function(title, iTitle) {
+            return (
+              <TableCell key={iTitle}>
+                <Typography variant="h6" color="secondary">{Translate(title)}</Typography>
+              </TableCell>
+            );
+          }
+        )}
+        </TableRow>
+        </TableHead>
+      <TableBody>
         {sortedEntIDs.map(function (entID) {
           return <CumResultsViewTableRowView key={entID} entID={entID} />;
         })}
-      </tbody>
-    </table>
+      </TableBody>
+    </Table>
+    </TableContainer>
   );
 }
 

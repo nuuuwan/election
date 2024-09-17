@@ -1,6 +1,7 @@
-import { AppBar, Box, Divider, IconButton, Menu, MenuItem,  Toolbar } from "@mui/material";
+import { AppBar, Box, Divider, IconButton, ListItemIcon, Menu, MenuItem,  Toolbar } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-
+import RefreshIcon from '@mui/icons-material/Refresh';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import {
   ElectionSelector,
@@ -92,12 +93,19 @@ function CustomMenu() {
         })}
               <Divider />
         <MenuItem onClick={onClickSourceCode}>
+        <ListItemIcon>
+          <GitHubIcon  />
+        </ListItemIcon>
+        
           {Translate("Source Code")}
         </MenuItem>
 
 
       <Divider />
         <MenuItem onClick={onClickRefresh}>
+        <ListItemIcon>
+          <RefreshIcon  />
+        </ListItemIcon>
           {Translate("Refresh App")}
         </MenuItem>
 

@@ -54,6 +54,10 @@ function CustomMenu() {
     window.location = "/prespoll";
   };
 
+  const onClickSourceCode = function() {
+    window.open("https://www.github.com/nuuuwan/prespoll", "_blank");
+  }
+
   return (<>
    <IconButton
             size="large"
@@ -86,6 +90,12 @@ function CustomMenu() {
             </MenuItem>
           );
         })}
+              <Divider />
+        <MenuItem onClick={onClickSourceCode}>
+          {Translate("Source Code")}
+        </MenuItem>
+
+
       <Divider />
         <MenuItem onClick={onClickRefresh}>
           {Translate("Refresh App")}

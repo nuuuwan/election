@@ -3,8 +3,8 @@ import URLContext from "../base/URLContext";
 export default class CustomURLContext {
   static DEFAULT_STATE = {
     electionType: "Presidential",
-    // date: "2019-11-16",
-    date: "2024-09-21",
+    date: "2019-11-16",
+    // date: "2024-09-21",
     lang: "en",
   };
 

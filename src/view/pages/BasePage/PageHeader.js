@@ -1,4 +1,4 @@
-import { AppBar, Box, IconButton, Menu, MenuItem,  Toolbar } from "@mui/material";
+import { AppBar, Box, Divider, IconButton, Menu, MenuItem,  Toolbar } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 
 import { useDataContext } from "../../../nonview/core/DataProvider";
@@ -8,6 +8,7 @@ import {
 } from "../../../view/atoms";
 import { useState } from "react";
 import { useBasePageHandlerContext } from "./BasePageHandlerProvider";
+import { Translate } from "../../../nonview/base";
 
 const STYLE_PAGE_HEADER = {
   SELECTOR: {
@@ -48,6 +49,10 @@ function CustomMenu() {
     setAnchorEl(event.currentTarget);
   };
 
+  const onClickRefresh = function () {
+    localStorage.clear();
+    window.location = "/prespoll";
+  };
 
   return (<>
    <IconButton
@@ -81,6 +86,10 @@ function CustomMenu() {
             </MenuItem>
           );
         })}
+      <Divider />
+        <MenuItem onClick={onClickRefresh}>
+          {Translate("Refresh App")}
+        </MenuItem>
 
       </Menu>
 </>);

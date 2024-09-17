@@ -52,18 +52,18 @@ export default function HistoryView({ entID }) {
 
   return (
     <Tooltip title="Past History corresponding to the results released so far.">
-    <Stack direction="column" alignItems="center">
-      {" "}
-      <Grid2 container alignItems="center" gap={0.15}>
-        {previousElectionsDisplay.map(function (electionForRow, i) {
-          return (
-            <Grid2 key={i} sx={{ width: "fit-content" }}>
-              <HistoryViewRow electionForRow={electionForRow} entID={entID} />
-            </Grid2>
-          );
-        })}
-      </Grid2>
-    </Stack>
+      <Stack direction="column" alignItems="center">
+        {" "}
+        <Grid2 container alignItems="center" gap={0.15}>
+          {previousElectionsDisplay.map(function (electionForRow, i) {
+            return (
+              <Grid2 key={i} sx={{ width: "fit-content" }}>
+                <HistoryViewRow electionForRow={electionForRow} entID={entID} />
+              </Grid2>
+            );
+          })}
+        </Grid2>
+      </Stack>
     </Tooltip>
   );
 }

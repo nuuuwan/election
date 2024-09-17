@@ -55,15 +55,13 @@ export default function PageBody() {
             <LatestResultListView />
             <BellwetherView />
 
-
-            <CustomAlert severity="warning"> 
+            <CustomAlert severity="warning">
               <Typography variant="body1">
                 {Translate(
                   "Past History in Electoral District, Province, and Sri Lanka, correspond to the results released so for, and not the final result."
                 )}
               </Typography>{" "}
             </CustomAlert>
-
           </Grid2>
           <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
             <ProjectionView />

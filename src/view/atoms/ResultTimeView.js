@@ -10,8 +10,8 @@ export default function ResultTimeView({ entID }) {
   }
   const { electionDisplay } = data;
   const result = electionDisplay.resultIdx[entID];
-  
-  const label = result.resultTime || Translate("Not available")
+
+  const label = result.resultTime || Translate("Not available");
   return (
     <Stack
       direction="row"

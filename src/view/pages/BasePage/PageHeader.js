@@ -11,7 +11,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import BugReportIcon from '@mui/icons-material/BugReport';
+import BugReportIcon from "@mui/icons-material/BugReport";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { ClockView, ElectionSelector } from "../../../view/atoms";
 import { useState } from "react";
@@ -37,22 +37,20 @@ const LANG_TO_LABEL = {
   en: "English",
 };
 
-function MenuItemLink({label, href, Icon}) {
-
+function MenuItemLink({ label, href, Icon }) {
   const onClick = function () {
     window.open(href, "_blank");
   };
 
-
   return (
     <MenuItem onClick={onClick}>
-    <ListItemIcon>
-      <Icon />
-    </ListItemIcon>
+      <ListItemIcon>
+        <Icon />
+      </ListItemIcon>
 
-    {Translate(label)}
-  </MenuItem>
-  )
+      {Translate(label)}
+    </MenuItem>
+  );
 }
 
 function CustomMenu() {
@@ -76,7 +74,6 @@ function CustomMenu() {
     localStorage.clear();
     window.location = "/prespoll";
   };
-
 
   return (
     <>
@@ -111,10 +108,17 @@ function CustomMenu() {
         })}
         <Divider />
 
+        <MenuItemLink
+          label="Source Code"
+          href="https://github.com/nuuuwan/prespoll/"
+          Icon={GitHubIcon}
+        />
 
-        <MenuItemLink label="Source Code" href="https://github.com/nuuuwan/prespoll/" Icon={GitHubIcon} />
-
-        <MenuItemLink label="Report Bugs" href="https://github.com/nuuuwan/prespoll/issues" Icon={BugReportIcon} />
+        <MenuItemLink
+          label="Report Bugs"
+          href="https://github.com/nuuuwan/prespoll/issues"
+          Icon={BugReportIcon}
+        />
 
         <Divider />
         <MenuItem onClick={onClickRefresh}>
@@ -143,7 +147,7 @@ export default function PageHeader() {
           <CustomMenu />
 
           <ElectionSelector colorElection={electionProjected} />
-          <ClockView/>
+          <ClockView />
         </Toolbar>
       </AppBar>
     </Box>

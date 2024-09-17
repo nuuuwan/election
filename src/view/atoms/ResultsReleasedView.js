@@ -4,7 +4,6 @@ import { useDataContext } from "../../nonview/core/DataProvider";
 import { Format, Translate } from "../../nonview/base";
 import LabelledStat from "./LabelledStat";
 
-
 export default function ResultsReleasedView({ entID }) {
   const data = useDataContext();
   if (!data) {
@@ -16,7 +15,11 @@ export default function ResultsReleasedView({ entID }) {
     electionDisplay.getReleaseStats(entID, pdIdx, electionPrevious);
 
   if (nResultsTotal <= 1) {
-    return  <Typography variant="h6" color="gray">{Translate("Final")}</Typography>;
+    return (
+      <Typography variant="h6" color="gray">
+        {Translate("Final")}
+      </Typography>
+    );
   }
 
   const pdDetails = (

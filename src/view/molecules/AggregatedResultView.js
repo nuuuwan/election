@@ -70,17 +70,13 @@ function RegionResultListTableView({ sortedEntIDs }) {
   );
 }
 
-
 function AggregatedResultViewGroup({ entIDList }) {
-
   const theme = useTheme();
   const isSmallerScreen = useMediaQuery(theme.breakpoints.down("lg"));
 
   if (!entIDList) {
     return null;
   }
-
-
 
   return (
     <Box>
@@ -95,9 +91,12 @@ function AggregatedResultViewGroup({ entIDList }) {
 
 function getLatestEntIDList(data) {
   const N_LATEST = 10;
-  const {electionDisplay} = data;
-  const latestResults = electionDisplay.pdResultList.slice().reverse().slice(0, N_LATEST);
-  return latestResults.map(result => result.entID);
+  const { electionDisplay } = data;
+  const latestResults = electionDisplay.pdResultList
+    .slice()
+    .reverse()
+    .slice(0, N_LATEST);
+  return latestResults.map((result) => result.entID);
 }
 
 function getProvinceEntIDList(data) {

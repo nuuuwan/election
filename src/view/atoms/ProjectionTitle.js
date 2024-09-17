@@ -25,7 +25,7 @@ export function ProjectionAlert() {
 
   return (
     <CustomAlert>
-      <Typography variant="h6">
+      <Typography variant="body1">
         {Translate(
           "This projection has been made by a simple AI Model, based on released results, and historical data."
         )}

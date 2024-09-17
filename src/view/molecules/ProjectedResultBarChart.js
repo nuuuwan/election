@@ -47,7 +47,7 @@ function getBarLabel(electionProjected) {
 
     if (pVotes === pVotesExtra) {
       return "";
-    } 
+    }
 
     if (pVotes + pVotesExtra < PartyToVotes.MIN_P_VOTES) {
       return "";

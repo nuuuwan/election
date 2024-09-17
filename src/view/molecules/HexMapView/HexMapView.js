@@ -68,10 +68,7 @@ export default function HexMapView() {
 
       <SVGTitles />
       <SVGLegendParty x={8} y={3} />
-      <SVGLegendPercentages
-        x={9 + nParties / THEME_DATA.HEXMAP.N_COLS}
-        y={3}
-      />
+      <SVGLegendPercentages x={9 + nParties / THEME_DATA.HEXMAP.N_COLS} y={3} />
     </svg>
   );
 }

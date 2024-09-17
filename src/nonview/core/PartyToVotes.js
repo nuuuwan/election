@@ -76,7 +76,6 @@ export default class PartyToVotes {
   }
 
   get partyToVotesSortedOthered() {
-
     const totalVotes = this.totalVotes;
     const minVotes = PartyToVotes.MIN_P_VOTES * totalVotes;
 

@@ -37,11 +37,10 @@ export default function ProjectionView() {
     <CustomStack>
       <ProjectionTitle />
       <FinalOutcomeView />
-   
+
       <PartyToVotesStatsView partyToVotes={resultLK.partyToVotes} />
       <ProjectedResultBarChart />
       <SummaryView summary={resultLK.summary} />
-
 
       <ProjectionAlert />
     </CustomStack>

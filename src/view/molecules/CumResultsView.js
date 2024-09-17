@@ -14,13 +14,13 @@ function getContentList({ entID, result, electionDisplay }) {
       useLongName={true}
       sx={{ color: result.color, p: 0.5 }}
     />,
-<ResultsReleasedView entID={entID} />,
+    <ResultsReleasedView entID={entID} />,
 
     <PartyToVotesStatsView partyToVotes={result.partyToVotes} />,
     <ResultBarChart resultsElection={electionDisplay} entID={entID} />,
-   
+
     <SummaryView summary={result.summary} />,
-    
+
     <HistoryView entID={entID} />,
   ];
 }
@@ -43,15 +43,13 @@ export function CumResultsColumnView({ entID }) {
     ? Color.getColorWithAlpha(result.color, 0.1)
     : "white";
 
-
-
   return (
-    <Box sx={{ backgroundColor,  borderRadius: 4, width: 240, p: 1.5 }}>
+    <Box sx={{ backgroundColor, borderRadius: 4, width: 240, p: 1.5 }}>
       {contentList.map(function (content, i) {
         return (
           <Box
             key={i}
-            sx={{ height: 48}}
+            sx={{ height: 48 }}
             justifyContent="center"
             alignItems="center"
             alignContent="center"

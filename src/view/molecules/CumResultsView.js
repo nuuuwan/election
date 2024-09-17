@@ -1,11 +1,9 @@
 import { Box } from "@mui/material";
-
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { EntView, ResultsReleasedView } from "../../view/atoms";
-import { ResultBarChart, HistoryView, SummaryView } from ".";
 
-import PartyToVotesStatsView from "../../view/molecules/PartyToVotesStatsView";
 import { Color } from "../../nonview/base";
+import { ResultBarChart, HistoryView, SummaryView, PartyToVotesStatsView } from "../../view/molecules";
+import { EntView, ResultsReleasedView,ResultTimeView } from "../../view/atoms";
 
 function getContentList({ entID, result, electionDisplay }) {
   return [
@@ -24,6 +22,7 @@ function getContentList({ entID, result, electionDisplay }) {
     <HistoryView entID={entID} />,
 
     <ResultsReleasedView entID={entID} />,
+    <ResultTimeView entID={entID} />,
   ];
 }
 

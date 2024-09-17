@@ -21,7 +21,13 @@ export default class Result {
   static fromList(entID, resultList) {
     const summary = Summary.fromList(resultList);
     const partyToVotes = PartyToVotes.fromList(resultList);
-    const resultTime = Math.max(...resultList.map((result) => result.resultTime));
+    const resultTime = resultList.sort(
+      function(a, b) { 
+        const resultTimeA = a.resultTime || "";
+        const resultTimeB = b.resultTime || "";
+        return resultTimeA.localeCompare(resultTimeB);
+      }
+    )[resultList.length - 1].resultTime;
 
     return new Result(entID, summary, partyToVotes, resultTime);
   }

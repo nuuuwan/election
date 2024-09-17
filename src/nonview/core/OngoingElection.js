@@ -28,10 +28,12 @@ export default class OngoingElection {
     return rawDataList
       .filter(function (data) {
         return data["result_time"] !== 0;
-      })
-      .sort(function (a, b) {
-        return a["result_time"].localeCompare(b["result_time"]);
-      })
+      }).sort(
+        function (a, b) {
+          
+        return (a.resultTime || "").localeCompare(b.resultTime || "");
+        }
+      )
       .map(function (data) {
         return OngoingElection.getPDResult(data);
       });
@@ -45,7 +47,7 @@ export default class OngoingElection {
     const pdResultList = await OngoingElection.getPDResultList();
     election.resultList = Election.expand(pdResultList);
     election.resultIdx = Election.buildResultIdx(election.resultList);
-    election.isLoaded = true;
+    election.isLoaded = true;  
     return election;
   }
 }

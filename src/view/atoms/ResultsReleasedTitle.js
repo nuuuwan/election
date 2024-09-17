@@ -22,16 +22,13 @@ export function ResultsReleasedAlert() {
     return null;
   }
 
-  const title = Translate("Percentage Released");
-  const body = Translate(
-    "This is an Estimate, based on registered voter statistics, from previous elections."
-  );
+
+
   return (
     <CustomAlert>
-      <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-        {title}
-      </Typography>
-      <Typography variant="body1">{body}</Typography>
+      <Typography variant="body1">{Translate(
+    "\"Percentage Released\", is an Estimate, based on registered voter statistics, from previous elections."
+  )}</Typography>
     </CustomAlert>
   );
 }

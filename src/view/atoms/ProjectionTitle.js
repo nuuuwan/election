@@ -27,16 +27,14 @@ export function ProjectionAlert() {
     <CustomAlert>
       <Typography variant="body1">
         {Translate(
-          "This projection has been made by a simple AI Model, based on released results, and historical data."
+          "This projection has been made by a simple AI Model, based on released results, and historical data. "
         )}
-      </Typography>
 
-      <Typography variant="body1">
         {Translate(
-          "The results presented have 90% confidence, which means that they could be wrong 10% of the time."
+          "The results presented have 90% confidence, which means that they could be wrong 10% of the time. "
         )}
         {Translate(
-          "This is not an official result, and might differ significantly from final result."
+          "This is not an official result, and might differ significantly from final result. "
         )}
       </Typography>
     </CustomAlert>

@@ -6,7 +6,7 @@ import { CustomAlert } from "../atoms";
 
 function PerfectBellwetherView() {
   return (
-    <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+    <Typography variant="h6">
       {Translate("Perfect Bellwether")}
     </Typography>
   );
@@ -14,14 +14,14 @@ function PerfectBellwetherView() {
 
 function getNumBellwetherText({ n, nSame, ent }) {
   return Translate(
-    "Results in %1 have matched the Final National Result in %2/%3 previous Presidential Elections.",
+    "Results in %1 have matched the Final National Result in %2/%3 previous Presidential Elections. ",
     [Translate(ent.name), nSame, n]
   );
 }
 
 function getPercentageBellwetherText({ error }) {
   return Translate(
-    "Historically, Party Vote percentages, have varied from the National Result by %1, on average.",
+    "Historically, Party Vote percentages, have varied from the National Result by %1, on average. ",
     [Format.percent(error)]
   );
 }
@@ -48,10 +48,8 @@ export default function BellwetherView() {
     <Box sx={{ maxWidth: 600 }}>
       <CustomAlert>
         {n === nSame ? <PerfectBellwetherView /> : null}
-        <Typography variant="h6">
-          {getNumBellwetherText({ n, nSame, ent })}
-        </Typography>
         <Typography variant="body1">
+          {getNumBellwetherText({ n, nSame, ent })}
           {getPercentageBellwetherText({ error })}
           {Translate(
             "Note, however, previous results are not necessarily indicative of future results."

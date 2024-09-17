@@ -30,10 +30,14 @@ export default class OngoingElection {
 
   static async getRawData() {
     const CACHE_DURATION_S = 60;
-    const timeKey = CACHE_DURATION_S * parseInt(Time.now().ut / CACHE_DURATION_S);
-    return await Cache.get(`OngoingElection.getRawData.${timeKey}`, OngoingElection.getRawDataNoCache);
+    const timeKey =
+      CACHE_DURATION_S * parseInt(Time.now().ut / CACHE_DURATION_S);
+    return await Cache.get(
+      `OngoingElection.getRawData.${timeKey}`,
+      OngoingElection.getRawDataNoCache
+    );
   }
-  
+
   static async getPDResultList() {
     const rawDataList = await OngoingElection.getRawData();
     return rawDataList

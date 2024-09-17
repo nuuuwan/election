@@ -44,8 +44,8 @@ export default function BasePage() {
   return (
     <DataProvider state={state}>
       <BasePageHandlerProvider handlers={getHandlers(updateState)}>
-      <Refreshing durationS={60}>
-        <BasePageView />
+        <Refreshing durationS={60}>
+          <BasePageView />
         </Refreshing>
       </BasePageHandlerProvider>
     </DataProvider>

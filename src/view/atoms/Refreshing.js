@@ -3,13 +3,14 @@ import { Time } from "../../nonview/base";
 import { Box } from "@mui/material";
 
 
-export default function Refreshing({children, durationSeconds}) {
+export default function Refreshing({children, durationS}) {
 
     const [ut, setUT] = useState(Time.now().ut);
 
     setTimeout(() => {
         setUT(Time.now().ut);
-      }, durationSeconds * 1_000);
+        console.debug(`⌛ Refreshing ${ut}...`)
+      }, durationS * 1_000);
       
 
     return (

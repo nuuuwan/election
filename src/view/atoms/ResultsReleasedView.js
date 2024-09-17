@@ -15,11 +15,7 @@ export default function ResultsReleasedView({ entID }) {
     electionDisplay.getReleaseStats(entID, pdIdx, electionPrevious);
 
   if (nResultsTotal <= 1) {
-    return (
-      <Typography variant="h6" sx={{ opacity: 0.2 }}>
-        {Translate("Final Result")}
-      </Typography>
-    );
+    return null;
   }
 
   const pdDetails = (

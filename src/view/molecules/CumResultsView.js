@@ -14,7 +14,7 @@ function getContentList({ entID, result, electionDisplay }) {
       useLongName={true}
       sx={{ color: result.color, p: 0.5 }}
     />,
-    <ResultsReleasedView entID={entID} />,
+
 
     <PartyToVotesStatsView partyToVotes={result.partyToVotes} />,
     <ResultBarChart resultsElection={electionDisplay} entID={entID} />,
@@ -22,6 +22,8 @@ function getContentList({ entID, result, electionDisplay }) {
     <SummaryView summary={result.summary} />,
 
     <HistoryView entID={entID} />,
+
+    <ResultsReleasedView entID={entID} />,
   ];
 }
 

@@ -36,6 +36,24 @@ const LANG_TO_LABEL = {
   en: "English",
 };
 
+function MenuItemLink({label, href, Icon}) {
+
+  const onClick = function () {
+    window.open(href, "_blank");
+  };
+
+
+  return (
+    <MenuItem onClick={onClick}>
+    <ListItemIcon>
+      <Icon />
+    </ListItemIcon>
+
+    {Translate(label)}
+  </MenuItem>
+  )
+}
+
 function CustomMenu() {
   const data = useDataContext();
   const { setLang } = useBasePageHandlerContext();
@@ -58,9 +76,6 @@ function CustomMenu() {
     window.location = "/prespoll";
   };
 
-  const onClickSourceCode = function () {
-    window.open("https://www.github.com/nuuuwan/prespoll", "_blank");
-  };
 
   return (
     <>
@@ -94,13 +109,11 @@ function CustomMenu() {
           );
         })}
         <Divider />
-        <MenuItem onClick={onClickSourceCode}>
-          <ListItemIcon>
-            <GitHubIcon />
-          </ListItemIcon>
 
-          {Translate("Source Code")}
-        </MenuItem>
+
+        <MenuItemLink label="Source Code" href="https://github.com/nuuuwan/prespoll/" Icon={GitHubIcon} />
+
+        <MenuItemLink label="Report Bugs" href="https://github.com/nuuuwan/prespoll/issues" Icon={GitHubIcon} />
 
         <Divider />
         <MenuItem onClick={onClickRefresh}>

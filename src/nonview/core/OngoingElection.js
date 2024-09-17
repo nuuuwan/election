@@ -29,8 +29,8 @@ export default class OngoingElection {
   }
 
   static async getRawData() {
-    const timeKey = parseInt(Time.now() / 60);
-    return await Cache.get("OngoingElection.getRawData." + timeKey, OngoingElection.getRawDataNoCache);
+    const timeKey = parseInt(Time.now().ut * 10 /  3600);
+    return await Cache.get(`OngoingElection.getRawData.${timeKey}`, OngoingElection.getRawDataNoCache);
   }
   
   static async getPDResultList() {

@@ -1,4 +1,4 @@
-import { MathX, WWW } from "../base";
+import { MathX, Time, WWW, Cache } from "../base";
 import Election from "./Election";
 import PartyToVotes from "./PartyToVotes";
 import Result from "./Result";
@@ -24,10 +24,15 @@ export default class OngoingElection {
     );
   }
 
-  static async getRawData() {
-    return await WWW.json(OngoingElection.URL);
+  static async getRawDataNoCache() {
+    return await WWW.jsonNonCache(OngoingElection.URL);
   }
 
+  static async getRawData() {
+    const timeKey = parseInt(Time.now() / 60);
+    return await Cache.get("OngoingElection.getRawData." + timeKey, OngoingElection.getRawDataNoCache);
+  }
+  
   static async getPDResultList() {
     const rawDataList = await OngoingElection.getRawData();
     return rawDataList

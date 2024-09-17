@@ -7,7 +7,7 @@ import ElectionSelector from "./ElectionSelector";
 import EntView from "./EntView";
 import IfElse from "./IfElse";
 import LabelledStat from "./LabelledStat";
-import LanguageSelector from "./LanguageSelector";
+
 import LoadingLabel from "./LoadingLabel";
 import NoResultsAlert from "./NoResultsAlert";
 import PDSelector from "./PDSelector";
@@ -28,7 +28,7 @@ export {
   EntView,
   IfElse,
   LabelledStat,
-  LanguageSelector,
+
   LoadingLabel,
   NoResultsAlert,
   PDSelector,

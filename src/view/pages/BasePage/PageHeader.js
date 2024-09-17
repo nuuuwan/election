@@ -1,10 +1,13 @@
-import { Box, Stack } from "@mui/material";
+import { AppBar, Box, IconButton, Menu, MenuItem,  Toolbar } from "@mui/material";
+import MenuIcon from '@mui/icons-material/Menu';
+
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import {
   ElectionSelector,
-  LanguageSelector,
-  RefreshButton,
+
 } from "../../../view/atoms";
+import { useState } from "react";
+import { useBasePageHandlerContext } from "./BasePageHandlerProvider";
 
 const STYLE_PAGE_HEADER = {
   SELECTOR: {
@@ -13,12 +16,75 @@ const STYLE_PAGE_HEADER = {
     right: 0,
     left: 0,
     zIndex: 3000,
-    padding: 1,
+    padding: 0,
     margin: 0,
     color: "white",
     borderBottom: "1px solid #eee",
   },
 };
+const LANG_TO_LABEL = {
+  si: "සිංහල",
+  ta: "தமிழ்",
+  en: "English",
+};
+
+function CustomMenu() {
+
+  const data = useDataContext();
+  const { setLang } = useBasePageHandlerContext();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  if (!data) {
+    return null;
+  }
+  const { lang: selectedLang,  } = data;
+
+
+
+  const handleClose = function() {
+    setAnchorEl(null);
+  }
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+
+  return (<>
+   <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+            onClick={handleClick}
+          >
+            <MenuIcon />
+          </IconButton>
+
+          <Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        sx={{zIndex: 5000}}
+
+      >
+
+        {["si", "ta", "en"].map(function (lang) {
+          const isSelected = lang === selectedLang;
+          const onClick = function () {
+            handleClose();
+            setLang(lang);
+          };
+          return (
+            <MenuItem key={lang} onClick={onClick} disabled={isSelected}>
+              {LANG_TO_LABEL[lang]}
+            </MenuItem>
+          );
+        })}
+
+      </Menu>
+</>);
+}
 
 export default function PageHeader() {
   const data = useDataContext();
@@ -27,19 +93,17 @@ export default function PageHeader() {
   }
   const { electionProjected } = data;
   const backgroundColor = electionProjected?.color || "gray";
+
+
   return (
     <Box sx={Object.assign({ backgroundColor }, STYLE_PAGE_HEADER.SELECTOR)}>
-      <Stack
-        direction="row"
-        gap={1}
-        alignItems="center"
-        justifyContent="center"
-        alignContent="center"
-      >
-        <ElectionSelector colorElection={electionProjected} />
-        <LanguageSelector />
-        <RefreshButton />
-      </Stack>
+      <AppBar position="static" sx={{backgroundColor}}>
+      <Toolbar>
+        <CustomMenu />
+
+        <ElectionSelector colorElection={electionProjected}/>
+        </Toolbar>
+        </AppBar>
     </Box>
   );
 }

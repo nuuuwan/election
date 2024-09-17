@@ -3,6 +3,7 @@ import { DataProvider } from "../../../nonview/core";
 import { CustomURLContext } from "../../../nonview/core";
 import BasePageView from "./BasePageView";
 import BasePageHandlerProvider from "./BasePageHandlerProvider";
+import { Refreshing } from "../../atoms";
 
 function getHandlers(updateState) {
   const setElection = function (election0) {
@@ -43,7 +44,9 @@ export default function BasePage() {
   return (
     <DataProvider state={state}>
       <BasePageHandlerProvider handlers={getHandlers(updateState)}>
+      <Refreshing durationSeconds={60}>
         <BasePageView />
+        </Refreshing>
       </BasePageHandlerProvider>
     </DataProvider>
   );

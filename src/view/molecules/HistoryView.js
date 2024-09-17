@@ -1,4 +1,4 @@
-import { Grid2, Stack, Typography } from "@mui/material";
+import { Grid2, Stack, Tooltip, Typography } from "@mui/material";
 import { Format } from "../../nonview/base";
 import { Election } from "../../nonview/core";
 import { PartyView } from "../../view/atoms";
@@ -51,6 +51,7 @@ export default function HistoryView({ entID }) {
   });
 
   return (
+    <Tooltip title="Past History corresponding to the results released so far.">
     <Stack direction="column" alignItems="center">
       {" "}
       <Grid2 container alignItems="center" gap={0.15}>
@@ -63,5 +64,6 @@ export default function HistoryView({ entID }) {
         })}
       </Grid2>
     </Stack>
+    </Tooltip>
   );
 }

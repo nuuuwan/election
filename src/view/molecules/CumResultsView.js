@@ -7,6 +7,7 @@ import {
   HistoryView,
   SummaryView,
   PartyToVotesStatsView,
+
 } from "../../view/molecules";
 import { EntView, ResultsReleasedView, ResultTimeView } from "../../view/atoms";
 
@@ -93,9 +94,5 @@ export function CumResultsViewTableRowView({ entID }) {
   );
 }
 
-export default function CumResultsView({ entID, direction = "column" }) {
-  if (direction === "column") {
-    return <CumResultsColumnView entID={entID} />;
-  }
-  return <CumResultsViewTableRowView entID={entID} />;
-}
+const CumResultsView = null;
+export default CumResultsView;

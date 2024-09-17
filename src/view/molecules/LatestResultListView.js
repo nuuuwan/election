@@ -1,6 +1,6 @@
 import { Grid2, Stack } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
-import CumResultsView from "./CumResultsView";
+import { CumResultsColumnView } from "./CumResultsView";
 import { ProvinceUtils } from "../../nonview/base";
 
 export default function LatestResultListView() {
@@ -23,7 +23,7 @@ export default function LatestResultListView() {
         {[resultPD, resultED, resultProvince, resultLK].map(function (result) {
           return (
             <Grid2 key={result.entID}>
-              <CumResultsView entID={result.entID} />
+              <CumResultsColumnView entID={result.entID} />
             </Grid2>
           );
         })}

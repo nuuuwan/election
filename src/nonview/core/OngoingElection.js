@@ -16,7 +16,7 @@ export default class OngoingElection {
     subsetPartyToVotes["OTHERS"] = otherVotes;
     const partyToVotes = PartyToVotes.fromDict(subsetPartyToVotes);
 
-    return new Result(data["pd_id"], summary, partyToVotes);
+    return new Result(data["pd_id"], summary, partyToVotes, data["result_time"]);
   }
 
   static async getRawData() {

@@ -2,25 +2,28 @@ import Summary from "./Summary";
 import PartyToVotes from "./PartyToVotes";
 
 export default class Result {
-  constructor(entID, summary, partyToVotes) {
+  constructor(entID, summary, partyToVotes, resultTime) {
     this.entID = entID;
     this.summary = summary;
     this.partyToVotes = partyToVotes;
+    this.resultTime = resultTime;
   }
 
   static fromDict(d) {
     const entID = d["entity_id"];
     const summary = Summary.fromDict(d);
     const partyToVotes = PartyToVotes.fromDict(d);
+    const resultTime = d["result_time"];
 
-    return new Result(entID, summary, partyToVotes);
+    return new Result(entID, summary, partyToVotes, resultTime);
   }
 
   static fromList(entID, resultList) {
     const summary = Summary.fromList(resultList);
     const partyToVotes = PartyToVotes.fromList(resultList);
+    const resultTime = Math.max(...resultList.map((result) => result.resultTime));
 
-    return new Result(entID, summary, partyToVotes);
+    return new Result(entID, summary, partyToVotes, resultTime);
   }
 
   get color() {

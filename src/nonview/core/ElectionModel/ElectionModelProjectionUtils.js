@@ -94,6 +94,6 @@ export default class ElectionModelProjectionUtils {
       pError
     );
 
-    return new Result(pdID, summary, partyToVotes);
+    return new Result(pdID, summary, partyToVotes, undefined);
   }
 }

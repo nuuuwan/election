@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import { Time } from "../../nonview/base";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
 export default function ClockView() {

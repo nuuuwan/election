@@ -54,7 +54,7 @@ export default class ElectionBase {
   }
 
   get isFuture() {
-    return this.date.localeCompare(Time.now().date) > 0;
+    return this.date.localeCompare(Time.now().yyyymmdd) > 0;
   }
 
   localeCompare(other) {

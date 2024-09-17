@@ -13,7 +13,7 @@ import RefreshIcon from "@mui/icons-material/Refresh";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import BugReportIcon from '@mui/icons-material/BugReport';
 import { useDataContext } from "../../../nonview/core/DataProvider";
-import { ElectionSelector } from "../../../view/atoms";
+import { ClockView, ElectionSelector } from "../../../view/atoms";
 import { useState } from "react";
 import { useBasePageHandlerContext } from "./BasePageHandlerProvider";
 import { Translate } from "../../../nonview/base";
@@ -143,6 +143,7 @@ export default function PageHeader() {
           <CustomMenu />
 
           <ElectionSelector colorElection={electionProjected} />
+          <ClockView/>
         </Toolbar>
       </AppBar>
     </Box>

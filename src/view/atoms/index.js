@@ -16,6 +16,7 @@ import ProjectionTitle from "./ProjectionTitle";
 import RefreshButton from "./RefreshButton";
 import ResultsReleasedTitle from "./ResultsReleasedTitle";
 import ResultsReleasedView from "./ResultsReleasedView";
+import TestingAlert from "./TestingAlert";
 
 export {
   CitationsView,
@@ -35,4 +36,5 @@ export {
   RefreshButton,
   ResultsReleasedTitle,
   ResultsReleasedView,
+  TestingAlert,
 };

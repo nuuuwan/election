@@ -1,6 +1,6 @@
 import { Alert } from "@mui/material";
 
-export default function CustomAlert({ children, severity="info" }) {
+export default function CustomAlert({ children, severity = "info" }) {
   return (
     <Alert
       severity={severity}

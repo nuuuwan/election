@@ -1,12 +1,18 @@
-import { AppBar, Box, Divider, IconButton, ListItemIcon, Menu, MenuItem,  Toolbar } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
-import RefreshIcon from '@mui/icons-material/Refresh';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import { useDataContext } from "../../../nonview/core/DataProvider";
 import {
-  ElectionSelector,
-
-} from "../../../view/atoms";
+  AppBar,
+  Box,
+  Divider,
+  IconButton,
+  ListItemIcon,
+  Menu,
+  MenuItem,
+  Toolbar,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import { useDataContext } from "../../../nonview/core/DataProvider";
+import { ElectionSelector } from "../../../view/atoms";
 import { useState } from "react";
 import { useBasePageHandlerContext } from "./BasePageHandlerProvider";
 import { Translate } from "../../../nonview/base";
@@ -31,7 +37,6 @@ const LANG_TO_LABEL = {
 };
 
 function CustomMenu() {
-
   const data = useDataContext();
   const { setLang } = useBasePageHandlerContext();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -39,13 +44,11 @@ function CustomMenu() {
   if (!data) {
     return null;
   }
-  const { lang: selectedLang,  } = data;
+  const { lang: selectedLang } = data;
 
-
-
-  const handleClose = function() {
+  const handleClose = function () {
     setAnchorEl(null);
-  }
+  };
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -55,30 +58,29 @@ function CustomMenu() {
     window.location = "/prespoll";
   };
 
-  const onClickSourceCode = function() {
+  const onClickSourceCode = function () {
     window.open("https://www.github.com/nuuuwan/prespoll", "_blank");
-  }
+  };
 
-  return (<>
-   <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-            onClick={handleClick}
-          >
-            <MenuIcon />
-          </IconButton>
+  return (
+    <>
+      <IconButton
+        size="large"
+        edge="start"
+        color="inherit"
+        aria-label="menu"
+        sx={{ mr: 2 }}
+        onClick={handleClick}
+      >
+        <MenuIcon />
+      </IconButton>
 
-          <Menu
+      <Menu
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        sx={{zIndex: 5000}}
-
+        sx={{ zIndex: 5000 }}
       >
-
         {["si", "ta", "en"].map(function (lang) {
           const isSelected = lang === selectedLang;
           const onClick = function () {
@@ -91,26 +93,25 @@ function CustomMenu() {
             </MenuItem>
           );
         })}
-              <Divider />
+        <Divider />
         <MenuItem onClick={onClickSourceCode}>
-        <ListItemIcon>
-          <GitHubIcon  />
-        </ListItemIcon>
-        
+          <ListItemIcon>
+            <GitHubIcon />
+          </ListItemIcon>
+
           {Translate("Source Code")}
         </MenuItem>
 
-
-      <Divider />
+        <Divider />
         <MenuItem onClick={onClickRefresh}>
-        <ListItemIcon>
-          <RefreshIcon  />
-        </ListItemIcon>
+          <ListItemIcon>
+            <RefreshIcon />
+          </ListItemIcon>
           {Translate("Refresh App")}
         </MenuItem>
-
       </Menu>
-</>);
+    </>
+  );
 }
 
 export default function PageHeader() {
@@ -121,16 +122,15 @@ export default function PageHeader() {
   const { electionProjected } = data;
   const backgroundColor = electionProjected?.color || "gray";
 
-
   return (
     <Box sx={Object.assign({ backgroundColor }, STYLE_PAGE_HEADER.SELECTOR)}>
-      <AppBar position="static" sx={{backgroundColor}}>
-      <Toolbar>
-        <CustomMenu />
+      <AppBar position="static" sx={{ backgroundColor }}>
+        <Toolbar>
+          <CustomMenu />
 
-        <ElectionSelector colorElection={electionProjected}/>
+          <ElectionSelector colorElection={electionProjected} />
         </Toolbar>
-        </AppBar>
+      </AppBar>
     </Box>
   );
 }

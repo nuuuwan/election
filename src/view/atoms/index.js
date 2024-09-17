@@ -7,13 +7,11 @@ import ElectionSelector from "./ElectionSelector";
 import EntView from "./EntView";
 import IfElse from "./IfElse";
 import LabelledStat from "./LabelledStat";
-
 import LoadingLabel from "./LoadingLabel";
 import NoResultsAlert from "./NoResultsAlert";
 import PDSelector from "./PDSelector";
 import PartyView from "./PartyView";
 import ProjectionTitle from "./ProjectionTitle";
-
 import ResultTimeView from "./ResultTimeView";
 import ResultsReleasedTitle from "./ResultsReleasedTitle";
 import ResultsReleasedView from "./ResultsReleasedView";
@@ -28,13 +26,11 @@ export {
   EntView,
   IfElse,
   LabelledStat,
-
   LoadingLabel,
   NoResultsAlert,
   PDSelector,
   PartyView,
   ProjectionTitle,
-
   ResultTimeView,
   ResultsReleasedTitle,
   ResultsReleasedView,

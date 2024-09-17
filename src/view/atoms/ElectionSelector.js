@@ -9,10 +9,12 @@ import { useBasePageHandlerContext } from "../../view/pages/BasePage/BasePageHan
 function getRenderValue(colorElection, isSmallScreen) {
   const renderValue = function (election, i) {
     return (
-      <Typography variant={isSmallScreen ? "h5" : "h2"} sx={{
-        color: "white", 
-
-      }}>
+      <Typography
+        variant={isSmallScreen ? "h5" : "h2"}
+        sx={{
+          color: "white",
+        }}
+      >
         {election.title}
       </Typography>
     );

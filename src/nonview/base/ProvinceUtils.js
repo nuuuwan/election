@@ -27,7 +27,6 @@ export default class ProvinceUtils {
   }
 
   static getProvinceIDForPDEnt(pdEnt) {
-    
     const provinceID1 = pdEnt.d.province_id;
     if (provinceID1 && provinceID1 !== "None") {
       return provinceID1;

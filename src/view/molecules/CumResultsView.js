@@ -7,7 +7,6 @@ import {
   HistoryView,
   SummaryView,
   PartyToVotesStatsView,
-
 } from "../../view/molecules";
 import { EntView, ResultsReleasedView, ResultTimeView } from "../../view/atoms";
 
@@ -85,7 +84,10 @@ export function CumResultsViewTableRowView({ entID }) {
     <TableRow>
       {contentList.map(function (content, i) {
         return (
-          <TableCell key={i} style={{ padding: 12, borderBottom: "1px solid #eee" }}>
+          <TableCell
+            key={i}
+            style={{ padding: 12, borderBottom: "1px solid #eee" }}
+          >
             {content}
           </TableCell>
         );

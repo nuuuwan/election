@@ -1,9 +1,9 @@
 import { Alert } from "@mui/material";
 
-export default function CustomAlert({ children }) {
+export default function CustomAlert({ children, severity="info" }) {
   return (
     <Alert
-      severity="info"
+      severity={severity}
       sx={{
         p: 2,
         textAlign: "justify",

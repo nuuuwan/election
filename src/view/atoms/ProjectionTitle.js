@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 import { Translate } from "../../nonview/base";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CustomAlert from "./CustomAlert";
@@ -27,7 +27,7 @@ export function ProjectionAlert() {
     <CustomAlert>
       <Typography variant="body1">
         {Translate(
-          "This projection has been made by a simple AI Model, based on released results, and historical data. "
+          "This projection has been made by a Machine Learning Model, based on released results, and historical data. "
         )}
 
         {Translate(
@@ -36,6 +36,11 @@ export function ProjectionAlert() {
         {Translate(
           "This is not an official result, and might differ significantly from final result. "
         )}
+        {Translate(
+          "See open source code for details. "
+        )}
+        <Link href="https://github.com/nuuuwan/prespoll">
+        {Translate("Source Code")}</Link>
       </Typography>
     </CustomAlert>
   );

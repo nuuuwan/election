@@ -1,6 +1,6 @@
 import { Box, Grid2, Typography } from "@mui/material";
 import { useDataContext } from "../../../nonview/core/DataProvider";
-import { IfElse, NoResultsAlert, ResultsReleasedTitle } from "../../atoms";
+import { CustomAlert, IfElse, NoResultsAlert, ResultsReleasedTitle } from "../../atoms";
 import {
   ProjectionView,
   HexMapView,
@@ -9,6 +9,7 @@ import {
   BellwetherView,
 } from "../../molecules";
 import { ResultsReleasedAlert } from "../../atoms/ResultsReleasedTitle";
+import { Translate } from "../../../nonview/base";
 
 const STYLE = {
   BOX: { paddingTop: 1, paddingBottom: 20 },
@@ -31,8 +32,14 @@ export default function PageBody() {
             <Typography variant="h4">
               <ResultsReleasedTitle mode="percent" />
             </Typography>
+
             <HexMapView />
             <ResultsReleasedAlert />
+            <CustomAlert>
+              <Typography variant="body1">
+                {Translate("Click on hexagons for Polling Division and Postal Vote results, or the most recent result for Provinces and Electoral Districts."
+)}</Typography>            </CustomAlert>
+   
           </Grid2>
           <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
             <ResultsReleasedTitle mode="n" />

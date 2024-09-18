@@ -23,14 +23,15 @@ class Election extends ElectionBase {
   }
 
   static async listAll() {
-    const elections = ELECTION_LIST_TUPLES.map(
-      ([electionType, date]) => new Election(electionType, date)
-    ).sort(function (a, b) {
-      return a.date.localeCompare(b.date);
-    });
-
-    await Promise.all(elections.map((election) => election.__loadData()));
-    return elections;
+    const elections = await Promise.all(
+      ELECTION_LIST_TUPLES.map(async ([electionType, date]) => {
+        const election = new Election(electionType, date);
+        await election.__loadData();
+        return election;
+      })
+    );
+  
+    return elections.sort((a, b) => a.date.localeCompare(b.date));
   }
 
   get pdResultList() {

@@ -3,7 +3,7 @@ import { useDataContext } from "../../nonview/core/DataProvider";
 
 import { Time, Translate } from "../../nonview/base";
 
-export default function ResultTimeView({ entID }) {
+export default function ResultTimeView({ entID, sx }) {
   const data = useDataContext();
   if (!data) {
     return null;
@@ -20,7 +20,7 @@ export default function ResultTimeView({ entID }) {
   }
 
   return (
-    <Stack direction="column" sx={{ color: "lightgray" }}>
+    <Stack direction="column" sx={Object.assign({ color: "lightgray" }, sx)}>
       <Typography variant="caption">{title}</Typography>
       <Typography variant="body1">{subTitle}</Typography>
     </Stack>

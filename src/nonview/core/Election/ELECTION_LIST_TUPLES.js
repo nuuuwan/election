@@ -13,16 +13,16 @@ const ELECTION_LIST_TUPLES = [
   ["Presidential", "1988-12-19"],
   ["Presidential", "1982-10-20"],
 
-  // Parliamentary
+  // // Parliamentary - DISABLED
 
-  ["Parliamentary", "2020-08-05"],
-  ["Parliamentary", "2015-08-17"],
-  ["Parliamentary", "2010-04-08"],
-  ["Parliamentary", "2004-04-02"],
-  ["Parliamentary", "2001-12-05"],
-  ["Parliamentary", "2000-10-10"],
-  ["Parliamentary", "1994-08-16"],
-  ["Parliamentary", "1989-02-15"],
+  // ["Parliamentary", "2020-08-05"],
+  // ["Parliamentary", "2015-08-17"],
+  // ["Parliamentary", "2010-04-08"],
+  // ["Parliamentary", "2004-04-02"],
+  // ["Parliamentary", "2001-12-05"],
+  // ["Parliamentary", "2000-10-10"],
+  // ["Parliamentary", "1994-08-16"],
+  // ["Parliamentary", "1989-02-15"],
 ];
 
 export default ELECTION_LIST_TUPLES;

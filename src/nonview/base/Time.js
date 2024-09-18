@@ -17,7 +17,6 @@ export default class Time {
 
   // Format
 
-
   getComponents() {
     const date = this.getDate();
 
@@ -42,7 +41,7 @@ export default class Time {
   }
 
   get dateTimeString() {
-    const { year, month, day, hours, minutes,seconds } = this.getComponents();
+    const { year, month, day, hours, minutes, seconds } = this.getComponents();
 
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
   }

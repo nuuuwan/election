@@ -19,13 +19,8 @@ export default function ResultTimeView({ entID }) {
     subTitle = timeResult.secondsFromNowHumanized;
   }
 
- return (
-
-    <Stack
-      direction="column"
-      sx={{ color: "lightgray" }}
-    >
-
+  return (
+    <Stack direction="column" sx={{ color: "lightgray" }}>
       <Typography variant="caption">{title}</Typography>
       <Typography variant="body1">{subTitle}</Typography>
     </Stack>

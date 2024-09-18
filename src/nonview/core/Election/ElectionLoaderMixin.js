@@ -15,8 +15,6 @@ const ElectionLoaderMixin = {
       );
       this.isLoaded = true;
     }
-
-    
   },
 
   async getRawDataList() {

@@ -13,7 +13,6 @@ const TSV_HEADERS = {
 };
 
 export default class WWW {
-
   static getTimeStampedURL(url, timeStamp) {
     const prefix = url.includes("?") ? "&" : "?";
     return url + prefix + "t=" + timeStamp;
@@ -24,7 +23,6 @@ export default class WWW {
   }
 
   static async jsonNonCache(url) {
-
     const response = await fetch(url, JSON_HEADERS);
     const dataJson = await response.json();
     return dataJson;
@@ -38,9 +36,6 @@ export default class WWW {
   }
 
   static async tsvNonCache(url) {
-
-
-    
     const response = await fetch(url, TSV_HEADERS);
     const content = await response.text();
     const lines = content.split("\n");

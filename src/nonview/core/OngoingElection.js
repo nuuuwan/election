@@ -1,4 +1,4 @@
-import { MathX, Time, WWW,  } from "../base";
+import { MathX, Time, WWW } from "../base";
 import Election from "./Election";
 import PartyToVotes from "./PartyToVotes";
 import Result from "./Result";
@@ -26,7 +26,7 @@ export default class OngoingElection {
 
   static async getRawData() {
     const timeStamp = Time.now().timeID;
-    console.debug('OngoingElection.getRawData', timeStamp);
+    console.debug("OngoingElection.getRawData", timeStamp);
     return await WWW.json(OngoingElection.URL, timeStamp);
   }
 

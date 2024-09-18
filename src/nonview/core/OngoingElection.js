@@ -1,4 +1,4 @@
-import {  Time, WWW } from "../base";
+import { Time, WWW } from "../base";
 import Election from "./Election";
 import PartyToVotes from "./PartyToVotes";
 import Result from "./Result";

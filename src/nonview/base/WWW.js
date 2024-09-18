@@ -17,7 +17,7 @@ export default class WWW {
 
   static getTimeStampedURL(url) {
     const prefix = url.includes("?") ? "&" : "?";
-    return url + prefix + "ut=" + Time.now().ut;
+    return url + prefix + "t=" + Time.now().dateID;
   }
 
   static pathJoin(pathFragmentList) {

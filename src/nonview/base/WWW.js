@@ -1,4 +1,5 @@
 import Cache from "./Cache.js";
+import Time from "./Time.js";
 
 const JSON_HEADERS = {
   headers: {
@@ -13,14 +14,21 @@ const TSV_HEADERS = {
 };
 
 export default class WWW {
+
+  static getTimeStampedURL(url) {
+    const prefix = url.includes("?") ? "&" : "?";
+    return url + prefix + "ut=" + Time.now().ut;
+  }
+
   static pathJoin(pathFragmentList) {
     return pathFragmentList.join("/");
   }
 
   static async jsonNonCache(url) {
-    const response = await fetch(url, JSON_HEADERS);
+    const fetchURL = WWW.getTimeStampedURL(url);
+    console.debug("❄️-WWW.jsonNonCache", fetchURL);
+    const response = await fetch(fetchURL, JSON_HEADERS);
     const dataJson = await response.json();
-    console.debug("❄️-WWW.jsonNonCache", url);
     return dataJson;
   }
 
@@ -31,7 +39,10 @@ export default class WWW {
   }
 
   static async tsvNonCache(url) {
-    const response = await fetch(url, TSV_HEADERS);
+    const fetchURL = WWW.getTimeStampedURL(url);
+    console.debug("❄️-WWW.tsvNonCache", fetchURL);
+    
+    const response = await fetch(fetchURL, TSV_HEADERS);
     const content = await response.text();
     const lines = content.split("\n");
     const keys = lines[0].split("\t").map((key) => key.replace("\r", ""));
@@ -49,7 +60,6 @@ export default class WWW {
         }, {});
       })
       .filter((data) => data);
-    console.debug("❄️-WWW.tsvNonCache", url);
     return dataList;
   }
 

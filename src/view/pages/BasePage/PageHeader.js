@@ -13,7 +13,7 @@ import RefreshIcon from "@mui/icons-material/Refresh";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import BugReportIcon from "@mui/icons-material/BugReport";
 import { useDataContext } from "../../../nonview/core/DataProvider";
-import { ClockView, ElectionSelector, ResultTimeView } from "../../../view/atoms";
+import {  ElectionSelector, ResultTimeView } from "../../../view/atoms";
 import { useState } from "react";
 import { useBasePageHandlerContext } from "./BasePageHandlerProvider";
 import { Translate } from "../../../nonview/base";

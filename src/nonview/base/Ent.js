@@ -20,7 +20,8 @@ export default class Ent {
 
   static async listFromType(entType) {
     const url = `${URL_BASE}/${entType.name}.latest.basic.tsv`;
-    return (await WWW.tsv(url)).map(function (d) {
+    const timeStamp = "any";
+    return (await WWW.tsv(url, timeStamp)).map(function (d) {
       return new Ent(d);
     });
   }

@@ -15,10 +15,13 @@ const ElectionLoaderMixin = {
       );
       this.isLoaded = true;
     }
+    console.debug('Loaded Election ' + this.year);
+    
   },
 
   async getRawDataList() {
-    return await WWW.tsv(this.urlData);
+    const timeStamp = "any";
+    return await WWW.tsv(this.urlData, timeStamp);
   },
 
   async getResultList() {

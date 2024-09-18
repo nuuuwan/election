@@ -1,5 +1,4 @@
 import Cache from "./Cache.js";
-import Time from "./Time.js";
 
 const JSON_HEADERS = {
   headers: {
@@ -15,31 +14,31 @@ const TSV_HEADERS = {
 
 export default class WWW {
 
-  static getTimeStampedURL(url) {
+  static getTimeStampedURL(url, timeStamp) {
     const prefix = url.includes("?") ? "&" : "?";
-    return url + prefix + "t=" + Time.now().dateID;
+    return url + prefix + "t=" + timeStamp;
   }
 
   static pathJoin(pathFragmentList) {
     return pathFragmentList.join("/");
   }
 
-  static async jsonNonCache(url) {
-    const fetchURL = WWW.getTimeStampedURL(url);
+  static async jsonNonCache(url, timeStamp) {
+    const fetchURL = WWW.getTimeStampedURL(url, timeStamp);
     console.debug("❄️-WWW.jsonNonCache", fetchURL);
     const response = await fetch(fetchURL, JSON_HEADERS);
     const dataJson = await response.json();
     return dataJson;
   }
 
-  static async json(url) {
+  static async json(url, timeStamp) {
     return Cache.get(url, async function () {
-      return WWW.jsonNonCache(url);
+      return WWW.jsonNonCache(url, timeStamp);
     });
   }
 
-  static async tsvNonCache(url) {
-    const fetchURL = WWW.getTimeStampedURL(url);
+  static async tsvNonCache(url, timeStamp) {
+    const fetchURL = WWW.getTimeStampedURL(url, timeStamp);
     console.debug("❄️-WWW.tsvNonCache", fetchURL);
     
     const response = await fetch(fetchURL, TSV_HEADERS);
@@ -63,9 +62,9 @@ export default class WWW {
     return dataList;
   }
 
-  static async tsv(url) {
+  static async tsv(url, timeStamp) {
     return Cache.get(url, async function () {
-      return WWW.tsvNonCache(url);
+      return WWW.tsvNonCache(url, timeStamp);
     });
   }
 }

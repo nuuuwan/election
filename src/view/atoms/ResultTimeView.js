@@ -14,9 +14,9 @@ export default function ResultTimeView({ entID }) {
   let title = Translate("Not available");
   let subTitle = null;
   if (result.resultTime) {
-    const ut = Time.fromString(result.resultTime);
-    title = ut.toDateTimeString();
-    subTitle = ut.secondsFromNowHumanized;
+    const timeResult = Time.fromString(result.resultTime);
+    title = timeResult.dateTimeString;
+    subTitle = timeResult.secondsFromNowHumanized;
   }
 
  return (

@@ -11,31 +11,14 @@ export default class Time {
     return new Time(Date.parse(s));
   }
 
-  toString() {
-    return this.getDate().toDateString();
-  }
-
-  toDateTimeString() {
-    return this.getDate().toLocaleString();
-  }
-
   getDate() {
     return new Date(this.ut);
   }
 
-  toDetailedString() {
-    return this.toDateTimeString() + " (" + this.secondsFromNowHumanized + ")";
-  }
+  // Format
 
-  get yyyymmdd() {
-    const date = this.getDate();
-    const year = date.getFullYear();
-    const month = ("0" + (date.getMonth() + 1)).slice(-2);
-    const day = ("0" + date.getDate()).slice(-2);
-    return `${year}-${month}-${day}`;
-  }
 
-  get yyyymmdd_hhmm() {
+  getComponents() {
     const date = this.getDate();
 
     const year = date.getFullYear();
@@ -43,9 +26,40 @@ export default class Time {
     const day = String(date.getDate()).padStart(2, "0");
     const hours = String(date.getHours()).padStart(2, "0");
     const minutes = String(date.getMinutes()).padStart(2, "0");
+    const seconds = String(date.getSeconds()).padStart(2, "0");
 
-    return `${year}-${month}-${day} ${hours}:${minutes}`;
+    return { year, month, day, hours, minutes, seconds };
   }
+
+  get dateID() {
+    const { year, month, day } = this.getComponents();
+    return `${year}${month}${day}`;
+  }
+
+  get dateString() {
+    const { year, month, day } = this.getComponents();
+    return `${year}-${month}-${day}`;
+  }
+
+  get dateTimeString() {
+    const { year, month, day, hours, minutes,seconds } = this.getComponents();
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  }
+
+  get timeID() {
+    const { year, month, day, hours, minutes, seconds } = this.getComponents();
+
+    return `${year}${month}${day}${hours}${minutes}${seconds}`;
+  }
+
+  get timeIDWithoutSeconds() {
+    const { year, month, day, hours, minutes } = this.getComponents();
+
+    return `${year}${month}${day}${hours}${minutes}`;
+  }
+
+  // lapse
 
   get secondsFromNow() {
     return (Time.now().ut - this.ut) / 1000;

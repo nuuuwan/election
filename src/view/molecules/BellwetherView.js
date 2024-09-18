@@ -43,17 +43,15 @@ export default function BellwetherView() {
   const ent = pdIdx[activePDID];
 
   return (
-
-      <CustomAlert>
-        {n === nSame ? <PerfectBellwetherView /> : null}
-        <Typography variant="body1">
-          {getNumBellwetherText({ n, nSame, ent })}
-          {getPercentageBellwetherText({ error })}
-          {Translate(
-            "Note, however, previous results are not necessarily indicative of future results."
-          )}
-        </Typography>
-      </CustomAlert>
-
+    <CustomAlert>
+      {n === nSame ? <PerfectBellwetherView /> : null}
+      <Typography variant="body1">
+        {getNumBellwetherText({ n, nSame, ent })}
+        {getPercentageBellwetherText({ error })}
+        {Translate(
+          "Note, however, previous results are not necessarily indicative of future results."
+        )}
+      </Typography>
+    </CustomAlert>
   );
 }

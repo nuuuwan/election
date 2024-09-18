@@ -204,7 +204,7 @@ export default function PageHeader() {
 
           <Box sx={{ flexGrow: 1 }} />
 
-          <ResultTimeView entID="LK" sx={{color: "white"}} />
+          <ResultTimeView entID="LK" sx={{ color: "white" }} />
 
           <CustomMenu />
         </Toolbar>

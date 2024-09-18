@@ -30,7 +30,7 @@ class Election extends ElectionBase {
         return election;
       })
     );
-  
+
     return elections.sort((a, b) => a.date.localeCompare(b.date));
   }
 

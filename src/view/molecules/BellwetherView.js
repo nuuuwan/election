@@ -43,7 +43,7 @@ export default function BellwetherView() {
   const ent = pdIdx[activePDID];
 
   return (
-    <Box sx={{ maxWidth: 600 }}>
+
       <CustomAlert>
         {n === nSame ? <PerfectBellwetherView /> : null}
         <Typography variant="body1">
@@ -54,6 +54,6 @@ export default function BellwetherView() {
           )}
         </Typography>
       </CustomAlert>
-    </Box>
+
   );
 }

@@ -2,7 +2,12 @@ import { Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { EntType, Translate } from "../../nonview/base";
 
-export default function EntView({ entID, useLongName = false, sx = {}, direction="column" }) {
+export default function EntView({
+  entID,
+  useLongName = false,
+  sx = {},
+  direction = "column",
+}) {
   const data = useDataContext();
   if (!data) {
     return null;
@@ -18,10 +23,7 @@ export default function EntView({ entID, useLongName = false, sx = {}, direction
   return (
     <Stack
       direction={direction}
-      sx={Object.assign(
-        {alignItems:"center"},
-        sx
-      )}
+      sx={Object.assign({ alignItems: "center" }, sx)}
       gap={1}
     >
       <Typography variant="h5">{Translate(ent.name)}</Typography>

@@ -7,14 +7,13 @@ import {
   Menu,
   MenuItem,
   Toolbar,
-
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import BugReportIcon from "@mui/icons-material/BugReport";
 import { useDataContext } from "../../../nonview/core/DataProvider";
-import {  EntView, ResultTimeView } from "../../../view/atoms";
+import { EntView, ResultTimeView } from "../../../view/atoms";
 import { useState } from "react";
 import { useBasePageHandlerContext } from "./BasePageHandlerProvider";
 import { Translate } from "../../../nonview/base";
@@ -55,7 +54,7 @@ function MenuItemLink({ label, href, Icon }) {
   );
 }
 
-function LangMenuItemList({handleClose, }) {
+function LangMenuItemList({ handleClose }) {
   const data = useDataContext();
   const { setLang } = useBasePageHandlerContext();
   if (!data) {
@@ -65,24 +64,23 @@ function LangMenuItemList({handleClose, }) {
 
   return (
     <>
-    {["si", "ta", "en"].map(function (lang) {
-          const isSelected = lang === selectedLang;
-          const onClick = function () {
-            handleClose();
-            setLang(lang);
-          };
-          return (
-            <MenuItem key={lang} onClick={onClick} disabled={isSelected}>
-              {LANG_TO_LABEL[lang]}
-            </MenuItem>
-          );
-        })}
-        </>
+      {["si", "ta", "en"].map(function (lang) {
+        const isSelected = lang === selectedLang;
+        const onClick = function () {
+          handleClose();
+          setLang(lang);
+        };
+        return (
+          <MenuItem key={lang} onClick={onClick} disabled={isSelected}>
+            {LANG_TO_LABEL[lang]}
+          </MenuItem>
+        );
+      })}
+    </>
   );
 }
 
 function RefreshMenuItem() {
-
   const onClickRefresh = function () {
     localStorage.clear();
     window.location = "/prespoll";
@@ -90,15 +88,15 @@ function RefreshMenuItem() {
 
   return (
     <MenuItem onClick={onClickRefresh}>
-          <ListItemIcon>
-            <RefreshIcon />
-          </ListItemIcon>
-          {Translate("Refresh App")}
-        </MenuItem>
-  )
+      <ListItemIcon>
+        <RefreshIcon />
+      </ListItemIcon>
+      {Translate("Refresh App")}
+    </MenuItem>
+  );
 }
 
-function ElectionMenuItemList({handleClose}) {
+function ElectionMenuItemList({ handleClose }) {
   const data = useDataContext();
   const { setElection } = useBasePageHandlerContext();
   if (!data) {
@@ -107,37 +105,36 @@ function ElectionMenuItemList({handleClose}) {
   const { elections, electionDisplay } = data;
   return (
     <>
-      {elections.slice().reverse().map(function (election, iElection) {
+      {elections
+        .slice()
+        .reverse()
+        .map(function (election, iElection) {
+          const onClick = function () {
+            handleClose();
+            setElection(election);
+          };
 
-        const onClick = function () {
-          handleClose();
-          setElection(election);
-        }
+          const isSelected = election.year === electionDisplay.year;
 
-        const isSelected = election.year === electionDisplay.year;
-        
-        return (
-          <MenuItem key={iElection} onClick={onClick} sx={{color: election.color}}>
-        
-           
-            {election.title}
+          return (
+            <MenuItem
+              key={iElection}
+              onClick={onClick}
+              sx={{ color: election.color }}
+            >
+              {election.title}
 
-            <ListItemIcon>
-                  {isSelected ? (   <Check />) : null}
-          </ListItemIcon>
-          </MenuItem>
-        );
-      
-      })}
+              <ListItemIcon>{isSelected ? <Check /> : null}</ListItemIcon>
+            </MenuItem>
+          );
+        })}
     </>
-  )
+  );
 }
 
 function CustomMenu() {
-
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-
 
   const handleClose = function () {
     setAnchorEl(null);
@@ -145,8 +142,6 @@ function CustomMenu() {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
-
 
   return (
     <>
@@ -168,14 +163,11 @@ function CustomMenu() {
         sx={{ zIndex: 5000 }}
         dense
       >
-
-<ElectionMenuItemList handleClose={handleClose} />
-<Divider />
-
-        <LangMenuItemList handleClose={handleClose}/>
+        <ElectionMenuItemList handleClose={handleClose} />
         <Divider />
 
-   
+        <LangMenuItemList handleClose={handleClose} />
+        <Divider />
 
         <MenuItemLink
           label="Source Code"
@@ -208,14 +200,13 @@ export default function PageHeader() {
     <Box sx={Object.assign({ backgroundColor }, STYLE_PAGE_HEADER.SELECTOR)}>
       <AppBar position="static" sx={{ backgroundColor }}>
         <Toolbar>
-        <EntView entID={activePDID} direction="row" />
+          <EntView entID={activePDID} direction="row" />
 
           <Box sx={{ flexGrow: 1 }} />
-        
-        <ResultTimeView entID="LK" />
-        
+
+          <ResultTimeView entID="LK" />
+
           <CustomMenu />
-          
         </Toolbar>
       </AppBar>
     </Box>

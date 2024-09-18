@@ -1,4 +1,4 @@
-import { MathX, Time, WWW } from "../base";
+import {  Time, WWW } from "../base";
 import Election from "./Election";
 import PartyToVotes from "./PartyToVotes";
 import Result from "./Result";
@@ -6,21 +6,16 @@ import Summary from "./Summary";
 
 export default class OngoingElection {
   static URL =
-    "https://raw.githubusercontent.com/nuuuwan/prespollsl2024_py/main/data/prespollsl2024.json";
+    "https://raw.githubusercontent.com/nuuuwan/prespollsl2024_py/main/data/fake/test-2024.json";
   static getPDResult(data) {
     const summary = Summary.fromDict(data["summary"]);
-
-    let subsetPartyToVotes = data["subset_party_to_votes"];
-    const totalSubsetVotes = MathX.sumValues(subsetPartyToVotes);
-    const otherVotes = summary.valid - totalSubsetVotes;
-    subsetPartyToVotes["OTHERS"] = otherVotes;
-    const partyToVotes = PartyToVotes.fromDict(subsetPartyToVotes);
+    const partyToVotes = PartyToVotes.fromDict(data["party_to_votes"]);
 
     return new Result(
       data["pd_id"],
       summary,
       partyToVotes,
-      data["result_time"]
+      data["result_time"].substring(0, 19)
     );
   }
 

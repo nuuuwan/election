@@ -1,7 +1,7 @@
 import { Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import { Translate } from "../../nonview/base";
+
+import { Time, Translate } from "../../nonview/base";
 
 export default function ResultTimeView({ entID }) {
   const data = useDataContext();
@@ -11,16 +11,23 @@ export default function ResultTimeView({ entID }) {
   const { electionDisplay } = data;
   const result = electionDisplay.resultIdx[entID];
 
-  const label = result.resultTime || Translate("Not available");
-  return (
+  let title = Translate("Not available");
+  let subTitle = null;
+  if (result.resultTime) {
+    const ut = Time.fromString(result.resultTime);
+    title = ut.toDateTimeString();
+    subTitle = ut.secondsFromNowHumanized;
+  }
+
+ return (
+
     <Stack
-      direction="row"
-      alignItems="center"
-      gap={0.3}
+      direction="column"
       sx={{ color: "lightgray" }}
     >
-      <AccessTimeIcon />
-      <Typography variant="body1">{label}</Typography>
+
+      <Typography variant="caption">{title}</Typography>
+      <Typography variant="body1">{subTitle}</Typography>
     </Stack>
   );
 }

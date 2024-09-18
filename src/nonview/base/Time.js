@@ -23,6 +23,10 @@ export default class Time {
     return new Date(this.ut);
   }
 
+  toDetailedString() {
+    return this.toDateTimeString() + " (" + this.secondsFromNowHumanized + ")";
+  }
+
   get yyyymmdd() {
     const date = this.getDate();
     const year = date.getFullYear();
@@ -41,5 +45,26 @@ export default class Time {
     const minutes = String(date.getMinutes()).padStart(2, "0");
 
     return `${year}-${month}-${day} ${hours}:${minutes}`;
+  }
+
+  get secondsFromNow() {
+    return (Time.now().ut - this.ut) / 1000;
+  }
+
+  get secondsFromNowHumanized() {
+    const seconds = this.secondsFromNow;
+    if (seconds < 0) {
+      return "Future";
+    }
+    if (seconds < 60) {
+      return `${Math.floor(seconds)}s ago`;
+    }
+    if (seconds < 60 * 60) {
+      return `${Math.floor(seconds / 60)}m ago`;
+    }
+    if (seconds < 60 * 60 * 24) {
+      return `${Math.floor(seconds / 60 / 60)}h ago`;
+    }
+    return `${Math.floor(seconds / 60 / 60 / 24)}d ago`;
   }
 }

@@ -53,15 +53,54 @@ function MenuItemLink({ label, href, Icon }) {
   );
 }
 
-function CustomMenu() {
+function LangMenuItemList({handleClose, }) {
   const data = useDataContext();
   const { setLang } = useBasePageHandlerContext();
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
   if (!data) {
     return null;
   }
   const { lang: selectedLang } = data;
+
+  return (
+    <>
+    {["si", "ta", "en"].map(function (lang) {
+          const isSelected = lang === selectedLang;
+          const onClick = function () {
+            handleClose();
+            setLang(lang);
+          };
+          return (
+            <MenuItem key={lang} onClick={onClick} disabled={isSelected}>
+              {LANG_TO_LABEL[lang]}
+            </MenuItem>
+          );
+        })}
+        </>
+  );
+}
+
+function RefreshMenuItem() {
+
+  const onClickRefresh = function () {
+    localStorage.clear();
+    window.location = "/prespoll";
+  };
+  
+  return (
+    <MenuItem onClick={onClickRefresh}>
+          <ListItemIcon>
+            <RefreshIcon />
+          </ListItemIcon>
+          {Translate("Refresh App")}
+        </MenuItem>
+  )
+}
+
+function CustomMenu() {
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
 
   const handleClose = function () {
     setAnchorEl(null);
@@ -70,10 +109,7 @@ function CustomMenu() {
     setAnchorEl(event.currentTarget);
   };
 
-  const onClickRefresh = function () {
-    localStorage.clear();
-    window.location = "/prespoll";
-  };
+
 
   return (
     <>
@@ -94,18 +130,7 @@ function CustomMenu() {
         onClose={handleClose}
         sx={{ zIndex: 5000 }}
       >
-        {["si", "ta", "en"].map(function (lang) {
-          const isSelected = lang === selectedLang;
-          const onClick = function () {
-            handleClose();
-            setLang(lang);
-          };
-          return (
-            <MenuItem key={lang} onClick={onClick} disabled={isSelected}>
-              {LANG_TO_LABEL[lang]}
-            </MenuItem>
-          );
-        })}
+        <LangMenuItemList handleClose={handleClose}/>
         <Divider />
 
         <MenuItemLink
@@ -121,12 +146,7 @@ function CustomMenu() {
         />
 
         <Divider />
-        <MenuItem onClick={onClickRefresh}>
-          <ListItemIcon>
-            <RefreshIcon />
-          </ListItemIcon>
-          {Translate("Refresh App")}
-        </MenuItem>
+        <RefreshMenuItem />
       </Menu>
     </>
   );

@@ -15,7 +15,7 @@ const ElectionLoaderMixin = {
       );
       this.isLoaded = true;
     }
-    console.debug('Loaded Election ' + this.year);
+
     
   },
 

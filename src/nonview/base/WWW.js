@@ -23,25 +23,25 @@ export default class WWW {
     return pathFragmentList.join("/");
   }
 
-  static async jsonNonCache(url, timeStamp) {
-    const fetchURL = WWW.getTimeStampedURL(url, timeStamp);
-    console.debug("❄️-WWW.jsonNonCache", fetchURL);
-    const response = await fetch(fetchURL, JSON_HEADERS);
+  static async jsonNonCache(url) {
+    console.debug("❄️-WWW.jsonNonCache", url);
+    const response = await fetch(url, JSON_HEADERS);
     const dataJson = await response.json();
     return dataJson;
   }
 
   static async json(url, timeStamp) {
-    return Cache.get(url, async function () {
-      return WWW.jsonNonCache(url, timeStamp);
+    const fetchURL = WWW.getTimeStampedURL(url, timeStamp);
+    return Cache.get(fetchURL, async function () {
+      return WWW.jsonNonCache(fetchURL);
     });
   }
 
-  static async tsvNonCache(url, timeStamp) {
-    const fetchURL = WWW.getTimeStampedURL(url, timeStamp);
-    console.debug("❄️-WWW.tsvNonCache", fetchURL);
+  static async tsvNonCache(url) {
+
+    console.debug("❄️-WWW.tsvNonCache", url);
     
-    const response = await fetch(fetchURL, TSV_HEADERS);
+    const response = await fetch(url, TSV_HEADERS);
     const content = await response.text();
     const lines = content.split("\n");
     const keys = lines[0].split("\t").map((key) => key.replace("\r", ""));
@@ -63,8 +63,9 @@ export default class WWW {
   }
 
   static async tsv(url, timeStamp) {
-    return Cache.get(url, async function () {
-      return WWW.tsvNonCache(url, timeStamp);
+    const fetchURL = WWW.getTimeStampedURL(url, timeStamp);
+    return Cache.get(fetchURL, async function () {
+      return WWW.tsvNonCache(fetchURL, timeStamp);
     });
   }
 }

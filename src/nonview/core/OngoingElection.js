@@ -25,7 +25,8 @@ export default class OngoingElection {
   }
 
   static async getRawData() {
-    const timeStamp = Time.now().timeIDWithoutSeconds;
+    const timeStamp = Time.now().timeID;
+    console.debug('OngoingElection.getRawData', timeStamp);
     return await WWW.json(OngoingElection.URL, timeStamp);
   }
 

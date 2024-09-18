@@ -11,7 +11,7 @@ export function ResultsReleasedAlert() {
   const { electionDisplay, pdIdx, electionPrevious } = data;
 
   const entID = "LK";
-  const { nResultsTotal, nResultsReleased } = electionDisplay.getReleaseStats(
+  const { nResultsTotal, nResultsReleased, pElectors } = electionDisplay.getReleaseStats(
     entID,
     pdIdx,
     electionPrevious
@@ -21,13 +21,13 @@ export function ResultsReleasedAlert() {
   if (!isComplete) {
     return null;
   }
-
+  
   return (
     <CustomAlert severity="warning">
       <Typography variant="body1">
         {Translate(
-          '"Percentage Released", is an Estimate, based on registered voter statistics, from previous elections.'
-        )}
+          "\"%1 Released\" is an Estimate based on registered voter statistics, from previous elections."
+        , [Format.percent(pElectors)])}
       </Typography>
     </CustomAlert>
   );

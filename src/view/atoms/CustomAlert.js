@@ -10,7 +10,7 @@ export default function CustomAlert({ children, severity = "info" }) {
         m: "auto",
         marginTop: 2,
         borderRadius: 2,
-        maxWidth: 400,
+        maxWidth: 320,
       }}
     >
       {children}

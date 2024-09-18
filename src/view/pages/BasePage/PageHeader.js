@@ -7,16 +7,18 @@ import {
   Menu,
   MenuItem,
   Toolbar,
+
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import BugReportIcon from "@mui/icons-material/BugReport";
 import { useDataContext } from "../../../nonview/core/DataProvider";
-import { ElectionSelector, ResultTimeView } from "../../../view/atoms";
+import {  EntView, ResultTimeView } from "../../../view/atoms";
 import { useState } from "react";
 import { useBasePageHandlerContext } from "./BasePageHandlerProvider";
 import { Translate } from "../../../nonview/base";
+import { Check } from "@mui/icons-material";
 
 const STYLE_PAGE_HEADER = {
   SELECTOR: {
@@ -85,7 +87,7 @@ function RefreshMenuItem() {
     localStorage.clear();
     window.location = "/prespoll";
   };
-  
+
   return (
     <MenuItem onClick={onClickRefresh}>
           <ListItemIcon>
@@ -93,6 +95,41 @@ function RefreshMenuItem() {
           </ListItemIcon>
           {Translate("Refresh App")}
         </MenuItem>
+  )
+}
+
+function ElectionMenuItemList({handleClose}) {
+  const data = useDataContext();
+  const { setElection } = useBasePageHandlerContext();
+  if (!data) {
+    return null;
+  }
+  const { elections, electionDisplay } = data;
+  return (
+    <>
+      {elections.slice().reverse().map(function (election, iElection) {
+
+        const onClick = function () {
+          handleClose();
+          setElection(election);
+        }
+
+        const isSelected = election.year === electionDisplay.year;
+        
+        return (
+          <MenuItem key={iElection} onClick={onClick} sx={{color: election.color}}>
+        
+           
+            {election.title}
+
+            <ListItemIcon>
+                  {isSelected ? (   <Check />) : null}
+          </ListItemIcon>
+          </MenuItem>
+        );
+      
+      })}
+    </>
   )
 }
 
@@ -118,7 +155,7 @@ function CustomMenu() {
         edge="start"
         color="inherit"
         aria-label="menu"
-        sx={{ mr: 2 }}
+        sx={{ ml: 2 }}
         onClick={handleClick}
       >
         <MenuIcon />
@@ -129,9 +166,16 @@ function CustomMenu() {
         open={open}
         onClose={handleClose}
         sx={{ zIndex: 5000 }}
+        dense
       >
+
+<ElectionMenuItemList handleClose={handleClose} />
+<Divider />
+
         <LangMenuItemList handleClose={handleClose}/>
         <Divider />
+
+   
 
         <MenuItemLink
           label="Source Code"
@@ -157,17 +201,21 @@ export default function PageHeader() {
   if (!data) {
     return null;
   }
-  const { electionProjected } = data;
+  const { electionProjected, activePDID } = data;
   const backgroundColor = electionProjected?.color || "gray";
 
   return (
     <Box sx={Object.assign({ backgroundColor }, STYLE_PAGE_HEADER.SELECTOR)}>
       <AppBar position="static" sx={{ backgroundColor }}>
         <Toolbar>
-          <CustomMenu />
+        <EntView entID={activePDID} direction="row" />
 
-          <ElectionSelector colorElection={electionProjected} />
-          <ResultTimeView entID="LK" />
+          <Box sx={{ flexGrow: 1 }} />
+        
+        <ResultTimeView entID="LK" />
+        
+          <CustomMenu />
+          
         </Toolbar>
       </AppBar>
     </Box>

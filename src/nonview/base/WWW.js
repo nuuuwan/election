@@ -24,7 +24,7 @@ export default class WWW {
   }
 
   static async jsonNonCache(url) {
-    console.debug("❄️-WWW.jsonNonCache", url);
+
     const response = await fetch(url, JSON_HEADERS);
     const dataJson = await response.json();
     return dataJson;
@@ -39,7 +39,7 @@ export default class WWW {
 
   static async tsvNonCache(url) {
 
-    console.debug("❄️-WWW.tsvNonCache", url);
+
     
     const response = await fetch(url, TSV_HEADERS);
     const content = await response.text();

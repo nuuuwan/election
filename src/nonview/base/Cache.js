@@ -1,4 +1,9 @@
 export default class Cache {
+  static clear() {
+    localStorage.clear();
+    console.warn("[Cache.clear] localStorage cleared!");
+  }
+
   static async get(cacheKey, asyncFallback) {
     const hotItem = localStorage.getItem(cacheKey);
     if (hotItem) {
@@ -8,26 +13,18 @@ export default class Cache {
     const coldItem = await asyncFallback();
     try {
       const coldItemJSON = JSON.stringify(coldItem);
-      localStorage.setItem(cacheKey, coldItemJSON);
+      
+      
+      // logging 
+      const size = coldItemJSON.length;
+      const sizeK = Math.round(size / 1000);
+      const logger = (sizeK > 500) ? console.warn : console.log;
+      logger(`📦 "${cacheKey}" (${sizeK}KB)`);
+      
     } catch (QuotaExceededError) {
-      localStorage.clear();
-      console.warn("⚠️ localStorage cleared!");
+      Cache.clear();
     }
     return coldItem;
   }
 
-  static getSync(cacheKey, fallback) {
-    const hotItem = localStorage.getItem(cacheKey);
-    if (hotItem) {
-      return JSON.parse(hotItem);
-    }
-
-    const coldItem = fallback();
-    try {
-      localStorage.setItem(cacheKey, JSON.stringify(coldItem));
-    } catch (QuotaExceededError) {
-      localStorage.clear();
-    }
-    return coldItem;
-  }
 }

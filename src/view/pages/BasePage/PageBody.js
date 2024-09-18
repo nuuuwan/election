@@ -26,7 +26,6 @@ export default function PageBody() {
     return null;
   }
   const { electionDisplay } = data;
-  console.debug("🤑", "PageBody");
 
   return (
     <Box sx={STYLE.BOX}>

@@ -8,6 +8,16 @@ const ElectionStaticLoaderMixin = {
       resultList.map((result) => [result.entID, result])
     );
   },
+
+  buildParentResultList(parentIDToChildResultList) {
+    return Object.entries(parentIDToChildResultList).map(function ([
+      parentID,
+      childResultList,
+    ]) {
+      return Result.fromList(parentID, childResultList);
+    });
+  },
+
   buildEDResultList(pdResultList) {
     const edIDToResultList = pdResultList.reduce(function (
       edIDToResultList,
@@ -22,13 +32,7 @@ const ElectionStaticLoaderMixin = {
       return edIDToResultList;
     },
     {});
-    const edResultList = Object.entries(edIDToResultList).map(function ([
-      edID,
-      resultListForED,
-    ]) {
-      return Result.fromList(edID, resultListForED);
-    });
-    return edResultList;
+    return ElectionStaticLoaderMixin.buildParentResultList(edIDToResultList);
   },
 
   buildEZResultList(pdResultList) {
@@ -46,50 +50,36 @@ const ElectionStaticLoaderMixin = {
       return ezIDToResultList;
     },
     {});
-    const ezResultList = Object.entries(ezIDToResultList).map(function ([
-      ezID,
-      resultListForEZ,
-    ]) {
-      return Result.fromList(ezID, resultListForEZ);
-    });
-
-    return ezResultList;
+    return ElectionStaticLoaderMixin.buildParentResultList(ezIDToResultList);
   },
 
-  buildProvinceResultList(pdResultList) {
-    const provinceIDToResultList = pdResultList.reduce(function (
+  buildProvinceResultList(edResultList) {
+    const provinceIDToResultList = edResultList.reduce(function (
       provinceIDToResultList,
-      pdResult
+      edResult
     ) {
-      const pdID = pdResult.entID;
-      const edID = pdID.substring(0, 5);
+      const edID = edResult.entID;
       const provinceID = ElectionStaticUtilsMixin.getProvinceID(edID);
       if (!provinceIDToResultList[provinceID]) {
         provinceIDToResultList[provinceID] = [];
       }
-      provinceIDToResultList[provinceID].push(pdResult);
+      provinceIDToResultList[provinceID].push(edResult);
       return provinceIDToResultList;
     },
     {});
-    const edResultList = Object.entries(provinceIDToResultList).map(function ([
-      edID,
-      resultListForED,
-    ]) {
-      return Result.fromList(edID, resultListForED);
-    });
-    return edResultList;
+    return ElectionStaticLoaderMixin.buildParentResultList(provinceIDToResultList);
   },
 
-  buildLKResult(pdResultList) {
-    return Result.fromList("LK", pdResultList);
+  buildLKResult(childResultList) {
+    return Result.fromList("LK", childResultList);
   },
 
   expand(pdResultList) {
     const edResultList =
       ElectionStaticLoaderMixin.buildEDResultList(pdResultList);
     const provinceResultList =
-      ElectionStaticLoaderMixin.buildProvinceResultList(pdResultList);
-    const lkResult = ElectionStaticLoaderMixin.buildLKResult(pdResultList);
+      ElectionStaticLoaderMixin.buildProvinceResultList(edResultList);
+    const lkResult = ElectionStaticLoaderMixin.buildLKResult(provinceResultList);
 
     const ezResultList =
       ElectionStaticLoaderMixin.buildEZResultList(pdResultList);

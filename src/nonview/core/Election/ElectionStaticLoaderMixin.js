@@ -74,23 +74,6 @@ const ElectionStaticLoaderMixin = {
     return Result.fromList("LK", childResultList);
   },
 
-  expand(pdResultList) {
-    const edResultList =
-      ElectionStaticLoaderMixin.buildEDResultList(pdResultList);
-    const provinceResultList =
-      ElectionStaticLoaderMixin.buildProvinceResultList(edResultList);
-    const resultLK = ElectionStaticLoaderMixin.buildResultLK(provinceResultList);
-
-    const ezResultList =
-      ElectionStaticLoaderMixin.buildEZResultList(pdResultList);
-
-    return {
-      edResultList,
-      provinceResultList,
-      ezResultList,
-      resultLK,
-    };
-  },
 };
 
 export default ElectionStaticLoaderMixin;

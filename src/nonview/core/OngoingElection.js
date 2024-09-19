@@ -46,13 +46,8 @@ export default class OngoingElection {
     // const pdResultList = await OngoingElection.getResultList('pd_id');
     // election.build(pdResultList);
 
-
-    
     const edResultList = await OngoingElection.getResultList('ed_id');
-    console.debug({edResultList});
     election.build(null, edResultList);
-
-
 
     return election;
   }

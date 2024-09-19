@@ -42,6 +42,8 @@ const ElectionStats = {
     }
   },
 
+  // Releases
+
   getReleaseStats(entID, pdIdx, electionPrevious) {
     let nResultsTotal = 0;
     let nResultsReleased = 0;

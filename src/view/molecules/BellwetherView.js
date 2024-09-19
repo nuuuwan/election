@@ -9,18 +9,18 @@ export default function BellwetherView() {
   if (!data) {
     return null;
   }
-  const { pdIdx, electionDisplay, elections, activePDID } = data;
+  const { pdIdx, electionDisplay, elections, activeEntID } = data;
 
   const { n, nSame, error } = Bellwether.getStats(
     elections,
     electionDisplay,
-    activePDID
+    activeEntID
   );
   if (n === 0) {
     return null;
   }
 
-  const ent = pdIdx[activePDID];
+  const ent = pdIdx[activeEntID];
 
   return (
     <CustomAlert>

@@ -33,21 +33,21 @@ function buildRenderMenuItemInner(resultIdx, edIdx) {
 }
 
 export default function PDSelector() {
-  const { setActivePDID } = useBasePageHandlerContext();
+  const { setActiveEntID } = useBasePageHandlerContext();
   const data = useDataContext();
   if (!data) {
     return null;
   }
-  const { electionDisplay, pdIdx, edIdx, activePDID } = data;
+  const { electionDisplay, pdIdx, edIdx, activeEntID } = data;
 
   return (
     <CustomSelect
       dataList={Object.values(pdIdx).filter(function (pd) {
         return electionDisplay.resultIdx[pd.id];
       })}
-      value={pdIdx[activePDID]}
+      value={pdIdx[activeEntID]}
       getID={(pd) => pd?.name}
-      onChange={(pd) => setActivePDID(pd.id)}
+      onChange={(pd) => setActiveEntID(pd.id)}
       renderValue={buildRenderMenuItemInner(electionDisplay.resultIdx, edIdx)}
       renderMenuItemInner={buildRenderMenuItemInner(
         electionDisplay.resultIdx,

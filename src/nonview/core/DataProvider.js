@@ -43,8 +43,8 @@ async function getElectionValues({ electionType, date }) {
 async function getValue(state) {
   const entValues = await getEntValues();
   const electionValues = await getElectionValues(state);
-  const activePDIDDerived = DerivedData.getActivePDID(
-    state.activePDID,
+  const activeEntIDDerived = DerivedData.getActiveEntID(
+    state.activeEntID,
     state.nResultsDisplay,
     electionValues.election
   );
@@ -60,7 +60,7 @@ async function getValue(state) {
   );
   const newState = {
     ...state,
-    activePDID: activePDIDDerived,
+    activeEntID: activeEntIDDerived,
     nResultsDisplay: nResultsDisplayDerived,
   };
   CustomURLContext.set(newState);

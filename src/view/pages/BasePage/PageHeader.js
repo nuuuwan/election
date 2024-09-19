@@ -23,14 +23,14 @@ export default function PageHeader() {
   if (!data) {
     return null;
   }
-  const { electionProjected, activePDID } = data;
+  const { electionProjected, activeEntID } = data;
   const backgroundColor = electionProjected?.color || "gray";
 
   return (
     <Box sx={Object.assign({ backgroundColor }, STYLE_PAGE_HEADER.SELECTOR)}>
       <AppBar position="static" sx={{ backgroundColor }}>
         <Toolbar>
-          <EntView entID={activePDID} direction="row" />
+          <EntView entID={activeEntID} direction="row" />
 
           <Box sx={{ flexGrow: 1 }} />
 

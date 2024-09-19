@@ -2,12 +2,12 @@ import { ElectionModel } from "../../nonview/core";
 import { ArrayX } from "../base";
 
 export default class DerivedData {
-  static getActivePDID(activePDID, nResultsDisplay, election) {
-    if (activePDID) {
-      const iResult = election.pdIDList.indexOf(activePDID);
+  static getActiveEntID(activeEntID, nResultsDisplay, election) {
+    if (activeEntID) {
+      const iResult = election.pdIDList.indexOf(activeEntID);
       if (iResult > -1) {
         if (!nResultsDisplay || iResult < nResultsDisplay) {
-          return activePDID;
+          return activeEntID;
         }
       }
     }

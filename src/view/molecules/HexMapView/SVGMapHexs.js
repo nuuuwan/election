@@ -5,21 +5,21 @@ import { useBasePageHandlerContext } from "../../../view/pages/BasePage/BasePage
 import SVGHexPolygonGroup from "./SVGHexPolygonGroup";
 import SVGHexText from "./SVGHexText";
 
-function getOnClick({ entID, setActivePDID, pdIdx, pdResultList, resultIdx }) {
+function getOnClick({ entID, setActiveEntID, pdIdx, pdResultList, resultIdx }) {
   return function () {
-    const newActivePDID = ActivePDUtils.getNewActivePDID({
+    const newActiveEntID = ActivePDUtils.getNewActiveEntID({
       pdResultList,
       pdIdx,
       entID,
     });
 
-    if (newActivePDID && resultIdx[newActivePDID]) {
-      setActivePDID(newActivePDID);
+    if (newActiveEntID && resultIdx[newActiveEntID]) {
+      setActiveEntID(newActiveEntID);
     }
   };
 }
 
-function getRenderedItem({ entID, points, data, setActivePDID }) {
+function getRenderedItem({ entID, points, data, setActiveEntID }) {
   const { electionDisplay, pdIdx, allRegionIdx, electionPrevious } = data;
   const result = electionDisplay.resultIdx[entID];
 
@@ -32,7 +32,7 @@ function getRenderedItem({ entID, points, data, setActivePDID }) {
 
   const onClick = getOnClick({
     entID,
-    setActivePDID,
+    setActiveEntID,
     pdIdx,
     pdResultList: electionDisplay.pdResultList,
     resultIdx: electionDisplay.resultIdx,
@@ -60,7 +60,7 @@ function getRenderedItem({ entID, points, data, setActivePDID }) {
   };
 }
 
-function getRenderedItems({ mapData, data, setActivePDID }) {
+function getRenderedItems({ mapData, data, setActiveEntID }) {
   const { idx } = mapData;
 
   return Object.entries(idx).map(function ([entID, points]) {
@@ -69,18 +69,18 @@ function getRenderedItems({ mapData, data, setActivePDID }) {
       points,
 
       data,
-      setActivePDID,
+      setActiveEntID,
     });
   });
 }
 
 export default function SVGMapHexs({ mapData }) {
-  const { setActivePDID } = useBasePageHandlerContext();
+  const { setActiveEntID } = useBasePageHandlerContext();
   const data = useDataContext();
   if (!data) {
     return null;
   }
-  const renderedItems = getRenderedItems({ mapData, data, setActivePDID });
+  const renderedItems = getRenderedItems({ mapData, data, setActiveEntID });
 
   return (
     <g>

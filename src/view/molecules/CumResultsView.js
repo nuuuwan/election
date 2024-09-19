@@ -35,7 +35,7 @@ export function CumResultsColumnView({ entID }) {
   if (!data) {
     return null;
   }
-  const { electionDisplay, activePDID } = data;
+  const { electionDisplay, activeEntID } = data;
   const result = electionDisplay.resultIdx[entID];
   if (!result) {
     return null;
@@ -43,7 +43,7 @@ export function CumResultsColumnView({ entID }) {
 
   const contentList = getContentList({ entID, result, electionDisplay });
 
-  const isActiveEnt = activePDID === entID;
+  const isActiveEnt = activeEntID === entID;
   const backgroundColor = isActiveEnt
     ? Color.getColorWithAlpha(result.color, 0.1)
     : "white";

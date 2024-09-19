@@ -8,11 +8,11 @@ export default function LatestResultListView() {
   if (!data) {
     return null;
   }
-  const { pdIdx, electionDisplay, activePDID } = data;
-  const pdEnt = pdIdx[activePDID];
+  const { pdIdx, electionDisplay, activeEntID } = data;
+  const pdEnt = pdIdx[activeEntID];
   const resultIdx = electionDisplay.resultIdx;
 
-  const resultPD = electionDisplay.resultIdx[activePDID];
+  const resultPD = electionDisplay.resultIdx[activeEntID];
   const resultED = resultIdx[pdEnt.d.ed_id];
   const resultProvince = resultIdx[ProvinceUtils.getProvinceIDForPDEnt(pdEnt)];
   const resultLK = resultIdx["LK"];

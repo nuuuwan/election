@@ -10,12 +10,12 @@ function getHandlers(updateState) {
     updateState({ electionType, date, nResultsDisplay: null });
   };
 
-  const setActivePDID = function (activePDID) {
-    updateState({ activePDID });
+  const setActiveEntID = function (activeEntID) {
+    updateState({ activeEntID });
   };
 
   const setNResultsDisplay = function (nResultsDisplay) {
-    updateState({ nResultsDisplay, activePDID: undefined });
+    updateState({ nResultsDisplay, activeEntID: undefined });
   };
 
   const setLang = function (lang) {
@@ -25,7 +25,7 @@ function getHandlers(updateState) {
 
   return {
     setLang,
-    setActivePDID,
+    setActiveEntID,
     setElection,
     setNResultsDisplay,
   };

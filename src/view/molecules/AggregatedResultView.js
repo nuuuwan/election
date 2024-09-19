@@ -3,12 +3,14 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import {
   Box,
   Grid2,
+  Tab,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
+  Tabs,
   Typography,
 } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
@@ -18,7 +20,6 @@ import {
 } from "./CumResultsView";
 import { Bellwether } from "../../nonview/core";
 import { Translate } from "../../nonview/base";
-import { CustomSelect } from "../atoms";
 import { useState } from "react";
 
 function RegionResultListColumnViewGroup({ sortedEntIDs }) {
@@ -139,6 +140,26 @@ function getGroupToEntIDListGetter() {
   };
 }
 
+
+function TabSelector({ value, onChange, dataList }) {
+ return (
+  <Box sx={{justifyContent: "center", display: "flex"}}>
+  <Tabs value={value}>
+    {dataList.map(
+      function(data, iData) {
+        const onClick = function() {
+          onChange(data);
+        }
+        return (
+          <Tab key={iData} value={data} label={Translate(data)} onClick={onClick} />
+        );
+      }
+    )}
+  </Tabs>
+  </Box>
+ )
+}
+
 export default function AggregatedResultView() {
   const data = useDataContext();
 
@@ -153,10 +174,7 @@ export default function AggregatedResultView() {
 
   return (
     <Box>
-      <Typography variant="body1">
-        {Translate("Aggregated Election Results")}
-      </Typography>
-      <CustomSelect value={group} onChange={setGroup} dataList={groupList} />
+      <TabSelector value={group} onChange={setGroup} dataList={groupList} />
 
       <Box
         sx={{

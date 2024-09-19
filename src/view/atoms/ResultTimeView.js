@@ -1,7 +1,7 @@
 import { Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
-import { Time, Translate } from "../../nonview/base";
+import { Time } from "../../nonview/base";
 
 export default function ResultTimeView({ entID, sx }) {
   const data = useDataContext();

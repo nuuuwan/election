@@ -49,7 +49,7 @@ export function CumResultsColumnView({ entID }) {
     : "white";
 
   return (
-    <Box sx={{ backgroundColor, borderRadius: 4, width: 240, p: 1.0, m:0.5 }}>
+    <Box sx={{ backgroundColor, borderRadius: 4, width: 240, p: 1.0, m: 0.5 }}>
       {contentList.map(function (content, i) {
         return (
           <Box
@@ -86,7 +86,11 @@ export function CumResultsViewTableRowView({ entID }) {
         return (
           <TableCell
             key={i}
-            style={{ padding: 12, borderBottom: "1px solid #eee", textAlign: "center" }}
+            style={{
+              padding: 12,
+              borderBottom: "1px solid #eee",
+              textAlign: "center",
+            }}
           >
             {content}
           </TableCell>

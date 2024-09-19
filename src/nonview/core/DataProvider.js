@@ -88,7 +88,7 @@ export default function DataProvider({ children, state }) {
       const loadValue = async function () {
         try {
           const value = await getValue(state);
-          setValue(Object.assign({appTime},value));
+          setValue(Object.assign({ appTime }, value));
         } catch (err) {
           console.error(err);
         }

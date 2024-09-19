@@ -1,4 +1,4 @@
-import { Box,  } from "@mui/material";
+import { Box } from "@mui/material";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import PageHeader from "./PageHeader";
 import PageBody from "./PageBody";

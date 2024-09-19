@@ -41,12 +41,10 @@ export default function BasePage() {
   };
 
   return (
-
-      <DataProvider state={state}>
-        <BasePageHandlerProvider handlers={getHandlers(updateState)}>
-          <BasePageView />
-        </BasePageHandlerProvider>
-      </DataProvider>
-
+    <DataProvider state={state}>
+      <BasePageHandlerProvider handlers={getHandlers(updateState)}>
+        <BasePageView />
+      </BasePageHandlerProvider>
+    </DataProvider>
   );
 }

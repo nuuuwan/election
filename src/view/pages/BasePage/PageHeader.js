@@ -1,8 +1,4 @@
-import {
-  AppBar,
-  Box,
-  Toolbar,
-} from "@mui/material";
+import { AppBar, Box, Toolbar } from "@mui/material";
 
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { EntView, ResultTimeView } from "../../../view/atoms";

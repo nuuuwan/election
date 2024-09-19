@@ -42,4 +42,3 @@ const POLITICAL_PARTY_TO_COLOR = Object.entries(
 }, {});
 
 export default POLITICAL_PARTY_TO_COLOR;
-

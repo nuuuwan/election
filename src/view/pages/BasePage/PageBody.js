@@ -2,7 +2,7 @@ import { Box, Grid2, Typography } from "@mui/material";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 
 import { ArrayX, Format, Translate } from "../../../nonview/base";
-import {Election } from "../../../nonview/core";
+import { Election } from "../../../nonview/core";
 import {
   CustomAlert,
   IfElse,
@@ -18,7 +18,6 @@ import {
 } from "../../molecules";
 import { ResultsReleasedAlert } from "../../atoms/ResultsReleasedTitle";
 
-
 const STYLE = {
   BOX: { paddingTop: 1, paddingBottom: 20 },
 };
@@ -28,12 +27,11 @@ function HistoryAlert() {
   if (!data) {
     return null;
   }
-  const { election, elections,     nResultsDisplay } = data;
+  const { election, elections, nResultsDisplay } = data;
 
   const previousElections = Election.getPreviousElectionsOfSameType(
     elections,
-    election,
-
+    election
   );
 
   const previousElectionsDisplay = previousElections.map(function (
@@ -41,36 +39,29 @@ function HistoryAlert() {
   ) {
     return previousElection.getSubsetElectionByPDIDList(election.pdIDList);
   });
-  
-  
+
   const previousElectionDisplay = ArrayX.last(previousElectionsDisplay);
-  
+
   const year = previousElectionDisplay.year;
   const resultLK = previousElectionDisplay.resultLK;
 
   const winningPartyID = resultLK.partyToVotes.winningPartyID;
   const pWinner = resultLK.partyToVotes.pWinner;
 
-
   return (
     <CustomAlert severity="warning">
-              <Typography variant="body1">
-                {Translate(
-                  "Past History corresponds to the results released so for, and not the final result. "
-                )}
+      <Typography variant="body1">
+        {Translate(
+          "Past History corresponds to the results released so for, and not the final result. "
+        )}
 
-                  {Translate(
-                  "E.g. In %1, for the %2 polling divisions with results released, the %3 led Islandwide, with %4.", [
-                    year,
-                    nResultsDisplay,
-                    winningPartyID,
-                    Format.percent(pWinner),
-                    
-                  ]
-                )}
-              </Typography>
-            </CustomAlert>
-  )
+        {Translate(
+          "E.g. In %1, for the %2 polling divisions with results released, the %3 led Islandwide, with %4.",
+          [year, nResultsDisplay, winningPartyID, Format.percent(pWinner)]
+        )}
+      </Typography>
+    </CustomAlert>
+  );
 }
 
 export default function PageBody() {
@@ -101,16 +92,13 @@ export default function PageBody() {
 
             <HexMapView />
 
-<CustomAlert>
-  <Typography variant="body1">
-    {Translate(
-      "Click on hexagons for Polling Division and Postal Vote results, or the most recent result for Provinces and Electoral Districts."
-    )}
-  </Typography>{" "}
-</CustomAlert>
-
-
-
+            <CustomAlert>
+              <Typography variant="body1">
+                {Translate(
+                  "Click on hexagons for Polling Division and Postal Vote results, or the most recent result for Provinces and Electoral Districts."
+                )}
+              </Typography>{" "}
+            </CustomAlert>
           </Grid2>
           <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
             <ProjectionView />

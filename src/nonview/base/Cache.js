@@ -20,7 +20,6 @@ export default class Cache {
       const sizeK = Math.round(size / 1000);
       const logger = sizeK > 500 ? console.warn : console.log;
       logger(`📦 "${cacheKey}" (${sizeK}KB)`);
-
     } catch (e) {
       console.error(e);
       Cache.clear();

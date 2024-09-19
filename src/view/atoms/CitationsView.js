@@ -7,7 +7,7 @@ export default function CitationsView() {
   if (!data) {
     return null;
   }
-  const {appTime} = data;
+  const { appTime } = data;
 
   const lines = [
     "v" + VERSION.DATETIME_STR,

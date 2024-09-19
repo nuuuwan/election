@@ -20,7 +20,7 @@ export default function ResultTimeView({ entID, sx }) {
   }
 
   return (
-    <Stack direction="column" sx={Object.assign({ color: "lightgray" }, sx)}>
+    <Stack direction="column" sx={Object.assign({ color: "gray" }, sx)}>
       <Typography variant="caption">{title}</Typography>
       <Typography variant="body1">{subTitle}</Typography>
     </Stack>

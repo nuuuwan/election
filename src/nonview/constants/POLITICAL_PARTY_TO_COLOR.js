@@ -43,15 +43,3 @@ const POLITICAL_PARTY_TO_COLOR = Object.entries(
 
 export default POLITICAL_PARTY_TO_COLOR;
 
-const LIGHT_COLORS = [
-  "lightgreen",
-  "lightgray",
-  "pink",
-  "orange",
-  "yellow",
-  "lightgray",
-  "#eee",
-  "white",
-];
-
-export { LIGHT_COLORS };

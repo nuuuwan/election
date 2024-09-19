@@ -7,7 +7,7 @@ export default function InsightFirstPrefWinner({ winningPartyID }) {
     <Box>
       <PartyView partyID={winningPartyID} sx={{ fontSize: 20 }} />
       <Typography variant="h4">
-        {Translate("wins on 1st preferences")}. ✓
+        {Translate("wins")}. ✓
       </Typography>
       <Confidence />
     </Box>

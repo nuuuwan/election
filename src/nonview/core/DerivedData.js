@@ -13,9 +13,9 @@ export default class DerivedData {
     }
 
     if (nResultsDisplay) {
-      return election.pdResultList[nResultsDisplay - 1].entID;
+      return election.resultList[nResultsDisplay - 1].entID;
     }
-    return ArrayX.last(election.pdResultList).entID;
+    return ArrayX.last(election.resultList).entID;
   }
 
   static getNResultsDisplay(nResultsDisplay, election) {
@@ -26,7 +26,7 @@ export default class DerivedData {
     ) {
       return nResultsDisplay;
     }
-    return election.pdResultList.length;
+    return election.resultList.length;
   }
 
   static getPredictedElection(election, electionDisplay, pdIdx, elections) {

@@ -39,6 +39,7 @@ const ElectionLoaderMixin = {
   },
 
   build(pdResultList = null, edResultList = null) {
+
     this.pdResultList = pdResultList || [];
 
     this.edResultList =
@@ -46,6 +47,7 @@ const ElectionLoaderMixin = {
     this.provinceResultList = ElectionStaticLoaderMixin.buildProvinceResultList(
       this.edResultList
     );
+
     this.resultLK = ElectionStaticLoaderMixin.buildResultLK(
       this.provinceResultList
     );
@@ -55,11 +57,11 @@ const ElectionLoaderMixin = {
       : [];
 
     this.resultList = [
-      ...this.pdResultList,
-      ...this.edResultList,
-      ...this.provinceResultList,
-      ...this.ezResultList,
       this.resultLK,
+      ...this.ezResultList,
+      ...this.provinceResultList,
+      ...this.edResultList,
+      ...this.pdResultList,
     ];
 
     this.resultIdx = ElectionStaticLoaderMixin.buildResultIdx(this.resultList);

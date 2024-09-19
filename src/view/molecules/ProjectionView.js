@@ -24,7 +24,7 @@ export default function ProjectionView() {
     electionDisplay.nResults
   );
 
-  if (finalOutcome.isTooEarlyToCall) {
+  if (finalOutcome.isTooMuchError) {
     return (
       <CustomStack>
         <ProjectionTitle />

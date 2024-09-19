@@ -27,18 +27,21 @@ function renderLikelyhoodTable(likelyWinnerPartyInfoList, pErrorHappenning) {
     <table>
       <tbody>
         {renderLikelyhoodTablePartyRows(likelyWinnerPartyInfoList)}
-        <tr>
-          <td style={{ textAlign: "right", padding: 1 }}>
-            <Typography variant="body1">
-              {Format.percent(pErrorHappenning)}
-            </Typography>
-          </td>
-          <td style={{ textAlign: "left", padding: 1 }}>
-            <Typography variant="body2">
-              {Translate("2nd/3rd Preference Counting")}
-            </Typography>
-          </td>
-        </tr>
+        {pErrorHappenning > 0 ? (
+           <tr>
+           <td style={{ textAlign: "right", padding: 1 }}>
+             <Typography variant="body1">
+               {Format.percent(pErrorHappenning)}
+             </Typography>
+           </td>
+           <td style={{ textAlign: "left", padding: 1 }}>
+             <Typography variant="body2">
+               {Translate("2nd/3rd Preference Counting")}
+             </Typography>
+           </td>
+         </tr>
+        ) : null}
+       
       </tbody>
     </table>
   );

@@ -3,8 +3,8 @@ const normalCDF = require("@stdlib/stats-base-dists-normal-cdf");
 
 export default class FinalOutcome {
   static P_BASE = 0.9;
-  static P_TOO_MUCH_ERRORTY = 0.2;
-  static MIN_N_RESULTS = 46;
+  static P_TOO_MUCH_ERROR = 0.2;
+  static MIN_N_RESULTS = -1;
 
   constructor(election, nResultsDisplay) {
     this.election = election;
@@ -27,8 +27,8 @@ export default class FinalOutcome {
     return this.nResultsDisplay <= FinalOutcome.MIN_N_RESULTS;
   }
 
-  get isTooMuchErrorty() {
-    return this.pError > FinalOutcome.P_TOO_MUCH_ERRORTY;
+  get isTooMuchError() {
+    return this.pError > FinalOutcome.P_TOO_MUCH_ERROR;
   }
 
   get hasFirstPrefWinner() {

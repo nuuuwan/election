@@ -22,7 +22,7 @@ function getBarLabel() {
     if (pVotes < PartyToVotes.MIN_P_VOTES) {
       return "";
     }
-    return Format.percent(pVotes);
+    return Format.percentVotes(pVotes);
   };
 }
 

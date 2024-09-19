@@ -4,11 +4,20 @@ import { FinalOutcome } from "../../../nonview/core";
 
 import InsightFirstPrefWinner from "./InsightFirstPrefWinner";
 import InsightTooCloseToCall from "./InsightTooCloseToCall";
-import { MathX, Translate } from "../../../nonview/base";
+import { EntType, MathX, Translate } from "../../../nonview/base";
 import Confidence from "./Confidence";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 
+
 function FinalOutcomeViewComplexPref({ finalOutcome }) {
+  const data = useDataContext();
+  if (!data) {
+    return null;
+  }
+
+  const { electionDisplay } = data;
+
+
   const likelyWinnerPartyInfoList = finalOutcome.likelyWinnerPartyInfoList;
   if (!likelyWinnerPartyInfoList.length) {
     return (
@@ -21,12 +30,20 @@ function FinalOutcomeViewComplexPref({ finalOutcome }) {
     );
   }
 
-  const pErrorHappenning =
-    1 - MathX.sum(likelyWinnerPartyInfoList.map(({ p }) => p));
+  let pErrorHappenning = 0;
+  let likelyWinnerPartyInfoListAdjusted = likelyWinnerPartyInfoList;
+  const sumP = MathX.sum(likelyWinnerPartyInfoList.map(({ p }) => p));
+  if (electionDisplay.baseEntType === EntType.PD) {
+    pErrorHappenning = 1 - sumP;
+  } else if (electionDisplay.baseEntType === EntType.ED) {
+    likelyWinnerPartyInfoListAdjusted = likelyWinnerPartyInfoList.map((d) => Object.assign(d, { p: d.p  + (1 - sumP) / 2 }));
+  } else {
+    throw new Error("Unexpected baseEntType: " + electionDisplay.baseEntType);
+  }
 
   return (
     <InsightTooCloseToCall
-      likelyWinnerPartyInfoList={likelyWinnerPartyInfoList}
+      likelyWinnerPartyInfoList={likelyWinnerPartyInfoListAdjusted}
       pErrorHappenning={pErrorHappenning}
     />
   );
@@ -43,6 +60,7 @@ export default function FinalOutcomeView() {
     electionProjected,
     electionDisplay.nResults
   );
+
 
   if (finalOutcome.hasFirstPrefWinner) {
     return (

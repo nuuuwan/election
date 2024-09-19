@@ -34,24 +34,11 @@ class Election extends ElectionBase {
     return elections.sort((a, b) => a.date.localeCompare(b.date));
   }
 
-  get pdResultList() {
-    const EXCLUDE_PD_IDS = ["EC-11D"];
-    return this.resultList.filter(function (result) {
-      const pdID = result.entID;
-      return (
-        pdID.length === 6 &&
-        !EXCLUDE_PD_IDS.includes(pdID) &&
-        pdID.substring(5, 6) !== "-"
-      );
-    });
-  }
+  // Subset Election
 
   getSubsetElectionByPDResultList(pdResultList) {
-    const resultList = Election.expand(pdResultList);
     const election = new Election(this.electionType, this.date);
-    election.resultList = resultList;
-    election.resultIdx = Election.buildResultIdx(resultList);
-    election.isLoaded = true;
+    election.build(pdResultList);
     return election;
   }
 

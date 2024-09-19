@@ -6,6 +6,12 @@ export default class ElectionBase {
   constructor(electionType, date) {
     this.electionType = electionType;
     this.date = date;
+
+    this.pdResultList = null;
+    this.edResultList = null;
+    this.provinceResultList = null;
+    this.ezResultList = null;
+    this.resultLK = null;
     this.resultList = null;
     this.resultIdx = null;
     this.isLoaded = false;
@@ -80,9 +86,6 @@ export default class ElectionBase {
     return this.finalResult.entID;
   }
 
-  get resultLK() {
-    return this.getResult("LK");
-  }
 
   get pdIDList() {
     return this.pdResultList.map((result) => result.entID);

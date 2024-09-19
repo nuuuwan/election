@@ -8,12 +8,9 @@ const ElectionLoaderMixin = {
     if (this.isFuture) {
       await OngoingElection.loadData(this);
     } else {
-      this.resultList = await this.getResultList();
-      this.resultIdx = ElectionStaticLoaderMixin.buildResultIdx(
-        this.resultList
-      );
-      this.isLoaded = true;
-    }
+      const pdResultList = await this.getPDResultList();
+      this.build(pdResultList);
+          }
   },
 
   async getRawDataList() {
@@ -21,7 +18,7 @@ const ElectionLoaderMixin = {
     return await WWW.tsv(this.urlData, timeStamp);
   },
 
-  async getResultList() {
+  async getPDResultList() {
     const rawData = await this.getRawDataList();
 
     const filteredRawData = rawData.filter(function (d) {
@@ -32,18 +29,38 @@ const ElectionLoaderMixin = {
       return Result.fromDict(d);
     });
 
-    const expandedResultList = ElectionStaticLoaderMixin.expand(pdResultList);
-
-    const sortedResultList = expandedResultList.sort(function (a, b) {
-      const diff1 = (b.resultTime || "").localeCompare(a.resultTime || "");
-      if (diff1 !== 0) {
-        return diff1;
-      }
-
-      return a.summary.valid - b.summary.valid;
+    const sortedPDResultList = pdResultList.sort(function (a, b) {
+      return ((a.resultTime || "").localeCompare((b.resultTime || ""))) || ( a.summary.polled - b.summary.polled);
     });
+    return sortedPDResultList
+  },
 
-    return sortedResultList;
+   build(pdResultList) {
+    this.pdResultList = pdResultList;
+
+    const {
+      edResultList,
+      provinceResultList,
+      ezResultList,
+      resultLK,
+    } = ElectionStaticLoaderMixin.expand(pdResultList);
+
+    this.edResultList = edResultList;
+    this.provinceResultList = provinceResultList;
+    this.ezResultList = ezResultList;
+    this.resultLK = resultLK;
+
+    this.resultList = [
+      ...this.pdResultList,
+      ...this.edResultList,
+      ...this.provinceResultList,
+      ...this.ezResultList,
+      resultLK,
+    ];
+
+    this.resultIdx = ElectionStaticLoaderMixin.buildResultIdx(this.resultList);
+    this.isLoaded = true;
+
   },
 };
 

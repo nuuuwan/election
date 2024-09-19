@@ -70,7 +70,7 @@ const ElectionStaticLoaderMixin = {
     return ElectionStaticLoaderMixin.buildParentResultList(provinceIDToResultList);
   },
 
-  buildLKResult(childResultList) {
+  buildResultLK(childResultList) {
     return Result.fromList("LK", childResultList);
   },
 
@@ -79,18 +79,17 @@ const ElectionStaticLoaderMixin = {
       ElectionStaticLoaderMixin.buildEDResultList(pdResultList);
     const provinceResultList =
       ElectionStaticLoaderMixin.buildProvinceResultList(edResultList);
-    const lkResult = ElectionStaticLoaderMixin.buildLKResult(provinceResultList);
+    const resultLK = ElectionStaticLoaderMixin.buildResultLK(provinceResultList);
 
     const ezResultList =
       ElectionStaticLoaderMixin.buildEZResultList(pdResultList);
 
-    return [
-      lkResult,
-      ...provinceResultList,
-      ...edResultList,
-      ...pdResultList,
-      ...ezResultList,
-    ];
+    return {
+      edResultList,
+      provinceResultList,
+      ezResultList,
+      resultLK,
+    };
   },
 };
 

@@ -87,10 +87,8 @@ export default class ElectionModel {
       this.currentElection.electionType,
       this.currentElection.date
     );
-    election.resultList = this.getProjectedResultList();
-    election.resultList = Election.expand(election.resultList);
-    election.resultIdx = Election.buildResultIdx(election.resultList);
-    election.isLoaded = true;
+    const pdResultList = this.getProjectedResultList();
+    election.build(pdResultList);
     return election;
   }
 }

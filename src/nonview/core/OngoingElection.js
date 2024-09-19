@@ -1,5 +1,4 @@
 import { Time, WWW } from "../base";
-import Election from "./Election";
 import PartyToVotes from "./PartyToVotes";
 import Result from "./Result";
 import Summary from "./Summary";
@@ -45,9 +44,7 @@ export default class OngoingElection {
     }
 
     const pdResultList = await OngoingElection.getPDResultList();
-    election.resultList = Election.expand(pdResultList);
-    election.resultIdx = Election.buildResultIdx(election.resultList);
-    election.isLoaded = true;
+    election.build(pdResultList);
     return election;
   }
 }

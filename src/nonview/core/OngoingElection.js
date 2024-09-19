@@ -4,13 +4,11 @@ import Result from "./Result";
 import Summary from "./Summary";
 
 export default class OngoingElection {
-
-
   static getURL(election) {
-    switch(election.date) {
-      case '2024-09-21':
+    switch (election.date) {
+      case "2024-09-21":
         return "https://raw.githubusercontent.com/nuuuwan/prespollsl2024_py/main/data/fake/test1-2024.json";
-      case '2024-09-22':
+      case "2024-09-22":
         return "https://raw.githubusercontent.com/nuuuwan/prespollsl2024_py/main/data/fake/test2-2024.json";
       default:
         throw new Error("Unknown election date: " + election.date);
@@ -18,10 +16,10 @@ export default class OngoingElection {
   }
 
   static getBaseEntType(election) {
-    switch(election.date) {
-      case '2024-09-21':
+    switch (election.date) {
+      case "2024-09-21":
         return EntType.PD;
-      case '2024-09-22':
+      case "2024-09-22":
         return EntType.ED;
       default:
         throw new Error("Unknown election date: " + election.date);
@@ -29,17 +27,15 @@ export default class OngoingElection {
   }
 
   static getIDKey(election) {
-    switch(election.date) {
-      case '2024-09-21':
-        return 'pd_id';
-      case '2024-09-22':
-        return 'ed_id';
+    switch (election.date) {
+      case "2024-09-21":
+        return "pd_id";
+      case "2024-09-22":
+        return "ed_id";
       default:
         throw new Error("Unknown election date: " + election.date);
     }
   }
-
-
 
   static getResult(data, idKey) {
     const summary = Summary.fromDict(data["summary"]);
@@ -80,7 +76,10 @@ export default class OngoingElection {
     // const pdResultList = await OngoingElection.getResultList('pd_id');
     // election.build(EntType.PD, pdResultList);
 
-    const baseResultList = await OngoingElection.getResultList(election, OngoingElection.getIDKey(election));
+    const baseResultList = await OngoingElection.getResultList(
+      election,
+      OngoingElection.getIDKey(election)
+    );
     election.build(OngoingElection.getBaseEntType(election), baseResultList);
 
     return election;

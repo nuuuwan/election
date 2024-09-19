@@ -12,9 +12,7 @@ function renderLikelyhoodTablePartyRows(likelyWinnerPartyInfoList) {
         <td style={{ textAlign: "left", padding: 1 }}>
           <Stack direction="row" gap={0.5} sx={{ alignItems: "center" }}>
             <PartyView partyID={partyID} />
-            <Typography variant="body2">
-              {Translate("wins")}
-            </Typography>
+            <Typography variant="body2">{Translate("wins")}</Typography>
           </Stack>
         </td>
       </tr>

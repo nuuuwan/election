@@ -5,9 +5,8 @@ import Confidence from "./Confidence";
 export default function InsightFirstPrefWinner({ winningPartyID }) {
   return (
     <Box>
-      <Typography variant="h4" >
-      <PartyView partyID={winningPartyID} sx={{ fontSize: 20, mr:1 }} />
-      
+      <Typography variant="h4">
+        <PartyView partyID={winningPartyID} sx={{ fontSize: 20, mr: 1 }} />
         {Translate("wins")}. ✓
       </Typography>
       <Confidence />

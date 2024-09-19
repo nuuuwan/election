@@ -45,7 +45,7 @@ export default function ResultsReleasedTitle({ mode = "percent" }) {
   if (mode === "percent") {
     return (
       <Box sx={{ marginBottom: 2 }}>
-        <Typography variant="h3" color="gray">
+        <Typography variant="h4" color="gray">
           <span style={{ color: "black" }}>{Format.percent(pElectors)}</span>{" "}
           {Translate("Released")}
         </Typography>
@@ -54,7 +54,7 @@ export default function ResultsReleasedTitle({ mode = "percent" }) {
   }
 
   return (
-    <Typography variant="h3" color="gray" sx={{ marginBottom: 2 }}>
+    <Typography variant="h4" color="gray" sx={{ marginBottom: 2 }}>
       <span style={{ color: "black" }}>
         {Translate("%1 of %2", [nResultsReleased, nResultsTotal])}
       </span>{" "}

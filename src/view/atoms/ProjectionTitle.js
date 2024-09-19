@@ -68,7 +68,7 @@ export default function ProjectionTitle() {
 
   return (
     <Box>
-      <Typography variant="h3" color="secondary">
+      <Typography variant="h4" color="secondary">
         {Translate(title)}
       </Typography>
     </Box>

@@ -7,6 +7,7 @@ export default class ElectionBase {
     this.electionType = electionType;
     this.date = date;
 
+    this.baseEntType = null;
     this.pdResultList = null;
     this.edResultList = null;
     this.provinceResultList = null;

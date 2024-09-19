@@ -1,4 +1,4 @@
-import { Time, WWW } from "../base";
+import { EntType, Time, WWW } from "../base";
 import PartyToVotes from "./PartyToVotes";
 import Result from "./Result";
 import Summary from "./Summary";
@@ -44,7 +44,7 @@ export default class OngoingElection {
     }
 
     const pdResultList = await OngoingElection.getResultList('pd_id');
-    election.build(pdResultList);
+    election.build(EntType.PD, pdResultList);
 
     // const edResultList = await OngoingElection.getResultList('ed_id');
     // election.build(null, edResultList);

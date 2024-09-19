@@ -13,20 +13,20 @@ export default class DerivedData {
     }
 
     if (nResultsDisplay) {
-      return election.resultList[nResultsDisplay - 1].entID;
+      return election.resultList[election.baseResultList - 1].entID;
     }
-    return ArrayX.last(election.resultList).entID;
+    return ArrayX.last(election.baseResultList).entID;
   }
 
   static getNResultsDisplay(nResultsDisplay, election) {
     if (
       (nResultsDisplay || nResultsDisplay === 0) &&
       nResultsDisplay >= 0 &&
-      nResultsDisplay < election.pdResultList.length
+      nResultsDisplay < election.baseResultList.length
     ) {
       return nResultsDisplay;
     }
-    return election.resultList.length;
+    return election.baseResultList.length;
   }
 
   static getPredictedElection(election, electionDisplay, pdIdx, elections) {

@@ -1,3 +1,4 @@
+import { EntType } from "../../base";
 import Election from "../Election/Election";
 import ElectionModelFeatureUtils from "./ElectionModelFeatureUtils";
 import ElectionModelProjectionUtils from "./ElectionModelProjectionUtils";
@@ -88,7 +89,7 @@ export default class ElectionModel {
       this.currentElection.date
     );
     const pdResultList = this.getProjectedResultList();
-    election.build(pdResultList);
+    election.build(EntType.PD, pdResultList);
     return election;
   }
 }

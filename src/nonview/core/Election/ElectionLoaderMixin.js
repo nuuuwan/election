@@ -9,7 +9,7 @@ const ElectionLoaderMixin = {
       await OngoingElection.loadData(this);
     } else {
       const pdResultList = await this.getPDResultList();
-      this.build(pdResultList);
+      this.build(EntType.PD, pdResultList);
     }
   },
 
@@ -38,12 +38,20 @@ const ElectionLoaderMixin = {
     return sortedPDResultList;
   },
 
-  build(pdResultList = null, edResultList = null) {
+  build(baseEntType, baseResultList) {
 
-    this.pdResultList = pdResultList || [];
+    this.baseResultList = baseResultList;
+
+    if (baseEntType === EntType.PD) {
+      this.pdResultList = baseResultList;
+    } else if (baseEntType === EntType.ED) {
+      this.edResultList = baseResultList;
+    } else  {
+      throw new Error("Invalid baseEntType: " + baseEntType);
+    }
 
     this.edResultList =
-      edResultList || ElectionStaticLoaderMixin.buildEDResultList(pdResultList);
+    this.edResultList || ElectionStaticLoaderMixin.buildEDResultList(this.pdResultList);
     this.provinceResultList = ElectionStaticLoaderMixin.buildProvinceResultList(
       this.edResultList
     );
@@ -52,8 +60,8 @@ const ElectionLoaderMixin = {
       this.provinceResultList
     );
 
-    this.ezResultList = pdResultList
-      ? ElectionStaticLoaderMixin.buildEZResultList(pdResultList)
+    this.ezResultList = this.pdResultList
+      ? ElectionStaticLoaderMixin.buildEZResultList(this.pdResultList)
       : [];
 
     this.resultList = [

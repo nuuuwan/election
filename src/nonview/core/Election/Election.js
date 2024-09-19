@@ -7,6 +7,7 @@ import ElectionGetters from "./ElectionGetters.js";
 import ElectionStaticUtilsMixin from "./ElectionStaticUtilsMixin.js";
 import ElectionStaticLoaderMixin from "./ElectionStaticLoaderMixin.js";
 import ElectionLoaderMixin from "./ElectionLoaderMixin.js";
+import EntType from "../../base/EntType.js";
 
 class Election extends ElectionBase {
   getResult(id) {
@@ -38,7 +39,7 @@ class Election extends ElectionBase {
 
   getSubsetElectionByPDResultList(pdResultList) {
     const election = new Election(this.electionType, this.date);
-    election.build(pdResultList);
+    election.build(EntType.PD, pdResultList);
     return election;
   }
 

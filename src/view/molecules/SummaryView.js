@@ -3,16 +3,15 @@ import { Format } from "../../nonview/base";
 import LabelledStat from "../atoms/LabelledStat";
 
 export default function SummaryView({ summary }) {
-
   if (summary.electors === summary.valid) {
     return (
       <Stack direction="row" gap={2} sx={{ margin: "auto", color: "gray" }}>
-      <LabelledStat
-        label="Total Prefs."
-        stat={Format.intHumanize(summary.valid)}
-      />
-    </Stack>
-    )
+        <LabelledStat
+          label="Total Prefs."
+          stat={Format.intHumanize(summary.valid)}
+        />
+      </Stack>
+    );
   }
 
   return (

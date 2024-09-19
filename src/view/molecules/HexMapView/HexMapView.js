@@ -57,15 +57,23 @@ export default function HexMapView() {
   const nParties = Object.keys(partyToWins).length;
 
   return (
-    <svg viewBox={getViewBox(electionDisplay.baseEntType)} fontFamily={THEME_DATA.typography.fontFamily}>
-     
-      {HexMapData.getMapDataList(electionDisplay.baseEntType).map(function (mapData, i) {
+    <svg
+      viewBox={getViewBox(electionDisplay.baseEntType)}
+      fontFamily={THEME_DATA.typography.fontFamily}
+    >
+      {HexMapData.getMapDataList(electionDisplay.baseEntType).map(function (
+        mapData,
+        i
+      ) {
         return <SVGMap key={i} mapData={mapData} />;
       })}
 
-      <SVGTitles  baseEntType={electionDisplay.baseEntType} />
-      <SVGLegendParty baseEntType={electionDisplay.baseEntType}/>
-      <SVGLegendPercentages baseEntType={electionDisplay.baseEntType} nParties={nParties} />
+      <SVGTitles baseEntType={electionDisplay.baseEntType} />
+      <SVGLegendParty baseEntType={electionDisplay.baseEntType} />
+      <SVGLegendPercentages
+        baseEntType={electionDisplay.baseEntType}
+        nParties={nParties}
+      />
     </svg>
   );
 }

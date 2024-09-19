@@ -3,7 +3,6 @@ import { useDataContext } from "../../nonview/core/DataProvider";
 import { Format, Translate } from "../../nonview/base";
 import CustomAlert from "./CustomAlert";
 
-
 export function ResultsReleasedAlert() {
   const data = useDataContext();
   if (!data) {

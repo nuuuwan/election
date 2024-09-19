@@ -8,7 +8,6 @@ import { EntType, MathX, Translate } from "../../../nonview/base";
 import Confidence from "./Confidence";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 
-
 function FinalOutcomeViewComplexPref({ finalOutcome }) {
   const data = useDataContext();
   if (!data) {
@@ -16,7 +15,6 @@ function FinalOutcomeViewComplexPref({ finalOutcome }) {
   }
 
   const { electionDisplay } = data;
-
 
   const likelyWinnerPartyInfoList = finalOutcome.likelyWinnerPartyInfoList;
   if (!likelyWinnerPartyInfoList.length) {
@@ -36,7 +34,9 @@ function FinalOutcomeViewComplexPref({ finalOutcome }) {
   if (electionDisplay.baseEntType === EntType.PD) {
     pErrorHappenning = 1 - sumP;
   } else if (electionDisplay.baseEntType === EntType.ED) {
-    likelyWinnerPartyInfoListAdjusted = likelyWinnerPartyInfoList.map((d) => Object.assign(d, { p: d.p  + (1 - sumP) / 2 }));
+    likelyWinnerPartyInfoListAdjusted = likelyWinnerPartyInfoList.map((d) =>
+      Object.assign(d, { p: d.p + (1 - sumP) / 2 })
+    );
   } else {
     throw new Error("Unexpected baseEntType: " + electionDisplay.baseEntType);
   }
@@ -60,7 +60,6 @@ export default function FinalOutcomeView() {
     electionProjected,
     electionDisplay.nResults
   );
-
 
   if (finalOutcome.hasFirstPrefWinner) {
     return (

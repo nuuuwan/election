@@ -82,17 +82,17 @@ const ElectionStats = {
     return nResultsReleased === nResultsTotal;
   },
 
-  // Ent 
+  // Ent
   getEntIdx(data) {
     switch (this.baseEntType) {
       case EntType.PD:
         return data.pdIdx;
       case EntType.ED:
         return data.edIdx;
-     default:
+      default:
         throw new Error("Unknown baseEntType: " + this.baseEntType);
     }
-  }
+  },
 };
 
 export default ElectionStats;

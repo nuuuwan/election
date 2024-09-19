@@ -15,15 +15,15 @@ function getXY(baseEntType) {
     default:
       throw new Error("Unknown baseEntType: " + baseEntType);
   }
-} 
+}
 
-export default function SVGLegendParty({baseEntType }) {
+export default function SVGLegendParty({ baseEntType }) {
   const data = useDataContext();
   if (!data) {
     return null;
   }
   const { electionDisplay } = data;
-  const {x, y} = getXY(baseEntType);
+  const { x, y } = getXY(baseEntType);
   return Object.keys(electionDisplay.getPartyToWins()).map(function (
     partyID,
     i

@@ -13,12 +13,12 @@ function getXY(baseEntType, nParties) {
     default:
       throw new Error("Unknown baseEntType: " + baseEntType);
   }
-} 
+}
 
 export default function SVGLegendPercentages({ baseEntType, nParties }) {
   const N_COLS = 2;
 
-  const {x,y } = getXY(baseEntType, nParties);
+  const { x, y } = getXY(baseEntType, nParties);
 
   return [0.5, 0.6, 0.7].map(function (p, i) {
     const [x1, y1] = [

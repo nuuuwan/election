@@ -72,7 +72,7 @@ async function getValue(state) {
     {},
     newState,
     entValues,
-    {entIdx: entIdx},
+    { entIdx: entIdx },
     electionValues,
     derivedElectionValues
   );

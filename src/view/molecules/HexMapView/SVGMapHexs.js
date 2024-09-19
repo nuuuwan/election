@@ -5,7 +5,13 @@ import { useBasePageHandlerContext } from "../../../view/pages/BasePage/BasePage
 import SVGHexPolygonGroup from "./SVGHexPolygonGroup";
 import SVGHexText from "./SVGHexText";
 
-function getOnClick({ entID, setActiveEntID, entIdx, baseResultList, resultIdx }) {
+function getOnClick({
+  entID,
+  setActiveEntID,
+  entIdx,
+  baseResultList,
+  resultIdx,
+}) {
   return function () {
     const newActiveEntID = ActivePDUtils.getNewActiveEntID({
       baseResultList,
@@ -20,7 +26,7 @@ function getOnClick({ entID, setActiveEntID, entIdx, baseResultList, resultIdx }
 }
 
 function getRenderedItem({ entID, points, data, setActiveEntID }) {
-  const { electionDisplay,  allRegionIdx, electionPrevious, entIdx } = data;
+  const { electionDisplay, allRegionIdx, electionPrevious, entIdx } = data;
   const result = electionDisplay.resultIdx[entID];
 
   let color = "ghostwhite";

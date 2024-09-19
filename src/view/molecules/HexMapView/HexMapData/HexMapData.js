@@ -2,6 +2,7 @@ import HEXMAP_DATA_ED from "./HEXMAP_DATA_ED_UNITS";
 import HEXMAP_DATA_PD from "./HEXMAP_DATA_PD_UNITS";
 import HEXMAP_DATA_PROVINCE from "./HEXMAP_DATA_PROVINCE_UNITS";
 import HEXMAP_DATA_POSTAL_PD from "./HEXMAP_DATA_ED_UNITS";
+import { EntType } from "../../../../nonview/base";
 
 export default class HexMapData {
   static offsetData(originalData, idSuffix, [offsetX, offsetY]) {
@@ -43,29 +44,26 @@ export default class HexMapData {
     return Object.assign({}, HEXMAP_DATA_ED, { idx, idx2 });
   }
 
-  static getPDMapData() {
-    return HEXMAP_DATA_PD;
-  }
+  static getMapDataList(baseEntType) {
 
-  static getPostalPDMapData() {
-    return HexMapData.offsetData(HEXMAP_DATA_POSTAL_PD, "P", [-5, 2]);
-  }
+    switch(baseEntType) {
+      case EntType.PD:
+        return [
+          HEXMAP_DATA_PD,
+          HexMapData.offsetData(HEXMAP_DATA_POSTAL_PD, "P", [-5, 2]),
+    
+          HexMapData.offsetData(HEXMAP_DATA_PROVINCE, "", [-5, 9]),
+          HexMapData.offsetData(HEXMAP_DATA_ED, "", [-5, 14]),
+        ];
+      case EntType.ED:
+        return [    
+          HexMapData.offsetData(HEXMAP_DATA_ED, "", [0, 0]),
+          HexMapData.offsetData(HEXMAP_DATA_PROVINCE, "", [6, 4]),
+        ];
+      default:
+        throw new Error("Unknown baseEntType: " + baseEntType);
+    }
 
-  static getProvinceMapData() {
-    return HexMapData.offsetData(HEXMAP_DATA_PROVINCE, "", [-5, 9]);
-  }
 
-  static getEDMapData() {
-    return HexMapData.offsetData(HEXMAP_DATA_ED, "", [-5, 14]);
-  }
-
-  static getMapDataList() {
-    return [
-      HexMapData.getPDMapData(),
-      HexMapData.getPostalPDMapData(),
-
-      HexMapData.getProvinceMapData(),
-      HexMapData.getEDMapData(),
-    ];
   }
 }

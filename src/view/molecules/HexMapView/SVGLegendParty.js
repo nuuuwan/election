@@ -1,3 +1,4 @@
+import { EntType } from "../../../nonview/base";
 import { Party } from "../../../nonview/core";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { THEME_DATA } from "../../_constants/THEME";
@@ -5,12 +6,24 @@ import { THEME_DATA } from "../../_constants/THEME";
 import SVGHexPolygon from "./SVGHexPolygon";
 import SVGHexText from "./SVGHexText";
 
-export default function SVGLegendParty({ x, y }) {
+function getXY(baseEntType) {
+  switch (baseEntType) {
+    case EntType.PD:
+      return { x: 8, y: 3 };
+    case EntType.ED:
+      return { x: 5, y: 0 };
+    default:
+      throw new Error("Unknown baseEntType: " + baseEntType);
+  }
+} 
+
+export default function SVGLegendParty({baseEntType }) {
   const data = useDataContext();
   if (!data) {
     return null;
   }
   const { electionDisplay } = data;
+  const {x, y} = getXY(baseEntType);
   return Object.keys(electionDisplay.getPartyToWins()).map(function (
     partyID,
     i

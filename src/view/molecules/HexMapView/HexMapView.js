@@ -6,8 +6,8 @@ import HexMapData from "./HexMapData/HexMapData";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { THEME_DATA } from "../../_constants/THEME";
 
-function getBBox() {
-  const mapData = HexMapData.getMapDataList().reduce(function (
+function getBBox(baseEntType) {
+  const mapData = HexMapData.getMapDataList(baseEntType).reduce(function (
     mapData,
     { idx }
   ) {
@@ -35,14 +35,14 @@ function getBBox() {
   return [minX - 2, minY - 1, maxX + 1, maxY + 4];
 }
 
-function getViewBoxDims() {
-  const [minX, minY, maxX, maxY] = getBBox();
+function getViewBoxDims(baseEntType) {
+  const [minX, minY, maxX, maxY] = getBBox(baseEntType);
   const [width, height] = [maxX - minX, maxY - minY];
   return [minX, minY, width, height];
 }
 
-function getViewBox() {
-  const [minX, minY, width, height] = getViewBoxDims();
+function getViewBox(baseEntType) {
+  const [minX, minY, width, height] = getViewBoxDims(baseEntType);
   return `${minX} ${minY} ${width} ${height}`;
 }
 
@@ -56,19 +56,16 @@ export default function HexMapView() {
   const partyToWins = electionDisplay.getPartyToWins();
   const nParties = Object.keys(partyToWins).length;
 
-  const [minX, minY, width, height] = getViewBoxDims();
-
   return (
-    <svg viewBox={getViewBox()} fontFamily={THEME_DATA.typography.fontFamily}>
-      <rect x={minX} y={minY} width={width} height={height} fill={"#fff"} />
-
-      {HexMapData.getMapDataList().map(function (mapData, i) {
+    <svg viewBox={getViewBox(electionDisplay.baseEntType)} fontFamily={THEME_DATA.typography.fontFamily}>
+     
+      {HexMapData.getMapDataList(electionDisplay.baseEntType).map(function (mapData, i) {
         return <SVGMap key={i} mapData={mapData} />;
       })}
 
-      <SVGTitles />
-      <SVGLegendParty x={8} y={3} />
-      <SVGLegendPercentages x={9 + nParties / THEME_DATA.HEXMAP.N_COLS} y={3} />
+      <SVGTitles  baseEntType={electionDisplay.baseEntType} />
+      <SVGLegendParty baseEntType={electionDisplay.baseEntType}/>
+      <SVGLegendPercentages baseEntType={electionDisplay.baseEntType} nParties={nParties} />
     </svg>
   );
 }

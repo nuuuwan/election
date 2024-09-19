@@ -35,13 +35,15 @@ const ElectionLoaderMixin = {
     return sortedPDResultList
   },
 
-   build(pdResultList) {
-    this.pdResultList = pdResultList;
+   build(pdResultList=null, edResultList=null) {
 
-    this.edResultList = ElectionStaticLoaderMixin.buildEDResultList(pdResultList);;
-    this.provinceResultList = ElectionStaticLoaderMixin.buildProvinceResultList(this.edResultList);;
-    this.ezResultList = ElectionStaticLoaderMixin.buildEZResultList(pdResultList);;
+    this.pdResultList = pdResultList || [];
+
+    this.edResultList = edResultList || ElectionStaticLoaderMixin.buildEDResultList(pdResultList);
+    this.provinceResultList = ElectionStaticLoaderMixin.buildProvinceResultList(this.edResultList);
     this.resultLK = ElectionStaticLoaderMixin.buildResultLK(this.provinceResultList);
+
+    this.ezResultList = pdResultList ? ElectionStaticLoaderMixin.buildEZResultList(pdResultList) : [];  
 
     this.resultList = [
       ...this.pdResultList,

@@ -2,18 +2,18 @@ import { Box, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { Format, Translate } from "../../nonview/base";
 import CustomAlert from "./CustomAlert";
-import { Election } from "../../nonview/core";
+
 
 export function ResultsReleasedAlert() {
   const data = useDataContext();
   if (!data) {
     return null;
   }
-  const { electionDisplay, pdIdx, electionPrevious } = data;
+  const { electionDisplay, entIdx, electionPrevious } = data;
 
   const entID = "LK";
   const { nResultsTotal, nResultsReleased, pElectors } =
-    electionDisplay.getReleaseStats(entID, pdIdx, electionPrevious);
+    electionDisplay.getReleaseStats(entID, entIdx, electionPrevious);
 
   const isComplete = nResultsReleased < nResultsTotal;
   if (!isComplete) {

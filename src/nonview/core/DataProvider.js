@@ -53,14 +53,7 @@ async function getValue(state) {
     electionValues.election
   );
 
-  let entIdx;
-  if (electionValues.election.baseEntType === EntType.PD) {
-    entIdx = entValues.pdIdx;
-  } else if (electionValues.election.baseEntType === EntType.ED) {
-    entIdx = entValues.edIdx;
-  } else {
-    throw new Error("Unknown EntType: " + electionValues.election.baseEntType);
-  }
+  const entIdx = electionValues.election.getEntIdx(entValues);
 
   const derivedElectionValues = DerivedData.getDerived(
     nResultsDisplayDerived,
@@ -79,6 +72,7 @@ async function getValue(state) {
     {},
     newState,
     entValues,
+    {entIdx: entIdx},
     electionValues,
     derivedElectionValues
   );

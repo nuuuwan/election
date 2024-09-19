@@ -9,9 +9,9 @@ export default function ResultsReleasedView({ entID }) {
   if (!data) {
     return null;
   }
-  const { electionDisplay,  electionPrevious } = data;
+  const { electionDisplay,  electionPrevious, entIdx } = data;
 
-  const entIdx = electionDisplay.getEntIdx(data);
+
 
   const { nResultsTotal, nResultsReleased, pElectors } =
     electionDisplay.getReleaseStats(entID, entIdx, electionPrevious);

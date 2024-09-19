@@ -86,7 +86,7 @@ export function CumResultsViewTableRowView({ entID }) {
         return (
           <TableCell
             key={i}
-            style={{ padding: 12, borderBottom: "1px solid #eee" }}
+            style={{ padding: 12, borderBottom: "1px solid #eee", textAlign: "center" }}
           >
             {content}
           </TableCell>

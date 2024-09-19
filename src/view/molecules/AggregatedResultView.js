@@ -51,7 +51,7 @@ function RegionResultListTableView({ sortedEntIDs }) {
               "Time Updated",
             ].map(function (title, iTitle) {
               return (
-                <TableCell key={iTitle}>
+                <TableCell key={iTitle} sx={{textAlign: "center"}}>
                   <Typography variant="h6" color="secondary">
                     {Translate(title)}
                   </Typography>

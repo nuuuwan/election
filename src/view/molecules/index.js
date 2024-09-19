@@ -4,6 +4,7 @@ import BellwetherView from "./BellwetherView";
 import CumResultsView from "./CumResultsView";
 import FinalOutcomeView from "./FinalOutcomeView";
 import HexMapView from "./HexMapView";
+import CustomMenu from "./CustomMenu";
 import HistoryView from "./HistoryView";
 import LatestResultListView from "./LatestResultListView";
 import PartyToVotesStatsView from "./PartyToVotesStatsView";
@@ -18,6 +19,7 @@ export {
   CumResultsView,
   FinalOutcomeView,
   HexMapView,
+  CustomMenu,
   HistoryView,
   LatestResultListView,
   PartyToVotesStatsView,

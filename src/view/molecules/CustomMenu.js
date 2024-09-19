@@ -60,6 +60,7 @@ import {
           };
           return (
             <MenuItem key={lang} onClick={onClick} disabled={isSelected}>
+                                <ListItemIcon>{isSelected ? <Check /> : null}</ListItemIcon>
               {LANG_TO_LABEL[lang]}
             </MenuItem>
           );
@@ -110,9 +111,10 @@ import {
                 onClick={onClick}
                 sx={{ color: election.color }}
               >
+                 <ListItemIcon>{isSelected ? <Check /> : null}</ListItemIcon>
                 {election.title}
   
-                <ListItemIcon>{isSelected ? <Check /> : null}</ListItemIcon>
+               
               </MenuItem>
             );
           })}

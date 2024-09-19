@@ -44,14 +44,14 @@ const ElectionStats = {
 
   // Releases
 
-  getReleaseStats(entID, pdIdx, electionPrevious) {
+  getReleaseStats(entID, entIdx, electionPrevious) {
     let nResultsTotal = 0;
     let nResultsReleased = 0;
 
     let electors = 0;
     let electorsReleased = 0;
 
-    for (let [id, ent] of Object.entries(pdIdx)) {
+    for (let [id, ent] of Object.entries(entIdx)) {
       const parentID = this.getParentID(entID, ent);
 
       if (parentID === entID) {
@@ -81,6 +81,18 @@ const ElectionStats = {
     );
     return nResultsReleased === nResultsTotal;
   },
+
+  // Ent 
+  getEntIdx(data) {
+    switch (this.baseEntType) {
+      case EntType.PD:
+        return data.pdIdx;
+      case EntType.ED:
+        return data.edIdx;
+     default:
+        throw new Error("Unknown baseEntType: " + this.baseEntType);
+    }
+  }
 };
 
 export default ElectionStats;

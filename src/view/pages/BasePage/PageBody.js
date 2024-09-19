@@ -52,11 +52,7 @@ function HistoryAlert() {
     <CustomAlert severity="warning">
       <Typography variant="body1">
         {Translate(
-          "Past History corresponds to the results released so for, and not the final result. "
-        )}
-
-        {Translate(
-          "E.g. In %1, for the %2 polling divisions with results released, the %3 led Islandwide, with %4.",
+          "Past history refers to results released so far, not the final outcome. For example, in %1, in the %2 polling divisions where results had been released, the %3 was leading nationwide with %4.",
           [year, nResultsDisplay, winningPartyID, Format.percent(pWinner)]
         )}
       </Typography>
@@ -95,7 +91,7 @@ export default function PageBody() {
             <CustomAlert>
               <Typography variant="body1">
                 {Translate(
-                  "Click on hexagons for Polling Division and Postal Vote results, or the most recent result for Provinces and Electoral Districts."
+                  "Click on the hexagons to view Polling Division and Postal Vote results, or to see the most recent results for Provinces and Electoral Districts."
                 )}
               </Typography>{" "}
             </CustomAlert>

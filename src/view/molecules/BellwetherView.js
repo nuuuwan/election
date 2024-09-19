@@ -4,25 +4,7 @@ import { Format, Translate } from "../../nonview/base";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { CustomAlert } from "../atoms";
 
-function PerfectBellwetherView() {
-  return (
-    <Typography variant="h6">{Translate("Perfect Bellwether")}</Typography>
-  );
-}
 
-function getNumBellwetherText({ n, nSame, ent }) {
-  return Translate(
-    "Results in %1 have matched the Final National Result in %2/%3 previous Presidential Elections. ",
-    [Translate(ent.name), nSame, n]
-  );
-}
-
-function getPercentageBellwetherText({ error }) {
-  return Translate(
-    "Historically, Party Vote percentages, have varied from the National Result by %1, on average. ",
-    [Format.percent(error)]
-  );
-}
 
 export default function BellwetherView() {
   const data = useDataContext();
@@ -44,13 +26,10 @@ export default function BellwetherView() {
 
   return (
     <CustomAlert>
-      {n === nSame ? <PerfectBellwetherView /> : null}
       <Typography variant="body1">
-        {getNumBellwetherText({ n, nSame, ent })}
-        {getPercentageBellwetherText({ error })}
         {Translate(
-          "Note, however, previous results are not necessarily indicative of future results."
-        )}
+          "In %1 out of the last %2 Presidential Elections, the candidate who won in %3 also won nationally. Historically, the average variation in party vote percentages from the national result has been %4. However, it's important to note that past performance does not guarantee future outcomes."
+        , [nSame, n, ent.name, Format.percent(error)])}
       </Typography>
     </CustomAlert>
   );

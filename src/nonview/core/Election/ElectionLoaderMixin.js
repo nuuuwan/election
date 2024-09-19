@@ -1,5 +1,4 @@
-import { WWW } from "../../base/index.js";
-
+import { WWW, EntType } from "../../base";
 import Result from "../Result.js";
 
 import OngoingElection from "../OngoingElection.js";
@@ -26,14 +25,14 @@ const ElectionLoaderMixin = {
     const rawData = await this.getRawDataList();
 
     const filteredRawData = rawData.filter(function (d) {
-      return d.entity_id.startsWith("EC-") && d.entity_id.length >= 6;
+      return EntType.fromID(d['entity_id']) === EntType.PD;
     });
 
-    const resultList = filteredRawData.map(function (d) {
+    const pdResultList = filteredRawData.map(function (d) {
       return Result.fromDict(d);
     });
 
-    const expandedResultList = ElectionStaticLoaderMixin.expand(resultList);
+    const expandedResultList = ElectionStaticLoaderMixin.expand(pdResultList);
 
     const sortedResultList = expandedResultList.sort(function (a, b) {
       const diff1 = (b.resultTime || "").localeCompare(a.resultTime || "");

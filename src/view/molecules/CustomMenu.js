@@ -99,7 +99,7 @@ function ElectionMenuItemList({ handleClose }) {
             setElection(election);
           };
 
-          const isSelected = election.year === electionDisplay.year;
+          const isSelected = election.date === electionDisplay.date;
 
           return (
             <MenuItem

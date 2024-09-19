@@ -3,6 +3,7 @@ const ELECTION_LIST_TUPLES = [
   // ["Parliamentary", "2025-08-05"],
 
   // Presidential
+  ["Presidential", "2024-09-22"],
   ["Presidential", "2024-09-21"],
   ["Presidential", "2019-11-16"],
   ["Presidential", "2015-01-08"],

@@ -4,8 +4,42 @@ import Result from "./Result";
 import Summary from "./Summary";
 
 export default class OngoingElection {
-  static URL =
-    "https://raw.githubusercontent.com/nuuuwan/prespollsl2024_py/main/data/fake/test2-2024.json";
+
+
+  static getURL(election) {
+    switch(election.date) {
+      case '2024-09-21':
+        return "https://raw.githubusercontent.com/nuuuwan/prespollsl2024_py/main/data/fake/test1-2024.json";
+      case '2024-09-22':
+        return "https://raw.githubusercontent.com/nuuuwan/prespollsl2024_py/main/data/fake/test2-2024.json";
+      default:
+        throw new Error("Unknown election date: " + election.date);
+    }
+  }
+
+  static getBaseEntType(election) {
+    switch(election.date) {
+      case '2024-09-21':
+        return EntType.PD;
+      case '2024-09-22':
+        return EntType.ED;
+      default:
+        throw new Error("Unknown election date: " + election.date);
+    }
+  }
+
+  static getIDKey(election) {
+    switch(election.date) {
+      case '2024-09-21':
+        return 'pd_id';
+      case '2024-09-22':
+        return 'ed_id';
+      default:
+        throw new Error("Unknown election date: " + election.date);
+    }
+  }
+
+
 
   static getResult(data, idKey) {
     const summary = Summary.fromDict(data["summary"]);
@@ -19,13 +53,13 @@ export default class OngoingElection {
     );
   }
 
-  static async getRawData() {
+  static async getRawData(election) {
     const timeStamp = Time.now().timeID;
-    return await WWW.json(OngoingElection.URL, timeStamp);
+    return await WWW.json(OngoingElection.getURL(election), timeStamp);
   }
 
-  static async getResultList(idKey) {
-    const rawDataList = await OngoingElection.getRawData();
+  static async getResultList(election, idKey) {
+    const rawDataList = await OngoingElection.getRawData(election);
     return rawDataList
       .filter(function (data) {
         return data["result_time"] !== 0;
@@ -46,8 +80,8 @@ export default class OngoingElection {
     // const pdResultList = await OngoingElection.getResultList('pd_id');
     // election.build(EntType.PD, pdResultList);
 
-    const edResultList = await OngoingElection.getResultList("ed_id");
-    election.build(EntType.ED, edResultList);
+    const baseResultList = await OngoingElection.getResultList(election, OngoingElection.getIDKey(election));
+    election.build(OngoingElection.getBaseEntType(election), baseResultList);
 
     return election;
   }

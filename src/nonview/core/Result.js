@@ -19,7 +19,6 @@ export default class Result {
   }
 
   static fromList(entID, resultList) {
-
     if (resultList.length === 0) {
       throw new Error("No resultList: " + entID);
     }

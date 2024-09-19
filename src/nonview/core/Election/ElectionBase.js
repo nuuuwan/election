@@ -82,6 +82,4 @@ export default class ElectionBase {
   get baseEntIDList() {
     return this.baseResultList.map((result) => result.entID);
   }
-
-
 }

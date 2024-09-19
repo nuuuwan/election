@@ -8,7 +8,6 @@ import ElectionStaticUtilsMixin from "./ElectionStaticUtilsMixin.js";
 import ElectionStaticLoaderMixin from "./ElectionStaticLoaderMixin.js";
 import ElectionLoaderMixin from "./ElectionLoaderMixin.js";
 
-
 class Election extends ElectionBase {
   getResult(id) {
     if (!this.isLoaded) {

@@ -10,12 +10,12 @@ export default function LatestResultListView() {
   }
   const { allRegionIdx, electionDisplay, activeEntID } = data;
   const resultIdx = electionDisplay.resultIdx;
-   
+
   const ent = allRegionIdx[activeEntID];
 
   let resultList, resultBaseEnt;
   const resultLK = resultIdx["LK"];
-    
+
   if (electionDisplay.baseEntType === EntType.PD) {
     const resultPD = electionDisplay.resultIdx[activeEntID];
     const resultED = resultIdx[ent.d.ed_id];
@@ -24,12 +24,11 @@ export default function LatestResultListView() {
     resultBaseEnt = resultPD;
   } else if (electionDisplay.baseEntType === EntType.ED) {
     const resultED = resultIdx[activeEntID];
-    const resultProvince = resultIdx[ProvinceUtils.getProvinceIDForEDID(activeEntID)];
+    const resultProvince =
+      resultIdx[ProvinceUtils.getProvinceIDForEDID(activeEntID)];
     resultList = [resultED, resultProvince, resultLK];
-    resultBaseEnt = resultED
+    resultBaseEnt = resultED;
   }
-
-  
 
   return (
     <Stack direction="column" sx={{ color: resultBaseEnt.color }}>

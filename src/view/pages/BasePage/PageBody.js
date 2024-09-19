@@ -37,7 +37,9 @@ function HistoryAlert() {
   const previousElectionsDisplay = previousElections.map(function (
     previousElection
   ) {
-    return previousElection.getSubsetElectionByEntIDList(election.baseEntIDList);
+    return previousElection.getSubsetElectionByEntIDList(
+      election.baseEntIDList
+    );
   });
 
   const previousElectionDisplay = ArrayX.last(previousElectionsDisplay);

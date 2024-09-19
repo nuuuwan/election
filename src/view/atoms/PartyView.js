@@ -7,7 +7,6 @@ const STYLE_LABEL = {
   borderRadius: 1,
   width: 22,
   textAlign: "center",
-  fontSize: "45%",
 };
 
 export default function PartyView({ partyID, sx }) {
@@ -17,11 +16,10 @@ export default function PartyView({ partyID, sx }) {
   const party = Party.fromID(partyID);
   let label = partyID;
 
-  if (label.startsWith("IND")) {
-    label = "I-" + label.substring(3);
-  }
-  if (label.length > 4) {
-    label = label.substring(0, 3) + ".";
+  label = {'IND16': 'RW'}[label] || label;
+  
+  if (label.length > 3) {
+    label = label.substring(0, 2) + ".";
   }
 
   return (

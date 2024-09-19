@@ -93,11 +93,11 @@ function AggregatedResultViewGroup({ entIDList }) {
 function getLatestEntIDList(data) {
   const N_LATEST = 10;
   const { electionDisplay } = data;
-  const latestResults = electionDisplay.pdResultList
+  const latestResultList = electionDisplay.baseResultList
     .slice()
     .reverse()
     .slice(0, N_LATEST);
-  return latestResults.map((result) => result.entID);
+  return latestResultList.map((result) => result.entID);
 }
 
 function getProvinceEntIDList(data) {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 
-import { Ent, EntType } from "../base";
+import { Ent, EntType, Time } from "../base";
 import { CustomURLContext, DerivedData, Election } from ".";
 import { GROUP_ID_TO_PD_ID_LIST } from "../constants";
 
@@ -76,13 +76,19 @@ async function getValue(state) {
 
 export default function DataProvider({ children, state }) {
   const [value, setValue] = useState(null);
+  const [appTime, setAppTime] = useState(Time.now().dateTimeString);
+
+  const REFRESH_INTERVAL = 60;
+  setTimeout(() => {
+    setAppTime(Time.now().dateTimeString);
+  }, REFRESH_INTERVAL * 1_000);
 
   useEffect(
     function () {
       const loadValue = async function () {
         try {
           const value = await getValue(state);
-          setValue(value);
+          setValue(Object.assign({appTime},value));
         } catch (err) {
           console.error(err);
         }
@@ -90,7 +96,7 @@ export default function DataProvider({ children, state }) {
 
       loadValue();
     },
-    [state]
+    [state, appTime]
   );
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

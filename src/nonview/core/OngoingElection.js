@@ -5,7 +5,7 @@ import Summary from "./Summary";
 
 export default class OngoingElection {
   static URL =
-    "https://raw.githubusercontent.com/nuuuwan/prespollsl2024_py/main/data/fake/test1-2024.json";
+    "https://raw.githubusercontent.com/nuuuwan/prespollsl2024_py/main/data/fake/test2-2024.json";
 
   static getResult(data, idKey) {
     const summary = Summary.fromDict(data["summary"]);
@@ -43,11 +43,12 @@ export default class OngoingElection {
       throw new Error("Election is already loaded: " + election);
     }
 
-    const pdResultList = await OngoingElection.getResultList('pd_id');
-    election.build(EntType.PD, pdResultList);
+    // const pdResultList = await OngoingElection.getResultList('pd_id');
+    // election.build(EntType.PD, pdResultList);
 
-    // const edResultList = await OngoingElection.getResultList('ed_id');
-    // election.build(null, edResultList);
+    const edResultList = await OngoingElection.getResultList('ed_id');
+    election.build(EntType.ED, edResultList);
+
 
     return election;
   }

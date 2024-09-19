@@ -52,10 +52,20 @@ async function getValue(state) {
     state.nResultsDisplay,
     electionValues.election
   );
+
+  let entIdx;
+  if (electionValues.election.baseEntType === EntType.PD) {
+    entIdx = entValues.pdIdx;
+  } else if (electionValues.election.baseEntType === EntType.ED) {
+    entIdx = entValues.edIdx;
+  } else {
+    throw new Error("Unknown EntType: " + electionValues.election.baseEntType);
+  }
+
   const derivedElectionValues = DerivedData.getDerived(
     nResultsDisplayDerived,
     electionValues.election,
-    entValues.pdIdx,
+    entIdx,
     electionValues.elections
   );
   const newState = {
@@ -86,12 +96,8 @@ export default function DataProvider({ children, state }) {
   useEffect(
     function () {
       const loadValue = async function () {
-        try {
-          const value = await getValue(state);
+        const value = await getValue(state);
           setValue(Object.assign({ appTime }, value));
-        } catch (err) {
-          console.error(err);
-        }
       };
 
       loadValue();

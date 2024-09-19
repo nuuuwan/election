@@ -45,10 +45,13 @@ const ElectionLoaderMixin = {
     if (baseEntType === EntType.PD) {
       this.pdResultList = baseResultList;
     } else if (baseEntType === EntType.ED) {
+      this.pdResultList = [];
       this.edResultList = baseResultList;
     } else  {
       throw new Error("Invalid baseEntType: " + baseEntType);
     }
+
+    this.baseEntType = baseEntType;
 
     this.edResultList =
     this.edResultList || ElectionStaticLoaderMixin.buildEDResultList(this.pdResultList);

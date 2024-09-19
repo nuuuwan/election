@@ -3,34 +3,34 @@ import { PartyToVotes, Party, Summary, Result } from "../../../nonview/core";
 import ElectionModelNormalizeUtils from "./ElectionModelNormalizeUtils";
 
 export default class ElectionModelProjectionUtils {
-  static getProjection(model, currentElection, XEvaluate, nonReleasedPDIDList) {
+  static getProjection(model, currentElection, XEvaluate, nonReleasedEntIDList) {
     let YHat = [];
     if (model) {
       YHat = XEvaluate.map((Xi) => model.predict(Xi));
     }
     const partyIDList = currentElection.getPartyIDList();
-    const pdToPartyToPVotes = YHat.reduce(function (pdToPartyToPVotes, Yi, i) {
+    const entToPartyToPVotes = YHat.reduce(function (entToPartyToPVotes, Yi, i) {
       const partyID = partyIDList[i];
-      return Yi.reduce(function (pdToPartyToPVotes, pVotes, j) {
-        const pdID = nonReleasedPDIDList[j];
-        if (!pdToPartyToPVotes[pdID]) {
-          pdToPartyToPVotes[pdID] = {};
+      return Yi.reduce(function (entToPartyToPVotes, pVotes, j) {
+        const entID = nonReleasedEntIDList[j];
+        if (!entToPartyToPVotes[entID]) {
+          entToPartyToPVotes[entID] = {};
         }
-        pdToPartyToPVotes[pdID][partyID] = pVotes;
-        return pdToPartyToPVotes;
-      }, pdToPartyToPVotes);
+        entToPartyToPVotes[entID][partyID] = pVotes;
+        return entToPartyToPVotes;
+      }, entToPartyToPVotes);
     }, {});
-    const normPDToPartyToPVotes =
-      ElectionModelNormalizeUtils.normalize(pdToPartyToPVotes);
-    return normPDToPartyToPVotes;
+    const normEntToPartyToPVotes =
+      ElectionModelNormalizeUtils.normalize(entToPartyToPVotes);
+    return normEntToPartyToPVotes;
   }
 
-  static getSimulatedSummary(pdID, lastElection, lastElectionOfSameType) {
-    const resultLastSameType = lastElectionOfSameType.getResult(pdID);
+  static getSimulatedSummary(entID, lastElection, lastElectionOfSameType) {
+    const resultLastSameType = lastElectionOfSameType.getResult(entID);
     if (!resultLastSameType) {
       return null;
     }
-    const resultLast = lastElection.getResult(pdID);
+    const resultLast = lastElection.getResult(entID);
     const summaryLast = resultLast.summary;
     const summaryLastSameType = resultLastSameType.summary;
 
@@ -44,13 +44,13 @@ export default class ElectionModelProjectionUtils {
   }
 
   static getSimulatedPartyToVotes(
-    pdID,
+    entID,
     summary,
-    normPDToPartyToPVotes,
+    normEntToPartyToPVotes,
     pError
   ) {
     const valid = summary.valid;
-    const partyToPVotes = normPDToPartyToPVotes[pdID];
+    const partyToPVotes = normEntToPartyToPVotes[entID];
     const partyToVotes = Object.entries(partyToPVotes).reduce(
       function (partyToVotes, [partyID, pVotes]) {
         pVotes = MathX.forceRange(pVotes, 0, 1);
@@ -70,8 +70,8 @@ export default class ElectionModelProjectionUtils {
   static getSimulatedResult(
     lastElection,
     lastElectionOfSameType,
-    pdID,
-    normPDToPartyToPVotes,
+    entID,
+    normEntToPartyToPVotes,
     pError
   ) {
     if (!lastElection) {
@@ -79,7 +79,7 @@ export default class ElectionModelProjectionUtils {
     }
 
     const summary = ElectionModelProjectionUtils.getSimulatedSummary(
-      pdID,
+      entID,
       lastElection,
       lastElectionOfSameType
     );
@@ -88,12 +88,12 @@ export default class ElectionModelProjectionUtils {
     }
 
     const partyToVotes = ElectionModelProjectionUtils.getSimulatedPartyToVotes(
-      pdID,
+      entID,
       summary,
-      normPDToPartyToPVotes,
+      normEntToPartyToPVotes,
       pError
     );
 
-    return new Result(pdID, summary, partyToVotes, "");
+    return new Result(entID, summary, partyToVotes, "");
   }
 }

@@ -7,7 +7,7 @@ import ElectionGetters from "./ElectionGetters.js";
 import ElectionStaticUtilsMixin from "./ElectionStaticUtilsMixin.js";
 import ElectionStaticLoaderMixin from "./ElectionStaticLoaderMixin.js";
 import ElectionLoaderMixin from "./ElectionLoaderMixin.js";
-import EntType from "../../base/EntType.js";
+
 
 class Election extends ElectionBase {
   getResult(id) {
@@ -37,28 +37,28 @@ class Election extends ElectionBase {
 
   // Subset Election
 
-  getSubsetElectionByPDResultList(pdResultList) {
+  getSubsetElectionByBaseResultList(baseResultList) {
     const election = new Election(this.electionType, this.date);
-    election.build(EntType.PD, pdResultList);
+    election.build(this.baseEntType, baseResultList);
     return election;
   }
 
-  getSubsetElectionByPDIDList(pdIDList) {
-    const pdResultList = pdIDList
+  getSubsetElectionByEntIDList(entIDList) {
+    const baseResultList = entIDList
       .map(
-        function (pdID) {
-          return this.getResult(pdID);
+        function (entID) {
+          return this.getResult(entID);
         }.bind(this)
       )
       .filter(function (result) {
         return result !== undefined;
       });
-    return this.getSubsetElectionByPDResultList(pdResultList);
+    return this.getSubsetElectionByBaseResultList(baseResultList);
   }
 
   getElectionSubset(nResultsDisplay) {
-    const pdResultList = this.pdResultList.slice(0, nResultsDisplay);
-    return this.getSubsetElectionByPDResultList(pdResultList);
+    const baseResultList = this.baseResultList.slice(0, nResultsDisplay);
+    return this.getSubsetElectionByBaseResultList(baseResultList);
   }
 }
 

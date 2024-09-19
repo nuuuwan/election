@@ -12,6 +12,11 @@ export default function EntView({
   if (!data) {
     return null;
   }
+
+  if (!entID) {
+    return null;
+  }
+
   const { allRegionIdx } = data;
 
   const ent = allRegionIdx[entID];

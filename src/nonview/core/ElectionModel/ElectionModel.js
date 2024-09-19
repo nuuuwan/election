@@ -1,4 +1,4 @@
-import { EntType } from "../../base";
+
 import Election from "../Election/Election";
 import ElectionModelFeatureUtils from "./ElectionModelFeatureUtils";
 import ElectionModelProjectionUtils from "./ElectionModelProjectionUtils";
@@ -9,20 +9,20 @@ export default class ElectionModel {
   constructor(
     elections,
     currentElection,
-    releasedPDIDList,
-    nonReleasedPDIDList
+    releasedEntIDList,
+    nonReleasedEntIDList
   ) {
     this.elections = elections;
     this.currentElection = currentElection;
-    this.releasedPDIDList = releasedPDIDList;
-    this.nonReleasedPDIDList = nonReleasedPDIDList;
+    this.releasedEntIDList = releasedEntIDList;
+    this.nonReleasedEntIDList = nonReleasedEntIDList;
     this.trainingOutput = this.train();
   }
 
   getXEvaluate() {
     return ElectionModelFeatureUtils.getFeatureMatrix(
       [this.currentElection],
-      this.releasedPDIDList
+      this.releasedEntIDList
     );
   }
 
@@ -34,11 +34,11 @@ export default class ElectionModel {
 
     const XAll = ElectionModelFeatureUtils.getFeatureMatrixListForElections(
       previousElections,
-      this.releasedPDIDList
+      this.releasedEntIDList
     );
     const YAll = ElectionModelFeatureUtils.getFeatureMatrixListForElections(
       previousElections,
-      this.nonReleasedPDIDList
+      this.nonReleasedEntIDList
     );
     const pError = ElectionModelUtils.getPErrorEvaluate(XAll, YAll);
     const model = ElectionModelUtils.trainModel(XAll, YAll);
@@ -47,7 +47,7 @@ export default class ElectionModel {
       model,
       this.currentElection,
       this.getXEvaluate(),
-      this.nonReleasedPDIDList
+      this.nonReleasedEntIDList
     );
     return { normPDToPartyToPVotes, pError };
   }
@@ -62,20 +62,20 @@ export default class ElectionModel {
       this.elections,
       this.currentElection
     );
-    const notReleasedResultList = this.nonReleasedPDIDList
-      .map(function (pdID) {
+    const notReleasedResultList = this.nonReleasedEntIDList
+      .map(function (entID) {
         return ElectionModelProjectionUtils.getSimulatedResult(
           lastElection,
           lastElectionOfSameType,
-          pdID,
+          entID,
           normPDToPartyToPVotes,
           pError
         );
       })
       .filter((result) => result !== null);
 
-    const releasedResultList = this.releasedPDIDList.map((pdID) =>
-      this.currentElection.getResult(pdID)
+    const releasedResultList = this.releasedEntIDList.map((entID) =>
+      this.currentElection.getResult(entID)
     );
 
     return [...releasedResultList, ...notReleasedResultList].filter(
@@ -88,8 +88,8 @@ export default class ElectionModel {
       this.currentElection.electionType,
       this.currentElection.date
     );
-    const pdResultList = this.getProjectedResultList();
-    election.build(EntType.PD, pdResultList);
+    const baseResultList = this.getProjectedResultList();
+    election.build(this.currentElection.baseEntType, baseResultList);
     return election;
   }
 }

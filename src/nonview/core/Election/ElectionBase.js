@@ -76,18 +76,12 @@ export default class ElectionBase {
   }
 
   get nResults() {
-    return this.pdResultList.length;
+    return this.baseResultList.length;
   }
 
-  get finalResult() {
-    return ArrayX.last(this.pdResultList);
+  get baseEntIDList() {
+    return this.baseResultList.map((result) => result.entID);
   }
 
-  get finalPDID() {
-    return this.finalResult.entID;
-  }
 
-  get pdIDList() {
-    return this.pdResultList.map((result) => result.entID);
-  }
 }

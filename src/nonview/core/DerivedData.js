@@ -4,16 +4,19 @@ import { ArrayX } from "../base";
 export default class DerivedData {
   static getActiveEntID(activeEntID, nResultsDisplay, election) {
     if (activeEntID) {
-      const iResult = election.pdIDList.indexOf(activeEntID);
+      const iResult = election.baseEntIDList.indexOf(activeEntID);
       if (iResult > -1) {
         if (!nResultsDisplay || iResult < nResultsDisplay) {
           return activeEntID;
         }
       }
     }
-
-    if (nResultsDisplay) {
-      return election.resultList[election.baseResultList - 1].entID;
+    if (
+      (nResultsDisplay || nResultsDisplay === 0) &&
+      nResultsDisplay >= 0 &&
+      nResultsDisplay < election.baseResultList.length
+    ) {
+      return election.baseResultList[nResultsDisplay - 1].entID;
     }
     return ArrayX.last(election.baseResultList).entID;
   }
@@ -29,23 +32,23 @@ export default class DerivedData {
     return election.baseResultList.length;
   }
 
-  static getPredictedElection(election, electionDisplay, pdIdx, elections) {
-    const releasedPDIDList = electionDisplay.pdIDList;
-    const nonReleasedPDIDList = Object.keys(pdIdx).filter(
-      (pdID) => !releasedPDIDList.includes(pdID)
+  static getPredictedElection(election, electionDisplay, entIdx, elections) {
+    const releasedEntIDList = electionDisplay.baseEntIDList;
+    const nonReleasedEntIDList = Object.keys(entIdx).filter(
+      (entID) => !releasedEntIDList.includes(entID)
     );
 
     const electionModel = new ElectionModel(
       elections,
       election,
-      releasedPDIDList,
-      nonReleasedPDIDList
+      releasedEntIDList,
+      nonReleasedEntIDList
     );
     const electionProjected = electionModel.getElectionNotReleasedPrediction();
     return electionProjected;
   }
 
-  static getDerived(nResultsDisplay, election, pdIdx, elections) {
+  static getDerived(nResultsDisplay, election, entIdx, elections) {
     const electionDisplay = election.getElectionSubset(nResultsDisplay);
 
     let electionProjected;
@@ -53,7 +56,7 @@ export default class DerivedData {
       electionProjected = DerivedData.getPredictedElection(
         election,
         electionDisplay,
-        pdIdx,
+        entIdx,
         elections
       );
     }

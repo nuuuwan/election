@@ -33,4 +33,5 @@ export default class ProvinceUtils {
     }
     return ProvinceUtils.getProvinceIDForEDID(pdEnt.d.ed_id);
   }
+
 }

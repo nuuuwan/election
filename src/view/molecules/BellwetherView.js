@@ -9,7 +9,7 @@ export default function BellwetherView() {
   if (!data) {
     return null;
   }
-  const { pdIdx, electionDisplay, elections, activeEntID } = data;
+  const { allRegionIdx, electionDisplay, elections, activeEntID } = data;
 
   const { n, nSame, error } = Bellwether.getStats(
     elections,
@@ -20,7 +20,7 @@ export default function BellwetherView() {
     return null;
   }
 
-  const ent = pdIdx[activeEntID];
+  const ent = allRegionIdx[activeEntID];
 
   return (
     <CustomAlert>

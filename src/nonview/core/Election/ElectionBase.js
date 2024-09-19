@@ -1,4 +1,4 @@
-import { ArrayX, Time, Translate } from "../../base/index.js";
+import { Time, Translate } from "../../base/index.js";
 
 export default class ElectionBase {
   static URL_BASE =

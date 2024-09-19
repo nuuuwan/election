@@ -113,11 +113,11 @@ function getEthnicityEntIDList(data) {
 }
 
 function getBellwetherEntIDList(data) {
-  const { elections, electionDisplay, pdIdx } = data;
+  const { elections, electionDisplay, entIdx } = data;
   const infoList = Bellwether.getBestBellwetherInfoList(
     elections,
     electionDisplay,
-    pdIdx
+    entIdx
   );
 
   return infoList

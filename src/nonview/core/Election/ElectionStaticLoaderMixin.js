@@ -67,13 +67,14 @@ const ElectionStaticLoaderMixin = {
       return provinceIDToResultList;
     },
     {});
-    return ElectionStaticLoaderMixin.buildParentResultList(provinceIDToResultList);
+    return ElectionStaticLoaderMixin.buildParentResultList(
+      provinceIDToResultList
+    );
   },
 
   buildResultLK(childResultList) {
     return Result.fromList("LK", childResultList);
   },
-
 };
 
 export default ElectionStaticLoaderMixin;

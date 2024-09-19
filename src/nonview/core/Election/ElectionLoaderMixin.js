@@ -10,7 +10,7 @@ const ElectionLoaderMixin = {
     } else {
       const pdResultList = await this.getPDResultList();
       this.build(pdResultList);
-          }
+    }
   },
 
   async getRawDataList() {
@@ -22,7 +22,7 @@ const ElectionLoaderMixin = {
     const rawData = await this.getRawDataList();
 
     const filteredRawData = rawData.filter(function (d) {
-      return EntType.fromID(d['entity_id']) === EntType.PD;
+      return EntType.fromID(d["entity_id"]) === EntType.PD;
     });
 
     const pdResultList = filteredRawData.map(function (d) {
@@ -30,20 +30,29 @@ const ElectionLoaderMixin = {
     });
 
     const sortedPDResultList = pdResultList.sort(function (a, b) {
-      return ((a.resultTime || "").localeCompare((b.resultTime || ""))) || ( a.summary.polled - b.summary.polled);
+      return (
+        (a.resultTime || "").localeCompare(b.resultTime || "") ||
+        a.summary.polled - b.summary.polled
+      );
     });
-    return sortedPDResultList
+    return sortedPDResultList;
   },
 
-   build(pdResultList=null, edResultList=null) {
-
+  build(pdResultList = null, edResultList = null) {
     this.pdResultList = pdResultList || [];
 
-    this.edResultList = edResultList || ElectionStaticLoaderMixin.buildEDResultList(pdResultList);
-    this.provinceResultList = ElectionStaticLoaderMixin.buildProvinceResultList(this.edResultList);
-    this.resultLK = ElectionStaticLoaderMixin.buildResultLK(this.provinceResultList);
+    this.edResultList =
+      edResultList || ElectionStaticLoaderMixin.buildEDResultList(pdResultList);
+    this.provinceResultList = ElectionStaticLoaderMixin.buildProvinceResultList(
+      this.edResultList
+    );
+    this.resultLK = ElectionStaticLoaderMixin.buildResultLK(
+      this.provinceResultList
+    );
 
-    this.ezResultList = pdResultList ? ElectionStaticLoaderMixin.buildEZResultList(pdResultList) : [];  
+    this.ezResultList = pdResultList
+      ? ElectionStaticLoaderMixin.buildEZResultList(pdResultList)
+      : [];
 
     this.resultList = [
       ...this.pdResultList,
@@ -55,7 +64,6 @@ const ElectionLoaderMixin = {
 
     this.resultIdx = ElectionStaticLoaderMixin.buildResultIdx(this.resultList);
     this.isLoaded = true;
-
   },
 };
 

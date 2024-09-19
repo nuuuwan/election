@@ -12,6 +12,9 @@ const STYLE_LABEL = {
 export default function PartyView({ partyID, sx }) {
   const party = Party.fromID(partyID);
   let label = partyID;
+  if (label.startsWith("IND")) {
+    label = "I-" + label.substring(3);
+  }
   if (label.length > 4) {
     label = label.substring(0, 3) + ".";
   }

@@ -11,7 +11,7 @@ export default function ResultTimeView({ entID, sx }) {
   const { electionDisplay } = data;
   const result = electionDisplay.resultIdx[entID];
 
-  let title = Translate("Not available");
+  let title = "-";
   let subTitle = null;
   if (result.resultTime) {
     const timeResult = Time.fromString(result.resultTime);

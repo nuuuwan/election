@@ -37,7 +37,7 @@ export default function ResultsReleasedTitle({ mode = "percent" }) {
   if (!data) {
     return null;
   }
-  const { electionDisplay, pdIdx, electionPrevious } = data;
+  const { electionDisplay, electionPrevious } = data;
 
   const entIdx = electionDisplay.getEntIdx(data);
 

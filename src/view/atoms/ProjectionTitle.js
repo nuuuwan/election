@@ -32,7 +32,7 @@ export function ProjectionAlert() {
         <Link href="https://github.com/nuuuwan/prespoll">
           {Translate("Source Code")}
         </Link>
-        {'.'}
+        {"."}
       </Typography>
     </CustomAlert>
   );

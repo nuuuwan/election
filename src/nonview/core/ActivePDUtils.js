@@ -1,27 +1,34 @@
 import { EntType, ProvinceUtils } from "../base";
 
 export default class ActivePDUtils {
-  static getNewActiveEntIDForED({ pdResultList, pdIdx, entID }) {
-    for (let result of pdResultList.reverse()) {
-      const pdEnt = pdIdx[result.entID];
-      if (pdEnt && pdEnt.d.ed_id === entID) {
+  static getNewActiveEntIDForED({ baseResultList, entIdx, entID }) {
+    for (let result of baseResultList.reverse()) {
+      const ent = entIdx[result.entID];
+      if (ent && ent.d.ed_id === entID) {
+        return result.entID;
+      }
+
+      if (ent.id === entID) {
         return result.entID;
       }
     }
     return null;
   }
 
-  static getNewActiveEntIDForProvince({ pdResultList, pdIdx, entID }) {
-    for (let result of pdResultList.reverse()) {
-      const pdEnt = pdIdx[result.entID];
-      if (ProvinceUtils.getProvinceIDForPDEnt(pdEnt) === entID) {
+  static getNewActiveEntIDForProvince({ baseResultList, entIdx, entID }) {
+    for (let result of baseResultList.reverse()) {
+      const ent = entIdx[result.entID];
+      if (ProvinceUtils.getProvinceIDForPDEnt(ent) === entID) {
+        return result.entID;
+      }
+      if (ProvinceUtils.getProvinceIDForEDID(ent.id) === entID) {
         return result.entID;
       }
     }
     return null;
   }
 
-  static getNewActiveEntID({ pdResultList, pdIdx, entID }) {
+  static getNewActiveEntID({ baseResultList, entIdx, entID }) {
     const entType = EntType.fromID(entID);
 
     switch (entType) {
@@ -29,14 +36,14 @@ export default class ActivePDUtils {
         return entID;
       case EntType.ED:
         return ActivePDUtils.getNewActiveEntIDForED({
-          pdResultList,
-          pdIdx,
+          baseResultList,
+          entIdx,
           entID,
         });
       case EntType.PROVINCE:
         return ActivePDUtils.getNewActiveEntIDForProvince({
-          pdResultList,
-          pdIdx,
+          baseResultList,
+          entIdx,
           entID,
         });
       default:

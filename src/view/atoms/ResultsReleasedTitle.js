@@ -58,7 +58,7 @@ export default function ResultsReleasedTitle({ mode = "percent" }) {
       <span style={{ color: "black" }}>
         {Translate("%1 of %2", [nResultsReleased, nResultsTotal])}
       </span>{" "}
-      {Translate("Results Released")}
+      {Translate("Results")}
     </Typography>
   );
 }

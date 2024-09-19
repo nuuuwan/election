@@ -49,7 +49,7 @@ export function CumResultsColumnView({ entID }) {
     : "white";
 
   return (
-    <Box sx={{ backgroundColor, borderRadius: 4, width: 240, p: 1.5 }}>
+    <Box sx={{ backgroundColor, borderRadius: 4, width: 240, p: 1.0, m:0.5 }}>
       {contentList.map(function (content, i) {
         return (
           <Box

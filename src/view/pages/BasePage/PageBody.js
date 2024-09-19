@@ -37,20 +37,6 @@ export default function PageBody() {
               <ResultsReleasedTitle mode="percent" />
             </Typography>
 
-            <HexMapView />
-
-            <CustomAlert>
-              <Typography variant="body1">
-                {Translate(
-                  "Click on hexagons for Polling Division and Postal Vote results, or the most recent result for Provinces and Electoral Districts."
-                )}
-              </Typography>{" "}
-            </CustomAlert>
-
-            <ResultsReleasedAlert />
-          </Grid2>
-          <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
-            <ResultsReleasedTitle mode="n" />
             <LatestResultListView />
             <BellwetherView />
 
@@ -61,6 +47,24 @@ export default function PageBody() {
                 )}
               </Typography>{" "}
             </CustomAlert>
+
+            <ResultsReleasedAlert />
+          </Grid2>
+          <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
+            <ResultsReleasedTitle mode="n" />
+
+            <HexMapView />
+
+<CustomAlert>
+  <Typography variant="body1">
+    {Translate(
+      "Click on hexagons for Polling Division and Postal Vote results, or the most recent result for Provinces and Electoral Districts."
+    )}
+  </Typography>{" "}
+</CustomAlert>
+
+
+
           </Grid2>
           <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
             <ProjectionView />

@@ -49,12 +49,12 @@ export function CumResultsColumnView({ entID }) {
     : "white";
 
   return (
-    <Box sx={{ backgroundColor, borderRadius: 4, width: 240, p: 1.0, m: 0.5 }}>
+    <Box sx={{ backgroundColor, borderRadius: 4, width: 240, p: 0.5, m: 0.5 }}>
       {contentList.map(function (content, i) {
         return (
           <Box
             key={i}
-            sx={{ marginBottom: 1 }}
+            sx={{ marginBottom: 0.5 }}
             justifyContent="center"
             alignItems="center"
             alignContent="center"

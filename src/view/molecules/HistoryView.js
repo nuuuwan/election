@@ -20,12 +20,12 @@ function HistoryViewRow({ entID, electionForRow }) {
 
   return (
     <Stack direction="column" gap={0} sx={{ color, alignItems: "center" }}>
-      <Typography variant="caption" sx={{ fontSize: "64%", opacity: 0.5 }}>
+      <Typography variant="caption" sx={{ fontSize: "50%", opacity: 0.5 }}>
         {electionForRow.year}
       </Typography>
 
       <PartyView partyID={winningPartyID} />
-      <Typography variant="caption" sx={{ fontSize: "64%" }}>
+      <Typography variant="caption" sx={{ fontSize: "60%" }}>
         {Format.percent(pWinner)}
       </Typography>
     </Stack>

@@ -14,8 +14,7 @@ export default function TestingAlert() {
   return (
     <Alert severity="error">
       <Typography variant="h5">
-        This election is scheduled for the FUTURE. This data is for TESTING
-        purposes only, and is FAKE.
+        This election is scheduled for the FUTURE. This data is for TESTING purposes only, and is FAKE.
       </Typography>
     </Alert>
   );

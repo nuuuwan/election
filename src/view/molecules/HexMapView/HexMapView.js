@@ -5,6 +5,7 @@ import SVGMap from "./SVGMap";
 import HexMapData from "./HexMapData/HexMapData";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { THEME_DATA } from "../../_constants/THEME";
+import { EntType } from "../../../nonview/base";
 
 function getBBox(baseEntType) {
   const mapData = HexMapData.getMapDataList(baseEntType).reduce(function (
@@ -32,7 +33,8 @@ function getBBox(baseEntType) {
     [Infinity, Infinity, -Infinity, -Infinity]
   );
 
-  return [minX - 2, minY - 1, maxX + 1, maxY + 4];
+  const paddingMaxY = baseEntType === EntType.PD ? 4 : 2;
+  return [minX - 2, minY - 1, maxX + 1, maxY + paddingMaxY];
 }
 
 function getViewBoxDims(baseEntType) {

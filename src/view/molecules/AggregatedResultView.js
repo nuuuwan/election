@@ -24,7 +24,7 @@ import { useState } from "react";
 
 function RegionResultListColumnViewGroup({ sortedEntIDs }) {
   return (
-    <Grid2 container spacing={2} rowSpacing={3} justifyContent="center">
+    <Grid2 container spacing={1} rowSpacing={1} justifyContent="center">
       {sortedEntIDs.map(function (entID) {
         return (
           <Grid2 key={entID}>

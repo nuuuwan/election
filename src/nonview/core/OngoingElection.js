@@ -6,7 +6,7 @@ import Summary from "./Summary";
 export default class OngoingElection {
   static URL =
     "https://raw.githubusercontent.com/nuuuwan/prespollsl2024_py/main/data/fake/test2-2024.json";
-    
+
   static getResult(data, idKey) {
     const summary = Summary.fromDict(data["summary"]);
     const partyToVotes = PartyToVotes.fromDict(data["party_to_votes"]);
@@ -21,7 +21,6 @@ export default class OngoingElection {
 
   static async getRawData() {
     const timeStamp = Time.now().timeID;
-    console.debug("OngoingElection.getRawData", timeStamp);
     return await WWW.json(OngoingElection.URL, timeStamp);
   }
 

@@ -5,13 +5,14 @@ import Summary from "./Summary";
 
 export default class OngoingElection {
   static URL =
-    "https://raw.githubusercontent.com/nuuuwan/prespollsl2024_py/main/data/fake/test-2024.json";
-  static getPDResult(data) {
+    "https://raw.githubusercontent.com/nuuuwan/prespollsl2024_py/main/data/fake/test2-2024.json";
+  static getResult(data, idKey) {
+    console.debug(data);
     const summary = Summary.fromDict(data["summary"]);
     const partyToVotes = PartyToVotes.fromDict(data["party_to_votes"]);
 
     return new Result(
-      data["pd_id"],
+      data[idKey],
       summary,
       partyToVotes,
       data["result_time"].substring(0, 19)
@@ -24,7 +25,7 @@ export default class OngoingElection {
     return await WWW.json(OngoingElection.URL, timeStamp);
   }
 
-  static async getPDResultList() {
+  static async getResultList(idKey) {
     const rawDataList = await OngoingElection.getRawData();
     return rawDataList
       .filter(function (data) {
@@ -34,7 +35,7 @@ export default class OngoingElection {
         return (a.resultTime || "").localeCompare(b.resultTime || "");
       })
       .map(function (data) {
-        return OngoingElection.getPDResult(data);
+        return OngoingElection.getResult(data, idKey);
       });
   }
 
@@ -43,8 +44,17 @@ export default class OngoingElection {
       throw new Error("Election is already loaded: " + election);
     }
 
-    const pdResultList = await OngoingElection.getPDResultList();
-    election.build(pdResultList);
+    // const pdResultList = await OngoingElection.getResultList('pd_id');
+    // election.build(pdResultList);
+
+
+    
+    const edResultList = await OngoingElection.getResultList('ed_id');
+    console.debug({edResultList});
+    election.build(null, edResultList);
+
+
+
     return election;
   }
 }

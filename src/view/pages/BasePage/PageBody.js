@@ -1,5 +1,8 @@
 import { Box, Grid2, Typography } from "@mui/material";
 import { useDataContext } from "../../../nonview/core/DataProvider";
+
+import { ArrayX, Format, Translate } from "../../../nonview/base";
+import {Election } from "../../../nonview/core";
 import {
   CustomAlert,
   IfElse,
@@ -14,11 +17,61 @@ import {
   BellwetherView,
 } from "../../molecules";
 import { ResultsReleasedAlert } from "../../atoms/ResultsReleasedTitle";
-import { Translate } from "../../../nonview/base";
+
 
 const STYLE = {
   BOX: { paddingTop: 1, paddingBottom: 20 },
 };
+
+function HistoryAlert() {
+  const data = useDataContext();
+  if (!data) {
+    return null;
+  }
+  const { election, elections,     nResultsDisplay } = data;
+
+  const previousElections = Election.getPreviousElectionsOfSameType(
+    elections,
+    election,
+
+  );
+
+  const previousElectionsDisplay = previousElections.map(function (
+    previousElection
+  ) {
+    return previousElection.getSubsetElectionByPDIDList(election.pdIDList);
+  });
+  
+  
+  const previousElectionDisplay = ArrayX.last(previousElectionsDisplay);
+  
+  const year = previousElectionDisplay.year;
+  const resultLK = previousElectionDisplay.resultLK;
+
+  const winningPartyID = resultLK.partyToVotes.winningPartyID;
+  const pWinner = resultLK.partyToVotes.pWinner;
+
+
+  return (
+    <CustomAlert severity="warning">
+              <Typography variant="body1">
+                {Translate(
+                  "Past History corresponds to the results released so for, and not the final result. "
+                )}
+
+                  {Translate(
+                  "E.g. In %1, for the %2 polling divisions with results released, the %3 led Islandwide, with %4.", [
+                    year,
+                    nResultsDisplay,
+                    winningPartyID,
+                    Format.percent(pWinner),
+                    
+                  ]
+                )}
+              </Typography>
+            </CustomAlert>
+  )
+}
 
 export default function PageBody() {
   const data = useDataContext();
@@ -40,14 +93,7 @@ export default function PageBody() {
             <LatestResultListView />
             <BellwetherView />
 
-            <CustomAlert severity="warning">
-              <Typography variant="body1">
-                {Translate(
-                  "Past History in Electoral District, Province, and Sri Lanka, correspond to the results released so for, and not the final result."
-                )}
-              </Typography>{" "}
-            </CustomAlert>
-
+            <HistoryAlert />
             <ResultsReleasedAlert />
           </Grid2>
           <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>

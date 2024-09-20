@@ -105,14 +105,10 @@ export default function ProjectedResultBarChart() {
   }
   const { electionProjected } = data;
 
-  const valueFormatter = function (value) {
-    return Format.percentVotes(value);
-  };
-
   return (
     <Box sx={{ p: 0, m: 0 }}>
       <BarChart
-        xAxis={[{ label: "% Votes", valueFormatter }]}
+        xAxis={[{ label: "% Votes", valueFormatter: value => Format.percentVotes(value) }]}
         yAxis={getAxis()}
         series={getSeries(electionProjected)}
         barLabel={getBarLabel(electionProjected)}

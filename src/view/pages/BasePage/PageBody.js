@@ -65,30 +65,25 @@ function HistoryAlert() {
 function HexagonClickAlert() {
   return (
     <CustomAlert>
-              <Typography variant="body1">
-                {Translate(
-                  "Click on the hexagons to view Polling Division and Postal Vote results, or to see the most recent results for Provinces and Electoral Districts."
-                )}
-              </Typography>{" "}
-            </CustomAlert>
-  )
+      <Typography variant="body1">
+        {Translate(
+          "Click on the hexagons to view Polling Division and Postal Vote results, or to see the most recent results for Provinces and Electoral Districts."
+        )}
+      </Typography>{" "}
+    </CustomAlert>
+  );
 }
 
 function PageBelowTheFold() {
   return (
     <Box sx={{ marginTop: 15, p: 1, borderTop: "1px solid #eee" }}>
-          <AggregatedResultView />
-        </Box>
-  )
+      <AggregatedResultView />
+    </Box>
+  );
 }
 
 function CustomPageBodyGridItem({ children }) {
-  return (
-    <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
-      {children}
-    </Grid2>
-  );
-
+  return <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>{children}</Grid2>;
 }
 
 export default function PageBody() {
@@ -104,9 +99,7 @@ export default function PageBody() {
         <NoResultsAlert />
         <Grid2 container>
           <CustomPageBodyGridItem>
-  
-              <ResultsReleasedTitle mode="percent" />
-
+            <ResultsReleasedTitle mode="percent" />
 
             <LatestResultListView />
             <BellwetherView />

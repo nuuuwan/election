@@ -2,7 +2,6 @@ import { ElectionModel } from "../../nonview/core";
 import { ArrayX } from "../base";
 
 export default class DerivedData {
-
   static isValidNResultsDisplay(nResultsDisplay, election) {
     return (
       (nResultsDisplay || nResultsDisplay === 0) &&

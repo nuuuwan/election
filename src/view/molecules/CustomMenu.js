@@ -119,40 +119,38 @@ function ElectionMenuItemList({ handleClose }) {
 function LinkMenuItemList() {
   return (
     <>
+      <MenuItemLink
+        label="Source Code"
+        href="https://github.com/nuuuwan/prespoll/"
+        Icon={GitHubIcon}
+      />
 
-<MenuItemLink
-          label="Source Code"
-          href="https://github.com/nuuuwan/prespoll/"
-          Icon={GitHubIcon}
-        />
-
-        <MenuItemLink
-          label="Report Bugs"
-          href="https://github.com/nuuuwan/prespoll/issues"
-          Icon={BugReportIcon}
-        />
+      <MenuItemLink
+        label="Report Bugs"
+        href="https://github.com/nuuuwan/prespoll/issues"
+        Icon={BugReportIcon}
+      />
     </>
-  )
+  );
 }
 
-function CustomIconButton({setAnchorEl}) {
-
+function CustomIconButton({ setAnchorEl }) {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
   return (
     <IconButton
-        size="large"
-        edge="start"
-        color="inherit"
-        aria-label="menu"
-        sx={{ ml: 2 }}
-        onClick={handleClick}
-      >
-        <MenuIcon />
-      </IconButton>
-  )
+      size="large"
+      edge="start"
+      color="inherit"
+      aria-label="menu"
+      sx={{ ml: 2 }}
+      onClick={handleClick}
+    >
+      <MenuIcon />
+    </IconButton>
+  );
 }
 
 export default function CustomMenu() {
@@ -172,13 +170,13 @@ export default function CustomMenu() {
         sx={{ zIndex: 5000 }}
       >
         <ElectionMenuItemList handleClose={handleClose} />
-        
+
         <Divider />
         <LangMenuItemList handleClose={handleClose} />
-        
+
         <Divider />
         <LinkMenuItemList />
-        
+
         <Divider />
         <RefreshMenuItem />
       </Menu>

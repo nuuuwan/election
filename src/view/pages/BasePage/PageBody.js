@@ -62,6 +62,35 @@ function HistoryAlert() {
   );
 }
 
+function HexagonClickAlert() {
+  return (
+    <CustomAlert>
+              <Typography variant="body1">
+                {Translate(
+                  "Click on the hexagons to view Polling Division and Postal Vote results, or to see the most recent results for Provinces and Electoral Districts."
+                )}
+              </Typography>{" "}
+            </CustomAlert>
+  )
+}
+
+function PageBelowTheFold() {
+  return (
+    <Box sx={{ marginTop: 15, p: 1, borderTop: "1px solid #eee" }}>
+          <AggregatedResultView />
+        </Box>
+  )
+}
+
+function CustomPageBodyGridItem({ children }) {
+  return (
+    <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
+      {children}
+    </Grid2>
+  );
+
+}
+
 export default function PageBody() {
   const data = useDataContext();
   if (!data) {
@@ -74,37 +103,29 @@ export default function PageBody() {
       <IfElse condition={electionDisplay.nResults === 0}>
         <NoResultsAlert />
         <Grid2 container>
-          <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
-            <Typography variant="h4">
+          <CustomPageBodyGridItem>
+  
               <ResultsReleasedTitle mode="percent" />
-            </Typography>
+
 
             <LatestResultListView />
             <BellwetherView />
 
             <HistoryAlert />
             <ResultsReleasedAlert />
-          </Grid2>
-          <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
+          </CustomPageBodyGridItem>
+          <CustomPageBodyGridItem>
             <ResultsReleasedTitle mode="n" />
 
             <HexMapView />
 
-            <CustomAlert>
-              <Typography variant="body1">
-                {Translate(
-                  "Click on the hexagons to view Polling Division and Postal Vote results, or to see the most recent results for Provinces and Electoral Districts."
-                )}
-              </Typography>{" "}
-            </CustomAlert>
-          </Grid2>
-          <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>
+            <HexagonClickAlert />
+          </CustomPageBodyGridItem>
+          <CustomPageBodyGridItem>
             <ProjectionView />
-          </Grid2>
+          </CustomPageBodyGridItem>
         </Grid2>
-        <Box sx={{ marginTop: 15, p: 1, borderTop: "1px solid #eee" }}>
-          <AggregatedResultView />
-        </Box>
+        <PageBelowTheFold />
       </IfElse>
     </Box>
   );

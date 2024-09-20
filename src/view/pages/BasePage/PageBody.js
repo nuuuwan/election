@@ -15,6 +15,7 @@ import {
   LatestResultListView,
   AggregatedResultView,
   BellwetherView,
+  MonitoringView,
 } from "../../molecules";
 import { ResultsReleasedAlert } from "../../atoms/ResultsReleasedTitle";
 
@@ -43,6 +44,9 @@ function HistoryAlert() {
   });
 
   const previousElectionDisplay = ArrayX.last(previousElectionsDisplay);
+  if (!previousElectionDisplay) {
+    return null;
+  }
 
   const year = previousElectionDisplay.year;
   const resultLK = previousElectionDisplay.resultLK;
@@ -117,6 +121,7 @@ export default function PageBody() {
           </CustomPageBodyGridItem>
         </Grid2>
         <PageBelowTheFold />
+        <MonitoringView />
       </IfElse>
     </Box>
   );

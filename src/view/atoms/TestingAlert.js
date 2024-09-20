@@ -15,7 +15,9 @@ export default function TestingAlert() {
   return (
     <Alert severity="error">
       <Typography variant="h5">
-        {Translate("This election is scheduled for the FUTURE. This data is for TESTING purposes only, and is FAKE.")}
+        {Translate(
+          "This election is scheduled for the FUTURE. This data is for TESTING purposes only, and is FAKE."
+        )}
       </Typography>
     </Alert>
   );

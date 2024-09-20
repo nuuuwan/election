@@ -39,7 +39,7 @@ const ElectionStaticLoaderMixin = {
   buildEZResultList(baseResultList) {
     const ezIDToResultList = baseResultList.reduce(function (
       ezIDToResultList,
-      baseEntResult,
+      baseEntResult
     ) {
       const baseEntID = baseEntResult.entID;
       const ezID = PD_ID_TO_GROUP_ID[baseEntID] || ED_ID_TO_GROUP_ID[baseEntID];

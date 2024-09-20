@@ -108,7 +108,12 @@ export default function ProjectedResultBarChart() {
   return (
     <Box sx={{ p: 0, m: 0 }}>
       <BarChart
-        xAxis={[{ label: "% Votes", valueFormatter: value => Format.percentVotes(value) }]}
+        xAxis={[
+          {
+            label: "% Votes",
+            valueFormatter: (value) => Format.percentVotes(value),
+          },
+        ]}
         yAxis={getAxis()}
         series={getSeries(electionProjected)}
         barLabel={getBarLabel(electionProjected)}

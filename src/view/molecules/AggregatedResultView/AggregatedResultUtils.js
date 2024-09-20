@@ -20,7 +20,6 @@ export default class AggregatedResultUtils {
   }
 
   static getEthnicityEntIDList(data) {
-    console.debug(data.ezIdx);
     return Object.keys(data.ezIdx);
   }
 
@@ -43,7 +42,6 @@ export default class AggregatedResultUtils {
   }
 
   static getGroupToEntIDListGetter() {
-    console.debug('getGroupToEntIDListGetter');
     const me = AggregatedResultUtils;
     return {
       "Latest Results": me.getLatestEntIDList,

@@ -8,12 +8,12 @@ export function ProjectionAlert() {
   if (!data) {
     return null;
   }
-  const { electionDisplay, pdIdx, electionPrevious } = data;
+  const { electionDisplay, entIdx, electionPrevious } = data;
 
   const entID = "LK";
   const { nResultsTotal, nResultsReleased } = electionDisplay.getReleaseStats(
     entID,
-    pdIdx,
+    entIdx,
     electionPrevious
   );
 

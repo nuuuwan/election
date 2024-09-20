@@ -8,11 +8,11 @@ export default function Confidence() {
   if (!data) {
     return null;
   }
-  const { electionDisplay, pdIdx, electionPrevious } = data;
+  const { electionDisplay, entIdx, electionPrevious } = data;
 
   const { nResultsTotal, nResultsReleased } = electionDisplay.getReleaseStats(
     "LK",
-    pdIdx,
+    entIdx,
     electionPrevious
   );
 

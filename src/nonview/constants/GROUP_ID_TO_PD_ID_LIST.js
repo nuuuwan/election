@@ -115,7 +115,7 @@ const idx = {
     "EC-19B",
     "EC-08A",
   ],
-  "Sinh.-Bud. 88-95%": [
+  "Sinh.-Bud. 88-94%": [
     "EC-21B",
     "EC-03D",
     "EC-18B",

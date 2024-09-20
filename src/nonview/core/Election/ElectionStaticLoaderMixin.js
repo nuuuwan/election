@@ -1,6 +1,7 @@
 import Result from "../Result.js";
 import ElectionStaticUtilsMixin from "./ElectionStaticUtilsMixin.js";
 import PD_ID_TO_GROUP_ID from "../../constants/PD_ID_TO_GROUP_ID.js";
+import ED_ID_TO_GROUP_ID from "../../constants/ED_ID_TO_GROUP_ID.js";
 
 const ElectionStaticLoaderMixin = {
   buildResultIdx(resultList) {
@@ -35,18 +36,18 @@ const ElectionStaticLoaderMixin = {
     return ElectionStaticLoaderMixin.buildParentResultList(edIDToResultList);
   },
 
-  buildEZResultList(pdResultList) {
-    const ezIDToResultList = pdResultList.reduce(function (
+  buildEZResultList(baseResultList) {
+    const ezIDToResultList = baseResultList.reduce(function (
       ezIDToResultList,
-      pdResult
+      baseEntResult,
     ) {
-      const pdID = pdResult.entID;
-      const ezID = PD_ID_TO_GROUP_ID[pdID];
+      const baseEntID = baseEntResult.entID;
+      const ezID = PD_ID_TO_GROUP_ID[baseEntID] || ED_ID_TO_GROUP_ID[baseEntID];
 
       if (!ezIDToResultList[ezID]) {
         ezIDToResultList[ezID] = [];
       }
-      ezIDToResultList[ezID].push(pdResult);
+      ezIDToResultList[ezID].push(baseEntResult);
       return ezIDToResultList;
     },
     {});

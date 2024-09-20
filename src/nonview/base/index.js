@@ -2,6 +2,7 @@
 import ArrayX from "./ArrayX";
 import Cache from "./Cache";
 import Color from "./Color";
+import DictX from "./DictX";
 import Ent from "./Ent";
 import EntType from "./EntType";
 import Format from "./Format";
@@ -18,6 +19,7 @@ export {
   ArrayX,
   Cache,
   Color,
+  DictX,
   Ent,
   EntType,
   Format,

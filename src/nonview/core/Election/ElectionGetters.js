@@ -1,5 +1,5 @@
 import { EntType, ProvinceUtils } from "../../base";
-import { PD_ID_TO_GROUP_ID } from "../../constants";
+import { PD_ID_TO_GROUP_ID, ED_ID_TO_GROUP_ID } from "../../constants";
 
 const ElectionStats = {
   getPartyIDList(min_p = 0.01) {
@@ -25,18 +25,18 @@ const ElectionStats = {
     }, {});
   },
 
-  getParentID(entID, pdEnt) {
+  getParentID(entID, baseEnt) {
     const entType = EntType.fromID(entID);
 
     switch (entType) {
       case EntType.PD:
-        return pdEnt.d.ed_id;
+        return baseEnt.d.ed_id;
       case EntType.ED:
-        return pdEnt.d.ed_id;
+        return baseEnt.d.ed_id;
       case EntType.PROVINCE:
-        return ProvinceUtils.getProvinceIDForPDEnt(pdEnt);
+        return ProvinceUtils.getProvinceIDForPDEnt(baseEnt);
       case EntType.EZ:
-        return PD_ID_TO_GROUP_ID[pdEnt.id];
+        return PD_ID_TO_GROUP_ID[baseEnt.id] || ED_ID_TO_GROUP_ID[baseEnt.id];
       default:
         return "LK";
     }
@@ -73,10 +73,10 @@ const ElectionStats = {
     return { nResultsTotal, nResultsReleased, pElectors };
   },
 
-  isComplete(entID, pdIdx, electionPrevious) {
+  isComplete(entID, entIdx, electionPrevious) {
     const { nResultsTotal, nResultsReleased } = this.getReleaseStats(
       entID,
-      pdIdx,
+      entIdx,
       electionPrevious
     );
     return nResultsReleased === nResultsTotal;

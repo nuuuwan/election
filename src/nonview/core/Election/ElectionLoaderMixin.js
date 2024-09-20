@@ -63,9 +63,7 @@ const ElectionLoaderMixin = {
       this.provinceResultList
     );
 
-    this.ezResultList = this.pdResultList
-      ? ElectionStaticLoaderMixin.buildEZResultList(this.pdResultList)
-      : [];
+    this.ezResultList = ElectionStaticLoaderMixin.buildEZResultList(this.baseResultList);
 
     this.resultList = [
       this.resultLK,

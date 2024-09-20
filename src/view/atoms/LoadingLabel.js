@@ -1,11 +1,13 @@
-import { Box, Typography } from "@mui/material";
+import { Stack, CircularProgress, Typography } from "@mui/material";
+
 
 export default function LoadingLabel() {
   return (
-    <Box sx={{ m: 2, p: 2 }}>
-      <Typography variant="h6" color="secondary">
+    <Stack direction="row" gap={1} sx={{m:2, p:2, alignItems: "center"}}>
+      <CircularProgress />
+      <Typography variant="h4" color="secondary">
         Loading...
       </Typography>
-    </Box>
+    </Stack>
   );
 }

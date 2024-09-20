@@ -2,6 +2,15 @@ import { ElectionModel } from "../../nonview/core";
 import { ArrayX } from "../base";
 
 export default class DerivedData {
+
+  static isValidNResultsDisplay(nResultsDisplay, election) {
+    return (
+      (nResultsDisplay || nResultsDisplay === 0) &&
+      nResultsDisplay >= 0 &&
+      nResultsDisplay <= election.baseResultList.length
+    );
+  }
+
   static getActiveEntID(activeEntID, nResultsDisplay, election) {
     if (activeEntID) {
       const iResult = election.baseEntIDList.indexOf(activeEntID);
@@ -11,22 +20,14 @@ export default class DerivedData {
         }
       }
     }
-    if (
-      (nResultsDisplay || nResultsDisplay === 0) &&
-      nResultsDisplay >= 0 &&
-      nResultsDisplay < election.baseResultList.length
-    ) {
+    if (DerivedData.isValidNResultsDisplay(nResultsDisplay, election)) {
       return election.baseResultList[nResultsDisplay - 1].entID;
     }
     return ArrayX.last(election.baseResultList).entID;
   }
 
   static getNResultsDisplay(nResultsDisplay, election) {
-    if (
-      (nResultsDisplay || nResultsDisplay === 0) &&
-      nResultsDisplay >= 0 &&
-      nResultsDisplay < election.baseResultList.length
-    ) {
+    if (DerivedData.isValidNResultsDisplay(nResultsDisplay, election)) {
       return nResultsDisplay;
     }
     return election.baseResultList.length;

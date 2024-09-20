@@ -116,44 +116,11 @@ function ElectionMenuItemList({ handleClose }) {
   );
 }
 
-export default function CustomMenu() {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-
-  const handleClose = function () {
-    setAnchorEl(null);
-  };
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
+function LinkMenuItemList() {
   return (
     <>
-      <IconButton
-        size="large"
-        edge="start"
-        color="inherit"
-        aria-label="menu"
-        sx={{ ml: 2 }}
-        onClick={handleClick}
-      >
-        <MenuIcon />
-      </IconButton>
 
-      <Menu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        sx={{ zIndex: 5000 }}
-        dense
-      >
-        <ElectionMenuItemList handleClose={handleClose} />
-        <Divider />
-
-        <LangMenuItemList handleClose={handleClose} />
-        <Divider />
-
-        <MenuItemLink
+<MenuItemLink
           label="Source Code"
           href="https://github.com/nuuuwan/prespoll/"
           Icon={GitHubIcon}
@@ -164,7 +131,54 @@ export default function CustomMenu() {
           href="https://github.com/nuuuwan/prespoll/issues"
           Icon={BugReportIcon}
         />
+    </>
+  )
+}
 
+function CustomIconButton({setAnchorEl}) {
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  return (
+    <IconButton
+        size="large"
+        edge="start"
+        color="inherit"
+        aria-label="menu"
+        sx={{ ml: 2 }}
+        onClick={handleClick}
+      >
+        <MenuIcon />
+      </IconButton>
+  )
+}
+
+export default function CustomMenu() {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClose = function () {
+    setAnchorEl(null);
+  };
+
+  return (
+    <>
+      <CustomIconButton setAnchorEl={setAnchorEl} />
+      <Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        sx={{ zIndex: 5000 }}
+      >
+        <ElectionMenuItemList handleClose={handleClose} />
+        
+        <Divider />
+        <LangMenuItemList handleClose={handleClose} />
+        
+        <Divider />
+        <LinkMenuItemList />
+        
         <Divider />
         <RefreshMenuItem />
       </Menu>

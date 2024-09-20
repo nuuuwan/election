@@ -1,26 +1,18 @@
 import { useState } from "react";
 
-import {
-  Box,
-
-
-} from "@mui/material";
+import { Box } from "@mui/material";
 import { useDataContext } from "../../../nonview/core/DataProvider";
-
-
-
 
 import { TabSelector } from "../../atoms";
 
 import AggregatedResultUtils from "./AggregatedResultUtils";
 import AggregatedResultViewGroup from "./AggregatedResultViewGroup";
 
-
-
 export default function AggregatedResultView() {
   const data = useDataContext();
 
-  const groupToEntIDListGetter = AggregatedResultUtils.getGroupToEntIDListGetter(data);
+  const groupToEntIDListGetter =
+    AggregatedResultUtils.getGroupToEntIDListGetter(data);
   const groupList = Object.keys(groupToEntIDListGetter);
 
   const [group, setGroup] = useState(groupList[0]);

@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-  Divider,
-
-  Menu,
-
-} from "@mui/material";
+import { Divider, Menu } from "@mui/material";
 
 import LangMenuItemList from "./LangMenuItemList";
 import RefreshMenuItem from "./RefreshMenuItem";

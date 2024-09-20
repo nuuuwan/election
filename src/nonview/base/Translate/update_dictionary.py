@@ -12,7 +12,6 @@ TRANSLATE_QUEUE_PATH = os.path.join('src', 'nonview', 'base', 'Translate', 'tran
 def filter_phrases(lines):
     phrases = []
     for line in lines:
-        line = line.strip()
         if not line:
             continue
         alpha_only = ''.join(e for e in line if e.isalpha())

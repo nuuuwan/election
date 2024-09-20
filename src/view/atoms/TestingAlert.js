@@ -1,5 +1,6 @@
 import { Alert, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
+import { Translate } from "../../nonview/base";
 
 export default function TestingAlert() {
   const data = useDataContext();
@@ -14,8 +15,7 @@ export default function TestingAlert() {
   return (
     <Alert severity="error">
       <Typography variant="h5">
-        This election is scheduled for the FUTURE. This data is for TESTING
-        purposes only, and is FAKE.
+        {Translate("This election is scheduled for the FUTURE. This data is for TESTING purposes only, and is FAKE.")}
       </Typography>
     </Alert>
   );

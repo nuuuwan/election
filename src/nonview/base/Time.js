@@ -70,14 +70,14 @@ export default class Time {
       return "Future";
     }
     if (seconds < 60) {
-      return `${Math.floor(seconds)}s ago`;
+      return `-${Math.floor(seconds)}s`;
     }
     if (seconds < 60 * 60) {
-      return `${Math.floor(seconds / 60)}m ago`;
+      return `-${Math.floor(seconds / 60)}m`;
     }
     if (seconds < 60 * 60 * 24) {
-      return `${Math.floor(seconds / 60 / 60)}h ago`;
+      return `-${Math.floor(seconds / 60 / 60)}h`;
     }
-    return `${Math.floor(seconds / 60 / 60 / 24)}d ago`;
+    return `-${Math.floor(seconds / 60 / 60 / 24)}d`;
   }
 }

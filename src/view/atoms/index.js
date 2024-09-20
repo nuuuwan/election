@@ -16,6 +16,7 @@ import ProjectionTitle from "./ProjectionTitle";
 import ResultTimeView from "./ResultTimeView";
 import ResultsReleasedTitle from "./ResultsReleasedTitle";
 import ResultsReleasedView from "./ResultsReleasedView";
+import TabSelector from "./TabSelector";
 import TestingAlert from "./TestingAlert";
 
 export {
@@ -36,5 +37,6 @@ export {
   ResultTimeView,
   ResultsReleasedTitle,
   ResultsReleasedView,
+  TabSelector,
   TestingAlert,
 };

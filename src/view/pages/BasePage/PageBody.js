@@ -98,25 +98,25 @@ export default function PageBody() {
       <IfElse condition={electionDisplay.nResults === 0}>
         <NoResultsAlert />
         <Grid2 container>
+          
           <CustomPageBodyGridItem>
             <ResultsReleasedTitle mode="percent" />
-
             <LatestResultListView />
             <BellwetherView />
-
             <HistoryAlert />
             <ResultsReleasedAlert />
           </CustomPageBodyGridItem>
+
           <CustomPageBodyGridItem>
             <ResultsReleasedTitle mode="n" />
-
             <HexMapView />
-
             <HexagonClickAlert />
           </CustomPageBodyGridItem>
+          
           <CustomPageBodyGridItem>
             <ProjectionView />
           </CustomPageBodyGridItem>
+        
         </Grid2>
         <PageBelowTheFold />
       </IfElse>

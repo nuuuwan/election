@@ -1,7 +1,7 @@
 import { AppBar, Box, Toolbar } from "@mui/material";
 
 import { useDataContext } from "../../../nonview/core/DataProvider";
-import { EntView, ResultTimeView } from "../../../view/atoms";
+import { EntView, ResultTimeView, RefreshButton } from "../../../view/atoms";
 import { CustomMenu } from "../../../view/molecules";
 
 const STYLE_PAGE_HEADER = {
@@ -34,8 +34,9 @@ export default function PageHeader() {
 
           <Box sx={{ flexGrow: 1 }} />
 
-          <ResultTimeView entID="LK" sx={{ color: "white" }} />
+          <ResultTimeView entID="LK" sx={{ color: "white" }} hideBlank={true} />
 
+          <RefreshButton />
           <CustomMenu />
         </Toolbar>
       </AppBar>

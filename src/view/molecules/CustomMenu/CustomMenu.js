@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Divider, Menu } from "@mui/material";
 
 import LangMenuItemList from "./LangMenuItemList";
-import RefreshMenuItem from "./RefreshMenuItem";
 import ElectionMenuItemList from "./ElectionMenuItemList";
 import LinkMenuItemList from "./LinkMenuItemList";
 import CustomIconButton from "./CustomIconButton";
@@ -30,9 +29,6 @@ export default function CustomMenu() {
 
         <Divider />
         <LinkMenuItemList />
-
-        <Divider />
-        <RefreshMenuItem />
       </Menu>
     </>
   );

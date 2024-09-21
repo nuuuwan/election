@@ -3,7 +3,7 @@ import { useDataContext } from "../../nonview/core/DataProvider";
 
 import { Time } from "../../nonview/base";
 
-export default function ResultTimeView({ entID, sx }) {
+export default function ResultTimeView({ entID, sx ,hideBlank=false}) {
   const data = useDataContext();
   if (!data) {
     return null;
@@ -14,7 +14,7 @@ export default function ResultTimeView({ entID, sx }) {
   }
   const result = electionDisplay.resultIdx[entID];
 
-  let title = "-";
+  let title = hideBlank ? null : "-";
   let subTitle = null;
   if (result.resultTime) {
     const timeResult = Time.fromString(result.resultTime);

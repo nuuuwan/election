@@ -8,7 +8,7 @@ import {
   SummaryView,
   PartyToVotesStatsView,
 } from "../../view/molecules";
-import { EntView, ResultsReleasedView, ResultTimeView } from "../../view/atoms";
+import { EntView, ResultsReleasedView, ResultTimeView, VoteLeadView } from "../../view/atoms";
 
 function getContentList({ entID, result, electionDisplay }) {
   return [
@@ -21,12 +21,15 @@ function getContentList({ entID, result, electionDisplay }) {
     <PartyToVotesStatsView partyToVotes={result.partyToVotes} />,
     <ResultBarChart resultsElection={electionDisplay} entID={entID} />,
 
+    <VoteLeadView entID={entID} />,
+
     <SummaryView summary={result.summary} />,
 
     <HistoryView entID={entID} />,
 
     <ResultsReleasedView entID={entID} />,
     <ResultTimeView entID={entID} />,
+    
   ];
 }
 

@@ -20,6 +20,7 @@ import ResultsReleasedTitle from "./ResultsReleasedTitle";
 import ResultsReleasedView from "./ResultsReleasedView";
 import TabSelector from "./TabSelector";
 import TestingAlert from "./TestingAlert";
+import VoteLeadView from "./VoteLeadView";
 
 export {
   CheckIcon,
@@ -43,4 +44,5 @@ export {
   ResultsReleasedView,
   TabSelector,
   TestingAlert,
+  VoteLeadView,
 };

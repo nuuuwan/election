@@ -91,4 +91,9 @@ export default class PartyToVotes {
     const nonOtherVotes = MathX.sum(Object.values(nonOther));
     return { ...nonOther, Other: this.totalVotes - nonOtherVotes };
   }
+
+  get lead() {
+    const votes = Object.values(this.partyToVotesSorted);
+    return votes[0] - votes[1];
+  }
 }

@@ -54,6 +54,9 @@ export default function HiddenDataView() {
   if (!data) {
     return null;
   }
+  if (!data.electionDisplay.nResultsDisplay) {
+    return null;
+  }
   const hiddenData = getHiddenData(data);
   const hiddenDataJSON = JSON.stringify(hiddenData);
   return (

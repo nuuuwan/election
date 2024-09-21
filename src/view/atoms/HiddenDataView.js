@@ -35,11 +35,16 @@ function getHiddenData(data) {
   );
 
   const url = window.location.href;
-  const cleanedURL = url.replace('http://localhost:3000/', 'https://nuuuwan.github.io/');
+  const cleanedURL = url.replace(
+    "http://localhost:3000/",
+    "https://nuuuwan.github.io/"
+  );
   const tweet = []
-    .concat([`${nResultsDisplay}. ${activeEntHashtag}` + subtitleText, ''], partyLines, [
-      '', cleanedURL, electionDisplay.hashTag + " #SriLanka #lka",
-    ])
+    .concat(
+      [`${nResultsDisplay}. ${activeEntHashtag}` + subtitleText, ""],
+      partyLines,
+      ["", cleanedURL, electionDisplay.hashTag + " #SriLanka #lka"]
+    )
     .join("\n");
   return { activeEntID, tweet };
 }

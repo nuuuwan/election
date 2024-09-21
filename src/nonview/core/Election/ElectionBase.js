@@ -46,7 +46,7 @@ export default class ElectionBase {
   }
 
   get hashTag() {
-    return '#PresPollSL' + this.year.toString();
+    return "#PresPollSL" + this.year.toString();
   }
 
   get dateFormatted() {

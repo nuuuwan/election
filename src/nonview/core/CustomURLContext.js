@@ -20,6 +20,13 @@ export default class CustomURLContext {
   static set(data) {
     URLContext.set(data);
     const year = data.date.split("-")[0];
-    window.document.title = `#PresPollSL${year} (${data.nResultsDisplay})`;
+    let newTitle = `#PresPollSL${year}`;
+    if (data.nResultsDisplay) {
+      newTitle += ` (${data.nResultsDisplay})`;
+    } else 
+    {
+      newTitle += ` - Await...`;
+    }
+    window.document.title = newTitle;
   }
 }

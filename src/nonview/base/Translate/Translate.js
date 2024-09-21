@@ -18,6 +18,9 @@ class Translate {
   }
 
   static getTranslationWithoutParams(phrase) {
+    if (['%'].includes(phrase)) {
+      return phrase;
+    }
     if (typeof phrase !== "string") {
       return phrase;
     }

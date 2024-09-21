@@ -9,7 +9,7 @@ export default function RefreshButton() {
 
   return (
     <IconButton onClick={onClickRefresh}>
-      <RefreshIcon sx={{color: "white"}} />
+      <RefreshIcon sx={{ color: "white" }} />
     </IconButton>
   );
 }

@@ -43,7 +43,13 @@ function getHiddenData(data) {
     .concat(
       [`${nResultsDisplay}. ${activeEntHashtag}` + subtitleText, ""],
       partyLines,
-      ["", cleanedURL, "🇱🇰 " + electionDisplay.hashTag + " #SriLanka #LKA #SriLankaElections #Elections2024"]
+      [
+        "",
+        cleanedURL,
+        "🇱🇰 " +
+          electionDisplay.hashTag +
+          " #SriLanka #LKA #SriLankaElections #Elections2024",
+      ]
     )
     .join("\n");
   return { activeEntID, tweet };

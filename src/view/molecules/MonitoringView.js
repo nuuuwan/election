@@ -189,10 +189,10 @@ function ElectorsView() {
     <Stack direction="column" sx={{ alignItems: "center" }}>
       <Typography variant="h5">Registered Voters</Typography>
       <CustomAlert>
-      {Translate(
-        "An abnormal change in the number of registered voters across elections could be suspicious."
-      )}
-       </CustomAlert>
+        {Translate(
+          "An abnormal change in the number of registered voters across elections could be suspicious."
+        )}
+      </CustomAlert>
       <GenericScatterChart
         getValue={(result) => result.summary.electors}
         formatStat={Format.intHumanize}

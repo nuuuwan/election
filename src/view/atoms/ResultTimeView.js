@@ -3,7 +3,7 @@ import { useDataContext } from "../../nonview/core/DataProvider";
 
 import { Time } from "../../nonview/base";
 
-export default function ResultTimeView({ entID, sx ,hideBlank=false}) {
+export default function ResultTimeView({ entID, sx, hideBlank = false }) {
   const data = useDataContext();
   if (!data) {
     return null;

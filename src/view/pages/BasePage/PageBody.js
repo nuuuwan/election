@@ -81,10 +81,14 @@ function HexagonClickAlert() {
 
 function PageBelowTheFold() {
   return (
-    <Stack direction="column" gap={3} sx={{ marginTop: 15, p: 1, borderTop: "1px solid #eee" }}>
+    <Stack
+      direction="column"
+      gap={3}
+      sx={{ marginTop: 15, p: 1, borderTop: "1px solid #eee" }}
+    >
       <AggregatedResultView />
       <MonitoringView />
-      <DisclaimerView/>
+      <DisclaimerView />
     </Stack>
   );
 }
@@ -124,7 +128,6 @@ export default function PageBody() {
           </CustomPageBodyGridItem>
         </Grid2>
         <PageBelowTheFold />
-        
       </IfElse>
     </Box>
   );

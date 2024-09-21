@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from "@mui/material";
+import {  Stack, Typography } from "@mui/material";
 
 import { MathX, Translate, Format, Color } from "../../nonview/base";
 import { useDataContext } from "../../nonview/core/DataProvider";
@@ -188,7 +188,9 @@ function ElectorsView() {
   return (
     <Stack direction="column" sx={{ alignItems: "center" }}>
       <Typography variant="h5">Registered Voters</Typography>
-
+      {Translate(
+          "An abnormal change in the number of registered voters across elections could be suspicious."
+        )}
       <GenericScatterChart
         getValue={(result) => result.summary.electors}
         formatStat={Format.intHumanize}
@@ -199,12 +201,12 @@ function ElectorsView() {
 
 export default function MonitoringView() {
   return (
-    <Box>
+    <Stack direction="column" gap={3}>
       <Typography variant="h4">Monitoring</Typography>
       <BanfordView />
       <TurnoutView />
       <RejectedView />
       <ElectorsView />
-    </Box>
+    </Stack>
   );
 }

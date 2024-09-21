@@ -47,10 +47,10 @@ export default class OngoingElection {
     const rawDataList = await OngoingElection.getRawData(election);
     return rawDataList
       .filter(function (data) {
-        return data["result_time"] !== 0;
+        return data["result_time"] && data["result_time"] !== 0;
       })
       .sort(function (a, b) {
-        return (a["result_time"] || "").localeCompare(b["result_time"] || "");
+        return a["result_time"].localeCompare(b["result_time"]);
       })
       .map(function (data) {
         return OngoingElection.getResult(data, idKey);
@@ -66,8 +66,6 @@ export default class OngoingElection {
       election,
       OngoingElection.getIDKey(election)
     );
-
-    console.debug({baseResultList});
 
     if (baseResultList.length > 0) {
       election.build(baseResultList);

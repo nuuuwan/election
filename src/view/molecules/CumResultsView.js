@@ -1,4 +1,4 @@
-import { Box, TableCell, TableRow } from "@mui/material";
+import { Box, TableCell, TableRow, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
 import { Color } from "../../nonview/base";
@@ -8,7 +8,21 @@ import {
   SummaryView,
   PartyToVotesStatsView,
 } from "../../view/molecules";
-import { EntView, ResultsReleasedView, ResultTimeView, VoteLeadView } from "../../view/atoms";
+import {
+  EntView,
+  ResultsReleasedView,
+  ResultTimeView,
+  VoteLeadView,
+} from "../../view/atoms";
+
+function ElectionSmallTitleView() {
+  const data = useDataContext();
+  if (!data) {
+    return null;
+  }
+  const { electionDisplay } = data;
+  return <Typography variant="caption">{electionDisplay.hashTag}</Typography>;
+}
 
 function getContentList({ entID, result, electionDisplay }) {
   return [
@@ -29,7 +43,6 @@ function getContentList({ entID, result, electionDisplay }) {
 
     <ResultsReleasedView entID={entID} />,
     <ResultTimeView entID={entID} />,
-    
   ];
 }
 
@@ -67,6 +80,7 @@ export function CumResultsColumnView({ entID }) {
           </Box>
         );
       })}
+      <ElectionSmallTitleView />
     </Box>
   );
 }

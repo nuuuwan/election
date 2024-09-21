@@ -11,6 +11,9 @@ export default class DerivedData {
   }
 
   static getActiveEntID(activeEntID, nResultsDisplay, election) {
+    if (!election.isLoaded) {
+      return null;
+    }
     if (activeEntID) {
       const iResult = election.baseEntIDList.indexOf(activeEntID);
       if (iResult > -1) {
@@ -26,6 +29,9 @@ export default class DerivedData {
   }
 
   static getNResultsDisplay(nResultsDisplay, election) {
+    if (!election.isLoaded) {
+      return null;
+    }
     if (DerivedData.isValidNResultsDisplay(nResultsDisplay, election)) {
       return nResultsDisplay;
     }

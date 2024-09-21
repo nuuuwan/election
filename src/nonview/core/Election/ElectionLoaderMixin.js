@@ -9,7 +9,7 @@ const ElectionLoaderMixin = {
       await OngoingElection.loadData(this);
     } else {
       const pdResultList = await this.getPDResultList();
-      this.build(EntType.PD, pdResultList);
+      this.build(pdResultList);
     }
   },
 
@@ -38,19 +38,18 @@ const ElectionLoaderMixin = {
     return sortedPDResultList;
   },
 
-  build(baseEntType, baseResultList) {
+  build(baseResultList) {
     this.baseResultList = baseResultList;
 
-    if (baseEntType === EntType.PD) {
+    if (this.baseEntType === EntType.PD) {
       this.pdResultList = baseResultList;
-    } else if (baseEntType === EntType.ED) {
+    } else if (this.baseEntType === EntType.ED) {
       this.pdResultList = [];
       this.edResultList = baseResultList;
     } else {
-      throw new Error("Invalid baseEntType: " + baseEntType);
+      throw new Error("Invalid baseEntType: " + this.baseEntType);
     }
 
-    this.baseEntType = baseEntType;
 
     this.edResultList =
       this.edResultList ||

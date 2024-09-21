@@ -1,4 +1,4 @@
-import { EntType, Time, WWW } from "../base";
+import {  Time, WWW } from "../base";
 import PartyToVotes from "./PartyToVotes";
 import Result from "./Result";
 import Summary from "./Summary";
@@ -7,24 +7,15 @@ export default class OngoingElection {
   static getURL(election) {
     switch (election.date) {
       case "2024-09-21":
-        return "https://raw.githubusercontent.com/nuuuwan/prespollsl2024_py/main/data/fake/test1-2024.json";
+        return "https://raw.githubusercontent.com/nuuuwan/prespollsl2024_py/refs/heads/main/data/ec/prod1-2024.json";
       case "2024-09-22":
-        return "https://raw.githubusercontent.com/nuuuwan/prespollsl2024_py/main/data/fake/test2-2024.json";
+        return "https://raw.githubusercontent.com/nuuuwan/prespollsl2024_py/refs/heads/main/data/ec/prod2-2024.json";
       default:
         throw new Error("Unknown election date: " + election.date);
     }
   }
 
-  static getBaseEntType(election) {
-    switch (election.date) {
-      case "2024-09-21":
-        return EntType.PD;
-      case "2024-09-22":
-        return EntType.ED;
-      default:
-        throw new Error("Unknown election date: " + election.date);
-    }
-  }
+
 
   static getIDKey(election) {
     switch (election.date) {
@@ -73,15 +64,15 @@ export default class OngoingElection {
       throw new Error("Election is already loaded: " + election);
     }
 
-    // const pdResultList = await OngoingElection.getResultList('pd_id');
-    // election.build(EntType.PD, pdResultList);
-
     const baseResultList = await OngoingElection.getResultList(
       election,
       OngoingElection.getIDKey(election)
     );
-    election.build(OngoingElection.getBaseEntType(election), baseResultList);
-
+    if (baseResultList.length > 0) {
+      election.build(baseResultList);
+  
+    }
+    
     return election;
   }
 }

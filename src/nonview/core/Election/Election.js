@@ -7,8 +7,15 @@ import ElectionGetters from "./ElectionGetters.js";
 import ElectionStaticUtilsMixin from "./ElectionStaticUtilsMixin.js";
 import ElectionStaticLoaderMixin from "./ElectionStaticLoaderMixin.js";
 import ElectionLoaderMixin from "./ElectionLoaderMixin.js";
+import EntType from "../../base/EntType.js";
+
 
 class Election extends ElectionBase {
+  
+  copy() {
+    return new Election(this.electionType, this.date, this.baseEntType);
+  }
+
   getResult(id) {
     if (!this.isLoaded) {
       return null;
@@ -17,15 +24,27 @@ class Election extends ElectionBase {
   }
 
   static async fromElectionTypeAndDate(electionType, date) {
-    const election = new Election(electionType, date);
+    const election = new Election(electionType, date, EntType.PD);
     await election.__loadData();
     return election;
+  }
+
+  static getBaseEntTypeFromDate(date) {
+    switch (date) {
+      case "2024-09-21":
+        return EntType.PD;
+      case "2024-09-22":
+        return EntType.ED;
+      default:
+        return undefined;
+    }
   }
 
   static async listAll() {
     const elections = await Promise.all(
       ELECTION_LIST_TUPLES.map(async ([electionType, date]) => {
-        const election = new Election(electionType, date);
+        const baseEntType = Election.getBaseEntTypeFromDate(date) || EntType.PD;
+        const election = new Election(electionType, date, baseEntType);
         await election.__loadData();
         return election;
       })
@@ -37,8 +56,8 @@ class Election extends ElectionBase {
   // Subset Election
 
   getSubsetElectionByBaseResultList(baseResultList) {
-    const election = new Election(this.electionType, this.date);
-    election.build(this.baseEntType, baseResultList);
+    const election = this.copy();
+    election.build( baseResultList);
     return election;
   }
 
@@ -56,6 +75,9 @@ class Election extends ElectionBase {
   }
 
   getElectionSubset(nResultsDisplay) {
+    if (!this.baseResultList) {
+      return this.copy();
+    }
     const baseResultList = this.baseResultList.slice(0, nResultsDisplay);
     return this.getSubsetElectionByBaseResultList(baseResultList);
   }

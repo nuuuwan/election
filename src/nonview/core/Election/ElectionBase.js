@@ -3,11 +3,12 @@ import { Time, Translate } from "../../base/index.js";
 export default class ElectionBase {
   static URL_BASE =
     "https://raw.githubusercontent.com/nuuuwan/gig-data/master/gig2_custom_ec_only";
-  constructor(electionType, date) {
+  constructor(electionType, date, baseEntType) {
     this.electionType = electionType;
     this.date = date;
+    this.baseEntType = baseEntType;
 
-    this.baseEntType = null;
+    // (loaded later)
     this.pdResultList = null;
     this.edResultList = null;
     this.provinceResultList = null;
@@ -15,8 +16,9 @@ export default class ElectionBase {
     this.resultLK = null;
     this.resultList = null;
     this.resultIdx = null;
-    this.isLoaded = false;
+    this.isLoaded = false; // meta
   }
+
 
   get electionTypeTitle() {
     if (this.electionType === "Presidential") {
@@ -64,7 +66,8 @@ export default class ElectionBase {
   }
 
   get isFuture() {
-    return this.date.localeCompare(Time.now().dateString) > 0;
+    const DATE_FUTURE = '2024-09-01';;
+    return this.date.localeCompare(DATE_FUTURE) > 0;
   }
 
   localeCompare(other) {
@@ -79,6 +82,9 @@ export default class ElectionBase {
   }
 
   get nResults() {
+    if (!this.baseResultList) {
+      return 0;
+    }
     return this.baseResultList.length;
   }
 

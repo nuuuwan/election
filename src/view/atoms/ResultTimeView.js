@@ -9,6 +9,9 @@ export default function ResultTimeView({ entID, sx }) {
     return null;
   }
   const { electionDisplay } = data;
+  if (!electionDisplay.resultIdx) {
+    return null;
+  }
   const result = electionDisplay.resultIdx[entID];
 
   let title = "-";

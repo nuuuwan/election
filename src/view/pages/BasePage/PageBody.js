@@ -99,7 +99,7 @@ export default function PageBody() {
 
   return (
     <Box sx={STYLE.BOX}>
-      <IfElse condition={electionDisplay.nResults === 0}>
+      <IfElse condition={!electionDisplay.nResults}>
         <NoResultsAlert />
         <Grid2 container>
           <CustomPageBodyGridItem>

@@ -8,7 +8,7 @@ export default function TestingAlert() {
     return null;
   }
   const { election } = data;
-  if (!election.isFuture) {
+  if (!election || !election.isFuture) {
     return null;
   }
 

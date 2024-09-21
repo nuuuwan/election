@@ -56,7 +56,7 @@ export default class Party {
         IND16: "@RW_SRILANKA",
         SLPP: "@PodujanaParty",
         SLCP: "@Dilith_J",
-      }[this.id] || "#" + this.id
+      }[this.id] || "#" + this.label
     );
   }
 

@@ -17,11 +17,21 @@ import {
 } from "../../view/atoms";
 
 function getContentList({ entID, result, electionDisplay }) {
+
+  const baseEntIDList = electionDisplay.baseEntIDList;
+  const iEnt = baseEntIDList.indexOf(entID);
+  let num = null;
+  if (iEnt !== -1) {
+    num = iEnt + 1;
+  }
+
   return [
+
     <EntView
       entID={entID}
       useLongName={true}
       sx={{ color: result.color, p: 0.5 }}
+      num={num}
     />,
 
     <PartyToVotesStatsView partyToVotes={result.partyToVotes} />,

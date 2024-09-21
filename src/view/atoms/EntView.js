@@ -7,6 +7,7 @@ export default function EntView({
   useLongName = false,
   sx = {},
   direction = "column",
+  num=null,
 }) {
   const data = useDataContext();
   if (!data) {
@@ -24,6 +25,11 @@ export default function EntView({
   const entType = EntType.fromID(entID);
 
   const label = useLongName ? entType.longName : entType.shortName;
+  
+  let numPart = "";
+  if (num !== null) {
+    numPart = `${num}. `;
+  }
 
   return (
     <Stack
@@ -31,7 +37,7 @@ export default function EntView({
       sx={Object.assign({ alignItems: "center" }, sx)}
       gap={1}
     >
-      <Typography variant="h5">{Translate(ent.name)}</Typography>
+      <Typography variant="h5">{numPart + Translate(ent.name)}</Typography>
       <Typography variant="h5" sx={{ opacity: 0.5 }}>
         {Translate(label)}
       </Typography>

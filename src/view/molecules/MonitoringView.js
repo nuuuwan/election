@@ -202,7 +202,7 @@ function ElectorsView() {
 export default function MonitoringView() {
   return (
     <Stack direction="column" gap={3}>
-      <Typography variant="h4">Monitoring</Typography>
+      <Typography variant="h4">{Translate("Monitoring")}</Typography>
       <BanfordView />
       <TurnoutView />
       <RejectedView />

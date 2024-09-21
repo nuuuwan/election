@@ -1,4 +1,4 @@
-import { Box, Grid2, Typography } from "@mui/material";
+import { Box, Grid2, Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 
 import { ArrayX, Format, Translate } from "../../../nonview/base";
@@ -16,6 +16,7 @@ import {
   AggregatedResultView,
   BellwetherView,
   MonitoringView,
+  DisclaimerView,
 } from "../../molecules";
 import { ResultsReleasedAlert } from "../../atoms/ResultsReleasedTitle";
 
@@ -80,9 +81,11 @@ function HexagonClickAlert() {
 
 function PageBelowTheFold() {
   return (
-    <Box sx={{ marginTop: 15, p: 1, borderTop: "1px solid #eee" }}>
+    <Stack direction="column" gap={3} sx={{ marginTop: 15, p: 1, borderTop: "1px solid #eee" }}>
       <AggregatedResultView />
-    </Box>
+      <MonitoringView />
+      <DisclaimerView/>
+    </Stack>
   );
 }
 
@@ -121,7 +124,7 @@ export default function PageBody() {
           </CustomPageBodyGridItem>
         </Grid2>
         <PageBelowTheFold />
-        <MonitoringView />
+        
       </IfElse>
     </Box>
   );

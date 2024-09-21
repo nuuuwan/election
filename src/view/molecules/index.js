@@ -3,6 +3,7 @@ import AggregatedResultView from "./AggregatedResultView";
 import BellwetherView from "./BellwetherView";
 import CumResultsView from "./CumResultsView";
 import CustomMenu from "./CustomMenu";
+import DisclaimerView from "./DisclaimerView";
 import FinalOutcomeView from "./FinalOutcomeView";
 import HexMapView from "./HexMapView";
 import HistoryView from "./HistoryView";
@@ -19,6 +20,7 @@ export {
   BellwetherView,
   CumResultsView,
   CustomMenu,
+  DisclaimerView,
   FinalOutcomeView,
   HexMapView,
   HistoryView,

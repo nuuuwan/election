@@ -51,7 +51,7 @@ export default class Party {
   get xTag() {
     return (
       {
-        SJB: "@sjbsrilanka",
+        SJB: "@SJBSriLanka",
         NPP: "@NPPSLOfficial",
         IND16: "@RW_SRILANKA",
         SLPP: "@PodujanaParty",

@@ -35,10 +35,10 @@ function getHiddenData(data) {
   );
 
   const tweet = []
-    .concat([`${activeEntHashtag}` + subtitleText], partyLines, [
-      "#PresPollSL2024 #SriLanka #lka",
+    .concat([`${activeEntHashtag}` + subtitleText, ''], partyLines, [
+      '', "#PresPollSL2024 #SriLanka #lka",
     ])
-    .join("\n\n");
+    .join("\n");
   return { activeEntID, tweet };
 }
 

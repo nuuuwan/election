@@ -7,6 +7,7 @@ import CustomSelect from "./CustomSelect";
 import CustomStack from "./CustomStack";
 import ElectionSelector from "./ElectionSelector";
 import EntView from "./EntView";
+import HiddenDataView from "./HiddenDataView";
 import IfElse from "./IfElse";
 import LabelledStat from "./LabelledStat";
 import LoadingLabel from "./LoadingLabel";
@@ -29,6 +30,7 @@ export {
   CustomStack,
   ElectionSelector,
   EntView,
+  HiddenDataView,
   IfElse,
   LabelledStat,
   LoadingLabel,

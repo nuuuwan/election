@@ -26,4 +26,32 @@ export default class Party {
   get isNonParty() {
     return Party.NON_PARTY_ID_LIST.includes(this.id);
   }
+
+  get emoji() {
+    return {
+      'SJB': '🟢',
+      'NPP': '🔴',
+      'IND16': '🟠',
+      'SLPP': '🟣',
+      'SLCP': '🔵',
+      // History
+      'NDF': '🟢',
+      'UNP': '🟢',
+      'SLMP': '🟣',
+      'UPFA': '🔵',
+      'PA': '🔵',
+      'SLFP': '🔵',
+      'ACTC': '🟠',
+    }[this.id] || '⚪';
+  }
+
+  get xTag() {
+    return {
+      'SJB': '@sjbsrilanka',
+      'NPP': '@NPPSLOfficial',
+      'IND16': '@RW_SRILANKA',
+      'SLPP': '@PodujanaParty',
+      'SLCP': '@Dilith_J',
+    }[this.id] || '#' + this.id;
+  }
 }

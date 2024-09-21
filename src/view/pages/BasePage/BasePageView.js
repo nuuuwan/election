@@ -1,9 +1,11 @@
 import { Box } from "@mui/material";
 import { useDataContext } from "../../../nonview/core/DataProvider";
+
+import { LoadingLabel , HiddenDataView} from "../../atoms";
+
 import PageHeader from "./PageHeader";
 import PageBody from "./PageBody";
 import PageFooter from "./PageFooter";
-import { LoadingLabel } from "../../atoms";
 
 export default function BasePageView() {
   const data = useDataContext();
@@ -13,6 +15,7 @@ export default function BasePageView() {
 
   return (
     <Box sx={{ textAlign: "center" }}>
+      <HiddenDataView />
       <PageHeader />
       <PageBody />
       <PageFooter />

@@ -33,6 +33,7 @@ export default class Party {
         SJB: "🟢",
         NPP: "🔴",
         IND16: "🟠",
+        IND9: "🟡",
         SLPP: "🟣",
         SLCP: "🔵",
         // History
@@ -57,5 +58,16 @@ export default class Party {
         SLCP: "@Dilith_J",
       }[this.id] || "#" + this.id
     );
+  }
+
+  get label() {
+    let label = { IND16: "RW", IND9: "AP" }[this.id] || this.id;
+ 
+
+    if (label.length > 3) {
+      label = label.substring(0, 2) + ".";
+    }
+
+    return label;
   }
 }

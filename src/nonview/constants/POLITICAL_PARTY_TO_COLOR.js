@@ -29,6 +29,7 @@ const COLOR_TO_POLITICAL_PARTIES = {
 
   // 2024
   "#f82": ["IND16"],
+  "#fc2": ["IND9"],
   "#06c": ["CPSL"],
 };
 

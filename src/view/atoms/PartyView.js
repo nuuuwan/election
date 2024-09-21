@@ -14,13 +14,7 @@ export default function PartyView({ partyID, sx }) {
     return null;
   }
   const party = Party.fromID(partyID);
-  let label = partyID;
-
-  label = { IND16: "RW" }[label] || label;
-
-  if (label.length > 3) {
-    label = label.substring(0, 2) + ".";
-  }
+  let label = party.label;
 
   return (
     <Typography

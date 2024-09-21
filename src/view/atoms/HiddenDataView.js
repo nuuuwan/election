@@ -11,7 +11,7 @@ import { Party } from "../../nonview/core";
 // #LKAElections2020 #GenElecSL2020 #SriLanka #lka
 
 function getHiddenData(data) {
-  const { activeEntID, entIdx, electionDisplay, edIdx } = data;
+  const { activeEntID, entIdx, electionDisplay, edIdx, nResultsDisplay } = data;
   const activeEnt = entIdx[activeEntID];
   const activeEntHashtag = activeEnt.hashtag;
 
@@ -34,9 +34,11 @@ function getHiddenData(data) {
     }
   );
 
+  const url = window.location.href;
+  const cleanedURL = url.replace('http://localhost:3000/', 'https://nuuuwan.github.io/');
   const tweet = []
-    .concat([`${activeEntHashtag}` + subtitleText, ''], partyLines, [
-      '', "#PresPollSL2024 #SriLanka #lka",
+    .concat([`${nResultsDisplay}. ${activeEntHashtag}` + subtitleText, ''], partyLines, [
+      '', cleanedURL, electionDisplay.hashTag + " #SriLanka #lka",
     ])
     .join("\n");
   return { activeEntID, tweet };

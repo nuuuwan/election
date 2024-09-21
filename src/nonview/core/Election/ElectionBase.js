@@ -45,6 +45,10 @@ export default class ElectionBase {
     return this.date.substring(0, 4);
   }
 
+  get hashTag() {
+    return '#PresPollSL' + this.year.toString();
+  }
+
   get dateFormatted() {
     return Time.fromString(this.date).getDate().toLocaleDateString("en-LK", {
       year: "numeric",

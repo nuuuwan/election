@@ -1,4 +1,4 @@
-import {  Time, WWW } from "../base";
+import { Time, WWW } from "../base";
 import PartyToVotes from "./PartyToVotes";
 import Result from "./Result";
 import Summary from "./Summary";
@@ -14,8 +14,6 @@ export default class OngoingElection {
         throw new Error("Unknown election date: " + election.date);
     }
   }
-
-
 
   static getIDKey(election) {
     switch (election.date) {
@@ -70,9 +68,8 @@ export default class OngoingElection {
     );
     if (baseResultList.length > 0) {
       election.build(baseResultList);
-  
     }
-    
+
     return election;
   }
 }

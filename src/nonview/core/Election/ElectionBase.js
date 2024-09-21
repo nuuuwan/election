@@ -19,7 +19,6 @@ export default class ElectionBase {
     this.isLoaded = false; // meta
   }
 
-
   get electionTypeTitle() {
     if (this.electionType === "Presidential") {
       return "Presidential";
@@ -66,7 +65,7 @@ export default class ElectionBase {
   }
 
   get isFuture() {
-    const DATE_FUTURE = '2024-09-01';;
+    const DATE_FUTURE = "2024-09-01";
     return this.date.localeCompare(DATE_FUTURE) > 0;
   }
 

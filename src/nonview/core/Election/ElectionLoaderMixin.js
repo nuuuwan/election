@@ -50,7 +50,6 @@ const ElectionLoaderMixin = {
       throw new Error("Invalid baseEntType: " + this.baseEntType);
     }
 
-
     this.edResultList =
       this.edResultList ||
       ElectionStaticLoaderMixin.buildEDResultList(this.pdResultList);

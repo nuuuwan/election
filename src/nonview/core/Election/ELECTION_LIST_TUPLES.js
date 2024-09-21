@@ -1,5 +1,4 @@
 const ELECTION_LIST_TUPLES = [
-
   // Ongoing
   // ["Presidential", "2024-09-22"],
   ["Presidential", "2024-09-21"],

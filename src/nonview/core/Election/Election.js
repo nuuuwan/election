@@ -9,9 +9,7 @@ import ElectionStaticLoaderMixin from "./ElectionStaticLoaderMixin.js";
 import ElectionLoaderMixin from "./ElectionLoaderMixin.js";
 import EntType from "../../base/EntType.js";
 
-
 class Election extends ElectionBase {
-  
   copy() {
     return new Election(this.electionType, this.date, this.baseEntType);
   }
@@ -57,7 +55,7 @@ class Election extends ElectionBase {
 
   getSubsetElectionByBaseResultList(baseResultList) {
     const election = this.copy();
-    election.build( baseResultList);
+    election.build(baseResultList);
     return election;
   }
 

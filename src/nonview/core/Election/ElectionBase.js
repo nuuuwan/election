@@ -50,7 +50,15 @@ export default class ElectionBase {
   }
 
   get hashTagList() {
-    return ["🇱🇰 ",this.hashTag, '#SriLanka','#LKA','#SriLankaElections','#Election' + this.year,'#PresidentialElection' + this.year]
+    return [
+      "🇱🇰 ",
+      this.hashTag,
+      "#SriLanka",
+      "#LKA",
+      "#SriLankaElections",
+      "#Election" + this.year,
+      "#PresidentialElection" + this.year,
+    ];
   }
 
   get dateFormatted() {

@@ -43,12 +43,7 @@ function getHiddenData(data) {
     .concat(
       [`${nResultsDisplay}. ${activeEntHashtag}` + subtitleText, ""],
       partyLines,
-      [
-        "",
-        cleanedURL,
-        electionDisplay.hashTagList.join(' ')
-
-      ]
+      ["", cleanedURL, electionDisplay.hashTagList.join(" ")]
     )
     .join("\n");
   return { activeEntID, tweet };
@@ -59,7 +54,7 @@ export default function HiddenDataView() {
   if (!data) {
     return null;
   }
-  
+
   if (!data.electionDisplay.nResults) {
     return null;
   }

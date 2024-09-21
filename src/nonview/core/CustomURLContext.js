@@ -23,8 +23,7 @@ export default class CustomURLContext {
     let newTitle = `#PresPollSL${year}`;
     if (data.nResultsDisplay) {
       newTitle += ` (${data.nResultsDisplay})`;
-    } else 
-    {
+    } else {
       newTitle += ` - Await...`;
     }
     window.document.title = newTitle;

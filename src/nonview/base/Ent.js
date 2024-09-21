@@ -12,7 +12,7 @@ export default class Ent {
   }
 
   get hashtag() {
-    return "#" + this.name.replaceAll(' ', '');
+    return "#" + this.name.replaceAll(" ", "");
   }
 
   get entType() {

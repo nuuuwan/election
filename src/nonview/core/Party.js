@@ -62,7 +62,6 @@ export default class Party {
 
   get label() {
     let label = { IND16: "RW", IND9: "AP" }[this.id] || this.id;
- 
 
     if (label.length > 3) {
       label = label.substring(0, 2) + ".";

@@ -83,7 +83,7 @@ function GenericScatterChart({ getValue, formatStat }) {
     elections,
     electionDisplay
   );
-  
+
   const baseData = electionDisplay.baseResultList
     .filter(function (result) {
       return !result.entID.endsWith("P") && allRegionIdx[result.entID];

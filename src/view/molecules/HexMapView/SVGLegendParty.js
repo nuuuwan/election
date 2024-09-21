@@ -1,4 +1,3 @@
-
 import { EntType } from "../../../nonview/base";
 import { Party } from "../../../nonview/core";
 import { useDataContext } from "../../../nonview/core/DataProvider";
@@ -42,7 +41,13 @@ export default function SVGLegendParty({ baseEntType }) {
     return (
       <g key={partyID}>
         <SVGHexPolygon x={x1} y={y1} color={color} label={party.label} />
-        <SVGHexText x={x1} y={y1} color={"white"} label={party.label} opacity={1} />
+        <SVGHexText
+          x={x1}
+          y={y1}
+          color={"white"}
+          label={party.label}
+          opacity={1}
+        />
       </g>
     );
   });

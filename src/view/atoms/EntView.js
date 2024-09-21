@@ -7,7 +7,7 @@ export default function EntView({
   useLongName = false,
   sx = {},
   direction = "column",
-  num=null,
+  num = null,
 }) {
   const data = useDataContext();
   if (!data) {
@@ -25,7 +25,7 @@ export default function EntView({
   const entType = EntType.fromID(entID);
 
   const label = useLongName ? entType.longName : entType.shortName;
-  
+
   let numPart = "";
   if (num !== null) {
     numPart = `${num}. `;

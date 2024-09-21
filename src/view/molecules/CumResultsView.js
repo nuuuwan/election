@@ -17,7 +17,6 @@ import {
 } from "../../view/atoms";
 
 function getContentList({ entID, result, electionDisplay }) {
-
   const baseEntIDList = electionDisplay.baseEntIDList;
   const iEnt = baseEntIDList.indexOf(entID);
   let num = null;
@@ -26,7 +25,6 @@ function getContentList({ entID, result, electionDisplay }) {
   }
 
   return [
-
     <EntView
       entID={entID}
       useLongName={true}

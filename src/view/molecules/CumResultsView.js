@@ -1,4 +1,4 @@
-import { Box, TableCell, TableRow,  } from "@mui/material";
+import { Box, TableCell, TableRow } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
 import { Color } from "../../nonview/base";
@@ -15,7 +15,6 @@ import {
   VoteLeadView,
   ElectionSmallTitle,
 } from "../../view/atoms";
-
 
 function getContentList({ entID, result, electionDisplay }) {
   return [

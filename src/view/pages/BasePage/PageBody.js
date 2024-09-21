@@ -100,7 +100,7 @@ export default function PageBody() {
   return (
     <Box sx={STYLE.BOX}>
       <IfElse condition={!electionDisplay.nResults}>
-        <NoResultsAlert />
+        <NoResultsAlert election={electionDisplay} />
         <Grid2 container>
           <CustomPageBodyGridItem>
             <ResultsReleasedTitle mode="percent" />

@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { Format } from "../../nonview/base";
 

@@ -46,9 +46,8 @@ function getHiddenData(data) {
       [
         "",
         cleanedURL,
-        "🇱🇰 " +
-          electionDisplay.hashTag +
-          " #SriLanka #LKA #SriLankaElections #Elections2024",
+        electionDisplay.hashTagList.join(' ')
+
       ]
     )
     .join("\n");
@@ -60,7 +59,8 @@ export default function HiddenDataView() {
   if (!data) {
     return null;
   }
-  if (!data.electionDisplay.nResultsDisplay) {
+  
+  if (!data.electionDisplay.nResults) {
     return null;
   }
   const hiddenData = getHiddenData(data);

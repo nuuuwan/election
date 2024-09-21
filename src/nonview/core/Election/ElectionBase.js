@@ -49,6 +49,10 @@ export default class ElectionBase {
     return "#PresPollSL" + this.year.toString();
   }
 
+  get hashTagList() {
+    return ["🇱🇰 ",this.hashTag, '#SriLanka','#LKA','#SriLankaElections','#Election' + this.year,'#PresidentialElection' + this.year]
+  }
+
   get dateFormatted() {
     return Time.fromString(this.date).getDate().toLocaleDateString("en-LK", {
       year: "numeric",

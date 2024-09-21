@@ -6,6 +6,7 @@ import CustomAlert from "./CustomAlert";
 import CustomSelect from "./CustomSelect";
 import CustomStack from "./CustomStack";
 import ElectionSelector from "./ElectionSelector";
+import ElectionSmallTitle from "./ElectionSmallTitle";
 import EntView from "./EntView";
 import HiddenDataView from "./HiddenDataView";
 import IfElse from "./IfElse";
@@ -30,6 +31,7 @@ export {
   CustomSelect,
   CustomStack,
   ElectionSelector,
+  ElectionSmallTitle,
   EntView,
   HiddenDataView,
   IfElse,

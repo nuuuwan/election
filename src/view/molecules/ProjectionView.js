@@ -1,5 +1,5 @@
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { CustomStack, ProjectionTitle } from "../atoms";
+import { CustomStack, ElectionSmallTitle, ProjectionTitle } from "../atoms";
 import {
   FinalOutcomeView,
   PartyToVotesStatsView,
@@ -41,6 +41,7 @@ export default function ProjectionView() {
       <PartyToVotesStatsView partyToVotes={resultLK.partyToVotes} />
       <ProjectedResultBarChart />
       <SummaryView summary={resultLK.summary} />
+      <ElectionSmallTitle />
 
       <ProjectionAlert />
     </CustomStack>

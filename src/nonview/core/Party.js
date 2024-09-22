@@ -33,7 +33,7 @@ export default class Party {
         SJB: "🟢",
         NPP: "🔴",
         IND16: "🟠",
-        IND9: "🟡",
+        IND9: "🔵",
         SLPP: "🟣",
         SLCP: "🔵",
         // History

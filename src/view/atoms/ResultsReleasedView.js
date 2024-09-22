@@ -38,7 +38,7 @@ export default function ResultsReleasedView({ entID }) {
       <LabelledStat label="Results" stat={pdDetails} />
 
       {electionDisplay.baseEntType === EntType.ED ? null : (
-      <LabelledStat label="Released" stat={Format.percent(pElectors)} />
+        <LabelledStat label="Released" stat={Format.percent(pElectors)} />
       )}
       {isComplete && "✓"}
     </Stack>

@@ -19,7 +19,6 @@ import {
   DisclaimerView,
 } from "../../molecules";
 
-
 const STYLE = {
   BOX: { paddingTop: 1, paddingBottom: 20 },
 };
@@ -114,7 +113,6 @@ export default function PageBody() {
             <LatestResultListView />
             <BellwetherView />
             <HistoryAlert />
-
           </CustomPageBodyGridItem>
 
           <CustomPageBodyGridItem>

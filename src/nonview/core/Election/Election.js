@@ -22,7 +22,8 @@ class Election extends ElectionBase {
   }
 
   static async fromElectionTypeAndDate(electionType, date) {
-    const election = new Election(electionType, date, EntType.PD);
+    const baseEntType = date === '2024-09-22' ? EntType.ED : EntType.PD;
+    const election = new Election(electionType, date, baseEntType);
     await election.__loadData();
     return election;
   }

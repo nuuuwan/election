@@ -12,7 +12,7 @@ import { Party } from "../../nonview/core";
 
 function getHiddenData(data) {
   const { activeEntID, entIdx, electionDisplay, edIdx, nResultsDisplay } = data;
-  console.debug({entIdx, activeEntID})
+
   const activeEnt = entIdx[activeEntID];
   const activeEntHashtag = activeEnt.hashtag;
 

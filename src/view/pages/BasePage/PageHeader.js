@@ -1,4 +1,4 @@
-import { AppBar, Box, Toolbar } from "@mui/material";
+import { AppBar, Box, Toolbar,  } from "@mui/material";
 
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { EntView, ResultTimeView, RefreshButton } from "../../../view/atoms";
@@ -30,11 +30,11 @@ export default function PageHeader() {
     <Box sx={Object.assign({ backgroundColor }, STYLE_PAGE_HEADER.SELECTOR)}>
       <AppBar position="static" sx={{ backgroundColor }}>
         <Toolbar>
-          <EntView entID={activeEntID} direction="row" />
-
+          <EntView entID={activeEntID} direction="row" bigMode={true}/>
+      
           <Box sx={{ flexGrow: 1 }} />
 
-          <ResultTimeView entID="LK" sx={{ color: "white" }} hideBlank={true} />
+          <ResultTimeView entID="LK" sx={{ color: "white" }} hideBlank={true} bigMode={true} />
 
           <RefreshButton />
           <CustomMenu />

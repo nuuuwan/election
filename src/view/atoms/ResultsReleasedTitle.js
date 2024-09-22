@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { Format, Translate } from "../../nonview/base";
+import { EntType, Format, Translate } from "../../nonview/base";
 import CustomAlert from "./CustomAlert";
 
 export function ResultsReleasedAlert() {
@@ -37,6 +37,9 @@ export default function ResultsReleasedTitle({ mode = "percent" }) {
     return null;
   }
   const { electionDisplay, electionPrevious } = data;
+  if (electionDisplay.baseEntType === EntType.ED) {
+    return null;
+  }
 
   const entIdx = electionDisplay.getEntIdx(data);
 

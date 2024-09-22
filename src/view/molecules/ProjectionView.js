@@ -10,6 +10,7 @@ import {
 import { FinalOutcome } from "../../nonview/core";
 import InsightErrorMarginTooHigh from "./FinalOutcomeView/InsightErrorMarginTooHigh";
 import { ProjectionAlert } from "../atoms/ProjectionTitle";
+import { EntType } from "../../nonview/base";
 
 export default function ProjectionView() {
   const data = useDataContext();
@@ -17,6 +18,9 @@ export default function ProjectionView() {
     return null;
   }
   const { electionProjected, electionDisplay } = data;
+  if (electionDisplay.baseEntType === EntType.ED) {
+    return null;
+  }
   const resultLK = electionProjected.resultLK;
 
   const finalOutcome = new FinalOutcome(

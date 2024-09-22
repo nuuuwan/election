@@ -18,7 +18,7 @@ import {
   MonitoringView,
   DisclaimerView,
 } from "../../molecules";
-import { ResultsReleasedAlert } from "../../atoms/ResultsReleasedTitle";
+
 
 const STYLE = {
   BOX: { paddingTop: 1, paddingBottom: 20 },
@@ -114,7 +114,7 @@ export default function PageBody() {
             <LatestResultListView />
             <BellwetherView />
             <HistoryAlert />
-            <ResultsReleasedAlert />
+
           </CustomPageBodyGridItem>
 
           <CustomPageBodyGridItem>

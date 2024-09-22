@@ -1,7 +1,7 @@
 import { Stack, Typography } from "@mui/material";
 
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { Format, Translate } from "../../nonview/base";
+import { EntType, Format, Translate } from "../../nonview/base";
 import LabelledStat from "./LabelledStat";
 
 export default function ResultsReleasedView({ entID }) {
@@ -36,7 +36,10 @@ export default function ResultsReleasedView({ entID }) {
   return (
     <Stack direction="row" alignItems="center" gap={3} sx={{ color: "gray" }}>
       <LabelledStat label="Results" stat={pdDetails} />
+
+      {electionDisplay.baseEntType === EntType.ED ? null : (
       <LabelledStat label="Released" stat={Format.percent(pElectors)} />
+      )}
       {isComplete && "✓"}
     </Stack>
   );

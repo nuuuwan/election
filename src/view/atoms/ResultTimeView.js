@@ -3,7 +3,12 @@ import { useDataContext } from "../../nonview/core/DataProvider";
 
 import { Time } from "../../nonview/base";
 
-export default function ResultTimeView({ entID, sx, hideBlank = false, bigMode=false }) {
+export default function ResultTimeView({
+  entID,
+  sx,
+  hideBlank = false,
+  bigMode = false,
+}) {
   const data = useDataContext();
   if (!data) {
     return null;
@@ -21,7 +26,7 @@ export default function ResultTimeView({ entID, sx, hideBlank = false, bigMode=f
     title = timeResult.dateTimeString;
     subTitle = timeResult.secondsFromNowHumanized;
   }
-  
+
   if (bigMode) {
     return <Typography variant="h4">{title}</Typography>;
   }

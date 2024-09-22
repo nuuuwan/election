@@ -8,7 +8,7 @@ export default function EntView({
   sx = {},
   direction = "column",
   num = null,
-  bigMode=false
+  bigMode = false,
 }) {
   const data = useDataContext();
   if (!data) {
@@ -32,7 +32,7 @@ export default function EntView({
     numPart = `${num}. `;
   }
 
-  if (bigMode){
+  if (bigMode) {
     return <Typography variant="h4">{Translate(ent.name)}</Typography>;
   }
 

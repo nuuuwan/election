@@ -1,4 +1,4 @@
-import { Color, EntType, Format } from "../../../nonview/base";
+import { Color, EntType, Format } from "../../../nonview";
 import { THEME_DATA } from "../../_constants/THEME";
 
 import SVGHexPolygon from "./SVGHexPolygon";

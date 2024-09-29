@@ -1,4 +1,4 @@
-import { POLITICAL_PARTY_TO_COLOR } from "../constants";
+import { POLITICAL_PARTY_TO_COLOR } from "..";
 
 export default class Party {
   static OTHER = new Party("Other", "Other");

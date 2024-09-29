@@ -1,8 +1,8 @@
 import { AppBar, Box, Toolbar } from "@mui/material";
 
 import { useDataContext } from "../../../nonview/core/DataProvider";
-import { EntView, ResultTimeView, RefreshButton } from "../../../view/atoms";
-import { CustomMenu } from "../../../view/molecules";
+import { EntView, ResultTimeView, RefreshButton } from "../../../view";
+import { CustomMenu } from "../../../view";
 
 const STYLE_PAGE_HEADER = {
   SELECTOR: {

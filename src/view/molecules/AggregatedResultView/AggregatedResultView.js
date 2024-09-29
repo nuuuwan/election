@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Box } from "@mui/material";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 
-import { TabSelector } from "../../atoms";
+import { TabSelector } from "../..";
 
 import AggregatedResultUtils from "./AggregatedResultUtils";
 import AggregatedResultViewGroup from "./AggregatedResultViewGroup";

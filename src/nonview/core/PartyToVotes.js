@@ -1,5 +1,5 @@
 import Summary from "./Summary.js";
-import { MathX } from "../base";
+import { MathX } from "..";
 import Party from "./Party.js";
 
 export default class PartyToVotes {

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-
 import { ThemeProvider } from "@mui/material/styles";
-import BasePage from "./view/pages/BasePage/BasePage";
-import { THEME } from "./view/_constants";
+import { THEME, BasePage } from "./view";
 
 import "./App.css";
 

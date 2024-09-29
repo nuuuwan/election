@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 
-import { LoadingLabel, HiddenDataView } from "../../atoms";
+import { LoadingLabel, HiddenDataView } from "../..";
 
 import PageHeader from "./PageHeader";
 import PageBody from "./PageBody";

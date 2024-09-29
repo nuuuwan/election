@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
-import { Format, Translate } from "../../../nonview/base";
-import { FinalOutcome } from "../../../nonview/core";
+import { Format, Translate } from "../../../nonview";
+import { FinalOutcome } from "../../../nonview";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 
 export default function Confidence() {

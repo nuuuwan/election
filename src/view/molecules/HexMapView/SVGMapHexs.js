@@ -1,5 +1,5 @@
-import { Color } from "../../../nonview/base";
-import { ActivePDUtils } from "../../../nonview/core";
+import { Color } from "../../../nonview";
+import { ActivePDUtils } from "../../../nonview";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { useBasePageHandlerContext } from "../../../view/pages/BasePage/BasePageHandlerProvider";
 import SVGHexPolygonGroup from "./SVGHexPolygonGroup";

@@ -1,5 +1,5 @@
-import { ElectionModel } from "../../nonview/core";
-import { ArrayX } from "../base";
+import { ElectionModel } from "../../nonview";
+import { ArrayX } from "..";
 
 export default class DerivedData {
   static isValidNResultsDisplay(nResultsDisplay, election) {

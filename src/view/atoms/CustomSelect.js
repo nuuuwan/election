@@ -1,5 +1,5 @@
 import { Box, Divider, MenuItem, Select, Typography } from "@mui/material";
-import { Translate } from "../../nonview/base";
+import { Translate } from "../../nonview";
 
 const STYLE = {
   border: "none",

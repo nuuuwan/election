@@ -1,8 +1,8 @@
 import { Typography } from "@mui/material";
-import { Bellwether } from "../../nonview/core";
-import { Format, Translate } from "../../nonview/base";
+import { Bellwether } from "../../nonview";
+import { Format, Translate } from "../../nonview";
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { CustomAlert } from "../atoms";
+import { CustomAlert } from "..";
 
 export default function BellwetherView() {
   const data = useDataContext();

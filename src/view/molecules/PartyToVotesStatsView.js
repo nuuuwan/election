@@ -1,7 +1,7 @@
 import { Stack } from "@mui/material";
-import { Format } from "../../nonview/base";
-import { Party } from "../../nonview/core";
-import { LabelledStat, PartyView } from "../atoms";
+import { Format } from "../../nonview";
+import { Party } from "../../nonview";
+import { LabelledStat, PartyView } from "..";
 
 export default function PartyToVotesStatsView({ partyToVotes }) {
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);

@@ -1,4 +1,4 @@
-import { MLModel } from "../../base";
+import { MLModel } from "../..";
 
 import ElectionModelFeatureUtils from "./ElectionModelFeatureUtils";
 

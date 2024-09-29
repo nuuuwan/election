@@ -1,6 +1,6 @@
 import { Alert, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { Translate } from "../../nonview/base";
+import { Translate } from "../../nonview";
 
 export default function TestingAlert() {
   const data = useDataContext();

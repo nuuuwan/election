@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material";
-import { Format } from "../../nonview/base";
+import { Format } from "../../nonview";
 import LabelledStat from "../atoms/LabelledStat";
 
 export default function SummaryView({ summary }) {

@@ -1,16 +1,16 @@
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { CustomStack, ElectionSmallTitle, ProjectionTitle } from "../atoms";
+import { CustomStack, ElectionSmallTitle, ProjectionTitle } from "..";
 import {
   FinalOutcomeView,
   PartyToVotesStatsView,
   SummaryView,
   ProjectedResultBarChart,
-} from ".";
+} from "..";
 
-import { FinalOutcome } from "../../nonview/core";
+import { FinalOutcome } from "../../nonview";
 import InsightErrorMarginTooHigh from "./FinalOutcomeView/InsightErrorMarginTooHigh";
 import { ProjectionAlert } from "../atoms/ProjectionTitle";
-import { EntType } from "../../nonview/base";
+import { EntType } from "../../nonview";
 
 export default function ProjectionView() {
   const data = useDataContext();

@@ -1,4 +1,4 @@
-import { Party } from "../../nonview/core";
+import { Party } from "../../nonview";
 const normalCDF = require("@stdlib/stats-base-dists-normal-cdf");
 
 export default class FinalOutcome {

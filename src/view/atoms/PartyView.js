@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { Party } from "../../nonview/core";
+import { Party } from "../../nonview";
 
 const STYLE_LABEL = {
   padding: 0.2,

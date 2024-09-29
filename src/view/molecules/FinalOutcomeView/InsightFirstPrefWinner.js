@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
-import { Translate } from "../../../nonview/base";
-import { PartyView } from "../../atoms";
+import { Translate } from "../../../nonview";
+import { PartyView } from "../..";
 import Confidence from "./Confidence";
 export default function InsightFirstPrefWinner({ winningPartyID }) {
   return (

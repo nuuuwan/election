@@ -1,4 +1,4 @@
-import { WWW, EntType } from "../../base";
+import { WWW, EntType } from "../..";
 import Result from "../Result.js";
 
 import OngoingElection from "../OngoingElection.js";

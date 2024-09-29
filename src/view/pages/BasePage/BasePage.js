@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { DataProvider } from "../../../nonview/core";
-import { CustomURLContext } from "../../../nonview/core";
+import { DataProvider } from "../../../nonview";
+import { CustomURLContext } from "../../../nonview";
 import BasePageView from "./BasePageView";
 import BasePageHandlerProvider from "./BasePageHandlerProvider";
 

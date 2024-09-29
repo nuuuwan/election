@@ -1,5 +1,5 @@
 import { Box, Link, Typography } from "@mui/material";
-import { Translate } from "../../nonview/base";
+import { Translate } from "../../nonview";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CustomAlert from "./CustomAlert";
 

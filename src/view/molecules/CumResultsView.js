@@ -1,20 +1,20 @@
 import { Box, TableCell, TableRow } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
-import { Color } from "../../nonview/base";
+import { Color } from "../../nonview";
 import {
   ResultBarChart,
   HistoryView,
   SummaryView,
   PartyToVotesStatsView,
-} from "../../view/molecules";
+} from "../../view";
 import {
   EntView,
   ResultsReleasedView,
   ResultTimeView,
   VoteLeadView,
   ElectionSmallTitle,
-} from "../../view/atoms";
+} from "../../view";
 
 function getContentList({ entID, result, electionDisplay }) {
   const baseEntIDList = electionDisplay.baseEntIDList;

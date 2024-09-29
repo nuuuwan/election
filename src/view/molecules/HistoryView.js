@@ -1,7 +1,7 @@
 import { Grid2, Stack, Typography } from "@mui/material";
-import { Format } from "../../nonview/base";
-import { Election } from "../../nonview/core";
-import { PartyView } from "../../view/atoms";
+import { Format } from "../../nonview";
+import { Election } from "../../nonview";
+import { PartyView } from "../../view";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
 function HistoryViewRow({ entID, electionForRow }) {

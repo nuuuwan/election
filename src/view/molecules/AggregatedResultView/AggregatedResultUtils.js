@@ -1,4 +1,4 @@
-import { Bellwether } from "../../../nonview/core";
+import { Bellwether } from "../../../nonview";
 
 export default class AggregatedResultUtils {
   static getLatestEntIDList(data) {

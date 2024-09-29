@@ -1,4 +1,4 @@
-import { MathX } from "../../../nonview/base";
+import { MathX } from "../../../nonview";
 
 function getPoints(x, y, radius) {
   const N_SIDES = 6;

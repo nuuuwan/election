@@ -1,4 +1,4 @@
-import { MathX } from "..";
+import MathX from "../MathX.js";
 import { THEME_DATA } from "../../../view/_constants/THEME";
 
 let FormatGeneric = {

@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { EntType, Translate } from "../../nonview/base";
+import { EntType, Translate } from "../../nonview";
 
 export default function EntView({
   entID,

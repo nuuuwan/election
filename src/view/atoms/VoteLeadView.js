@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { Format } from "../../nonview/base";
+import { Format } from "../../nonview";
 
 export default function VoteLeadView({ entID }) {
   const data = useDataContext();

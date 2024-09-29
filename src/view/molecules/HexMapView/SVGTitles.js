@@ -1,4 +1,4 @@
-import { Translate, EntType } from "../../../nonview/base";
+import { Translate, EntType } from "../../../nonview";
 
 function getTitleInfoList(baseEntType) {
   switch (baseEntType) {

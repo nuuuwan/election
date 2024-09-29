@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { EntType, Format, Translate } from "../../nonview/base";
+import { EntType, Format, Translate } from "../../nonview";
 import CustomAlert from "./CustomAlert";
 
 export function ResultsReleasedAlert() {

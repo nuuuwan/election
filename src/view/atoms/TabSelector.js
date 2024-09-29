@@ -1,5 +1,5 @@
 import { Box, Tab, Tabs } from "@mui/material";
-import { Translate } from "../../nonview/base";
+import { Translate } from "../../nonview";
 
 export default function TabSelector({ value, onChange, dataList }) {
   return (

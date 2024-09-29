@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material";
-import { CustomSelect } from "../atoms";
-import { Translate } from "../../nonview/base";
+import { CustomSelect } from "..";
+import { Translate } from "../../nonview";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { useBasePageHandlerContext } from "../../view/pages/BasePage/BasePageHandlerProvider";
 

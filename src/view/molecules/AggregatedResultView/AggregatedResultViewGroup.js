@@ -12,7 +12,7 @@ import {
   Typography,
 } from "@mui/material";
 
-import { Translate } from "../../../nonview/base";
+import { Translate } from "../../../nonview";
 
 import {
   CumResultsColumnView,

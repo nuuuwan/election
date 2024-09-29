@@ -1,14 +1,14 @@
 import { Box, Grid2, Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 
-import { ArrayX, Format, Translate } from "../../../nonview/base";
-import { Election } from "../../../nonview/core";
+import { ArrayX, Format, Translate } from "../../../nonview";
+import { Election } from "../../../nonview";
 import {
   CustomAlert,
   IfElse,
   NoResultsAlert,
   ResultsReleasedTitle,
-} from "../../atoms";
+} from "../..";
 import {
   ProjectionView,
   HexMapView,
@@ -17,7 +17,7 @@ import {
   BellwetherView,
   MonitoringView,
   DisclaimerView,
-} from "../../molecules";
+} from "../..";
 
 const STYLE = {
   BOX: { paddingTop: 1, paddingBottom: 20 },

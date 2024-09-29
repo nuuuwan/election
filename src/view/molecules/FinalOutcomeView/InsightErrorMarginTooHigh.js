@@ -1,5 +1,5 @@
 import { Stack, Typography } from "@mui/material";
-import { Translate } from "../../../nonview/base";
+import { Translate } from "../../../nonview";
 
 export default function InsightErrorMarginTooHigh() {
   return (

@@ -5,7 +5,7 @@ import SVGMap from "./SVGMap";
 import HexMapData from "./HexMapData/HexMapData";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { THEME_DATA } from "../../_constants/THEME";
-import { EntType } from "../../../nonview/base";
+import { EntType } from "../../../nonview";
 
 function getBBox(baseEntType) {
   const mapData = HexMapData.getMapDataList(baseEntType).reduce(function (

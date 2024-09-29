@@ -1,4 +1,4 @@
-import { MathX } from "../../base";
+import { MathX } from "../..";
 
 export default class ElectionModelNormalizeUtils {
   static normalizeSingle(partyToPVotes) {

@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 
-import { CitationsView } from "../../../view/atoms";
+import { CitationsView } from "../../../view";
 
 const STYLE_FOOTER = {
   BOX: {

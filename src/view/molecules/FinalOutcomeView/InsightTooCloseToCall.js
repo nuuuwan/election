@@ -1,6 +1,6 @@
 import { Box, Stack, Typography } from "@mui/material";
-import { Format, Translate } from "../../../nonview/base";
-import { PartyView } from "../../atoms";
+import { Format, Translate } from "../../../nonview";
+import { PartyView } from "../..";
 
 function renderLikelyhoodTablePartyRows(likelyWinnerPartyInfoList) {
   return likelyWinnerPartyInfoList.map(function ({ partyID, p }, i) {

@@ -1,5 +1,5 @@
-import { MathX } from "../../base";
-import { PartyToVotes, Party, Summary, Result } from "../../../nonview/core";
+import { MathX } from "../..";
+import { PartyToVotes, Party, Summary, Result } from "../../../nonview";
 import ElectionModelNormalizeUtils from "./ElectionModelNormalizeUtils";
 
 export default class ElectionModelProjectionUtils {

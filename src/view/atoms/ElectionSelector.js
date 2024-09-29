@@ -1,6 +1,6 @@
 import { Box, Typography, useMediaQuery } from "@mui/material";
 
-import { CustomSelect } from "../atoms";
+import { CustomSelect } from "..";
 
 import { useTheme } from "@emotion/react";
 import { useDataContext } from "../../nonview/core/DataProvider";

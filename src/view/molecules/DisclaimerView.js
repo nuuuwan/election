@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material";
-import { Translate } from "../../nonview/base";
-import { CustomAlert } from "../atoms";
+import { Translate } from "../../nonview";
+import { CustomAlert } from "..";
 
 export default function DisclaimerView() {
   return (

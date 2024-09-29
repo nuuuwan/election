@@ -2,7 +2,7 @@ import { MenuItem } from "@mui/material";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { useBasePageHandlerContext } from "../../pages/BasePage/BasePageHandlerProvider";
 
-import { CheckIcon } from "../../atoms";
+import { CheckIcon } from "../..";
 
 const LANG_TO_LABEL = {
   si: "සිංහල",

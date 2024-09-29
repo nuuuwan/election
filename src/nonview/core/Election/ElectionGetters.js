@@ -1,5 +1,5 @@
-import { EntType, ProvinceUtils } from "../../base";
-import { PD_ID_TO_GROUP_ID, ED_ID_TO_GROUP_ID } from "../../constants";
+import { EntType, ProvinceUtils } from "../..";
+import { PD_ID_TO_GROUP_ID, ED_ID_TO_GROUP_ID } from "../..";
 
 const ElectionStats = {
   getPartyIDList(min_p = 0.01) {

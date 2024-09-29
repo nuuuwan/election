@@ -1,4 +1,4 @@
-import { EntType, ProvinceUtils } from "../base";
+import { EntType, ProvinceUtils } from "..";
 
 export default class ActivePDUtils {
   static getNewActiveEntIDForED({ baseResultList, entIdx, entID }) {

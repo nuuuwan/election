@@ -1,5 +1,5 @@
-import { Party, PartyToVotes } from "../../nonview/core";
-import { Format } from "../../nonview/base";
+import { Party, PartyToVotes } from "../../nonview";
+import { Format } from "../../nonview";
 
 import { Box } from "@mui/material";
 import { THEME_DATA } from "../_constants/THEME";

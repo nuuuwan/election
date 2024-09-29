@@ -1,8 +1,8 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 
-import { Ent, EntType, Time } from "../base";
-import { CustomURLContext, DerivedData, Election } from ".";
-import { GROUP_ID_TO_PD_ID_LIST } from "../constants";
+import { Ent, EntType, Time } from "..";
+import { CustomURLContext, DerivedData, Election } from "..";
+import { GROUP_ID_TO_PD_ID_LIST } from "..";
 
 const DataContext = createContext();
 

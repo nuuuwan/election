@@ -1,10 +1,10 @@
 import { Box, Typography } from "@mui/material";
 
-import { FinalOutcome } from "../../../nonview/core";
+import { FinalOutcome } from "../../../nonview";
 
 import InsightFirstPrefWinner from "./InsightFirstPrefWinner";
 import InsightTooCloseToCall from "./InsightTooCloseToCall";
-import { EntType, MathX, Translate } from "../../../nonview/base";
+import { EntType, MathX, Translate } from "../../../nonview";
 import Confidence from "./Confidence";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 

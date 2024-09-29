@@ -1,4 +1,4 @@
-import { Translate, StringX } from "../../../nonview/base";
+import { Translate, StringX } from "../../../nonview";
 
 export default function SVGHexText({ x, y, color, label, onClick }) {
   label = label.replace("Postal ", "");

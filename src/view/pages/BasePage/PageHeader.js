@@ -1,4 +1,4 @@
-import { AppBar, Box, Toolbar } from "@mui/material";
+import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { EntView, RefreshButton } from "../../../view";
@@ -23,14 +23,16 @@ export default function PageHeader() {
   if (!data) {
     return null;
   }
-  const { electionProjected, activeEntID } = data;
+  const { electionProjected } = data;
   const backgroundColor = electionProjected?.color || "gray";
 
   return (
     <Box sx={Object.assign({ backgroundColor }, STYLE_PAGE_HEADER.SELECTOR)}>
       <AppBar position="static" sx={{ backgroundColor }}>
         <Toolbar>
-          <EntView entID={activeEntID} direction="row" bigMode={true} />
+          <Typography variant="h4">
+            {electionProjected.title}
+          </Typography>
 
           <Box sx={{ flexGrow: 1 }} />
 

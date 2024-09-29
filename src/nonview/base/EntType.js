@@ -8,7 +8,7 @@ export default class EntType {
       case "country":
         return "";
       case "province":
-        return "Pr.";
+        return "";
       case "pd":
         return "PD";
       case "ed":

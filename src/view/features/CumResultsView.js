@@ -27,7 +27,7 @@ function getContentList({ entID, result, electionDisplay }) {
   return [
     <EntView
       entID={entID}
-      useLongName={true}
+      useLongName={false}
       sx={{ color: result.color, p: 0.5 }}
       num={num}
     />,

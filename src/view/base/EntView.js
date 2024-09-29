@@ -6,7 +6,7 @@ export default function EntView({
   entID,
   useLongName = false,
   sx = {},
-  direction = "column",
+  direction = "row",
   num = null,
   bigMode = false,
 }) {

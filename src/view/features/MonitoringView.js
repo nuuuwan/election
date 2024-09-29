@@ -5,6 +5,7 @@ import { useDataContext } from "../../nonview/core/DataProvider";
 import { CustomAlert } from "..";
 import { BarChart, ScatterChart } from "@mui/x-charts";
 import { Election, Party } from "../../nonview";
+import { X } from "@mui/icons-material";
 
 function BanfordView() {
   const data = useDataContext();
@@ -99,12 +100,21 @@ function GenericScatterChart({ getValue, formatStat }) {
         winningPartyID: result.winningPartyID,
       };
     });
+
+    function formatStatInner(x) {
+    if (!x) {
+      return "N/A";
+    }
+      return formatStat(x);
+    }
+
+
   const valueFormatter = function (datum) {
     const percentChange = (datum.y - datum.x) / datum.x;
     const arrow = datum.y > datum.x ? "↑" : "↓";
-    return `${datum.label} (${datum.winningPartyID}) ${formatStat(
+    return `${datum.label} (${datum.winningPartyID}) ${formatStatInner(
       datum.x
-    )} ${arrow} ${formatStat(datum.y)} (${Format.percentSigned(
+    )} ${arrow} ${formatStatInner(datum.y)} (${Format.percentSigned(
       percentChange
     )})`;
   };
@@ -132,14 +142,14 @@ function GenericScatterChart({ getValue, formatStat }) {
         {
           scaleType: "linear",
           label: prevElection.year,
-          valueFormatter: formatStat,
+          valueFormatter: formatStatInner,
         },
       ]}
       yAxis={[
         {
           scaleType: "linear",
           label: electionDisplay.year,
-          valueFormatter: formatStat,
+          valueFormatter: formatStatInner,
         },
       ]}
       series={series}

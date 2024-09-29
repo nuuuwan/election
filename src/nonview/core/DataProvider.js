@@ -94,7 +94,6 @@ export default function DataProvider({ children, state }) {
         const value = await getValue(state);
         setValue(Object.assign({ appTime }, value));
       };
-
       loadValue();
     },
     [state, appTime]

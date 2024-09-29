@@ -45,12 +45,12 @@ export default function ResultBarChart({ resultsElection, entID }) {
 
   const series = entries.map(function ([partyID, votes]) {
     const party = Party.fromID(partyID);
-    const pVotes = votes / totalVotes;
+    const pVotes = (votes- 0.5) / totalVotes;
 
     return {
       data: [pVotes],
       label: partyID,
-      stack: "Common",
+      stack: "",
       color: party.color,
     };
   });

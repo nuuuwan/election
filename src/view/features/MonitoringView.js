@@ -79,11 +79,15 @@ function GenericScatterChart({ getValue, formatStat }) {
   if (data === null) {
     return null;
   }
-  const { electionDisplay, elections, allRegionIdx } = data;
-  const prevElection = Election.getPenultimateElection(
-    elections,
-    electionDisplay
-  );
+  const { electionDisplay,  electionPrevious, allRegionIdx } = data;
+
+  if (!electionPrevious) {
+    return (
+      <CustomAlert severity="warning">
+        {Translate("No previous election data available")}
+      </CustomAlert>
+    )
+  }
 
   const baseData = electionDisplay.baseResultList
     .filter(function (result) {
@@ -91,7 +95,7 @@ function GenericScatterChart({ getValue, formatStat }) {
     })
     .map(function (result) {
       const ent = allRegionIdx[result.entID];
-      const prevResult = prevElection.getResult(result.entID);
+      const prevResult = electionPrevious.getResult(result.entID);
       return {
         id: result.entID,
         y: getValue(result),
@@ -141,14 +145,14 @@ function GenericScatterChart({ getValue, formatStat }) {
       xAxis={[
         {
           scaleType: "linear",
-          label: prevElection.year,
+          label: electionPrevious.year,
           valueFormatter: formatStatInner,
         },
       ]}
       yAxis={[
         {
           scaleType: "linear",
-          label: electionDisplay.year,
+          label: electionPrevious.year,
           valueFormatter: formatStatInner,
         },
       ]}

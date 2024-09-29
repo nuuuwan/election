@@ -25,6 +25,10 @@ import ResultsReleasedTitle from "./core/ResultsReleasedTitle.js";
 import ResultsReleasedView from "./core/ResultsReleasedView.js";
 import TestingAlert from "./core/TestingAlert.js";
 import VoteLeadView from "./core/VoteLeadView.js";
+import HistoryView from "./cumulative/HistoryView.js";
+import PartyToVotesStatsView from "./cumulative/PartyToVotesStatsView.js";
+import ResultBarChart from "./cumulative/ResultBarChart.js";
+import SummaryView from "./cumulative/SummaryView.js";
 import AggregatedResultUtils from "./features/AggregatedResultView/AggregatedResultUtils.js";
 import AggregatedResultView from "./features/AggregatedResultView/AggregatedResultView.js";
 import AggregatedResultViewGroup from "./features/AggregatedResultView/AggregatedResultViewGroup.js";
@@ -59,14 +63,10 @@ import SVGMap from "./features/HexMapView/SVGMap.js";
 import SVGMapBoundaries from "./features/HexMapView/SVGMapBoundaries.js";
 import SVGMapHexs from "./features/HexMapView/SVGMapHexs.js";
 import SVGTitles from "./features/HexMapView/SVGTitles.js";
-import HistoryView from "./features/HistoryView.js";
 import LatestResultListView from "./features/LatestResultListView.js";
 import MonitoringView from "./features/MonitoringView.js";
-import PartyToVotesStatsView from "./features/PartyToVotesStatsView.js";
 import ProjectedResultBarChart from "./features/ProjectedResultBarChart.js";
 import ProjectionView from "./features/ProjectionView.js";
-import ResultBarChart from "./features/ResultBarChart.js";
-import SummaryView from "./features/SummaryView.js";
 import BasePage from "./pages/BasePage/BasePage.js";
 import BasePageHandlerProvider from "./pages/BasePage/BasePageHandlerProvider.js";
 import BasePageView from "./pages/BasePage/BasePageView.js";
@@ -100,6 +100,10 @@ export {
   ResultsReleasedView,
   TestingAlert,
   VoteLeadView,
+  HistoryView,
+  PartyToVotesStatsView,
+  ResultBarChart,
+  SummaryView,
   AggregatedResultUtils,
   AggregatedResultView,
   AggregatedResultViewGroup,
@@ -134,14 +138,10 @@ export {
   SVGMapBoundaries,
   SVGMapHexs,
   SVGTitles,
-  HistoryView,
   LatestResultListView,
   MonitoringView,
-  PartyToVotesStatsView,
   ProjectedResultBarChart,
   ProjectionView,
-  ResultBarChart,
-  SummaryView,
   BasePage,
   BasePageHandlerProvider,
   BasePageView,

@@ -81,22 +81,16 @@ async function getValue(state) {
 
 export default function DataProvider({ children, state }) {
   const [value, setValue] = useState(null);
-  const [appTime, setAppTime] = useState(Time.now().dateTimeString);
-
-  const REFRESH_INTERVAL = 60;
-  setTimeout(() => {
-    setAppTime(Time.now().dateTimeString);
-  }, REFRESH_INTERVAL * 1_000);
 
   useEffect(
     function () {
       const loadValue = async function () {
         const value = await getValue(state);
-        setValue(Object.assign({ appTime }, value));
+        setValue(value);
       };
       loadValue();
     },
-    [state, appTime]
+    [state, ]
   );
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

@@ -47,7 +47,6 @@ function AggregatedResultListTableView({ sortedEntIDs }) {
               "Summary",
               "Past History",
               "Release Status",
-              "Time Updated",
             ].map(function (title, iTitle) {
               return (
                 <TableCell key={iTitle} sx={{ textAlign: "center" }}>

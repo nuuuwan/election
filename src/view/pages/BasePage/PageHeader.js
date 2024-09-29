@@ -1,7 +1,7 @@
 import { AppBar, Box, Toolbar } from "@mui/material";
 
 import { useDataContext } from "../../../nonview/core/DataProvider";
-import { EntView, ResultTimeView, RefreshButton } from "../../../view";
+import { EntView, RefreshButton } from "../../../view";
 import { CustomMenu } from "../../../view";
 
 const STYLE_PAGE_HEADER = {
@@ -34,12 +34,7 @@ export default function PageHeader() {
 
           <Box sx={{ flexGrow: 1 }} />
 
-          <ResultTimeView
-            entID="LK"
-            sx={{ color: "white" }}
-            hideBlank={true}
-            bigMode={true}
-          />
+
 
           <RefreshButton />
           <CustomMenu />

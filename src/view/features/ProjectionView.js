@@ -9,7 +9,7 @@ import {
 
 import { FinalOutcome } from "../../nonview";
 import InsightErrorMarginTooHigh from "./FinalOutcomeView/InsightErrorMarginTooHigh";
-import { ProjectionAlert } from "../atoms/ProjectionTitle";
+import { ProjectionAlert } from "../core/ProjectionTitle";
 import { EntType } from "../../nonview";
 
 export default function ProjectionView() {

@@ -90,7 +90,7 @@ export default function DataProvider({ children, state }) {
       };
       loadValue();
     },
-    [state, ]
+    [state]
   );
 
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;

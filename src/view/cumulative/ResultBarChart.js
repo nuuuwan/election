@@ -45,7 +45,7 @@ export default function ResultBarChart({ resultsElection, entID }) {
 
   const series = entries.map(function ([partyID, votes]) {
     const party = Party.fromID(partyID);
-    const pVotes = (votes- 0.5) / totalVotes;
+    const pVotes = (votes - 0.5) / totalVotes;
 
     return {
       data: [pVotes],

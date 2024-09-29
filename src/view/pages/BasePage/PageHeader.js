@@ -30,13 +30,9 @@ export default function PageHeader() {
     <Box sx={Object.assign({ backgroundColor }, STYLE_PAGE_HEADER.SELECTOR)}>
       <AppBar position="static" sx={{ backgroundColor }}>
         <Toolbar>
-          <Typography variant="h4">
-            {electionProjected.title}
-          </Typography>
+          <Typography variant="h4">{electionProjected.title}</Typography>
 
           <Box sx={{ flexGrow: 1 }} />
-
-
 
           <RefreshButton />
           <CustomMenu />

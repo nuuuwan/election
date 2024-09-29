@@ -79,14 +79,14 @@ function GenericScatterChart({ getValue, formatStat }) {
   if (data === null) {
     return null;
   }
-  const { electionDisplay,  electionPrevious, allRegionIdx } = data;
+  const { electionDisplay, electionPrevious, allRegionIdx } = data;
 
   if (!electionPrevious) {
     return (
       <CustomAlert severity="warning">
         {Translate("No previous election data available")}
       </CustomAlert>
-    )
+    );
   }
 
   const baseData = electionDisplay.baseResultList
@@ -105,13 +105,12 @@ function GenericScatterChart({ getValue, formatStat }) {
       };
     });
 
-    function formatStatInner(x) {
+  function formatStatInner(x) {
     if (!x) {
       return "N/A";
     }
-      return formatStat(x);
-    }
-
+    return formatStat(x);
+  }
 
   const valueFormatter = function (datum) {
     const percentChange = (datum.y - datum.x) / datum.x;

@@ -1,6 +1,6 @@
 import { Stack } from "@mui/material";
 import { Format } from "../../nonview";
-import LabelledStat from "../core/LabelledStat";
+import LabelledStat from "../base/LabelledStat";
 
 export default function SummaryView({ summary }) {
   if (summary.electors === summary.valid) {

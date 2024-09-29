@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { EntType, Format, Translate } from "../../nonview";
-import CustomAlert from "./CustomAlert";
+import CustomAlert from "../base/CustomAlert";
 
 export function ResultsReleasedAlert() {
   const data = useDataContext();

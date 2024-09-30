@@ -1,8 +1,8 @@
 import { Box, Grid2, Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 
-import { ArrayX, Format, Translate } from "../../../nonview";
-import { Election } from "../../../nonview";
+import {  Format, Translate } from "../../../nonview";
+
 import {
   CustomAlert,
   IfElse,

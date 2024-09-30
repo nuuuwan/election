@@ -64,7 +64,12 @@ import SVGMapBoundaries from "./features/HexMapView/SVGMapBoundaries.js";
 import SVGMapHexs from "./features/HexMapView/SVGMapHexs.js";
 import SVGTitles from "./features/HexMapView/SVGTitles.js";
 import LatestResultListView from "./features/LatestResultListView.js";
-import MonitoringView from "./features/MonitoringView.js";
+import BanfordView from "./features/MonitoringView/BanfordView.js";
+import ElectorsView from "./features/MonitoringView/ElectorsView.js";
+import GenericScatterChart from "./features/MonitoringView/GenericScatterChart.js";
+import MonitoringView from "./features/MonitoringView/MonitoringView.js";
+import RejectedView from "./features/MonitoringView/RejectedView.js";
+import TurnoutView from "./features/MonitoringView/TurnoutView.js";
 import ProjectedResultBarChart from "./features/ProjectedResultBarChart.js";
 import ProjectionView from "./features/ProjectionView.js";
 import BasePage from "./pages/BasePage/BasePage.js";
@@ -139,7 +144,12 @@ export {
   SVGMapHexs,
   SVGTitles,
   LatestResultListView,
+  BanfordView,
+  ElectorsView,
+  GenericScatterChart,
   MonitoringView,
+  RejectedView,
+  TurnoutView,
   ProjectedResultBarChart,
   ProjectionView,
   BasePage,

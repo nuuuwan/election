@@ -6,7 +6,6 @@ import { CustomAlert } from "../..";
 
 import GenericScatterChart from "./GenericScatterChart";
 
-
 export default function ElectorsView() {
   return (
     <Stack direction="column" sx={{ alignItems: "center" }}>

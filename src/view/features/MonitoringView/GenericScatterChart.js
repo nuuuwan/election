@@ -1,14 +1,12 @@
-
-
-import {  Translate, Format, Color } from "../../../nonview";
+import { Translate, Format, Color } from "../../../nonview";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { CustomAlert } from "../..";
 import { ScatterChart } from "@mui/x-charts";
 import { Party } from "../../../nonview";
 
 function getBaseData(data, getValue) {
-    const { electionDisplay, electionPrevious, allRegionIdx } = data;
-    return  electionDisplay.baseResultList
+  const { electionDisplay, electionPrevious, allRegionIdx } = data;
+  return electionDisplay.baseResultList
     .filter(function (result) {
       return !result.entID.endsWith("P") && allRegionIdx[result.entID];
     })
@@ -23,62 +21,56 @@ function getBaseData(data, getValue) {
         winningPartyID: result.winningPartyID,
       };
     });
-
 }
 
 function getSeries(baseData, valueFormatter) {
-    return Object.values(
-        baseData.reduce(function (idx, datum) {
-          const winningPartyID = datum.winningPartyID;
-          if (!idx[winningPartyID]) {
-            idx[winningPartyID] = [];
-          }
-          idx[winningPartyID].push(datum);
-          return idx;
-        }, {})
-      ).map(function (data) {
-        const color = Color.getColorWithAlpha(
-          Party.fromID(data[0].winningPartyID).color,
-          0.5
-        );
-        return { data, color, valueFormatter };
-      });
+  return Object.values(
+    baseData.reduce(function (idx, datum) {
+      const winningPartyID = datum.winningPartyID;
+      if (!idx[winningPartyID]) {
+        idx[winningPartyID] = [];
+      }
+      idx[winningPartyID].push(datum);
+      return idx;
+    }, {})
+  ).map(function (data) {
+    const color = Color.getColorWithAlpha(
+      Party.fromID(data[0].winningPartyID).color,
+      0.5
+    );
+    return { data, color, valueFormatter };
+  });
 }
 
 function getFormatStatInner(formatStat) {
-    return  function(x) {
-        if (!x) {
-          return "N/A";
-        }
-        return formatStat(x);
-      }
-
+  return function (x) {
+    if (!x) {
+      return "N/A";
+    }
+    return formatStat(x);
+  };
 }
 
 function getValueFormatter(formatStatInner) {
-
-
-    return function (datum) {
-        const percentChange = (datum.y - datum.x) / datum.x;
-        const arrow = datum.y > datum.x ? "↑" : "↓";
-        return `${datum.label} (${datum.winningPartyID}) ${formatStatInner(
-          datum.x
-        )} ${arrow} ${formatStatInner(datum.y)} (${Format.percentSigned(
-          percentChange
-        )})`;
-      };
-    
-    
+  return function (datum) {
+    const percentChange = (datum.y - datum.x) / datum.x;
+    const arrow = datum.y > datum.x ? "↑" : "↓";
+    return `${datum.label} (${datum.winningPartyID}) ${formatStatInner(
+      datum.x
+    )} ${arrow} ${formatStatInner(datum.y)} (${Format.percentSigned(
+      percentChange
+    )})`;
+  };
 }
 
 function getGenericAxis(election, formatStatInner) {
-    return [
-        {
-          scaleType: "linear",
-          label: election.year,
-          valueFormatter: formatStatInner,
-        },
-      ]
+  return [
+    {
+      scaleType: "linear",
+      label: election.year,
+      valueFormatter: formatStatInner,
+    },
+  ];
 }
 
 export default function GenericScatterChart({ getValue, formatStat }) {
@@ -86,7 +78,7 @@ export default function GenericScatterChart({ getValue, formatStat }) {
   if (data === null) {
     return null;
   }
-  const {  electionDisplay, electionPrevious } = data;
+  const { electionDisplay, electionPrevious } = data;
   if (!electionPrevious) {
     return (
       <CustomAlert severity="warning">
@@ -98,7 +90,7 @@ export default function GenericScatterChart({ getValue, formatStat }) {
   const baseData = getBaseData(data, getValue);
   const formatStatInner = getFormatStatInner(formatStat);
   const valueFormatter = getValueFormatter(formatStatInner);
-    const series = getSeries(baseData, valueFormatter);
+  const series = getSeries(baseData, valueFormatter);
 
   return (
     <ScatterChart
@@ -111,5 +103,3 @@ export default function GenericScatterChart({ getValue, formatStat }) {
     />
   );
 }
-
-

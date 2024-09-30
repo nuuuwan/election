@@ -2,8 +2,7 @@ import { Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { EntType, Translate } from "../../nonview";
 
-
-function EntViewName({entID, num}) {
+function EntViewName({ entID, num }) {
   const data = useDataContext();
   if (!data) {
     return null;
@@ -22,14 +21,10 @@ function EntViewName({entID, num}) {
     numPart = `${num}. `;
   }
 
-
-return (
-  <Typography variant="h5">{numPart + Translate(ent.name)}</Typography>
-
-)
+  return <Typography variant="h5">{numPart + Translate(ent.name)}</Typography>;
 }
 
-function EntViewType ({entID}){
+function EntViewType({ entID }) {
   const data = useDataContext();
   if (!data) {
     return null;
@@ -39,20 +34,15 @@ function EntViewType ({entID}){
     return null;
   }
 
-
-
-
-
   const entType = EntType.fromID(entID);
 
   const label = entType.shortName;
 
   return (
-
     <Typography variant="h5" sx={{ opacity: 0.5 }}>
       {Translate(label)}
     </Typography>
-  )
+  );
 }
 
 export default function EntView({
@@ -61,10 +51,7 @@ export default function EntView({
   sx = {},
 
   num = null,
-
 }) {
-
-
   return (
     <Stack
       direction={"row"}

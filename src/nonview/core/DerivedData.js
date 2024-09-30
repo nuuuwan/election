@@ -17,23 +17,27 @@ export default class DerivedData {
     const iResult = election.baseEntIDList.indexOf(activeEntID);
     if (iResult === -1) {
       return false;
-    } 
-    
-    
+    }
+
     if (nResultsDisplay && iResult >= nResultsDisplay) {
       return false;
     }
 
     return true;
-   
   }
 
   static getActiveEntID(activeEntID, nResultsDisplay, election) {
     if (!election.isLoaded) {
       return null;
     }
-    
-    if (DerivedData.checkIfResultDisplayable(election, activeEntID, nResultsDisplay)) {
+
+    if (
+      DerivedData.checkIfResultDisplayable(
+        election,
+        activeEntID,
+        nResultsDisplay
+      )
+    ) {
       return activeEntID;
     }
 

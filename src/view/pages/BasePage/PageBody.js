@@ -1,7 +1,7 @@
 import { Box, Grid2, Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 
-import {  Format, Translate } from "../../../nonview";
+import { Format, Translate } from "../../../nonview";
 
 import {
   CustomAlert,
@@ -28,7 +28,7 @@ function HistoryAlert() {
   if (!data) {
     return null;
   }
-  const {  nResultsDisplay , electionPrevious} = data;
+  const { nResultsDisplay, electionPrevious } = data;
 
   if (!electionPrevious) {
     return null;

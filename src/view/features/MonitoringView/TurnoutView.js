@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 
-import {  Translate, Format,  } from "../../../nonview";
+import { Translate, Format } from "../../../nonview";
 
 import { CustomAlert } from "../..";
 
@@ -22,4 +22,3 @@ export default function TurnoutView() {
     </Stack>
   );
 }
-

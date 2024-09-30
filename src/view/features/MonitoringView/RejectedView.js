@@ -1,11 +1,10 @@
 import { Stack, Typography } from "@mui/material";
 
-import {  Translate, Format } from "../../../nonview";
+import { Translate, Format } from "../../../nonview";
 
 import { CustomAlert } from "../..";
 
 import GenericScatterChart from "./GenericScatterChart";
-
 
 export default function RejectedView() {
   return (
@@ -23,6 +22,3 @@ export default function RejectedView() {
     </Stack>
   );
 }
-
-
-

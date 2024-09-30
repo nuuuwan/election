@@ -4,7 +4,7 @@ import { MathX, Translate, Format, Color } from "../../nonview";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { CustomAlert } from "..";
 import { BarChart, ScatterChart } from "@mui/x-charts";
-import {  Party } from "../../nonview";
+import { Party } from "../../nonview";
 
 function BanfordView() {
   const data = useDataContext();

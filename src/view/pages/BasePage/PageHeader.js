@@ -1,7 +1,7 @@
 import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 
 import { useDataContext } from "../../../nonview/core/DataProvider";
-import { EntView, RefreshButton } from "../../../view";
+import { RefreshButton } from "../../../view";
 import { CustomMenu } from "../../../view";
 
 const STYLE_PAGE_HEADER = {

@@ -2,14 +2,8 @@ import { Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { EntType, Translate } from "../../nonview";
 
-export default function EntView({
-  entID,
-  useLongName = false,
-  sx = {},
-  direction = "row",
-  num = null,
-  bigMode = false,
-}) {
+
+function EntViewName({entID, num}) {
   const data = useDataContext();
   if (!data) {
     return null;
@@ -23,29 +17,62 @@ export default function EntView({
 
   const ent = allRegionIdx[entID];
 
-  const entType = EntType.fromID(entID);
-
-  const label = useLongName ? entType.longName : entType.shortName;
-
   let numPart = "";
   if (num !== null) {
     numPart = `${num}. `;
   }
 
-  if (bigMode) {
-    return <Typography variant="h4">{Translate(ent.name)}</Typography>;
+
+return (
+  <Typography variant="h5">{numPart + Translate(ent.name)}</Typography>
+
+)
+}
+
+function EntViewType ({entID}){
+  const data = useDataContext();
+  if (!data) {
+    return null;
   }
+
+  if (!entID) {
+    return null;
+  }
+
+
+
+
+
+  const entType = EntType.fromID(entID);
+
+  const label = entType.shortName;
+
+  return (
+
+    <Typography variant="h5" sx={{ opacity: 0.5 }}>
+      {Translate(label)}
+    </Typography>
+  )
+}
+
+export default function EntView({
+  entID,
+
+  sx = {},
+
+  num = null,
+
+}) {
+
 
   return (
     <Stack
-      direction={direction}
+      direction={"row"}
       sx={Object.assign({ alignItems: "center" }, sx)}
       gap={1}
     >
-      <Typography variant="h5">{numPart + Translate(ent.name)}</Typography>
-      <Typography variant="h5" sx={{ opacity: 0.5 }}>
-        {Translate(label)}
-      </Typography>
+      <EntViewName entID={entID} num={num} />
+      <EntViewType entID={entID} />
     </Stack>
   );
 }

@@ -7,13 +7,9 @@ import {
   HistoryView,
   SummaryView,
   PartyToVotesStatsView,
+  SeatsBarChart,
 } from "../../view";
-import {
-  EntView,
-  ResultsReleasedView,
-  VoteLeadView,
-  ElectionSmallTitle,
-} from "../../view";
+import { EntView, ResultsReleasedView, ElectionSmallTitle } from "../../view";
 
 function getContentList({ entID, result, electionDisplay }) {
   const baseEntIDList = electionDisplay.baseEntIDList;
@@ -34,13 +30,13 @@ function getContentList({ entID, result, electionDisplay }) {
     <PartyToVotesStatsView partyToVotes={result.partyToVotes} />,
     <ResultBarChart resultsElection={electionDisplay} entID={entID} />,
 
-    <VoteLeadView entID={entID} />,
-
     <SummaryView summary={result.summary} />,
 
     <HistoryView entID={entID} />,
 
     <ResultsReleasedView entID={entID} />,
+
+    <SeatsBarChart entID={entID} />,
   ];
 }
 

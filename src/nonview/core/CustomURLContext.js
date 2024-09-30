@@ -1,12 +1,18 @@
 import URLContext from "../base/URLContext";
-
+import ELECTION_LIST_TUPLES from "./Election/ELECTION_LIST_TUPLES.js";
 export default class CustomURLContext {
-  static DEFAULT_STATE = {
-    electionType: "Presidential",
-    // date: "2019-11-16",
-    date: "2024-09-21",
-    lang: "en",
-  };
+  static getDefaultState() {
+    const n = ELECTION_LIST_TUPLES.length;
+    const randomI = Math.floor(Math.random() * n);
+    const [electionType, date] = ELECTION_LIST_TUPLES[randomI];
+    const nResultsDisplay = Math.floor(Math.random() * 182) + 1;
+    return {
+      electionType,
+      date,
+      nResultsDisplay,
+      lang: "en",
+    };
+  }
 
   static get() {
     let context = URLContext.get();
@@ -14,7 +20,7 @@ export default class CustomURLContext {
       context.nResultsDisplay = parseInt(context.nResultsDisplay);
     }
 
-    return Object.assign({}, CustomURLContext.DEFAULT_STATE, context);
+    return Object.assign({}, CustomURLContext.getDefaultState(), context);
   }
 
   static set(data) {

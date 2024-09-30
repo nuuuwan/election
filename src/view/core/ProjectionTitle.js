@@ -1,8 +1,8 @@
-import { Box, Link, Typography } from "@mui/material";
+import { Link, Stack, Typography } from "@mui/material";
 import { Translate } from "../../nonview";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import CustomAlert from "../base/CustomAlert";
-
+import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
 export function ProjectionAlert() {
   const data = useDataContext();
   if (!data) {
@@ -60,10 +60,12 @@ export default function ProjectionTitle() {
   }
 
   return (
-    <Box>
-      <Typography variant="h4" color="secondary">
+    <Typography variant="h4" color="secondary">
+      <Stack direction="row" gap={1} sx={{ alignItems: "center" }}>
+        <OnlinePredictionIcon />
+
         {Translate(title)}
-      </Typography>
-    </Box>
+      </Stack>
+    </Typography>
   );
 }

@@ -28,6 +28,7 @@ import VoteLeadView from "./core/VoteLeadView.js";
 import HistoryView from "./cumulative/HistoryView.js";
 import PartyToVotesStatsView from "./cumulative/PartyToVotesStatsView.js";
 import ResultBarChart from "./cumulative/ResultBarChart.js";
+import SeatsBarChart from "./cumulative/SeatsBarChart.js";
 import SummaryView from "./cumulative/SummaryView.js";
 import AggregatedResultUtils from "./features/AggregatedResultView/AggregatedResultUtils.js";
 import AggregatedResultView from "./features/AggregatedResultView/AggregatedResultView.js";
@@ -110,6 +111,7 @@ export {
   HistoryView,
   PartyToVotesStatsView,
   ResultBarChart,
+  SeatsBarChart,
   SummaryView,
   AggregatedResultUtils,
   AggregatedResultView,

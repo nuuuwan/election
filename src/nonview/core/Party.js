@@ -2,7 +2,7 @@ import { POLITICAL_PARTY_TO_COLOR } from "..";
 
 export default class Party {
   static OTHER = new Party("Other", "Other");
-  static ERROR = new Party("UFG", "UFG");
+  static ERROR = new Party("???", "???");
   static NON_PARTY_ID_LIST = [Party.OTHER.id, Party.ERROR.id];
 
   constructor(id) {

@@ -43,7 +43,6 @@ function AggregatedResultListTableView({ sortedEntIDs }) {
               "Region or Group",
               "Votes by Party",
               "%",
-              "Lead",
               "Summary",
               "Past History",
               "Release Status",

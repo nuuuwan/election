@@ -31,8 +31,6 @@ export default function ResultsReleasedView({ entID }) {
     </Stack>
   );
 
-
-
   return (
     <Stack direction="row" alignItems="center" gap={3} sx={{ color: "gray" }}>
       <LabelledStat label="Results" stat={pdDetails} />
@@ -40,7 +38,6 @@ export default function ResultsReleasedView({ entID }) {
       {electionDisplay.baseEntType === EntType.ED ? null : (
         <LabelledStat label="Released" stat={Format.percent(pElectors)} />
       )}
-
     </Stack>
   );
 }

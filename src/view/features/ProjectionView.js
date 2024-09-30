@@ -38,17 +38,17 @@ export default function ProjectionView() {
     );
   }
 
-  const outcomeView = (electionDisplay.isPresidential) ? (
+  const outcomeView = electionDisplay.isPresidential ? (
     <FinalOutcomeView finalOutcome={finalOutcome} />
   ) : (
     <ParliamentaryFinalOutcomeView />
   );
 
-  const barChart = (electionDisplay.isPresidential) ? (
+  const barChart = electionDisplay.isPresidential ? (
     <ProjectedResultBarChart />
   ) : (
     <SeatView />
-  )
+  );
 
   return (
     <CustomStack>

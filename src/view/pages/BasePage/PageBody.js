@@ -106,7 +106,6 @@ export default function PageBody() {
 
           <CustomPageBodyGridItem>
             <ProjectionView />
-
           </CustomPageBodyGridItem>
         </Grid2>
         <PageBelowTheFold />

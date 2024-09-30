@@ -53,10 +53,7 @@ export default class Seats {
   }
 
   static aggregatePartyToSeats(partyToSeatsList) {
-    const unsorted = partyToSeatsList.reduce(function (
-      idx,
-      partyToSeats
-    ) {
+    const unsorted = partyToSeatsList.reduce(function (idx, partyToSeats) {
       return Object.entries(partyToSeats).reduce(function (
         idx,
         [partyID, seats]
@@ -65,8 +62,7 @@ export default class Seats {
         return idx;
       },
       idx);
-    },
-    {});
+    }, {});
     return Object.fromEntries(
       Object.entries(unsorted).sort(
         ([partyID1, seats1], [partyID2, seats2]) => seats2 - seats1
@@ -77,7 +73,7 @@ export default class Seats {
   get partyToSeats() {
     return Seats.aggregatePartyToSeats(
       Object.values(this.regionToPartyToSeats)
-    )
+    );
   }
 
   get partyToSeatsMain() {
@@ -112,27 +108,26 @@ export default class Seats {
   }
 
   getPartyToSeatsForProvince(provinceID) {
-    const partyToSeatsList = Object.entries(this.regionToPartyToSeats).filter(
-      function([entID, partyToSeats]) {
-        if (entID === 'LK') {
+    const partyToSeatsList = Object.entries(this.regionToPartyToSeats)
+      .filter(function ([entID, partyToSeats]) {
+        if (entID === "LK") {
           return false;
         }
         const provinceID2 = ProvinceUtils.getProvinceIDForEDID(entID);
         return provinceID2 === provinceID;
-      }
-    ).map(function([entID, partyToSeats]) {
-      return partyToSeats;
-    });
+      })
+      .map(function ([entID, partyToSeats]) {
+        return partyToSeats;
+      });
 
     return Seats.aggregatePartyToSeats(partyToSeatsList);
   }
 
   getPartyToSeats(entID) {
-    if (entID === 'LK') {
+    if (entID === "LK") {
       return this.partyToSeats;
     }
-    if
-     (EntType.fromID(entID) === EntType.ED) {
+    if (EntType.fromID(entID) === EntType.ED) {
       return this.regionToPartyToSeats[entID];
     }
 

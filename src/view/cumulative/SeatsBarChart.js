@@ -19,8 +19,8 @@ function getAxis() {
 
 function getBarLabel(totalSeats) {
   return function (item, context) {
-    const seats =  item.value;
-    if (seats < 2 * totalSeats * Seats.MIN_SEATS_FOR_DISPLAY/ 182) {
+    const seats = item.value;
+    if (seats < (2 * totalSeats * Seats.MIN_SEATS_FOR_DISPLAY) / 182) {
       return "";
     }
     return seats;
@@ -63,7 +63,7 @@ export default function SeatsBarChart({ resultsElection, entID }) {
       data: [seats],
       label: partyID,
       stack: "",
-      color: Color.getColorWithAlpha(party.color, 0.5 ),
+      color: Color.getColorWithAlpha(party.color, 0.5),
     };
   });
 

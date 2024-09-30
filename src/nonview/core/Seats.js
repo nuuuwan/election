@@ -1,4 +1,6 @@
+import EntType from "../base/EntType.js";
 import MathX from "../base/MathX.js";
+import ProvinceUtils from "../base/ProvinceUtils.js";
 import YEAR_TO_REGION_TO_SEATS from "../constants/YEAR_TO_REGION_TO_SEATS.js";
 import Party from "./Party.js";
 
@@ -50,8 +52,8 @@ export default class Seats {
     return idx;
   }
 
-  get partyToSeats() {
-    const unsorted = Object.values(this.regionToPartyToSeats).reduce(function (
+  static aggregatePartyToSeats(partyToSeatsList) {
+    const unsorted = partyToSeatsList.reduce(function (
       idx,
       partyToSeats
     ) {
@@ -70,6 +72,12 @@ export default class Seats {
         ([partyID1, seats1], [partyID2, seats2]) => seats2 - seats1
       )
     );
+  }
+
+  get partyToSeats() {
+    return Seats.aggregatePartyToSeats(
+      Object.values(this.regionToPartyToSeats)
+    )
   }
 
   get partyToSeatsMain() {
@@ -101,6 +109,37 @@ export default class Seats {
       idx);
     },
     {});
+  }
+
+  getPartyToSeatsForProvince(provinceID) {
+    const partyToSeatsList = Object.entries(this.regionToPartyToSeats).filter(
+      function([entID, partyToSeats]) {
+        if (entID === 'LK') {
+          return false;
+        }
+        const provinceID2 = ProvinceUtils.getProvinceIDForEDID(entID);
+        return provinceID2 === provinceID;
+      }
+    ).map(function([entID, partyToSeats]) {
+      return partyToSeats;
+    });
+
+    return Seats.aggregatePartyToSeats(partyToSeatsList);
+  }
+
+  getPartyToSeats(entID) {
+    if (entID === 'LK') {
+      return this.partyToSeats;
+    }
+    if
+     (EntType.fromID(entID) === EntType.ED) {
+      return this.regionToPartyToSeats[entID];
+    }
+
+    if (EntType.fromID(entID) === EntType.PROVINCE) {
+      return this.getPartyToSeatsForProvince(entID);
+    }
+    return null;
   }
 
   static fromElection(election) {

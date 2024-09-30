@@ -65,7 +65,7 @@ function getSeries(seats) {
       data: [seats],
       label: partyID,
       stack: partyID,
-      color: party.color,
+      color: Color.getColorWithAlpha(party.color, 0.5),
     };
   });
 
@@ -73,14 +73,14 @@ function getSeries(seats) {
   const seriesUFG = Object.keys(seats.partyToSeatsMain).map(function (partyID) {
     const party = Party.fromID(partyID);
     const ufg = partyToUFG[partyID] || 0;
-    const colorWithAlpha = Color.getColorWithAlpha(party.color, 0.5);
+
     const id = `${partyID}-ufg`;
     return {
       id,
       data: [ufg],
       label: id,
       stack: partyID,
-      color: colorWithAlpha,
+      color: Color.getColorWithAlpha(party.color, 0.25),
     };
   });
 

@@ -80,16 +80,15 @@ function getSeries(electionProjected) {
     series.push({
       data: [pVotes],
       label: partyID,
-      color: party.color,
+      color: Color.getColorWithAlpha(party.color, 0.5),
       stack: partyID,
     });
 
     if (pVotesExtra) {
-      const colorWithAlpha = Color.getColorWithAlpha(party.color, 0.5);
       series.push({
         data: [pVotesExtra],
         label: partyID + "-Max",
-        color: colorWithAlpha,
+        color: Color.getColorWithAlpha(party.color, 0.25),
         stack: partyID,
       });
     }

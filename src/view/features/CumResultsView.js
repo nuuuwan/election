@@ -36,7 +36,7 @@ function getContentList({ entID, result, electionDisplay }) {
 
     <ResultsReleasedView entID={entID} />,
 
-    <SeatsBarChart entID={entID} />,
+    (electionDisplay.isPresidential ? null : <SeatsBarChart entID={entID} />),
   ];
 }
 

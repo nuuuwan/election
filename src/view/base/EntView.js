@@ -16,6 +16,11 @@ function EntViewName({ entID, num }) {
 
   const ent = allRegionIdx[entID];
 
+  if (!ent) {
+    console.error(`EntViewName: ent for ${entID} not found`);
+    return null;
+  }
+
   let numPart = "";
   if (num !== null) {
     numPart = `${num}. `;

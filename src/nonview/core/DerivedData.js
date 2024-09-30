@@ -10,21 +10,37 @@ export default class DerivedData {
     );
   }
 
+  static checkIfResultDisplayable(election, activeEntID, nResultsDisplay) {
+    if (!activeEntID) {
+      return false;
+    }
+    const iResult = election.baseEntIDList.indexOf(activeEntID);
+    if (iResult === -1) {
+      return false;
+    } 
+    
+    
+    if (nResultsDisplay && iResult >= nResultsDisplay) {
+      return false;
+    }
+
+    return true;
+   
+  }
+
   static getActiveEntID(activeEntID, nResultsDisplay, election) {
     if (!election.isLoaded) {
       return null;
     }
-    if (activeEntID) {
-      const iResult = election.baseEntIDList.indexOf(activeEntID);
-      if (iResult > -1) {
-        if (!nResultsDisplay || iResult < nResultsDisplay) {
-          return activeEntID;
-        }
-      }
+    
+    if (DerivedData.checkIfResultDisplayable(election, activeEntID, nResultsDisplay)) {
+      return activeEntID;
     }
+
     if (DerivedData.isValidNResultsDisplay(nResultsDisplay, election)) {
       return election.baseResultList[nResultsDisplay - 1].entID;
     }
+
     return ArrayX.last(election.baseResultList).entID;
   }
 

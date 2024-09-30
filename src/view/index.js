@@ -72,6 +72,7 @@ import RejectedView from "./features/MonitoringView/RejectedView.js";
 import TurnoutView from "./features/MonitoringView/TurnoutView.js";
 import ProjectedResultBarChart from "./features/ProjectedResultBarChart.js";
 import ProjectionView from "./features/ProjectionView.js";
+import SeatView from "./features/SeatView.js";
 import BasePage from "./pages/BasePage/BasePage.js";
 import BasePageHandlerProvider from "./pages/BasePage/BasePageHandlerProvider.js";
 import BasePageView from "./pages/BasePage/BasePageView.js";
@@ -152,6 +153,7 @@ export {
   TurnoutView,
   ProjectedResultBarChart,
   ProjectionView,
+  SeatView,
   BasePage,
   BasePageHandlerProvider,
   BasePageView,

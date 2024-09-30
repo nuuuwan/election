@@ -28,6 +28,7 @@ import GROUP_ID_TO_PD_ID_LIST from "./constants/GROUP_ID_TO_PD_ID_LIST.js";
 import PD_ID_TO_GROUP_ID from "./constants/PD_ID_TO_GROUP_ID.js";
 import POLITICAL_PARTY_TO_COLOR from "./constants/POLITICAL_PARTY_TO_COLOR.js";
 import VERSION from "./constants/VERSION.js";
+import YEAR_TO_REGION_TO_SEATS from "./constants/YEAR_TO_REGION_TO_SEATS.js";
 import ActivePDUtils from "./core/ActivePDUtils.js";
 import Bellwether from "./core/Bellwether.js";
 import CustomURLContext from "./core/CustomURLContext.js";
@@ -50,6 +51,7 @@ import OngoingElection from "./core/OngoingElection.js";
 import Party from "./core/Party.js";
 import PartyToVotes from "./core/PartyToVotes.js";
 import Result from "./core/Result.js";
+import Seats from "./core/Seats.js";
 import Summary from "./core/Summary.js";
 
 export {
@@ -81,6 +83,7 @@ export {
   PD_ID_TO_GROUP_ID,
   POLITICAL_PARTY_TO_COLOR,
   VERSION,
+  YEAR_TO_REGION_TO_SEATS,
   ActivePDUtils,
   Bellwether,
   CustomURLContext,
@@ -103,5 +106,6 @@ export {
   Party,
   PartyToVotes,
   Result,
+  Seats,
   Summary,
 };

@@ -8,8 +8,7 @@ import {
   IfElse,
   NoResultsAlert,
   ResultsReleasedTitle,
-} from "../..";
-import {
+  SeatView,
   ProjectionView,
   HexMapView,
   LatestResultListView,
@@ -108,6 +107,7 @@ export default function PageBody() {
 
           <CustomPageBodyGridItem>
             <ProjectionView />
+            <SeatView />
           </CustomPageBodyGridItem>
         </Grid2>
         <PageBelowTheFold />

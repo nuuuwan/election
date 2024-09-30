@@ -28,31 +28,16 @@ function HistoryAlert() {
   if (!data) {
     return null;
   }
-  const { election, elections, nResultsDisplay } = data;
+  const {  nResultsDisplay , electionPrevious} = data;
 
-  const previousElections = Election.getPreviousElectionsOfSameType(
-    elections,
-    election
-  );
-
-  const previousElectionsDisplay = previousElections.map(function (
-    previousElection
-  ) {
-    return previousElection.getSubsetElectionByEntIDList(
-      election.baseEntIDList
-    );
-  });
-
-  const previousElectionDisplay = ArrayX.last(previousElectionsDisplay);
-  if (!previousElectionDisplay) {
+  if (!electionPrevious) {
     return null;
   }
 
-  const year = previousElectionDisplay.year;
-  const resultLK = previousElectionDisplay.resultLK;
-
-  const winningPartyID = resultLK.partyToVotes.winningPartyID;
-  const pWinner = resultLK.partyToVotes.pWinner;
+  const year = electionPrevious.year;
+  const partyToVotes = electionPrevious.resultLK.partyToVotes;
+  const winningPartyID = partyToVotes.winningPartyID;
+  const pWinner = partyToVotes.pWinner;
 
   return (
     <CustomAlert severity="warning">

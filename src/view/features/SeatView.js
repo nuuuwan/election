@@ -31,11 +31,12 @@ function getAxis() {
         if (seriesId.includes("ufg")) {
             return "";
         }
-        if (value < Seats.MIN_SEATS_FOR_DISPLAY) {
+        const ufg = partyToUFG[seriesId] || 0;
+        
+        if (value < Seats.MIN_SEATS_FOR_DISPLAY * 4) {
             return "";
         }
         
-        const ufg = partyToUFG[seriesId] || 0;
         if (ufg > 0) {
             return `${value} - ${value + ufg}`;
         }

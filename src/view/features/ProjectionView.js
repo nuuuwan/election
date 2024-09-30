@@ -1,5 +1,5 @@
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { CustomStack, ElectionSmallTitle, ProjectionTitle } from "..";
+import { CustomStack, ElectionSmallTitle, ProjectionTitle, SeatView } from "..";
 import {
   FinalOutcomeView,
   PartyToVotesStatsView,
@@ -11,6 +11,7 @@ import { FinalOutcome } from "../../nonview";
 import InsightErrorMarginTooHigh from "./FinalOutcomeView/InsightErrorMarginTooHigh";
 import { ProjectionAlert } from "../core/ProjectionTitle";
 import { EntType } from "../../nonview";
+import ParliamentaryFinalOutcomeView from "./ParlimentaryFinalOutcomeView";
 
 export default function ProjectionView() {
   const data = useDataContext();
@@ -37,13 +38,25 @@ export default function ProjectionView() {
     );
   }
 
+  const outcomeView = (electionDisplay.isPresidential) ? (
+    <FinalOutcomeView finalOutcome={finalOutcome} />
+  ) : (
+    <ParliamentaryFinalOutcomeView />
+  );
+
+  const barChart = (electionDisplay.isPresidential) ? (
+    <ProjectedResultBarChart />
+  ) : (
+    <SeatView />
+  )
+
   return (
     <CustomStack>
       <ProjectionTitle />
-      <FinalOutcomeView />
+      {outcomeView}
 
       <PartyToVotesStatsView partyToVotes={resultLK.partyToVotes} />
-      <ProjectedResultBarChart />
+      {barChart}
       <SummaryView summary={resultLK.summary} />
       <ElectionSmallTitle />
 

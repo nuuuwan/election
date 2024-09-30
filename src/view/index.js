@@ -70,6 +70,7 @@ import GenericScatterChart from "./features/MonitoringView/GenericScatterChart.j
 import MonitoringView from "./features/MonitoringView/MonitoringView.js";
 import RejectedView from "./features/MonitoringView/RejectedView.js";
 import TurnoutView from "./features/MonitoringView/TurnoutView.js";
+import ParlimentaryFinalOutcomeView from "./features/ParlimentaryFinalOutcomeView.js";
 import ProjectedResultBarChart from "./features/ProjectedResultBarChart.js";
 import ProjectionView from "./features/ProjectionView.js";
 import SeatView from "./features/SeatView.js";
@@ -151,6 +152,7 @@ export {
   MonitoringView,
   RejectedView,
   TurnoutView,
+  ParlimentaryFinalOutcomeView,
   ProjectedResultBarChart,
   ProjectionView,
   SeatView,

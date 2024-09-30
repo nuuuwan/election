@@ -41,7 +41,7 @@ export default class Seats {
     }
 
     get partyToSeats() {
-        return Object.values(this.regionToPartyToSeats).reduce(
+        const unsorted = Object.values(this.regionToPartyToSeats).reduce(
             function (idx, partyToSeats) {
                 return Object.entries(partyToSeats).reduce(
                     function(idx, [partyID, seats]) {
@@ -52,6 +52,11 @@ export default class Seats {
                 );
             }
             , {}
+        );
+        return Object.fromEntries(
+            Object.entries(unsorted).sort(
+                ([partyID1, seats1], [partyID2, seats2]) => seats2 - seats1
+            )
         );
     }
 

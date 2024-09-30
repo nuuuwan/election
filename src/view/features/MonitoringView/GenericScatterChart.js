@@ -6,24 +6,9 @@ import { CustomAlert } from "../..";
 import { ScatterChart } from "@mui/x-charts";
 import { Party } from "../../../nonview";
 
-
-
-export default function GenericScatterChart({ getValue, formatStat }) {
-  const data = useDataContext();
-  if (data === null) {
-    return null;
-  }
-  const { electionDisplay, electionPrevious, allRegionIdx } = data;
-
-  if (!electionPrevious) {
-    return (
-      <CustomAlert severity="warning">
-        {Translate("No previous election data available")}
-      </CustomAlert>
-    );
-  }
-
-  const baseData = electionDisplay.baseResultList
+function getBaseData(data, getValue) {
+    const { electionDisplay, electionPrevious, allRegionIdx } = data;
+    return  electionDisplay.baseResultList
     .filter(function (result) {
       return !result.entID.endsWith("P") && allRegionIdx[result.entID];
     })
@@ -39,56 +24,86 @@ export default function GenericScatterChart({ getValue, formatStat }) {
       };
     });
 
-  function formatStatInner(x) {
-    if (!x) {
-      return "N/A";
-    }
-    return formatStat(x);
+}
+
+function getSeries(baseData, valueFormatter) {
+    return Object.values(
+        baseData.reduce(function (idx, datum) {
+          const winningPartyID = datum.winningPartyID;
+          if (!idx[winningPartyID]) {
+            idx[winningPartyID] = [];
+          }
+          idx[winningPartyID].push(datum);
+          return idx;
+        }, {})
+      ).map(function (data) {
+        const color = Color.getColorWithAlpha(
+          Party.fromID(data[0].winningPartyID).color,
+          0.5
+        );
+        return { data, color, valueFormatter };
+      });
+}
+
+function getFormatStatInner(formatStat) {
+    return  function(x) {
+        if (!x) {
+          return "N/A";
+        }
+        return formatStat(x);
+      }
+
+}
+
+function getValueFormatter(formatStatInner) {
+
+
+    return function (datum) {
+        const percentChange = (datum.y - datum.x) / datum.x;
+        const arrow = datum.y > datum.x ? "↑" : "↓";
+        return `${datum.label} (${datum.winningPartyID}) ${formatStatInner(
+          datum.x
+        )} ${arrow} ${formatStatInner(datum.y)} (${Format.percentSigned(
+          percentChange
+        )})`;
+      };
+    
+    
+}
+
+function getGenericAxis(election, formatStatInner) {
+    return [
+        {
+          scaleType: "linear",
+          label: election.year,
+          valueFormatter: formatStatInner,
+        },
+      ]
+}
+
+export default function GenericScatterChart({ getValue, formatStat }) {
+  const data = useDataContext();
+  if (data === null) {
+    return null;
+  }
+  const {  electionDisplay, electionPrevious } = data;
+  if (!electionPrevious) {
+    return (
+      <CustomAlert severity="warning">
+        {Translate("No previous election data available")}
+      </CustomAlert>
+    );
   }
 
-  const valueFormatter = function (datum) {
-    const percentChange = (datum.y - datum.x) / datum.x;
-    const arrow = datum.y > datum.x ? "↑" : "↓";
-    return `${datum.label} (${datum.winningPartyID}) ${formatStatInner(
-      datum.x
-    )} ${arrow} ${formatStatInner(datum.y)} (${Format.percentSigned(
-      percentChange
-    )})`;
-  };
-
-  const series = Object.values(
-    baseData.reduce(function (idx, datum) {
-      const winningPartyID = datum.winningPartyID;
-      if (!idx[winningPartyID]) {
-        idx[winningPartyID] = [];
-      }
-      idx[winningPartyID].push(datum);
-      return idx;
-    }, {})
-  ).map(function (data) {
-    const color = Color.getColorWithAlpha(
-      Party.fromID(data[0].winningPartyID).color,
-      0.5
-    );
-    return { data, color, valueFormatter };
-  });
+  const baseData = getBaseData(data, getValue);
+  const formatStatInner = getFormatStatInner(formatStat);
+  const valueFormatter = getValueFormatter(formatStatInner);
+    const series = getSeries(baseData, valueFormatter);
 
   return (
     <ScatterChart
-      xAxis={[
-        {
-          scaleType: "linear",
-          label: electionPrevious.year,
-          valueFormatter: formatStatInner,
-        },
-      ]}
-      yAxis={[
-        {
-          scaleType: "linear",
-          label: electionPrevious.year,
-          valueFormatter: formatStatInner,
-        },
-      ]}
+      xAxis={getGenericAxis(electionPrevious, formatStatInner)}
+      yAxis={getGenericAxis(electionDisplay, formatStatInner)}
       series={series}
       width={600}
       height={600}

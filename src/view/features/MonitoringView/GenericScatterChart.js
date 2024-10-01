@@ -1,8 +1,8 @@
 import { Translate, Format, Color } from "../../../nonview";
-import { useDataContext } from "../../../nonview/core/DataProvider";
 import { CustomAlert } from "../..";
 import { ScatterChart } from "@mui/x-charts";
 import { Party } from "../../../nonview";
+import { useDataSlowContext } from "../../../nonview/core/DataSlowProvider";
 
 function getBaseData(data, getValue) {
   const { electionDisplay, electionPrevious, allRegionIdx } = data;
@@ -74,7 +74,7 @@ function getGenericAxis(election, formatStatInner) {
 }
 
 export default function GenericScatterChart({ getValue, formatStat }) {
-  const data = useDataContext();
+  const data = useDataSlowContext();
   if (data === null) {
     return null;
   }

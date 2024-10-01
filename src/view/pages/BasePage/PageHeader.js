@@ -20,7 +20,7 @@ const STYLE_PAGE_HEADER = {
 
 function PageHeaderTitle() {
   const data = useDataContext();
-  let label = "#PresPoll"
+  let label = "#PresPoll";
   if (data) {
     const { electionProjected } = data;
     label = electionProjected.title;
@@ -32,7 +32,7 @@ export default function PageHeader() {
   const backgroundColor = "gray";
   return (
     <Box sx={Object.assign({ backgroundColor }, STYLE_PAGE_HEADER.SELECTOR)}>
-      <AppBar position="static" sx={{ backgroundColor}}>
+      <AppBar position="static" sx={{ backgroundColor }}>
         <Toolbar>
           <PageHeaderTitle />
           <Box sx={{ flexGrow: 1 }} />

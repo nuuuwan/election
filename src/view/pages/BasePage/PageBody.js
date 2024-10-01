@@ -83,7 +83,7 @@ function CustomPageBodyGridItem({ children }) {
 export default function PageBody() {
   const data = useDataContext();
   if (!data) {
-    return <LoadingLabel/>;
+    return <LoadingLabel />;
   }
   const { electionDisplay } = data;
 

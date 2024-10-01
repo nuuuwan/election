@@ -11,9 +11,9 @@ export default function ResultsReleasedView({ entID }) {
   }
   const { electionDisplay, electionPrevious, entIdx } = data;
 
-  const { nResultsTotal, nResultsReleased, pElectors } =
-    electionDisplay.getReleaseStats(entID, entIdx, electionPrevious);
-
+  const { nResultsTotal, nResultsReleased,  } =
+    electionDisplay.getNResultsReleasedAndTotal(entID, entIdx, );
+const pElectors = electionDisplay.getPElectors(entID, entIdx, electionPrevious)
   if (nResultsTotal <= 1) {
     return (
       <Typography variant="h6" color="gray">

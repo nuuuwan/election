@@ -3,19 +3,20 @@ import { Translate } from "../../nonview";
 
 import CustomAlert from "../base/CustomAlert";
 import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
-import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
+
+import { useDataContext } from "../../nonview/core/DataProvider";
 export function ProjectionAlert() {
-  const data = useDataSlowContext();
+  const data = useDataContext();
   if (!data) {
     return null;
   }
-  const { electionDisplay, entIdx, electionPrevious } = data;
+  const { electionDisplay, entIdx } = data;
 
   const entID = "LK";
-  const { nResultsTotal, nResultsReleased } = electionDisplay.getReleaseStats(
+  const { nResultsTotal, nResultsReleased } = electionDisplay.getNResultsReleasedAndTotal(
     entID,
     entIdx,
-    electionPrevious
+
   );
 
   const isComplete = nResultsReleased === nResultsTotal;
@@ -40,17 +41,17 @@ export function ProjectionAlert() {
 }
 
 export default function ProjectionTitle() {
-  const data = useDataSlowContext();
+  const data = useDataContext();
   if (!data) {
     return null;
   }
-  const { electionDisplay, pdIdx, electionPrevious } = data;
+  const { electionDisplay, pdIdx } = data;
 
   const entID = "LK";
-  const { nResultsTotal, nResultsReleased } = electionDisplay.getReleaseStats(
+  const { nResultsTotal, nResultsReleased } = electionDisplay.getNResultsReleasedAndTotal(
     entID,
     pdIdx,
-    electionPrevious
+
   );
 
   const isComplete = nResultsReleased === nResultsTotal;

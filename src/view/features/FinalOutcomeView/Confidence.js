@@ -2,16 +2,16 @@ import { Typography } from "@mui/material";
 import { Format, Translate } from "../../../nonview";
 import { FinalOutcome } from "../../../nonview";
 
-import { useDataSlowContext } from "../../../nonview/core/DataSlowProvider";
+import { useDataContext } from "../../../nonview/core/DataProvider";
 
 export default function Confidence() {
-  const data = useDataSlowContext();
+  const data = useDataContext();
   if (!data) {
     return null;
   }
   const { electionDisplay, entIdx, electionPrevious } = data;
 
-  const { nResultsTotal, nResultsReleased } = electionDisplay.getReleaseStats(
+  const { nResultsTotal, nResultsReleased } = electionDisplay.getNResultsReleasedAndTotal(
     "LK",
     entIdx,
     electionPrevious

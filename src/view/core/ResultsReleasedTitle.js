@@ -3,6 +3,7 @@ import { Box, Typography } from "@mui/material";
 import { EntType, Format, Translate } from "../../nonview";
 import CustomAlert from "../base/CustomAlert";
 import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
+import { useDataContext } from "../../nonview/core/DataProvider";
 
 export function ResultsReleasedAlert() {
   const data = useDataSlowContext();
@@ -12,13 +13,13 @@ export function ResultsReleasedAlert() {
   const { electionDisplay, entIdx, electionPrevious } = data;
 
   const entID = "LK";
-  const { nResultsTotal, nResultsReleased, pElectors } =
-    electionDisplay.getReleaseStats(entID, entIdx, electionPrevious);
-
-  const isComplete = nResultsReleased < nResultsTotal;
+  
+  const isComplete = electionDisplay.isComplete(entID, entIdx);
   if (!isComplete) {
     return null;
   }
+
+  const pElectors = electionDisplay.getPElectors(entID, entIdx, electionPrevious);
 
   return (
     <CustomAlert severity="warning">
@@ -32,14 +33,12 @@ export function ResultsReleasedAlert() {
   );
 }
 
-export default function ResultsReleasedTitle({ mode = "percent" }) {
+
+
+export  function ResultsReleasedTitlePercent() {
   const data = useDataSlowContext();
   if (!data) {
-    return (
-      <Typography variant="h4" color="gray" sx={{ marginBottom: 2 }}>
-        {Translate("Results")}
-      </Typography>
-    );
+    return null;
   }
   const { electionDisplay, electionPrevious } = data;
   if (electionDisplay.baseEntType === EntType.ED) {
@@ -49,19 +48,39 @@ export default function ResultsReleasedTitle({ mode = "percent" }) {
   const entIdx = electionDisplay.getEntIdx(data);
 
   const entID = "LK";
-  const { nResultsTotal, nResultsReleased, pElectors } =
-    electionDisplay.getReleaseStats(entID, entIdx, electionPrevious);
 
-  if (mode === "percent") {
+
+  const pElectors = electionDisplay.getPElectors(entID, entIdx, electionPrevious);
+
+  return (
+    <Box sx={{ marginBottom: 2 }}>
+      <Typography variant="h4" color="gray">
+        <span style={{ color: "black" }}>{Format.percent(pElectors)}</span>{" "}
+        {Translate("Released")}
+      </Typography>
+    </Box>
+  );
+}
+
+export  function ResultsReleasedTitleNumber() {
+  const data = useDataContext();
+  if (!data) {
     return (
-      <Box sx={{ marginBottom: 2 }}>
-        <Typography variant="h4" color="gray">
-          <span style={{ color: "black" }}>{Format.percent(pElectors)}</span>{" "}
-          {Translate("Released")}
-        </Typography>
-      </Box>
+      <Typography variant="h4" color="gray" sx={{ marginBottom: 2 }}>
+        {Translate("Results")}
+      </Typography>
     );
   }
+  const { electionDisplay,  } = data;
+  if (electionDisplay.baseEntType === EntType.ED) {
+    return null;
+  }
+
+  const entIdx = electionDisplay.getEntIdx(data);
+
+  const entID = "LK";
+  const { nResultsTotal, nResultsReleased } =
+    electionDisplay.getNResultsReleasedAndTotal(entID, entIdx);
 
   return (
     <Typography variant="h4" color="gray" sx={{ marginBottom: 2 }}>
@@ -70,4 +89,14 @@ export default function ResultsReleasedTitle({ mode = "percent" }) {
       </span>{" "}
     </Typography>
   );
+}
+
+
+export default function ResultsReleasedTitle({ mode = "percent" }) {
+
+  if (mode === "percent") {
+    return <ResultsReleasedTitlePercent />;
+  }
+
+  return <ResultsReleasedTitleNumber />
 }

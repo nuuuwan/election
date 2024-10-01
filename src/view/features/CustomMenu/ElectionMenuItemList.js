@@ -2,14 +2,14 @@ import { MenuItem } from "@mui/material";
 
 import { useBasePageHandlerContext } from "../../pages/BasePage/BasePageHandlerProvider";
 
-import { CheckIcon } from "../..";
+import { CheckIcon, CustomLoadingProgress } from "../..";
 import { useDataSlowContext } from "../../../nonview/core/DataSlowProvider";
 
 export default function ElectionMenuItemList({ handleClose }) {
   const data = useDataSlowContext();
   const { setElection } = useBasePageHandlerContext();
   if (!data) {
-    return null;
+    return <CustomLoadingProgress />;
   }
   const { elections, electionDisplay } = data;
   return (

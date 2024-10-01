@@ -3,17 +3,16 @@
 import THEME from "./_constants/THEME.js";
 import CheckIcon from "./base/CheckIcon.js";
 import CustomAlert from "./base/CustomAlert.js";
+import CustomLoadingProgress from "./base/CustomLoadingProgress.js";
 import CustomSelect from "./base/CustomSelect.js";
 import EntView from "./base/EntView.js";
 import IfElse from "./base/IfElse.js";
 import LabelledStat from "./base/LabelledStat.js";
-import LoadingLabel from "./base/LoadingLabel.js";
 import RefreshButton from "./base/RefreshButton.js";
 import TabSelector from "./base/TabSelector.js";
 import CitationsView from "./core/CitationsView.js";
 import ClockView from "./core/ClockView.js";
 import CustomStack from "./core/CustomStack.js";
-
 import ElectionSmallTitle from "./core/ElectionSmallTitle.js";
 import HiddenDataView from "./core/HiddenDataView.js";
 import NoResultsAlert from "./core/NoResultsAlert.js";
@@ -21,7 +20,9 @@ import PDSelector from "./core/PDSelector.js";
 import PartyView from "./core/PartyView.js";
 import ProjectionTitle from "./core/ProjectionTitle.js";
 import ResultTimeView from "./core/ResultTimeView.js";
-import ResultsReleasedTitle from "./core/ResultsReleasedTitle.js";
+import ResultsReleasedAlert from "./core/ResultsReleasedAlert.js";
+import ResultsReleasedTitleNumber from "./core/ResultsReleasedTitleNumber.js";
+import ResultsReleasedTitlePercent from "./core/ResultsReleasedTitlePercent.js";
 import ResultsReleasedView from "./core/ResultsReleasedView.js";
 import TestingAlert from "./core/TestingAlert.js";
 import VoteLeadView from "./core/VoteLeadView.js";
@@ -86,17 +87,16 @@ export {
   THEME,
   CheckIcon,
   CustomAlert,
+  CustomLoadingProgress,
   CustomSelect,
   EntView,
   IfElse,
   LabelledStat,
-  LoadingLabel,
   RefreshButton,
   TabSelector,
   CitationsView,
   ClockView,
   CustomStack,
-
   ElectionSmallTitle,
   HiddenDataView,
   NoResultsAlert,
@@ -104,7 +104,9 @@ export {
   PartyView,
   ProjectionTitle,
   ResultTimeView,
-  ResultsReleasedTitle,
+  ResultsReleasedAlert,
+  ResultsReleasedTitleNumber,
+  ResultsReleasedTitlePercent,
   ResultsReleasedView,
   TestingAlert,
   VoteLeadView,

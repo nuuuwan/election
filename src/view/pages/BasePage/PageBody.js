@@ -1,4 +1,4 @@
-import { Box, Grid2, Stack, Typography } from "@mui/material";
+import { Box,Grid2, Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 
 import { Format, Translate } from "../../../nonview";
@@ -7,7 +7,6 @@ import {
   CustomAlert,
   IfElse,
   NoResultsAlert,
-  ResultsReleasedTitle,
   ProjectionView,
   HexMapView,
   LatestResultListView,
@@ -15,7 +14,10 @@ import {
   BellwetherView,
   MonitoringView,
   DisclaimerView,
-  LoadingLabel,
+
+  ResultsReleasedTitlePercent,
+  ResultsReleasedTitleNumber,
+  CustomLoadingProgress,
 } from "../..";
 
 const STYLE = {
@@ -83,7 +85,7 @@ function CustomPageBodyGridItem({ children }) {
 export default function PageBody() {
   const data = useDataContext();
   if (!data) {
-    return <LoadingLabel />;
+    return <CustomLoadingProgress />;
   }
   const { electionDisplay } = data;
 
@@ -93,14 +95,14 @@ export default function PageBody() {
         <NoResultsAlert election={electionDisplay} />
         <Grid2 container>
           <CustomPageBodyGridItem>
-            <ResultsReleasedTitle mode="percent" />
+            <ResultsReleasedTitlePercent />
             <LatestResultListView />
             <BellwetherView />
             <HistoryAlert />
           </CustomPageBodyGridItem>
 
           <CustomPageBodyGridItem>
-            <ResultsReleasedTitle mode="n" />
+            <ResultsReleasedTitleNumber />
             <HexMapView />
             <HexagonClickAlert />
           </CustomPageBodyGridItem>

@@ -6,6 +6,7 @@ import { THEME_DATA } from "../_constants/THEME";
 import { BarChart, barLabelClasses } from "@mui/x-charts";
 
 import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
+import CustomLoadingProgress from "../base/CustomLoadingProgress";
 
 function getAxis() {
   return [
@@ -41,7 +42,7 @@ function getStyle(smallestP) {
 export default function SeatsBarChart({ resultsElection, entID }) {
   const data = useDataSlowContext();
   if (!data) {
-    return null;
+    return <CustomLoadingProgress />;
   }
 
   const { electionProjected } = data;

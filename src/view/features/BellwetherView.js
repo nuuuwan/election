@@ -2,13 +2,13 @@ import { Typography } from "@mui/material";
 import { Bellwether } from "../../nonview";
 import { Format, Translate } from "../../nonview";
 
-import { CustomAlert } from "..";
+import { CustomAlert, CustomLoadingProgress } from "..";
 import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 
 export default function BellwetherView() {
   const data = useDataSlowContext();
   if (!data) {
-    return null;
+    return <CustomLoadingProgress />;
   }
   const { allRegionIdx, electionDisplay, elections, activeEntID } = data;
 

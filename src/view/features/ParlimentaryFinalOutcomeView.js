@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 
 import { Seats, Translate } from "../../nonview";
 import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
+import CustomLoadingProgress from "../base/CustomLoadingProgress";
 
 function getMessage(nSeats) {
   if (nSeats >= 150) {
@@ -16,7 +17,7 @@ function getMessage(nSeats) {
 export default function ParliamentaryFinalOutcomeView() {
   const data = useDataSlowContext();
   if (!data) {
-    return null;
+    return <CustomLoadingProgress />;
   }
 
   const { electionProjected } = data;

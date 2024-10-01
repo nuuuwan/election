@@ -1,4 +1,4 @@
-import { CustomStack, ElectionSmallTitle, ProjectionTitle, SeatView } from "..";
+import { CustomLoadingProgress, CustomStack, ElectionSmallTitle, ProjectionTitle, SeatView } from "..";
 import {
   FinalOutcomeView,
   PartyToVotesStatsView,
@@ -9,19 +9,21 @@ import {
 import { FinalOutcome } from "../../nonview";
 import InsightErrorMarginTooHigh from "./FinalOutcomeView/InsightErrorMarginTooHigh";
 import { ProjectionAlert } from "../core/ProjectionTitle";
-import { EntType } from "../../nonview";
+
 import ParliamentaryFinalOutcomeView from "./ParlimentaryFinalOutcomeView";
 import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 
-export default function ProjectionView() {
+
+
+
+
+ function ProjectionViewInner() {
   const data = useDataSlowContext();
   if (!data) {
-    return null;
+    return <CustomLoadingProgress />;
   }
   const { electionProjected, electionDisplay } = data;
-  if (electionDisplay.baseEntType === EntType.ED) {
-    return null;
-  }
+
   const resultLK = electionProjected.resultLK;
 
   const finalOutcome = new FinalOutcome(
@@ -30,12 +32,7 @@ export default function ProjectionView() {
   );
 
   if (finalOutcome.isTooMuchError) {
-    return (
-      <CustomStack>
-        <ProjectionTitle />
-        <InsightErrorMarginTooHigh />
-      </CustomStack>
-    );
+    return <InsightErrorMarginTooHigh />;
   }
 
   const outcomeView = electionDisplay.isPresidential ? (
@@ -51,8 +48,7 @@ export default function ProjectionView() {
   );
 
   return (
-    <CustomStack>
-      <ProjectionTitle />
+    <>
       {outcomeView}
 
       <PartyToVotesStatsView partyToVotes={resultLK.partyToVotes} />
@@ -60,7 +56,22 @@ export default function ProjectionView() {
       <SummaryView summary={resultLK.summary} />
       <ElectionSmallTitle />
 
-      <ProjectionAlert />
-    </CustomStack>
+
+    </>
   );
+}
+
+
+export default function ProjectionView() {
+
+
+
+    return (
+      <CustomStack>
+        <ProjectionTitle />
+        <ProjectionViewInner />
+        <ProjectionAlert />
+      </CustomStack>
+    );
+  
 }

@@ -1,19 +1,37 @@
-import { Stack, Typography } from "@mui/material";
+import {  Stack, Typography } from "@mui/material";
 
 import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 import { EntType, Format, Translate } from "../../nonview";
 import LabelledStat from "../base/LabelledStat";
+import { useDataContext } from "../../nonview/core/DataProvider";
+import CustomLoadingProgress from "../base/CustomLoadingProgress";
 
-export default function ResultsReleasedView({ entID }) {
+ function ResultsReleasedViewPElectors({ entID }) {
   const data = useDataSlowContext();
   if (!data) {
-    return null;
+    return <CustomLoadingProgress />;
   }
   const { electionDisplay, electionPrevious, entIdx } = data;
 
+
+const pElectors = electionDisplay.getPElectors(entID, entIdx, electionPrevious)
+
+
+
+  return <LabelledStat label="Released" stat={Format.percent(pElectors)} />
+}
+
+
+export default function ResultsReleasedView({ entID }) {
+  const data = useDataContext();
+  if (!data) {
+    return null;
+  }
+  const { electionDisplay, entIdx } = data;
+
   const { nResultsTotal, nResultsReleased,  } =
     electionDisplay.getNResultsReleasedAndTotal(entID, entIdx, );
-const pElectors = electionDisplay.getPElectors(entID, entIdx, electionPrevious)
+
   if (nResultsTotal <= 1) {
     return (
       <Typography variant="h6" color="gray">
@@ -36,7 +54,7 @@ const pElectors = electionDisplay.getPElectors(entID, entIdx, electionPrevious)
       <LabelledStat label="Results" stat={pdDetails} />
 
       {electionDisplay.baseEntType === EntType.ED ? null : (
-        <LabelledStat label="Released" stat={Format.percent(pElectors)} />
+        <ResultsReleasedViewPElectors entID={entID}/>
       )}
     </Stack>
   );

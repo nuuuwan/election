@@ -48,7 +48,6 @@ const ElectionStats = {
     let nResultsTotal = 0;
     let nResultsReleased = 0;
 
-
     for (let [id, ent] of Object.entries(entIdx)) {
       const parentID = this.getParentID(entID, ent);
 
@@ -57,8 +56,6 @@ const ElectionStats = {
         const result = this.resultIdx[id];
         if (result) {
           nResultsReleased++;
-
-
         }
       }
     }
@@ -66,10 +63,7 @@ const ElectionStats = {
     return { nResultsTotal, nResultsReleased };
   },
 
-
   getPElectors(entID, entIdx, electionPrevious) {
-
-
     let electors = 0;
     let electorsReleased = 0;
 
@@ -77,10 +71,8 @@ const ElectionStats = {
       const parentID = this.getParentID(entID, ent);
 
       if (parentID === entID) {
-
         const result = this.resultIdx[id];
         if (result) {
-
           const electorsResult = result.summary.electors;
           electors += electorsResult;
           electorsReleased += electorsResult;
@@ -91,15 +83,12 @@ const ElectionStats = {
         }
       }
     }
-    return  electorsReleased / Math.max(1, electors);
+    return electorsReleased / Math.max(1, electors);
   },
 
   isComplete(entID, entIdx) {
-    const { nResultsTotal, nResultsReleased } = this.getNResultsReleasedAndTotal(
-      entID,
-      entIdx,
-
-    );
+    const { nResultsTotal, nResultsReleased } =
+      this.getNResultsReleasedAndTotal(entID, entIdx);
     return nResultsReleased === nResultsTotal;
   },
 

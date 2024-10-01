@@ -3,7 +3,6 @@ import { Translate } from "../../nonview";
 
 import CustomAlert from "../base/CustomAlert";
 
-
 import { useDataContext } from "../../nonview/core/DataProvider";
 export function ProjectionAlert() {
   const data = useDataContext();
@@ -13,11 +12,8 @@ export function ProjectionAlert() {
   const { electionDisplay, entIdx } = data;
 
   const entID = "LK";
-  const { nResultsTotal, nResultsReleased } = electionDisplay.getNResultsReleasedAndTotal(
-    entID,
-    entIdx,
-
-  );
+  const { nResultsTotal, nResultsReleased } =
+    electionDisplay.getNResultsReleasedAndTotal(entID, entIdx);
 
   const isComplete = nResultsReleased === nResultsTotal;
 
@@ -48,11 +44,8 @@ export default function ProjectionTitle() {
   const { electionDisplay, pdIdx } = data;
 
   const entID = "LK";
-  const { nResultsTotal, nResultsReleased } = electionDisplay.getNResultsReleasedAndTotal(
-    entID,
-    pdIdx,
-
-  );
+  const { nResultsTotal, nResultsReleased } =
+    electionDisplay.getNResultsReleasedAndTotal(entID, pdIdx);
 
   const isComplete = nResultsReleased === nResultsTotal;
 
@@ -64,8 +57,6 @@ export default function ProjectionTitle() {
   return (
     <Typography variant="h4" color="secondary">
       <Stack direction="row" gap={1} sx={{ alignItems: "center" }}>
-
-
         {Translate(title)}
       </Stack>
     </Typography>

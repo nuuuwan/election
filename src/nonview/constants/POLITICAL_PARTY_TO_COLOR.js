@@ -19,7 +19,7 @@ const COLOR_TO_POLITICAL_PARTIES = {
     "USA",
     "NPP",
   ],
-  '#f60' : [    "TULF"],
+  "#f60": ["TULF"],
   "#fc0": ["ITAK", "AITC", "AITM"],
   "#060": ["MNA", "SLMC", "NUA", "ACMC", "NC"],
   "#808": ["SLMP"],

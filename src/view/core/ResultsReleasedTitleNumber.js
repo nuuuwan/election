@@ -1,15 +1,10 @@
 import { Typography } from "@mui/material";
 
-import { EntType,  Translate } from "../../nonview";
+import { EntType, Translate } from "../../nonview";
 
 import { useDataContext } from "../../nonview/core/DataProvider";
 
-
-
-
-
-
-export  default function ResultsReleasedTitleNumber() {
+export default function ResultsReleasedTitleNumber() {
   const data = useDataContext();
   if (!data) {
     return (
@@ -18,7 +13,7 @@ export  default function ResultsReleasedTitleNumber() {
       </Typography>
     );
   }
-  const { electionDisplay,  } = data;
+  const { electionDisplay } = data;
   if (electionDisplay.baseEntType === EntType.ED) {
     return null;
   }
@@ -37,4 +32,3 @@ export  default function ResultsReleasedTitleNumber() {
     </Typography>
   );
 }
-

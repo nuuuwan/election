@@ -1,4 +1,11 @@
-import { CustomAlert, CustomLoadingProgress, CustomStack, ElectionSmallTitle, ProjectionTitle, SeatView } from "..";
+import {
+  CustomAlert,
+  CustomLoadingProgress,
+  CustomStack,
+  ElectionSmallTitle,
+  ProjectionTitle,
+  SeatView,
+} from "..";
 import {
   FinalOutcomeView,
   PartyToVotesStatsView,
@@ -14,11 +21,7 @@ import ParliamentaryFinalOutcomeView from "./ParlimentaryFinalOutcomeView";
 import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 import { Typography } from "@mui/material";
 
-
-
-
-
- function ProjectionViewInner() {
+function ProjectionViewInner() {
   const data = useDataSlowContext();
   if (!data) {
     return <CustomLoadingProgress />;
@@ -28,7 +31,7 @@ import { Typography } from "@mui/material";
     return (
       <CustomAlert severity="warning">
         <Typography variant="body1">
-        {Translate("No Previous Elections of Same Type to Train Model.")}
+          {Translate("No Previous Elections of Same Type to Train Model.")}
         </Typography>
       </CustomAlert>
     );
@@ -66,22 +69,15 @@ import { Typography } from "@mui/material";
       <SummaryView summary={resultLK.summary} />
       <ElectionSmallTitle />
       <ProjectionAlert />
-
     </>
   );
 }
 
-
 export default function ProjectionView() {
-
-
-
-    return (
-      <CustomStack>
-        <ProjectionTitle />
-        <ProjectionViewInner />
-
-      </CustomStack>
-    );
-  
+  return (
+    <CustomStack>
+      <ProjectionTitle />
+      <ProjectionViewInner />
+    </CustomStack>
+  );
 }

@@ -11,11 +11,8 @@ export default function Confidence() {
   }
   const { electionDisplay, entIdx, electionPrevious } = data;
 
-  const { nResultsTotal, nResultsReleased } = electionDisplay.getNResultsReleasedAndTotal(
-    "LK",
-    entIdx,
-    electionPrevious
-  );
+  const { nResultsTotal, nResultsReleased } =
+    electionDisplay.getNResultsReleasedAndTotal("LK", entIdx, electionPrevious);
 
   const isComplete = nResultsReleased === nResultsTotal;
   if (isComplete) {

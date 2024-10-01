@@ -13,11 +13,13 @@ export default class Result {
   static fromDict(d) {
     const entID = d["entity_id"];
     const partyToVotes = PartyToVotes.fromDict(d);
-    
+
     // HACK
     let summary = Summary.fromDict(d);
     if (!summary.electors) {
-      const valid = parseInt(MathX.sum(Object.values(partyToVotes.partyToVotes)));
+      const valid = parseInt(
+        MathX.sum(Object.values(partyToVotes.partyToVotes))
+      );
       const rejected = parseInt(valid * 0.05);
       const polled = valid + rejected;
       const electors = parseInt(polled / 0.75);

@@ -1,4 +1,4 @@
-import { Box,Grid2, Stack, Typography } from "@mui/material";
+import { Box, Grid2, Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 
 import { Format, Translate } from "../../../nonview";
@@ -14,7 +14,6 @@ import {
   BellwetherView,
   MonitoringView,
   DisclaimerView,
-
   ResultsReleasedTitlePercent,
   ResultsReleasedTitleNumber,
   CustomLoadingProgress,

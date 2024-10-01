@@ -41,57 +41,99 @@ async function getElections() {
   );
 }
 
-async function getElectionValues({ electionType, date }) {
+async function getElectionValues({
+  electionType,
+  date,
+  activeEntID,
+  nResultsDisplay,
+}) {
+  const inner = async function () {
+    const election = await Election.fromElectionTypeAndDate(electionType, date);
+
+    const activeEntIDDerived = DerivedData.getActiveEntID(
+      activeEntID,
+      nResultsDisplay,
+      election
+    );
+    const nResultsDisplayDerived = DerivedData.getNResultsDisplay(
+      nResultsDisplay,
+      election
+    );
+
+    const electionDisplay = election.getElectionSubset(nResultsDisplayDerived);
+
+    return {
+      election,
+      activeEntIDDerived,
+      nResultsDisplayDerived,
+      electionDisplay,
+    };
+  };
+  return await Timer.logAsync("DataProvider.getElectionValues", 500, inner);
+}
+
+async function getElectionValuesSlow({
+  election,
+  nResultsDisplayDerived,
+  electionDisplay,
+  entIdx,
+}) {
   const inner = async function () {
     const elections = await getElections();
-    const election = await Election.fromElectionTypeAndDate(electionType, date);
 
     const electionPrevious = Election.getPenultimateElectionOfSameType(
       elections,
       election
     );
 
-    return { elections, election, electionPrevious };
+    let electionProjected = null;
+    if (nResultsDisplayDerived > 0) {
+      electionProjected = DerivedData.getPredictedElection(
+        election,
+        electionDisplay,
+        entIdx,
+        elections
+      );
+    }
+    return { elections, electionPrevious, electionProjected };
   };
-  return await Timer.logAsync("DataProvider.getElectionValues", 500, inner);
+  return await Timer.logAsync("DataProvider.getElectionValuesSlow", 500, inner);
 }
 
 async function getValue(state) {
-  const electionValues = await getElectionValues(state);
-
   const entValues = await getEntValues();
-  const activeEntIDDerived = DerivedData.getActiveEntID(
-    state.activeEntID,
-    state.nResultsDisplay,
-    electionValues.election
-  );
-  const nResultsDisplayDerived = DerivedData.getNResultsDisplay(
-    state.nResultsDisplay,
-    electionValues.election
-  );
 
-  const entIdx = electionValues.election.getEntIdx(entValues);
-
-  const derivedElectionValues = DerivedData.getDerived(
+  const {
+    election,
+    activeEntIDDerived,
     nResultsDisplayDerived,
-    electionValues.election,
-    entIdx,
-    electionValues.elections
-  );
+    electionDisplay,
+  } = await getElectionValues(state);
+
+  const entIdx = election.getEntIdx(entValues);
+
+  const { elections, electionPrevious, electionProjected } =
+    await getElectionValuesSlow({
+      election,
+      nResultsDisplayDerived,
+      electionDisplay,
+      entIdx,
+    });
+
   const newState = {
     ...state,
     activeEntID: activeEntIDDerived,
     nResultsDisplay: nResultsDisplayDerived,
   };
   CustomURLContext.set(newState);
-  console.debug("🤑", "DataProvider.getValue");
+
   return Object.assign(
     {},
     newState,
     entValues,
-    { entIdx: entIdx },
-    electionValues,
-    derivedElectionValues
+    { election, electionDisplay },
+    { entIdx },
+    { electionProjected, elections, electionPrevious }
   );
 }
 

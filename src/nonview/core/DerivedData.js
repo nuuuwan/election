@@ -73,19 +73,4 @@ export default class DerivedData {
     const electionProjected = electionModel.getElectionNotReleasedPrediction();
     return electionProjected;
   }
-
-  static getDerived(nResultsDisplay, election, entIdx, elections) {
-    const electionDisplay = election.getElectionSubset(nResultsDisplay);
-
-    let electionProjected;
-    if (nResultsDisplay > 0) {
-      electionProjected = DerivedData.getPredictedElection(
-        election,
-        electionDisplay,
-        entIdx,
-        elections
-      );
-    }
-    return { electionDisplay, electionProjected };
-  }
 }

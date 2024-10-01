@@ -18,6 +18,7 @@ import StringXEn from "./base/StringX/StringXEn.js";
 import StringXSi from "./base/StringX/StringXSi.js";
 import StringXTa from "./base/StringX/StringXTa.js";
 import Time from "./base/Time.js";
+import Timer from "./base/Timer.js";
 import DICTIONARY from "./base/Translate/DICTIONARY.js";
 import Translate from "./base/Translate/Translate.js";
 import URLContext from "./base/URLContext.js";
@@ -73,6 +74,7 @@ export {
   StringXSi,
   StringXTa,
   Time,
+  Timer,
   DICTIONARY,
   Translate,
   URLContext,

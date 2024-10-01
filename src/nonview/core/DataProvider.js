@@ -1,12 +1,14 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 
-import { Ent, EntType } from "..";
+import { Ent, EntType, Timer } from "..";
 import { CustomURLContext, DerivedData, Election } from "..";
 import { GROUP_ID_TO_PD_ID_LIST } from "..";
 
 const DataContext = createContext();
 
 async function getEntValues() {
+
+  const inner = async function () {
   const pdIdx = await Ent.idxFromType(EntType.PD);
   const edIdx = await Ent.idxFromType(EntType.ED);
   const provinceIdx = await Ent.idxFromType(EntType.PROVINCE);
@@ -25,11 +27,20 @@ async function getEntValues() {
   );
 
   return { pdIdx, edIdx, provinceIdx, ezIdx, allRegionIdx };
+};
+
+return await Timer.logAsync("DataProvider.getEntValues", 500, inner);
+}
+
+async function getElections() {
+  return await Timer.logAsync("DataProvider.getElections", 500, async function () {
+    return await Election.listAll();
+  });
 }
 
 async function getElectionValues({ electionType, date }) {
-  const elections = await Election.listAll();
-
+  const inner = async function () {
+  const elections = await getElections();
   const election = await Election.fromElectionTypeAndDate(electionType, date);
 
   const electionPrevious = Election.getPenultimateElectionOfSameType(
@@ -38,6 +49,8 @@ async function getElectionValues({ electionType, date }) {
   );
 
   return { elections, election, electionPrevious };
+  }
+  return await Timer.logAsync("DataProvider.getElectionValues", 500, inner);
 }
 
 async function getValue(state) {
@@ -88,7 +101,7 @@ export default function DataProvider({ children, state }) {
         const value = await getValue(state);
         setValue(value);
       };
-      loadValue();
+      Timer.logAsync("DataProvider.loadValue", 500, loadValue);
     },
     [state]
   );

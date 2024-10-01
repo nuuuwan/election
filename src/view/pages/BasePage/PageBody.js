@@ -15,6 +15,7 @@ import {
   BellwetherView,
   MonitoringView,
   DisclaimerView,
+  LoadingLabel,
 } from "../..";
 
 const STYLE = {
@@ -82,7 +83,7 @@ function CustomPageBodyGridItem({ children }) {
 export default function PageBody() {
   const data = useDataContext();
   if (!data) {
-    return null;
+    return <LoadingLabel/>;
   }
   const { electionDisplay } = data;
 

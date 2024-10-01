@@ -18,22 +18,24 @@ const STYLE_PAGE_HEADER = {
   },
 };
 
-export default function PageHeader() {
+function PageHeaderTitle() {
   const data = useDataContext();
-  if (!data) {
-    return null;
+  let label = "#PresPoll"
+  if (data) {
+    const { electionProjected } = data;
+    label = electionProjected.title;
   }
-  const { electionProjected } = data;
-  const backgroundColor = electionProjected?.color || "gray";
+  return <Typography variant="h4">{label}</Typography>;
+}
 
+export default function PageHeader() {
+  const backgroundColor = "gray";
   return (
     <Box sx={Object.assign({ backgroundColor }, STYLE_PAGE_HEADER.SELECTOR)}>
-      <AppBar position="static" sx={{ backgroundColor }}>
+      <AppBar position="static" sx={{ backgroundColor}}>
         <Toolbar>
-          <Typography variant="h4">{electionProjected.title}</Typography>
-
+          <PageHeaderTitle />
           <Box sx={{ flexGrow: 1 }} />
-
           <RefreshButton />
           <CustomMenu />
         </Toolbar>

@@ -1,4 +1,4 @@
-import { Color, MathX, Party, Seats, Translate } from "../../nonview";
+import { MathX, Party, Seats, Translate } from "../../nonview";
 
 import { Stack, Typography } from "@mui/material";
 import { THEME_DATA } from "../_constants/THEME";

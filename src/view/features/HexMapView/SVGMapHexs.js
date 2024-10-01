@@ -1,6 +1,7 @@
 import { Color } from "../../../nonview";
 import { ActivePDUtils } from "../../../nonview";
-import { useDataContext } from "../../../nonview/core/DataProvider";
+
+import { useDataSlowContext } from "../../../nonview/core/DataSlowProvider";
 import { useBasePageHandlerContext } from "../../../view/pages/BasePage/BasePageHandlerProvider";
 import SVGHexPolygonGroup from "./SVGHexPolygonGroup";
 import SVGHexText from "./SVGHexText";
@@ -82,7 +83,7 @@ function getRenderedItems({ mapData, data, setActiveEntID }) {
 
 export default function SVGMapHexs({ mapData }) {
   const { setActiveEntID } = useBasePageHandlerContext();
-  const data = useDataContext();
+  const data = useDataSlowContext();
   if (!data) {
     return null;
   }

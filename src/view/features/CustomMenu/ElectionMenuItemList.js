@@ -1,11 +1,12 @@
 import { MenuItem } from "@mui/material";
-import { useDataContext } from "../../../nonview/core/DataProvider";
+
 import { useBasePageHandlerContext } from "../../pages/BasePage/BasePageHandlerProvider";
 
 import { CheckIcon } from "../..";
+import { useDataSlowContext } from "../../../nonview/core/DataSlowProvider";
 
 export default function ElectionMenuItemList({ handleClose }) {
-  const data = useDataContext();
+  const data = useDataSlowContext();
   const { setElection } = useBasePageHandlerContext();
   if (!data) {
     return null;

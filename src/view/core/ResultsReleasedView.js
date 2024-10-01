@@ -1,11 +1,11 @@
 import { Stack, Typography } from "@mui/material";
 
-import { useDataContext } from "../../nonview/core/DataProvider";
+import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 import { EntType, Format, Translate } from "../../nonview";
 import LabelledStat from "../base/LabelledStat";
 
 export default function ResultsReleasedView({ entID }) {
-  const data = useDataContext();
+  const data = useDataSlowContext();
   if (!data) {
     return null;
   }

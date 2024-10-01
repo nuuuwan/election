@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
-import { useDataContext } from "../../nonview/core/DataProvider";
+
 import { Seats, Translate } from "../../nonview";
+import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 
 function getMessage(nSeats) {
   if (nSeats >= 150) {
@@ -13,7 +14,7 @@ function getMessage(nSeats) {
 }
 
 export default function ParliamentaryFinalOutcomeView() {
-  const data = useDataContext();
+  const data = useDataSlowContext();
   if (!data) {
     return null;
   }

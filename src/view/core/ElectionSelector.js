@@ -3,7 +3,7 @@ import { Box, Typography, useMediaQuery } from "@mui/material";
 import { CustomSelect } from "..";
 
 import { useTheme } from "@emotion/react";
-import { useDataContext } from "../../nonview/core/DataProvider";
+import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 import { useBasePageHandlerContext } from "../../view/pages/BasePage/BasePageHandlerProvider";
 
 function getRenderValue(colorElection, isSmallScreen) {
@@ -35,7 +35,7 @@ export default function ElectionSelector({ colorElection }) {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
-  const data = useDataContext();
+  const data = useDataSlowContext();
   if (!data) {
     return null;
   }

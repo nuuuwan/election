@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { DataProvider } from "../../../nonview";
+import { DataProvider, DataSlowProvider } from "../../../nonview";
 import { CustomURLContext } from "../../../nonview";
 import BasePageView from "./BasePageView";
 import BasePageHandlerProvider from "./BasePageHandlerProvider";
@@ -42,9 +42,11 @@ export default function BasePage() {
 
   return (
     <DataProvider state={state}>
+      <DataSlowProvider state={state}>
       <BasePageHandlerProvider handlers={getHandlers(updateState)}>
         <BasePageView />
       </BasePageHandlerProvider>
+      </DataSlowProvider>
     </DataProvider>
   );
 }

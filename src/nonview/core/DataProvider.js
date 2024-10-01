@@ -6,7 +6,7 @@ import { GROUP_ID_TO_PD_ID_LIST } from "..";
 
 const DataContext = createContext();
 
-async function getEntValues() {
+export async function getEntValues() {
   const inner = async function () {
     const pdIdx = await Ent.idxFromType(EntType.PD);
     const edIdx = await Ent.idxFromType(EntType.ED);
@@ -31,17 +31,9 @@ async function getEntValues() {
   return await Timer.logAsync("DataProvider.getEntValues", 500, inner);
 }
 
-async function getElections() {
-  return await Timer.logAsync(
-    "DataProvider.getElections",
-    500,
-    async function () {
-      return await Election.listAll();
-    }
-  );
-}
 
-async function getElectionValues({
+
+export async function getElectionValues({
   electionType,
   date,
   activeEntID,
@@ -72,33 +64,7 @@ async function getElectionValues({
   return await Timer.logAsync("DataProvider.getElectionValues", 500, inner);
 }
 
-async function getElectionValuesSlow({
-  election,
-  nResultsDisplayDerived,
-  electionDisplay,
-  entIdx,
-}) {
-  const inner = async function () {
-    const elections = await getElections();
 
-    const electionPrevious = Election.getPenultimateElectionOfSameType(
-      elections,
-      election
-    );
-
-    let electionProjected = null;
-    if (nResultsDisplayDerived > 0) {
-      electionProjected = DerivedData.getPredictedElection(
-        election,
-        electionDisplay,
-        entIdx,
-        elections
-      );
-    }
-    return { elections, electionPrevious, electionProjected };
-  };
-  return await Timer.logAsync("DataProvider.getElectionValuesSlow", 500, inner);
-}
 
 async function getValue(state) {
   const entValues = await getEntValues();
@@ -112,13 +78,6 @@ async function getValue(state) {
 
   const entIdx = election.getEntIdx(entValues);
 
-  const { elections, electionPrevious, electionProjected } =
-    await getElectionValuesSlow({
-      election,
-      nResultsDisplayDerived,
-      electionDisplay,
-      entIdx,
-    });
 
   const newState = {
     ...state,
@@ -133,7 +92,7 @@ async function getValue(state) {
     entValues,
     { election, electionDisplay },
     { entIdx },
-    { electionProjected, elections, electionPrevious }
+
   );
 }
 

@@ -4,7 +4,8 @@ import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
 import { Stack, Typography } from "@mui/material";
 import { THEME_DATA } from "../_constants/THEME";
 import { BarChart, barLabelClasses } from "@mui/x-charts";
-import { useDataContext } from "../../nonview/core/DataProvider";
+
+import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 
 function getAxis() {
   return [
@@ -38,7 +39,7 @@ function getStyle(smallestP) {
 }
 
 export default function SeatsBarChart({ resultsElection, entID }) {
-  const data = useDataContext();
+  const data = useDataSlowContext();
   if (!data) {
     return null;
   }

@@ -1,10 +1,11 @@
 import { Link, Stack, Typography } from "@mui/material";
 import { Translate } from "../../nonview";
-import { useDataContext } from "../../nonview/core/DataProvider";
+
 import CustomAlert from "../base/CustomAlert";
 import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
+import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 export function ProjectionAlert() {
-  const data = useDataContext();
+  const data = useDataSlowContext();
   if (!data) {
     return null;
   }
@@ -39,7 +40,7 @@ export function ProjectionAlert() {
 }
 
 export default function ProjectionTitle() {
-  const data = useDataContext();
+  const data = useDataSlowContext();
   if (!data) {
     return null;
   }

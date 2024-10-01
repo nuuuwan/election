@@ -1,4 +1,4 @@
-import { useDataContext } from "../../nonview/core/DataProvider";
+
 import { CustomStack, ElectionSmallTitle, ProjectionTitle, SeatView } from "..";
 import {
   FinalOutcomeView,
@@ -12,9 +12,10 @@ import InsightErrorMarginTooHigh from "./FinalOutcomeView/InsightErrorMarginTooH
 import { ProjectionAlert } from "../core/ProjectionTitle";
 import { EntType } from "../../nonview";
 import ParliamentaryFinalOutcomeView from "./ParlimentaryFinalOutcomeView";
+import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 
 export default function ProjectionView() {
-  const data = useDataContext();
+  const data = useDataSlowContext();
   if (!data) {
     return null;
   }

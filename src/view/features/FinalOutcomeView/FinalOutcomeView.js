@@ -7,6 +7,7 @@ import InsightTooCloseToCall from "./InsightTooCloseToCall";
 import { EntType, MathX, Translate } from "../../../nonview";
 import Confidence from "./Confidence";
 import { useDataContext } from "../../../nonview/core/DataProvider";
+import { useDataSlowContext } from "../../../nonview/core/DataSlowProvider";
 
 function FinalOutcomeViewComplexPref({ finalOutcome }) {
   const data = useDataContext();
@@ -50,7 +51,7 @@ function FinalOutcomeViewComplexPref({ finalOutcome }) {
 }
 
 export default function FinalOutcomeView() {
-  const data = useDataContext();
+  const data = useDataSlowContext();
   if (!data) {
     return null;
   }

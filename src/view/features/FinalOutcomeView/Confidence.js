@@ -1,10 +1,11 @@
 import { Typography } from "@mui/material";
 import { Format, Translate } from "../../../nonview";
 import { FinalOutcome } from "../../../nonview";
-import { useDataContext } from "../../../nonview/core/DataProvider";
+
+import { useDataSlowContext } from "../../../nonview/core/DataSlowProvider";
 
 export default function Confidence() {
-  const data = useDataContext();
+  const data = useDataSlowContext();
   if (!data) {
     return null;
   }

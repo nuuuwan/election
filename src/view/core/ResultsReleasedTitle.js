@@ -1,10 +1,11 @@
 import { Box, Typography } from "@mui/material";
-import { useDataContext } from "../../nonview/core/DataProvider";
+
 import { EntType, Format, Translate } from "../../nonview";
 import CustomAlert from "../base/CustomAlert";
+import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 
 export function ResultsReleasedAlert() {
-  const data = useDataContext();
+  const data = useDataSlowContext();
   if (!data) {
     return null;
   }
@@ -32,9 +33,13 @@ export function ResultsReleasedAlert() {
 }
 
 export default function ResultsReleasedTitle({ mode = "percent" }) {
-  const data = useDataContext();
+  const data = useDataSlowContext();
   if (!data) {
-    return null;
+    return (
+      <Typography variant="h4" color="gray" sx={{ marginBottom: 2 }}>
+        {Translate("Results")}
+      </Typography>
+    );
   }
   const { electionDisplay, electionPrevious } = data;
   if (electionDisplay.baseEntType === EntType.ED) {

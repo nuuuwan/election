@@ -1,8 +1,9 @@
 import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 
-import { useDataContext } from "../../../nonview/core/DataProvider";
+
 import { RefreshButton } from "../../../view";
 import { CustomMenu } from "../../../view";
+import { useDataSlowContext } from "../../../nonview/core/DataSlowProvider";
 
 const STYLE_PAGE_HEADER = {
   SELECTOR: {
@@ -19,7 +20,7 @@ const STYLE_PAGE_HEADER = {
 };
 
 function PageHeaderTitle() {
-  const data = useDataContext();
+  const data = useDataSlowContext();
   let label = "#PresPoll";
   if (data) {
     const { electionProjected } = data;

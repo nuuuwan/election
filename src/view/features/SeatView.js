@@ -1,8 +1,9 @@
-import { useDataContext } from "../../nonview/core/DataProvider";
+
 import { Color, Party, Seats } from "../../nonview";
 import { BarChart, barLabelClasses } from "@mui/x-charts";
 
 import { THEME_DATA } from "../_constants/THEME";
+import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 
 function getAxis() {
   return [
@@ -88,7 +89,7 @@ function getSeries(seats) {
 }
 
 function SeatsBarChart() {
-  const data = useDataContext();
+  const data = useDataSlowContext();
   if (!data) {
     return null;
   }

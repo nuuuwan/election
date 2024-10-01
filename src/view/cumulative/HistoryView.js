@@ -2,7 +2,8 @@ import { Grid2, Stack, Typography } from "@mui/material";
 import { Format } from "../../nonview";
 import { Election } from "../../nonview";
 import { PartyView } from "../../view";
-import { useDataContext } from "../../nonview/core/DataProvider";
+
+import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 
 function HistoryViewRow({ entID, electionForRow }) {
   const result = electionForRow.getResult(entID);
@@ -33,7 +34,7 @@ function HistoryViewRow({ entID, electionForRow }) {
 }
 
 export default function HistoryView({ entID }) {
-  const data = useDataContext();
+  const data = useDataSlowContext();
   if (!data) {
     return null;
   }

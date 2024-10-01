@@ -1,11 +1,12 @@
 import { BarChart, barLabelClasses } from "@mui/x-charts";
-import { useDataContext } from "../../nonview/core/DataProvider";
+
 import { Box } from "@mui/material";
 
 import { Party, PartyToVotes } from "../../nonview";
 import { Color, Format } from "../../nonview";
 
 import { THEME_DATA } from "../_constants/THEME";
+import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 
 function getAxis() {
   return [
@@ -98,7 +99,7 @@ function getSeries(electionProjected) {
 }
 
 export default function ProjectedResultBarChart() {
-  const data = useDataContext();
+  const data = useDataSlowContext();
   if (!data) {
     return null;
   }

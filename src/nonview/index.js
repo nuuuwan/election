@@ -34,6 +34,7 @@ import ActivePDUtils from "./core/ActivePDUtils.js";
 import Bellwether from "./core/Bellwether.js";
 import CustomURLContext from "./core/CustomURLContext.js";
 import DataProvider from "./core/DataProvider.js";
+import DataSlowProvider from "./core/DataSlowProvider.js";
 import DerivedData from "./core/DerivedData.js";
 import ELECTION_LIST_TUPLES from "./core/Election/ELECTION_LIST_TUPLES.js";
 import Election from "./core/Election/Election.js";
@@ -90,6 +91,7 @@ export {
   Bellwether,
   CustomURLContext,
   DataProvider,
+  DataSlowProvider,
   DerivedData,
   ELECTION_LIST_TUPLES,
   Election,

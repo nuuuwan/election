@@ -10,11 +10,6 @@ export default class PartyToVotes {
 
   constructor(partyToVotes) {
     this.partyToVotes = partyToVotes;
-    for (let [k, v] of Object.entries(partyToVotes)) {
-      if (!v && v !== 0) {
-        throw new Error(`Invalid partyToVotes: ${JSON.stringify(partyToVotes)}`);
-      }
-     }
   }
 
   static fromDict(d) {

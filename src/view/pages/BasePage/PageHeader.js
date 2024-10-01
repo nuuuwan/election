@@ -23,7 +23,9 @@ function PageHeaderTitle() {
   let label = "#PresPoll";
   if (data) {
     const { electionProjected } = data;
-    label = electionProjected.title;
+    if (electionProjected) {
+      label = electionProjected.title;
+    }
   }
   return <Typography variant="h4">{label}</Typography>;
 }

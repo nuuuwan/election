@@ -31,7 +31,7 @@ async function getElectionValuesSlow({
     );
 
     let electionProjected = null;
-    if (nResultsDisplayDerived > 0) {
+    if (nResultsDisplayDerived > 0 && electionPrevious) {
       electionProjected = DerivedData.getPredictedElection(
         election,
         electionDisplay,

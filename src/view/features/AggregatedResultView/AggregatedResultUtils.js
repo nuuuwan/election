@@ -44,9 +44,9 @@ export default class AggregatedResultUtils {
   static getGroupToEntIDListGetter() {
     const me = AggregatedResultUtils;
     return {
-      "Latest Results": me.getLatestEntIDList,
       Provinces: me.getProvinceEntIDList,
       "Electoral Districts": me.getElectoralDistrictEntIDList,
+      "Latest Results": me.getLatestEntIDList,
       Ethnicity: me.getEthnicityEntIDList,
       Bellwethers: me.getBellwetherEntIDList,
     };

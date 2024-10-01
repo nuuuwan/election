@@ -66,7 +66,7 @@ function getSeries(seats) {
       data: [seats],
       label: partyID,
       stack: partyID,
-      color: Color.getColorWithAlpha(party.color, 0.5),
+      color: party.color,
     };
   });
 
@@ -81,7 +81,7 @@ function getSeries(seats) {
       data: [ufg],
       label: id,
       stack: partyID,
-      color: Color.getColorWithAlpha(party.color, 0.25),
+      color: Color.getColorWithAlpha(party.color, 0.5),
     };
   });
 
@@ -94,6 +94,9 @@ function SeatsBarChart() {
     return <CustomLoadingProgress />;
   }
   const { electionProjected } = data;
+  if (!electionProjected) {
+    return null;
+  }
   const seats = Seats.fromElection(electionProjected);
 
   return (

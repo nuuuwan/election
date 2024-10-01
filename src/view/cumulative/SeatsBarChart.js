@@ -1,6 +1,6 @@
-import { Color, MathX, Party, Seats } from "../../nonview";
+import { Color, MathX, Party, Seats, Translate } from "../../nonview";
 
-import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
+
 import { Stack, Typography } from "@mui/material";
 import { THEME_DATA } from "../_constants/THEME";
 import { BarChart, barLabelClasses } from "@mui/x-charts";
@@ -19,9 +19,10 @@ function getAxis() {
   ];
 }
 
-function getBarLabel(totalSeats) {
+function getBarLabel(partyToSeats, totalSeats) {
   return function (item, context) {
-    const seats = item.value;
+    const partyID = item.seriesId;
+    const seats = partyToSeats[partyID];
     if (seats < (2 * totalSeats * Seats.MIN_SEATS_FOR_DISPLAY) / 182) {
       return "";
     }
@@ -45,7 +46,10 @@ export default function SeatsBarChart({ resultsElection, entID }) {
     return <CustomLoadingProgress />;
   }
 
-  const { electionProjected } = data;
+  const { electionProjected, entIdx , electionDisplay} = data;
+  if (!electionProjected) {
+    return null;
+  }
 
   const seats = Seats.fromElection(electionProjected);
 
@@ -55,38 +59,51 @@ export default function SeatsBarChart({ resultsElection, entID }) {
   }
 
   const entries = Object.entries(partyToSeats);
-
   const totalSeats = MathX.sum(Object.values(partyToSeats));
+
+  const isComplete = electionDisplay.isComplete(
+    entID,
+    entIdx
+  );
+  
+
 
   const series = entries.map(function ([partyID, seats]) {
     const party = Party.fromID(partyID);
-
     return {
-      data: [seats],
+      id: partyID,
+      data: [(seats - 0.000001) / totalSeats], // HACK!
       label: partyID,
-      stack: "",
-      color: Color.getColorWithAlpha(party.color, 0.5),
+      stack: "Common",
+      color: party.color,
     };
   });
 
+  const label = isComplete ? "Final" : "Projected";
+
+
+
   return (
-    <Stack direction="row" gap={0.1} sx={{ p: 0, m: 0, alignItems: "center" }}>
-      <OnlinePredictionIcon sx={{ color: "lightgray" }} />
+    <Stack direction="column" gap={1}>
+      <Typography variant="body1" sx={{ color: "gray" }}>
+        {Translate(label + " Seats")} ({totalSeats})
+        </Typography> 
+    <Stack direction="row" gap={1} sx={{ p: 0, m: 0, alignItems: "center" }}>
+
       <BarChart
         yAxis={getAxis()}
         series={series}
-        barLabel={getBarLabel(totalSeats)}
+        barLabel={getBarLabel(partyToSeats, totalSeats)}
         layout="horizontal"
         bottomAxis={null}
-        width={180}
+        width={220}
         height={50}
         sx={getStyle()}
         slotProps={{ legend: { hidden: true } }}
         margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
+
       />
-      <Typography variant="body2" sx={{ color: "gray" }}>
-        /{totalSeats}
-      </Typography>
-    </Stack>
+
+    </Stack> </Stack>
   );
 }

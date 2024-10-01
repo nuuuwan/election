@@ -3,7 +3,7 @@ import { BarChart, barLabelClasses } from "@mui/x-charts";
 import { Box } from "@mui/material";
 
 import { Party, PartyToVotes } from "../../nonview";
-import { Color, Format } from "../../nonview";
+import { Format } from "../../nonview";
 
 import { THEME_DATA } from "../_constants/THEME";
 import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
@@ -82,7 +82,7 @@ function getSeries(electionProjected) {
     series.push({
       data: [pVotes],
       label: partyID,
-      color: Color.getColorWithAlpha(party.color, 0.5),
+      color: party.color,
       stack: partyID,
     });
 
@@ -90,7 +90,7 @@ function getSeries(electionProjected) {
       series.push({
         data: [pVotesExtra],
         label: partyID + "-Max",
-        color: Color.getColorWithAlpha(party.color, 0.25),
+        color: party.color,
         stack: partyID,
       });
     }

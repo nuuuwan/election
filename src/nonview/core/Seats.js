@@ -38,10 +38,6 @@ export default class Seats {
           0.05
         );
 
-        if (entID === 'EC-01') {
-          console.debug(entID, nSeatsAll,result, partyToSeats);
-        }
-
         idx[entID] = partyToSeats;
         return idx;
       }.bind(this),

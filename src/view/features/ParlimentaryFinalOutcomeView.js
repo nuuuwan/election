@@ -21,6 +21,9 @@ export default function ParliamentaryFinalOutcomeView() {
   }
 
   const { electionProjected } = data;
+  if (!electionProjected) {
+    return null;
+  }
   const resultLK = electionProjected.resultLK;
   const winningPartyID = resultLK.partyToVotes.winningPartyID;
   const secondPartyID = Object.keys(resultLK.partyToVotes.partyToVotes)[1];

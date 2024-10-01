@@ -1,14 +1,14 @@
 const ELECTION_LIST_TUPLES = [
   // Presidential
-  ["Presidential", "2024-09-21"],
-  ["Presidential", "2019-11-16"],
-  ["Presidential", "2015-01-08"],
-  ["Presidential", "2010-01-26"],
-  ["Presidential", "2005-11-17"],
-  ["Presidential", "1999-12-21"],
-  ["Presidential", "1994-11-09"],
-  ["Presidential", "1988-12-19"],
-  ["Presidential", "1982-10-20"],
+  // ["Presidential", "2024-09-21"],
+  // ["Presidential", "2019-11-16"],
+  // ["Presidential", "2015-01-08"],
+  // ["Presidential", "2010-01-26"],
+  // ["Presidential", "2005-11-17"],
+  // ["Presidential", "1999-12-21"],
+  // ["Presidential", "1994-11-09"],
+  // ["Presidential", "1988-12-19"],
+  // ["Presidential", "1982-10-20"],
 
   // // Parliamentary - DISABLED
 

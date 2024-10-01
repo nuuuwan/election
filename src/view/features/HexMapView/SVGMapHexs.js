@@ -1,7 +1,7 @@
 import { Color } from "../../../nonview";
 import { ActivePDUtils } from "../../../nonview";
+import { useDataContext } from "../../../nonview/core/DataProvider";
 
-import { useDataSlowContext } from "../../../nonview/core/DataSlowProvider";
 import { useBasePageHandlerContext } from "../../../view/pages/BasePage/BasePageHandlerProvider";
 import SVGHexPolygonGroup from "./SVGHexPolygonGroup";
 import SVGHexText from "./SVGHexText";
@@ -27,12 +27,12 @@ function getOnClick({
 }
 
 function getRenderedItem({ entID, points, data, setActiveEntID }) {
-  const { electionDisplay, allRegionIdx, electionPrevious, entIdx } = data;
+  const { electionDisplay, allRegionIdx, entIdx } = data;
   const result = electionDisplay.resultIdx[entID];
 
   let color = "ghostwhite";
   let opacity = 1;
-  if (electionDisplay.isComplete(entID, entIdx, electionPrevious) && result) {
+  if (electionDisplay.isComplete(entID, entIdx) && result) {
     color = result.color;
     opacity = Color.getOpacity(result.pWinner);
   }
@@ -83,7 +83,7 @@ function getRenderedItems({ mapData, data, setActiveEntID }) {
 
 export default function SVGMapHexs({ mapData }) {
   const { setActiveEntID } = useBasePageHandlerContext();
-  const data = useDataSlowContext();
+  const data = useDataContext();
   if (!data) {
     return null;
   }

@@ -1,9 +1,8 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 
-import {  Timer } from "..";
+import { Timer } from "..";
 import { CustomURLContext, DerivedData, Election } from "..";
 import { getEntValues, getElectionValues } from "./DataProvider";
-
 
 const DataSlowContext = createContext();
 
@@ -16,8 +15,6 @@ async function getElections() {
     }
   );
 }
-
-
 
 async function getElectionValuesSlow({
   election,

@@ -1,4 +1,3 @@
-
 import { Color, Party, Seats } from "../../nonview";
 import { BarChart, barLabelClasses } from "@mui/x-charts";
 

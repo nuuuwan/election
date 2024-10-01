@@ -31,8 +31,6 @@ export async function getEntValues() {
   return await Timer.logAsync("DataProvider.getEntValues", 500, inner);
 }
 
-
-
 export async function getElectionValues({
   electionType,
   date,
@@ -64,8 +62,6 @@ export async function getElectionValues({
   return await Timer.logAsync("DataProvider.getElectionValues", 500, inner);
 }
 
-
-
 async function getValue(state) {
   const entValues = await getEntValues();
 
@@ -77,7 +73,6 @@ async function getValue(state) {
   } = await getElectionValues(state);
 
   const entIdx = election.getEntIdx(entValues);
-
 
   const newState = {
     ...state,
@@ -91,8 +86,7 @@ async function getValue(state) {
     newState,
     entValues,
     { election, electionDisplay },
-    { entIdx },
-
+    { entIdx }
   );
 }
 

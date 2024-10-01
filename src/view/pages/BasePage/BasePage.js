@@ -43,9 +43,9 @@ export default function BasePage() {
   return (
     <DataProvider state={state}>
       <DataSlowProvider state={state}>
-      <BasePageHandlerProvider handlers={getHandlers(updateState)}>
-        <BasePageView />
-      </BasePageHandlerProvider>
+        <BasePageHandlerProvider handlers={getHandlers(updateState)}>
+          <BasePageView />
+        </BasePageHandlerProvider>
       </DataSlowProvider>
     </DataProvider>
   );

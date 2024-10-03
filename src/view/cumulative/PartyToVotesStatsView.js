@@ -7,7 +7,7 @@ export default function PartyToVotesStatsView({ partyToVotes }) {
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
 
   return (
-    <Stack direction="row" gap={2}>
+    <Stack direction="row" gap={1}>
       {entries
         .filter(function ([partyID, votes]) {
           return votes > 0;

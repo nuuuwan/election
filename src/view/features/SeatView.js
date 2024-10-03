@@ -112,7 +112,7 @@ function SeatsBarChart() {
       barLabel={getBarLabel(seats)}
       layout="horizontal"
       width={320}
-      height={240}
+      height={320}
       grid={{ vertical: true }}
       slotProps={{ legend: { hidden: true } }}
       margin={{ top: 0, right: 10, bottom: 60, left: 0 }}

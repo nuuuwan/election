@@ -19,7 +19,7 @@ function getAxis() {
 function getBarLabel() {
   return function (item, context) {
     const pVotes = item.value;
-    if (pVotes < 0.2) {
+    if (pVotes < 0.1) {
       return "";
     }
     return Format.percentVotes(pVotes);

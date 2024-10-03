@@ -5,8 +5,8 @@ import Party from "./Party.js";
 export default class PartyToVotes {
   static NON_PARTY_KEYS = [...Summary.KEYS, "entity_id"];
 
-  static MIN_N_DISPLAY = 6;
-  static MIN_P_VOTES = 0.01;
+  static MIN_N_DISPLAY = 5;
+  static MIN_P_VOTES = 0.05;
 
   constructor(partyToVotes) {
     this.partyToVotes = partyToVotes;

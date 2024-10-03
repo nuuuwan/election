@@ -20,12 +20,14 @@ const COLOR_TO_POLITICAL_PARTIES = {
     "NPP",
   ],
   "#f60": ["TULF"],
-  "#fc0": ["ITAK", "AITC", "AITM"],
+  "#fc0": ["ITAK"],
+  "#fa0": ["AITC", "AITM"],
+  "#c00": ["TMTK"],
   "#060": ["MNA", "SLMC", "NUA", "ACMC", "NC"],
   "#808": ["SLMP"],
   "#666": ["Other"],
   "#042": ["DUNF"],
-  "#888": ["INDI", "IND1", "IND2"],
+  "#eee": ["INDI", "IND1", "IND2"],
 
   // 2024
   "#f82": ["IND16"],

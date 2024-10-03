@@ -6,7 +6,7 @@ import Party from "./Party.js";
 import SeatsUtils from "./SeatsUtils.js";
 
 export default class Seats {
-  static MIN_SEATS_FOR_DISPLAY = 5;
+  static MIN_SEATS_FOR_DISPLAY = 10;
 
   constructor(election) {
     this.election = election;

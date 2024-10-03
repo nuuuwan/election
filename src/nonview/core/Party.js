@@ -56,17 +56,8 @@ export default class Party {
         IND16: "@RW_SRILANKA",
         SLPP: "@PodujanaParty",
         SLCP: "@Dilith_J",
-      }[this.id] || "#" + this.label
+      }[this.id] || "#" + this.id
     );
   }
 
-  get label() {
-    let label = { IND16: "RW", IND9: "AP" }[this.id] || this.id;
-
-    if (label.length > 3) {
-      label = label.substring(0, 2) + ".";
-    }
-
-    return label;
-  }
 }

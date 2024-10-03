@@ -7,6 +7,7 @@ const STYLE_LABEL = {
   borderRadius: 1,
   width: 22,
   textAlign: "center",
+  fontSize: "45%",
 };
 
 export default function PartyView({ partyID, sx }) {
@@ -14,7 +15,6 @@ export default function PartyView({ partyID, sx }) {
     return null;
   }
   const party = Party.fromID(partyID);
-  let label = party.label;
 
   return (
     <Typography
@@ -27,7 +27,7 @@ export default function PartyView({ partyID, sx }) {
       )}
       component="span"
     >
-      {label}
+      {party.id}
     </Typography>
   );
 }

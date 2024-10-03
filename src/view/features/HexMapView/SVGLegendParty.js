@@ -40,12 +40,12 @@ export default function SVGLegendParty({ baseEntType }) {
 
     return (
       <g key={partyID}>
-        <SVGHexPolygon x={x1} y={y1} color={color} label={party.label} />
+        <SVGHexPolygon x={x1} y={y1} color={color} label={party.id} />
         <SVGHexText
           x={x1}
           y={y1}
           color={"white"}
-          label={party.label}
+          label={party.id}
           opacity={1}
         />
       </g>

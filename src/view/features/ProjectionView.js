@@ -59,9 +59,9 @@ function ProjectionViewInner() {
   return (
     <>
       {outcomeView}
-
-      <PartyToSeatsStatsView />
       {projectionChart}
+      <PartyToSeatsStatsView />
+      
       <SummaryView summary={resultLK.summary} />
       <ElectionSmallTitle />
       <ProjectionAlert />

@@ -35,7 +35,7 @@ function SVGPartyToSeatsSemiCircle() {
   const K_INCR = 4.9;
   const R_INCR = 0.0667;
   const OFFSET_HACK = 0.1;
-  const PADDING = 0.2;
+  const PADDING = 0.1;
   let coordList = [];
 
   for (let r = 0.4; r <= 1; r += R_INCR) {

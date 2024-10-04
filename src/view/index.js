@@ -9,6 +9,7 @@ import EntView from "./base/EntView.js";
 import IfElse from "./base/IfElse.js";
 import LabelledStat from "./base/LabelledStat.js";
 import RefreshButton from "./base/RefreshButton.js";
+import SVGBarChart from "./base/SVGBarChart.js";
 import TabSelector from "./base/TabSelector.js";
 import CitationsView from "./core/CitationsView.js";
 import ClockView from "./core/ClockView.js";
@@ -94,6 +95,7 @@ export {
   IfElse,
   LabelledStat,
   RefreshButton,
+  SVGBarChart,
   TabSelector,
   CitationsView,
   ClockView,

@@ -14,7 +14,7 @@ export default function SVGHexText({ x, y, color, label, onClick }) {
       fontSize={StringX.getFontSize(shortLabel)}
       textAnchor="middle"
       alignmentBaseline="center"
-      dominantBaseline={"center"}
+      dominantBaseline="center"
       fill={color}
     >
       <title>{translatedLabel}</title>

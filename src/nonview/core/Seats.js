@@ -72,7 +72,6 @@ export default class Seats {
       },
       idx);
     }, {});
-   
   }
 
   static sortPartyToSeats(unsorted) {

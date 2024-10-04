@@ -3,7 +3,7 @@ import { Party, Seats } from "../../nonview";
 import { Box, Grid2 } from "@mui/material";
 import EntView from "../base/EntView";
 
-export default function ParliamentView({ regionID, sx={} }) {
+export default function ParliamentView({ regionID, sx = {} }) {
   const data = useDataSlowContext();
   if (!data) {
     return null;
@@ -20,9 +20,9 @@ export default function ParliamentView({ regionID, sx={} }) {
   let rendered = [];
   for (let partyID in partyToSeatsSorted) {
     const seats = partyToSeats[partyID];
-    
+
     let background = Party.fromID(partyID).color;
-    let border=  "1px solid " + Party.fromID(partyID).color;
+    let border = "1px solid " + Party.fromID(partyID).color;
 
     if (partyID === Party.ERROR.id) {
       background = "white";
@@ -30,8 +30,6 @@ export default function ParliamentView({ regionID, sx={} }) {
     }
 
     for (let i = 0; i < seats; i++) {
-
-     
       rendered.push(
         <Grid2 item>
           <Box
@@ -50,11 +48,11 @@ export default function ParliamentView({ regionID, sx={} }) {
     }
   }
   return (
-   <Box>
-    <EntView entID={regionID}/>
-     <Grid2 container direction="row" sx={Object.assign({ width: 480 }, sx)}>
-      {rendered}
-    </Grid2>
-   </Box>
+    <Box>
+      <EntView entID={regionID} />
+      <Grid2 container direction="row" sx={Object.assign({ width: 480 }, sx)}>
+        {rendered}
+      </Grid2>
+    </Box>
   );
 }

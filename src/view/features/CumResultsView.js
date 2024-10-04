@@ -7,7 +7,6 @@ import {
   HistoryView,
   SummaryView,
   PartyToVotesStatsView,
-
 } from "../../view";
 import { EntView, ResultsReleasedView, ElectionSmallTitle } from "../../view";
 
@@ -35,8 +34,6 @@ function getContentList({ entID, result, electionDisplay }) {
     <HistoryView entID={entID} />,
 
     <ResultsReleasedView entID={entID} />,
-
-
   ];
 }
 

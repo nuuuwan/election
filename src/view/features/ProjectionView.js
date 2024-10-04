@@ -3,12 +3,11 @@ import {
   CustomLoadingProgress,
   CustomStack,
   ElectionSmallTitle,
-
   PartyToSeatsStatsView,
   ProjectionTitle,
   RegionSeatView,
 } from "..";
-import { FinalOutcomeView,  ProjectedResultBarChart } from "..";
+import { FinalOutcomeView, ProjectedResultBarChart } from "..";
 
 import { FinalOutcome, Translate } from "../../nonview";
 import InsightErrorMarginTooHigh from "./FinalOutcomeView/InsightErrorMarginTooHigh";
@@ -33,8 +32,6 @@ function ProjectionViewInner() {
       </CustomAlert>
     );
   }
-
-
 
   const finalOutcome = new FinalOutcome(
     electionProjected,

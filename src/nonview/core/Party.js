@@ -59,5 +59,4 @@ export default class Party {
       }[this.id] || "#" + this.id
     );
   }
-
 }

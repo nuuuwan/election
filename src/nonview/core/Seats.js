@@ -43,16 +43,18 @@ export default class Seats {
   }
 
   get lkPartyToSeats() {
-   return  SeatsUtils.getGenericPartyToSeats(
-    this.election.resultLK,
-    this.regionToSeats["LK"],
-    0,
-    0
-  ); 
+    return SeatsUtils.getGenericPartyToSeats(
+      this.election.resultLK,
+      this.regionToSeats["LK"],
+      0,
+      0
+    );
   }
 
   get regionToPartyToSeats() {
-   return Object.assign({}, this.edToPartyToSeats, {LK: this.lkPartyToSeats});
+    return Object.assign({}, this.edToPartyToSeats, {
+      LK: this.lkPartyToSeats,
+    });
   }
 
   static aggregatePartyToSeats(partyToSeatsList) {

@@ -18,7 +18,7 @@ async function getElections() {
 
 async function getElectionValuesSlow({
   election,
-  nResultsDisplayDerived,
+  nResultsDisplay,
   electionDisplay,
   entIdx,
 }) {
@@ -31,7 +31,7 @@ async function getElectionValuesSlow({
     );
 
     let electionProjected = null;
-    if (nResultsDisplayDerived > 0 && electionPrevious) {
+    if (nResultsDisplay > 0 && electionPrevious) {
       electionProjected = DerivedData.getPredictedElection(
         election,
         electionDisplay,
@@ -52,12 +52,12 @@ async function getValue(state, data) {
   if (!data) {
     return null;
   }
-  const {election, nResultsDisplayDerived, electionDisplay, entIdx} = data;
+  const {election, nResultsDisplay, electionDisplay, entIdx} = data;
 
   const { elections, electionPrevious, electionProjected } =
     await getElectionValuesSlow({
       election,
-      nResultsDisplayDerived,
+      nResultsDisplay,
       electionDisplay,
       entIdx,
     });
@@ -73,7 +73,6 @@ async function getValue(state, data) {
 export default function DataSlowProvider({ children, state }) {
   const [value, setValue] = useState(null);
   const data = useDataContext();
-
 
   useEffect(
     function () {

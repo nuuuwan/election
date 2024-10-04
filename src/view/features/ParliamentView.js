@@ -35,8 +35,7 @@ function SVGPartyToSeatsSemiCircle() {
   const K_INCR = 4.9;
   const R_INCR = 0.0667;
   const OFFSET_HACK = 0.1;
-  const PADDING = 0.1;
-
+  const PADDING = 0.2;
   let coordList = [];
 
   for (let r = 0.4; r <= 1; r += R_INCR) {
@@ -45,33 +44,27 @@ function SVGPartyToSeatsSemiCircle() {
     for (let alpha = -90; alpha <= 90 + OFFSET_HACK; alpha += incr) {
       const alphaRad = (alpha * Math.PI) / 180;
       const x = r * Math.sin(alphaRad) + 1;
-      const y = 1 - r * Math.cos(alphaRad);
-      const cx = PADDING + x * (1 - 2 * PADDING);
-      const cy = PADDING + y * (1 - 2 * PADDING);
+      const y = r * Math.cos(alphaRad);
+      const cx = x * (1 - PADDING) + PADDING;
+      const cy = 1- y * (1 - PADDING ) - PADDING /2;
       coordList.push({ cx, cy });
     }
   }
 
-  function convert({ cx, cy }) {
-    const x = cx - 1;
-    const y = 1 - cy;
-    const alpha = Math.atan2(y, x);
-    const r = Math.sqrt(x * x + y * y);
-    return { r, alpha };
-  }
 
-  coordList = coordList.sort(function (a, b) {
-    const { r: rA, alpha: alphaA } = convert(a);
-    const { r: rB, alpha: alphaB } = convert(b);
-    const diffAlpha = alphaB - alphaA;
-    if (diffAlpha !== 0) {
-      return diffAlpha;
+  coordList = coordList.sort(function ({cx: cx1, cy: cy1}, {cx: cx2, cy: cy2}) {
+    const dx = cx1 - cx2;
+    if (dx !== 0) {
+      return dx;
     }
-    return rB - rA;
+    return cy1 - cy2;
+
   });
 
   let renderedCircles = [];
   let i = 0;
+
+  const STROKE_WIDTH = 0.005;
 
   for (let { cx, cy } of coordList) {
     let fill = colorList[i];
@@ -88,7 +81,7 @@ function SVGPartyToSeatsSemiCircle() {
         r={R_CIRCLE}
         fill={fill}
         stroke={stroke}
-        strokeWidth={0.001}
+        strokeWidth={STROKE_WIDTH}
       />
     );
     i++;

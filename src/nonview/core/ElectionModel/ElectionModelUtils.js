@@ -4,7 +4,7 @@ import ElectionModelFeatureUtils from "./ElectionModelFeatureUtils";
 
 export default class ElectionModelUtils {
   static MIN_RESULTS_FOR_PREDICTION = 1;
-  static ERROR_CONF = 0.7;
+  static ERROR_CONF = 0.8;
   static DEFAULT_P_ERROR = 0.2;
 
   static getPError(Y, yHat) {

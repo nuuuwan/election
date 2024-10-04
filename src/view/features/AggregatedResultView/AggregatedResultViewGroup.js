@@ -33,20 +33,25 @@ function AggregatedResultListColumnViewGroup({ sortedEntIDs }) {
   );
 }
 
-function AggregatedResultListTableView({ sortedEntIDs }) {
+function AggregatedResultListTableView({ sortedEntIDs, isPresidential }) {
+  let labels = [
+    "Region or Group",
+    "Votes by Party",
+    "%",
+    "Summary",
+    "Past History",
+    "Release Status",
+  ];
+
+  if (!isPresidential) {
+    labels = labels.concat(["Seats"]);
+  }
   return (
     <TableContainer>
       <Table>
         <TableHead>
           <TableRow>
-            {[
-              "Region or Group",
-              "Votes by Party",
-              "%",
-              "Summary",
-              "Past History",
-              "Release Status",
-            ].map(function (title, iTitle) {
+            {labels.map(function (title, iTitle) {
               return (
                 <TableCell key={iTitle} sx={{ textAlign: "center" }}>
                   <Typography variant="h6" color="secondary">
@@ -67,7 +72,7 @@ function AggregatedResultListTableView({ sortedEntIDs }) {
   );
 }
 
-export default function AggregatedResultViewGroup({ entIDList }) {
+export default function AggregatedResultViewGroup({ entIDList , isPresidential}) {
   const theme = useTheme();
   const isSmallerScreen = useMediaQuery(theme.breakpoints.down("lg"));
 
@@ -80,7 +85,7 @@ export default function AggregatedResultViewGroup({ entIDList }) {
       {isSmallerScreen ? (
         <AggregatedResultListColumnViewGroup sortedEntIDs={entIDList} />
       ) : (
-        <AggregatedResultListTableView sortedEntIDs={entIDList} />
+        <AggregatedResultListTableView sortedEntIDs={entIDList} isPresidential={isPresidential} />
       )}
     </Box>
   );

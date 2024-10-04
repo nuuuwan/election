@@ -8,7 +8,7 @@ export default function ElectionSmallTitle() {
   }
   const { electionDisplay } = data;
   return (
-    <Typography variant="caption" sx={{ color: "lightgray", fontSize: "40%" }}>
+    <Typography variant="caption" sx={{ color: "#eee", fontSize: "80%" }}>
       {electionDisplay.hashTag}
     </Typography>
   );

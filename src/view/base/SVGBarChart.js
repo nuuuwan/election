@@ -6,7 +6,7 @@ function SVGBarChartSegment({ data, formatValue, pHeight }) {
   const fontSize = 0.45 * Math.min(data.x, pHeight);
 
   let formattedValue = formatValue(data.value);
-  if (fontSize < 0.05) {
+  if (fontSize < 0.03) {
     formattedValue = "";
   }
 

@@ -35,6 +35,7 @@ export default function AggregatedResultView() {
       >
         <AggregatedResultViewGroup
           entIDList={groupToEntIDListGetter[group](data)}
+          isPresidential={data.electionDisplay.isPresidential}
         />
       </Box>
     </Box>

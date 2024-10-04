@@ -61,8 +61,24 @@ export default class Seats {
     });
   }
 
+  get groupToRegionToPartyToSeats() {
+
+        return Object.entries(this.regionToPartyToSeats).reduce(function (
+          idx,
+          [entID, partyToSeats]
+        ) {
+          const groupID = (entID === 'LK') ? 'LK' : ProvinceUtils.getProvinceIDForEDID(entID);
+          idx[groupID] = idx[groupID] || {};
+          idx[groupID][entID] = partyToSeats;
+          return idx;
+        },
+        {});
+
+
+  }
+
   static aggregatePartyToSeats(partyToSeatsList) {
-    return partyToSeatsList.reduce(function (idx, partyToSeats) {
+    const unsorted = partyToSeatsList.reduce(function (idx, partyToSeats) {
       return Object.entries(partyToSeats).reduce(function (
         idx,
         [partyID, seats]
@@ -72,24 +88,9 @@ export default class Seats {
       },
       idx);
     }, {});
+    return SeatsUtils.sortPartyToSeats(unsorted);
   }
 
-  static sortPartyToSeats(unsorted) {
-    return Object.fromEntries(
-      Object.entries(unsorted).sort(function (
-        [partyID1, seats1],
-        [partyID2, seats2]
-      ) {
-        if (partyID1 === Party.ERROR.id) {
-          return 1;
-        }
-        if (partyID2 === Party.ERROR.id) {
-          return -1;
-        }
-        return seats2 - seats1;
-      })
-    );
-  }
 
   get partyToSeats() {
     return Seats.aggregatePartyToSeats(
@@ -145,8 +146,11 @@ export default class Seats {
   }
 
   getPartyToSeats(entID) {
-    if (entID === "LK") {
+    if (entID === null) {
       return this.partyToSeats;
+    }
+    if (entID === "LK") {
+      return this.lkPartyToSeats;
     }
     if (EntType.fromID(entID) === EntType.ED) {
       return this.regionToPartyToSeats[entID];

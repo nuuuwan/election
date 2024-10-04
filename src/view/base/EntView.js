@@ -2,7 +2,7 @@ import { Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { EntType, Translate } from "../../nonview";
 
-function EntViewName({ entID, num }) {
+function EntViewName({ entID, num, isNationalListMode, isSmall }) {
   const data = useDataContext();
   if (!data) {
     return null;
@@ -26,10 +26,15 @@ function EntViewName({ entID, num }) {
     numPart = `${num}. `;
   }
 
-  return <Typography variant="h5">{numPart + Translate(ent.name)}</Typography>;
+  let name = ent.name;
+  if (isNationalListMode && entID === "LK") {
+    name = 'National List';
+  }
+
+  return <Typography variant={isSmall? "body1" : "h5"}>{numPart + Translate(name)}</Typography>;
 }
 
-function EntViewType({ entID }) {
+function EntViewType({ entID , isSmall}) {
   const data = useDataContext();
   if (!data) {
     return null;
@@ -44,7 +49,7 @@ function EntViewType({ entID }) {
   const label = entType.shortName;
 
   return (
-    <Typography variant="h5" sx={{ opacity: 0.5 }}>
+    <Typography variant={isSmall? "body1" : "h5"} sx={{ opacity: 0.5 }}>
       {Translate(label)}
     </Typography>
   );
@@ -52,19 +57,19 @@ function EntViewType({ entID }) {
 
 export default function EntView({
   entID,
-
   sx = {},
-
+  isNationalListMode=false,
   num = null,
+  isSmall=false,
 }) {
   return (
     <Stack
       direction={"row"}
       sx={Object.assign({ alignItems: "center" }, sx)}
-      gap={1}
+      gap={0.5}
     >
-      <EntViewName entID={entID} num={num} />
-      <EntViewType entID={entID} />
+      <EntViewName entID={entID} num={num} isNationalListMode={isNationalListMode} isSmall={isSmall} />
+      <EntViewType entID={entID} isSmall={isSmall} />
     </Stack>
   );
 }

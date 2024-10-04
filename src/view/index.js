@@ -18,6 +18,7 @@ import ElectionSmallTitle from "./core/ElectionSmallTitle.js";
 import HiddenDataView from "./core/HiddenDataView.js";
 import NoResultsAlert from "./core/NoResultsAlert.js";
 import PDSelector from "./core/PDSelector.js";
+import ParliamentViewCircle from "./core/ParliamentViewCircle.js";
 import PartyView from "./core/PartyView.js";
 import ProjectionTitle from "./core/ProjectionTitle.js";
 import ResultTimeView from "./core/ResultTimeView.js";
@@ -105,6 +106,7 @@ export {
   HiddenDataView,
   NoResultsAlert,
   PDSelector,
+  ParliamentViewCircle,
   PartyView,
   ProjectionTitle,
   ResultTimeView,

@@ -7,12 +7,7 @@ import {
   PartyToSeatsStatsView,
   ProjectionTitle,
 } from "..";
-import {
-  FinalOutcomeView,
-
-  SummaryView,
-  ProjectedResultBarChart,
-} from "..";
+import { FinalOutcomeView, SummaryView, ProjectedResultBarChart } from "..";
 
 import { FinalOutcome, Translate } from "../../nonview";
 import InsightErrorMarginTooHigh from "./FinalOutcomeView/InsightErrorMarginTooHigh";
@@ -65,7 +60,7 @@ function ProjectionViewInner() {
     <>
       {outcomeView}
 
-      <PartyToSeatsStatsView/>
+      <PartyToSeatsStatsView />
       {projectionChart}
       <SummaryView summary={resultLK.summary} />
       <ElectionSmallTitle />

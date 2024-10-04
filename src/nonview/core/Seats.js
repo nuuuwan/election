@@ -69,17 +69,18 @@ export default class Seats {
       idx);
     }, {});
     return Object.fromEntries(
-      Object.entries(unsorted).sort(
-        function ([partyID1, seats1], [partyID2, seats2])  {
-          if (partyID1 === Party.ERROR.id) {
-            return 1;
-          }
-          if (partyID2 === Party.ERROR.id) {
-            return -1;
-          }
-          return seats2 - seats1;
+      Object.entries(unsorted).sort(function (
+        [partyID1, seats1],
+        [partyID2, seats2]
+      ) {
+        if (partyID1 === Party.ERROR.id) {
+          return 1;
         }
-      )
+        if (partyID2 === Party.ERROR.id) {
+          return -1;
+        }
+        return seats2 - seats1;
+      })
     );
   }
 

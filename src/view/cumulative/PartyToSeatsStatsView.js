@@ -15,18 +15,17 @@ export default function PartyToSeatsStatsView() {
 
   return (
     <Stack direction="row" gap={1}>
-      {entries
-        .map(function ([partyID, seats], i) {
-          const color = Party.fromID(partyID).color;
-          return (
-            <LabelledStat
-              key={partyID}
-              label={<PartyView partyID={partyID} />}
-              stat={Format.intHumanize(seats)}
-              sx={{ color }}
-            />
-          );
-        })}
+      {entries.map(function ([partyID, seats], i) {
+        const color = Party.fromID(partyID).color;
+        return (
+          <LabelledStat
+            key={partyID}
+            label={<PartyView partyID={partyID} />}
+            stat={Format.intHumanize(seats)}
+            sx={{ color }}
+          />
+        );
+      })}
     </Stack>
   );
 }

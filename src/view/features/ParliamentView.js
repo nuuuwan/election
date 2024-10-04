@@ -15,10 +15,9 @@ function SVGPartyToSeatsSemiCircle() {
     colorList,
     [partyID, seats]
   ) {
-
     if (partyID === Party.ERROR.id) {
-        colorList.push(null);
-        return colorList;
+      colorList.push(null);
+      return colorList;
     }
 
     const party = Party.fromID(partyID);
@@ -38,9 +37,7 @@ function SVGPartyToSeatsSemiCircle() {
   const OFFSET_HACK = 0.1;
   const PADDING = 0.1;
 
-
-
-  let coordList = []
+  let coordList = [];
 
   for (let r = 0.4; r <= 1; r += R_INCR) {
     const incrBase = K_INCR / r;
@@ -51,39 +48,37 @@ function SVGPartyToSeatsSemiCircle() {
       const y = 1 - r * Math.cos(alphaRad);
       const cx = PADDING + x * (1 - 2 * PADDING);
       const cy = PADDING + y * (1 - 2 * PADDING);
-    coordList.push({cx, cy});
+      coordList.push({ cx, cy });
     }
   }
 
-    function convert({cx, cy}) {
-        const x = cx - 1;
-        const y = 1 - cy;
-        const alpha = Math.atan2(y, x);
-        const r = Math.sqrt(x * x + y * y);
-        return {r, alpha};
-    }
+  function convert({ cx, cy }) {
+    const x = cx - 1;
+    const y = 1 - cy;
+    const alpha = Math.atan2(y, x);
+    const r = Math.sqrt(x * x + y * y);
+    return { r, alpha };
+  }
 
-  coordList = coordList.sort(
-    function(a, b) {
-      const {r: rA, alpha: alphaA} = convert(a);
-        const {r: rB, alpha: alphaB} = convert(b);
-        const diffAlpha = alphaB - alphaA;
-        if (diffAlpha !== 0) {
-          return diffAlpha;
-        }
-        return rB - rA;
-    
-});
+  coordList = coordList.sort(function (a, b) {
+    const { r: rA, alpha: alphaA } = convert(a);
+    const { r: rB, alpha: alphaB } = convert(b);
+    const diffAlpha = alphaB - alphaA;
+    if (diffAlpha !== 0) {
+      return diffAlpha;
+    }
+    return rB - rA;
+  });
 
   let renderedCircles = [];
   let i = 0;
 
-  for (let {cx, cy} of coordList) {
+  for (let { cx, cy } of coordList) {
     let fill = colorList[i];
     let stroke = null;
     if (!fill) {
-     fill = '#fff';
-     stroke = '#ccc';
+      fill = "#fff";
+      stroke = "#ccc";
     }
     renderedCircles.push(
       <circle

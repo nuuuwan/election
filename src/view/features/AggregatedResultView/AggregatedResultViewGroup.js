@@ -72,7 +72,10 @@ function AggregatedResultListTableView({ sortedEntIDs, isPresidential }) {
   );
 }
 
-export default function AggregatedResultViewGroup({ entIDList , isPresidential}) {
+export default function AggregatedResultViewGroup({
+  entIDList,
+  isPresidential,
+}) {
   const theme = useTheme();
   const isSmallerScreen = useMediaQuery(theme.breakpoints.down("lg"));
 
@@ -85,7 +88,10 @@ export default function AggregatedResultViewGroup({ entIDList , isPresidential})
       {isSmallerScreen ? (
         <AggregatedResultListColumnViewGroup sortedEntIDs={entIDList} />
       ) : (
-        <AggregatedResultListTableView sortedEntIDs={entIDList} isPresidential={isPresidential} />
+        <AggregatedResultListTableView
+          sortedEntIDs={entIDList}
+          isPresidential={isPresidential}
+        />
       )}
     </Box>
   );

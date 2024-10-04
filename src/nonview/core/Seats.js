@@ -62,19 +62,17 @@ export default class Seats {
   }
 
   get groupToRegionToPartyToSeats() {
-
-        return Object.entries(this.regionToPartyToSeats).reduce(function (
-          idx,
-          [entID, partyToSeats]
-        ) {
-          const groupID = (entID === 'LK') ? 'LK' : ProvinceUtils.getProvinceIDForEDID(entID);
-          idx[groupID] = idx[groupID] || {};
-          idx[groupID][entID] = partyToSeats;
-          return idx;
-        },
-        {});
-
-
+    return Object.entries(this.regionToPartyToSeats).reduce(function (
+      idx,
+      [entID, partyToSeats]
+    ) {
+      const groupID =
+        entID === "LK" ? "LK" : ProvinceUtils.getProvinceIDForEDID(entID);
+      idx[groupID] = idx[groupID] || {};
+      idx[groupID][entID] = partyToSeats;
+      return idx;
+    },
+    {});
   }
 
   static aggregatePartyToSeats(partyToSeatsList) {
@@ -90,7 +88,6 @@ export default class Seats {
     }, {});
     return SeatsUtils.sortPartyToSeats(unsorted);
   }
-
 
   get partyToSeats() {
     return Seats.aggregatePartyToSeats(

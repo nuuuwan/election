@@ -23,7 +23,7 @@ const COLOR_TO_POLITICAL_PARTIES = {
   "#fc0": ["ITAK"],
   "#fa0": ["AITC", "AITM"],
   "#c00": ["TMTK"],
-  "#060": ["MNA", "SLMC", "NUA","NC"],
+  "#060": ["MNA", "SLMC", "NUA", "NC"],
   "#096": ["ACMC"],
   "#808": ["SLMP"],
   "#666": ["Other"],

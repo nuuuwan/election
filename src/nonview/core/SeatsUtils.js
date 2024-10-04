@@ -48,7 +48,7 @@ export default class SeatsUtils {
     const winningPartyID = result.partyToVotes.winningPartyID;
     partyToSeats[winningPartyID] += nSeatsBonus;
 
-    const unsorted =  Object.fromEntries(
+    const unsorted = Object.fromEntries(
       Object.entries(partyToSeats)
         .filter(([partyID, seats]) => seats > 0)
         .sort(([partyID1, seats1], [partyID2, seats2]) => seats2 - seats1)
@@ -57,7 +57,6 @@ export default class SeatsUtils {
     return SeatsUtils.sortPartyToSeats(unsorted, partyToVotes);
   }
 
-  
   static sortPartyToSeats(unsorted, partyToVotes) {
     return Object.fromEntries(
       Object.entries(unsorted).sort(function (
@@ -70,7 +69,7 @@ export default class SeatsUtils {
         if (partyID2 === Party.ERROR.id) {
           return -1;
         }
-        const diffSeats =  seats2 - seats1;
+        const diffSeats = seats2 - seats1;
         if (diffSeats !== 0) {
           return diffSeats;
         }

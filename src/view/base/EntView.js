@@ -28,13 +28,17 @@ function EntViewName({ entID, num, isNationalListMode, isSmall }) {
 
   let name = ent.name;
   if (isNationalListMode && entID === "LK") {
-    name = 'National List';
+    name = "National List";
   }
 
-  return <Typography variant={isSmall? "body1" : "h5"}>{numPart + Translate(name)}</Typography>;
+  return (
+    <Typography variant={isSmall ? "body1" : "h5"}>
+      {numPart + Translate(name)}
+    </Typography>
+  );
 }
 
-function EntViewType({ entID , isSmall}) {
+function EntViewType({ entID, isSmall }) {
   const data = useDataContext();
   if (!data) {
     return null;
@@ -49,7 +53,7 @@ function EntViewType({ entID , isSmall}) {
   const label = entType.shortName;
 
   return (
-    <Typography variant={isSmall? "body1" : "h5"} sx={{ opacity: 0.5 }}>
+    <Typography variant={isSmall ? "body1" : "h5"} sx={{ opacity: 0.5 }}>
       {Translate(label)}
     </Typography>
   );
@@ -58,9 +62,9 @@ function EntViewType({ entID , isSmall}) {
 export default function EntView({
   entID,
   sx = {},
-  isNationalListMode=false,
+  isNationalListMode = false,
   num = null,
-  isSmall=false,
+  isSmall = false,
 }) {
   return (
     <Stack
@@ -68,7 +72,12 @@ export default function EntView({
       sx={Object.assign({ alignItems: "center" }, sx)}
       gap={0.5}
     >
-      <EntViewName entID={entID} num={num} isNationalListMode={isNationalListMode} isSmall={isSmall} />
+      <EntViewName
+        entID={entID}
+        num={num}
+        isNationalListMode={isNationalListMode}
+        isSmall={isSmall}
+      />
       <EntViewType entID={entID} isSmall={isSmall} />
     </Stack>
   );

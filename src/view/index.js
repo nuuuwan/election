@@ -78,6 +78,7 @@ import ParliamentView from "./features/ParliamentView.js";
 import ParlimentaryFinalOutcomeView from "./features/ParlimentaryFinalOutcomeView.js";
 import ProjectedResultBarChart from "./features/ProjectedResultBarChart.js";
 import ProjectionView from "./features/ProjectionView.js";
+import RegionSeatView from "./features/RegionSeatView.js";
 import BasePage from "./pages/BasePage/BasePage.js";
 import BasePageHandlerProvider from "./pages/BasePage/BasePageHandlerProvider.js";
 import BasePageView from "./pages/BasePage/BasePageView.js";
@@ -164,6 +165,7 @@ export {
   ParlimentaryFinalOutcomeView,
   ProjectedResultBarChart,
   ProjectionView,
+  RegionSeatView,
   BasePage,
   BasePageHandlerProvider,
   BasePageView,

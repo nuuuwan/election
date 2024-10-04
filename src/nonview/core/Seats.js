@@ -24,22 +24,26 @@ export default class Seats {
   }
 
   get edToPartyToSeats() {
-    return this.election.edResultList.reduce(
-      function (idx, result) {
-        const entID = result.entID;
-        const nSeatsAll = this.regionToSeats[entID];
-        const partyToSeats = SeatsUtils.getGenericPartyToSeats(
-          result,
-          nSeatsAll,
-          1,
-          0.05
-        );
+    return this.election.edResultList
+      .sort(function (result1, result2) {
+        return result1.entID.localeCompare(result2.entID);
+      })
+      .reduce(
+        function (idx, result) {
+          const entID = result.entID;
+          const nSeatsAll = this.regionToSeats[entID];
+          const partyToSeats = SeatsUtils.getGenericPartyToSeats(
+            result,
+            nSeatsAll,
+            1,
+            0.05
+          );
 
-        idx[entID] = partyToSeats;
-        return idx;
-      }.bind(this),
-      {}
-    );
+          idx[entID] = partyToSeats;
+          return idx;
+        }.bind(this),
+        {}
+      );
   }
 
   get lkPartyToSeats() {
@@ -58,7 +62,7 @@ export default class Seats {
   }
 
   static aggregatePartyToSeats(partyToSeatsList) {
-    const unsorted = partyToSeatsList.reduce(function (idx, partyToSeats) {
+    return partyToSeatsList.reduce(function (idx, partyToSeats) {
       return Object.entries(partyToSeats).reduce(function (
         idx,
         [partyID, seats]
@@ -68,6 +72,10 @@ export default class Seats {
       },
       idx);
     }, {});
+   
+  }
+
+  static sortPartyToSeats(unsorted) {
     return Object.fromEntries(
       Object.entries(unsorted).sort(function (
         [partyID1, seats1],

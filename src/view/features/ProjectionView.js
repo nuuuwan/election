@@ -3,11 +3,12 @@ import {
   CustomLoadingProgress,
   CustomStack,
   ElectionSmallTitle,
-  ParliamentView,
+
   PartyToSeatsStatsView,
   ProjectionTitle,
+  RegionSeatView,
 } from "..";
-import { FinalOutcomeView, SummaryView, ProjectedResultBarChart } from "..";
+import { FinalOutcomeView,  ProjectedResultBarChart } from "..";
 
 import { FinalOutcome, Translate } from "../../nonview";
 import InsightErrorMarginTooHigh from "./FinalOutcomeView/InsightErrorMarginTooHigh";
@@ -33,7 +34,7 @@ function ProjectionViewInner() {
     );
   }
 
-  const resultLK = electionProjected.resultLK;
+
 
   const finalOutcome = new FinalOutcome(
     electionProjected,
@@ -53,16 +54,17 @@ function ProjectionViewInner() {
   const projectionChart = electionDisplay.isPresidential ? (
     <ProjectedResultBarChart />
   ) : (
-    <ParliamentView />
+    <>
+      <PartyToSeatsStatsView />
+      <RegionSeatView />
+    </>
   );
 
   return (
     <>
       {outcomeView}
       {projectionChart}
-      <PartyToSeatsStatsView />
-      
-      <SummaryView summary={resultLK.summary} />
+
       <ElectionSmallTitle />
       <ProjectionAlert />
     </>

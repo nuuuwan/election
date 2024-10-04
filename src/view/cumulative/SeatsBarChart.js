@@ -2,12 +2,9 @@ import { MathX, Party, Seats, Translate } from "../../nonview";
 
 import { Stack, Typography } from "@mui/material";
 
-
-
 import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 import CustomLoadingProgress from "../base/CustomLoadingProgress";
 import SVGBarChart from "../base/SVGBarChart";
-
 
 export default function SeatsBarChart({ resultsElection, entID }) {
   const data = useDataSlowContext();
@@ -56,10 +53,7 @@ export default function SeatsBarChart({ resultsElection, entID }) {
         {Translate(label + " Seats")} ({totalSeats})
       </Typography>
       <Stack direction="row" gap={1} sx={{ p: 0, m: 0, alignItems: "center" }}>
-        <SVGBarChart
-          dataList={dataList}
-          formatValue={(value) => value}
-        />
+        <SVGBarChart dataList={dataList} formatValue={(value) => value} />
       </Stack>{" "}
     </Stack>
   );

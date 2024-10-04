@@ -1,9 +1,6 @@
 import { Format, Party } from "../../nonview";
 
-
-
 import SVGBarChart from "../base/SVGBarChart";
-
 
 export default function ResultBarChart({ resultsElection, entID }) {
   const result = resultsElection.resultIdx[entID];
@@ -25,9 +22,5 @@ export default function ResultBarChart({ resultsElection, entID }) {
 
   const formatValue = (value) => Format.percent(value);
 
-  return (
-   
-      <SVGBarChart dataList={dataList} formatValue={formatValue} />
-  
-  );
+  return <SVGBarChart dataList={dataList} formatValue={formatValue} />;
 }

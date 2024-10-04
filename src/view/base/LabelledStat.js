@@ -12,7 +12,7 @@ export default function LabelledStat({ label, stat, sx }) {
 
   let renderedStat = stat;
   if (typeof stat === "string") {
-    renderedStat = <Typography variant="body1">{stat}</Typography>;
+    renderedStat = <Typography variant="h6">{stat}</Typography>;
   }
 
   return (

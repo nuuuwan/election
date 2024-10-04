@@ -7,7 +7,7 @@ import {
   HistoryView,
   SummaryView,
   PartyToVotesStatsView,
-  SeatsBarChart,
+
 } from "../../view";
 import { EntView, ResultsReleasedView, ElectionSmallTitle } from "../../view";
 
@@ -36,7 +36,7 @@ function getContentList({ entID, result, electionDisplay }) {
 
     <ResultsReleasedView entID={entID} />,
 
-    electionDisplay.isPresidential ? null : <SeatsBarChart entID={entID} />,
+
   ];
 }
 

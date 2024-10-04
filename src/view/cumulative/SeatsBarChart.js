@@ -22,8 +22,11 @@ function getBarLabel(partyToSeats, totalSeats) {
   return function (item, context) {
     const partyID = item.seriesId;
     const seats = partyToSeats[partyID];
-    if (seats < (2 * totalSeats * Seats.MIN_SEATS_FOR_DISPLAY) / 182) {
+    if (seats < (totalSeats * Seats.MIN_SEATS_FOR_DISPLAY) / 182) {
       return "";
+    }
+    if (partyID === Party.ERROR.id) {
+      return `?`;
     }
     return seats;
   };
@@ -57,7 +60,17 @@ export default function SeatsBarChart({ resultsElection, entID }) {
     return null;
   }
 
-  const entries = Object.entries(partyToSeats);
+  const entries = Object.entries(partyToSeats).sort(
+    function(a, b) {
+      if (a[0] === Party.ERROR.id) {
+        return 1;
+      }
+      if (b[0] === Party.ERROR.id) {
+        return -1;
+      }
+      return b[1] - a[1];
+    }
+  );
   const totalSeats = MathX.sum(Object.values(partyToSeats));
 
   const isComplete = electionDisplay.isComplete(entID, entIdx);
@@ -66,7 +79,7 @@ export default function SeatsBarChart({ resultsElection, entID }) {
     const party = Party.fromID(partyID);
     return {
       id: partyID,
-      data: [(seats - 0.000001) / totalSeats], // HACK!
+      data: [(seats - 0.000001)], // HACK!
       label: partyID,
       stack: "Common",
       color: party.color,

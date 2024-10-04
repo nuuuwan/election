@@ -1,5 +1,4 @@
 import EntType from "../base/EntType.js";
-import MathX from "../base/MathX.js";
 import ProvinceUtils from "../base/ProvinceUtils.js";
 import YEAR_TO_REGION_TO_SEATS from "../constants/YEAR_TO_REGION_TO_SEATS.js";
 import Party from "./Party.js";

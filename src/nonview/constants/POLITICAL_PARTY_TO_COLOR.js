@@ -29,6 +29,8 @@ const COLOR_TO_POLITICAL_PARTIES = {
   "#042": ["DUNF"],
   "#eee": ["INDI", "IND1", "IND2"],
 
+  "#f20": ["CWC", "UPF"],
+
   // 2024
   "#f82": ["IND16"],
   "#04c": ["IND9"],

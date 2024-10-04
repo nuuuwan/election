@@ -1,4 +1,4 @@
-import { Party, PartyToVotes } from "../../nonview";
+import { Party } from "../../nonview";
 import { Format } from "../../nonview";
 
 import { Box } from "@mui/material";

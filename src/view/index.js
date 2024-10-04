@@ -27,6 +27,7 @@ import ResultsReleasedView from "./core/ResultsReleasedView.js";
 import TestingAlert from "./core/TestingAlert.js";
 import VoteLeadView from "./core/VoteLeadView.js";
 import HistoryView from "./cumulative/HistoryView.js";
+import PartyToSeatsStatsView from "./cumulative/PartyToSeatsStatsView.js";
 import PartyToVotesStatsView from "./cumulative/PartyToVotesStatsView.js";
 import ResultBarChart from "./cumulative/ResultBarChart.js";
 import SeatsBarChart from "./cumulative/SeatsBarChart.js";
@@ -72,10 +73,10 @@ import GenericScatterChart from "./features/MonitoringView/GenericScatterChart.j
 import MonitoringView from "./features/MonitoringView/MonitoringView.js";
 import RejectedView from "./features/MonitoringView/RejectedView.js";
 import TurnoutView from "./features/MonitoringView/TurnoutView.js";
+import ParliamentView from "./features/ParliamentView.js";
 import ParlimentaryFinalOutcomeView from "./features/ParlimentaryFinalOutcomeView.js";
 import ProjectedResultBarChart from "./features/ProjectedResultBarChart.js";
 import ProjectionView from "./features/ProjectionView.js";
-import SeatView from "./features/SeatView.js";
 import BasePage from "./pages/BasePage/BasePage.js";
 import BasePageHandlerProvider from "./pages/BasePage/BasePageHandlerProvider.js";
 import BasePageView from "./pages/BasePage/BasePageView.js";
@@ -111,6 +112,7 @@ export {
   TestingAlert,
   VoteLeadView,
   HistoryView,
+  PartyToSeatsStatsView,
   PartyToVotesStatsView,
   ResultBarChart,
   SeatsBarChart,
@@ -156,10 +158,10 @@ export {
   MonitoringView,
   RejectedView,
   TurnoutView,
+  ParliamentView,
   ParlimentaryFinalOutcomeView,
   ProjectedResultBarChart,
   ProjectionView,
-  SeatView,
   BasePage,
   BasePageHandlerProvider,
   BasePageView,

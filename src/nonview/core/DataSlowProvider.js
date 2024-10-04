@@ -52,7 +52,7 @@ async function getValue(state, data) {
   if (!data) {
     return null;
   }
-  const {election, nResultsDisplay, electionDisplay, entIdx} = data;
+  const { election, nResultsDisplay, electionDisplay, entIdx } = data;
 
   const { elections, electionPrevious, electionProjected } =
     await getElectionValuesSlow({
@@ -62,12 +62,11 @@ async function getValue(state, data) {
       entIdx,
     });
 
-
-  return Object.assign(
-    {},
-    data,
-    { electionProjected, elections, electionPrevious }
-  );
+  return Object.assign({}, data, {
+    electionProjected,
+    elections,
+    electionPrevious,
+  });
 }
 
 export default function DataSlowProvider({ children, state }) {

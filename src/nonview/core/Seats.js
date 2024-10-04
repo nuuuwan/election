@@ -70,7 +70,15 @@ export default class Seats {
     }, {});
     return Object.fromEntries(
       Object.entries(unsorted).sort(
-        ([partyID1, seats1], [partyID2, seats2]) => seats2 - seats1
+        function ([partyID1, seats1], [partyID2, seats2])  {
+          if (partyID1 === Party.ERROR.id) {
+            return 1;
+          }
+          if (partyID2 === Party.ERROR.id) {
+            return -1;
+          }
+          return seats2 - seats1;
+        }
       )
     );
   }

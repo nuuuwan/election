@@ -3,12 +3,13 @@ import {
   CustomLoadingProgress,
   CustomStack,
   ElectionSmallTitle,
+  ParliamentView,
+  PartyToSeatsStatsView,
   ProjectionTitle,
-  SeatView,
 } from "..";
 import {
   FinalOutcomeView,
-  PartyToVotesStatsView,
+
   SummaryView,
   ProjectedResultBarChart,
 } from "..";
@@ -54,18 +55,18 @@ function ProjectionViewInner() {
     <ParliamentaryFinalOutcomeView />
   );
 
-  const barChart = electionDisplay.isPresidential ? (
+  const projectionChart = electionDisplay.isPresidential ? (
     <ProjectedResultBarChart />
   ) : (
-    <SeatView />
+    <ParliamentView />
   );
 
   return (
     <>
       {outcomeView}
 
-      <PartyToVotesStatsView partyToVotes={resultLK.partyToVotes} />
-      {barChart}
+      <PartyToSeatsStatsView/>
+      {projectionChart}
       <SummaryView summary={resultLK.summary} />
       <ElectionSmallTitle />
       <ProjectionAlert />

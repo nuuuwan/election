@@ -1,8 +1,8 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 
 import { Timer } from "..";
-import { CustomURLContext, DerivedData, Election } from "..";
-import { getEntValues, getElectionValues } from "./DataProvider";
+import { DerivedData, Election } from "..";
+import { useDataContext } from "./DataProvider";
 
 const DataSlowContext = createContext();
 
@@ -48,17 +48,11 @@ async function getElectionValuesSlow({
   );
 }
 
-async function getValue(state) {
-  const entValues = await getEntValues();
-
-  const {
-    election,
-    activeEntIDDerived,
-    nResultsDisplayDerived,
-    electionDisplay,
-  } = await getElectionValues(state);
-
-  const entIdx = election.getEntIdx(entValues);
+async function getValue(state, data) {
+  if (!data) {
+    return null;
+  }
+  const {election, nResultsDisplayDerived, electionDisplay, entIdx} = data;
 
   const { elections, electionPrevious, electionProjected } =
     await getElectionValuesSlow({
@@ -68,35 +62,28 @@ async function getValue(state) {
       entIdx,
     });
 
-  const newState = {
-    ...state,
-    activeEntID: activeEntIDDerived,
-    nResultsDisplay: nResultsDisplayDerived,
-  };
-  CustomURLContext.set(newState);
 
   return Object.assign(
     {},
-    newState,
-    entValues,
-    { election, electionDisplay },
-    { entIdx },
+    data,
     { electionProjected, elections, electionPrevious }
   );
 }
 
 export default function DataSlowProvider({ children, state }) {
   const [value, setValue] = useState(null);
+  const data = useDataContext();
+
 
   useEffect(
     function () {
       const loadValue = async function () {
-        const value = await getValue(state);
+        const value = await getValue(state, data);
         setValue(value);
       };
       Timer.logAsync("DataSlowProvider.loadValue", 500, loadValue);
     },
-    [state]
+    [state, data]
   );
 
   return (

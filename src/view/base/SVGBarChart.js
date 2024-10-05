@@ -3,13 +3,15 @@ import { THEME_DATA } from "../_constants/THEME";
 
 function SVGBarChartSegment({ data, formatValue, pHeight }) {
   const { label, color } = data;
-  const fontSize = 0.45 * Math.min(data.x, pHeight);
 
-  let formattedValue = formatValue(data.value);
-  if (fontSize < 0.02) {
-    formattedValue = "";
+  const formattedValue = formatValue(data.value);
+
+  let transform = null;
+  const fontSize = Math.min(data.x, pHeight) * 0.6;
+  if (data.x < pHeight) {
+    transform = `rotate(-90, ${data.cumX + data.x / 2}, ${pHeight * 0.5})`
   }
-
+  
   return (
     <g>
       <rect
@@ -29,7 +31,9 @@ function SVGBarChartSegment({ data, formatValue, pHeight }) {
         fontSize={fontSize}
         fill="white"
         stroke="none"
-      >
+        
+        transform={transform}
+>
         {formattedValue}
       </text>
     </g>

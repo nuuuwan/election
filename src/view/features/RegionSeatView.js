@@ -25,8 +25,14 @@ export default function RegionStateView() {
               const minSize = 12 / groupSize;
 
               return (
-                <Grid2 key={regionID} size={{ xs: Math.max(6, minSize), md: minSize }}>
-                  <Stack direction="column" sx={{ mr:2, ml:2, p:0.5, alignItems:"center" }}>
+                <Grid2
+                  key={regionID}
+                  size={{ xs: Math.max(6, minSize), md: minSize }}
+                >
+                  <Stack
+                    direction="column"
+                    sx={{ mr: 2, ml: 2, p: 0.5, alignItems: "center" }}
+                  >
                     <EntView
                       entID={regionID}
                       isNationalListMode={true}

@@ -29,7 +29,11 @@ export default function ParliamentView({
   }
 
   return (
-    <Grid2 container direction="row" sx={Object.assign({alignItems:"center"}, sx)}>
+    <Grid2
+      container
+      direction="row"
+      sx={Object.assign({ alignItems: "center" }, sx)}
+    >
       {Object.entries(partyToSeats).map(function ([partyID, seats], i) {
         return (
           <Grid2 key={partyID}>

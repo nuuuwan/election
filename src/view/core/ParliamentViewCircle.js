@@ -13,25 +13,25 @@ export default function ParliamentViewCircle({ partyID, seats }) {
   }
 
   const DIM = 24;
-  return ( <Tooltip title={`${partyID} (${seats})`}>
-    <Box
-      key={partyID}
-      sx={{
-        width: DIM,
-        height: DIM,
-        background,
-        margin: 0.1,
-        padding: 0,
-        borderRadius: DIM / 2,
-        border,
-        textAlign: "center",
-      }}
-    >
-     
+  return (
+    <Tooltip title={`${partyID} (${seats})`}>
+      <Box
+        key={partyID}
+        sx={{
+          width: DIM,
+          height: DIM,
+          background,
+          margin: 0.1,
+          padding: 0,
+          borderRadius: DIM / 2,
+          border,
+          textAlign: "center",
+        }}
+      >
         <Typography variant="h6" sx={{ color }}>
           {seats}
         </Typography>
-     
-    </Box> </Tooltip>
+      </Box>{" "}
+    </Tooltip>
   );
 }

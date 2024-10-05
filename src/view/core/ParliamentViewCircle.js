@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Tooltip, Typography } from "@mui/material";
 import { Party } from "../../nonview";
 
 export default function ParliamentViewCircle({ partyID, seats }) {
@@ -13,7 +13,7 @@ export default function ParliamentViewCircle({ partyID, seats }) {
   }
 
   const DIM = 24;
-  return (
+  return ( <Tooltip title={`${partyID} (${seats})`}>
     <Box
       key={partyID}
       sx={{
@@ -21,15 +21,17 @@ export default function ParliamentViewCircle({ partyID, seats }) {
         height: DIM,
         background,
         margin: 0.1,
-        padding: 0.1,
+        padding: 0,
         borderRadius: DIM / 2,
         border,
         textAlign: "center",
       }}
     >
-      <Typography variant="h6" sx={{ color }}>
-        {seats}
-      </Typography>
-    </Box>
+     
+        <Typography variant="h6" sx={{ color }}>
+          {seats}
+        </Typography>
+     
+    </Box> </Tooltip>
   );
 }

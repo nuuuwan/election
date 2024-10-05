@@ -18,14 +18,15 @@ export default function RegionStateView() {
   return (
     <Stack direction="column" gap={0}>
       {Object.entries(idx).map(function ([groupID, regionToPartyToSeats]) {
+        const groupSize = Object.keys(regionToPartyToSeats).length;
         return (
           <Grid2 container direction="row">
             {Object.keys(regionToPartyToSeats).map(function (regionID) {
-              const minSize = regionID === "LK" ? 12 : 4;
+              const minSize = 12 / groupSize;
 
               return (
-                <Grid2 key={regionID} size={{ xs: 12, md: minSize }}>
-                  <Stack direction="column" sx={{ pl: 2, pr: 2 }}>
+                <Grid2 key={regionID} size={{ xs: Math.max(6, minSize), md: minSize }}>
+                  <Stack direction="column" sx={{ mr:2, ml:2, p:0.5, alignItems:"center" }}>
                     <EntView
                       entID={regionID}
                       isNationalListMode={true}

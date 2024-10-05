@@ -22,7 +22,7 @@ export default function ParliamentViewCircle({ partyID, seats }) {
           height: DIM,
           background,
           margin: 0.1,
-          padding: 0.1,
+          padding: 0,
           borderRadius: DIM / 2,
           border,
           textAlign: "center",

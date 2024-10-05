@@ -20,7 +20,7 @@ const STYLE_PAGE_HEADER = {
 
 function PageHeaderTitle() {
   const data = useDataSlowContext();
-  let label = "#PresPoll";
+  let label = "Sri Lankan Elections";
   if (data) {
     const { electionProjected } = data;
     if (electionProjected) {

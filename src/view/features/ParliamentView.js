@@ -15,7 +15,7 @@ export default function ParliamentView({
   }
 
   const { electionProjected, electionDisplay, entIdx } = data;
-  if (electionProjected.isPresidential) {
+  if (!electionProjected || electionProjected.isPresidential) {
     return null;
   }
   if (forceComplete && !electionDisplay.isComplete(regionID, entIdx)) {
@@ -32,7 +32,8 @@ export default function ParliamentView({
     <Grid2
       container
       direction="row"
-      sx={Object.assign({ alignItems: "center" }, sx)}
+      sx={Object.assign({}, sx)}
+      justifyContent={"center"}
     >
       {Object.entries(partyToSeats).map(function ([partyID, seats], i) {
         return (

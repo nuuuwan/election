@@ -6,7 +6,7 @@ function SVGBarChartSegment({ data, formatValue, pHeight }) {
   const fontSize = 0.45 * Math.min(data.x, pHeight);
 
   let formattedValue = formatValue(data.value);
-  if (fontSize < 0.03) {
+  if (fontSize < 0.02) {
     formattedValue = "";
   }
 
@@ -47,8 +47,8 @@ export default function SVGBarChart({ dataList, formatValue, sx = {} }) {
     return extendedData;
   });
 
-  const width = sx.width || 240;
-  const height = sx.height || 48;
+  const width = sx.width || 200;
+  const height = sx.height || 40;
   const pHeight = height / width;
   const viewBox = `0 0 1 ${pHeight}`;
   return (

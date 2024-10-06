@@ -26,7 +26,9 @@ export default class CustomURLContext {
   static set(data) {
     URLContext.set(data);
     const year = data.date.split("-")[0];
-    let newTitle = `#PresPollSL${year}`;
+    const electionType = data.electionType;
+    const electionTypeTag = electionType === "Presidential" ? "PresPoll" : "GenElec";
+    let newTitle = `#${electionTypeTag}SL${year}`;
     if (data.nResultsDisplay) {
       newTitle += ` (${data.nResultsDisplay})`;
     } else {

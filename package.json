@@ -1,6 +1,6 @@
 {
-  "name": "prespoll",
-  "homepage": "https://nuuuwan.github.io/prespoll",
+  "name": "election",
+  "homepage": "https://nuuuwan.github.io/election",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

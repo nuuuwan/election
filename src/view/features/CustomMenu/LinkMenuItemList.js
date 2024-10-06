@@ -7,13 +7,13 @@ export default function LinkMenuItemList() {
     <>
       <MenuItemLink
         label="Source Code"
-        href="https://github.com/nuuuwan/prespoll/"
+        href="https://github.com/nuuuwan/election/"
         Icon={GitHubIcon}
       />
 
       <MenuItemLink
         label="Report Bugs"
-        href="https://github.com/nuuuwan/prespoll/issues"
+        href="https://github.com/nuuuwan/election/issues"
         Icon={BugReportIcon}
       />
     </>

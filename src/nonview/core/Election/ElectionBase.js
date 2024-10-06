@@ -49,8 +49,15 @@ export default class ElectionBase {
     return this.date.substring(0, 4);
   }
 
+  get electionTypeHashTag() {
+    if (this.electionType === "Presidential") {
+      return "PresPollSL";
+    }
+    return "GenElecSL";
+  }
+
   get hashTag() {
-    return "#PresPollSL" + this.year.toString();
+    return this.electionTypeHashTag + this.year.toString();
   }
 
   get hashTagList() {

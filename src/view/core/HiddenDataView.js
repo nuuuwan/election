@@ -63,7 +63,7 @@ export default function HiddenDataView() {
   const hiddenDataJSON = JSON.stringify(hiddenData);
   return (
     <div
-      id="prespoll_hidden_data"
+      id="election_hidden_data"
       datajson={hiddenDataJSON}
       style={{ display: "none" }}
     >

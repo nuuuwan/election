@@ -6,7 +6,7 @@ import { useDataSlowContext } from "../../../nonview/core/DataSlowProvider";
 
 const STYLE_PAGE_HEADER = {
   SELECTOR: {
-    position: "sticky",
+    position: "fixed",
     top: 0,
     right: 0,
     left: 0,

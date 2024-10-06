@@ -20,7 +20,7 @@ import {
 } from "../..";
 
 const STYLE = {
-  BOX: { paddingTop: 1, paddingBottom: 20 },
+  BOX: { paddingTop: 10, paddingBottom: 20 },
 };
 
 function HistoryAlert() {

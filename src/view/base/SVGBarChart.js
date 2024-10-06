@@ -7,7 +7,7 @@ function SVGBarChartSegment({ data, formatValue, pHeight }) {
   const formattedValue = formatValue(data.value);
 
   let transform = null;
-  const fontSize = Math.min(data.x, pHeight) * 0.6;
+  const fontSize = Math.min(data.x, pHeight) * 0.5;
   if (data.x < pHeight) {
     transform = `rotate(-90, ${data.cumX + data.x / 2}, ${pHeight * 0.5})`
   }

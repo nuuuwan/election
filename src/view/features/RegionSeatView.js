@@ -30,7 +30,7 @@ export default function RegionStateView() {
               return (
                 <Grid2
                   key={regionID}
-                  size={{ xs: Math.max(6, minSize), md: minSize }}
+                  size={{ xs: Math.max(4, minSize), md: minSize }}
                 >
                   <Stack
                     direction="column"

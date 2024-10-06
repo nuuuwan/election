@@ -17,15 +17,14 @@ function SVGBarChartSegment({ data, formatValue, pHeight }) {
       <rect
         key={label}
         x={data.cumX}
-        y="0"
+        y={0}
         width={data.x}
         height={pHeight}
         fill={color}
       />
-
       <text
         x={data.cumX + data.x / 2}
-        y={pHeight * 0.5}
+        y={pHeight  / 2}
         textAnchor="middle"
         dominantBaseline="middle"
         fontSize={fontSize}

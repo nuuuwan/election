@@ -10,9 +10,7 @@ let FormatPercent = {
     }
 
     if (minimumFractionDigits === undefined) {
-
-        minimumFractionDigits = 0;
-
+      minimumFractionDigits = 0;
     }
 
     return x.toLocaleString(undefined, {

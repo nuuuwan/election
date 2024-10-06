@@ -15,15 +15,16 @@ export default function RegionStateView() {
   const seats = Seats.fromElection(electionProjected);
   const idx = seats.groupToRegionToPartyToSeats;
 
-  
-
   return (
     <Stack direction="column" gap={0}>
       {Object.entries(idx).map(function ([groupID, regionToPartyToSeats]) {
         const groupSize = Object.keys(regionToPartyToSeats).length;
         return (
           <Grid2 container direction="row">
-            {Object.entries(regionToPartyToSeats).map(function ([regionID, partyToSeats]) {
+            {Object.entries(regionToPartyToSeats).map(function ([
+              regionID,
+              partyToSeats,
+            ]) {
               const minSize = 12 / groupSize;
               const totalSeats = MathX.sumValues(partyToSeats);
 
@@ -37,12 +38,12 @@ export default function RegionStateView() {
                     sx={{ mr: 2, ml: 2, p: 0.5, alignItems: "center" }}
                   >
                     <Stack direction="row" gap={0.5}>
-                    <EntView
-                      entID={regionID}
-                      isNationalListMode={true}
-                      isSmall={true}
-                    />
-                    <Typography variant="caption">{totalSeats}</Typography>
+                      <EntView
+                        entID={regionID}
+                        isNationalListMode={true}
+                        isSmall={true}
+                      />
+                      <Typography variant="caption">{totalSeats}</Typography>
                     </Stack>
                     <ParliamentView regionID={regionID} />
                   </Stack>{" "}

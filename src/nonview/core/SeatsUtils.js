@@ -2,7 +2,6 @@ import MathX from "../base/MathX";
 import Party from "./Party";
 
 export default class SeatsUtils {
-
   static getFilteredPartyToSeats(result, pLimit) {
     const partyToVotes = result.partyToVotes.partyToVotes;
     const totalVotes = result.partyToVotes.totalVotes;
@@ -12,10 +11,10 @@ export default class SeatsUtils {
         ([partyID, votes]) => votes >= voteLimit
       )
     );
-    return {filteredPartyToVotes,partyToVotes}
+    return { filteredPartyToVotes, partyToVotes };
   }
 
-  static getPartyToSeatsF(filteredPartyToVotes , nSeatsAll, nSeatsBonus) {
+  static getPartyToSeatsF(filteredPartyToVotes, nSeatsAll, nSeatsBonus) {
     const filteredTotalVotes = MathX.sum(Object.values(filteredPartyToVotes));
 
     const nSeatsNonBonus = nSeatsAll - nSeatsBonus;
@@ -27,7 +26,6 @@ export default class SeatsUtils {
     );
 
     return partyToSeatsF;
-
   }
 
   static getPartyToSeats(partyToSeatsF, nSeatsNonBonus) {
@@ -55,21 +53,27 @@ export default class SeatsUtils {
         return acc;
       }, partyToSeats);
 
-      return partyToSeats;
+    return partyToSeats;
   }
 
-
   static getGenericPartyToSeats(result, nSeatsAll, nSeatsBonus, pLimit) {
-    const {filteredPartyToVotes,partyToVotes} = SeatsUtils.getFilteredPartyToSeats(result,  pLimit);
-    const partyToSeatsF = SeatsUtils.getPartyToSeatsF(filteredPartyToVotes, nSeatsAll, nSeatsBonus);
-    const partyToSeats = SeatsUtils.getPartyToSeats(partyToSeatsF, nSeatsAll - nSeatsBonus);
+    const { filteredPartyToVotes, partyToVotes } =
+      SeatsUtils.getFilteredPartyToSeats(result, pLimit);
+    const partyToSeatsF = SeatsUtils.getPartyToSeatsF(
+      filteredPartyToVotes,
+      nSeatsAll,
+      nSeatsBonus
+    );
+    const partyToSeats = SeatsUtils.getPartyToSeats(
+      partyToSeatsF,
+      nSeatsAll - nSeatsBonus
+    );
 
     const winningPartyID = result.partyToVotes.winningPartyID;
     partyToSeats[winningPartyID] += nSeatsBonus;
 
     const unsorted = Object.fromEntries(
-      Object.entries(partyToSeats)
-        .filter(([partyID, seats]) => seats > 0)
+      Object.entries(partyToSeats).filter(([partyID, seats]) => seats > 0)
     );
 
     return SeatsUtils.sortPartyToSeats(unsorted, partyToVotes);

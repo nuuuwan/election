@@ -103,11 +103,11 @@ function SVGSeatCircles({ x, y, partyToSeats, label }) {
   );
 }
 
-function getCustomOverlayRenderer(seats) {
+function getCustomOverlayRenderer(seats, edIdx) {
   return function ({ x, y, entID }) {
     const partyToSeats = seats.getPartyToSeats(entID);
     return (
-      <SVGSeatCircles x={x} y={y} partyToSeats={partyToSeats} label={entID} />
+      <SVGSeatCircles x={x} y={y} partyToSeats={partyToSeats} label={edIdx[entID].name} />
     );
   };
 }
@@ -117,17 +117,17 @@ export default function SeatsHexMap() {
   if (!data) {
     return null;
   }
-  const { electionProjected } = data;
+  const { electionProjected, edIdx } = data;
   if (!electionProjected) {
     return null;
   }
 
   const mapData = HexMapData.offsetData(HEXMAP_DATA_ED, "", [2, 0]);
   const seats = Seats.fromElection(electionProjected);
-  const customOverlayRenderer = getCustomOverlayRenderer(seats);
+  const customOverlayRenderer = getCustomOverlayRenderer(seats, edIdx);
 
   return (
-    <svg viewBox={"-1 -1 9 9"} fontFamily={THEME_DATA.typography.fontFamily}>
+    <svg viewBox={"-0.5 -1 8.5 8.75"} fontFamily={THEME_DATA.typography.fontFamily}>
       <SVGHexMap
         mapData={mapData}
         customOverlayRenderer={customOverlayRenderer}

@@ -61,7 +61,6 @@ function SVGHexMapShape({
     result,
     customOverlayRenderer,
   });
-
   const onClick = getOnClick({
     entID,
     setActiveEntID,
@@ -69,7 +68,6 @@ function SVGHexMapShape({
     baseResultList: electionDisplay.baseResultList,
     resultIdx: electionDisplay.resultIdx,
   });
-
   const [x, y] = points[Math.floor(points.length / 2)];
 
   return (
@@ -79,7 +77,7 @@ function SVGHexMapShape({
         color={color}
         opacity={opacity}
         onClick={onClick}
-      />{" "}
+      />
       <SVGHexText
         x={x}
         y={y / Math.cos(Math.PI / 6)}

@@ -107,7 +107,12 @@ function getCustomOverlayRenderer(seats, edIdx) {
   return function ({ x, y, entID }) {
     const partyToSeats = seats.getPartyToSeats(entID);
     return (
-      <SVGSeatCircles x={x} y={y} partyToSeats={partyToSeats} label={edIdx[entID].name} />
+      <SVGSeatCircles
+        x={x}
+        y={y}
+        partyToSeats={partyToSeats}
+        label={edIdx[entID].name}
+      />
     );
   };
 }
@@ -127,7 +132,10 @@ export default function SeatsHexMap() {
   const customOverlayRenderer = getCustomOverlayRenderer(seats, edIdx);
 
   return (
-    <svg viewBox={"-0.5 -1 8.5 8.75"} fontFamily={THEME_DATA.typography.fontFamily}>
+    <svg
+      viewBox={"-0.5 -1 8.5 8.75"}
+      fontFamily={THEME_DATA.typography.fontFamily}
+    >
       <SVGHexMap
         mapData={mapData}
         customOverlayRenderer={customOverlayRenderer}

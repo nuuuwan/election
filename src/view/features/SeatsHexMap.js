@@ -7,39 +7,23 @@ import HEXMAP_DATA_ED from "./HexMapView/HexMapData/HEXMAP_DATA_ED_UNITS";
 import { Party, Seats, StringX } from "../../nonview";
 import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 
-function SVGSeatCircle({ i, n, x, y, partyID, seats }) {
-  const R_CIRCLE = 0.33;
-  const ALPHA0 = -Math.PI / 2;
+const R_CIRCLE = 0.33;
+const ALPHA0 = -Math.PI / 2;
 
-  let color = Party.fromID(partyID).color;
-  let stroke = null;
-  let strokeDasharray = null;
+function SVGSeatCircleText({x, y, partyID, seats }) {
+
   let colorText = "white";
+
   if (partyID === Party.ERROR.id) {
-    color = "white";
-    stroke = "lightgray";
-    strokeDasharray = R_CIRCLE / 10;
+
     colorText = "gray";
   }
 
-  const alpha = ((n - i - 1) * 2 * Math.PI) / n;
-  const cx = x + R_CIRCLE * Math.cos(ALPHA0 + alpha);
-  const cy = y + R_CIRCLE * Math.sin(ALPHA0 + alpha);
 
   return (
-    <g>
-      <circle
-        cx={cx}
-        cy={cy}
-        r={R_CIRCLE * 0.6}
-        fill={color}
-        stroke={stroke}
-        strokeDasharray={strokeDasharray}
-        strokeWidth={R_CIRCLE / 10}
-      />
-      <text
-        x={cx}
-        y={cy}
+    <text
+        x={x}
+        y={y}
         textAnchor="middle"
         dominantBaseline="middle"
         fill={colorText}
@@ -47,6 +31,47 @@ function SVGSeatCircle({ i, n, x, y, partyID, seats }) {
       >
         {seats}
       </text>
+  )
+}
+
+function SVGSeatCircleCircle({cx, cy, partyID}) {
+
+  let color = Party.fromID(partyID).color;
+  let stroke = null;
+  let strokeDasharray = null;
+
+
+  if (partyID === Party.ERROR.id) {
+    color = "white";
+    stroke = "lightgray";
+    strokeDasharray = R_CIRCLE / 10;
+
+  }
+
+
+  return (
+    <circle
+    cx={cx}
+    cy={cy}
+    r={R_CIRCLE * 0.6}
+    fill={color}
+    stroke={stroke}
+    strokeDasharray={strokeDasharray}
+    strokeWidth={R_CIRCLE / 10}
+  />
+  )
+}
+ 
+function SVGSeatCircle({ i, n, x, y, partyID, seats }) {
+
+  const alpha = ALPHA0 + ((n - i - 1) * 2 * Math.PI) / n;
+  const cx = x + R_CIRCLE * Math.cos(alpha);
+  const cy = y + R_CIRCLE * Math.sin(alpha);
+
+  return (
+    <g>
+      <SVGSeatCircleCircle cx={cx} cy={cy} partyID={partyID} />
+      <SVGSeatCircleText x={cx} y={cy} partyID={partyID}  seats={seats}  />
     </g>
   );
 }
@@ -86,33 +111,33 @@ function SVGSeatCircles({ x, y, partyToSeats, label }) {
   );
 }
 
-export default function SeatsHexMap() {
-  const data = useDataSlowContext();
-  if (!data) {
-    return null;
-  }
-  const { electionProjected, edIdx } = data;
-
-  if (!electionProjected) {
-    return null;
-  }
-
-  const mapData = HexMapData.offsetData(HEXMAP_DATA_ED, "", [2, 0]);
-
-  const seats = Seats.fromElection(electionProjected);
-
-  const customOverlayRenderer = function ({ x, y, entID }) {
+function getCustomOverlayRenderer(seats) {
+  return function ({ x, y, entID }) {
     const partyToSeats = seats.getPartyToSeats(entID);
-
     return (
       <SVGSeatCircles
         x={x}
         y={y}
         partyToSeats={partyToSeats}
-        label={edIdx[entID].name}
+        label={entID}
       />
     );
   };
+}
+
+export default function SeatsHexMap() {
+  const data = useDataSlowContext();
+  if (!data) {
+    return null;
+  }
+  const { electionProjected} = data;
+  if (!electionProjected) {
+    return null;
+  }
+
+  const mapData = HexMapData.offsetData(HEXMAP_DATA_ED, "", [2, 0]);
+  const seats = Seats.fromElection(electionProjected);
+  const customOverlayRenderer = getCustomOverlayRenderer(seats);
 
   return (
     <svg viewBox={"-1 -1 9 9"} fontFamily={THEME_DATA.typography.fontFamily}>
@@ -126,7 +151,6 @@ export default function SeatsHexMap() {
         partyToSeats={seats.lkPartyToSeats}
         label={"National List"}
       />
-      ;
     </svg>
   );
 }

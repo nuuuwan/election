@@ -5,16 +5,16 @@ import {
   ElectionSmallTitle,
   PartyToSeatsStatsView,
   ProjectionTitle,
-  RegionSeatView,
-} from "..";
-import { FinalOutcomeView, ProjectedResultBarChart } from "..";
+  SeatsHexMap,
+} from "../..";
 
-import { FinalOutcome, Translate } from "../../nonview";
-import InsightErrorMarginTooHigh from "./FinalOutcomeView/InsightErrorMarginTooHigh";
-import { ProjectionAlert } from "../core/ProjectionTitle";
 
-import ParliamentaryFinalOutcomeView from "./ParlimentaryFinalOutcomeView";
-import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
+import { FinalOutcome, Translate } from "../../../nonview";
+import InsightErrorMarginTooHigh from "../FinalOutcomeView/InsightErrorMarginTooHigh";
+import { ProjectionAlert } from "../../core/ProjectionTitle";
+
+import ParliamentaryFinalOutcomeView from "../ParlimentaryFinalOutcomeView";
+import { useDataSlowContext } from "../../../nonview/core/DataSlowProvider";
 import { Typography } from "@mui/material";
 
 function ProjectionViewInner() {
@@ -42,33 +42,18 @@ function ProjectionViewInner() {
     return <InsightErrorMarginTooHigh />;
   }
 
-  const outcomeView = electionDisplay.isPresidential ? (
-    <FinalOutcomeView finalOutcome={finalOutcome} />
-  ) : (
-    <ParliamentaryFinalOutcomeView />
-  );
-
-  const projectionChart = electionDisplay.isPresidential ? (
-    <ProjectedResultBarChart />
-  ) : (
-    <>
-      <PartyToSeatsStatsView />
-      <RegionSeatView />
-    </>
-  );
-
   return (
     <>
-      {outcomeView}
-      {projectionChart}
-
+       <ParliamentaryFinalOutcomeView />
+       <PartyToSeatsStatsView />
+       <SeatsHexMap />
       <ElectionSmallTitle />
       <ProjectionAlert />
     </>
   );
 }
 
-export default function ProjectionView() {
+export default function ProjectionViewParliamentary() {
   return (
     <CustomStack>
       <ProjectionTitle />

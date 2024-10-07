@@ -17,6 +17,8 @@ import {
   ResultsReleasedTitlePercent,
   ResultsReleasedTitleNumber,
   CustomLoadingProgress,
+  ProjectionViewPresidential,
+  ProjectionViewParliamentary,
 } from "../..";
 
 const STYLE = {
@@ -107,7 +109,7 @@ export default function PageBody() {
           </CustomPageBodyGridItem>
 
           <CustomPageBodyGridItem>
-            <ProjectionView />
+            {electionDisplay.isPresidential ? (<ProjectionViewPresidential />) : (<ProjectionViewParliamentary/>)}
           </CustomPageBodyGridItem>
         </Grid2>
         <PageBelowTheFold />

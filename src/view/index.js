@@ -78,8 +78,8 @@ import TurnoutView from "./features/MonitoringView/TurnoutView.js";
 import ParliamentView from "./features/ParliamentView.js";
 import ParlimentaryFinalOutcomeView from "./features/ParlimentaryFinalOutcomeView.js";
 import ProjectedResultBarChart from "./features/ProjectedResultBarChart.js";
-import ProjectionView from "./features/ProjectionView.js";
-import RegionSeatView from "./features/RegionSeatView.js";
+import ProjectionViewParliamentary from "./features/ProjectionView/ProjectionViewParliamentary.js";
+import ProjectionViewPresidential from "./features/ProjectionView/ProjectionViewPresidential.js";
 import SeatsHexMap from "./features/SeatsHexMap.js";
 import BasePage from "./pages/BasePage/BasePage.js";
 import BasePageHandlerProvider from "./pages/BasePage/BasePageHandlerProvider.js";
@@ -167,8 +167,8 @@ export {
   ParliamentView,
   ParlimentaryFinalOutcomeView,
   ProjectedResultBarChart,
-  ProjectionView,
-  RegionSeatView,
+  ProjectionViewParliamentary,
+  ProjectionViewPresidential,
   SeatsHexMap,
   BasePage,
   BasePageHandlerProvider,

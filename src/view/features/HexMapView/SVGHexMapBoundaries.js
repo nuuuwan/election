@@ -1,4 +1,4 @@
-export default function SVGMapBoundaries({ mapData }) {
+export default function SVGHexMapBoundaries({ mapData }) {
   const { idx2 } = mapData;
 
   const nGroups = Object.keys(idx2).length;

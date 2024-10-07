@@ -64,9 +64,9 @@ import SVGHexPolygonGroup from "./features/HexMapView/SVGHexPolygonGroup.js";
 import SVGHexText from "./features/HexMapView/SVGHexText.js";
 import SVGLegendParty from "./features/HexMapView/SVGLegendParty.js";
 import SVGLegendPercentages from "./features/HexMapView/SVGLegendPercentages.js";
-import SVGMap from "./features/HexMapView/SVGMap.js";
-import SVGMapBoundaries from "./features/HexMapView/SVGMapBoundaries.js";
-import SVGMapHexs from "./features/HexMapView/SVGMapHexs.js";
+import SVGHexMap from "./features/HexMapView/SVGHexMap.js";
+import SVGHexMapBoundaries from "./features/HexMapView/SVGHexMapBoundaries.js";
+import SVGHexMapShapes from "./features/HexMapView/SVGHexMapShapes.js";
 import SVGTitles from "./features/HexMapView/SVGTitles.js";
 import LatestResultListView from "./features/LatestResultListView.js";
 import BanfordView from "./features/MonitoringView/BanfordView.js";
@@ -152,9 +152,9 @@ export {
   SVGHexText,
   SVGLegendParty,
   SVGLegendPercentages,
-  SVGMap,
-  SVGMapBoundaries,
-  SVGMapHexs,
+  SVGHexMap,
+  SVGHexMapBoundaries,
+  SVGHexMapShapes,
   SVGTitles,
   LatestResultListView,
   BanfordView,

@@ -1,7 +1,7 @@
 import SVGTitles from "./SVGTitles";
 import SVGLegendPercentages from "./SVGLegendPercentages";
 import SVGLegendParty from "./SVGLegendParty";
-import SVGMap from "./SVGMap";
+import SVGHexMap from "./SVGHexMap";
 import HexMapData from "./HexMapData/HexMapData";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { THEME_DATA } from "../../_constants/THEME";
@@ -67,7 +67,7 @@ export default function HexMapView() {
         mapData,
         i
       ) {
-        return <SVGMap key={i} mapData={mapData} />;
+        return <SVGHexMap key={i} mapData={mapData} />;
       })}
 
       <SVGTitles baseEntType={electionDisplay.baseEntType} />

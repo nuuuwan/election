@@ -13,7 +13,6 @@ export default function ParliamentView({
   if (!data) {
     return null;
   }
-
   const { electionProjected, electionDisplay, entIdx } = data;
   if (!electionProjected || electionProjected.isPresidential) {
     return null;

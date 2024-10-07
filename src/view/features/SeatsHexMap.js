@@ -10,60 +10,52 @@ import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 const R_CIRCLE = 0.33;
 const ALPHA0 = -Math.PI / 2;
 
-function SVGSeatCircleText({x, y, partyID, seats }) {
-
+function SVGSeatCircleText({ x, y, partyID, seats }) {
   let colorText = "white";
 
   if (partyID === Party.ERROR.id) {
-
     colorText = "gray";
   }
 
-
   return (
     <text
-        x={x}
-        y={y}
-        textAnchor="middle"
-        dominantBaseline="middle"
-        fill={colorText}
-        fontSize={R_CIRCLE * 0.8}
-      >
-        {seats}
-      </text>
-  )
+      x={x}
+      y={y}
+      textAnchor="middle"
+      dominantBaseline="middle"
+      fill={colorText}
+      fontSize={R_CIRCLE * 0.8}
+    >
+      {seats}
+    </text>
+  );
 }
 
-function SVGSeatCircleCircle({cx, cy, partyID}) {
-
+function SVGSeatCircleCircle({ cx, cy, partyID }) {
   let color = Party.fromID(partyID).color;
   let stroke = null;
   let strokeDasharray = null;
-
 
   if (partyID === Party.ERROR.id) {
     color = "white";
     stroke = "lightgray";
     strokeDasharray = R_CIRCLE / 10;
-
   }
-
 
   return (
     <circle
-    cx={cx}
-    cy={cy}
-    r={R_CIRCLE * 0.6}
-    fill={color}
-    stroke={stroke}
-    strokeDasharray={strokeDasharray}
-    strokeWidth={R_CIRCLE / 10}
-  />
-  )
+      cx={cx}
+      cy={cy}
+      r={R_CIRCLE * 0.6}
+      fill={color}
+      stroke={stroke}
+      strokeDasharray={strokeDasharray}
+      strokeWidth={R_CIRCLE / 10}
+    />
+  );
 }
- 
-function SVGSeatCircle({ i, n, x, y, partyID, seats }) {
 
+function SVGSeatCircle({ i, n, x, y, partyID, seats }) {
   const alpha = ALPHA0 + ((n - i - 1) * 2 * Math.PI) / n;
   const cx = x + R_CIRCLE * Math.cos(alpha);
   const cy = y + R_CIRCLE * Math.sin(alpha);
@@ -71,7 +63,7 @@ function SVGSeatCircle({ i, n, x, y, partyID, seats }) {
   return (
     <g>
       <SVGSeatCircleCircle cx={cx} cy={cy} partyID={partyID} />
-      <SVGSeatCircleText x={cx} y={cy} partyID={partyID}  seats={seats}  />
+      <SVGSeatCircleText x={cx} y={cy} partyID={partyID} seats={seats} />
     </g>
   );
 }
@@ -115,12 +107,7 @@ function getCustomOverlayRenderer(seats) {
   return function ({ x, y, entID }) {
     const partyToSeats = seats.getPartyToSeats(entID);
     return (
-      <SVGSeatCircles
-        x={x}
-        y={y}
-        partyToSeats={partyToSeats}
-        label={entID}
-      />
+      <SVGSeatCircles x={x} y={y} partyToSeats={partyToSeats} label={entID} />
     );
   };
 }
@@ -130,7 +117,7 @@ export default function SeatsHexMap() {
   if (!data) {
     return null;
   }
-  const { electionProjected} = data;
+  const { electionProjected } = data;
   if (!electionProjected) {
     return null;
   }

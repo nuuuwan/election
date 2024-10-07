@@ -3,16 +3,13 @@ import {
   CustomLoadingProgress,
   CustomStack,
   ElectionSmallTitle,
-
   ProjectionTitle,
-
 } from "../..";
 import { FinalOutcomeView, ProjectedResultBarChart } from "../..";
 
 import { FinalOutcome, Translate } from "../../../nonview";
 import InsightErrorMarginTooHigh from "../FinalOutcomeView/InsightErrorMarginTooHigh";
 import { ProjectionAlert } from "../../core/ProjectionTitle";
-
 
 import { useDataSlowContext } from "../../../nonview/core/DataSlowProvider";
 import { Typography } from "@mui/material";
@@ -44,7 +41,7 @@ function ProjectionViewInner() {
 
   return (
     <>
-       <FinalOutcomeView finalOutcome={finalOutcome} />
+      <FinalOutcomeView finalOutcome={finalOutcome} />
       <ProjectedResultBarChart />
       <ElectionSmallTitle />
       <ProjectionAlert />

@@ -8,7 +8,6 @@ import {
   SeatsHexMap,
 } from "../..";
 
-
 import { FinalOutcome, Translate } from "../../../nonview";
 import InsightErrorMarginTooHigh from "../FinalOutcomeView/InsightErrorMarginTooHigh";
 import { ProjectionAlert } from "../../core/ProjectionTitle";
@@ -44,9 +43,9 @@ function ProjectionViewInner() {
 
   return (
     <>
-       <ParliamentaryFinalOutcomeView />
-       <PartyToSeatsStatsView />
-       <SeatsHexMap />
+      <ParliamentaryFinalOutcomeView />
+      <PartyToSeatsStatsView />
+      <SeatsHexMap />
       <ElectionSmallTitle />
       <ProjectionAlert />
     </>

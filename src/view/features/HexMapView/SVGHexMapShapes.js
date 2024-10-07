@@ -26,16 +26,13 @@ function getOnClick({
   };
 }
 
-function getRenderedItem({
+function getColorAndOpacity({
+  electionDisplay,
   entID,
-  points,
-  data,
-  setActiveEntID,
+  entIdx,
+  result,
   customOverlayRenderer,
 }) {
-  const { electionDisplay, allRegionIdx, entIdx } = data;
-  const result = electionDisplay.resultIdx[entID];
-
   let color = "ghostwhite";
   let opacity = 1;
   if (electionDisplay.isComplete(entID, entIdx) && result) {
@@ -45,6 +42,25 @@ function getRenderedItem({
   if (customOverlayRenderer) {
     color = "white";
   }
+  return { color, opacity };
+}
+
+function SVGHexMapShape({
+  entID,
+  points,
+  data,
+  setActiveEntID,
+  customOverlayRenderer,
+}) {
+  const { electionDisplay, allRegionIdx, entIdx } = data;
+  const result = electionDisplay.resultIdx[entID];
+  const { color, opacity } = getColorAndOpacity({
+    electionDisplay,
+    entID,
+    entIdx,
+    result,
+    customOverlayRenderer,
+  });
 
   const onClick = getOnClick({
     entID,
@@ -55,16 +71,15 @@ function getRenderedItem({
   });
 
   const [x, y] = points[Math.floor(points.length / 2)];
-  return {
-    renderedHexs: (
+
+  return (
+    <g>
       <SVGHexPolygonGroup
         points={points}
         color={color}
         opacity={opacity}
         onClick={onClick}
-      />
-    ),
-    renderedLabel: (
+      />{" "}
       <SVGHexText
         x={x}
         y={y / Math.cos(Math.PI / 6)}
@@ -72,31 +87,11 @@ function getRenderedItem({
         label={customOverlayRenderer ? "" : allRegionIdx[entID].name}
         onClick={onClick}
       />
-    ),
-    renderedCustom: customOverlayRenderer
-      ? customOverlayRenderer({ entID, x, y: y / Math.cos(Math.PI / 6) })
-      : null,
-  };
-}
-
-function getRenderedItems({
-  mapData,
-  data,
-  setActiveEntID,
-  customOverlayRenderer,
-}) {
-  const { idx } = mapData;
-
-  return Object.entries(idx).map(function ([entID, points]) {
-    return getRenderedItem({
-      entID,
-      points,
-
-      data,
-      setActiveEntID,
-      customOverlayRenderer,
-    });
-  });
+      {customOverlayRenderer
+        ? customOverlayRenderer({ entID, x, y: y / Math.cos(Math.PI / 6) })
+        : null}
+    </g>
+  );
 }
 
 export default function SVGHexMapShapes({ mapData, customOverlayRenderer }) {
@@ -105,23 +100,20 @@ export default function SVGHexMapShapes({ mapData, customOverlayRenderer }) {
   if (!data) {
     return null;
   }
-  const renderedItems = getRenderedItems({
-    mapData,
-    data,
-    setActiveEntID,
-    customOverlayRenderer,
-  });
 
   return (
     <g>
-      {renderedItems.map(function ({ renderedHexs }, i) {
-        return <g key={"hex" + i}>{renderedHexs}</g>;
-      })}
-      {renderedItems.map(function ({ renderedLabel }, i) {
-        return <g key={"label" + i}>{renderedLabel}</g>;
-      })}
-      {renderedItems.map(function ({ renderedCustom }, i) {
-        return <g key={"custom" + i}>{renderedCustom}</g>;
+      {Object.entries(mapData.idx).map(function ([entID, points], i) {
+        return (
+          <SVGHexMapShape
+            key={"hex" + i}
+            entID={entID}
+            points={points}
+            data={data}
+            setActiveEntID={setActiveEntID}
+            customOverlayRenderer={customOverlayRenderer}
+          />
+        );
       })}
     </g>
   );

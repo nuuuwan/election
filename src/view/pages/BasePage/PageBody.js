@@ -109,7 +109,11 @@ export default function PageBody() {
           </CustomPageBodyGridItem>
 
           <CustomPageBodyGridItem>
-            {electionDisplay.isPresidential ? (<ProjectionViewPresidential />) : (<ProjectionViewParliamentary/>)}
+            {electionDisplay.isPresidential ? (
+              <ProjectionViewPresidential />
+            ) : (
+              <ProjectionViewParliamentary />
+            )}
           </CustomPageBodyGridItem>
         </Grid2>
         <PageBelowTheFold />

@@ -26,7 +26,13 @@ function getOnClick({
   };
 }
 
-function getRenderedItem({ entID, points, data, setActiveEntID, customOverlayRenderer}) {
+function getRenderedItem({
+  entID,
+  points,
+  data,
+  setActiveEntID,
+  customOverlayRenderer,
+}) {
   const { electionDisplay, allRegionIdx, entIdx } = data;
   const result = electionDisplay.resultIdx[entID];
 
@@ -67,11 +73,18 @@ function getRenderedItem({ entID, points, data, setActiveEntID, customOverlayRen
         onClick={onClick}
       />
     ),
-    renderedCustom: customOverlayRenderer ? customOverlayRenderer({entID, x, y: y / Math.cos(Math.PI / 6)}) : null,
+    renderedCustom: customOverlayRenderer
+      ? customOverlayRenderer({ entID, x, y: y / Math.cos(Math.PI / 6) })
+      : null,
   };
 }
 
-function getRenderedItems({ mapData, data, setActiveEntID, customOverlayRenderer }) {
+function getRenderedItems({
+  mapData,
+  data,
+  setActiveEntID,
+  customOverlayRenderer,
+}) {
   const { idx } = mapData;
 
   return Object.entries(idx).map(function ([entID, points]) {
@@ -92,7 +105,12 @@ export default function SVGHexMapShapes({ mapData, customOverlayRenderer }) {
   if (!data) {
     return null;
   }
-  const renderedItems = getRenderedItems({ mapData, data, setActiveEntID, customOverlayRenderer });
+  const renderedItems = getRenderedItems({
+    mapData,
+    data,
+    setActiveEntID,
+    customOverlayRenderer,
+  });
 
   return (
     <g>
@@ -105,7 +123,6 @@ export default function SVGHexMapShapes({ mapData, customOverlayRenderer }) {
       {renderedItems.map(function ({ renderedCustom }, i) {
         return <g key={"custom" + i}>{renderedCustom}</g>;
       })}
-
     </g>
   );
 }

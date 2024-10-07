@@ -8,7 +8,7 @@ export default class StringXEn {
   }
 
   static getShortLabelEn(name) {
-    name = name.replaceAll("-", ' ')
+    name = name.replaceAll("-", " ");
     name = StringXEn.replaceLowercaseVowels(name);
     const words = name.split(" ");
     if (words.length === 1) {

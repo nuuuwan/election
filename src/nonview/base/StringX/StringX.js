@@ -5,6 +5,7 @@ import StringXTa from "./StringXTa";
 
 export default class StringX {
   static getShortLabel(name) {
+    name = name.replace("-", " ");
     if (StringXEn.isEn(name)) {
       return StringXEn.getShortLabelEn(name);
     }

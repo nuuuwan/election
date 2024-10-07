@@ -4,8 +4,9 @@ import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 
 import ParliamentView from "./ParliamentView";
 import EntView from "../base/EntView";
+import SeatsHexMap from "./SeatsHexMap";
 
-export default function RegionStateView() {
+export function RegionStateViewOld() {
   const data = useDataSlowContext();
   if (!data) {
     return null;
@@ -55,4 +56,8 @@ export default function RegionStateView() {
       })}
     </Stack>
   );
+}
+
+export default function RegionSeatView() {
+  return <SeatsHexMap />;
 }

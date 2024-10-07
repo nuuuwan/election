@@ -59,14 +59,14 @@ import HEXMAP_DATA_PROVINCE_ELECTORS from "./features/HexMapView/HexMapData/HEXM
 import HEXMAP_DATA_PROVINCE_UNITS from "./features/HexMapView/HexMapData/HEXMAP_DATA_PROVINCE_UNITS.js";
 import HexMapData from "./features/HexMapView/HexMapData/HexMapData.js";
 import HexMapView from "./features/HexMapView/HexMapView.js";
+import SVGHexMap from "./features/HexMapView/SVGHexMap.js";
+import SVGHexMapBoundaries from "./features/HexMapView/SVGHexMapBoundaries.js";
+import SVGHexMapShapes from "./features/HexMapView/SVGHexMapShapes.js";
 import SVGHexPolygon from "./features/HexMapView/SVGHexPolygon.js";
 import SVGHexPolygonGroup from "./features/HexMapView/SVGHexPolygonGroup.js";
 import SVGHexText from "./features/HexMapView/SVGHexText.js";
 import SVGLegendParty from "./features/HexMapView/SVGLegendParty.js";
 import SVGLegendPercentages from "./features/HexMapView/SVGLegendPercentages.js";
-import SVGHexMap from "./features/HexMapView/SVGHexMap.js";
-import SVGHexMapBoundaries from "./features/HexMapView/SVGHexMapBoundaries.js";
-import SVGHexMapShapes from "./features/HexMapView/SVGHexMapShapes.js";
 import SVGTitles from "./features/HexMapView/SVGTitles.js";
 import LatestResultListView from "./features/LatestResultListView.js";
 import BanfordView from "./features/MonitoringView/BanfordView.js";
@@ -80,6 +80,7 @@ import ParlimentaryFinalOutcomeView from "./features/ParlimentaryFinalOutcomeVie
 import ProjectedResultBarChart from "./features/ProjectedResultBarChart.js";
 import ProjectionView from "./features/ProjectionView.js";
 import RegionSeatView from "./features/RegionSeatView.js";
+import SeatsHexMap from "./features/SeatsHexMap.js";
 import BasePage from "./pages/BasePage/BasePage.js";
 import BasePageHandlerProvider from "./pages/BasePage/BasePageHandlerProvider.js";
 import BasePageView from "./pages/BasePage/BasePageView.js";
@@ -147,14 +148,14 @@ export {
   HEXMAP_DATA_PROVINCE_UNITS,
   HexMapData,
   HexMapView,
+  SVGHexMap,
+  SVGHexMapBoundaries,
+  SVGHexMapShapes,
   SVGHexPolygon,
   SVGHexPolygonGroup,
   SVGHexText,
   SVGLegendParty,
   SVGLegendPercentages,
-  SVGHexMap,
-  SVGHexMapBoundaries,
-  SVGHexMapShapes,
   SVGTitles,
   LatestResultListView,
   BanfordView,
@@ -168,6 +169,7 @@ export {
   ProjectedResultBarChart,
   ProjectionView,
   RegionSeatView,
+  SeatsHexMap,
   BasePage,
   BasePageHandlerProvider,
   BasePageView,

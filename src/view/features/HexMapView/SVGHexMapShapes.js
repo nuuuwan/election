@@ -26,7 +26,7 @@ function getOnClick({
   };
 }
 
-function getRenderedItem({ entID, points, data, setActiveEntID }) {
+function getRenderedItem({ entID, points, data, setActiveEntID, customOverlayRenderer}) {
   const { electionDisplay, allRegionIdx, entIdx } = data;
   const result = electionDisplay.resultIdx[entID];
 
@@ -35,6 +35,9 @@ function getRenderedItem({ entID, points, data, setActiveEntID }) {
   if (electionDisplay.isComplete(entID, entIdx) && result) {
     color = result.color;
     opacity = Color.getOpacity(result.pWinner);
+  }
+  if (customOverlayRenderer) {
+    color = "white";
   }
 
   const onClick = getOnClick({
@@ -60,14 +63,15 @@ function getRenderedItem({ entID, points, data, setActiveEntID }) {
         x={x}
         y={y / Math.cos(Math.PI / 6)}
         color={Color.getTextColor(color, opacity)}
-        label={allRegionIdx[entID].name}
+        label={customOverlayRenderer ? "" : allRegionIdx[entID].name}
         onClick={onClick}
       />
     ),
+    renderedCustom: customOverlayRenderer ? customOverlayRenderer({entID, x, y: y / Math.cos(Math.PI / 6)}) : null,
   };
 }
 
-function getRenderedItems({ mapData, data, setActiveEntID }) {
+function getRenderedItems({ mapData, data, setActiveEntID, customOverlayRenderer }) {
   const { idx } = mapData;
 
   return Object.entries(idx).map(function ([entID, points]) {
@@ -77,17 +81,18 @@ function getRenderedItems({ mapData, data, setActiveEntID }) {
 
       data,
       setActiveEntID,
+      customOverlayRenderer,
     });
   });
 }
 
-export default function SVGHexMapShapes({ mapData }) {
+export default function SVGHexMapShapes({ mapData, customOverlayRenderer }) {
   const { setActiveEntID } = useBasePageHandlerContext();
   const data = useDataContext();
   if (!data) {
     return null;
   }
-  const renderedItems = getRenderedItems({ mapData, data, setActiveEntID });
+  const renderedItems = getRenderedItems({ mapData, data, setActiveEntID, customOverlayRenderer });
 
   return (
     <g>
@@ -97,6 +102,10 @@ export default function SVGHexMapShapes({ mapData }) {
       {renderedItems.map(function ({ renderedLabel }, i) {
         return <g key={"label" + i}>{renderedLabel}</g>;
       })}
+      {renderedItems.map(function ({ renderedCustom }, i) {
+        return <g key={"custom" + i}>{renderedCustom}</g>;
+      })}
+
     </g>
   );
 }

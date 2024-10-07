@@ -1,10 +1,10 @@
 import SVGHexMapShapes from "./SVGHexMapShapes";
 import SVGHexMapBoundaries from "./SVGHexMapBoundaries";
 
-export default function SVGHexMap({ mapData }) {
+export default function SVGHexMap({ mapData, customOverlayRenderer }) {
   return (
     <g>
-      <SVGHexMapShapes mapData={mapData} />
+      <SVGHexMapShapes mapData={mapData} customOverlayRenderer={customOverlayRenderer} />
       <SVGHexMapBoundaries mapData={mapData} />
     </g>
   );

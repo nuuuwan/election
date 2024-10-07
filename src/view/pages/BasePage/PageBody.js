@@ -7,7 +7,6 @@ import {
   CustomAlert,
   IfElse,
   NoResultsAlert,
-  ProjectionView,
   HexMapView,
   LatestResultListView,
   AggregatedResultView,

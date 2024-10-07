@@ -1,4 +1,4 @@
-import { MathX, Party, Seats, Translate } from "../../nonview";
+import { MathX, Party, Seats, SeatsUtils, Translate } from "../../nonview";
 
 import { Stack, Typography } from "@mui/material";
 
@@ -16,27 +16,15 @@ export default function SeatsBarChart({ resultsElection, entID }) {
   if (!electionProjected) {
     return null;
   }
-
   const seats = Seats.fromElection(electionProjected);
-
   const partyToSeats = seats.getPartyToSeats(entID);
   if (!partyToSeats) {
     return null;
   }
 
-  const entries = Object.entries(partyToSeats).sort(function (a, b) {
-    if (a[0] === Party.ERROR.id) {
-      return 1;
-    }
-    if (b[0] === Party.ERROR.id) {
-      return -1;
-    }
-    return b[1] - a[1];
-  });
+  const entries = Object.entries(SeatsUtils.sortPartyToSeats(partyToSeats));
   const totalSeats = MathX.sum(Object.values(partyToSeats));
-
   const isComplete = electionDisplay.isComplete(entID, entIdx);
-
   const dataList = entries.map(function ([partyID, seats]) {
     const party = Party.fromID(partyID);
     return {

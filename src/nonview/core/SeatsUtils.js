@@ -2,7 +2,8 @@ import MathX from "../base/MathX";
 import Party from "./Party";
 
 export default class SeatsUtils {
-  static getGenericPartyToSeats(result, nSeatsAll, nSeatsBonus, pLimit) {
+
+  static getFilteredPartyToSeats(result, pLimit) {
     const partyToVotes = result.partyToVotes.partyToVotes;
     const totalVotes = result.partyToVotes.totalVotes;
     const voteLimit = totalVotes * pLimit;
@@ -11,6 +12,10 @@ export default class SeatsUtils {
         ([partyID, votes]) => votes >= voteLimit
       )
     );
+    return {filteredPartyToVotes,partyToVotes}
+  }
+
+  static getPartyToSeatsF(filteredPartyToVotes , nSeatsAll, nSeatsBonus) {
     const filteredTotalVotes = MathX.sum(Object.values(filteredPartyToVotes));
 
     const nSeatsNonBonus = nSeatsAll - nSeatsBonus;
@@ -21,6 +26,11 @@ export default class SeatsUtils {
       ])
     );
 
+    return partyToSeatsF;
+
+  }
+
+  static getPartyToSeats(partyToSeatsF, nSeatsNonBonus) {
     let partyToSeats = Object.fromEntries(
       Object.entries(partyToSeatsF).map(([partyID, seatsF]) => [
         partyID,
@@ -45,13 +55,21 @@ export default class SeatsUtils {
         return acc;
       }, partyToSeats);
 
+      return partyToSeats;
+  }
+
+
+  static getGenericPartyToSeats(result, nSeatsAll, nSeatsBonus, pLimit) {
+    const {filteredPartyToVotes,partyToVotes} = SeatsUtils.getFilteredPartyToSeats(result,  pLimit);
+    const partyToSeatsF = SeatsUtils.getPartyToSeatsF(filteredPartyToVotes, nSeatsAll, nSeatsBonus);
+    const partyToSeats = SeatsUtils.getPartyToSeats(partyToSeatsF, nSeatsAll - nSeatsBonus);
+
     const winningPartyID = result.partyToVotes.winningPartyID;
     partyToSeats[winningPartyID] += nSeatsBonus;
 
     const unsorted = Object.fromEntries(
       Object.entries(partyToSeats)
         .filter(([partyID, seats]) => seats > 0)
-        .sort(([partyID1, seats1], [partyID2, seats2]) => seats2 - seats1)
     );
 
     return SeatsUtils.sortPartyToSeats(unsorted, partyToVotes);

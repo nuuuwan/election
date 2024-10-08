@@ -75,8 +75,6 @@ export default class Seats {
     {});
   }
 
-
-
   get partyToSeats() {
     return SeatsUtils.aggregatePartyToSeats(
       Object.values(this.regionToPartyToSeats)

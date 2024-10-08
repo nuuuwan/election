@@ -30,9 +30,7 @@ function getContentList({ entID, activeEntID, result, electionDisplay }) {
   return [
     <Stack direction="row" gap={0.5} alignItems="center" sx={sx}>
       {num ? <Typography variant="h4">{num}.</Typography> : null}
-      <EntView
-        entID={entID}
-      />
+      <EntView entID={entID} />
     </Stack>,
 
     <PartyToVotesStatsView partyToVotes={result.partyToVotes} />,
@@ -54,7 +52,12 @@ export function CumResultsColumnView({ entID }) {
     return null;
   }
 
-  const contentList = getContentList({ entID, activeEntID, result, electionDisplay });
+  const contentList = getContentList({
+    entID,
+    activeEntID,
+    result,
+    electionDisplay,
+  });
 
   return (
     <Box sx={{ borderRadius: 4, width: 260, p: 0.5, m: 0.5 }}>

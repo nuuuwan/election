@@ -116,5 +116,4 @@ export default class SeatsUtils {
     }, {});
     return SeatsUtils.sortPartyToSeats(unsorted);
   }
-
 }

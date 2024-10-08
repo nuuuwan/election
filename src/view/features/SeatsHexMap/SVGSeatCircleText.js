@@ -1,11 +1,8 @@
 import React from "react";
 
-
-import { Party,  } from "../../../nonview";
-
+import { Party } from "../../../nonview";
 
 const R_CIRCLE = 0.33;
-
 
 export default function SVGSeatCircleText({ x, y, partyID, seats }) {
   let colorText = "white";

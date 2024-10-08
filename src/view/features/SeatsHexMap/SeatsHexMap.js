@@ -24,7 +24,6 @@ function getCustomOverlayRenderer(seats, edIdx) {
   };
 }
 
-
 export default function SeatsHexMap() {
   const data = useDataSlowContext();
   if (!data) {

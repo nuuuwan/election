@@ -82,6 +82,11 @@ import ParlimentaryFinalOutcomeView from "./features/ParlimentaryFinalOutcomeVie
 import ProjectedResultBarChart from "./features/ProjectedResultBarChart.js";
 import ProjectionViewParliamentary from "./features/ProjectionView/ProjectionViewParliamentary.js";
 import ProjectionViewPresidential from "./features/ProjectionView/ProjectionViewPresidential.js";
+import SVGNationalListLabel from "./features/SeatsHexMap/SVGNationalListLabel.js";
+import SVGSeatCircle from "./features/SeatsHexMap/SVGSeatCircle.js";
+import SVGSeatCircleCircle from "./features/SeatsHexMap/SVGSeatCircleCircle.js";
+import SVGSeatCircleText from "./features/SeatsHexMap/SVGSeatCircleText.js";
+import SVGSeatCircles from "./features/SeatsHexMap/SVGSeatCircles.js";
 import SeatsHexMap from "./features/SeatsHexMap/SeatsHexMap.js";
 import BasePage from "./pages/BasePage/BasePage.js";
 import BasePageHandlerProvider from "./pages/BasePage/BasePageHandlerProvider.js";
@@ -173,6 +178,11 @@ export {
   ProjectedResultBarChart,
   ProjectionViewParliamentary,
   ProjectionViewPresidential,
+  SVGNationalListLabel,
+  SVGSeatCircle,
+  SVGSeatCircleCircle,
+  SVGSeatCircleText,
+  SVGSeatCircles,
   SeatsHexMap,
   BasePage,
   BasePageHandlerProvider,

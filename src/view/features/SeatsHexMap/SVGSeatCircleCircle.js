@@ -1,12 +1,8 @@
 import React from "react";
 
-
-import { Party,  } from "../../../nonview";
-
+import { Party } from "../../../nonview";
 
 const R_CIRCLE = 0.33;
-
-
 
 export default function SVGSeatCircleCircle({ cx, cy, partyID }) {
   let color = Party.fromID(partyID).color;

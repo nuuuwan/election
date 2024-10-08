@@ -1,6 +1,5 @@
 import React from "react";
 
-
 export default function SVGNationalListLabel() {
   return (
     <text

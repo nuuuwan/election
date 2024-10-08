@@ -11,11 +11,7 @@ function EntViewName({ entID }) {
   const { allRegionIdx } = data;
   const ent = allRegionIdx[entID];
 
-  return (
-    <Typography variant={"h4"}>
-      {Translate(ent.name)}
-    </Typography>
-  );
+  return <Typography variant={"h4"}>{Translate(ent.name)}</Typography>;
 }
 
 function EntViewType({ entID }) {
@@ -34,11 +30,7 @@ function EntViewType({ entID }) {
   );
 }
 
-export default function EntView({
-  entID,
-  sx = {},
-
-}) {
+export default function EntView({ entID, sx = {} }) {
   return (
     <Stack
       direction={"row"}
@@ -46,7 +38,7 @@ export default function EntView({
       gap={0.5}
     >
       <EntViewName entID={entID} />
-      <EntViewType entID={entID}  />
+      <EntViewType entID={entID} />
     </Stack>
   );
 }

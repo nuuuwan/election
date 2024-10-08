@@ -31,6 +31,9 @@ function ProjectionViewInner() {
       </CustomAlert>
     );
   }
+  if (electionDisplay.isPresidential) {
+    return null;
+  }
 
   const finalOutcome = new FinalOutcome(
     electionProjected,

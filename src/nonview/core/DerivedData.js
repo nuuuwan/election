@@ -42,6 +42,9 @@ export default class DerivedData {
     }
 
     if (DerivedData.isValidNResultsDisplay(nResultsDisplay, election)) {
+      if (!election.baseResultList[nResultsDisplay - 1]) {
+        return null;
+      }
       return election.baseResultList[nResultsDisplay - 1].entID;
     }
 
@@ -60,6 +63,9 @@ export default class DerivedData {
 
   static getPredictedElection(election, electionDisplay, entIdx, elections) {
     const releasedEntIDList = electionDisplay.baseEntIDList;
+    if (releasedEntIDList.length === 0) {
+      return null;
+    }
     const nonReleasedEntIDList = Object.keys(entIdx).filter(
       (entID) => !releasedEntIDList.includes(entID)
     );

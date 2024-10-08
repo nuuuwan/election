@@ -14,6 +14,7 @@ import TabSelector from "./base/TabSelector.js";
 import CitationsView from "./core/CitationsView.js";
 import ClockView from "./core/ClockView.js";
 import CustomStack from "./core/CustomStack.js";
+import DisplaySlider from "./core/DisplaySlider.js";
 import ElectionSmallTitle from "./core/ElectionSmallTitle.js";
 import HiddenDataView from "./core/HiddenDataView.js";
 import NoResultsAlert from "./core/NoResultsAlert.js";
@@ -104,6 +105,7 @@ export {
   CitationsView,
   ClockView,
   CustomStack,
+  DisplaySlider,
   ElectionSmallTitle,
   HiddenDataView,
   NoResultsAlert,

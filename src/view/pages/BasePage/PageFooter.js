@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 
-import { CitationsView } from "../../../view";
+import { CitationsView, DisplaySlider } from "../../../view";
 
 const STYLE_FOOTER = {
   BOX: {
@@ -17,6 +17,7 @@ const STYLE_FOOTER = {
 export default function PageFooter() {
   return (
     <Box sx={STYLE_FOOTER.BOX}>
+      <DisplaySlider />
       <CitationsView />
     </Box>
   );

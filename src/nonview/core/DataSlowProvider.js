@@ -30,15 +30,14 @@ async function getElectionValuesSlow({
       election
     );
 
-    let electionProjected = null;
-    if (nResultsDisplay > 0 && electionPrevious) {
-      electionProjected = DerivedData.getPredictedElection(
+
+      const electionProjected = DerivedData.getPredictedElection(
         election,
         electionDisplay,
         entIdx,
         elections
       );
-    }
+
     return { elections, electionPrevious, electionProjected };
   };
   return await Timer.logAsync(

@@ -19,16 +19,18 @@ export default class ElectionBase {
     this.isLoaded = false; // meta
   }
 
+  get isPresidential() {
+    return this.electionType === "Presidential";
+  }
+
   get electionTypeTitle() {
-    if (this.electionType === "Presidential") {
+    if (this.isPresidential) {
       return "Presidential";
     }
     return "Parliamentary";
   }
 
-  get isPresidential() {
-    return this.electionType === "Presidential";
-  }
+
 
   get title() {
     if (this.date === "2024-09-22") {

@@ -6,7 +6,7 @@ const BasePageHandlerProviderContext = createContext();
 export default function BasePageHandlerProvider({ children, handlers }) {
   return (
     <BasePageHandlerProviderContext.Provider value={handlers}>
-      {handlers ? children: <CustomLoadingProgress />}
+      {handlers ? children : <CustomLoadingProgress />}
     </BasePageHandlerProviderContext.Provider>
   );
 }

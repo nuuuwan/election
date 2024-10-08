@@ -16,11 +16,7 @@ async function getElections() {
   );
 }
 
-async function getElectionValuesSlow({
-  election,
-  electionDisplay,
-  entIdx,
-}) {
+async function getElectionValuesSlow({ election, electionDisplay, entIdx }) {
   const inner = async function () {
     const elections = await getElections();
 

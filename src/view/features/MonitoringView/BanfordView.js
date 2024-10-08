@@ -36,7 +36,6 @@ function getDataSet(data) {
 function BanfordBarChart() {
   const data = useDataContext();
 
-
   const { dataset, totalN } = getDataSet(data);
 
   return (

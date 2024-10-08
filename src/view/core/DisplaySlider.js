@@ -31,11 +31,11 @@ export default function DisplaySlider() {
         onChangeCommitted={onChangeCommitted}
       />
       <Stack direction="row" gap={0} alignItems="center">
-      <Typography variant="h5">{valueDisplay || nResultsDisplay}</Typography>
-      <Typography variant="body1" sx={{ color: "#888" }}>
-        {"/182"}
-      </Typography>
+        <Typography variant="h5">{valueDisplay || nResultsDisplay}</Typography>
+        <Typography variant="body1" sx={{ color: "#888" }}>
+          {"/182"}
+        </Typography>
       </Stack>
-    </Stack>  
+    </Stack>
   );
 }

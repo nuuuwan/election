@@ -21,8 +21,6 @@ function EntViewName({ entID, num, isSmall }) {
 }
 
 function EntViewType({ entID, isSmall }) {
-
-
   if (!entID) {
     return null;
   }

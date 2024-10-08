@@ -3,7 +3,7 @@ import React, { useState, useEffect, createContext, useContext } from "react";
 import { Ent, EntType, Timer } from "..";
 import { CustomURLContext, DerivedData, Election } from "..";
 import { GROUP_ID_TO_PD_ID_LIST } from "..";
-import {CustomLoadingProgress} from "../../view";
+import { CustomLoadingProgress } from "../../view";
 const DataContext = createContext();
 
 export async function getEntValues() {

@@ -3,6 +3,7 @@ import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 import { RefreshButton } from "../../../view";
 import { CustomMenu } from "../../../view";
 import { useDataSlowContext } from "../../../nonview/core/DataSlowProvider";
+import { Translate } from "../../../nonview";
 
 const STYLE_PAGE_HEADER = {
   SELECTOR: {
@@ -22,9 +23,9 @@ function PageHeaderTitle() {
   const data = useDataSlowContext();
   let label = "Sri Lankan Elections";
   if (data) {
-    const { electionProjected } = data;
+    const { electionProjected, nResultsDisplay } = data;
     if (electionProjected) {
-      label = electionProjected.title;
+      label = Translate(electionProjected.title) + ` (${nResultsDisplay})`;
     }
   }
   return <Typography variant="h4">{label}</Typography>;

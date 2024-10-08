@@ -12,22 +12,25 @@ export default function ParliamentViewCircle({ partyID, seats }) {
     color = "gray";
   }
 
-  const DIM = 24;
+  const dim = 34;
+  const fontSize = dim * 0.5;
   return (
     <Box
       key={partyID}
       sx={{
-        width: DIM,
-        height: DIM,
+        width: dim,
+        height: dim,
         background,
         margin: 0.1,
         padding: 0,
-        borderRadius: DIM / 2,
+        borderRadius: dim / 2,
         border,
-        textAlign: "center",
+     
+        alignItems: "center",
+        alignContent: "center",
       }}
     >
-      <Typography variant="h6" sx={{ color }}>
+      <Typography variant="h5" sx={{ color, fontSize }}>
         {seats}
       </Typography>
     </Box>

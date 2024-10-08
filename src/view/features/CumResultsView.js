@@ -39,7 +39,7 @@ function getContentList({ entID, result, electionDisplay }) {
 
 export function CumResultsColumnView({ entID }) {
   const data = useDataContext();
-  const { electionDisplay, activeEntID } = data;
+  const { electionDisplay } = data;
   const result = electionDisplay.resultIdx[entID];
   if (!result) {
     return null;
@@ -47,13 +47,8 @@ export function CumResultsColumnView({ entID }) {
 
   const contentList = getContentList({ entID, result, electionDisplay });
 
-  const isActiveEnt = activeEntID === entID;
-  const backgroundColor = isActiveEnt
-    ? Color.getColorWithAlpha(result.color, 0.1)
-    : "white";
-
   return (
-    <Box sx={{ backgroundColor, borderRadius: 4, width: 240, p: 0.5, m: 0.5 }}>
+    <Box sx={{ borderRadius: 4, width: 240, p: 0.5, m: 0.5 }}>
       {contentList.map(function (content, i) {
         return (
           <Box

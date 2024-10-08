@@ -18,7 +18,6 @@ async function getElections() {
 
 async function getElectionValuesSlow({
   election,
-  nResultsDisplay,
   electionDisplay,
   entIdx,
 }) {
@@ -41,7 +40,7 @@ async function getElectionValuesSlow({
   };
   return await Timer.logAsync(
     "DataSlowProvider.getElectionValuesSlow",
-    500,
+    1000,
     inner
   );
 }
@@ -50,12 +49,11 @@ async function getValue(state, data) {
   if (!data) {
     return null;
   }
-  const { election, nResultsDisplay, electionDisplay, entIdx } = data;
+  const { election, electionDisplay, entIdx } = data;
 
   const { elections, electionPrevious, electionProjected } =
     await getElectionValuesSlow({
       election,
-      nResultsDisplay,
       electionDisplay,
       entIdx,
     });

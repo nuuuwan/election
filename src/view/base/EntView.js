@@ -2,6 +2,8 @@ import { Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { EntType, Translate } from "../../nonview";
 
+const VARIANT = "h5";
+
 function EntViewName({ entID }) {
   const data = useDataContext();
   if (!data || !entID) {
@@ -11,7 +13,7 @@ function EntViewName({ entID }) {
   const { allRegionIdx } = data;
   const ent = allRegionIdx[entID];
 
-  return <Typography variant={"h4"}>{Translate(ent.name)}</Typography>;
+  return <Typography variant={VARIANT}>{Translate(ent.name)}</Typography>;
 }
 
 function EntViewType({ entID }) {
@@ -24,7 +26,7 @@ function EntViewType({ entID }) {
   const label = entType.shortName;
 
   return (
-    <Typography variant="h4" sx={{ opacity: 0.5 }}>
+    <Typography variant={VARIANT} sx={{ opacity: 0.5 }}>
       {Translate(label)}
     </Typography>
   );

@@ -9,7 +9,7 @@ import {
 } from "../../view";
 import { EntView, ResultsReleasedView, ElectionSmallTitle } from "../../view";
 
-function getContentList({ entID, activeEntID, result, electionDisplay }) {
+function getContentList({ entID, result, electionDisplay }) {
   const baseEntIDList = electionDisplay.baseEntIDList;
   const iEnt = baseEntIDList.indexOf(entID);
   let num = null;
@@ -20,15 +20,12 @@ function getContentList({ entID, activeEntID, result, electionDisplay }) {
   let color = result.color;
   let background = "white";
 
-  if (entID === activeEntID) {
-    [color, background] = [background, color];
-  }
 
   const sx = { color, background, p: 1, borderRadius: 1 };
 
   return [
     <Stack direction="row" gap={0.5} alignItems="center" sx={sx}>
-      {num ? <Typography variant="h4">{num}.</Typography> : null}
+      {num ? <Typography variant="h5">{num}.</Typography> : null}
       <EntView entID={entID} />
     </Stack>,
 

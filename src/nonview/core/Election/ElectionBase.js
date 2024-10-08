@@ -30,8 +30,6 @@ export default class ElectionBase {
     return "Parliamentary";
   }
 
-
-
   get title() {
     if (this.date === "2024-09-22") {
       return "2024 Presidential (2nd Count)";

@@ -7,7 +7,7 @@ function SVGBarChartSegment({ data, formatValue, pHeight }) {
   const formattedValue = formatValue(data.value);
 
   let transform = null;
-  const fontSize = Math.min(data.x, pHeight) * 0.5;
+  const fontSize = Math.min(0.15, data.x, pHeight) * 0.8;
   if (data.x < pHeight) {
     transform = `rotate(-90, ${data.cumX + data.x / 2}, ${pHeight * 0.5})`;
   }
@@ -24,7 +24,7 @@ function SVGBarChartSegment({ data, formatValue, pHeight }) {
       />
       <text
         x={data.cumX + data.x / 2}
-        y={pHeight / 2}
+        y={pHeight * 0.5 + fontSize * 0.1}
         textAnchor="middle"
         dominantBaseline="middle"
         fontSize={fontSize}
@@ -49,8 +49,8 @@ export default function SVGBarChart({ dataList, formatValue, sx = {} }) {
     return extendedData;
   });
 
-  const width = sx.width || 220;
-  const height = sx.height || 55;
+  const width = sx.width || 240;
+  const height = sx.height || 60;
   const pHeight = height / width;
   const viewBox = `0 0 1 ${pHeight}`;
   return (

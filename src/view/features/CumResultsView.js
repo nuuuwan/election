@@ -1,4 +1,4 @@
-import { Box, TableCell, TableRow } from "@mui/material";
+import { Box, Stack, TableCell, TableRow, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
 import { Color } from "../../nonview";
@@ -10,7 +10,7 @@ import {
 } from "../../view";
 import { EntView, ResultsReleasedView, ElectionSmallTitle } from "../../view";
 
-function getContentList({ entID, result, electionDisplay }) {
+function getContentList({ entID, activeEntID, result, electionDisplay }) {
   const baseEntIDList = electionDisplay.baseEntIDList;
   const iEnt = baseEntIDList.indexOf(entID);
   let num = null;
@@ -18,13 +18,22 @@ function getContentList({ entID, result, electionDisplay }) {
     num = iEnt + 1;
   }
 
+  let color = result.color;
+  let background = "white";
+
+  if (entID === activeEntID) {
+    [color, background] = [background, color];
+  }
+
+  const sx = { color, background, p: 1, borderRadius: 1 };
+
   return [
-    <EntView
-      entID={entID}
-      useLongName={false}
-      sx={{ color: result.color, p: 0.5 }}
-      num={num}
-    />,
+    <Stack direction="row" gap={0.5} alignItems="center" sx={sx}>
+      {num ? <Typography variant="h4">{num}.</Typography> : null}
+      <EntView
+        entID={entID}
+      />
+    </Stack>,
 
     <PartyToVotesStatsView partyToVotes={result.partyToVotes} />,
     <ResultBarChart resultsElection={electionDisplay} entID={entID} />,
@@ -39,16 +48,16 @@ function getContentList({ entID, result, electionDisplay }) {
 
 export function CumResultsColumnView({ entID }) {
   const data = useDataContext();
-  const { electionDisplay } = data;
+  const { electionDisplay, activeEntID } = data;
   const result = electionDisplay.resultIdx[entID];
   if (!result) {
     return null;
   }
 
-  const contentList = getContentList({ entID, result, electionDisplay });
+  const contentList = getContentList({ entID, activeEntID, result, electionDisplay });
 
   return (
-    <Box sx={{ borderRadius: 4, width: 240, p: 0.5, m: 0.5 }}>
+    <Box sx={{ borderRadius: 4, width: 260, p: 0.5, m: 0.5 }}>
       {contentList.map(function (content, i) {
         return (
           <Box

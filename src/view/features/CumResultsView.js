@@ -1,7 +1,6 @@
 import { Box, Stack, TableCell, TableRow, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
-import { Color } from "../../nonview";
 import {
   ResultBarChart,
   HistoryView,

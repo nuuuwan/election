@@ -43,9 +43,7 @@ function AggregatedResultListTableView({ sortedEntIDs, isPresidential }) {
     "Release Status",
   ];
 
-  if (!isPresidential) {
-    labels = labels.concat(["Seats"]);
-  }
+
   return (
     <TableContainer>
       <Table>

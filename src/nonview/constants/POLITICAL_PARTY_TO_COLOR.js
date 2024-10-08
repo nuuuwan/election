@@ -4,7 +4,7 @@ const COLOR_TO_POLITICAL_PARTIES = {
 
   "#804": ["SLPP"],
   "#f80": ["ACTC", "Ind-R"],
-  "#f90": ["JHU", "SU", "OPPP"],
+  "#f99": ["JHU", "SU", "OPPP"],
 
   "#f00": [
     "JVP",
@@ -21,9 +21,15 @@ const COLOR_TO_POLITICAL_PARTIES = {
   ],
   "#f60": ["TULF"],
   "#fc0": ["ITAK"],
-  "#fa0": ["AITC", "AITM", "EPDP"],
-  "#c00": ["TMTK"],
-  "#086": ["MNA", "SLMC", "NUA", "NC"],
+  "#f30": ["EPDP"],
+  "#fa0": ["AITC", "AITM"],
+  "#c06": ["TMTK"],
+
+  "#08c": ["MNA"],
+  "#088": ["SLMC"],
+  "#0c8": ["NUA"],
+  "#0cc": ["NC"],
+  
   "#096": ["ACMC"],
   "#808": ["SLMP"],
   "#666": ["Other"],

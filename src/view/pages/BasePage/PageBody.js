@@ -18,6 +18,7 @@ import {
   CustomLoadingProgress,
   ProjectionViewPresidential,
   ProjectionViewParliamentary,
+  ElectionSmallTitle,
 } from "../..";
 
 const STYLE = {
@@ -104,6 +105,7 @@ export default function PageBody() {
           <CustomPageBodyGridItem>
             <ResultsReleasedTitleNumber />
             <HexMapView />
+            <ElectionSmallTitle />
             <HexagonClickAlert />
           </CustomPageBodyGridItem>
 

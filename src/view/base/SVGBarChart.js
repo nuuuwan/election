@@ -49,8 +49,8 @@ export default function SVGBarChart({ dataList, formatValue, sx = {} }) {
     return extendedData;
   });
 
-  const width = sx.width || 200;
-  const height = sx.height || 40;
+  const width = sx.width || 220;
+  const height = sx.height || 55;
   const pHeight = height / width;
   const viewBox = `0 0 1 ${pHeight}`;
   return (

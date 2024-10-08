@@ -33,7 +33,7 @@ function SVGSeatCircleText({ x, y, partyID, seats }) {
 
 function SVGSeatCircleCircle({ cx, cy, partyID }) {
   let color = Party.fromID(partyID).color;
-  let stroke = null;
+  let stroke = "#fff";
   let strokeDasharray = null;
 
   if (partyID === Party.ERROR.id) {
@@ -70,10 +70,11 @@ function SVGSeatCircle({ i, n, x, y, partyID, seats }) {
 
 function SVGSeatCircles({ x, y, partyToSeats, label }) {
   label = StringX.getShortLabel(label);
-  const n = Object.keys(partyToSeats).length;
+  const n = Object.keys(partyToSeats).length; 
 
   return (
     <g>
+
       {Object.entries(partyToSeats)
         .reverse()
         .map(function ([partyID, seats], i) {
@@ -89,16 +90,7 @@ function SVGSeatCircles({ x, y, partyToSeats, label }) {
             />
           );
         })}
-      <text
-        x={x}
-        y={y}
-        textAnchor="middle"
-        dominantBaseline="middle"
-        fill="gray"
-        fontSize={0.15}
-      >
-        {label}
-      </text>
+
     </g>
   );
 }
@@ -133,7 +125,7 @@ export default function SeatsHexMap() {
 
   return (
     <svg
-      viewBox={"-0.5 -1 8.5 8.75"}
+      viewBox={"-1.5 -0.75 9.5 8.5"}
       fontFamily={THEME_DATA.typography.fontFamily}
     >
       <SVGHexMap

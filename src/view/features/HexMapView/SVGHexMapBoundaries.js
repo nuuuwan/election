@@ -1,14 +1,12 @@
 export default function SVGHexMapBoundaries({ mapData }) {
   const { idx2 } = mapData;
 
-  const nGroups = Object.keys(idx2).length;
   return Object.entries(idx2).map(function (
     [groupType, groupIDToPolygons],
     iGroup
   ) {
-    const iStyle = nGroups - iGroup - 1;
-    const strokeWidth = [1, 0.6, 0.36][iStyle] * 0.06;
-    const stroke = "gray";
+    const strokeWidth = 0.05;
+    const stroke = ['#888', '#444', '#000'][iGroup];
 
     return Object.entries(groupIDToPolygons).map(function ([
       groupID,

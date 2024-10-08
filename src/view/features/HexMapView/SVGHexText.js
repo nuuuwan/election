@@ -1,6 +1,6 @@
 import { Translate, StringX } from "../../../nonview";
 
-export default function SVGHexText({ x, y, color, label, onClick }) {
+export default function SVGHexText({ x, y, color, label, onClick, isSmall }) {
   label = label.replace("Postal ", "");
   label = label.replace("-", " ");
   const translatedLabel = Translate(label);
@@ -10,11 +10,10 @@ export default function SVGHexText({ x, y, color, label, onClick }) {
     <text
       onClick={onClick}
       x={x}
-      y={y + 0.1}
-      fontSize={StringX.getFontSize(shortLabel)}
+      y={y}
+      fontSize={StringX.getFontSize(shortLabel) / (isSmall ? 3 : 1)}
       textAnchor="middle"
-      alignmentBaseline="center"
-      dominantBaseline="center"
+      dominantBaseline="middle"
       fill={color}
     >
       <title>{translatedLabel}</title>

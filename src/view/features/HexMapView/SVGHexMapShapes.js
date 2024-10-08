@@ -7,9 +7,9 @@ export default function SVGHexMapShapes({ mapData, customOverlayRenderer }) {
         const [x, y] = points[Math.floor(points.length / 2)];
 
         return (
-          <g>
+          <g key={"hex" + i}>
             <SVGHexMapShape
-              key={"hex" + i}
+              
               entID={entID}
               points={points}
               x={x}

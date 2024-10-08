@@ -21,7 +21,7 @@ function EntViewName({ entID, num, isSmall }) {
 }
 
 function EntViewType({ entID, isSmall }) {
-  const data = useDataContext();
+
 
   if (!entID) {
     return null;

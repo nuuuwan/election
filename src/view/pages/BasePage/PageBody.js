@@ -15,7 +15,6 @@ import {
   DisclaimerView,
   ResultsReleasedTitlePercent,
   ResultsReleasedTitleNumber,
-  CustomLoadingProgress,
   ProjectionViewPresidential,
   ProjectionViewParliamentary,
   ElectionSmallTitle,

@@ -136,7 +136,14 @@ export default function SeatsHexMap() {
         partyToSeats={seats.lkPartyToSeats}
         label={"National List"}
       />
-      <text x={5} y={0} textAnchor="middle" dominantBaseline="middle" fontSize={0.125} fill="#ccc">
+      <text
+        x={5}
+        y={0}
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fontSize={0.125}
+        fill="#ccc"
+      >
         NL
       </text>
     </svg>

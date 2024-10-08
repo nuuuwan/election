@@ -25,25 +25,14 @@ function getOnClick({
   };
 }
 
-function getColor({
-  electionDisplay,
-  entID,
-  entIdx,
-  result,
-}) {
+function getColor({ electionDisplay, entID, entIdx, result }) {
   if (electionDisplay.isComplete(entID, entIdx) && result) {
     return result.color;
   }
   return "ghostwhite";
 }
 
-function getOpacity({
-  electionDisplay,
-  entID,
-  entIdx,
-  result,
-
-}) {
+function getOpacity({ electionDisplay, entID, entIdx, result }) {
   if (electionDisplay.isComplete(entID, entIdx) && result) {
     return Color.getOpacity(result.pWinner);
   }
@@ -53,7 +42,8 @@ function getOpacity({
 export default function SVGHexMapShape({
   entID,
   points,
-  x,y,
+  x,
+  y,
   customOverlayRenderer,
 }) {
   const { setActiveEntID } = useBasePageHandlerContext();
@@ -76,17 +66,15 @@ export default function SVGHexMapShape({
 
   return (
     <g onClick={onClick}>
-      <SVGHexPolygonGroup
-        points={points}
-        color={color}
-        opacity={opacity}
-      />
-      {customOverlayRenderer ? null : <SVGHexText
-        x={x}
-        y={y / Math.cos(Math.PI / 6)}
-        color={Color.getTextColor(color, opacity)}
-        label={allRegionIdx[entID].name}
-      />}
+      <SVGHexPolygonGroup points={points} color={color} opacity={opacity} />
+      {customOverlayRenderer ? null : (
+        <SVGHexText
+          x={x}
+          y={y / Math.cos(Math.PI / 6)}
+          color={Color.getTextColor(color, opacity)}
+          label={allRegionIdx[entID].name}
+        />
+      )}
     </g>
   );
 }

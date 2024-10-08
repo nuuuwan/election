@@ -61,6 +61,7 @@ import HexMapData from "./features/HexMapView/HexMapData/HexMapData.js";
 import HexMapView from "./features/HexMapView/HexMapView.js";
 import SVGHexMap from "./features/HexMapView/SVGHexMap.js";
 import SVGHexMapBoundaries from "./features/HexMapView/SVGHexMapBoundaries.js";
+import SVGHexMapShape from "./features/HexMapView/SVGHexMapShape.js";
 import SVGHexMapShapes from "./features/HexMapView/SVGHexMapShapes.js";
 import SVGHexPolygon from "./features/HexMapView/SVGHexPolygon.js";
 import SVGHexPolygonGroup from "./features/HexMapView/SVGHexPolygonGroup.js";
@@ -150,6 +151,7 @@ export {
   HexMapView,
   SVGHexMap,
   SVGHexMapBoundaries,
+  SVGHexMapShape,
   SVGHexMapShapes,
   SVGHexPolygon,
   SVGHexPolygonGroup,

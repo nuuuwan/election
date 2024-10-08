@@ -2,7 +2,6 @@ import { Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { EntType, Translate } from "../../nonview";
 
-
 function EntViewName({ entID, num, isSmall }) {
   const data = useDataContext();
   if (!data || !entID) {
@@ -54,11 +53,7 @@ export default function EntView({
       sx={Object.assign({ alignItems: "center" }, sx)}
       gap={0.5}
     >
-      <EntViewName
-        entID={entID}
-        num={num}
-        isSmall={isSmall}
-      />
+      <EntViewName entID={entID} num={num} isSmall={isSmall} />
       <EntViewType entID={entID} isSmall={isSmall} />
     </Stack>
   );

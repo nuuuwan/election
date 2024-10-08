@@ -27,9 +27,6 @@ function getResultList({ allRegionIdx, electionDisplay, activeEntID }) {
 
 export default function LatestResultListView() {
   const data = useDataContext();
-  if (!data) {
-    return null;
-  }
   const { allRegionIdx, electionDisplay, activeEntID } = data;
 
   const resultList = getResultList({

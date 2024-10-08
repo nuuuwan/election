@@ -12,9 +12,6 @@ import CustomLoadingProgress from "../../base/CustomLoadingProgress";
 
 function FinalOutcomeViewComplexPref({ finalOutcome }) {
   const data = useDataContext();
-  if (!data) {
-    return null;
-  }
 
   const { electionDisplay } = data;
 

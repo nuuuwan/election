@@ -34,9 +34,6 @@ export default function SVGHexMapShape({
 }) {
   const { setActiveEntID } = useBasePageHandlerContext();
   const data = useDataContext();
-  if (!data) {
-    return null;
-  }
   const { electionDisplay, allRegionIdx, entIdx } = data;
   const result = electionDisplay.resultIdx[entID];
   const isReallyComplete = electionDisplay.isComplete(entID, entIdx) && result;

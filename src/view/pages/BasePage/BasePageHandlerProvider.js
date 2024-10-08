@@ -1,11 +1,12 @@
 import { createContext, useContext } from "react";
+import CustomLoadingProgress from "../../base/CustomLoadingProgress";
 
 const BasePageHandlerProviderContext = createContext();
 
 export default function BasePageHandlerProvider({ children, handlers }) {
   return (
     <BasePageHandlerProviderContext.Provider value={handlers}>
-      {children}
+      {handlers ? children: <CustomLoadingProgress />}
     </BasePageHandlerProviderContext.Provider>
   );
 }

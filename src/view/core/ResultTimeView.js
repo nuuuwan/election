@@ -10,9 +10,6 @@ export default function ResultTimeView({
   bigMode = false,
 }) {
   const data = useDataContext();
-  if (!data) {
-    return null;
-  }
   const { electionDisplay } = data;
   if (!electionDisplay.resultIdx) {
     return null;

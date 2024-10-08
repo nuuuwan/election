@@ -77,7 +77,7 @@ export default function DataSlowProvider({ children, state }) {
         const value = await getValue(state, data);
         setValue(value);
       };
-      Timer.logAsync("DataSlowProvider.loadValue", 500, loadValue);
+      Timer.logAsync("DataSlowProvider.loadValue", 1000, loadValue);
     },
     [state, data]
   );

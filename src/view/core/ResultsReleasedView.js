@@ -24,9 +24,6 @@ function ResultsReleasedViewPElectors({ entID }) {
 
 export default function ResultsReleasedView({ entID }) {
   const data = useDataContext();
-  if (!data) {
-    return null;
-  }
   const { electionDisplay, entIdx } = data;
 
   const { nResultsTotal, nResultsReleased } =

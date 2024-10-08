@@ -50,9 +50,6 @@ function getViewBox(baseEntType) {
 
 export default function HexMapView() {
   const data = useDataContext();
-  if (!data) {
-    return null;
-  }
   const { electionDisplay } = data;
 
   const partyToWins = electionDisplay.getPartyToWins();

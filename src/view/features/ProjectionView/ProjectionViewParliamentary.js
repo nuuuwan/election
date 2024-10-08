@@ -40,7 +40,7 @@ function ProjectionViewInner() {
     electionDisplay.nResults
   );
 
-  if (finalOutcome.isTooMuchError) {
+  if (finalOutcome.isTooMuchError || finalOutcome.isTooEarlyToCall) {
     return <InsightErrorMarginTooHigh />;
   }
 

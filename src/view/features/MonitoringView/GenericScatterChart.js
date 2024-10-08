@@ -75,9 +75,10 @@ function getGenericAxis(election, formatStatInner) {
 
 export default function GenericScatterChart({ getValue, formatStat }) {
   const data = useDataSlowContext();
-  if (data === null) {
+  if (!data) {
     return null;
   }
+
   const { electionDisplay, electionPrevious } = data;
   if (!electionPrevious) {
     return (

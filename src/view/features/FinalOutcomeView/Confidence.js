@@ -6,9 +6,6 @@ import { useDataContext } from "../../../nonview/core/DataProvider";
 
 export default function Confidence() {
   const data = useDataContext();
-  if (!data) {
-    return null;
-  }
   const { electionDisplay, entIdx, electionPrevious } = data;
 
   const { nResultsTotal, nResultsReleased } =

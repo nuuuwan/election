@@ -27,9 +27,6 @@ const STYLE = {
 
 function HistoryAlert() {
   const data = useDataContext();
-  if (!data) {
-    return null;
-  }
   const { nResultsDisplay, electionPrevious } = data;
 
   if (!electionPrevious) {
@@ -85,9 +82,6 @@ function CustomPageBodyGridItem({ children }) {
 
 export default function PageBody() {
   const data = useDataContext();
-  if (!data) {
-    return <CustomLoadingProgress />;
-  }
   const { electionDisplay } = data;
 
   return (

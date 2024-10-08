@@ -1,18 +1,13 @@
 import Time from "./Time";
 
 export default class Timer {
-  static ERROR_MULT = 2;
+  static ERROR_MULT = 1;
 
   static getLogger(maxDelta, delta) {
     if (delta < maxDelta) {
-      return console.debug;
+      return null;
     }
-
-    if (delta < Timer.ERROR_MULT * maxDelta) {
-      return console.warn;
-    }
-
-    return console.error;
+    return console.warn;
   }
 
   static async logAsync(name, maxDelta, callable) {

@@ -22,18 +22,20 @@ export default function DisplaySlider() {
   };
 
   return (
-    <Stack direction="row" gap={0} alignItems="center">
+    <Stack direction="row" gap={2} alignItems="center">
       <Slider
-        defaultValue={nResultsDisplay}
+        value={nResultsDisplay}
         min={0}
         max={182}
         onChange={onChange}
         onChangeCommitted={onChangeCommitted}
       />
+      <Stack direction="row" gap={0} alignItems="center">
       <Typography variant="h5">{valueDisplay || nResultsDisplay}</Typography>
       <Typography variant="body1" sx={{ color: "#888" }}>
         {"/182"}
       </Typography>
-    </Stack>
+      </Stack>
+    </Stack>  
   );
 }

@@ -35,9 +35,6 @@ function buildRenderMenuItemInner(resultIdx, edIdx) {
 export default function PDSelector() {
   const { setActiveEntID } = useBasePageHandlerContext();
   const data = useDataContext();
-  if (!data) {
-    return null;
-  }
   const { electionDisplay, pdIdx, edIdx, activeEntID } = data;
 
   return (

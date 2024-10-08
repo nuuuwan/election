@@ -19,9 +19,6 @@ function getXY(baseEntType) {
 
 export default function SVGLegendParty({ baseEntType }) {
   const data = useDataContext();
-  if (!data) {
-    return null;
-  }
   const { electionDisplay } = data;
   const { x, y } = getXY(baseEntType);
   return Object.keys(electionDisplay.getPartyToWins()).map(function (

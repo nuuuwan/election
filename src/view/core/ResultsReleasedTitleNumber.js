@@ -6,13 +6,7 @@ import { useDataContext } from "../../nonview/core/DataProvider";
 
 export default function ResultsReleasedTitleNumber() {
   const data = useDataContext();
-  if (!data) {
-    return (
-      <Typography variant="h4" color="gray" sx={{ marginBottom: 2 }}>
-        {Translate("Results")}
-      </Typography>
-    );
-  }
+
   const { electionDisplay } = data;
   if (electionDisplay.baseEntType === EntType.ED) {
     return null;

@@ -6,9 +6,6 @@ import CustomAlert from "../base/CustomAlert";
 import { useDataContext } from "../../nonview/core/DataProvider";
 export function ProjectionAlert() {
   const data = useDataContext();
-  if (!data) {
-    return null;
-  }
   const { electionDisplay, entIdx } = data;
 
   const entID = "LK";
@@ -38,9 +35,6 @@ export function ProjectionAlert() {
 
 export default function ProjectionTitle() {
   const data = useDataContext();
-  if (!data) {
-    return null;
-  }
   const { electionDisplay, pdIdx } = data;
 
   const entID = "LK";

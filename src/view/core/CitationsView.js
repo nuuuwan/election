@@ -4,9 +4,6 @@ import { Translate } from "../../nonview";
 import { useDataContext } from "../../nonview/core/DataProvider";
 export default function CitationsView() {
   const data = useDataContext();
-  if (!data) {
-    return null;
-  }
   const { appTime } = data;
 
   const lines = [

@@ -52,9 +52,6 @@ function getHiddenData(data) {
 
 export default function HiddenDataView() {
   const data = useDataContext();
-  if (!data) {
-    return null;
-  }
 
   if (!data.electionDisplay.nResults) {
     return null;

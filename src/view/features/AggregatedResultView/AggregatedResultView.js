@@ -17,10 +17,6 @@ export default function AggregatedResultView() {
 
   const [group, setGroup] = useState(groupList[0]);
 
-  if (!data) {
-    return null;
-  }
-
   return (
     <Box>
       <TabSelector value={group} onChange={setGroup} dataList={groupList} />

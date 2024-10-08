@@ -4,9 +4,6 @@ import { Translate } from "../../nonview";
 
 export default function TestingAlert() {
   const data = useDataContext();
-  if (!data) {
-    return null;
-  }
   const { election } = data;
   if (!election || !election.isFuture) {
     return null;

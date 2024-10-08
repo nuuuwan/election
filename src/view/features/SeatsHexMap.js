@@ -70,11 +70,10 @@ function SVGSeatCircle({ i, n, x, y, partyID, seats }) {
 
 function SVGSeatCircles({ x, y, partyToSeats, label }) {
   label = StringX.getShortLabel(label);
-  const n = Object.keys(partyToSeats).length; 
+  const n = Object.keys(partyToSeats).length;
 
   return (
     <g>
-
       {Object.entries(partyToSeats)
         .reverse()
         .map(function ([partyID, seats], i) {
@@ -90,7 +89,6 @@ function SVGSeatCircles({ x, y, partyToSeats, label }) {
             />
           );
         })}
-
     </g>
   );
 }

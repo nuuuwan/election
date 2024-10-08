@@ -34,7 +34,6 @@ function getContentList({ entID, result, electionDisplay }) {
     <HistoryView entID={entID} />,
 
     <ResultsReleasedView entID={entID} />,
-
   ];
 }
 

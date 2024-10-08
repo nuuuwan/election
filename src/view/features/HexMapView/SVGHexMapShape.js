@@ -25,7 +25,6 @@ function getOnClick({
   };
 }
 
-
 export default function SVGHexMapShape({
   entID,
   points,
@@ -42,7 +41,9 @@ export default function SVGHexMapShape({
   const result = electionDisplay.resultIdx[entID];
   const isReallyComplete = electionDisplay.isComplete(entID, entIdx) && result;
   const color = isReallyComplete ? result.color : "ghostwhite";
-  const opacity = (isReallyComplete ? Color.getOpacity(result.pWinner) : 1) / (customOverlayRenderer ? 3 : 1);
+  const opacity =
+    (isReallyComplete ? Color.getOpacity(result.pWinner) : 1) /
+    (customOverlayRenderer ? 3 : 1);
   const onClick = getOnClick({
     entID,
     setActiveEntID,
@@ -54,14 +55,13 @@ export default function SVGHexMapShape({
   return (
     <g onClick={onClick}>
       <SVGHexPolygonGroup points={points} color={color} opacity={opacity} />
-
-        <SVGHexText
-          x={x}
-          y={y / Math.cos(Math.PI / 6)}
-          color={Color.getTextColor(color, opacity)}
-          label={allRegionIdx[entID].name}
-          isSmall={customOverlayRenderer}
-        />
+      <SVGHexText
+        x={x}
+        y={y / Math.cos(Math.PI / 6)}
+        color={Color.getTextColor(color, opacity)}
+        label={allRegionIdx[entID].name}
+        isSmall={customOverlayRenderer}
+      />
       )
     </g>
   );

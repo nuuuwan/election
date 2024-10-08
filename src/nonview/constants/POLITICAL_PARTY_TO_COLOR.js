@@ -29,7 +29,7 @@ const COLOR_TO_POLITICAL_PARTIES = {
   "#088": ["SLMC"],
   "#0c8": ["NUA"],
   "#0cc": ["NC"],
-  
+
   "#096": ["ACMC"],
   "#808": ["SLMP"],
   "#666": ["Other"],

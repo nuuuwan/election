@@ -43,7 +43,6 @@ function AggregatedResultListTableView({ sortedEntIDs, isPresidential }) {
     "Release Status",
   ];
 
-
   return (
     <TableContainer>
       <Table>

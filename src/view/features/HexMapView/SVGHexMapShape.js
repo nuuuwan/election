@@ -51,7 +51,6 @@ export default function SVGHexMapShape({
     baseResultList: electionDisplay.baseResultList,
     resultIdx: electionDisplay.resultIdx,
   });
-
   return (
     <g onClick={onClick}>
       <SVGHexPolygonGroup points={points} color={color} opacity={opacity} />

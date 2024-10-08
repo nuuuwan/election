@@ -2,38 +2,21 @@ import { Stack, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { EntType, Translate } from "../../nonview";
 
-function EntViewName({ entID, num, isNationalListMode, isSmall }) {
-  const data = useDataContext();
-  if (!data) {
-    return null;
-  }
 
-  if (!entID) {
+function EntViewName({ entID, num, isSmall }) {
+  const data = useDataContext();
+  if (!data || !entID) {
     return null;
   }
 
   const { allRegionIdx } = data;
-
   const ent = allRegionIdx[entID];
 
-  if (!ent) {
-    console.error(`EntViewName: ent for ${entID} not found`);
-    return null;
-  }
-
-  let numPart = "";
-  if (num !== null) {
-    numPart = `${num}. `;
-  }
-
-  let name = ent.name;
-  if (isNationalListMode && entID === "LK") {
-    name = "National List";
-  }
+  const numPart = num ? `${num}. ` : "";
 
   return (
     <Typography variant={isSmall ? "body1" : "h5"}>
-      {numPart + Translate(name)}
+      {numPart + Translate(ent.name)}
     </Typography>
   );
 }
@@ -62,7 +45,6 @@ function EntViewType({ entID, isSmall }) {
 export default function EntView({
   entID,
   sx = {},
-  isNationalListMode = false,
   num = null,
   isSmall = false,
 }) {
@@ -75,7 +57,6 @@ export default function EntView({
       <EntViewName
         entID={entID}
         num={num}
-        isNationalListMode={isNationalListMode}
         isSmall={isSmall}
       />
       <EntViewType entID={entID} isSmall={isSmall} />

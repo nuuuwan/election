@@ -102,4 +102,19 @@ export default class SeatsUtils {
       })
     );
   }
+
+  static aggregatePartyToSeats(partyToSeatsList) {
+    const unsorted = partyToSeatsList.reduce(function (idx, partyToSeats) {
+      return Object.entries(partyToSeats).reduce(function (
+        idx,
+        [partyID, seats]
+      ) {
+        idx[partyID] = (idx[partyID] || 0) + seats;
+        return idx;
+      },
+      idx);
+    }, {});
+    return SeatsUtils.sortPartyToSeats(unsorted);
+  }
+
 }

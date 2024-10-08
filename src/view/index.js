@@ -82,7 +82,7 @@ import ParlimentaryFinalOutcomeView from "./features/ParlimentaryFinalOutcomeVie
 import ProjectedResultBarChart from "./features/ProjectedResultBarChart.js";
 import ProjectionViewParliamentary from "./features/ProjectionView/ProjectionViewParliamentary.js";
 import ProjectionViewPresidential from "./features/ProjectionView/ProjectionViewPresidential.js";
-import SeatsHexMap from "./features/SeatsHexMap.js";
+import SeatsHexMap from "./features/SeatsHexMap/SeatsHexMap.js";
 import BasePage from "./pages/BasePage/BasePage.js";
 import BasePageHandlerProvider from "./pages/BasePage/BasePageHandlerProvider.js";
 import BasePageView from "./pages/BasePage/BasePageView.js";

@@ -75,33 +75,11 @@ export default class Seats {
     {});
   }
 
-  static aggregatePartyToSeats(partyToSeatsList) {
-    const unsorted = partyToSeatsList.reduce(function (idx, partyToSeats) {
-      return Object.entries(partyToSeats).reduce(function (
-        idx,
-        [partyID, seats]
-      ) {
-        idx[partyID] = (idx[partyID] || 0) + seats;
-        return idx;
-      },
-      idx);
-    }, {});
-    return SeatsUtils.sortPartyToSeats(unsorted);
-  }
+
 
   get partyToSeats() {
-    return Seats.aggregatePartyToSeats(
+    return SeatsUtils.aggregatePartyToSeats(
       Object.values(this.regionToPartyToSeats)
-    );
-  }
-
-  get partyToSeatsMain() {
-    const partyToSeats = this.partyToSeats;
-    return Object.fromEntries(
-      Object.entries(partyToSeats).filter(
-        ([partyID, seats]) =>
-          seats > Seats.MIN_SEATS_FOR_DISPLAY && partyID !== Party.ERROR.id
-      )
     );
   }
 
@@ -139,7 +117,7 @@ export default class Seats {
         return partyToSeats;
       });
 
-    return Seats.aggregatePartyToSeats(partyToSeatsList);
+    return SeatsUtils.aggregatePartyToSeats(partyToSeatsList);
   }
 
   getPartyToSeats(entID) {

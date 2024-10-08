@@ -9,7 +9,7 @@ let FormatInt = {
     return sign + FormatInt.intHumanize(Math.abs(x));
   },
 
-  intHumanize(value) {
+  intHumanizeOld(value) {
     if (value === null || value === undefined) {
       return "";
     }
@@ -29,6 +29,35 @@ let FormatInt = {
     const scaledValue = value / scale;
 
     return scaledValue.toPrecision(3) + suffix;
+  },
+
+  intHumanize(value) {
+    if (value === null || value === undefined) {
+      return "";
+    }
+
+    if (value === 0) {
+      return 0;
+    }
+    if (value > 10_000_000) {
+      return (value / 1_000_000).toFixed(0) + "M";
+    }
+    if (value > 1_000_000) {
+      return (value / 1_000_000).toFixed(1) + "M";
+    }
+    if (value > 100_000) {
+      return 10 * (value / 10_000).toFixed(0) + "K";
+    }
+    if (value > 10_000) {
+      return  (value / 1_000).toFixed(0) + "K";
+    }
+    if (value > 1_000) {
+      return  (value / 1_000).toFixed(1) + "K";
+    }
+    if (value > 100) {
+      return 10 * (value / 100).toFixed(0);
+    }
+    return value.toString();
   },
 
   intHumanizeWithStyle(

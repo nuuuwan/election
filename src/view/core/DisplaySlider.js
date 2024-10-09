@@ -24,7 +24,7 @@ export default function DisplaySlider() {
   return (
     <Stack direction="row" gap={2} alignItems="center">
       <Slider
-        value={nResultsDisplay}
+        value={valueDisplay || nResultsDisplay}
         min={0}
         max={182}
         onChange={onChange}

@@ -1,12 +1,12 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 
-import { Ent, EntType, Timer } from "..";
+import { Cache, Ent, EntType, Timer } from "..";
 import { CustomURLContext, DerivedData, Election } from "..";
 import { GROUP_ID_TO_PD_ID_LIST } from "..";
 import { CustomLoadingProgress } from "../../view";
 const DataContext = createContext();
 
-export async function getEntValues() {
+async function getEntValuesNoCache() {
   const inner = async function () {
     const pdIdx = await Ent.idxFromType(EntType.PD);
     const edIdx = await Ent.idxFromType(EntType.ED);
@@ -29,6 +29,10 @@ export async function getEntValues() {
   };
 
   return await Timer.logAsync("DataProvider.getEntValues", 500, inner);
+}
+
+export async function getEntValues() {
+  return await Cache.get("getEntValues", getEntValuesNoCache);
 }
 
 export async function getElectionValues({
@@ -99,7 +103,7 @@ export default function DataProvider({ children, state }) {
         const value = await getValue(state);
         setValue(value);
       };
-      Timer.logAsync("DataProvider.loadValue", 500, loadValue);
+      Timer.logAsync("DataProvider.loadValue", 1000, loadValue);
     },
     [state]
   );

@@ -25,10 +25,10 @@ class ParliamentaryFinalOutcome {
     const secondPartyID = Object.keys(resultLK.partyToVotes.partyToVotes)[1];
 
     const seats = Seats.fromElection(this.election);
-    const partyToSeats = seats.totalPartyToSeats;
+    const partyToSeats = seats.getTotalPartyToSeats();
     const nSeatsMin = partyToSeats[winningPartyID];
     const nSeats2ndMax =
-      partyToSeats[secondPartyID] + (seats.partyToUFG[secondPartyID] || 0);
+      partyToSeats[secondPartyID] + (seats.getPartyToUFG()[secondPartyID] || 0);
 
     return { nSeatsMin, nSeats2ndMax, seats, winningPartyID };
   }

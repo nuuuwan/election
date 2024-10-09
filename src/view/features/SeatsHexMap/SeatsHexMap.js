@@ -50,7 +50,7 @@ export default function SeatsHexMap() {
       <SVGSeatCircles
         x={5}
         y={0}
-        partyToSeats={seats.lkPartyToSeats}
+        partyToSeats={seats.getLKPartyToSeats()}
         label={"National List"}
       />
       <SVGNationalListLabel />

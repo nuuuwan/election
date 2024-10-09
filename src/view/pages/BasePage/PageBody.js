@@ -61,7 +61,7 @@ function HexagonClickAlert() {
   );
 }
 
-function PageBelowTheFold() {
+function PageBodyBelowTheFold() {
   return (
     <Stack
       direction="column"
@@ -110,7 +110,7 @@ export default function PageBody() {
             )}
           </CustomPageBodyGridItem>
         </Grid2>
-        <PageBelowTheFold />
+        <PageBodyBelowTheFold />
       </IfElse>
     </Box>
   );

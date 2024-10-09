@@ -1,4 +1,4 @@
-import { Time, Translate } from "../..";
+import { Translate } from "../..";
 
 export default class ElectionBase {
   static URL_BASE =

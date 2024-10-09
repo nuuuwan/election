@@ -20,7 +20,6 @@ function getContentList({ entID, result, electionDisplay }) {
   let color = result.color;
   let background = "white";
 
-
   const sx = { color, background, p: 1, borderRadius: 1 };
 
   return [

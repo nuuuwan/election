@@ -92,11 +92,13 @@ export default class PartyToVotes {
     return { ...nonOther, Other: this.totalVotes - nonOtherVotes };
   }
 
-  get partyToPVotesSortedOthered( ) {
+  get partyToPVotesSortedOthered() {
     const totalVotes = this.totalVotes;
     return Object.fromEntries(
-      Object.entries(this.partyToVotesSortedOthered)
-        .map(([party, votes]) => [party, votes / totalVotes])
+      Object.entries(this.partyToVotesSortedOthered).map(([party, votes]) => [
+        party,
+        votes / totalVotes,
+      ])
     );
   }
 

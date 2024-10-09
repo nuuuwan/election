@@ -16,7 +16,6 @@ class Seats {
     return new Seats(election);
   }
 
-  
   getPartyToSeatsForProvince(provinceID) {
     const partyToSeatsList = Object.entries(this.getRegionToPartyToSeats())
       .filter(function ([entID, partyToSeats]) {
@@ -51,4 +50,4 @@ class Seats {
   }
 }
 Object.assign(Seats.prototype, SeatsBuilderMixin);
-export default Seats
+export default Seats;

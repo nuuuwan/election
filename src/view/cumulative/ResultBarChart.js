@@ -19,7 +19,7 @@ export default function ResultBarChart({ resultsElection, entID }) {
       formatValue={function (partyToPVotes, i, pVotes, j) {
         return Format.percent(pVotes);
       }}
-      sx={{width: 200, height: 50}}
+      sx={{ width: 200, height: 50 }}
     />
   );
 }

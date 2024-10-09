@@ -24,12 +24,9 @@ export default class SeatsUtilsCompute {
 
   static getPartyToSeatsInt(partyToSeatsFloat) {
     return Object.fromEntries(
-      Object.entries(partyToSeatsFloat).map(([partyID, seatsFloat]) => [
-        partyID,
-        parseInt(seatsFloat),
-      ]).filter(
-        ([partyID, seats]) => seats > 0
-      )
+      Object.entries(partyToSeatsFloat)
+        .map(([partyID, seatsFloat]) => [partyID, parseInt(seatsFloat)])
+        .filter(([partyID, seats]) => seats > 0)
     );
   }
 
@@ -50,8 +47,6 @@ export default class SeatsUtilsCompute {
         acc[partyID] = 1;
         return acc;
       }, {});
-
-
   }
 
   static getPartyToSeatsBonus(partyToVotes, nSeatsBonus) {

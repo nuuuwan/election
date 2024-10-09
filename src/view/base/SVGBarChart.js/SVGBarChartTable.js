@@ -1,6 +1,14 @@
 import SVGBarChartRow from "./SVGBarChartRow";
 
-export default function SVGBarChartTable({ dataList, n, getValues, getColor, formatValue, formatRowValue, pHeight }) {
+export default function SVGBarChartTable({
+  dataList,
+  n,
+  getValues,
+  getColor,
+  formatValue,
+  formatRowValue,
+  pHeight,
+}) {
   return (
     <g>
       {dataList.map(function (data, i) {
@@ -14,7 +22,8 @@ export default function SVGBarChartTable({ dataList, n, getValues, getColor, for
             getColor={getColor}
             formatValue={formatValue}
             formatRowValue={formatRowValue}
-            pHeight={pHeight} />
+            pHeight={pHeight}
+          />
         );
       })}
     </g>

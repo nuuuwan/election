@@ -3,7 +3,7 @@ import { Translate } from "../..";
 export default class ElectionBase {
   static URL_BASE =
     "https://raw.githubusercontent.com/nuuuwan/gig-data/master/gig2_custom_ec_only";
-  
+
   constructor(electionType, date, baseEntType) {
     this.electionType = electionType;
     this.date = date;

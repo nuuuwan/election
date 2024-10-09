@@ -2,13 +2,7 @@ import MathX from "../../base/MathX";
 import Party from "../Party";
 import SeatsUtilsCompute from "./SeatsUtilsCompute";
 
-
 export default class SeatsUtils {
-
-
-
-  
-
   static getGenericPartyToSeats(result, nSeatsAll, nSeatsBonus, pLimit) {
     const partyToVotes = result.partyToVotes;
     const filteredPartyToVotes = SeatsUtilsCompute.getFilteredPartyToVotes(
@@ -19,16 +13,14 @@ export default class SeatsUtils {
     const nSeatsNonBonus = nSeatsAll - nSeatsBonus;
     const partyToSeatsFloat = SeatsUtilsCompute.getPartyToSeatsFloat(
       filteredPartyToVotes,
-      nSeatsNonBonus,
+      nSeatsNonBonus
     );
-    const partyToSeatsInt = SeatsUtilsCompute.getPartyToSeatsInt(
-      partyToSeatsFloat
-    );
+    const partyToSeatsInt =
+      SeatsUtilsCompute.getPartyToSeatsInt(partyToSeatsFloat);
     const nSeatsInt = MathX.sum(Object.values(partyToSeatsInt));
 
-    const partyToRemSeatsFloat = SeatsUtilsCompute.getPartyToRemSeatsFloat(
-      partyToSeatsFloat
-    );
+    const partyToRemSeatsFloat =
+      SeatsUtilsCompute.getPartyToRemSeatsFloat(partyToSeatsFloat);
 
     const partyToSeatsRem = SeatsUtilsCompute.getPartyToSeatsRem(
       partyToRemSeatsFloat,
@@ -40,9 +32,11 @@ export default class SeatsUtils {
       nSeatsBonus
     );
 
-    const unsortedPartyToSeats = SeatsUtils.aggregatePartyToSeats(
-      [partyToSeatsInt, partyToSeatsRem, partyToSeatsBonus]  
-    )
+    const unsortedPartyToSeats = SeatsUtils.aggregatePartyToSeats([
+      partyToSeatsInt,
+      partyToSeatsRem,
+      partyToSeatsBonus,
+    ]);
 
     return SeatsUtils.sortPartyToSeats(unsortedPartyToSeats, partyToVotes);
   }

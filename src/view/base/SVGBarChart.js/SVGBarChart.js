@@ -17,11 +17,14 @@ export default function SVGBarChart({
 }) {
   sx = Object.assign({}, DEFAULT_SX, sx);
 
-  const maxValue = Math.ceil(Math.max(
-    ...dataList.map(function (data, i) {
-      return MathX.sum(getValues(data, i));
-    })
-  ) / 0.05) * 0.05;
+  const maxValue =
+    Math.ceil(
+      Math.max(
+        ...dataList.map(function (data, i) {
+          return MathX.sum(getValues(data, i));
+        })
+      ) / 0.05
+    ) * 0.05;
 
   const { width, height } = sx;
   const n = dataList.length;
@@ -37,7 +40,7 @@ export default function SVGBarChart({
       height={height}
       fontFamily={THEME_DATA.typography.fontFamily}
     >
-      <SVGBarChartTable 
+      <SVGBarChartTable
         dataList={dataList}
         n={n}
         getValues={getValues}
@@ -45,7 +48,7 @@ export default function SVGBarChart({
         formatValue={formatValue}
         formatRowValue={formatRowValue}
         pHeight={pHeight}
-        />
+      />
     </svg>
   );
 }

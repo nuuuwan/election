@@ -9,7 +9,14 @@ import EntView from "./base/EntView.js";
 import IfElse from "./base/IfElse.js";
 import LabelledStat from "./base/LabelledStat.js";
 import RefreshButton from "./base/RefreshButton.js";
-import SVGMultiBarChart from "./base/SVGBarChart.js/SVGBarChart.js";
+import SVGBarChart from "./base/SVGBarChart.js/SVGBarChart.js";
+import SVGBarChartCell from "./base/SVGBarChart.js/SVGBarChartCell.js";
+import SVGBarChartCellBar from "./base/SVGBarChart.js/SVGBarChartCellBar.js";
+import SVGBarChartCellLabel from "./base/SVGBarChart.js/SVGBarChartCellLabel.js";
+import SVGBarChartRow from "./base/SVGBarChart.js/SVGBarChartRow.js";
+import SVGBarChartRowLabel from "./base/SVGBarChart.js/SVGBarChartRowLabel.js";
+import SVGBarChartTable from "./base/SVGBarChart.js/SVGBarChartTable.js";
+import SVGLabel from "./base/SVGBarChart.js/SVGLabel.js";
 import TabSelector from "./base/TabSelector.js";
 import CitationsView from "./core/CitationsView.js";
 import ClockView from "./core/ClockView.js";
@@ -90,7 +97,7 @@ import SeatsHexMap from "./features/SeatsHexMap/SeatsHexMap.js";
 import BasePage from "./pages/BasePage/BasePage.js";
 import BasePageHandlerProvider from "./pages/BasePage/BasePageHandlerProvider.js";
 import BasePageView from "./pages/BasePage/BasePageView.js";
-import PageBody from "./pages/BasePage/PageBody.js";
+import PageBody from "./pages/BasePage/PageBody/PageBody.js";
 import PageFooter from "./pages/BasePage/PageFooter.js";
 import PageHeader from "./pages/BasePage/PageHeader.js";
 
@@ -104,7 +111,14 @@ export {
   IfElse,
   LabelledStat,
   RefreshButton,
-  SVGMultiBarChart,
+  SVGBarChart,
+  SVGBarChartCell,
+  SVGBarChartCellBar,
+  SVGBarChartCellLabel,
+  SVGBarChartRow,
+  SVGBarChartRowLabel,
+  SVGBarChartTable,
+  SVGLabel,
   TabSelector,
   CitationsView,
   ClockView,

@@ -1,8 +1,8 @@
 import { MathX } from "../../../nonview";
-import { SVGLabel } from "./SVGLabel";
+import SVGLabel from "./SVGLabel";
 
 
-export function SVGBarChartRowLabel({ getValues, formatRowValue, n, data, i, pHeight }) {
+export default function SVGBarChartRowLabel({ getValues, formatRowValue, n, data, i, pHeight }) {
     const rowValue = formatRowValue ? formatRowValue(data, i) : " ";
     if (!rowValue) {
         return null;

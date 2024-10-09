@@ -56,6 +56,7 @@ import Result from "./core/Result.js";
 import Seats from "./core/Seats/Seats.js";
 import SeatsBuilderMixin from "./core/Seats/SeatsBuilderMixin.js";
 import SeatsUtils from "./core/Seats/SeatsUtils.js";
+import SeatsUtilsCompute from "./core/Seats/SeatsUtilsCompute.js";
 import Summary from "./core/Summary.js";
 
 export {
@@ -115,5 +116,6 @@ export {
   Seats,
   SeatsBuilderMixin,
   SeatsUtils,
+  SeatsUtilsCompute,
   Summary,
 };

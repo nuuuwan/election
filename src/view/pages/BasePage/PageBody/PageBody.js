@@ -1,7 +1,7 @@
 import { Box, Grid2, Stack, Typography } from "@mui/material";
-import { useDataContext } from "../../../nonview/core/DataProvider";
+import { useDataContext } from "../../../../nonview/core/DataProvider";
 
-import { Format, Translate } from "../../../nonview";
+import { Format, Translate } from "../../../../nonview";
 
 import {
   CustomAlert,
@@ -18,7 +18,7 @@ import {
   ProjectionViewPresidential,
   ProjectionViewParliamentary,
   ElectionSmallTitle,
-} from "../..";
+} from "../../../";
 
 const STYLE = {
   BOX: { paddingTop: 10, paddingBottom: 20 },

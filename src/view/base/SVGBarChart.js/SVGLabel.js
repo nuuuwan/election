@@ -1,4 +1,4 @@
-export function SVGLabel({ x0, y0, width, height, label }) {
+export default function SVGLabel({ x0, y0, width, height, label }) {
 
     const fontSize = Math.min(width / label.length, height);
 

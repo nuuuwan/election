@@ -1,6 +1,6 @@
-import { SVGBarChartRow } from "./SVGBarChartRow";
+import SVGBarChartRow from "./SVGBarChartRow";
 
-export function SVGBarChartTable({ dataList, n, getValues, getColor, formatValue, formatRowValue, pHeight }) {
+export default function SVGBarChartTable({ dataList, n, getValues, getColor, formatValue, formatRowValue, pHeight }) {
   return (
     <g>
       {dataList.map(function (data, i) {

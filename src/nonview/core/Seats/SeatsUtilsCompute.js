@@ -1,6 +1,6 @@
 import MathX from "../../base/MathX";
 
-export class SeatsUtilsCompute {
+export default class SeatsUtilsCompute {
   static getFilteredPartyToVotes(partyToVotes, pLimit) {
     const totalVotes = partyToVotes.totalVotes;
     const voteLimit = totalVotes * pLimit;

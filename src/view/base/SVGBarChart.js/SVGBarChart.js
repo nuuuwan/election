@@ -1,6 +1,6 @@
 import { MathX } from "../../../nonview";
 import { THEME_DATA } from "../../_constants/THEME";
-import { SVGBarChartTable } from "./SVGBarChartTable";
+import SVGBarChartTable from "./SVGBarChartTable";
 
 const DEFAULT_SX = {
   width: 240,

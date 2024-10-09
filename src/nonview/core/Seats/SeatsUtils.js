@@ -1,6 +1,6 @@
 import MathX from "../../base/MathX";
 import Party from "../Party";
-import { SeatsUtilsCompute } from "./SeatsUtilsCompute";
+import SeatsUtilsCompute from "./SeatsUtilsCompute";
 
 
 export default class SeatsUtils {

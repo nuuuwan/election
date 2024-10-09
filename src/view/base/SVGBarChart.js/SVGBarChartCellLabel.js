@@ -1,6 +1,6 @@
-import { SVGLabel } from "./SVGLabel";
+import SVGLabel from "./SVGLabel";
 
-export function SVGBarChartCellLabel({ formatValue, data, i, value, j, x, y, width, height }) {
+export default function SVGBarChartCellLabel({ formatValue, data, i, value, j, x, y, width, height }) {
 
 
   const label = formatValue ? formatValue(data, i, value, j) : null;

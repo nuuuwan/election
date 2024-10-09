@@ -1,7 +1,7 @@
-import { SVGBarChartCell } from "./SVGBarChartCell";
-import { SVGBarChartRowLabel } from "./SVGBarChartRowLabel";
+import SVGBarChartCell from "./SVGBarChartCell";
+import SVGBarChartRowLabel from "./SVGBarChartRowLabel";
 
-export function SVGBarChartRow({
+export default function SVGBarChartRow({
   n, i, data, getValues, getColor, formatValue, formatRowValue, pHeight,
 }) {
   const values = getValues(data, i);

@@ -1,8 +1,8 @@
-import { SVGBarChartCellBar } from "./SVGBarChartCellBar";
-import { SVGBarChartCellLabel } from "./SVGBarChartCellLabel";
+import SVGBarChartCellBar from "./SVGBarChartCellBar";
+import SVGBarChartCellLabel from "./SVGBarChartCellLabel";
 
 
-export function SVGBarChartCell({ n, data, i, getColor, formatValue, pHeight, cumValue, value, j }) {
+export default function SVGBarChartCell({ n, data, i, getColor, formatValue, pHeight, cumValue, value, j }) {
 
   const x = cumValue - value;
   const y = (pHeight * i) / n;

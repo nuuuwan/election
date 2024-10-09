@@ -1,4 +1,4 @@
-export function SVGBarChartCellBar({ getColor, data, i, value, j, x, y, width, height }) {
+export default function SVGBarChartCellBar({ getColor, data, i, value, j, x, y, width, height }) {
   return (
     <rect
       key={j}

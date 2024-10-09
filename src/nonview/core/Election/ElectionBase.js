@@ -3,6 +3,7 @@ import { Time, Translate } from "../..";
 export default class ElectionBase {
   static URL_BASE =
     "https://raw.githubusercontent.com/nuuuwan/gig-data/master/gig2_custom_ec_only";
+  
   constructor(electionType, date, baseEntType) {
     this.electionType = electionType;
     this.date = date;
@@ -34,14 +35,6 @@ export default class ElectionBase {
     return this.year + " " + Translate(this.electionTypeTitle);
   }
 
-  get titleLong() {
-    return (
-      this.year +
-      " " +
-      Translate("Sri Lankan " + this.electionTypeTitle + " Election")
-    );
-  }
-
   get year() {
     return this.date.substring(0, 4);
   }
@@ -69,14 +62,6 @@ export default class ElectionBase {
     ];
   }
 
-  get dateFormatted() {
-    return Time.fromString(this.date).getDate().toLocaleDateString("en-LK", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  }
-
   get urlData() {
     return (
       ElectionBase.URL_BASE +
@@ -89,7 +74,7 @@ export default class ElectionBase {
   }
 
   get isFuture() {
-    const DATE_FUTURE = "2024-09-01";
+    const DATE_FUTURE = "2024-10-01";
     return this.date.localeCompare(DATE_FUTURE) > 0;
   }
 

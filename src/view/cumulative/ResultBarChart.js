@@ -1,26 +1,21 @@
 import { Format, Party } from "../../nonview";
 
-import SVGBarChart from "../base/SVGBarChart";
+import SVGMultiBarChart  from "../base/SVGMultiBarChart"
 
 export default function ResultBarChart({ resultsElection, entID }) {
-  const result = resultsElection.resultIdx[entID];
-  const partyToVotes = result.partyToVotes;
-  const totalVotes = partyToVotes.totalVotes;
+  const partyToPVotes = resultsElection.getResult(entID).partyToVotes.partyToPVotesSortedOthered;
 
-  const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
-
-  const dataList = entries.map(function ([partyID, votes]) {
-    const party = Party.fromID(partyID);
-    const pVotes = (votes - 0.000001) / totalVotes; // HACK!
-
-    return {
-      value: pVotes,
-      label: partyID,
-      color: party.color,
-    };
-  });
-
-  const formatValue = (value) => Format.percent(value);
-
-  return <SVGBarChart dataList={dataList} formatValue={formatValue} />;
+  return <SVGMultiBarChart dataList={[partyToPVotes]} getValues={function(partyToPVotes) {
+    return Object.values(partyToPVotes);
+  }} getColor={
+    function(partyToPVotes, i, pVotes, j) {
+      const partyID = Object.keys(partyToPVotes)[j];
+      return Party.fromID(partyID).color;
+    }
+  } 
+  formatValue={function(partyToPVotes, i, pVotes, j) {
+    return Format.percent(pVotes);
+  }}
+  
+  />;
 }

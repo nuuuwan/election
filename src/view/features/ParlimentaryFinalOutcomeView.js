@@ -41,7 +41,7 @@ class ParliamentaryFinalOutcome {
   get outcomeMessage() {
     const { seats, winningPartyID, nSeatsMin } = this.commonCompute();
 
-    const ufg = seats.partyToUFG[winningPartyID] || 0;
+    const ufg = seats.getPartyToUFG()[winningPartyID] || 0;
     const nSeatsBest = nSeatsMin + ufg;
 
     const messageMin = getMessage(nSeatsMin);

@@ -54,6 +54,7 @@ import Party from "./core/Party.js";
 import PartyToVotes from "./core/PartyToVotes.js";
 import Result from "./core/Result.js";
 import Seats from "./core/Seats/Seats.js";
+import SeatsBuilderMixin from "./core/Seats/SeatsBuilderMixin.js";
 import SeatsUtils from "./core/Seats/SeatsUtils.js";
 import Summary from "./core/Summary.js";
 
@@ -112,6 +113,7 @@ export {
   PartyToVotes,
   Result,
   Seats,
+  SeatsBuilderMixin,
   SeatsUtils,
   Summary,
 };

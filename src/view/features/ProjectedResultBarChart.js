@@ -4,7 +4,7 @@ import { Color, Format, Party } from "../../nonview";
 
 import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 import CustomLoadingProgress from "../base/CustomLoadingProgress";
-import SVGMultiBarChart from "../base/SVGMultiBarChart";
+import SVGMultiBarChart from "../base/SVGBarChart.js/SVGBarChart";
 
 export default function ProjectedResultBarChart() {
   const data = useDataSlowContext();

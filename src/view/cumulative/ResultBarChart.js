@@ -1,6 +1,6 @@
 import { Format, Party } from "../../nonview";
 
-import SVGMultiBarChart from "../base/SVGMultiBarChart";
+import SVGMultiBarChart from "../base/SVGBarChart.js/SVGBarChart";
 
 export default function ResultBarChart({ resultsElection, entID }) {
   const partyToPVotes =

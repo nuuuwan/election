@@ -19,14 +19,13 @@ function SVGMultiBarChartMultiBar({
   const values = getValues(data, i);
   let cumValue = 0;
 
-  const rowValue = formatRowValue? formatRowValue(data, i) : " ";
+  const rowValue = formatRowValue ? formatRowValue(data, i) : " ";
 
-  
   const rowWidth = MathX.sum(values);
   const rowHeight = pHeight / n;
   const xRowText = rowWidth / 2;
   const yRowText = (i + 0.5) * rowHeight;
-  const fontSizeRow = (Math.min(rowWidth  / rowValue.length, rowHeight));
+  const fontSizeRow = Math.min(rowWidth / rowValue.length, rowHeight);
 
   return (
     <g key={i}>
@@ -34,17 +33,17 @@ function SVGMultiBarChartMultiBar({
         cumValue += value;
 
         const x = cumValue - value;
-        const y = pHeight * i / n;
+        const y = (pHeight * i) / n;
         const width = value;
         const height = rowHeight;
 
-        const label = formatValue? formatValue(data, i, value, j) :  " ";
+        const label = formatValue ? formatValue(data, i, value, j) : " ";
 
         const xText = x + width / 2;
         const yText = y + height / 2;
 
         let transform = null;
-        const fontSize = (Math.min(width / label.length, height)) ;
+        const fontSize = Math.min(width / label.length, height);
         if (width < height) {
           transform = `rotate(-90, ${xText}, ${yText})`;
         }
@@ -59,33 +58,36 @@ function SVGMultiBarChartMultiBar({
               height={height}
               fill={getColor(data, i, value, j)}
             />
-            {label ? <text
-              x={x + width / 2}
-              y={y + height / 2}
-              textAnchor="middle"
-              dominantBaseline="middle"
-              fill="white"
-              stroke="none"
-              fontSize={fontSize}
-              transform={transform}
-            >
-              {label}
-            </text> : null}
+            {label ? (
+              <text
+                x={x + width / 2}
+                y={y + height / 2}
+                textAnchor="middle"
+                dominantBaseline="middle"
+                fill="white"
+                stroke="none"
+                fontSize={fontSize}
+                transform={transform}
+              >
+                {label}
+              </text>
+            ) : null}
           </g>
         );
       })}
-       {rowValue ? <text
-              x={xRowText}
-              y={yRowText}
-              textAnchor="middle"
-              dominantBaseline="middle"
-              fill="white"
-              stroke="none"
-              fontSize={fontSizeRow}
-
-            >
-              {rowValue}
-            </text> : null}
+      {rowValue ? (
+        <text
+          x={xRowText}
+          y={yRowText}
+          textAnchor="middle"
+          dominantBaseline="middle"
+          fill="white"
+          stroke="none"
+          fontSize={fontSizeRow}
+        >
+          {rowValue}
+        </text>
+      ) : null}
     </g>
   );
 }
@@ -100,8 +102,6 @@ export default function SVGMultiBarChart({
 }) {
   sx = Object.assign({}, DEFAULT_SX, sx);
 
-
-
   const maxValue = Math.max(
     ...dataList.map(function (data, i) {
       return MathX.sum(getValues(data, i));
@@ -112,9 +112,8 @@ export default function SVGMultiBarChart({
   const n = dataList.length;
 
   const pWidth = maxValue;
-  const pHeight = pWidth * sx.height / sx.width;
+  const pHeight = (pWidth * sx.height) / sx.width;
   const viewBox = `0 0 ${pWidth} ${pHeight}`;
-
 
   return (
     <svg

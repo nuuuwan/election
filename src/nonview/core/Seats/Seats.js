@@ -1,7 +1,7 @@
-import EntType from "../base/EntType.js";
-import ProvinceUtils from "../base/ProvinceUtils.js";
-import YEAR_TO_REGION_TO_SEATS from "../constants/YEAR_TO_REGION_TO_SEATS.js";
-import Party from "./Party.js";
+import EntType from "../../base/EntType.js";
+import ProvinceUtils from "../../base/ProvinceUtils.js";
+import YEAR_TO_REGION_TO_SEATS from "../../constants/YEAR_TO_REGION_TO_SEATS.js";
+import Party from "../Party.js";
 import SeatsUtils from "./SeatsUtils.js";
 
 export default class Seats {
@@ -9,18 +9,11 @@ export default class Seats {
 
   constructor(election) {
     this.election = election;
+    this.regionToSeats = YEAR_TO_REGION_TO_SEATS[this.year];
   }
 
   static fromElection(election) {
     return new Seats(election);
-  }
-
-  get year() {
-    return this.election.year;
-  }
-
-  get regionToSeats() {
-    return YEAR_TO_REGION_TO_SEATS[this.year];
   }
 
   get edToPartyToSeats() {
@@ -38,7 +31,6 @@ export default class Seats {
             1,
             0.05
           );
-
           idx[entID] = partyToSeats;
           return idx;
         }.bind(this),
@@ -61,21 +53,7 @@ export default class Seats {
     });
   }
 
-  get groupToRegionToPartyToSeats() {
-    return Object.entries(this.regionToPartyToSeats).reduce(function (
-      idx,
-      [entID, partyToSeats]
-    ) {
-      const groupID =
-        entID === "LK" ? "LK" : ProvinceUtils.getProvinceIDForEDID(entID);
-      idx[groupID] = idx[groupID] || {};
-      idx[groupID][entID] = partyToSeats;
-      return idx;
-    },
-    {});
-  }
-
-  get partyToSeats() {
+  get totalPartyToSeats() {
     return SeatsUtils.aggregatePartyToSeats(
       Object.values(this.regionToPartyToSeats)
     );
@@ -102,36 +80,4 @@ export default class Seats {
     {});
   }
 
-  getPartyToSeatsForProvince(provinceID) {
-    const partyToSeatsList = Object.entries(this.regionToPartyToSeats)
-      .filter(function ([entID, partyToSeats]) {
-        if (entID === "LK") {
-          return false;
-        }
-        const provinceID2 = ProvinceUtils.getProvinceIDForEDID(entID);
-        return provinceID2 === provinceID;
-      })
-      .map(function ([entID, partyToSeats]) {
-        return partyToSeats;
-      });
-
-    return SeatsUtils.aggregatePartyToSeats(partyToSeatsList);
-  }
-
-  getPartyToSeats(entID) {
-    if (entID === null) {
-      return this.partyToSeats;
-    }
-    if (entID === "LK") {
-      return this.lkPartyToSeats;
-    }
-    if (EntType.fromID(entID) === EntType.ED) {
-      return this.regionToPartyToSeats[entID];
-    }
-
-    if (EntType.fromID(entID) === EntType.PROVINCE) {
-      return this.getPartyToSeatsForProvince(entID);
-    }
-    return null;
-  }
 }

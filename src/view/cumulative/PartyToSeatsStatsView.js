@@ -11,7 +11,7 @@ export default function PartyToSeatsStatsView() {
   }
   const { electionProjected } = data;
   const seats = Seats.fromElection(electionProjected);
-  const entries = Object.entries(seats.partyToSeats);
+  const entries = Object.entries(seats.totalPartyToSeats);
 
   return (
     <Grid2

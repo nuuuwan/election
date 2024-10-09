@@ -53,8 +53,8 @@ import OngoingElection from "./core/OngoingElection.js";
 import Party from "./core/Party.js";
 import PartyToVotes from "./core/PartyToVotes.js";
 import Result from "./core/Result.js";
-import Seats from "./core/Seats.js";
-import SeatsUtils from "./core/SeatsUtils.js";
+import Seats from "./core/Seats/Seats.js";
+import SeatsUtils from "./core/Seats/SeatsUtils.js";
 import Summary from "./core/Summary.js";
 
 export {

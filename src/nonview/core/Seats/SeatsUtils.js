@@ -1,5 +1,5 @@
-import MathX from "../base/MathX";
-import Party from "./Party";
+import MathX from "../../base/MathX";
+import Party from "../Party";
 
 export default class SeatsUtils {
   static getFilteredPartyToSeats(result, pLimit) {

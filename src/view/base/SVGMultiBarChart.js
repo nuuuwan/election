@@ -1,3 +1,4 @@
+import { MathX } from "../../nonview";
 import { THEME_DATA } from "../_constants/THEME";
 
 const DEFAULT_SX = {
@@ -12,10 +13,20 @@ function SVGMultiBarChartMultiBar({
   getValues,
   getColor,
   formatValue,
+  formatRowValue,
   pHeight,
 }) {
   const values = getValues(data, i);
   let cumValue = 0;
+
+  const rowValue = formatRowValue? formatRowValue(data, i) : " ";
+
+  
+  const rowWidth = MathX.sum(values);
+  const rowHeight = pHeight / n;
+  const xRowText = rowWidth / 2;
+  const yRowText = (i + 0.5) * rowHeight;
+  const fontSizeRow = (Math.min(rowWidth  / rowValue.length, rowHeight));
 
   return (
     <g key={i}>
@@ -23,17 +34,17 @@ function SVGMultiBarChartMultiBar({
         cumValue += value;
 
         const x = cumValue - value;
-        const y = i / n;
+        const y = pHeight * i / n;
         const width = value;
-        const height = pHeight / n;
+        const height = rowHeight;
 
-        const label = formatValue(data, i, value, j);
+        const label = formatValue? formatValue(data, i, value, j) :  " ";
 
         const xText = x + width / 2;
         const yText = y + height / 2;
 
         let transform = null;
-        const fontSize = (1.5 * Math.min(width, height)) / label.length;
+        const fontSize = (Math.min(width / label.length, height)) ;
         if (width < height) {
           transform = `rotate(-90, ${xText}, ${yText})`;
         }
@@ -48,7 +59,7 @@ function SVGMultiBarChartMultiBar({
               height={height}
               fill={getColor(data, i, value, j)}
             />
-            <text
+            {label ? <text
               x={x + width / 2}
               y={y + height / 2}
               textAnchor="middle"
@@ -59,10 +70,22 @@ function SVGMultiBarChartMultiBar({
               transform={transform}
             >
               {label}
-            </text>
+            </text> : null}
           </g>
         );
       })}
+       {rowValue ? <text
+              x={xRowText}
+              y={yRowText}
+              textAnchor="middle"
+              dominantBaseline="middle"
+              fill="white"
+              stroke="none"
+              fontSize={fontSizeRow}
+
+            >
+              {rowValue}
+            </text> : null}
     </g>
   );
 }
@@ -73,13 +96,26 @@ export default function SVGMultiBarChart({
   getValues,
   getColor,
   formatValue,
+  formatRowValue,
 }) {
   sx = Object.assign({}, DEFAULT_SX, sx);
 
+
+
+  const maxValue = Math.max(
+    ...dataList.map(function (data, i) {
+      return MathX.sum(getValues(data, i));
+    })
+  );
+
   const { width, height } = sx;
   const n = dataList.length;
-  const pHeight = sx.height / sx.width;
-  const viewBox = `0 0 1 ${pHeight}`;
+
+  const pWidth = maxValue;
+  const pHeight = pWidth * sx.height / sx.width;
+  const viewBox = `0 0 ${pWidth} ${pHeight}`;
+
+
   return (
     <svg
       viewBox={viewBox}
@@ -97,6 +133,7 @@ export default function SVGMultiBarChart({
             getValues={getValues}
             getColor={getColor}
             formatValue={formatValue}
+            formatRowValue={formatRowValue}
             pHeight={pHeight}
           />
         );

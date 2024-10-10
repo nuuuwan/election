@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext, useContext } from "react"
+import React, { useState, useEffect, createContext, useContext } from "react";
 import Timer from "../base/Timer";
 import { CustomLoadingProgress } from "../../view";
 import { DataProviderUtils } from "..";

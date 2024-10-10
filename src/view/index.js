@@ -4,7 +4,6 @@ import THEME from "./_constants/THEME.js";
 import CheckIcon from "./base/CheckIcon.js";
 import CustomAlert from "./base/CustomAlert.js";
 import CustomLoadingProgress from "./base/CustomLoadingProgress.js";
-import CustomSelect from "./base/CustomSelect.js";
 import EntView from "./base/EntView.js";
 import IfElse from "./base/IfElse.js";
 import LabelledStat from "./base/LabelledStat.js";
@@ -27,7 +26,6 @@ import HexagonClickAlert from "./core/HexagonClickAlert.js";
 import HiddenDataView from "./core/HiddenDataView.js";
 import HistoryAlert from "./core/HistoryAlert.js";
 import NoResultsAlert from "./core/NoResultsAlert.js";
-import PDSelector from "./core/PDSelector.js";
 import ParliamentViewCircle from "./core/ParliamentViewCircle.js";
 import PartyView from "./core/PartyView.js";
 import ProjectionTitle from "./core/ProjectionTitle.js";
@@ -109,7 +107,6 @@ export {
   CheckIcon,
   CustomAlert,
   CustomLoadingProgress,
-  CustomSelect,
   EntView,
   IfElse,
   LabelledStat,
@@ -132,7 +129,6 @@ export {
   HiddenDataView,
   HistoryAlert,
   NoResultsAlert,
-  PDSelector,
   ParliamentViewCircle,
   PartyView,
   ProjectionTitle,

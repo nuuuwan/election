@@ -3,7 +3,7 @@ import { PartyToVotes, Party, Summary, Result } from "../../../nonview";
 import ElectionModelNormalizeUtils from "./ElectionModelNormalizeUtils";
 
 export default class ElectionModelProjectionUtils {
-  static getProjection(
+  static getEntToPartyToPVotes(
     model,
     currentElection,
     XEvaluate,

@@ -42,7 +42,7 @@ export default class ElectionModel {
     const pError = ElectionModelUtils.getPErrorEvaluate(XAll, YAll);
     const model = ElectionModelUtils.trainModel(XAll, YAll);
 
-    const normPDToPartyToPVotes = ElectionModelProjectionUtils.getProjection(
+    const normPDToPartyToPVotes = ElectionModelProjectionUtils.getEntToPartyToPVotes(
       model,
       this.currentElection,
       this.getXEvaluate(),

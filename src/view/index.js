@@ -23,7 +23,9 @@ import ClockView from "./core/ClockView.js";
 import CustomStack from "./core/CustomStack.js";
 import DisplaySlider from "./core/DisplaySlider.js";
 import ElectionSmallTitle from "./core/ElectionSmallTitle.js";
+import HexagonClickAlert from "./core/HexagonClickAlert.js";
 import HiddenDataView from "./core/HiddenDataView.js";
+import HistoryAlert from "./core/HistoryAlert.js";
 import NoResultsAlert from "./core/NoResultsAlert.js";
 import PDSelector from "./core/PDSelector.js";
 import ParliamentViewCircle from "./core/ParliamentViewCircle.js";
@@ -98,6 +100,7 @@ import BasePage from "./pages/BasePage/BasePage.js";
 import BasePageHandlerProvider from "./pages/BasePage/BasePageHandlerProvider.js";
 import BasePageView from "./pages/BasePage/BasePageView.js";
 import PageBody from "./pages/BasePage/PageBody/PageBody.js";
+import PageBodyBelowTheFold from "./pages/BasePage/PageBody/PageBodyBelowTheFold.js";
 import PageFooter from "./pages/BasePage/PageFooter.js";
 import PageHeader from "./pages/BasePage/PageHeader.js";
 
@@ -125,7 +128,9 @@ export {
   CustomStack,
   DisplaySlider,
   ElectionSmallTitle,
+  HexagonClickAlert,
   HiddenDataView,
+  HistoryAlert,
   NoResultsAlert,
   PDSelector,
   ParliamentViewCircle,
@@ -200,6 +205,7 @@ export {
   BasePageHandlerProvider,
   BasePageView,
   PageBody,
+  PageBodyBelowTheFold,
   PageFooter,
   PageHeader,
 };

@@ -1,7 +1,8 @@
-import React, { useState, useEffect, createContext, useContext } from "react";
-import DataProviderUtils from "./DataProviderUtils";
+import React, { useState, useEffect, createContext, useContext } from "react"
 import Timer from "../base/Timer";
 import { CustomLoadingProgress } from "../../view";
+import { DataProviderUtils } from "..";
+
 const DataContext = createContext();
 
 export default function DataProvider({ children, state }) {

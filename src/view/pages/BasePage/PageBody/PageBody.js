@@ -1,8 +1,7 @@
-
-import { Box, Grid2,  } from "@mui/material";
+import { Box, Grid2 } from "@mui/material";
 import { useDataContext } from "../../../../nonview/core/DataProvider";
 
-import PageBodyBelowTheFold from './PageBodyBelowTheFold';
+import PageBodyBelowTheFold from "./PageBodyBelowTheFold";
 
 import {
   HistoryAlert,
@@ -11,9 +10,7 @@ import {
   NoResultsAlert,
   HexMapView,
   LatestResultListView,
-
   BellwetherView,
-
   ResultsReleasedTitlePercent,
   ResultsReleasedTitleNumber,
   ProjectionViewPresidential,
@@ -24,10 +21,6 @@ import {
 const STYLE = {
   BOX: { paddingTop: 10, paddingBottom: 20 },
 };
-
-
-
-
 
 function CustomPageBodyGridItem({ children }) {
   return <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>{children}</Grid2>;

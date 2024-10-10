@@ -1,8 +1,7 @@
-
 import { Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 import { Format, Translate } from "../../nonview";
-import {CustomAlert} from "..";
+import { CustomAlert } from "..";
 
 export default function HistoryAlert() {
   const data = useDataContext();

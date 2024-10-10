@@ -1,10 +1,6 @@
-
-
 import { Cache, Ent, EntType, Timer } from "..";
 import { CustomURLContext, DerivedData, Election } from "..";
 import { GROUP_ID_TO_PD_ID_LIST } from "..";
-
-
 
 export default class DataProviderUtils {
   static async getEntValuesNoCache() {
@@ -17,7 +13,7 @@ export default class DataProviderUtils {
           return [ezID, new Ent({ id: ezID, name: ezID })];
         })
       );
-  
+
       const allRegionIdx = Object.assign(
         { LK: { name: "Sri Lanka" } },
         pdIdx,
@@ -25,26 +21,32 @@ export default class DataProviderUtils {
         provinceIdx,
         ezIdx
       );
-  
+
       return { pdIdx, edIdx, provinceIdx, ezIdx, allRegionIdx };
     };
-  
-    return await Timer.logAsync("DataProvider.getEntValues", 500, inner);
-  }
-  
-  static async getEntValues() {
-    return await Cache.get("getEntValues", DataProviderUtils.getEntValuesNoCache);
+
+    return await Timer.logAsync("DataProviderUtils.getEntValues", 500, inner);
   }
 
-    static async  getElectionValues({
+  static async getEntValues() {
+    return await Cache.get(
+      "getEntValues",
+      DataProviderUtils.getEntValuesNoCache
+    );
+  }
+
+  static async getElectionValues({
     electionType,
     date,
     activeEntID,
     nResultsDisplay,
   }) {
     const inner = async function () {
-      const election = await Election.fromElectionTypeAndDate(electionType, date);
-  
+      const election = await Election.fromElectionTypeAndDate(
+        electionType,
+        date
+      );
+
       const activeEntIDDerived = DerivedData.getActiveEntID(
         activeEntID,
         nResultsDisplay,
@@ -54,9 +56,11 @@ export default class DataProviderUtils {
         nResultsDisplay,
         election
       );
-  
-      const electionDisplay = election.getElectionSubset(nResultsDisplayDerived);
-  
+
+      const electionDisplay = election.getElectionSubset(
+        nResultsDisplayDerived
+      );
+
       return {
         election,
         activeEntIDDerived,
@@ -64,36 +68,38 @@ export default class DataProviderUtils {
         electionDisplay,
       };
     };
-    return await Timer.logAsync("DataProvider.getElectionValues", 500, inner);
+    return await Timer.logAsync(
+      "DataProviderUtils.getElectionValues",
+      500,
+      inner
+    );
   }
 
-  
-static async getValue(state) {
-  const entValues = await DataProviderUtils.getEntValues();
+  static async getValue(state) {
+    const entValues = await DataProviderUtils.getEntValues();
 
-  const {
-    election,
-    activeEntIDDerived,
-    nResultsDisplayDerived,
-    electionDisplay,
-  } = await DataProviderUtils.getElectionValues(state);
+    const {
+      election,
+      activeEntIDDerived,
+      nResultsDisplayDerived,
+      electionDisplay,
+    } = await DataProviderUtils.getElectionValues(state);
 
-  const entIdx = election.getEntIdx(entValues);
+    const entIdx = election.getEntIdx(entValues);
 
-  const newState = {
-    ...state,
-    activeEntID: activeEntIDDerived,
-    nResultsDisplay: nResultsDisplayDerived,
-  };
-  CustomURLContext.set(newState);
+    const newState = {
+      ...state,
+      activeEntID: activeEntIDDerived,
+      nResultsDisplay: nResultsDisplayDerived,
+    };
+    CustomURLContext.set(newState);
 
-  return Object.assign(
-    {},
-    newState,
-    entValues,
-    { election, electionDisplay },
-    { entIdx }
-  );
+    return Object.assign(
+      {},
+      newState,
+      entValues,
+      { election, electionDisplay },
+      { entIdx }
+    );
+  }
 }
-}
-

@@ -4,10 +4,6 @@ import Timer from "../base/Timer";
 import { CustomLoadingProgress } from "../../view";
 const DataContext = createContext();
 
-
-
-
-
 export default function DataProvider({ children, state }) {
   const [value, setValue] = useState(null);
 

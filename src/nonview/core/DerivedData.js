@@ -70,11 +70,11 @@ export default class DerivedData {
       (entID) => !releasedEntIDList.includes(entID)
     );
 
-    return (new ElectionModel(
+    return new ElectionModel(
       elections,
       election,
       releasedEntIDList,
       nonReleasedEntIDList
-    )).getElectionProjected();
+    ).getElectionProjected();
   }
 }

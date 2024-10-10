@@ -82,7 +82,7 @@ export default class ElectionModel {
     );
   }
 
-  getElectionNotReleasedPrediction() {
+  getElectionProjected() {
     const election = this.currentElection.copy();
     const baseResultList = this.getProjectedResultList();
     election.build(baseResultList);

@@ -25,7 +25,7 @@ async function getElectionValuesSlow({ election, electionDisplay, entIdx }) {
       election
     );
 
-    const electionProjected = DerivedData.getPredictedElection(
+    const electionProjected = DerivedData.getElectionProjected(
       election,
       electionDisplay,
       entIdx,

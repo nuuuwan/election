@@ -61,7 +61,7 @@ export default class DerivedData {
     return election.baseResultList.length;
   }
 
-  static getPredictedElection(election, electionDisplay, entIdx, elections) {
+  static getElectionProjected(election, electionDisplay, entIdx, elections) {
     const releasedEntIDList = electionDisplay.baseEntIDList;
     if (releasedEntIDList.length === 0) {
       return null;
@@ -70,13 +70,11 @@ export default class DerivedData {
       (entID) => !releasedEntIDList.includes(entID)
     );
 
-    const electionModel = new ElectionModel(
+    return (new ElectionModel(
       elections,
       election,
       releasedEntIDList,
       nonReleasedEntIDList
-    );
-    const electionProjected = electionModel.getElectionNotReleasedPrediction();
-    return electionProjected;
+    )).getElectionProjected();
   }
 }

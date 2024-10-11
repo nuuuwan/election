@@ -40,8 +40,7 @@ export default function HistoryView({ entID }) {
   }
   const { election, electionHistory } = data;
 
-  const previousElections = Election.getPreviousElectionsOfSameType(
-    electionHistory,
+  const previousElections = electionHistory.getPastElectionListOfSameType(
     election
   );
 

@@ -14,7 +14,7 @@ export default function ElectionMenuItemList({ handleClose }) {
   const { electionHistory, electionDisplay } = data;
   return (
     <>
-      {electionHistory
+      {electionHistory.elections
         .slice()
         .reverse()
         .map(function (election, iElection) {

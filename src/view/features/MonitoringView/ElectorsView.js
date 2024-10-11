@@ -12,7 +12,7 @@ export default function ElectorsView() {
       <Typography variant="h5">Registered Voters</Typography>
       <CustomAlert>
         {Translate(
-          "An abnormal change in the number of registered voters across electionHistory could be suspicious."
+          "An abnormal change in the number of registered voters across elections could be suspicious."
         )}
       </CustomAlert>
       <GenericScatterChart

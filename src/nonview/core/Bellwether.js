@@ -27,8 +27,7 @@ export default class Bellwether {
     };
   }
   static getStats(electionHistory, election, entID) {
-    const previousElectionsOfSameType = Election.getPreviousElectionsOfSameType(
-      electionHistory,
+    const previousElectionsOfSameType = electionHistory.getPastElectionListOfSameType(
       election
     );
 

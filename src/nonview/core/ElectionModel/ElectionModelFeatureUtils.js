@@ -24,7 +24,7 @@ export default class ElectionModelFeatureUtils {
 
   static getFeatureMatrixListForElections(electionHistory, baseEntIDList) {
     // Returns a list of feature matrices, one for each election.
-    return electionHistory.map(function (election) {
+    return electionHistory.elections.map(function (election) {
       return ElectionModelFeatureUtils.getFeatureMatrixForElection(
         election,
         baseEntIDList
@@ -40,7 +40,7 @@ export default class ElectionModelFeatureUtils {
 
   static getFeatureMatrix(electionHistory, baseEntIDList) {
     // Concatenates all feature matrices for all the training electionHistory.
-    return electionHistory.reduce(function (X, election) {
+    return electionHistory.elections.reduce(function (X, election) {
       return X.concat(
         ElectionModelFeatureUtils.getFeatureMatrixForElection(
           election,

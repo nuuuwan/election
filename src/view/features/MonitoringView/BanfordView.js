@@ -71,7 +71,7 @@ export default function BanfordView() {
       <Typography variant="h5">Benford's Law</Typography>
       <CustomAlert>
         {Translate(
-          "Benford's law is an observation that in many real-life sets of numerical data (including votes in electionHistory), the leading digit is likely to be small. The number 1 appears as the leading significant digit about 30% of the time, while 9 appears as the leading significant digit less than 5% of the time."
+          "Benford's law is an observation that in many real-life sets of numerical data (including votes in elections), the leading digit is likely to be small. The number 1 appears as the leading significant digit about 30% of the time, while 9 appears as the leading significant digit less than 5% of the time."
         )}
       </CustomAlert>
       <BanfordBarChart />

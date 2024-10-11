@@ -26,8 +26,7 @@ export default class ElectionModel {
   }
 
   train() {
-    const previousElections = Election.getPreviousElections(
-      this.electionHistory,
+    const previousElections = this.electionHistory.getPastElectionList(
       this.currentElection
     );
 
@@ -54,12 +53,10 @@ export default class ElectionModel {
 
   getProjectedResultList() {
     const { normPDToPartyToPVotes, pError } = this.trainingOutput;
-    const lastElection = Election.getPenultimateElection(
-      this.electionHistory,
+    const lastElection = this.electionHistory.getPreviousElection(
       this.currentElection
     );
-    const lastElectionOfSameType = Election.getPenultimateElectionOfSameType(
-      this.electionHistory,
+    const lastElectionOfSameType = this.electionHistory.getPreviousElectionOfSameType(
       this.currentElection
     );
     const notReleasedResultList = this.nonReleasedEntIDList

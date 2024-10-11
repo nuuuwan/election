@@ -26,6 +26,8 @@ export default class ElectionModel {
 
 
     this.trainingOutput = this.train();
+
+    this.electionProjected = this.getElectionProjected();
   }
 
   getXEvaluate() {

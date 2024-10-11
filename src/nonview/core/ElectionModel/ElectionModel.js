@@ -1,6 +1,7 @@
 import { ElectionHistory } from "../..";
 import ElectionModelFeatureUtils from "./ElectionModelFeatureUtils";
 import ElectionModelProjectionUtils from "./ElectionModelProjectionUtils";
+import ElectionModelSimulationUtils from "./ElectionModelSimulationUtils";
 
 import ElectionModelUtils from "./ElectionModelUtils";
 
@@ -120,6 +121,15 @@ export default class ElectionModel {
     );
   }
 
+
+
+  static getReleasedResultList(currentElection, releasedEntIDList) {
+return  releasedEntIDList.map((entID) =>
+  currentElection.getResult(entID)
+);
+
+  }
+
   static getProjectedResultList(
     currentElection,
     electionHistory,
@@ -128,29 +138,20 @@ export default class ElectionModel {
     pdToPartyToPVotes,
     pError
   ) {
-    const lastElection = electionHistory.getPreviousElection(currentElection);
-    const lastElectionOfSameType =
-      electionHistory.getPreviousElectionOfSameType(currentElection);
 
-    const notReleasedResultList = nonReleasedEntIDList
-      .map(function (entID) {
-        return ElectionModelProjectionUtils.getSimulatedResult(
-          lastElection,
-          lastElectionOfSameType,
-          entID,
-          pdToPartyToPVotes,
-          pError
-        );
-      })
-      .filter((result) => result !== null);
-
-    const releasedResultList = releasedEntIDList.map((entID) =>
-      currentElection.getResult(entID)
+    const releasedResultList = ElectionModel.getReleasedResultList(
+      currentElection,
+      releasedEntIDList
+    );
+    const nonReleasedResultList = ElectionModelSimulationUtils.getNonReleasedResultList(
+      currentElection,
+      electionHistory,
+      nonReleasedEntIDList,
+      pdToPartyToPVotes,
+      pError
     );
 
-    return [...releasedResultList, ...notReleasedResultList].filter(
-      (result) => result
-    );
+    return [...releasedResultList, ...nonReleasedResultList];
   }
 }
 

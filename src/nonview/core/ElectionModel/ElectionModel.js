@@ -121,13 +121,8 @@ export default class ElectionModel {
     );
   }
 
-
-
   static getReleasedResultList(currentElection, releasedEntIDList) {
-return  releasedEntIDList.map((entID) =>
-  currentElection.getResult(entID)
-);
-
+    return releasedEntIDList.map((entID) => currentElection.getResult(entID));
   }
 
   static getProjectedResultList(
@@ -138,18 +133,18 @@ return  releasedEntIDList.map((entID) =>
     pdToPartyToPVotes,
     pError
   ) {
-
     const releasedResultList = ElectionModel.getReleasedResultList(
       currentElection,
       releasedEntIDList
     );
-    const nonReleasedResultList = ElectionModelSimulationUtils.getNonReleasedResultList(
-      currentElection,
-      electionHistory,
-      nonReleasedEntIDList,
-      pdToPartyToPVotes,
-      pError
-    );
+    const nonReleasedResultList =
+      ElectionModelSimulationUtils.getNonReleasedResultList(
+        currentElection,
+        electionHistory,
+        nonReleasedEntIDList,
+        pdToPartyToPVotes,
+        pError
+      );
 
     return [...releasedResultList, ...nonReleasedResultList];
   }

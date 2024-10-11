@@ -1,4 +1,3 @@
-
 import ElectionModelNormalizeUtils from "./ElectionModelNormalizeUtils";
 
 export default class ElectionModelProjectionUtils {
@@ -33,6 +32,4 @@ export default class ElectionModelProjectionUtils {
       ElectionModelNormalizeUtils.normalize(entToPartyToPVotes);
     return normEntToPartyToPVotes;
   }
-
-  
 }

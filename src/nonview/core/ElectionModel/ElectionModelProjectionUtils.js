@@ -1,7 +1,7 @@
 import ElectionModelNormalizeUtils from "./ElectionModelNormalizeUtils";
 
 export default class ElectionModelProjectionUtils {
-  static getEntToPartyToPVotes(
+  static getPDToPartyToPVotes(
     model,
     currentElection,
     XEvaluate,

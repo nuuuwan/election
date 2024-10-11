@@ -113,7 +113,7 @@ export default class ElectionModel {
   ) {
     const model = ElectionModelUtils.trainModel(XAll, YAll);
 
-    return ElectionModelProjectionUtils.getEntToPartyToPVotes(
+    return ElectionModelProjectionUtils.getPDToPartyToPVotes(
       model,
       currentElection,
       ElectionModel.getXEvaluate(currentElection, releasedEntIDList),

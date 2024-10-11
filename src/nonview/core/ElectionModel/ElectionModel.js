@@ -29,7 +29,7 @@ export default class ElectionModel {
     const previousHistory = this.electionHistory.getHistory(
       this.currentElection
     );
-    
+
     const XAll = ElectionModelFeatureUtils.getFeatureMatrixListForElections(
       previousHistory,
       this.releasedEntIDList
@@ -56,10 +56,9 @@ export default class ElectionModel {
     const lastElection = this.electionHistory.getPreviousElection(
       this.currentElection
     );
-    const lastElectionOfSameType = this.electionHistory.getPreviousElectionOfSameType(
-      this.currentElection
-    );
-    
+    const lastElectionOfSameType =
+      this.electionHistory.getPreviousElectionOfSameType(this.currentElection);
+
     const notReleasedResultList = this.nonReleasedEntIDList
       .map(function (entID) {
         return ElectionModelProjectionUtils.getSimulatedResult(

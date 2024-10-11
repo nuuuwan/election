@@ -1,5 +1,3 @@
-
-
 export default class Bellwether {
   static getStatsForElection(election, entID) {
     const resultEnt = election.getResult(entID);
@@ -27,9 +25,8 @@ export default class Bellwether {
     };
   }
   static getStats(electionHistory, election, entID) {
-    const previousElectionsOfSameType = electionHistory.getPastElectionListOfSameType(
-      election
-    );
+    const previousElectionsOfSameType =
+      electionHistory.getPastElectionListOfSameType(election);
 
     const n = previousElectionsOfSameType.length;
     const { nSame, error } = previousElectionsOfSameType.reduce(

@@ -1,5 +1,3 @@
-
-
 const ElectionStaticUtilsMixin = {
   getProvinceID(edID) {
     return {
@@ -27,8 +25,6 @@ const ElectionStaticUtilsMixin = {
       "EC-22": "LK-9",
     }[edID];
   },
-
-
 };
 
 export default ElectionStaticUtilsMixin;

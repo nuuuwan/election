@@ -20,17 +20,15 @@ export default class ElectionModelSimulationUtils {
     return new Summary(valid, rejected, polled, electors);
   }
 
-  static simulatePartyToVotes(entID, summary, normEntToPartyToPVotes, pError) {
+  static simulatePartyToVotes(summary, partyToPVotes, pError) {
     const valid = summary.valid;
-    const partyToPVotes = normEntToPartyToPVotes[entID];
+    const kError = Math.max(0, 1 - pError);
+        
     const partyToVotes = Object.entries(partyToPVotes).reduce(
       function (partyToVotes, [partyID, pVotes]) {
         pVotes = MathX.forceRange(pVotes, 0, 1);
         const votes = Math.round(pVotes * valid);
-
-        const kError = Math.max(0, 1 - pError);
         const votesMin = Math.round(pVotes * kError * valid);
-
         partyToVotes[partyID] = votesMin;
         partyToVotes[Party.ERROR.id] += votes - votesMin;
         return partyToVotes;
@@ -44,7 +42,7 @@ export default class ElectionModelSimulationUtils {
     lastElection,
     lastElectionOfSameType,
     entID,
-    normEntToPartyToPVotes,
+    partyToPVotes,
     pError
   ) {
     if (!lastElection) {
@@ -61,9 +59,8 @@ export default class ElectionModelSimulationUtils {
     }
 
     const partyToVotes = ElectionModelSimulationUtils.simulatePartyToVotes(
-      entID,
       summary,
-      normEntToPartyToPVotes,
+      partyToPVotes,
       pError
     );
 
@@ -86,7 +83,7 @@ export default class ElectionModelSimulationUtils {
         lastElection,
         lastElectionOfSameType,
         entID,
-        pdToPartyToPVotes,
+        pdToPartyToPVotes[entID],
         pError
       );
     });

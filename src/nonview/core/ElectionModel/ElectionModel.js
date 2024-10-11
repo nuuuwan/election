@@ -1,4 +1,4 @@
-import { ElectionHistory } from "../..";
+
 import ElectionModelFeatureUtils from "./ElectionModelFeatureUtils";
 import ElectionModelProjectionUtils from "./ElectionModelProjectionUtils";
 import ElectionModelSimulationUtils from "./ElectionModelSimulationUtils";
@@ -50,14 +50,13 @@ export default class ElectionModel {
   ) {
     const election = currentElection.copy();
 
-    const baseResultList = ElectionModel.getProjectedResultList(
+    const baseResultList = ElectionModelSimulationUtils.simulateResultList(
       currentElection,
       electionHistory,
-      releasedEntIDList,
       nonReleasedEntIDList,
       pdToPartyToPVotes,
       pError
-    );
+    )
     election.build(baseResultList);
 
     return election;
@@ -101,29 +100,7 @@ export default class ElectionModel {
     return releasedEntIDList.map((entID) => currentElection.getResult(entID));
   }
 
-  static getProjectedResultList(
-    currentElection,
-    electionHistory,
-    releasedEntIDList,
-    nonReleasedEntIDList,
-    pdToPartyToPVotes,
-    pError
-  ) {
-    const releasedResultList = ElectionModel.getReleasedResultList(
-      currentElection,
-      releasedEntIDList
-    );
-    const nonReleasedResultList =
-      ElectionModelSimulationUtils.simulateResultList(
-        currentElection,
-        electionHistory,
-        nonReleasedEntIDList,
-        pdToPartyToPVotes,
-        pError
-      );
 
-    return [...releasedResultList, ...nonReleasedResultList];
-  }
 }
 
 

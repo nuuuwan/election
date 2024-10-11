@@ -75,7 +75,7 @@ export default class ElectionModelSimulationUtils {
     return new Result(entID, summary, partyToVotes, "");
   }
 
-  static simulateResultList(
+  static simulateNonReleasedResultList(
     currentElection,
     electionHistory,
     nonReleasedEntIDList,
@@ -95,5 +95,25 @@ export default class ElectionModelSimulationUtils {
         pError
       );
     });
+  }
+
+  static simulateResultList(
+    currentElection,
+    electionHistory,
+    nonReleasedEntIDList,
+    pdToPartyToPVotes,
+    pError
+  ) {
+    const releasedResultList = currentElection.pdResultList;
+    const nonReleasedResultList =
+      ElectionModelSimulationUtils.simulateNonReleasedResultList(
+        currentElection,
+        electionHistory,
+        nonReleasedEntIDList,
+        pdToPartyToPVotes,
+        pError
+      );
+
+    return [...releasedResultList, ...nonReleasedResultList];
   }
 }

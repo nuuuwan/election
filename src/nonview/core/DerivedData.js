@@ -1,4 +1,4 @@
-import { ElectionModel } from "../../nonview";
+
 import { ArrayX } from "..";
 
 export default class DerivedData {

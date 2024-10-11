@@ -5,50 +5,60 @@ import ElectionModelProjectionUtils from "./ElectionModelProjectionUtils";
 import ElectionModelUtils from "./ElectionModelUtils";
 
 export default class ElectionModel {
-  constructor(
+  static getElectionProjected(
     currentElection,
     electionHistory,
   ) {
-    this.currentElection = currentElection;
-    this.electionHistory = electionHistory;
-    
+
     
     const releasedEntIDList = currentElection.baseEntIDList;
-    
-    const previousElection= electionHistory.getPreviousElection(this.currentElection);
-    
+    const previousElection= electionHistory.getPreviousElection(currentElection);
     const nonReleasedEntIDList = previousElection.baseEntIDList.filter(
       (entID) => !releasedEntIDList.includes(entID)
     );
 
-    this.releasedEntIDList = releasedEntIDList;
-    this.nonReleasedEntIDList = nonReleasedEntIDList;
 
 
-    this.trainingOutput = this.train();
 
-    this.electionProjected = this.getElectionProjected();
+    const trainingOutput = ElectionModel.train(
+      currentElection,
+      electionHistory,
+      releasedEntIDList,
+      nonReleasedEntIDList
+    )
+
+    const election = currentElection.copy();
+    const baseResultList = ElectionModel.getProjectedResultList(
+      currentElection,
+      electionHistory,
+      releasedEntIDList,
+      nonReleasedEntIDList,
+      trainingOutput
+
+    )
+    election.build(baseResultList);
+    return election;
   }
 
-  getXEvaluate() {
+  static getXEvaluate(currentElection, releasedEntIDList) {
     return ElectionModelFeatureUtils.getFeatureMatrix(
-      ElectionHistory.singletonHistory(this.currentElection),
-      this.releasedEntIDList
+      ElectionHistory.singletonHistory(currentElection),
+      releasedEntIDList
     );
   }
 
-  train() {
-    const previousHistory = this.electionHistory.getHistory(
-      this.currentElection
+  static train(currentElection, electionHistory, releasedEntIDList, nonReleasedEntIDList) {
+    const previousHistory = electionHistory.getHistory(
+      currentElection
     );
 
     const XAll = ElectionModelFeatureUtils.getFeatureMatrixListForElections(
       previousHistory,
-      this.releasedEntIDList
+      releasedEntIDList
     );
     const YAll = ElectionModelFeatureUtils.getFeatureMatrixListForElections(
       previousHistory,
-      this.nonReleasedEntIDList
+      nonReleasedEntIDList
     );
     const pError = ElectionModelUtils.getPErrorEvaluate(XAll, YAll);
     const model = ElectionModelUtils.trainModel(XAll, YAll);
@@ -56,22 +66,22 @@ export default class ElectionModel {
     const normPDToPartyToPVotes =
       ElectionModelProjectionUtils.getEntToPartyToPVotes(
         model,
-        this.currentElection,
-        this.getXEvaluate(),
-        this.nonReleasedEntIDList
+        currentElection,
+        ElectionModel.getXEvaluate(currentElection, releasedEntIDList),
+        nonReleasedEntIDList
       );
     return { normPDToPartyToPVotes, pError };
   }
 
-  getProjectedResultList() {
-    const { normPDToPartyToPVotes, pError } = this.trainingOutput;
-    const lastElection = this.electionHistory.getPreviousElection(
-      this.currentElection
+  static getProjectedResultList(currentElection, electionHistory, releasedEntIDList, nonReleasedEntIDList, trainingOutput) {
+    const { normPDToPartyToPVotes, pError } = trainingOutput;
+    const lastElection = electionHistory.getPreviousElection(
+      currentElection
     );
     const lastElectionOfSameType =
-      this.electionHistory.getPreviousElectionOfSameType(this.currentElection);
+      electionHistory.getPreviousElectionOfSameType(currentElection);
 
-    const notReleasedResultList = this.nonReleasedEntIDList
+    const notReleasedResultList = nonReleasedEntIDList
       .map(function (entID) {
         return ElectionModelProjectionUtils.getSimulatedResult(
           lastElection,
@@ -83,8 +93,8 @@ export default class ElectionModel {
       })
       .filter((result) => result !== null);
 
-    const releasedResultList = this.releasedEntIDList.map((entID) =>
-      this.currentElection.getResult(entID)
+    const releasedResultList = releasedEntIDList.map((entID) =>
+      currentElection.getResult(entID)
     );
 
     return [...releasedResultList, ...notReleasedResultList].filter(
@@ -92,12 +102,7 @@ export default class ElectionModel {
     );
   }
 
-  getElectionProjected() {
-    const election = this.currentElection.copy();
-    const baseResultList = this.getProjectedResultList();
-    election.build(baseResultList);
-    return election;
-  }
+
 }
 
 Object.assign(ElectionModel, ElectionModelUtils);

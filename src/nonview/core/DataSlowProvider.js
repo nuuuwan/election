@@ -6,21 +6,9 @@ import { useDataContext } from "./DataProvider";
 
 const DataSlowContext = createContext();
 
-async function getElectionHistory() {
-  return await Timer.logAsync(
-    "DataSlowProvider.getElectionHistory",
-    500,
-    async function () {
-      
-      return await ElectionHistory.load();
-    }
-  );
-}
-
 async function getElectionValuesSlow({ election, electionDisplay, entIdx }) {
   const inner = async function () {
-    const electionHistory = await getElectionHistory();
-
+    const electionHistory = await ElectionHistory.load();
     const electionPrevious = electionHistory.getPreviousElectionOfSameType(election);
 
     const electionProjected = DerivedData.getElectionProjected(

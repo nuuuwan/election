@@ -1,3 +1,4 @@
+import { ElectionHistory } from "../..";
 import ElectionModelFeatureUtils from "./ElectionModelFeatureUtils";
 import ElectionModelProjectionUtils from "./ElectionModelProjectionUtils";
 
@@ -19,22 +20,22 @@ export default class ElectionModel {
 
   getXEvaluate() {
     return ElectionModelFeatureUtils.getFeatureMatrix(
-      [this.currentElection],
+      ElectionHistory.singletonHistory(this.currentElection),
       this.releasedEntIDList
     );
   }
 
   train() {
-    const previousElections = this.electionHistory.getPastElectionList(
+    const previousHistory = this.electionHistory.getHistory(
       this.currentElection
     );
-
+    
     const XAll = ElectionModelFeatureUtils.getFeatureMatrixListForElections(
-      previousElections,
+      previousHistory,
       this.releasedEntIDList
     );
     const YAll = ElectionModelFeatureUtils.getFeatureMatrixListForElections(
-      previousElections,
+      previousHistory,
       this.nonReleasedEntIDList
     );
     const pError = ElectionModelUtils.getPErrorEvaluate(XAll, YAll);
@@ -58,6 +59,7 @@ export default class ElectionModel {
     const lastElectionOfSameType = this.electionHistory.getPreviousElectionOfSameType(
       this.currentElection
     );
+    
     const notReleasedResultList = this.nonReleasedEntIDList
       .map(function (entID) {
         return ElectionModelProjectionUtils.getSimulatedResult(

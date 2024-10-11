@@ -1,7 +1,7 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 
 import { Timer } from "..";
-import { DerivedData, Election, ElectionHistory } from "..";
+import { DerivedData, ElectionHistory } from "..";
 import { useDataContext } from "./DataProvider";
 
 const DataSlowContext = createContext();

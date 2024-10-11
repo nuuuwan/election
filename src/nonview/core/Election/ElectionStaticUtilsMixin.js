@@ -1,4 +1,4 @@
-import { ArrayX } from "../..";
+
 
 const ElectionStaticUtilsMixin = {
   getProvinceID(edID) {

@@ -1,4 +1,4 @@
-import Election from "./Election/Election.js";
+
 
 export default class Bellwether {
   static getStatsForElection(election, entID) {

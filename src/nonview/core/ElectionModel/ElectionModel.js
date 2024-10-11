@@ -1,4 +1,3 @@
-import Election from "../Election/Election";
 import ElectionModelFeatureUtils from "./ElectionModelFeatureUtils";
 import ElectionModelProjectionUtils from "./ElectionModelProjectionUtils";
 

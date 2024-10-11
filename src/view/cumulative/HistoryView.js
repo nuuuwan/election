@@ -1,6 +1,6 @@
 import { Grid2, Stack, Typography } from "@mui/material";
 import { Format } from "../../nonview";
-import { Election } from "../../nonview";
+
 import { CustomLoadingProgress, PartyView } from "../../view";
 
 import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";

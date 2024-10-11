@@ -1,5 +1,3 @@
-import ELECTION_LIST_TUPLES from "./ELECTION_LIST_TUPLES";
-
 import ElectionBase from "./ElectionBase.js";
 
 import ElectionGetters from "./ElectionGetters.js";

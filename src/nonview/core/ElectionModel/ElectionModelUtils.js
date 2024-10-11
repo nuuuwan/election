@@ -3,7 +3,6 @@ import { MLModel } from "../..";
 import ElectionModelFeatureUtils from "./ElectionModelFeatureUtils";
 
 export default class ElectionModelUtils {
-
   static ERROR_CONF = 0.8;
   static DEFAULT_P_ERROR = 0.2;
 
@@ -46,14 +45,11 @@ export default class ElectionModelUtils {
     return { XTestEvaluate, YTestEvaluate };
   }
 
-
   static trainModelEvaluate(XAll, YAll) {
-    const { XTrainEvaluate, YTrainEvaluate } = ElectionModelUtils.getTrainEvaluateData(
-      XAll,
-      YAll
-    );
-   
-    return MLModel.train(XTrainEvaluate, YTrainEvaluate)
+    const { XTrainEvaluate, YTrainEvaluate } =
+      ElectionModelUtils.getTrainEvaluateData(XAll, YAll);
+
+    return MLModel.train(XTrainEvaluate, YTrainEvaluate);
   }
 
   static getPErrorByHoldout(XAll, YAll) {
@@ -62,14 +58,13 @@ export default class ElectionModelUtils {
     if (!modelEvaluate) {
       return ElectionModelUtils.DEFAULT_P_ERROR;
     }
-    
-    const { XTestEvaluate, YTestEvaluate } = ElectionModelUtils.getTestEvaluateData(
-      XAll,
-      YAll
+
+    const { XTestEvaluate, YTestEvaluate } =
+      ElectionModelUtils.getTestEvaluateData(XAll, YAll);
+    const YHatTestEvaluate = XTestEvaluate.map((Xi) =>
+      modelEvaluate.predict(Xi)
     );
-      const YHatTestEvaluate = XTestEvaluate.map((Xi) => modelEvaluate.predict(Xi));
-      return ElectionModelUtils.getPError(YTestEvaluate, YHatTestEvaluate);
-    
+    return ElectionModelUtils.getPError(YTestEvaluate, YHatTestEvaluate);
   }
 
   static getTrainData(XAll, YAll) {

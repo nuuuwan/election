@@ -1,4 +1,3 @@
-
 import ElectionModelFeatureUtils from "./ElectionModelFeatureUtils";
 import ElectionModelProjectionUtils from "./ElectionModelProjectionUtils";
 import ElectionModelSimulationUtils from "./ElectionModelSimulationUtils";
@@ -56,7 +55,7 @@ export default class ElectionModel {
       nonReleasedEntIDList,
       pdToPartyToPVotes,
       pError
-    )
+    );
     election.build(baseResultList);
 
     return election;
@@ -75,10 +74,6 @@ export default class ElectionModel {
     );
   }
 
-
-
-
-
   static getPDToPartyToPVotes(
     currentElection,
     releasedEntIDList,
@@ -91,7 +86,10 @@ export default class ElectionModel {
     return ElectionModelProjectionUtils.getPDToPartyToPVotes(
       model,
       currentElection,
-      ElectionModelFeatureUtils.getXEvaluate(currentElection, releasedEntIDList),
+      ElectionModelFeatureUtils.getXEvaluate(
+        currentElection,
+        releasedEntIDList
+      ),
       nonReleasedEntIDList
     );
   }
@@ -99,8 +97,4 @@ export default class ElectionModel {
   static getReleasedResultList(currentElection, releasedEntIDList) {
     return releasedEntIDList.map((entID) => currentElection.getResult(entID));
   }
-
-
 }
-
-

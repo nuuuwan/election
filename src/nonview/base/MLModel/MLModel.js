@@ -2,7 +2,6 @@ import MLR from "ml-regression-multivariate-linear";
 
 export default class MLModel {
   static MIN_RESULTS_FOR_PREDICTION = 1;
-  
 
   constructor(X, Y) {
     this.X = X;

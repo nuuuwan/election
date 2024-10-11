@@ -20,12 +20,7 @@ export default class ElectionModelSimulationUtils {
     return new Summary(valid, rejected, polled, electors);
   }
 
-  static simulatePartyToVotes(
-    entID,
-    summary,
-    normEntToPartyToPVotes,
-    pError
-  ) {
+  static simulatePartyToVotes(entID, summary, normEntToPartyToPVotes, pError) {
     const valid = summary.valid;
     const partyToPVotes = normEntToPartyToPVotes[entID];
     const partyToVotes = Object.entries(partyToPVotes).reduce(

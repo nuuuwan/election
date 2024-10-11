@@ -24,9 +24,9 @@ export default class AggregatedResultUtils {
   }
 
   static getBellwetherEntIDList(data) {
-    const { elections, electionDisplay, entIdx } = data;
+    const { electionHistory, electionDisplay, entIdx } = data;
     const infoList = Bellwether.getBestBellwetherInfoList(
-      elections,
+      electionHistory,
       electionDisplay,
       entIdx
     );

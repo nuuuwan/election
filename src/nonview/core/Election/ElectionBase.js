@@ -65,7 +65,7 @@ export default class ElectionBase {
   get urlData() {
     return (
       ElectionBase.URL_BASE +
-      "/government-elections-" +
+      "/government-electionHistory-" +
       this.electionType.toLowerCase() +
       ".regions-ec." +
       this.year +

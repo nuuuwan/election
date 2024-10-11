@@ -8,7 +8,7 @@ export default function CitationsView() {
 
   const lines = [
     "v" + VERSION.DATETIME_STR,
-    Translate("Source Data by %1", ["elections.gov.lk"]),
+    Translate("Source Data by %1", ["electionHistory.gov.lk"]),
     Translate("Visualization & Analysis by %1", ["@nuuuwan"]),
     appTime,
   ];

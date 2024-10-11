@@ -38,10 +38,10 @@ export default function HistoryView({ entID }) {
   if (!data) {
     return <CustomLoadingProgress />;
   }
-  const { election, elections } = data;
+  const { election, electionHistory } = data;
 
   const previousElections = Election.getPreviousElectionsOfSameType(
-    elections,
+    electionHistory,
     election
   );
 

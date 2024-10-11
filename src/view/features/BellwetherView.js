@@ -10,10 +10,10 @@ export default function BellwetherView() {
   if (!data) {
     return <CustomLoadingProgress />;
   }
-  const { allRegionIdx, electionDisplay, elections, activeEntID } = data;
+  const { allRegionIdx, electionDisplay, electionHistory, activeEntID } = data;
 
   const { n, nSame, error } = Bellwether.getStats(
-    elections,
+    electionHistory,
     electionDisplay,
     activeEntID
   );

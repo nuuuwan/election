@@ -4,8 +4,8 @@ import Election from "../Election/Election";
 import ArrayX from "../../base/ArrayX";
 
 export default class ElectionHistory {
-  constructor(elections) {
-    this.elections = elections;
+  constructor(electionHistory) {
+    this.electionHistory = electionHistory;
   }
 
   static async loadElections() {
@@ -27,7 +27,7 @@ export default class ElectionHistory {
 }
 
   getPastElectionList(currentElection) {
-    return this.elections.filter(function (election) {
+    return this.electionHistory.filter(function (election) {
       return election.date.localeCompare(currentElection.date) < 0;
     });
   }

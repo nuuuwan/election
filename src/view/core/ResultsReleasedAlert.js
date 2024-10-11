@@ -29,7 +29,7 @@ export default function ResultsReleasedAlert() {
     <CustomAlert severity="warning">
       <Typography variant="body1">
         {Translate(
-          '"%1 Released" is an estimate based on registered voter data from previous elections.',
+          '"%1 Released" is an estimate based on registered voter data from previous electionHistory.',
           [Format.percent(pElectors)]
         )}
       </Typography>

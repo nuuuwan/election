@@ -11,10 +11,10 @@ export default function ElectionMenuItemList({ handleClose }) {
   if (!data) {
     return <CustomLoadingProgress />;
   }
-  const { elections, electionDisplay } = data;
+  const { electionHistory, electionDisplay } = data;
   return (
     <>
-      {elections
+      {electionHistory
         .slice()
         .reverse()
         .map(function (election, iElection) {

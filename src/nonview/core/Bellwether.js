@@ -26,9 +26,9 @@ export default class Bellwether {
       error: error,
     };
   }
-  static getStats(elections, election, entID) {
+  static getStats(electionHistory, election, entID) {
     const previousElectionsOfSameType = Election.getPreviousElectionsOfSameType(
-      elections,
+      electionHistory,
       election
     );
 
@@ -47,13 +47,13 @@ export default class Bellwether {
     return { entID, n, nSame, pSame: nSame / n, error };
   }
 
-  static getBestBellwetherInfoList(elections, election, pdIdx) {
+  static getBestBellwetherInfoList(electionHistory, election, pdIdx) {
     return election.resultList
       .filter(function (result) {
         return election.isComplete(result.entID, pdIdx);
       })
       .map(function (result) {
-        return Bellwether.getStats(elections, election, result.entID);
+        return Bellwether.getStats(electionHistory, election, result.entID);
       })
       .sort(function (a, b) {
         return a.error - b.error;

@@ -6,12 +6,12 @@ import ElectionModelUtils from "./ElectionModelUtils";
 
 export default class ElectionModel {
   constructor(
-    elections,
+    electionHistory,
     currentElection,
     releasedEntIDList,
     nonReleasedEntIDList
   ) {
-    this.elections = elections;
+    this.electionHistory = electionHistory;
     this.currentElection = currentElection;
     this.releasedEntIDList = releasedEntIDList;
     this.nonReleasedEntIDList = nonReleasedEntIDList;
@@ -27,7 +27,7 @@ export default class ElectionModel {
 
   train() {
     const previousElections = Election.getPreviousElections(
-      this.elections,
+      this.electionHistory,
       this.currentElection
     );
 
@@ -55,11 +55,11 @@ export default class ElectionModel {
   getProjectedResultList() {
     const { normPDToPartyToPVotes, pError } = this.trainingOutput;
     const lastElection = Election.getPenultimateElection(
-      this.elections,
+      this.electionHistory,
       this.currentElection
     );
     const lastElectionOfSameType = Election.getPenultimateElectionOfSameType(
-      this.elections,
+      this.electionHistory,
       this.currentElection
     );
     const notReleasedResultList = this.nonReleasedEntIDList

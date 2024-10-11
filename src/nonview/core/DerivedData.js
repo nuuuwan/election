@@ -61,7 +61,7 @@ export default class DerivedData {
     return election.baseResultList.length;
   }
 
-  static getElectionProjected(election, electionDisplay, entIdx, elections) {
+  static getElectionProjected(election, electionDisplay, entIdx, electionHistory) {
     const releasedEntIDList = electionDisplay.baseEntIDList;
     if (releasedEntIDList.length === 0) {
       return null;
@@ -71,7 +71,7 @@ export default class DerivedData {
     );
 
     return new ElectionModel(
-      elections,
+      electionHistory,
       election,
       releasedEntIDList,
       nonReleasedEntIDList

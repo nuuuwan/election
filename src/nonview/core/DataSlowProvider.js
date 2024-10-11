@@ -45,7 +45,7 @@ async function getValue(state, data) {
   }
   const { election, electionDisplay, entIdx } = data;
 
-  const { elections, electionPrevious, electionProjected } =
+  const { electionHistory, electionPrevious, electionProjected } =
     await getElectionValuesSlow({
       election,
       electionDisplay,
@@ -54,7 +54,7 @@ async function getValue(state, data) {
 
   return Object.assign({}, data, {
     electionProjected,
-    elections,
+    electionHistory,
     electionPrevious,
   });
 }

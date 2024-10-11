@@ -23,7 +23,7 @@ export default class ElectionModelSimulationUtils {
   static simulatePartyToVotes(summary, partyToPVotes, pError) {
     const valid = summary.valid;
     const kError = Math.max(0, 1 - pError);
-        
+
     const partyToVotes = Object.entries(partyToPVotes).reduce(
       function (partyToVotes, [partyID, pVotes]) {
         pVotes = MathX.forceRange(pVotes, 0, 1);

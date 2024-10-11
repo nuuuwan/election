@@ -8,7 +8,11 @@ export default class ElectionModel {
   static getElectionProjected(currentElection, electionHistory) {
     const releasedEntIDList = currentElection.baseEntIDList;
 
-    const nonReleasedEntIDList = ElectionModel.getNonReleasedEntIDList(currentElection, electionHistory, releasedEntIDList);
+    const nonReleasedEntIDList = ElectionModel.getNonReleasedEntIDList(
+      currentElection,
+      electionHistory,
+      releasedEntIDList
+    );
 
     const { XAll, YAll } = ElectionModel.trainingData(
       currentElection,
@@ -22,7 +26,8 @@ export default class ElectionModel {
       currentElection,
       releasedEntIDList,
       nonReleasedEntIDList,
-      XAll, YAll
+      XAll,
+      YAll
     );
 
     return ElectionModel.buildElection(
@@ -33,7 +38,6 @@ export default class ElectionModel {
       pdToPartyToPVotes,
       pError
     );
-
   }
 
   static buildElection(
@@ -42,7 +46,7 @@ export default class ElectionModel {
     releasedEntIDList,
     nonReleasedEntIDList,
     pdToPartyToPVotes,
-    pError,
+    pError
   ) {
     const election = currentElection.copy();
 
@@ -51,21 +55,25 @@ export default class ElectionModel {
       electionHistory,
       releasedEntIDList,
       nonReleasedEntIDList,
-      pdToPartyToPVotes, pError
+      pdToPartyToPVotes,
+      pError
     );
     election.build(baseResultList);
-    
+
     return election;
   }
 
-
-  static getNonReleasedEntIDList(currentElection, electionHistory, releasedEntIDList) {
+  static getNonReleasedEntIDList(
+    currentElection,
+    electionHistory,
+    releasedEntIDList
+  ) {
     const previousElection =
-    electionHistory.getPreviousElection(currentElection);
+      electionHistory.getPreviousElection(currentElection);
 
-return previousElection.baseEntIDList.filter(
-  (entID) => !releasedEntIDList.includes(entID)
-);
+    return previousElection.baseEntIDList.filter(
+      (entID) => !releasedEntIDList.includes(entID)
+    );
   }
 
   static getXEvaluate(currentElection, releasedEntIDList) {
@@ -75,7 +83,12 @@ return previousElection.baseEntIDList.filter(
     );
   }
 
-  static trainingData(currentElection, electionHistory, releasedEntIDList, nonReleasedEntIDList) {
+  static trainingData(
+    currentElection,
+    electionHistory,
+    releasedEntIDList,
+    nonReleasedEntIDList
+  ) {
     const previousHistory = electionHistory.getHistory(currentElection);
 
     const XAll = ElectionModelFeatureUtils.getFeatureMatrixListForElections(
@@ -94,19 +107,17 @@ return previousElection.baseEntIDList.filter(
     currentElection,
     releasedEntIDList,
     nonReleasedEntIDList,
-    XAll, YAll
+    XAll,
+    YAll
   ) {
-
-
     const model = ElectionModelUtils.trainModel(XAll, YAll);
 
     return ElectionModelProjectionUtils.getEntToPartyToPVotes(
-        model,
-        currentElection,
-        ElectionModel.getXEvaluate(currentElection, releasedEntIDList),
-        nonReleasedEntIDList
-      );
-
+      model,
+      currentElection,
+      ElectionModel.getXEvaluate(currentElection, releasedEntIDList),
+      nonReleasedEntIDList
+    );
   }
 
   static getProjectedResultList(
@@ -114,9 +125,9 @@ return previousElection.baseEntIDList.filter(
     electionHistory,
     releasedEntIDList,
     nonReleasedEntIDList,
-    pdToPartyToPVotes, pError
+    pdToPartyToPVotes,
+    pError
   ) {
-
     const lastElection = electionHistory.getPreviousElection(currentElection);
     const lastElectionOfSameType =
       electionHistory.getPreviousElectionOfSameType(currentElection);

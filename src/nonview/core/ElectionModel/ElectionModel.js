@@ -2,7 +2,6 @@ import { ElectionHistory } from "../..";
 import ElectionModelFeatureUtils from "./ElectionModelFeatureUtils";
 import ElectionModelProjectionUtils from "./ElectionModelProjectionUtils";
 import ElectionModelSimulationUtils from "./ElectionModelSimulationUtils";
-
 import ElectionModelUtils from "./ElectionModelUtils";
 
 export default class ElectionModel {
@@ -150,4 +149,4 @@ export default class ElectionModel {
   }
 }
 
-Object.assign(ElectionModel, ElectionModelUtils);
+

@@ -39,19 +39,6 @@ class Election extends ElectionBase {
     }
   }
 
-  static async listAll() {
-    const elections = await Promise.all(
-      ELECTION_LIST_TUPLES.map(async ([electionType, date]) => {
-        const baseEntType = Election.getBaseEntTypeFromDate(date) || EntType.PD;
-        const election = new Election(electionType, date, baseEntType);
-        await election.__loadData();
-        return election;
-      })
-    );
-
-    return elections.sort((a, b) => a.date.localeCompare(b.date));
-  }
-
   // Subset Election
 
   getSubsetElectionByBaseResultList(baseResultList) {

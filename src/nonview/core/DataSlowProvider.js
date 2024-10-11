@@ -1,38 +1,36 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 
 import { Timer } from "..";
-import { DerivedData, Election } from "..";
+import { DerivedData, Election, ElectionHistory } from "..";
 import { useDataContext } from "./DataProvider";
 
 const DataSlowContext = createContext();
 
-async function getElections() {
+async function getElectionHistory() {
   return await Timer.logAsync(
-    "DataSlowProvider.getElections",
+    "DataSlowProvider.getElectionHistory",
     500,
     async function () {
-      return await Election.listAll();
+      
+      return await ElectionHistory.load();
     }
   );
 }
 
 async function getElectionValuesSlow({ election, electionDisplay, entIdx }) {
   const inner = async function () {
-    const elections = await getElections();
+    const electionHistory = await getElectionHistory();
 
-    const electionPrevious = Election.getPenultimateElectionOfSameType(
-      elections,
-      election
-    );
+    const electionPrevious = electionHistory.getPreviousElectionOfSameType(election);
 
     const electionProjected = DerivedData.getElectionProjected(
       election,
       electionDisplay,
       entIdx,
-      elections
+      electionHistory,
     );
 
-    return { elections, electionPrevious, electionProjected };
+    return { electionHistory, electionPrevious, electionProjected };
   };
   return await Timer.logAsync(
     "DataSlowProvider.getElectionValuesSlow",

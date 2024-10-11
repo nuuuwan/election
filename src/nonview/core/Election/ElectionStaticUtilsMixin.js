@@ -28,37 +28,7 @@ const ElectionStaticUtilsMixin = {
     }[edID];
   },
 
-  getPreviousElections(elections, currentElection) {
-    return elections.filter(function (election) {
-      return election.date.localeCompare(currentElection.date) < 0;
-    });
-  },
 
-  getPreviousElectionsOfSameType(elections, currentElection) {
-    return ElectionStaticUtilsMixin.getPreviousElections(
-      elections,
-      currentElection
-    ).filter(function (election) {
-      return election.electionType === currentElection.electionType;
-    });
-  },
-
-  getPenultimateElection(elections, currentElection) {
-    const previousElections = ElectionStaticUtilsMixin.getPreviousElections(
-      elections,
-      currentElection
-    );
-    return ArrayX.last(previousElections);
-  },
-
-  getPenultimateElectionOfSameType(elections, currentElection) {
-    const previousElections =
-      ElectionStaticUtilsMixin.getPreviousElectionsOfSameType(
-        elections,
-        currentElection
-      );
-    return ArrayX.last(previousElections);
-  },
 };
 
 export default ElectionStaticUtilsMixin;

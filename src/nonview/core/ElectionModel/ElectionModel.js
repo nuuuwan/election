@@ -6,15 +6,25 @@ import ElectionModelUtils from "./ElectionModelUtils";
 
 export default class ElectionModel {
   constructor(
-    electionHistory,
     currentElection,
-    releasedEntIDList,
-    nonReleasedEntIDList
+    electionHistory,
   ) {
-    this.electionHistory = electionHistory;
     this.currentElection = currentElection;
+    this.electionHistory = electionHistory;
+    
+    
+    const releasedEntIDList = currentElection.baseEntIDList;
+    
+    const previousElection= electionHistory.getPreviousElection(this.currentElection);
+    
+    const nonReleasedEntIDList = previousElection.baseEntIDList.filter(
+      (entID) => !releasedEntIDList.includes(entID)
+    );
+
     this.releasedEntIDList = releasedEntIDList;
     this.nonReleasedEntIDList = nonReleasedEntIDList;
+
+
     this.trainingOutput = this.train();
   }
 

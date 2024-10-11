@@ -1,6 +1,6 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 
-import { Timer } from "..";
+import { ElectionModel, Timer } from "..";
 import { DerivedData, ElectionHistory } from "..";
 import { useDataContext } from "./DataProvider";
 
@@ -12,12 +12,10 @@ async function getElectionValuesSlow({ election, electionDisplay, entIdx }) {
     const electionPrevious =
       electionHistory.getPreviousElectionOfSameType(election);
 
-    const electionProjected = DerivedData.getElectionProjected(
-      election,
+    const electionProjected = new ElectionModel(
       electionDisplay,
-      entIdx,
-      electionHistory
-    );
+      electionHistory,
+    ).getElectionProjected();
 
     return { electionHistory, electionPrevious, electionProjected };
   };

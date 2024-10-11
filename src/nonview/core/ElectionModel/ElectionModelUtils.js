@@ -3,7 +3,7 @@ import { MLModel } from "../..";
 import ElectionModelFeatureUtils from "./ElectionModelFeatureUtils";
 
 export default class ElectionModelUtils {
-  static MIN_RESULTS_FOR_PREDICTION = 1;
+
   static ERROR_CONF = 0.8;
   static DEFAULT_P_ERROR = 0.2;
 
@@ -26,45 +26,60 @@ export default class ElectionModelUtils {
     return pErrorList[Math.floor(ElectionModelUtils.ERROR_CONF * n)];
   }
 
-  static getPErrorEvaluate(XAll, YAll) {
-    // Evaluate Error
+  static getTrainEvaluateData(XAll, YAll) {
     const XTrainEvaluate = ElectionModelFeatureUtils.concatFeatureMatrixList(
       XAll.slice(0, -1)
     );
     const YTrainEvaluate = ElectionModelFeatureUtils.concatFeatureMatrixList(
       YAll.slice(0, -1)
     );
-    const canTrainModelEvaluate =
-      XTrainEvaluate.length >= ElectionModelUtils.MIN_RESULTS_FOR_PREDICTION;
+    return { XTrainEvaluate, YTrainEvaluate };
+  }
 
-    let modelEvaluate = null;
-    if (canTrainModelEvaluate) {
-      modelEvaluate = new MLModel(XTrainEvaluate, YTrainEvaluate);
-    }
+  static getTestEvaluateData(XAll, YAll) {
     const XTestEvaluate = ElectionModelFeatureUtils.concatFeatureMatrixList(
       XAll.slice(-1)
     );
     const YTestEvaluate = ElectionModelFeatureUtils.concatFeatureMatrixList(
       YAll.slice(-1)
     );
+    return { XTestEvaluate, YTestEvaluate };
+  }
 
-    let YHatTestEvaluate = [];
-    let pError = ElectionModelUtils.DEFAULT_P_ERROR;
-    if (canTrainModelEvaluate) {
-      YHatTestEvaluate = XTestEvaluate.map((Xi) => modelEvaluate.predict(Xi));
-      pError = ElectionModelUtils.getPError(YTestEvaluate, YHatTestEvaluate);
+
+  static trainModelEvaluate(XAll, YAll) {
+    const { XTrainEvaluate, YTrainEvaluate } = ElectionModelUtils.getTrainEvaluateData(
+      XAll,
+      YAll
+    );
+   
+    return MLModel.train(XTrainEvaluate, YTrainEvaluate)
+  }
+
+  static getPErrorByHoldout(XAll, YAll) {
+    // Evaluate Error
+    const modelEvaluate = ElectionModelUtils.trainModelEvaluate(XAll, YAll);
+    if (!modelEvaluate) {
+      return ElectionModelUtils.DEFAULT_P_ERROR;
     }
-    return pError;
+    
+    const { XTestEvaluate, YTestEvaluate } = ElectionModelUtils.getTestEvaluateData(
+      XAll,
+      YAll
+    );
+      const YHatTestEvaluate = XTestEvaluate.map((Xi) => modelEvaluate.predict(Xi));
+      return ElectionModelUtils.getPError(YTestEvaluate, YHatTestEvaluate);
+    
+  }
+
+  static getTrainData(XAll, YAll) {
+    const XTrain = ElectionModelFeatureUtils.concatFeatureMatrixList(XAll);
+    const YTrain = ElectionModelFeatureUtils.concatFeatureMatrixList(YAll);
+    return { XTrain, YTrain };
   }
 
   static trainModel(XAll, YAll) {
-    const XTrain = ElectionModelFeatureUtils.concatFeatureMatrixList(XAll);
-    const YTrain = ElectionModelFeatureUtils.concatFeatureMatrixList(YAll);
-    const canTrainModel =
-      XTrain.length >= ElectionModelUtils.MIN_RESULTS_FOR_PREDICTION;
-    if (!canTrainModel) {
-      return null;
-    }
-    return new MLModel(XTrain, YTrain);
+    const { XTrain, YTrain } = ElectionModelUtils.getTrainData(XAll, YAll);
+    return MLModel.train(XTrain, YTrain);
   }
 }

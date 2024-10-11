@@ -2,7 +2,7 @@ import { MathX } from "../..";
 import { PartyToVotes, Party, Summary, Result } from "../../../nonview";
 
 export default class ElectionModelSimulationUtils {
-  static getSimulatedSummary(entID, lastElection, lastElectionOfSameType) {
+  static simulateSummary(entID, lastElection, lastElectionOfSameType) {
     const resultLastSameType = lastElectionOfSameType.getResult(entID);
     if (!resultLastSameType) {
       return null;
@@ -20,7 +20,7 @@ export default class ElectionModelSimulationUtils {
     return new Summary(valid, rejected, polled, electors);
   }
 
-  static getSimulatedPartyToVotes(
+  static simulatePartyToVotes(
     entID,
     summary,
     normEntToPartyToPVotes,
@@ -45,7 +45,7 @@ export default class ElectionModelSimulationUtils {
     return new PartyToVotes(partyToVotes);
   }
 
-  static getSimulatedResult(
+  static simulateResult(
     lastElection,
     lastElectionOfSameType,
     entID,
@@ -56,7 +56,7 @@ export default class ElectionModelSimulationUtils {
       return null;
     }
 
-    const summary = ElectionModelSimulationUtils.getSimulatedSummary(
+    const summary = ElectionModelSimulationUtils.simulateSummary(
       entID,
       lastElection,
       lastElectionOfSameType
@@ -65,7 +65,7 @@ export default class ElectionModelSimulationUtils {
       return null;
     }
 
-    const partyToVotes = ElectionModelSimulationUtils.getSimulatedPartyToVotes(
+    const partyToVotes = ElectionModelSimulationUtils.simulatePartyToVotes(
       entID,
       summary,
       normEntToPartyToPVotes,
@@ -75,7 +75,7 @@ export default class ElectionModelSimulationUtils {
     return new Result(entID, summary, partyToVotes, "");
   }
 
-  static getNonReleasedResultList(
+  static simulateResultList(
     currentElection,
     electionHistory,
     nonReleasedEntIDList,
@@ -87,7 +87,7 @@ export default class ElectionModelSimulationUtils {
       electionHistory.getPreviousElectionOfSameType(currentElection);
 
     return nonReleasedEntIDList.map(function (entID) {
-      return ElectionModelSimulationUtils.getSimulatedResult(
+      return ElectionModelSimulationUtils.simulateResult(
         lastElection,
         lastElectionOfSameType,
         entID,

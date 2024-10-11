@@ -14,13 +14,13 @@ export default class ElectionModel {
       releasedEntIDList
     );
 
-    const { XAll, YAll } = ElectionModel.trainingData(
+    const { XAll, YAll } = ElectionModelFeatureUtils.trainingData(
       currentElection,
       electionHistory,
       releasedEntIDList,
       nonReleasedEntIDList
     );
-    const pError = ElectionModelUtils.getPErrorEvaluate(XAll, YAll);
+    const pError = ElectionModelUtils.getPErrorByHoldout(XAll, YAll);
 
     const pdToPartyToPVotes = ElectionModel.getPDToPartyToPVotes(
       currentElection,
@@ -76,32 +76,9 @@ export default class ElectionModel {
     );
   }
 
-  static getXEvaluate(currentElection, releasedEntIDList) {
-    return ElectionModelFeatureUtils.getFeatureMatrix(
-      ElectionHistory.singletonHistory(currentElection),
-      releasedEntIDList
-    );
-  }
 
-  static trainingData(
-    currentElection,
-    electionHistory,
-    releasedEntIDList,
-    nonReleasedEntIDList
-  ) {
-    const previousHistory = electionHistory.getHistory(currentElection);
 
-    const XAll = ElectionModelFeatureUtils.getFeatureMatrixListForElections(
-      previousHistory,
-      releasedEntIDList
-    );
-    const YAll = ElectionModelFeatureUtils.getFeatureMatrixListForElections(
-      previousHistory,
-      nonReleasedEntIDList
-    );
 
-    return { XAll, YAll };
-  }
 
   static getPDToPartyToPVotes(
     currentElection,
@@ -115,7 +92,7 @@ export default class ElectionModel {
     return ElectionModelProjectionUtils.getPDToPartyToPVotes(
       model,
       currentElection,
-      ElectionModel.getXEvaluate(currentElection, releasedEntIDList),
+      ElectionModelFeatureUtils.getXEvaluate(currentElection, releasedEntIDList),
       nonReleasedEntIDList
     );
   }
@@ -137,7 +114,7 @@ export default class ElectionModel {
       releasedEntIDList
     );
     const nonReleasedResultList =
-      ElectionModelSimulationUtils.getNonReleasedResultList(
+      ElectionModelSimulationUtils.simulateResultList(
         currentElection,
         electionHistory,
         nonReleasedEntIDList,

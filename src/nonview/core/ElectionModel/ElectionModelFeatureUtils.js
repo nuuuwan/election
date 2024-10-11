@@ -1,3 +1,5 @@
+import { ElectionHistory } from "../..";
+
 export default class ElectionModelFeatureUtils {
   static getFeatureVector(election, partyID, baseEntIDList) {
     // Returns a vector with the % of votes party(ID) has got for baseEntIDList, in election election.
@@ -48,5 +50,32 @@ export default class ElectionModelFeatureUtils {
         )
       );
     }, []);
+  }
+
+  static trainingData(
+    currentElection,
+    electionHistory,
+    releasedEntIDList,
+    nonReleasedEntIDList
+  ) {
+    const previousHistory = electionHistory.getHistory(currentElection);
+
+    const XAll = ElectionModelFeatureUtils.getFeatureMatrixListForElections(
+      previousHistory,
+      releasedEntIDList
+    );
+    const YAll = ElectionModelFeatureUtils.getFeatureMatrixListForElections(
+      previousHistory,
+      nonReleasedEntIDList
+    );
+
+    return { XAll, YAll };
+  }
+
+  static getXEvaluate(currentElection, releasedEntIDList) {
+    return ElectionModelFeatureUtils.getFeatureMatrix(
+      ElectionHistory.singletonHistory(currentElection),
+      releasedEntIDList
+    );
   }
 }

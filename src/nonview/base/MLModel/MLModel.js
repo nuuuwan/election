@@ -1,10 +1,20 @@
 import MLR from "ml-regression-multivariate-linear";
 
 export default class MLModel {
+  static MIN_RESULTS_FOR_PREDICTION = 1;
+  
+
   constructor(X, Y) {
     this.X = X;
     this.Y = Y;
     this.mlr = new MLR(X, Y);
+  }
+
+  static train(X, Y) {
+    if (X.length < MLModel.MIN_RESULTS_FOR_PREDICTION) {
+      return null;
+    }
+    return new MLModel(X, Y);
   }
 
   predict(Xi) {

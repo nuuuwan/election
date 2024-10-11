@@ -5,27 +5,20 @@ import ElectionModelProjectionUtils from "./ElectionModelProjectionUtils";
 import ElectionModelUtils from "./ElectionModelUtils";
 
 export default class ElectionModel {
-  static getElectionProjected(
-    currentElection,
-    electionHistory,
-  ) {
-
-    
+  static getElectionProjected(currentElection, electionHistory) {
     const releasedEntIDList = currentElection.baseEntIDList;
-    const previousElection= electionHistory.getPreviousElection(currentElection);
+    const previousElection =
+      electionHistory.getPreviousElection(currentElection);
     const nonReleasedEntIDList = previousElection.baseEntIDList.filter(
       (entID) => !releasedEntIDList.includes(entID)
     );
-
-
-
 
     const trainingOutput = ElectionModel.train(
       currentElection,
       electionHistory,
       releasedEntIDList,
       nonReleasedEntIDList
-    )
+    );
 
     const election = currentElection.copy();
     const baseResultList = ElectionModel.getProjectedResultList(
@@ -34,8 +27,7 @@ export default class ElectionModel {
       releasedEntIDList,
       nonReleasedEntIDList,
       trainingOutput
-
-    )
+    );
     election.build(baseResultList);
     return election;
   }
@@ -47,10 +39,13 @@ export default class ElectionModel {
     );
   }
 
-  static train(currentElection, electionHistory, releasedEntIDList, nonReleasedEntIDList) {
-    const previousHistory = electionHistory.getHistory(
-      currentElection
-    );
+  static train(
+    currentElection,
+    electionHistory,
+    releasedEntIDList,
+    nonReleasedEntIDList
+  ) {
+    const previousHistory = electionHistory.getHistory(currentElection);
 
     const XAll = ElectionModelFeatureUtils.getFeatureMatrixListForElections(
       previousHistory,
@@ -73,11 +68,15 @@ export default class ElectionModel {
     return { normPDToPartyToPVotes, pError };
   }
 
-  static getProjectedResultList(currentElection, electionHistory, releasedEntIDList, nonReleasedEntIDList, trainingOutput) {
+  static getProjectedResultList(
+    currentElection,
+    electionHistory,
+    releasedEntIDList,
+    nonReleasedEntIDList,
+    trainingOutput
+  ) {
     const { normPDToPartyToPVotes, pError } = trainingOutput;
-    const lastElection = electionHistory.getPreviousElection(
-      currentElection
-    );
+    const lastElection = electionHistory.getPreviousElection(currentElection);
     const lastElectionOfSameType =
       electionHistory.getPreviousElectionOfSameType(currentElection);
 
@@ -101,8 +100,6 @@ export default class ElectionModel {
       (result) => result
     );
   }
-
-
 }
 
 Object.assign(ElectionModel, ElectionModelUtils);

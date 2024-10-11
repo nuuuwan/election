@@ -1,4 +1,3 @@
-
 import { ArrayX } from "..";
 
 export default class DerivedData {
@@ -60,5 +59,4 @@ export default class DerivedData {
     }
     return election.baseResultList.length;
   }
-
 }

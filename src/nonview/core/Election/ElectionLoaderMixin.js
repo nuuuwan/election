@@ -24,7 +24,16 @@ const ElectionLoaderMixin = {
     const filteredRawData = rawData.filter(function (d) {
       return (
         EntType.fromID(d["entity_id"]) === EntType.PD &&
-        !["EC-10-", "EC-11D", "EC-11-", "EC-12D", "EC-12-", "EC-13-", "EC-14D", "EC-14-"].includes(d["entity_id"])
+        ![
+          "EC-10-",
+          "EC-11D",
+          "EC-11-",
+          "EC-12D",
+          "EC-12-",
+          "EC-13-",
+          "EC-14D",
+          "EC-14-",
+        ].includes(d["entity_id"])
       );
     });
 

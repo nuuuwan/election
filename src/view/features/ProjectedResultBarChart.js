@@ -46,7 +46,7 @@ export default function ProjectedResultBarChart() {
           const pVotesMax = pVotesMin + pVotesError;
           return Format.percentVotesRange(pVotesMin, pVotesMax);
         }}
-        sx={{ width: 360, height: 240 }}
+        sx={{ width: 360, height: 180 }}
       />
     </Box>
   );

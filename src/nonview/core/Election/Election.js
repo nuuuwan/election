@@ -17,7 +17,7 @@ class Election extends ElectionBase {
       return null;
     }
     if (!this.resultIdx[id]) {
-      throw new Error(`[${this.title}] No result for "${id}"`)
+      throw new Error(`[${this.title}] No result for "${id}"`);
     }
     return this.resultIdx[id];
   }
@@ -54,7 +54,7 @@ class Election extends ElectionBase {
         function (entID) {
           try {
             return this.getResult(entID);
-          } catch  {
+          } catch {
             return null;
           }
         }.bind(this)

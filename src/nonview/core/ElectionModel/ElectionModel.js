@@ -5,9 +5,8 @@ import ElectionModelUtils from "./ElectionModelUtils";
 
 export default class ElectionModel {
   static getElectionProjected(currentElection, electionHistory) {
-    const pastElectionList = electionHistory.getPastElectionListOfSameType(
-      currentElection
-    );
+    const pastElectionList =
+      electionHistory.getPastElectionListOfSameType(currentElection);
     if (pastElectionList.length === 0) {
       return currentElection;
     }

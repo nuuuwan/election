@@ -5,7 +5,7 @@ export default class ElectionModelSimulationUtils {
   static simulateSummary(entID, lastElection, lastElectionOfSameType) {
     const summaryLast = lastElection.getResult(entID).summary;
     const summaryLastSameType = lastElectionOfSameType.getResult(entID).summary;
-    const {electors, polled} = summaryLast;
+    const { electors, polled } = summaryLast;
     const rejected = Math.round(polled * summaryLastSameType.pRejected);
     const valid = polled - rejected;
     return new Summary(valid, rejected, polled, electors);

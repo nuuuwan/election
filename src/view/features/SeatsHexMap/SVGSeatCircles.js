@@ -3,6 +3,9 @@ import { StringX } from "../../../nonview";
 import SVGSeatCircle from "./SVGSeatCircle";
 
 export default function SVGSeatCircles({ x, y, partyToSeats, label }) {
+  if (!partyToSeats) {
+    return null;
+  }
   label = StringX.getShortLabel(label);
   const n = Object.keys(partyToSeats).length;
 

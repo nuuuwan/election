@@ -33,7 +33,7 @@ export default class FeatureMatrix {
     );
   }
 
-  get(i) {
+  get(i, j) {
     return new FeatureVector(this.floatListList[i]);
   }
 

@@ -9,7 +9,7 @@ export default class ElectionModelUtils {
     const MIN_P = 0.01;
     const pErrorList = YHat.reduce(function (pErrorList, YHati, i) {
       return YHati.reduce(function (pErrorList, YHatij, j) {
-        const y = Y.floatListList[i][j];
+        const y = Y.get(i, j);
         if (y >= MIN_P) {
           const error = Math.sqrt(Math.pow(YHatij - y, 2)) / y;
           pErrorList.push(error);

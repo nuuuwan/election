@@ -33,8 +33,11 @@ export default class FeatureMatrix {
     );
   }
 
-  get(i, j) {
-    return new FeatureVector(this.floatListList[i]);
+  get(i, j = undefined) {
+    if(j === undefined) {
+      return new FeatureVector(this.floatListList[i]);
+    }
+    return this.floatListList[i][j];  
   }
 
   slice(start, end) {

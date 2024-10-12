@@ -6,7 +6,7 @@ export default class MLModel {
   constructor(X, Y) {
     this.X = X;
     this.Y = Y;
-    this.mlr = new MLR(X, Y);
+    this.mlr = new MLR(X.floatListList, Y.floatListList);
   }
 
   static train(X, Y) {
@@ -17,6 +17,6 @@ export default class MLModel {
   }
 
   predict(Xi) {
-    return this.mlr.predict(Xi);
+    return this.mlr.predict(Xi.floatList);
   }
 }

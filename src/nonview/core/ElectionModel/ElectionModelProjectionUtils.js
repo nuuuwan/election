@@ -1,4 +1,5 @@
 import ElectionModelNormalizeUtils from "./ElectionModelNormalizeUtils";
+import FeatureMatrix from "./FeatureMatrix";
 
 export default class ElectionModelProjectionUtils {
   static getPDToPartyToPVotes(
@@ -9,7 +10,7 @@ export default class ElectionModelProjectionUtils {
   ) {
     let YHat = [];
     if (model) {
-      YHat = XEvaluate.map((Xi) => model.predict(Xi));
+      YHat = new FeatureMatrix(XEvaluate.map((Xi) => model.predict(Xi)));
     }
     const partyIDList = currentElection.getPartyIDList();
     const entToPartyToPVotes = YHat.reduce(function (

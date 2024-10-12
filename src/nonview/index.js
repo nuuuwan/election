@@ -51,6 +51,8 @@ import ElectionModelNormalizeUtils from "./core/ElectionModel/ElectionModelNorma
 import ElectionModelProjectionUtils from "./core/ElectionModel/ElectionModelProjectionUtils.js";
 import ElectionModelSimulationUtils from "./core/ElectionModel/ElectionModelSimulationUtils.js";
 import ElectionModelUtils from "./core/ElectionModel/ElectionModelUtils.js";
+import FeatureMatrix from "./core/ElectionModel/FeatureMatrix.js";
+import FeatureVector from "./core/ElectionModel/FeatureVector.js";
 import FinalOutcome from "./core/FinalOutcome.js";
 import OngoingElection from "./core/OngoingElection.js";
 import Party from "./core/Party.js";
@@ -114,6 +116,8 @@ export {
   ElectionModelProjectionUtils,
   ElectionModelSimulationUtils,
   ElectionModelUtils,
+  FeatureMatrix,
+  FeatureVector,
   FinalOutcome,
   OngoingElection,
   Party,

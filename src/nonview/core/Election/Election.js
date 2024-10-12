@@ -16,6 +16,9 @@ class Election extends ElectionBase {
     if (!this.isLoaded) {
       return null;
     }
+    if (!this.resultIdx[id]) {
+      throw new Error(`[${this.title}] No result for "${id}"`)
+    }
     return this.resultIdx[id];
   }
 
@@ -49,11 +52,15 @@ class Election extends ElectionBase {
     const baseResultList = entIDList
       .map(
         function (entID) {
-          return this.getResult(entID);
+          try {
+            return this.getResult(entID);
+          } catch  {
+            return null;
+          }
         }.bind(this)
       )
       .filter(function (result) {
-        return result !== undefined;
+        return result !== null;
       });
     return this.getSubsetElectionByBaseResultList(baseResultList);
   }

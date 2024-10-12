@@ -22,11 +22,12 @@ export default class FeatureVector {
   static buildFromElectionAndParty(election, partyID, baseEntIDList) {
     return new FeatureVector(
       baseEntIDList.map(function (entID) {
-        const baseResult = election.getResult(entID);
-        if (!baseResult) {
+        try {
+          const baseResult = election.getResult(entID);
+          return baseResult.partyToVotes.partyToPVotesSorted[partyID] || 0.0;
+        } catch (e) {
           return 0.0;
         }
-        return baseResult.partyToVotes.partyToPVotesSorted[partyID] || 0.0;
       })
     );
   }

@@ -17,9 +17,13 @@ export default class ElectionModelUtils {
         return pErrorList;
       }, pErrorList);
     }, []).sort();
-
+    console.debug({pErrorList});
     const n = pErrorList.length;
-    return pErrorList[Math.floor(ElectionModelUtils.ERROR_CONF * n)];
+    const iLimit = Math.floor(ElectionModelUtils.ERROR_CONF * n);
+    const error =  pErrorList[iLimit];
+    console.debug({error, n, iLimit, pErrorList});
+    return error;
+    
   }
 
   static getTrainEvaluateData(XAll, YAll) {

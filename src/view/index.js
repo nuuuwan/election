@@ -54,11 +54,6 @@ import LangMenuItemList from "./features/CustomMenu/LangMenuItemList.js";
 import LinkMenuItemList from "./features/CustomMenu/LinkMenuItemList.js";
 import MenuItemLink from "./features/CustomMenu/MenuItemLink.js";
 import DisclaimerView from "./features/DisclaimerView.js";
-import Confidence from "./features/FinalOutcomeView/Confidence.js";
-import FinalOutcomeView from "./features/FinalOutcomeView/FinalOutcomeView.js";
-import InsightErrorMarginTooHigh from "./features/FinalOutcomeView/InsightErrorMarginTooHigh.js";
-import InsightFirstPrefWinner from "./features/FinalOutcomeView/InsightFirstPrefWinner.js";
-import InsightTooCloseToCall from "./features/FinalOutcomeView/InsightTooCloseToCall.js";
 import HEXMAP_DATA_ED_ELECTORS from "./features/HexMapView/HexMapData/HEXMAP_DATA_ED_ELECTORS.js";
 import HEXMAP_DATA_ED_UNITS from "./features/HexMapView/HexMapData/HEXMAP_DATA_ED_UNITS.js";
 import HEXMAP_DATA_PD_ELECTORS from "./features/HexMapView/HexMapData/HEXMAP_DATA_PD_ELECTORS.js";
@@ -85,8 +80,8 @@ import MonitoringView from "./features/MonitoringView/MonitoringView.js";
 import RejectedView from "./features/MonitoringView/RejectedView.js";
 import TurnoutView from "./features/MonitoringView/TurnoutView.js";
 import ParliamentView from "./features/ParliamentView.js";
-import ParlimentaryFinalOutcomeView from "./features/ParlimentaryFinalOutcomeView.js";
 import ProjectedResultBarChart from "./features/ProjectedResultBarChart.js";
+import ProjectionModelInfoView from "./features/ProjectionView/ProjectionModelInfoView.js";
 import ProjectionViewParliamentary from "./features/ProjectionView/ProjectionViewParliamentary.js";
 import ProjectionViewPresidential from "./features/ProjectionView/ProjectionViewPresidential.js";
 import SVGNationalListLabel from "./features/SeatsHexMap/SVGNationalListLabel.js";
@@ -161,11 +156,6 @@ export {
   LinkMenuItemList,
   MenuItemLink,
   DisclaimerView,
-  Confidence,
-  FinalOutcomeView,
-  InsightErrorMarginTooHigh,
-  InsightFirstPrefWinner,
-  InsightTooCloseToCall,
   HEXMAP_DATA_ED_ELECTORS,
   HEXMAP_DATA_ED_UNITS,
   HEXMAP_DATA_PD_ELECTORS,
@@ -192,8 +182,8 @@ export {
   RejectedView,
   TurnoutView,
   ParliamentView,
-  ParlimentaryFinalOutcomeView,
   ProjectedResultBarChart,
+  ProjectionModelInfoView,
   ProjectionViewParliamentary,
   ProjectionViewPresidential,
   SVGNationalListLabel,

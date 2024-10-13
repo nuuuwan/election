@@ -26,23 +26,10 @@
             "error",
             2
         ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "double"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ],
         "react/react-in-jsx-scope": "off",
         "react/prop-types": "off",
         "complexity": ["error", 6],
         "max-lines-per-function": ["error", 40],
         "max-params": ["error", 4]
-
     }
 }

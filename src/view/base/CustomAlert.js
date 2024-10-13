@@ -8,7 +8,7 @@ export default function CustomAlert({ children, severity = "info" }) {
         p: 2,
         textAlign: "justify",
         m: "auto",
-        marginTop: 10,
+        marginTop: 1,
         marginBottom: 1,
         borderRadius: 3,
         maxWidth: 320,

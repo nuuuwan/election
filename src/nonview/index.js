@@ -53,10 +53,10 @@ import ElectionModelSimulationUtils from "./core/ElectionModel/ElectionModelSimu
 import ElectionModelUtils from "./core/ElectionModel/ElectionModelUtils.js";
 import FeatureMatrix from "./core/ElectionModel/FeatureMatrix.js";
 import FeatureVector from "./core/ElectionModel/FeatureVector.js";
-import FinalOutcome from "./core/FinalOutcome.js";
 import OngoingElection from "./core/OngoingElection.js";
 import Party from "./core/Party.js";
 import PartyToVotes from "./core/PartyToVotes.js";
+import ProjectionModelInfo from "./core/ProjectionModelInfo.js";
 import Result from "./core/Result.js";
 import Seats from "./core/Seats/Seats.js";
 import SeatsBuilderMixin from "./core/Seats/SeatsBuilderMixin.js";
@@ -118,10 +118,10 @@ export {
   ElectionModelUtils,
   FeatureMatrix,
   FeatureVector,
-  FinalOutcome,
   OngoingElection,
   Party,
   PartyToVotes,
+  ProjectionModelInfo,
   Result,
   Seats,
   SeatsBuilderMixin,

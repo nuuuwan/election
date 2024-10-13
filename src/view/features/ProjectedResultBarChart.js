@@ -4,7 +4,7 @@ import { Color, Format, Party } from "../../nonview";
 
 import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 import CustomLoadingProgress from "../base/CustomLoadingProgress";
-import SVGMultiBarChart from "../base/SVGBarChart.js/SVGBarChart";
+import SVGBarChart from "../base/SVGBarChart.js/SVGBarChart";
 
 function formatRowValue(data) {
   const pVotesMin = data.pVotesMin;
@@ -26,7 +26,7 @@ export default function ProjectedResultBarChart() {
 
   return (
     <Box sx={{ p: 0, m: 0 }}>
-      <SVGMultiBarChart
+      <SVGBarChart
         dataList={Object.entries(partyToPVotesSortedOthered)
           .filter((entry) => !Party.fromID(entry[0]).isNonParty)
           .map(function ([partyID, pVotes]) {

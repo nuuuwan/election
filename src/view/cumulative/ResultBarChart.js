@@ -1,13 +1,13 @@
 import { Format, Party } from "../../nonview";
 
-import SVGMultiBarChart from "../base/SVGBarChart.js/SVGBarChart";
+import SVGBarChart from "../base/SVGBarChart.js/SVGBarChart";
 
 export default function ResultBarChart({ resultsElection, entID }) {
   const partyToPVotes =
     resultsElection.getResult(entID).partyToVotes.partyToPVotesSortedOthered;
 
   return (
-    <SVGMultiBarChart
+    <SVGBarChart
       dataList={[partyToPVotes]}
       getValues={function (partyToPVotes) {
         return Object.values(partyToPVotes);

@@ -31,34 +31,26 @@ export default class ElectionHistory {
     return new ElectionHistory([currentElection]);
   }
 
-  getHistory(currentElection) {
-    return new ElectionHistory(this.getPastElectionList(currentElection));
-  }
-
   getHistoryOfSameType(currentElection) {
     return new ElectionHistory(
       this.getPastElectionListOfSameType(currentElection)
     );
   }
 
-  getPastElectionList(currentElection) {
+  __getPastElectionList(currentElection) {
     return this.elections.filter(function (election) {
       return election.date.localeCompare(currentElection.date) < 0;
     });
   }
 
   getPastElectionListOfSameType(currentElection) {
-    return this.getPastElectionList(currentElection).filter(function (
+    return this.__getPastElectionList(currentElection).filter(function (
       election
     ) {
       return election.electionType === currentElection.electionType;
     });
   }
 
-  getPreviousElection(currentElection) {
-    const previousElections = this.getPastElectionList(currentElection);
-    return ArrayX.last(previousElections);
-  }
 
   getPreviousElectionOfSameType(currentElection) {
     const previousElections =

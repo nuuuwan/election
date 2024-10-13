@@ -70,7 +70,7 @@ export default class ElectionModel {
     releasedEntIDList
   ) {
     const previousElection =
-      electionHistory.getPreviousElection(currentElection);
+      electionHistory.getPreviousElectionOfSameType(currentElection);
 
     return previousElection.baseEntIDList.filter(
       (entID) => !releasedEntIDList.includes(entID)

@@ -1,8 +1,8 @@
 import { MathX, PartyToVotes, Party, Summary, Result } from "../..";
 
 export default class ElectionModelSimulationUtils {
-  static simulateSummary(entID, lastElection, lastElectionOfSameType) {
-    const summaryLast = lastElection.getResult(entID).summary;
+  static simulateSummary(entID, lastElectionOfSameType) {
+    const summaryLast = lastElectionOfSameType.getResult(entID).summary;
     const summaryLastSameType = lastElectionOfSameType.getResult(entID).summary;
     const { electors, polled } = summaryLast;
     const rejected = Math.round(polled * summaryLastSameType.pRejected);
@@ -28,7 +28,6 @@ export default class ElectionModelSimulationUtils {
   }
 
   static simulateResult(
-    lastElection,
     lastElectionOfSameType,
     entID,
     partyToPVotes,
@@ -36,7 +35,6 @@ export default class ElectionModelSimulationUtils {
   ) {
     const summary = ElectionModelSimulationUtils.simulateSummary(
       entID,
-      lastElection,
       lastElectionOfSameType
     );
     const partyToVotes = ElectionModelSimulationUtils.simulatePartyToVotes(
@@ -54,12 +52,11 @@ export default class ElectionModelSimulationUtils {
     pdToPartyToPVotes,
     pError
   ) {
-    const lastElection = electionHistory.getPreviousElection(currentElection);
+
     const lastElectionOfSameType =
       electionHistory.getPreviousElectionOfSameType(currentElection);
     return nonReleasedEntIDList.map(function (entID) {
       return ElectionModelSimulationUtils.simulateResult(
-        lastElection,
         lastElectionOfSameType,
         entID,
         pdToPartyToPVotes[entID],

@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 
 import { CitationsView, DisplaySlider } from "../../../view";
+import { useDataContext } from "../../../nonview/core/DataProvider";
 
 const STYLE_FOOTER = {
   BOX: {
@@ -15,9 +16,11 @@ const STYLE_FOOTER = {
 };
 
 export default function PageFooter() {
+  const data = useDataContext();
+  const {nResultsDisplay} = data;
   return (
     <Box sx={STYLE_FOOTER.BOX}>
-      <DisplaySlider />
+      <DisplaySlider key={nResultsDisplay} />
       <CitationsView />
     </Box>
   );

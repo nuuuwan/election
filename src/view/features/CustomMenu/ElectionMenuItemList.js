@@ -1,9 +1,9 @@
 import { MenuItem } from "@mui/material";
-
 import { useBasePageHandlerContext } from "../../pages/BasePage/BasePageHandlerProvider";
 
 import { CheckIcon, CustomLoadingProgress } from "../..";
 import { useDataSlowContext } from "../../../nonview/core/DataSlowProvider";
+import { ElectionHistory } from "../../../nonview";
 
 export default function ElectionMenuItemList({ handleClose }) {
   const data = useDataSlowContext();
@@ -11,10 +11,10 @@ export default function ElectionMenuItemList({ handleClose }) {
   if (!data) {
     return <CustomLoadingProgress />;
   }
-  const { electionHistory, electionDisplay } = data;
+  const { electionDisplay } = data;
   return (
     <>
-      {electionHistory.elections
+      {ElectionHistory.listAllUnloaded()
         .slice()
         .reverse()
         .map(function (election, iElection) {

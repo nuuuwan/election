@@ -53,8 +53,7 @@ export default class ElectionModelSimulationUtils {
     pError
   ) {
 
-    const lastElectionOfSameType =
-      electionHistory.getPreviousElectionOfSameType(currentElection);
+    const lastElectionOfSameType = electionHistory.electionPrevious;
     return nonReleasedEntIDList.map(function (entID) {
       return ElectionModelSimulationUtils.simulateResult(
         lastElectionOfSameType,

@@ -11,6 +11,7 @@ const ElectionLoaderMixin = {
       const pdResultList = await this.getPDResultList();
       this.build(pdResultList);
     }
+    return this;
   },
 
   async getRawDataList() {

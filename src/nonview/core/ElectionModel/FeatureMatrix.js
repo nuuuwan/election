@@ -66,7 +66,7 @@ export default class FeatureMatrix {
 
   static buildFromElectionHistory(electionHistory, baseEntIDList) {
     return FeatureMatrix.concat(
-      electionHistory.elections.map(function (election) {
+      electionHistory.electionList.map(function (election) {
         return FeatureMatrix.buildFromElection(election, baseEntIDList);
       })
     );

@@ -7,7 +7,7 @@ export default class ElectionModelFeatureUtils {
     releasedEntIDList,
     nonReleasedEntIDList
   ) {
-    const previousHistory = electionHistory.getHistoryOfSameType(currentElection);
+    const previousHistory = electionHistory.previousHistory;
 
     const XAll = FeatureMatrix.buildFromElectionHistory(
       previousHistory,

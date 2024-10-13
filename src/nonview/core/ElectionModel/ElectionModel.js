@@ -6,7 +6,7 @@ import ElectionModelUtils from "./ElectionModelUtils";
 export default class ElectionModel {
   static getElectionProjected(currentElection, electionHistory) {
     const pastElectionList =
-      electionHistory.getPastElectionListOfSameType(currentElection);
+      electionHistory.previousElectionList;
     if (pastElectionList.length === 0) {
       return currentElection;
     }
@@ -69,10 +69,9 @@ export default class ElectionModel {
     electionHistory,
     releasedEntIDList
   ) {
-    const previousElection =
-      electionHistory.getPreviousElectionOfSameType(currentElection);
 
-    return previousElection.baseEntIDList.filter(
+    const electionPrevious = electionHistory.electionPrevious;
+    return electionPrevious.baseEntIDList.filter(
       (entID) => !releasedEntIDList.includes(entID)
     );
   }

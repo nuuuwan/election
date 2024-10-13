@@ -5,11 +5,10 @@ import { useDataContext } from "./DataProvider";
 
 const DataSlowContext = createContext();
 
-async function getElectionValuesSlow({ election, electionDisplay }) {
+async function getElectionValuesSlow({  electionDisplay }) {
   const inner = async function () {
-    const electionHistory = await ElectionHistory.load();
-    const electionPrevious =
-      electionHistory.getPreviousElectionOfSameType(election);
+    const electionHistory = await ElectionHistory.load(electionDisplay);
+    const electionPrevious = electionHistory.electionPrevious;
 
     const electionProjected = ElectionModel.getElectionProjected(
       electionDisplay,
@@ -29,11 +28,11 @@ async function getValue(state, data) {
   if (!data) {
     return null;
   }
-  const { election, electionDisplay } = data;
+  const {  electionDisplay } = data;
 
   const { electionHistory, electionPrevious, electionProjected } =
     await getElectionValuesSlow({
-      election,
+
       electionDisplay,
     });
 

@@ -11,6 +11,8 @@ export default function SVGSeatCircleText({ x, y, partyID, seats }) {
     colorText = "gray";
   }
 
+  const fontSize = R_CIRCLE * 0.8;
+
   return (
     <text
       x={x}
@@ -18,7 +20,7 @@ export default function SVGSeatCircleText({ x, y, partyID, seats }) {
       textAnchor="middle"
       dominantBaseline="middle"
       fill={colorText}
-      fontSize={R_CIRCLE * 0.8}
+      fontSize={fontSize}
     >
       {seats}
     </text>

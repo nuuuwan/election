@@ -48,7 +48,7 @@ export default function SVGHexMapShape({
     resultIdx: electionDisplay.resultIdx,
   });
   return (
-    <g onClick={onClick}>
+    <g onClick={onClick} style={{cursor: isReallyComplete ? "pointer": "progress"}}>
       <SVGHexPolygonGroup points={points} color={color} opacity={opacity} />
       <SVGHexText
         x={x}

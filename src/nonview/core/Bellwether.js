@@ -32,7 +32,7 @@ export default class Bellwether {
     };
   }
 
-  static getStats(electionHistory, election, entID) {
+  static getStats(electionHistory, entID) {
     const previousElectionsOfSameType = electionHistory.previousElectionList;
 
     const n = previousElectionsOfSameType.length;
@@ -56,7 +56,7 @@ export default class Bellwether {
         return election.isComplete(result.entID, pdIdx);
       })
       .map(function (result) {
-        return Bellwether.getStats(electionHistory, election, result.entID);
+        return Bellwether.getStats(electionHistory, result.entID);
       })
       .sort(function (a, b) {
         return a.error - b.error;

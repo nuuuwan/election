@@ -1,15 +1,19 @@
 import { useState } from "react";
 
 import { Box } from "@mui/material";
-import { useDataContext } from "../../../nonview/core/DataProvider";
+
 
 import { TabSelector } from "../..";
 
 import AggregatedResultUtils from "./AggregatedResultUtils";
 import AggregatedResultViewGroup from "./AggregatedResultViewGroup";
+import { useDataSlowContext } from "../../../nonview/core/DataSlowProvider";
 
 export default function AggregatedResultView() {
-  const data = useDataContext();
+  const data = useDataSlowContext();
+  if (!data) {
+    return null;
+  }
 
   const groupToEntIDListGetter =
     AggregatedResultUtils.getGroupToEntIDListGetter(data);

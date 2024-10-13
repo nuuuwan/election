@@ -30,7 +30,7 @@ function getHiddenData(data) {
     function ([partyID, votes]) {
       const pVotes = votes / totalVotes;
       const party = Party.fromID(partyID);
-      return `${party.emoji} ${Format.percentVotes(pVotes)} ${party.xTag}`;
+      return `${party.emoji} ${Format.percent(pVotes)} ${party.xTag}`;
     }
   );
 

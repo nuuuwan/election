@@ -10,7 +10,7 @@ function formatRowValue(data) {
   const pVotesMin = data.pVotesMin;
   const pVotesError = data.pVotesError;
   const pVotesMax = pVotesMin + pVotesError;
-  return Format.percentVotesRange(pVotesMin, pVotesMax);
+  return Format.percentRange(pVotesMin, pVotesMax);
 }
 
 export default function ProjectedResultBarChart() {

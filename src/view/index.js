@@ -12,6 +12,7 @@ import SVGBarChart from "./base/SVGBarChart.js/SVGBarChart.js";
 import SVGBarChartCell from "./base/SVGBarChart.js/SVGBarChartCell.js";
 import SVGBarChartCellBar from "./base/SVGBarChart.js/SVGBarChartCellBar.js";
 import SVGBarChartCellLabel from "./base/SVGBarChart.js/SVGBarChartCellLabel.js";
+import SVGBarChartContextProvider from "./base/SVGBarChart.js/SVGBarChartContextProvider.js";
 import SVGBarChartRow from "./base/SVGBarChart.js/SVGBarChartRow.js";
 import SVGBarChartRowLabel from "./base/SVGBarChart.js/SVGBarChartRowLabel.js";
 import SVGBarChartTable from "./base/SVGBarChart.js/SVGBarChartTable.js";
@@ -115,6 +116,7 @@ export {
   SVGBarChartCell,
   SVGBarChartCellBar,
   SVGBarChartCellLabel,
+  SVGBarChartContextProvider,
   SVGBarChartRow,
   SVGBarChartRowLabel,
   SVGBarChartTable,

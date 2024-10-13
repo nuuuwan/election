@@ -6,7 +6,6 @@ import PageBodyBelowTheFold from "./PageBodyBelowTheFold";
 import {
   HistoryAlert,
   HexagonClickAlert,
-  IfElse,
   NoResultsAlert,
   HexMapView,
   LatestResultListView,
@@ -30,35 +29,38 @@ export default function PageBody() {
   const data = useDataContext();
   const { electionDisplay } = data;
 
+  if (!electionDisplay.nResults) {
+    return <NoResultsAlert election={electionDisplay} />;
+  }
+
   return (
     <Box sx={STYLE.BOX}>
-      <IfElse condition={!electionDisplay.nResults}>
-        <NoResultsAlert election={electionDisplay} />
-        <Grid2 container>
-          <CustomPageBodyGridItem>
-            <ResultsReleasedTitlePercent />
-            <LatestResultListView />
-            <BellwetherView />
-            <HistoryAlert />
-          </CustomPageBodyGridItem>
+    
+      <Grid2 container>
+        <CustomPageBodyGridItem>
+          <ResultsReleasedTitlePercent />
+          <LatestResultListView />
+          <BellwetherView />
+          <HistoryAlert />
+        </CustomPageBodyGridItem>
 
-          <CustomPageBodyGridItem>
-            <ResultsReleasedTitleNumber />
-            <HexMapView />
-            <ElectionSmallTitle />
-            <HexagonClickAlert />
-          </CustomPageBodyGridItem>
+        <CustomPageBodyGridItem>
+          <ResultsReleasedTitleNumber />
+          <HexMapView />
+          <ElectionSmallTitle />
+          <HexagonClickAlert />
+        </CustomPageBodyGridItem>
 
-          <CustomPageBodyGridItem>
-            {electionDisplay.isPresidential ? (
-              <ProjectionViewPresidential />
-            ) : (
-              <ProjectionViewParliamentary />
-            )}
-          </CustomPageBodyGridItem>
-        </Grid2>
-        <PageBodyBelowTheFold />
-      </IfElse>
+        <CustomPageBodyGridItem>
+          {electionDisplay.isPresidential ? (
+            <ProjectionViewPresidential />
+          ) : (
+            <ProjectionViewParliamentary />
+          )}
+        </CustomPageBodyGridItem>
+      </Grid2>
+      <PageBodyBelowTheFold />
+
     </Box>
   );
 }

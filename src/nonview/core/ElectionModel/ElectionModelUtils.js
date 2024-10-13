@@ -2,8 +2,8 @@ import { MLModel } from "../..";
 import FeatureMatrix from "./FeatureMatrix";
 
 export default class ElectionModelUtils {
-  static ERROR_CONF = 0.8;
-  static DEFAULT_P_ERROR = 0.2;
+  static ERROR_CONF = 0.9;
+  static DEFAULT_P_ERROR = 0.1;
 
   static getPError(Y, YHat) {
     const MIN_P = 0.01;
@@ -45,10 +45,6 @@ export default class ElectionModelUtils {
   static getPErrorByHoldout(XAll, YAll) {
     // Evaluate Error
     const modelEvaluate = ElectionModelUtils.trainModelEvaluate(XAll, YAll);
-    if (!modelEvaluate) {
-      return ElectionModelUtils.DEFAULT_P_ERROR;
-    }
-
     const { XTestEvaluate, YTestEvaluate } =
       ElectionModelUtils.getTestEvaluateData(XAll, YAll);
     const YHatTestEvaluate = new FeatureMatrix(

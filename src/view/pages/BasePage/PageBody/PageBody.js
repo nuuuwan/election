@@ -14,10 +14,6 @@ const STYLE = {
   BOX: { paddingTop: 10, paddingBottom: 20 },
 };
 
-export function CustomPageBodyGridItem({ children }) {
-  return <Grid2 size={size}>{children}</Grid2>;
-}
-
 export default function PageBody() {
   const data = useDataContext();
   const { electionDisplay } = data;

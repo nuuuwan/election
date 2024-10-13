@@ -1,4 +1,4 @@
-import FormatGeneric from "./FormatGeneric";
+
 
 const FormatPercent = {
   percentAbs(x, minimumFractionDigits = undefined) {

@@ -6,12 +6,12 @@ import PageBody from "./PageBody/PageBody";
 import PageFooter from "./PageFooter";
 
 export default function BasePageView() {
-  return (
-    <Box sx={{ textAlign: "center" }}>
-      <HiddenDataView />
-      <PageHeader />
-      <PageBody />
-      <PageFooter />
-    </Box>
-  );
+    return (
+        <Box sx={{ textAlign: "center" }}>
+            <HiddenDataView />
+            <PageHeader />
+            <PageBody />
+            <PageFooter />
+        </Box>
+    );
 }

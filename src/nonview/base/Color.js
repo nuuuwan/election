@@ -1,43 +1,43 @@
 import MathX from "./MathX";
 export default class Color {
-  static getOpacity(p) {
-    const [minOpacity, maxOpacity] = [0.2, 1.0];
-    const [minP, maxP] = [0.5, 0.7];
-    const p2 = MathX.forceRange((p - minP) / (maxP - minP), 0, 1);
-    const opacity2 = minOpacity + (maxOpacity - minOpacity) * p2;
-    const opacity = MathX.forceRange(opacity2, minOpacity, maxOpacity);
+    static getOpacity(p) {
+        const [minOpacity, maxOpacity] = [0.2, 1.0];
+        const [minP, maxP] = [0.5, 0.7];
+        const p2 = MathX.forceRange((p - minP) / (maxP - minP), 0, 1);
+        const opacity2 = minOpacity + (maxOpacity - minOpacity) * p2;
+        const opacity = MathX.forceRange(opacity2, minOpacity, maxOpacity);
 
-    return opacity;
-  }
-
-  static getOpacityChar(p) {
-    return Math.floor(Color.getOpacity(p) * 16).toString(16);
-  }
-
-  static getTextColor(color, opacity) {
-    if (color === "ghostwhite") {
-      return "lightgray";
+        return opacity;
     }
-    return opacity > 0.6 ? "white" : "black";
-  }
 
-  static getRGB(color) {
-    const tempElement = document.createElement("div");
-    tempElement.style.color = color;
-    document.body.appendChild(tempElement);
+    static getOpacityChar(p) {
+        return Math.floor(Color.getOpacity(p) * 16).toString(16);
+    }
 
-    const computedColor = window.getComputedStyle(tempElement).color;
+    static getTextColor(color, opacity) {
+        if (color === "ghostwhite") {
+            return "lightgray";
+        }
+        return opacity > 0.6 ? "white" : "black";
+    }
 
-    document.body.removeChild(tempElement);
+    static getRGB(color) {
+        const tempElement = document.createElement("div");
+        tempElement.style.color = color;
+        document.body.appendChild(tempElement);
 
-    const match = computedColor.match(/\d+/g);
+        const computedColor = window.getComputedStyle(tempElement).color;
 
-    const [r, g, b] = match.map(Number);
-    return [r, g, b];
-  }
+        document.body.removeChild(tempElement);
 
-  static getColorWithAlpha(color, alpha) {
-    const [r, g, b] = Color.getRGB(color);
-    return `rgba(${r},${g},${b},${alpha})`;
-  }
+        const match = computedColor.match(/\d+/g);
+
+        const [r, g, b] = match.map(Number);
+        return [r, g, b];
+    }
+
+    static getColorWithAlpha(color, alpha) {
+        const [r, g, b] = Color.getRGB(color);
+        return `rgba(${r},${g},${b},${alpha})`;
+    }
 }

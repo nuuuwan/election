@@ -9,31 +9,31 @@ import AggregatedResultUtils from "./AggregatedResultUtils";
 import AggregatedResultViewGroup from "./AggregatedResultViewGroup";
 
 export default function AggregatedResultView() {
-  const data = useDataContext();
+    const data = useDataContext();
 
-  const groupToEntIDListGetter =
+    const groupToEntIDListGetter =
     AggregatedResultUtils.getGroupToEntIDListGetter(data);
-  const groupList = Object.keys(groupToEntIDListGetter);
+    const groupList = Object.keys(groupToEntIDListGetter);
 
-  const [group, setGroup] = useState(groupList[0]);
+    const [group, setGroup] = useState(groupList[0]);
 
-  return (
-    <Box>
-      <TabSelector value={group} onChange={setGroup} dataList={groupList} />
+    return (
+        <Box>
+            <TabSelector value={group} onChange={setGroup} dataList={groupList} />
 
-      <Box
-        sx={{
-          justifyContent: "center",
-          alignItems: "center",
-          display: "flex",
-          mt: 3,
-        }}
-      >
-        <AggregatedResultViewGroup
-          entIDList={groupToEntIDListGetter[group](data)}
-          isPresidential={data.electionDisplay.isPresidential}
-        />
-      </Box>
-    </Box>
-  );
+            <Box
+                sx={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                    display: "flex",
+                    mt: 3,
+                }}
+            >
+                <AggregatedResultViewGroup
+                    entIDList={groupToEntIDListGetter[group](data)}
+                    isPresidential={data.electionDisplay.isPresidential}
+                />
+            </Box>
+        </Box>
+    );
 }

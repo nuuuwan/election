@@ -7,29 +7,29 @@ import LinkMenuItemList from "./LinkMenuItemList";
 import CustomIconButton from "./CustomIconButton";
 
 export default function CustomMenu() {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-  const handleClose = function () {
-    setAnchorEl(null);
-  };
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const handleClose = function () {
+        setAnchorEl(null);
+    };
 
-  return (
-    <>
-      <CustomIconButton setAnchorEl={setAnchorEl} />
-      <Menu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        sx={{ zIndex: 5000 }}
-      >
-        <ElectionMenuItemList handleClose={handleClose} />
+    return (
+        <>
+            <CustomIconButton setAnchorEl={setAnchorEl} />
+            <Menu
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                sx={{ zIndex: 5000 }}
+            >
+                <ElectionMenuItemList handleClose={handleClose} />
 
-        <Divider />
-        <LangMenuItemList handleClose={handleClose} />
+                <Divider />
+                <LangMenuItemList handleClose={handleClose} />
 
-        <Divider />
-        <LinkMenuItemList />
-      </Menu>
-    </>
-  );
+                <Divider />
+                <LinkMenuItemList />
+            </Menu>
+        </>
+    );
 }

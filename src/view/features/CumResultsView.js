@@ -2,108 +2,108 @@ import { Box, Stack, TableCell, TableRow, Typography } from "@mui/material";
 import { useDataContext } from "../../nonview/core/DataProvider";
 
 import {
-  ResultBarChart,
-  HistoryView,
-  SummaryView,
-  PartyToVotesStatsView,
-  EntView,
-  ResultsReleasedView,
-  ElectionSmallTitle,
+    ResultBarChart,
+    HistoryView,
+    SummaryView,
+    PartyToVotesStatsView,
+    EntView,
+    ResultsReleasedView,
+    ElectionSmallTitle,
 } from "../../view";
 
 function getContentList({ entID, result, electionDisplay }) {
-  const baseEntIDList = electionDisplay.baseEntIDList;
-  const iEnt = baseEntIDList.indexOf(entID);
-  let num = null;
-  if (iEnt !== -1) {
-    num = iEnt + 1;
-  }
+    const baseEntIDList = electionDisplay.baseEntIDList;
+    const iEnt = baseEntIDList.indexOf(entID);
+    let num = null;
+    if (iEnt !== -1) {
+        num = iEnt + 1;
+    }
 
-  const color = result.color;
-  const background = "white";
+    const color = result.color;
+    const background = "white";
 
-  const sx = { color, background, p: 1, borderRadius: 1 };
+    const sx = { color, background, p: 1, borderRadius: 1 };
 
-  return [
-    <Stack direction="row" gap={0.5} alignItems="center" sx={sx}>
-      {num ? <Typography variant="h5">{num}.</Typography> : null}
-      <EntView entID={entID} />
-    </Stack>,
+    return [
+        <Stack direction="row" gap={0.5} alignItems="center" sx={sx}>
+            {num ? <Typography variant="h5">{num}.</Typography> : null}
+            <EntView entID={entID} />
+        </Stack>,
 
-    <PartyToVotesStatsView partyToVotes={result.partyToVotes} />,
-    <ResultBarChart resultsElection={electionDisplay} entID={entID} />,
+        <PartyToVotesStatsView partyToVotes={result.partyToVotes} />,
+        <ResultBarChart resultsElection={electionDisplay} entID={entID} />,
 
-    <SummaryView summary={result.summary} />,
+        <SummaryView summary={result.summary} />,
 
-    <HistoryView entID={entID} />,
+        <HistoryView entID={entID} />,
 
-    <ResultsReleasedView entID={entID} />,
-  ];
+        <ResultsReleasedView entID={entID} />,
+    ];
 }
 
 export function CumResultsColumnView({ entID }) {
-  const data = useDataContext();
-  const { electionDisplay, activeEntID } = data;
-  const result = electionDisplay.resultIdx[entID];
-  if (!result) {
-    return null;
-  }
+    const data = useDataContext();
+    const { electionDisplay, activeEntID } = data;
+    const result = electionDisplay.resultIdx[entID];
+    if (!result) {
+        return null;
+    }
 
-  const contentList = getContentList({
-    entID,
-    activeEntID,
-    result,
-    electionDisplay,
-  });
+    const contentList = getContentList({
+        entID,
+        activeEntID,
+        result,
+        electionDisplay,
+    });
 
-  return (
-    <Box sx={{ borderRadius: 4, width: 260, p: 0.5, m: 0.5 }}>
-      {contentList.map(function (content, i) {
-        return (
-          <Box
-            key={i}
-            sx={{ marginBottom: 0.5 }}
-            justifyContent="center"
-            alignItems="center"
-            alignContent="center"
-            display="flex"
-          >
-            {content}
-          </Box>
-        );
-      })}
-      <ElectionSmallTitle />
-    </Box>
-  );
+    return (
+        <Box sx={{ borderRadius: 4, width: 260, p: 0.5, m: 0.5 }}>
+            {contentList.map(function (content, i) {
+                return (
+                    <Box
+                        key={i}
+                        sx={{ marginBottom: 0.5 }}
+                        justifyContent="center"
+                        alignItems="center"
+                        alignContent="center"
+                        display="flex"
+                    >
+                        {content}
+                    </Box>
+                );
+            })}
+            <ElectionSmallTitle />
+        </Box>
+    );
 }
 
 export function CumResultsViewTableRowView({ entID }) {
-  const data = useDataContext();
-  const { electionDisplay } = data;
-  const result = electionDisplay.resultIdx[entID];
-  if (!result) {
-    return null;
-  }
-  const contentList = getContentList({ entID, result, electionDisplay });
+    const data = useDataContext();
+    const { electionDisplay } = data;
+    const result = electionDisplay.resultIdx[entID];
+    if (!result) {
+        return null;
+    }
+    const contentList = getContentList({ entID, result, electionDisplay });
 
-  return (
-    <TableRow>
-      {contentList.map(function (content, i) {
-        return (
-          <TableCell
-            key={i}
-            style={{
-              padding: 12,
-              borderBottom: "1px solid #eee",
-              textAlign: "center",
-            }}
-          >
-            {content}
-          </TableCell>
-        );
-      })}
-    </TableRow>
-  );
+    return (
+        <TableRow>
+            {contentList.map(function (content, i) {
+                return (
+                    <TableCell
+                        key={i}
+                        style={{
+                            padding: 12,
+                            borderBottom: "1px solid #eee",
+                            textAlign: "center",
+                        }}
+                    >
+                        {content}
+                    </TableCell>
+                );
+            })}
+        </TableRow>
+    );
 }
 
 const CumResultsView = null;

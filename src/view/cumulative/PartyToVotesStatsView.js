@@ -8,10 +8,10 @@ export default function PartyToVotesStatsView({ partyToVotes }) {
   return (
     <Stack direction="row" gap={1}>
       {entries
-        .filter(function ([partyID, votes]) {
-          return votes > 0;
+        .filter(function (entry) {
+          return entry[1] > 0;
         })
-        .map(function ([partyID, votes], i) {
+        .map(function ([partyID, votes]) {
           const color = Party.fromID(partyID).color;
           return (
             <LabelledStat

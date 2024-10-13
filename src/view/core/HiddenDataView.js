@@ -27,7 +27,7 @@ function getHiddenData(data) {
   const partyToVotes = result.partyToVotes;
   const totalVotes = partyToVotes.totalVotes;
   const partyLines = Object.entries(partyToVotes.partyToVotesSortedOthered).map(
-    function ([partyID, votes], i) {
+    function ([partyID, votes]) {
       const pVotes = votes / totalVotes;
       const party = Party.fromID(partyID);
       return `${party.emoji} ${Format.percentVotes(pVotes)} ${party.xTag}`;
@@ -58,11 +58,7 @@ export default function HiddenDataView() {
   const hiddenData = getHiddenData(data);
   const hiddenDataJSON = JSON.stringify(hiddenData);
   return (
-    <div
-      id="election_hidden_data"
-      datajson={hiddenDataJSON}
-      style={{ display: "none" }}
-    >
+    <div id="election_hidden_data" style={{ display: "none" }}>
       {hiddenDataJSON}
     </div>
   );

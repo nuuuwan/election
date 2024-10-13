@@ -6,7 +6,7 @@ export default class SeatsUtilsCompute {
     const voteLimit = totalVotes * pLimit;
     return Object.fromEntries(
       Object.entries(partyToVotes.partyToVotes).filter(
-        ([partyID, votes]) => votes >= voteLimit
+        (entry) => entry[1] >= voteLimit
       )
     );
   }
@@ -26,7 +26,7 @@ export default class SeatsUtilsCompute {
     return Object.fromEntries(
       Object.entries(partyToSeatsFloat)
         .map(([partyID, seatsFloat]) => [partyID, parseInt(seatsFloat)])
-        .filter(([partyID, seats]) => seats > 0)
+        .filter((entry) => entry[1] > 0)
     );
   }
 
@@ -41,10 +41,10 @@ export default class SeatsUtilsCompute {
 
   static getPartyToSeatsRem(partyToRemSeatsFloat, nSeatsRem) {
     return Object.entries(partyToRemSeatsFloat)
-      .sort(([partyID1, seatsR1], [partyID2, seatsR2]) => seatsR2 - seatsR1)
+      .sort((a, b) => b[1] - a[1])
       .slice(0, nSeatsRem)
-      .reduce((acc, [partyID, seatsR]) => {
-        acc[partyID] = 1;
+      .reduce((acc, entry) => {
+        acc[entry[0]] = 1;
         return acc;
       }, {});
   }

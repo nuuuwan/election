@@ -21,7 +21,7 @@ export default function ProjectedResultBarChart() {
     <Box sx={{ p: 0, m: 0 }}>
       <SVGMultiBarChart
         dataList={Object.entries(partyToPVotesSortedOthered)
-          .filter(([partyID, pVotes]) => !Party.fromID(partyID).isNonParty)
+          .filter((entry) => !Party.fromID(entry[0]).isNonParty)
           .map(function ([partyID, pVotes]) {
             const pVotesError = partyToPVotesSortedOthered[Party.ERROR.id] || 0;
             return {
@@ -30,7 +30,7 @@ export default function ProjectedResultBarChart() {
               pVotesError,
             };
           })}
-        getValues={function (data, i) {
+        getValues={function (data) {
           return [data.pVotesMin, data.pVotesError];
         }}
         getColor={function (data, i, pVotes, j) {
@@ -40,7 +40,7 @@ export default function ProjectedResultBarChart() {
           }
           return Color.getColorWithAlpha(color, 0.5);
         }}
-        formatRowValue={function (data, i) {
+        formatRowValue={function (data) {
           const pVotesMin = data.pVotesMin;
           const pVotesError = data.pVotesError;
           const pVotesMax = pVotesMin + pVotesError;

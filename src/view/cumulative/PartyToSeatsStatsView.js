@@ -19,7 +19,7 @@ export default function PartyToSeatsStatsView() {
       gap={1}
       sx={{ maxWidth: 400, justifyContent: "center" }}
     >
-      {entries.map(function ([partyID, seats], i) {
+      {entries.map(function ([partyID, seats]) {
         const color = Party.fromID(partyID).color;
         return (
           <Grid2 key={partyID}>

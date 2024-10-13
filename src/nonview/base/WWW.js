@@ -42,7 +42,7 @@ export default class WWW {
     const keys = lines[0].split("\t").map((key) => key.replace("\r", ""));
     const dataList = lines
       .slice(1)
-      .map(function (line, i_line) {
+      .map(function (line) {
         const values = line.split("\t");
         if (values.length !== keys.length) {
           return null;

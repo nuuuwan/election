@@ -1,12 +1,11 @@
 import React from "react";
-import { StringX } from "../../../nonview";
+
 import SVGSeatCircle from "./SVGSeatCircle";
 
-export default function SVGSeatCircles({ x, y, partyToSeats, label }) {
+export default function SVGSeatCircles({ x, y, partyToSeats }) {
   if (!partyToSeats) {
     return null;
   }
-  label = StringX.getShortLabel(label);
   const n = Object.keys(partyToSeats).length;
 
   return (

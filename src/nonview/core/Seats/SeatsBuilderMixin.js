@@ -54,14 +54,10 @@ const SeatsBuilderMixin = {
       if (seatsUFG === 0) {
         return idx;
       }
-      return Object.entries(partyToSeats).reduce(function (
-        idx,
-        [partyID, seats]
-      ) {
+      return Object.keys(partyToSeats).reduce(function (idx, partyID) {
         idx[partyID] = (idx[partyID] || 0) + seatsUFG;
         return idx;
-      },
-      idx);
+      }, idx);
     },
     {});
   },

@@ -10,11 +10,11 @@ const ElectionStats = {
     // Returns the list of party IDs, where the party has won at least MIN_P votes in the election.
     const partyToPVotesSorted = this.resultLK.partyToVotes.partyToPVotesSorted;
     return Object.entries(partyToPVotesSorted)
-      .filter(function ([partyID, pVotes]) {
-        return pVotes >= min_p;
+      .filter(function (entry) {
+        return entry[1] >= min_p;
       })
-      .map(function ([partyID, pVotes]) {
-        return partyID;
+      .map(function (entry) {
+        return entry[0];
       });
   },
 

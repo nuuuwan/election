@@ -25,19 +25,19 @@ function getContentList({ entID, result, electionDisplay }) {
   const sx = { color, background, p: 1, borderRadius: 1 };
 
   return [
-    <Stack direction="row" gap={0.5} alignItems="center" sx={sx}>
+    <Stack key="0" direction="row" gap={0.5} alignItems="center" sx={sx}>
       {num ? <Typography variant="h5">{num}.</Typography> : null}
       <EntView entID={entID} />
     </Stack>,
 
-    <PartyToVotesStatsView partyToVotes={result.partyToVotes} />,
-    <ResultBarChart resultsElection={electionDisplay} entID={entID} />,
+    <PartyToVotesStatsView key="1" partyToVotes={result.partyToVotes} />,
+    <ResultBarChart key="2" resultsElection={electionDisplay} entID={entID} />,
 
-    <SummaryView summary={result.summary} />,
+    <SummaryView key="3" summary={result.summary} />,
 
-    <HistoryView entID={entID} />,
+    <HistoryView key="4" entID={entID} />,
 
-    <ResultsReleasedView entID={entID} />,
+    <ResultsReleasedView key="5" entID={entID} />,
   ];
 }
 

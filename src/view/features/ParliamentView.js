@@ -34,7 +34,7 @@ export default function ParliamentView({
       sx={Object.assign({}, sx)}
       justifyContent={"center"}
     >
-      {Object.entries(partyToSeats).map(function ([partyID, seats], i) {
+      {Object.entries(partyToSeats).map(function ([partyID, seats]) {
         return (
           <Grid2 key={partyID}>
             <ParliamentViewCircle partyID={partyID} seats={seats} />

@@ -68,7 +68,7 @@ function BanfordBarChart() {
 export default function BanfordView() {
   return (
     <Stack direction="column" sx={{ alignItems: "center" }}>
-      <Typography variant="h5">Benford's Law</Typography>
+      <Typography variant="h5">Benford&apos;s Law</Typography>
       <CustomAlert>
         {Translate(
           "Benford's law is an observation that in many real-life sets of numerical data (including votes in elections), the leading digit is likely to be small. The number 1 appears as the leading significant digit about 30% of the time, while 9 appears as the leading significant digit less than 5% of the time."

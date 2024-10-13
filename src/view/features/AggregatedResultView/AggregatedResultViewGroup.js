@@ -33,7 +33,7 @@ function AggregatedResultListColumnViewGroup({ sortedEntIDs }) {
   );
 }
 
-function AggregatedResultListTableView({ sortedEntIDs, isPresidential }) {
+function AggregatedResultListTableView({ sortedEntIDs }) {
   const labels = [
     "Region or Group",
     "Votes by Party",
@@ -69,10 +69,7 @@ function AggregatedResultListTableView({ sortedEntIDs, isPresidential }) {
   );
 }
 
-export default function AggregatedResultViewGroup({
-  entIDList,
-  isPresidential,
-}) {
+export default function AggregatedResultViewGroup({ entIDList }) {
   const theme = useTheme();
   const isSmallerScreen = useMediaQuery(theme.breakpoints.down("lg"));
 
@@ -85,10 +82,7 @@ export default function AggregatedResultViewGroup({
       {isSmallerScreen ? (
         <AggregatedResultListColumnViewGroup sortedEntIDs={entIDList} />
       ) : (
-        <AggregatedResultListTableView
-          sortedEntIDs={entIDList}
-          isPresidential={isPresidential}
-        />
+        <AggregatedResultListTableView sortedEntIDs={entIDList} />
       )}
     </Box>
   );

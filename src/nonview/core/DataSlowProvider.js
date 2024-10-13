@@ -5,7 +5,7 @@ import { useDataContext } from "./DataProvider";
 
 const DataSlowContext = createContext();
 
-async function getElectionValuesSlow({ election, electionDisplay, entIdx }) {
+async function getElectionValuesSlow({ election, electionDisplay }) {
   const inner = async function () {
     const electionHistory = await ElectionHistory.load();
     const electionPrevious =
@@ -29,13 +29,12 @@ async function getValue(state, data) {
   if (!data) {
     return null;
   }
-  const { election, electionDisplay, entIdx } = data;
+  const { election, electionDisplay } = data;
 
   const { electionHistory, electionPrevious, electionProjected } =
     await getElectionValuesSlow({
       election,
       electionDisplay,
-      entIdx,
     });
 
   return Object.assign({}, data, {

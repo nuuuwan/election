@@ -18,15 +18,16 @@ class Seats {
 
   getPartyToSeatsForProvince(provinceID) {
     const partyToSeatsList = Object.entries(this.getRegionToPartyToSeats())
-      .filter(function ([entID, partyToSeats]) {
+      .filter(function (entry) {
+        const entID = entry[0];
         if (entID === "LK") {
           return false;
         }
         const provinceID2 = ProvinceUtils.getProvinceIDForEDID(entID);
         return provinceID2 === provinceID;
       })
-      .map(function ([entID, partyToSeats]) {
-        return partyToSeats;
+      .map(function (entry) {
+        return entry[1];
       });
 
     return SeatsUtils.aggregatePartyToSeats(partyToSeatsList);

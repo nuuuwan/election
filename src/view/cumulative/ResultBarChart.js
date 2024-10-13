@@ -16,7 +16,7 @@ export default function ResultBarChart({ resultsElection, entID }) {
         const partyID = Object.keys(partyToPVotes)[j];
         return Party.fromID(partyID).color;
       }}
-      formatValue={function (partyToPVotes, i, pVotes, j) {
+      formatValue={function (partyToPVotes, i, pVotes) {
         return Format.percent(pVotes);
       }}
       sx={{ width: 200, height: 50 }}

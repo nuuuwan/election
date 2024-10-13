@@ -10,18 +10,12 @@ import { useDataSlowContext } from "../../../nonview/core/DataSlowProvider";
 import SVGSeatCircles from "./SVGSeatCircles";
 import SVGNationalListLabel from "./SVGNationalListLabel";
 
-function getCustomOverlayRenderer(seats, edIdx) {
-  return function ({ x, y, entID }) {
+function getCustomOverlayRenderer(seats) {
+  const CustomOverlayRenderer = function ({ x, y, entID }) {
     const partyToSeats = seats.getPartyToSeats(entID);
-    return (
-      <SVGSeatCircles
-        x={x}
-        y={y}
-        partyToSeats={partyToSeats}
-        label={edIdx[entID].name}
-      />
-    );
+    return <SVGSeatCircles x={x} y={y} partyToSeats={partyToSeats} />;
   };
+  return CustomOverlayRenderer;
 }
 
 export default function SeatsHexMap() {
@@ -47,12 +41,7 @@ export default function SeatsHexMap() {
         mapData={mapData}
         customOverlayRenderer={customOverlayRenderer}
       />
-      <SVGSeatCircles
-        x={5}
-        y={0}
-        partyToSeats={seats.getLKPartyToSeats()}
-        label={"National List"}
-      />
+      <SVGSeatCircles x={5} y={0} partyToSeats={seats.getLKPartyToSeats()} />
       <SVGNationalListLabel />
     </svg>
   );

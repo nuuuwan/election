@@ -11,7 +11,6 @@ async function getElectionValuesSlow({  electionDisplay }) {
     const electionPrevious = electionHistory.electionPrevious;
 
     const electionProjected = ElectionModel.getElectionProjected(
-      electionDisplay,
       electionHistory
     );
 

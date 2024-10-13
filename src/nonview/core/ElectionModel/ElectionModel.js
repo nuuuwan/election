@@ -4,7 +4,8 @@ import ElectionModelSimulationUtils from "./ElectionModelSimulationUtils";
 import ElectionModelUtils from "./ElectionModelUtils";
 
 export default class ElectionModel {
-  static getElectionProjected(currentElection, electionHistory) {
+  static getElectionProjected(electionHistory) {
+    const currentElection = electionHistory.electionCurrent;
     const pastElectionList =
       electionHistory.previousElectionList;
     if (pastElectionList.length === 0) {

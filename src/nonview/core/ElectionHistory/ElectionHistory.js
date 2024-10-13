@@ -28,6 +28,9 @@ export default class ElectionHistory {
   static async _getLoadedElectionList(electionCurrent) {
     const unloadedElectionList = ElectionHistory._getUnloadedElectionList(electionCurrent);
     return await Promise.all(unloadedElectionList.map(async function (election) {
+      if (election.title === electionCurrent.title) {
+        return electionCurrent;
+      }
       return await election.__loadData();
     }));
   }

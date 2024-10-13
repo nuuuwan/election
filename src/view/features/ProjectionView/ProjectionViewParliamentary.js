@@ -1,10 +1,10 @@
 import {
   CustomAlert,
   CustomLoadingProgress,
-  CustomStack,
+
   ElectionSmallTitle,
   PartyToSeatsStatsView,
-  ProjectionTitle,
+
   SeatsHexMap,
 } from "../..";
 
@@ -15,8 +15,7 @@ import { ProjectionAlert } from "../../core/ProjectionTitle";
 import ParliamentaryFinalOutcomeView from "../ParlimentaryFinalOutcomeView";
 import { useDataSlowContext } from "../../../nonview/core/DataSlowProvider";
 import { Typography } from "@mui/material";
-
-function ProjectionViewInner() {
+export default function ProjectionViewParliamentary() {
   const data = useDataSlowContext();
   if (!data) {
     return <CustomLoadingProgress />;
@@ -55,11 +54,3 @@ function ProjectionViewInner() {
   );
 }
 
-export default function ProjectionViewParliamentary() {
-  return (
-    <CustomStack>
-      <ProjectionTitle />
-      <ProjectionViewInner />
-    </CustomStack>
-  );
-}

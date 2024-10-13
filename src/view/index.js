@@ -100,6 +100,9 @@ import BasePageHandlerProvider from "./pages/BasePage/BasePageHandlerProvider.js
 import BasePageView from "./pages/BasePage/BasePageView.js";
 import PageBody from "./pages/BasePage/PageBody/PageBody.js";
 import PageBodyBelowTheFold from "./pages/BasePage/PageBody/PageBodyBelowTheFold.js";
+import PageBodyCenter from "./pages/BasePage/PageBody/PageBodyCenter.js";
+import PageBodyLeft from "./pages/BasePage/PageBody/PageBodyLeft.js";
+import PageBodyRight from "./pages/BasePage/PageBody/PageBodyRight.js";
 import PageFooter from "./pages/BasePage/PageFooter.js";
 import PageHeader from "./pages/BasePage/PageHeader.js";
 
@@ -204,6 +207,9 @@ export {
   BasePageView,
   PageBody,
   PageBodyBelowTheFold,
+  PageBodyCenter,
+  PageBodyLeft,
+  PageBodyRight,
   PageFooter,
   PageHeader,
 };

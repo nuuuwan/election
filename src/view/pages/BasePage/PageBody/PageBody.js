@@ -4,25 +4,18 @@ import { useDataContext } from "../../../../nonview/core/DataProvider";
 import PageBodyBelowTheFold from "./PageBodyBelowTheFold";
 
 import {
-  HistoryAlert,
-  HexagonClickAlert,
   NoResultsAlert,
-  HexMapView,
-  LatestResultListView,
-  BellwetherView,
-  ResultsReleasedTitlePercent,
-  ResultsReleasedTitleNumber,
-  ProjectionViewPresidential,
-  ProjectionViewParliamentary,
-  ElectionSmallTitle,
 } from "../../../";
+import PageBodyRight from "./PageBodyRight";
+import PageBodyCenter from "./PageBodyCenter";
+import PageBodyLeft from "./PageBodyLeft";
 
 const STYLE = {
   BOX: { paddingTop: 10, paddingBottom: 20 },
 };
 
-function CustomPageBodyGridItem({ children }) {
-  return <Grid2 size={{ xs: 12, md: 6, xl: 4 }}>{children}</Grid2>;
+export function CustomPageBodyGridItem({ children }) {
+  return <Grid2 size={size}>{children}</Grid2>;
 }
 
 export default function PageBody() {
@@ -33,34 +26,15 @@ export default function PageBody() {
     return <NoResultsAlert election={electionDisplay} />;
   }
 
+  const size = { xs: 12, md: 6, xl: 4 };
   return (
     <Box sx={STYLE.BOX}>
-    
       <Grid2 container>
-        <CustomPageBodyGridItem>
-          <ResultsReleasedTitlePercent />
-          <LatestResultListView />
-          <BellwetherView />
-          <HistoryAlert />
-        </CustomPageBodyGridItem>
-
-        <CustomPageBodyGridItem>
-          <ResultsReleasedTitleNumber />
-          <HexMapView />
-          <ElectionSmallTitle />
-          <HexagonClickAlert />
-        </CustomPageBodyGridItem>
-
-        <CustomPageBodyGridItem>
-          {electionDisplay.isPresidential ? (
-            <ProjectionViewPresidential />
-          ) : (
-            <ProjectionViewParliamentary />
-          )}
-        </CustomPageBodyGridItem>
+        <Grid2 size={size}>  <PageBodyLeft /></Grid2>
+        <Grid2 size={size}>  <PageBodyCenter /></Grid2>
+        <Grid2 size={size}>  <PageBodyRight /></Grid2>
       </Grid2>
       <PageBodyBelowTheFold />
-
     </Box>
   );
 }

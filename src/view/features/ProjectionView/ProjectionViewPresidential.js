@@ -1,9 +1,9 @@
 import {
   CustomAlert,
   CustomLoadingProgress,
-  CustomStack,
+
   ElectionSmallTitle,
-  ProjectionTitle,
+
   FinalOutcomeView,
   ProjectedResultBarChart,
 } from "../..";
@@ -15,7 +15,7 @@ import { ProjectionAlert } from "../../core/ProjectionTitle";
 import { useDataSlowContext } from "../../../nonview/core/DataSlowProvider";
 import { Typography } from "@mui/material";
 
-function ProjectionViewInner() {
+export default function ProjectionViewPresidential() {
   const data = useDataSlowContext();
   if (!data) {
     return <CustomLoadingProgress />;
@@ -50,11 +50,3 @@ function ProjectionViewInner() {
   );
 }
 
-export default function ProjectionViewPresidential() {
-  return (
-    <CustomStack>
-      <ProjectionTitle />
-      <ProjectionViewInner />
-    </CustomStack>
-  );
-}

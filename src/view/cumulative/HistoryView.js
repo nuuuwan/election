@@ -11,7 +11,7 @@ function HistoryViewRow({ entID, electionForRow }) {
   try {
     result = electionForRow.getResult(entID);
   } catch (error) {
-    console.error(error);
+    result = null;
   }
   if (!result) {
     return null;

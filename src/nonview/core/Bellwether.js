@@ -5,7 +5,7 @@ export default class Bellwether {
     try {
       resultEnt = election.getResult(entID);
     } catch (error) {
-      console.error(error);
+      resultEnt = null;
     }
     
     if (!resultEnt) {

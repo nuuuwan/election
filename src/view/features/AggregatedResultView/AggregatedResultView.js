@@ -1,8 +1,5 @@
 import { useState } from "react";
-
 import { Box } from "@mui/material";
-
-
 import { TabSelector } from "../..";
 
 import AggregatedResultUtils from "./AggregatedResultUtils";
@@ -10,20 +7,20 @@ import AggregatedResultViewGroup from "./AggregatedResultViewGroup";
 import { useDataSlowContext } from "../../../nonview/core/DataSlowProvider";
 
 export default function AggregatedResultView() {
+  const [group, setGroup] = useState(null);
   const data = useDataSlowContext();
   if (!data) {
     return null;
   }
-
   const groupToEntIDListGetter =
     AggregatedResultUtils.getGroupToEntIDListGetter(data);
   const groupList = Object.keys(groupToEntIDListGetter);
 
-  const [group, setGroup] = useState(groupList[0]);
+  const value = group || groupList[0];
 
   return (
     <Box>
-      <TabSelector value={group} onChange={setGroup} dataList={groupList} />
+      <TabSelector value={value} onChange={setGroup} dataList={groupList} />
 
       <Box
         sx={{
@@ -34,7 +31,7 @@ export default function AggregatedResultView() {
         }}
       >
         <AggregatedResultViewGroup
-          entIDList={groupToEntIDListGetter[group](data)}
+          entIDList={groupToEntIDListGetter[value](data)}
         />
       </Box>
     </Box>

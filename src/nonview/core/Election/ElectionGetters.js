@@ -33,16 +33,16 @@ const ElectionStats = {
     const entType = EntType.fromID(entID);
 
     switch (entType) {
-      case EntType.PD:
-        return baseEnt.d.ed_id;
-      case EntType.ED:
-        return baseEnt.d.ed_id;
-      case EntType.PROVINCE:
-        return ProvinceUtils.getProvinceIDForPDEnt(baseEnt);
-      case EntType.EZ:
-        return PD_ID_TO_GROUP_ID[baseEnt.id] || ED_ID_TO_GROUP_ID[baseEnt.id];
-      default:
-        return "LK";
+    case EntType.PD:
+      return baseEnt.d.ed_id;
+    case EntType.ED:
+      return baseEnt.d.ed_id;
+    case EntType.PROVINCE:
+      return ProvinceUtils.getProvinceIDForPDEnt(baseEnt);
+    case EntType.EZ:
+      return PD_ID_TO_GROUP_ID[baseEnt.id] || ED_ID_TO_GROUP_ID[baseEnt.id];
+    default:
+      return "LK";
     }
   },
 
@@ -99,12 +99,12 @@ const ElectionStats = {
   // Ent
   getEntIdx(data) {
     switch (this.baseEntType) {
-      case EntType.PD:
-        return data.pdIdx;
-      case EntType.ED:
-        return data.edIdx;
-      default:
-        throw new Error("Unknown baseEntType: " + this.baseEntType);
+    case EntType.PD:
+      return data.pdIdx;
+    case EntType.ED:
+      return data.edIdx;
+    default:
+      throw new Error("Unknown baseEntType: " + this.baseEntType);
     }
   },
 };

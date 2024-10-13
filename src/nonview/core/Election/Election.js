@@ -31,12 +31,12 @@ class Election extends ElectionBase {
 
   static getBaseEntTypeFromDate(date) {
     switch (date) {
-      case "2024-09-21":
-        return EntType.PD;
-      case "2024-09-22":
-        return EntType.ED;
-      default:
-        return undefined;
+    case "2024-09-21":
+      return EntType.PD;
+    case "2024-09-22":
+      return EntType.ED;
+    default:
+      return undefined;
     }
   }
 

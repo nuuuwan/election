@@ -5,16 +5,16 @@ export default class EntType {
 
   get shortName() {
     switch (this.name) {
-      case "country":
-        return "";
-      case "province":
-        return "";
-      case "pd":
-        return "PD";
-      case "ed":
-        return "ED";
-      default:
-        return this.name.toUpperCase();
+    case "country":
+      return "";
+    case "province":
+      return "";
+    case "pd":
+      return "PD";
+    case "ed":
+      return "ED";
+    default:
+      return this.name.toUpperCase();
     }
   }
 
@@ -37,15 +37,15 @@ export default class EntType {
     }
     const entIDLength = entID.length;
     switch (entIDLength) {
-      case 2:
-        return EntType.COUNTRY;
-      case 4:
-        return EntType.PROVINCE;
-      case 5:
-        return EntType.DISTRICT;
+    case 2:
+      return EntType.COUNTRY;
+    case 4:
+      return EntType.PROVINCE;
+    case 5:
+      return EntType.DISTRICT;
 
-      default:
-        return null;
+    default:
+      return null;
     }
   }
 
@@ -55,12 +55,12 @@ export default class EntType {
     }
     const entIDLength = entID.length;
     switch (entIDLength) {
-      case 5:
-        return EntType.ED;
-      case 6:
-        return EntType.PD;
-      default:
-        return null;
+    case 5:
+      return EntType.ED;
+    case 6:
+      return EntType.PD;
+    default:
+      return null;
     }
   }
 

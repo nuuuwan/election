@@ -46,21 +46,21 @@ export default class HexMapData {
 
   static getMapDataList(baseEntType) {
     switch (baseEntType) {
-      case EntType.PD:
-        return [
-          HEXMAP_DATA_PD,
-          HexMapData.offsetData(HEXMAP_DATA_POSTAL_PD, "P", [-5, 2]),
+    case EntType.PD:
+      return [
+        HEXMAP_DATA_PD,
+        HexMapData.offsetData(HEXMAP_DATA_POSTAL_PD, "P", [-5, 2]),
 
-          HexMapData.offsetData(HEXMAP_DATA_PROVINCE, "", [-5, 9]),
-          HexMapData.offsetData(HEXMAP_DATA_ED, "", [-5, 14]),
-        ];
-      case EntType.ED:
-        return [
-          HexMapData.offsetData(HEXMAP_DATA_ED, "", [0, 0]),
-          HexMapData.offsetData(HEXMAP_DATA_PROVINCE, "", [6, 4]),
-        ];
-      default:
-        throw new Error("Unknown baseEntType: " + baseEntType);
+        HexMapData.offsetData(HEXMAP_DATA_PROVINCE, "", [-5, 9]),
+        HexMapData.offsetData(HEXMAP_DATA_ED, "", [-5, 14]),
+      ];
+    case EntType.ED:
+      return [
+        HexMapData.offsetData(HEXMAP_DATA_ED, "", [0, 0]),
+        HexMapData.offsetData(HEXMAP_DATA_PROVINCE, "", [6, 4]),
+      ];
+    default:
+      throw new Error("Unknown baseEntType: " + baseEntType);
     }
   }
 }

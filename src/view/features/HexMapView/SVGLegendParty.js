@@ -7,12 +7,12 @@ import SVGHexText from "./SVGHexText";
 
 function getXY(baseEntType) {
   switch (baseEntType) {
-    case EntType.PD:
-      return { x: 8, y: 3 };
-    case EntType.ED:
-      return { x: 5, y: 0 };
-    default:
-      throw new Error("Unknown baseEntType: " + baseEntType);
+  case EntType.PD:
+    return { x: 8, y: 3 };
+  case EntType.ED:
+    return { x: 5, y: 0 };
+  default:
+    throw new Error("Unknown baseEntType: " + baseEntType);
   }
 }
 

@@ -12,7 +12,7 @@ export default class Summary {
     for (const key in d) {
       if (Summary.KEYS.includes(key)) {
         summary[key] = parseInt(
-          d[key].toString().replaceAll("'", "").replaceAll('"', "")
+          d[key].toString().replaceAll("'", "").replaceAll("\"", "")
         );
       }
     }

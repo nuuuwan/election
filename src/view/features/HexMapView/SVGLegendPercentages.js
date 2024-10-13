@@ -6,12 +6,12 @@ import SVGHexText from "./SVGHexText";
 
 function getXY(baseEntType, nParties) {
   switch (baseEntType) {
-    case EntType.PD:
-      return { x: 9 + nParties / THEME_DATA.HEXMAP.N_COLS, y: 3 };
-    case EntType.ED:
-      return { x: 6 + 2 / THEME_DATA.HEXMAP.N_COLS, y: 2 };
-    default:
-      throw new Error("Unknown baseEntType: " + baseEntType);
+  case EntType.PD:
+    return { x: 9 + nParties / THEME_DATA.HEXMAP.N_COLS, y: 3 };
+  case EntType.ED:
+    return { x: 6 + 2 / THEME_DATA.HEXMAP.N_COLS, y: 2 };
+  default:
+    throw new Error("Unknown baseEntType: " + baseEntType);
   }
 }
 

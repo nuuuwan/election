@@ -32,22 +32,22 @@ export default class ActivePDUtils {
     const entType = EntType.fromID(entID);
 
     switch (entType) {
-      case EntType.PD:
-        return entID;
-      case EntType.ED:
-        return ActivePDUtils.getNewActiveEntIDForED({
-          baseResultList,
-          entIdx,
-          entID,
-        });
-      case EntType.PROVINCE:
-        return ActivePDUtils.getNewActiveEntIDForProvince({
-          baseResultList,
-          entIdx,
-          entID,
-        });
-      default:
-        return null;
+    case EntType.PD:
+      return entID;
+    case EntType.ED:
+      return ActivePDUtils.getNewActiveEntIDForED({
+        baseResultList,
+        entIdx,
+        entID,
+      });
+    case EntType.PROVINCE:
+      return ActivePDUtils.getNewActiveEntIDForProvince({
+        baseResultList,
+        entIdx,
+        entID,
+      });
+    default:
+      return null;
     }
   }
 }

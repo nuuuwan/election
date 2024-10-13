@@ -17,10 +17,10 @@ export default function SVGHexMapShapes({ mapData, customOverlayRenderer }) {
             />
             {customOverlayRenderer
               ? customOverlayRenderer({
-                  entID,
-                  x,
-                  y: y / Math.cos(Math.PI / 6),
-                })
+                entID,
+                x,
+                y: y / Math.cos(Math.PI / 6),
+              })
               : null}
           </g>
         );

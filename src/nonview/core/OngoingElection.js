@@ -6,23 +6,23 @@ import Summary from "./Summary";
 export default class OngoingElection {
   static getURL(election) {
     switch (election.date) {
-      case "2024-09-21":
-        return "https://raw.githubusercontent.com/nuuuwan/prespollsl2024_py/refs/heads/main/data/ec/prod1-2024.json";
-      case "2024-09-22":
-        return "https://raw.githubusercontent.com/nuuuwan/prespollsl2024_py/refs/heads/main/data/ec/prod2-2024.json";
-      default:
-        throw new Error("Unknown election date: " + election.date);
+    case "2024-09-21":
+      return "https://raw.githubusercontent.com/nuuuwan/prespollsl2024_py/refs/heads/main/data/ec/prod1-2024.json";
+    case "2024-09-22":
+      return "https://raw.githubusercontent.com/nuuuwan/prespollsl2024_py/refs/heads/main/data/ec/prod2-2024.json";
+    default:
+      throw new Error("Unknown election date: " + election.date);
     }
   }
 
   static getIDKey(election) {
     switch (election.date) {
-      case "2024-09-21":
-        return "pd_id";
-      case "2024-09-22":
-        return "ed_id";
-      default:
-        throw new Error("Unknown election date: " + election.date);
+    case "2024-09-21":
+      return "pd_id";
+    case "2024-09-22":
+      return "ed_id";
+    default:
+      throw new Error("Unknown election date: " + election.date);
     }
   }
 

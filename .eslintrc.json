@@ -1,4 +1,9 @@
 {
+    "settings": {
+        "react": {
+            "version": "detect" // Automatically detect the React version
+        }
+    },
     "env": {
         "browser": true,
         "es2021": true
@@ -35,7 +40,9 @@
         ],
         "react/react-in-jsx-scope": "off",
         "react/prop-types": "off",
-        "no-undef": "off"
+        "no-undef": "off",
+        "complexity": ["error", 6],
+        "max-lines-per-function": ["error", 40]
 
     }
 }

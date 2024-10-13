@@ -6,16 +6,14 @@ import ElectionModelUtils from "./ElectionModelUtils";
 export default class ElectionModel {
   static getElectionProjected(electionHistory) {
     const currentElection = electionHistory.electionCurrent;
-    const pastElectionList =
-      electionHistory.previousElectionList;
+    const pastElectionList = electionHistory.previousElectionList;
     if (pastElectionList.length === 0) {
       return currentElection;
     }
+    
     const releasedEntIDList = currentElection.baseEntIDList;
-
     const nonReleasedEntIDList = ElectionModel.getNonReleasedEntIDList(
       electionHistory,
-      releasedEntIDList
     );
 
     const { XAll, YAll } = ElectionModelFeatureUtils.trainingData(
@@ -23,12 +21,10 @@ export default class ElectionModel {
       releasedEntIDList,
       nonReleasedEntIDList
     );
-    const pError = ElectionModelUtils.getPErrorByHoldout(XAll, YAll);
 
+    const pError = ElectionModelUtils.getPErrorByHoldout(XAll, YAll);
     const pdToPartyToPVotes = ElectionModel.getPDToPartyToPVotes(
-      currentElection,
-      releasedEntIDList,
-      nonReleasedEntIDList,
+      electionHistory,
       XAll,
       YAll
     );
@@ -44,10 +40,10 @@ export default class ElectionModel {
 
   static getNonReleasedEntIDList(
     electionHistory,
-    releasedEntIDList
   ) {
 
     const electionPrevious = electionHistory.electionPrevious;
+    const releasedEntIDList = electionHistory.electionCurrent.baseEntIDList;
     return electionPrevious.baseEntIDList.filter(
       (entID) => !releasedEntIDList.includes(entID)
     );
@@ -69,18 +65,20 @@ export default class ElectionModel {
       pError
     );
     election.build(baseResultList);
-
     return election;
   }
 
 
   static getPDToPartyToPVotes(
-    currentElection,
-    releasedEntIDList,
-    nonReleasedEntIDList,
+    electionHistory,
     XAll,
     YAll
   ) {
+    const currentElection = electionHistory.electionCurrent;
+    const releasedEntIDList = currentElection.baseEntIDList;
+    const nonReleasedEntIDList = ElectionModel.getNonReleasedEntIDList(
+      electionHistory,
+    );
     const model = ElectionModelUtils.trainModel(XAll, YAll);
 
     return ElectionModelProjectionUtils.getPDToPartyToPVotes(

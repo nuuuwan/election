@@ -1,14 +1,18 @@
+import { useSVGBarChartContext } from "./SVGBarChartContextProvider";
+
 export default function SVGBarChartCellBar({
-  getColor,
   data,
   i,
   value,
   j,
   x,
-  y,
-  width,
-  height,
 }) {
+  const { getColor, pHeight, n } = useSVGBarChartContext();
+
+  const height = pHeight / n;
+  const y = height * i;
+  const width = value;  
+
   return (
     <rect
       key={j}

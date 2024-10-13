@@ -1,14 +1,12 @@
 import { MathX } from "../../../nonview";
 import SVGLabel from "./SVGLabel";
-
+import { useSVGBarChartContext } from "./SVGBarChartContextProvider";
 export default function SVGBarChartRowLabel({
-  getValues,
-  formatRowValue,
-  n,
   data,
   i,
-  pHeight,
 }) {
+  const { pHeight, n, getValues, formatRowValue } = useSVGBarChartContext();
+
   const rowValue = formatRowValue ? formatRowValue(data, i) : " ";
   if (!rowValue) {
     return null;

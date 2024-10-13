@@ -1,11 +1,14 @@
+
 import { MathX } from "../../../nonview";
 import { THEME_DATA } from "../../_constants/THEME";
 import SVGBarChartTable from "./SVGBarChartTable";
+import SVGBarChartContextProvider from "./SVGBarChartContextProvider";
 
 const DEFAULT_SX = {
   width: 240,
   height: 60,
 };
+
 
 function getMaxValue(dataList, getValues) {
   return     Math.ceil(
@@ -30,7 +33,6 @@ export default function SVGBarChart({
   const maxValue = getMaxValue(dataList, getValues);
 
   const { width, height } = sx;
-  const n = dataList.length;
 
   const pWidth = maxValue;
   const pHeight = (pWidth * sx.height) / sx.width;
@@ -43,15 +45,18 @@ export default function SVGBarChart({
       height={height}
       fontFamily={THEME_DATA.typography.fontFamily}
     >
-      <SVGBarChartTable
+      <SVGBarChartContextProvider 
         dataList={dataList}
-        n={n}
+        n={dataList.length}
         getValues={getValues}
         getColor={getColor}
         formatValue={formatValue}
         formatRowValue={formatRowValue}
+        sx={sx}
         pHeight={pHeight}
-      />
+      >
+        <SVGBarChartTable />
+      </SVGBarChartContextProvider>
     </svg>
   );
 }

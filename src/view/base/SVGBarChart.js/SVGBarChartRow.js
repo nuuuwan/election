@@ -1,16 +1,15 @@
 import SVGBarChartCell from "./SVGBarChartCell";
 import SVGBarChartRowLabel from "./SVGBarChartRowLabel";
+import { useSVGBarChartContext } from "./SVGBarChartContextProvider";
 
 export default function SVGBarChartRow({
-  n,
   i,
   data,
-  getValues,
-  getColor,
-  formatValue,
-  formatRowValue,
-  pHeight,
+
 }) {
+
+  const { getValues } = useSVGBarChartContext();
+
   const values = getValues(data, i);
   let cumValue = 0;
 
@@ -22,25 +21,17 @@ export default function SVGBarChartRow({
         return (
           <SVGBarChartCell
             key={j}
-            n={n}
             data={data}
             i={i}
-            getColor={getColor}
-            formatValue={formatValue}
-            pHeight={pHeight}
-            cumValue={cumValue}
             value={value}
             j={j}
+            cumValue={cumValue}
           />
         );
       })}
       <SVGBarChartRowLabel
-        getValues={getValues}
-        formatRowValue={formatRowValue}
-        n={n}
         data={data}
         i={i}
-        pHeight={pHeight}
       />
     </g>
   );

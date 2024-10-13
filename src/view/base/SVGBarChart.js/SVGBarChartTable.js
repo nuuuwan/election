@@ -1,28 +1,15 @@
 import SVGBarChartRow from "./SVGBarChartRow";
-
-export default function SVGBarChartTable({
-  dataList,
-  n,
-  getValues,
-  getColor,
-  formatValue,
-  formatRowValue,
-  pHeight,
-}) {
+import { useSVGBarChartContext } from "./SVGBarChartContextProvider";
+export default function SVGBarChartTable() {
+  const { dataList } = useSVGBarChartContext();
   return (
     <g>
       {dataList.map(function (data, i) {
         return (
           <SVGBarChartRow
             key={i}
-            n={n}
             i={i}
             data={data}
-            getValues={getValues}
-            getColor={getColor}
-            formatValue={formatValue}
-            formatRowValue={formatRowValue}
-            pHeight={pHeight}
           />
         );
       })}

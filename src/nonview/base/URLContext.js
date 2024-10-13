@@ -17,7 +17,9 @@ export default class URLContext {
         return token.join("=");
       })
       .join("&");
-    const urlBase = window.location.origin + process.env.PUBLIC_URL; // TODO: Is origin needed?
+      
+    // eslint-disable-next-line no-undef
+    const urlBase = window.location.origin + process.env.PUBLIC_URL; 
     return urlBase + "?" + parameterStr;
   }
 

@@ -4,11 +4,11 @@ import FormatPercent from "./FormatPercent";
 class Format {}
 
 Object.assign(
-    Format,
-    FormatGeneric,
+  Format,
+  FormatGeneric,
 
-    FormatInt,
-    FormatPercent
+  FormatInt,
+  FormatPercent
 );
 
 export default Format;

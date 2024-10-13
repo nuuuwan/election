@@ -1,95 +1,95 @@
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {
-    Box,
-    Grid2,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Typography,
+  Box,
+  Grid2,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
 } from "@mui/material";
 
 import { Translate } from "../../../nonview";
 
 import {
-    CumResultsColumnView,
-    CumResultsViewTableRowView,
+  CumResultsColumnView,
+  CumResultsViewTableRowView,
 } from "../CumResultsView";
 
 function AggregatedResultListColumnViewGroup({ sortedEntIDs }) {
-    return (
-        <Grid2 container spacing={1} rowSpacing={1} justifyContent="center">
-            {sortedEntIDs.map(function (entID) {
-                return (
-                    <Grid2 key={entID}>
-                        <CumResultsColumnView entID={entID} />
-                    </Grid2>
-                );
-            })}
-        </Grid2>
-    );
+  return (
+    <Grid2 container spacing={1} rowSpacing={1} justifyContent="center">
+      {sortedEntIDs.map(function (entID) {
+        return (
+          <Grid2 key={entID}>
+            <CumResultsColumnView entID={entID} />
+          </Grid2>
+        );
+      })}
+    </Grid2>
+  );
 }
 
 function AggregatedResultListTableView({ sortedEntIDs, isPresidential }) {
-    const labels = [
-        "Region or Group",
-        "Votes by Party",
-        "%",
-        "Summary",
-        "Past History",
-        "Release Status",
-    ];
+  const labels = [
+    "Region or Group",
+    "Votes by Party",
+    "%",
+    "Summary",
+    "Past History",
+    "Release Status",
+  ];
 
-    return (
-        <TableContainer>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        {labels.map(function (title, iTitle) {
-                            return (
-                                <TableCell key={iTitle} sx={{ textAlign: "center" }}>
-                                    <Typography variant="h6" color="secondary">
-                                        {Translate(title)}
-                                    </Typography>
-                                </TableCell>
-                            );
-                        })}
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {sortedEntIDs.map(function (entID) {
-                        return <CumResultsViewTableRowView key={entID} entID={entID} />;
-                    })}
-                </TableBody>
-            </Table>
-        </TableContainer>
-    );
+  return (
+    <TableContainer>
+      <Table>
+        <TableHead>
+          <TableRow>
+            {labels.map(function (title, iTitle) {
+              return (
+                <TableCell key={iTitle} sx={{ textAlign: "center" }}>
+                  <Typography variant="h6" color="secondary">
+                    {Translate(title)}
+                  </Typography>
+                </TableCell>
+              );
+            })}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {sortedEntIDs.map(function (entID) {
+            return <CumResultsViewTableRowView key={entID} entID={entID} />;
+          })}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
 }
 
 export default function AggregatedResultViewGroup({
-    entIDList,
-    isPresidential,
+  entIDList,
+  isPresidential,
 }) {
-    const theme = useTheme();
-    const isSmallerScreen = useMediaQuery(theme.breakpoints.down("lg"));
+  const theme = useTheme();
+  const isSmallerScreen = useMediaQuery(theme.breakpoints.down("lg"));
 
-    if (!entIDList) {
-        return null;
-    }
+  if (!entIDList) {
+    return null;
+  }
 
-    return (
-        <Box>
-            {isSmallerScreen ? (
-                <AggregatedResultListColumnViewGroup sortedEntIDs={entIDList} />
-            ) : (
-                <AggregatedResultListTableView
-                    sortedEntIDs={entIDList}
-                    isPresidential={isPresidential}
-                />
-            )}
-        </Box>
-    );
+  return (
+    <Box>
+      {isSmallerScreen ? (
+        <AggregatedResultListColumnViewGroup sortedEntIDs={entIDList} />
+      ) : (
+        <AggregatedResultListTableView
+          sortedEntIDs={entIDList}
+          isPresidential={isPresidential}
+        />
+      )}
+    </Box>
+  );
 }

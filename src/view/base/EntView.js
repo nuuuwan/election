@@ -5,42 +5,42 @@ import { EntType, Translate } from "../../nonview";
 const VARIANT = "h5";
 
 function EntViewName({ entID }) {
-    const data = useDataContext();
-    if (!data || !entID) {
-        return null;
-    }
+  const data = useDataContext();
+  if (!data || !entID) {
+    return null;
+  }
 
-    const { allRegionIdx } = data;
-    const ent = allRegionIdx[entID];
+  const { allRegionIdx } = data;
+  const ent = allRegionIdx[entID];
 
-    return <Typography variant={VARIANT}>{Translate(ent.name)}</Typography>;
+  return <Typography variant={VARIANT}>{Translate(ent.name)}</Typography>;
 }
 
 function EntViewType({ entID }) {
-    if (!entID) {
-        return null;
-    }
+  if (!entID) {
+    return null;
+  }
 
-    const entType = EntType.fromID(entID);
+  const entType = EntType.fromID(entID);
 
-    const label = entType.shortName;
+  const label = entType.shortName;
 
-    return (
-        <Typography variant={VARIANT} sx={{ opacity: 0.5 }}>
-            {Translate(label)}
-        </Typography>
-    );
+  return (
+    <Typography variant={VARIANT} sx={{ opacity: 0.5 }}>
+      {Translate(label)}
+    </Typography>
+  );
 }
 
 export default function EntView({ entID, sx = {} }) {
-    return (
-        <Stack
-            direction={"row"}
-            sx={Object.assign({ alignItems: "center" }, sx)}
-            gap={0.5}
-        >
-            <EntViewName entID={entID} />
-            <EntViewType entID={entID} />
-        </Stack>
-    );
+  return (
+    <Stack
+      direction={"row"}
+      sx={Object.assign({ alignItems: "center" }, sx)}
+      gap={0.5}
+    >
+      <EntViewName entID={entID} />
+      <EntViewType entID={entID} />
+    </Stack>
+  );
 }

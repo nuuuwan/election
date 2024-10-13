@@ -19,7 +19,7 @@
     "rules": {
         "indent": [
             "error",
-            4
+            2
         ],
         "linebreak-style": [
             "error",
@@ -32,6 +32,8 @@
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "react/react-in-jsx-scope": "off"
+
     }
 }

@@ -39,24 +39,21 @@ const FormatInt = {
     if (value === 0) {
       return 0;
     }
-    if (value > 10_000_000) {
-      return (value / 1_000_000).toFixed(0) + "M";
+
+    let value_limit, fixed, suffix;
+    for ([value_limit, fixed, suffix] of [
+      [10_000_000, 0, "M"],
+      [1_000_000, 1, "M"],
+      [100_000, 0, "K"],
+      [10_000, 0, "K"],
+      [1_000, 1, "K"],
+      [100, 0, ""],
+    ]) {
+      if (value > value_limit) {
+        return (value / value_limit).toFixed(fixed) + suffix;
+      }
     }
-    if (value > 1_000_000) {
-      return (value / 1_000_000).toFixed(1) + "M";
-    }
-    if (value > 100_000) {
-      return 10 * (value / 10_000).toFixed(0) + "K";
-    }
-    if (value > 10_000) {
-      return (value / 1_000).toFixed(0) + "K";
-    }
-    if (value > 1_000) {
-      return (value / 1_000).toFixed(1) + "K";
-    }
-    if (value > 100) {
-      return 10 * (value / 100).toFixed(0);
-    }
+
     return value.toString();
   },
 

@@ -27,10 +27,6 @@ export default class ElectionHistory {
     return new ElectionHistory(elections);
   }
 
-  static singletonHistory(currentElection) {
-    return new ElectionHistory([currentElection]);
-  }
-
   getHistoryOfSameType(currentElection) {
     return new ElectionHistory(
       this.getPastElectionListOfSameType(currentElection)

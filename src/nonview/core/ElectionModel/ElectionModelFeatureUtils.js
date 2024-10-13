@@ -2,7 +2,6 @@ import FeatureMatrix from "./FeatureMatrix";
 
 export default class ElectionModelFeatureUtils {
   static trainingData(
-    currentElection,
     electionHistory,
     releasedEntIDList,
     nonReleasedEntIDList

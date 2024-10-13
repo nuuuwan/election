@@ -30,7 +30,6 @@ export default function SVGBarChartCell({
         width={width}
         height={height}
       />
-
       <SVGBarChartCellLabel
         formatValue={formatValue}
         data={data}

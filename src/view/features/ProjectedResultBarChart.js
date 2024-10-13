@@ -6,6 +6,13 @@ import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 import CustomLoadingProgress from "../base/CustomLoadingProgress";
 import SVGMultiBarChart from "../base/SVGBarChart.js/SVGBarChart";
 
+function formatRowValue(data) {
+  const pVotesMin = data.pVotesMin;
+  const pVotesError = data.pVotesError;
+  const pVotesMax = pVotesMin + pVotesError;
+  return Format.percentVotesRange(pVotesMin, pVotesMax);
+}
+
 export default function ProjectedResultBarChart() {
   const data = useDataSlowContext();
   if (!data) {
@@ -40,12 +47,7 @@ export default function ProjectedResultBarChart() {
           }
           return Color.getColorWithAlpha(color, 0.5);
         }}
-        formatRowValue={function (data) {
-          const pVotesMin = data.pVotesMin;
-          const pVotesError = data.pVotesError;
-          const pVotesMax = pVotesMin + pVotesError;
-          return Format.percentVotesRange(pVotesMin, pVotesMax);
-        }}
+        formatRowValue={formatRowValue}
         sx={{ width: 360, height: 180 }}
       />
     </Box>

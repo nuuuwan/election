@@ -64,18 +64,7 @@ const FormatPercent = {
     });
   },
 
-  percentWithStyle(
-    x,
-    valueRange = [0.01, 0.67],
-    fontSizeRange = FormatGeneric.DEFAULT_FONT_SIZE_RANGE
-  ) {
-    return FormatGeneric.formatWithStyle(
-      x,
-      FormatPercent.percent,
-      valueRange,
-      fontSizeRange
-    );
-  },
+
 
   percentVotesRange(p1, p2) {
     const s1 = FormatPercent.percentVotes(p1);

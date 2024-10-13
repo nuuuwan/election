@@ -25,22 +25,7 @@ const FormatGeneric = {
     return x < minValue ? "secondary" : "inherit";
   },
 
-  formatWithStyle(
-    x,
-    strGetter,
-    valueRange,
-    fontSizeRange,
-    colorOverride = null
-  ) {
-    const strPart = strGetter(x);
-    const fontSize = FormatGeneric.getFontSize(x, valueRange, fontSizeRange);
-    const color = colorOverride || FormatGeneric.getColor(x, valueRange);
-    return (
-      <span style={{ fontSize, color }} className="number">
-        {strPart}
-      </span>
-    );
-  },
+
 };
 
 FormatGeneric.DEFAULT_FONT_SIZE = THEME_DATA.typography.fontSize;

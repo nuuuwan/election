@@ -57,17 +57,6 @@ const FormatInt = {
     return value.toString();
   },
 
-  intHumanizeWithStyle(
-    x,
-    valueRange = [10, 100],
-    fontSizeRange = FormatGeneric.DEFAULT_FONT_SIZE_RANGE
-  ) {
-    return FormatGeneric.formatWithStyle(
-      x,
-      FormatInt.intHumanize,
-      valueRange,
-      fontSizeRange
-    );
-  },
+
 };
 export default FormatInt;

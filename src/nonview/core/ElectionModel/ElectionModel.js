@@ -37,7 +37,6 @@ export default class ElectionModel {
     return ElectionModel.buildElection(
       currentElection,
       electionHistory,
-      releasedEntIDList,
       nonReleasedEntIDList,
       pdToPartyToPVotes,
       pError
@@ -47,7 +46,6 @@ export default class ElectionModel {
   static buildElection(
     currentElection,
     electionHistory,
-    releasedEntIDList,
     nonReleasedEntIDList,
     pdToPartyToPVotes,
     pError

@@ -76,7 +76,6 @@ export default class ElectionModelSimulationUtils {
         pdToPartyToPVotes,
         pError
       );
-
     return [...electionHistory.electionCurrent.pdResultList, ...nonReleasedResultList];
   }
 }

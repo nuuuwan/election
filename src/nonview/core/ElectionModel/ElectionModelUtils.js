@@ -1,16 +1,18 @@
-import { MLModel } from "../..";
+import { MathX, MLModel } from "../..";
 import FeatureMatrix from "./FeatureMatrix";
 
 export default class ElectionModelUtils {
-  static ERROR_CONF = 0.9;
+  static ERROR_CONF = 0.8;
+  static MIN_P = 0.01;
   
   static getPError(Y, YHat) {
-    const MIN_P = 0.01;
+    
     const pErrorList = YHat.reduce(function (pErrorList, YHati, i) {
       return YHati.reduce(function (pErrorList, YHatij, j) {
         const y = Y.get(i, j);
-        if (y >= MIN_P) {
-          const error = Math.sqrt(Math.pow(YHatij - y, 2)) / y;
+        if (y >= ElectionModelUtils.MIN_P) {
+          const YHatijNorm = MathX.forceRange(YHatij, 0, 1);
+          const error = Math.sqrt(Math.pow(YHatijNorm - y, 2)) / y;
           pErrorList.push(error);
         }
         return pErrorList;
@@ -37,7 +39,6 @@ export default class ElectionModelUtils {
   static trainModelEvaluate(XAll, YAll) {
     const { XTrainEvaluate, YTrainEvaluate } =
       ElectionModelUtils.getTrainEvaluateData(XAll, YAll);
-
     return MLModel.train(XTrainEvaluate, YTrainEvaluate);
   }
 

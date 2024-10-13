@@ -1,6 +1,5 @@
 import { Stack } from "@mui/material";
-import { Format } from "../../nonview";
-import { Party } from "../../nonview";
+import { Format, Party } from "../../nonview";
 import { LabelledStat, PartyView } from "..";
 
 export default function PartyToVotesStatsView({ partyToVotes }) {

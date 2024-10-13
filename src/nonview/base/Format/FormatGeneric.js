@@ -1,7 +1,7 @@
 import MathX from "../MathX.js";
 import { THEME_DATA } from "../../../view/_constants/THEME";
 
-let FormatGeneric = {
+const FormatGeneric = {
   getFontSize(x, valueRange, fontSizeRange) {
     x = Math.abs(x);
     const [minValue, maxValue] = valueRange;

@@ -1,6 +1,13 @@
-import { Cache, Ent, EntType, Timer } from "..";
-import { CustomURLContext, DerivedData, Election } from "..";
-import { GROUP_ID_TO_PD_ID_LIST } from "..";
+import {
+  Cache,
+  Ent,
+  EntType,
+  Timer,
+  CustomURLContext,
+  DerivedData,
+  Election,
+  GROUP_ID_TO_PD_ID_LIST,
+} from "..";
 
 export default class DataProviderUtils {
   static async getEntValuesNoCache() {

@@ -9,7 +9,7 @@ function getResultList({ allRegionIdx, electionDisplay, activeEntID }) {
   const ent = allRegionIdx[activeEntID];
 
   let resultList;
-  const resultLK = resultIdx["LK"];
+  const resultLK = resultIdx.LK;
   if (electionDisplay.baseEntType === EntType.PD) {
     const resultPD = electionDisplay.resultIdx[activeEntID];
     const resultED = resultIdx[ent.d.ed_id];

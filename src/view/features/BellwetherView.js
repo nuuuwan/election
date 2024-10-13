@@ -1,6 +1,5 @@
 import { Typography } from "@mui/material";
-import { Bellwether } from "../../nonview";
-import { Format, Translate } from "../../nonview";
+import { Bellwether, Format, Translate } from "../../nonview";
 
 import { CustomAlert, CustomLoadingProgress } from "..";
 import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";

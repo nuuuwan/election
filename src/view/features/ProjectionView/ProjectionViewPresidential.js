@@ -4,8 +4,9 @@ import {
   CustomStack,
   ElectionSmallTitle,
   ProjectionTitle,
+  FinalOutcomeView,
+  ProjectedResultBarChart,
 } from "../..";
-import { FinalOutcomeView, ProjectedResultBarChart } from "../..";
 
 import { FinalOutcome, Translate } from "../../../nonview";
 import InsightErrorMarginTooHigh from "../FinalOutcomeView/InsightErrorMarginTooHigh";

@@ -1,6 +1,5 @@
 import { Grid2 } from "@mui/material";
-import { Seats } from "../../nonview";
-import { Party } from "../../nonview";
+import { Seats, Party } from "../../nonview";
 import { LabelledStat, ParliamentViewCircle, PartyView } from "..";
 import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 

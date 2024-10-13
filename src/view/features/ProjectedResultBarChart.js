@@ -25,9 +25,9 @@ export default function ProjectedResultBarChart() {
           .map(function ([partyID, pVotes]) {
             const pVotesError = partyToPVotesSortedOthered[Party.ERROR.id] || 0;
             return {
-              partyID: partyID,
+              partyID,
               pVotesMin: pVotes,
-              pVotesError: pVotesError,
+              pVotesError,
             };
           })}
         getValues={function (data, i) {

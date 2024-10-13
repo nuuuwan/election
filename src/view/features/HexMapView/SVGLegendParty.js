@@ -1,5 +1,4 @@
-import { EntType } from "../../../nonview";
-import { Party } from "../../../nonview";
+import { EntType, Party } from "../../../nonview";
 import { useDataContext } from "../../../nonview/core/DataProvider";
 import { THEME_DATA } from "../../_constants/THEME";
 

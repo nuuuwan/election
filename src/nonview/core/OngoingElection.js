@@ -27,14 +27,14 @@ export default class OngoingElection {
   }
 
   static getResult(data, idKey) {
-    const summary = Summary.fromDict(data["summary"]);
-    const partyToVotes = PartyToVotes.fromDict(data["party_to_votes"]);
+    const summary = Summary.fromDict(data.summary);
+    const partyToVotes = PartyToVotes.fromDict(data.party_to_votes);
 
     return new Result(
       data[idKey],
       summary,
       partyToVotes,
-      data["result_time"].substring(0, 19)
+      data.result_time.substring(0, 19)
     );
   }
 
@@ -47,10 +47,10 @@ export default class OngoingElection {
     const rawDataList = await OngoingElection.getRawData(election);
     return rawDataList
       .filter(function (data) {
-        return data["result_time"] && data["result_time"] !== 0;
+        return data.result_time && data.result_time !== 0;
       })
       .sort(function (a, b) {
-        return a["result_time"].localeCompare(b["result_time"]);
+        return a.result_time.localeCompare(b.result_time);
       })
       .map(function (data) {
         return OngoingElection.getResult(data, idKey);

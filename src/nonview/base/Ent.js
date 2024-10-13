@@ -5,9 +5,9 @@ const ID_KEY = "id";
 
 export default class Ent {
   constructor(d) {
-    this.name = d["name"].replace("Postal Votes ", "Postal ");
-    this.id = d["id"];
-    this.centroid = d["centroid"];
+    this.name = d.name.replace("Postal Votes ", "Postal ");
+    this.id = d.id;
+    this.centroid = d.centroid;
     this.d = d;
   }
 
@@ -46,13 +46,13 @@ export default class Ent {
     const entType = EntType.fromID(entID);
 
     const entIndex = await Ent.idxFromType(entType);
-    let ent = entIndex[entID];
+    const ent = entIndex[entID];
     if (!ent) {
       return undefined;
     }
 
-    if (ent["centroid"]) {
-      ent["centroid"] = JSON.parse(ent["centroid"]);
+    if (ent.centroid) {
+      ent.centroid = JSON.parse(ent.centroid);
     }
     return ent;
   }

@@ -2,7 +2,7 @@ import { EntType, ProvinceUtils } from "..";
 
 export default class ActivePDUtils {
   static getNewActiveEntIDForED({ baseResultList, entIdx, entID }) {
-    for (let result of baseResultList.reverse()) {
+    for (const result of baseResultList.reverse()) {
       const ent = entIdx[result.entID];
       if (ent && ent.d.ed_id === entID) {
         return result.entID;
@@ -16,7 +16,7 @@ export default class ActivePDUtils {
   }
 
   static getNewActiveEntIDForProvince({ baseResultList, entIdx, entID }) {
-    for (let result of baseResultList.reverse()) {
+    for (const result of baseResultList.reverse()) {
       const ent = entIdx[result.entID];
       if (ProvinceUtils.getProvinceIDForPDEnt(ent) === entID) {
         return result.entID;

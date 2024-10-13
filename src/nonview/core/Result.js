@@ -11,7 +11,7 @@ export default class Result {
   }
 
   static fromDict(d) {
-    const entID = d["entity_id"];
+    const entID = d.entity_id;
     const partyToVotes = PartyToVotes.fromDict(d);
 
     // HACK
@@ -26,7 +26,7 @@ export default class Result {
       summary = new Summary(valid, rejected, polled, electors);
     }
 
-    const resultTime = d["result_time"];
+    const resultTime = d.result_time;
 
     return new Result(entID, summary, partyToVotes, resultTime);
   }

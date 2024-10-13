@@ -1,5 +1,5 @@
 import FormatGeneric from "./FormatGeneric";
-let FormatInt = {
+const FormatInt = {
   int(x) {
     return x.toLocaleString();
   },

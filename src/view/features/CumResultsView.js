@@ -6,8 +6,10 @@ import {
   HistoryView,
   SummaryView,
   PartyToVotesStatsView,
+  EntView,
+  ResultsReleasedView,
+  ElectionSmallTitle,
 } from "../../view";
-import { EntView, ResultsReleasedView, ElectionSmallTitle } from "../../view";
 
 function getContentList({ entID, result, electionDisplay }) {
   const baseEntIDList = electionDisplay.baseEntIDList;
@@ -17,8 +19,8 @@ function getContentList({ entID, result, electionDisplay }) {
     num = iEnt + 1;
   }
 
-  let color = result.color;
-  let background = "white";
+  const color = result.color;
+  const background = "white";
 
   const sx = { color, background, p: 1, borderRadius: 1 };
 

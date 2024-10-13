@@ -1,5 +1,9 @@
-import { EntType, ProvinceUtils } from "../..";
-import { PD_ID_TO_GROUP_ID, ED_ID_TO_GROUP_ID } from "../..";
+import {
+  EntType,
+  ProvinceUtils,
+  PD_ID_TO_GROUP_ID,
+  ED_ID_TO_GROUP_ID,
+} from "../..";
 
 const ElectionStats = {
   getPartyIDList(min_p = 0.01) {
@@ -48,7 +52,7 @@ const ElectionStats = {
     let nResultsTotal = 0;
     let nResultsReleased = 0;
 
-    for (let [id, ent] of Object.entries(entIdx)) {
+    for (const [id, ent] of Object.entries(entIdx)) {
       const parentID = this.getParentID(entID, ent);
 
       if (parentID === entID) {
@@ -67,7 +71,7 @@ const ElectionStats = {
     let electors = 0;
     let electorsReleased = 0;
 
-    for (let [id, ent] of Object.entries(entIdx)) {
+    for (const [id, ent] of Object.entries(entIdx)) {
       const parentID = this.getParentID(entID, ent);
 
       if (parentID === entID) {

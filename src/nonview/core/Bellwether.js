@@ -24,6 +24,7 @@ export default class Bellwether {
       error: error,
     };
   }
+
   static getStats(electionHistory, election, entID) {
     const previousElectionsOfSameType =
       electionHistory.getPastElectionListOfSameType(election);

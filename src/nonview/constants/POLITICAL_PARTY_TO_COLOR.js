@@ -48,7 +48,7 @@ const COLOR_TO_POLITICAL_PARTIES = {
 const POLITICAL_PARTY_TO_COLOR = Object.entries(
   COLOR_TO_POLITICAL_PARTIES
 ).reduce(function (COLOR_TO_POLITICAL_PARTIES, [color, polical_parties]) {
-  for (let political_party of polical_parties) {
+  for (const political_party of polical_parties) {
     COLOR_TO_POLITICAL_PARTIES[political_party] = color;
   }
   return COLOR_TO_POLITICAL_PARTIES;

@@ -6,8 +6,9 @@ export default class Summary {
     this.polled = polled;
     this.electors = electors;
   }
+
   static fromDict(d) {
-    let summary = {};
+    const summary = {};
     for (const key in d) {
       if (Summary.KEYS.includes(key)) {
         summary[key] = parseInt(
@@ -16,15 +17,15 @@ export default class Summary {
       }
     }
     return new Summary(
-      summary["valid"],
-      summary["rejected"],
-      summary["polled"],
-      summary["electors"]
+      summary.valid,
+      summary.rejected,
+      summary.polled,
+      summary.electors
     );
   }
 
   static fromList(resultList) {
-    let summary = {};
+    const summary = {};
     for (const key of Summary.KEYS) {
       summary[key] = 0;
     }
@@ -38,15 +39,15 @@ export default class Summary {
       }
     }
     return new Summary(
-      summary["valid"],
-      summary["rejected"],
-      summary["polled"],
-      summary["electors"]
+      summary.valid,
+      summary.rejected,
+      summary.polled,
+      summary.electors
     );
   }
 
   static aggregate(summaryList) {
-    let summary = {};
+    const summary = {};
     for (const key of Summary.KEYS) {
       summary[key] = 0;
     }
@@ -57,10 +58,10 @@ export default class Summary {
       }
     }
     return new Summary(
-      summary["valid"],
-      summary["rejected"],
-      summary["polled"],
-      summary["electors"]
+      summary.valid,
+      summary.rejected,
+      summary.polled,
+      summary.electors
     );
   }
 

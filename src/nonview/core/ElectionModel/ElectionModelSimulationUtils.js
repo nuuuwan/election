@@ -1,5 +1,4 @@
-import { MathX } from "../..";
-import { PartyToVotes, Party, Summary, Result } from "../../../nonview";
+import { MathX, PartyToVotes, Party, Summary, Result } from "../..";
 
 export default class ElectionModelSimulationUtils {
   static simulateSummary(entID, lastElection, lastElectionOfSameType) {

@@ -1,7 +1,6 @@
-import { Translate, Format, Color } from "../../../nonview";
+import { Translate, Format, Color, Party } from "../../../nonview";
 import { CustomAlert } from "../..";
 import { ScatterChart } from "@mui/x-charts";
-import { Party } from "../../../nonview";
 import { useDataSlowContext } from "../../../nonview/core/DataSlowProvider";
 
 function getBaseData(data, getValue) {

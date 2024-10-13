@@ -34,7 +34,7 @@ function AggregatedResultListColumnViewGroup({ sortedEntIDs }) {
 }
 
 function AggregatedResultListTableView({ sortedEntIDs, isPresidential }) {
-  let labels = [
+  const labels = [
     "Region or Group",
     "Votes by Party",
     "%",

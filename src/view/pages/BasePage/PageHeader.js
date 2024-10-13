@@ -1,7 +1,6 @@
 import { AppBar, Box, Toolbar, Typography } from "@mui/material";
 
-import { RefreshButton } from "../../../view";
-import { CustomMenu } from "../../../view";
+import { RefreshButton, CustomMenu } from "../../../view";
 import { useDataSlowContext } from "../../../nonview/core/DataSlowProvider";
 import { Translate } from "../../../nonview";
 

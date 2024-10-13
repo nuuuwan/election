@@ -3,6 +3,7 @@ export default class StringXSi {
     const firstChar = name.split(" ")[0].substring(0, 1);
     return /^[ඁ-෴]+$/.test(firstChar);
   }
+
   static isConsonentSi(char) {
     return /^[අ-උක-ෆ]$/.test(char);
   }

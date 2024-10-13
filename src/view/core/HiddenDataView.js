@@ -1,6 +1,5 @@
 import { useDataContext } from "../../nonview/core/DataProvider";
-import { EntType, Format } from "../../nonview";
-import { Party } from "../../nonview";
+import { EntType, Format, Party } from "../../nonview";
 
 // #Rambukkana (#Kegalle)
 

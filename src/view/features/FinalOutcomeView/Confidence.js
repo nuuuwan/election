@@ -1,6 +1,5 @@
 import { Typography } from "@mui/material";
-import { Format, Translate } from "../../../nonview";
-import { FinalOutcome } from "../../../nonview";
+import { Format, Translate, FinalOutcome } from "../../../nonview";
 
 import { useDataContext } from "../../../nonview/core/DataProvider";
 

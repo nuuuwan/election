@@ -1,6 +1,5 @@
 import { Typography } from "@mui/material";
-import { VERSION } from "../../nonview";
-import { Translate } from "../../nonview";
+import { VERSION, Translate } from "../../nonview";
 import { useDataContext } from "../../nonview/core/DataProvider";
 export default function CitationsView() {
   const data = useDataContext();

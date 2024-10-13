@@ -79,7 +79,7 @@ export default class PartyToVotes {
     const totalVotes = this.totalVotes;
     const minVotes = PartyToVotes.MIN_P_VOTES * totalVotes;
 
-    let nonOther = Object.fromEntries(
+    const nonOther = Object.fromEntries(
       Object.entries(this.partyToVotes)
         .sort(function (a, b) {
           return b[1] - a[1];

@@ -15,7 +15,7 @@ export default class CustomURLContext {
   }
 
   static get() {
-    let context = URLContext.get();
+    const context = URLContext.get();
     if (context.nResultsDisplay) {
       context.nResultsDisplay = parseInt(context.nResultsDisplay);
     }
@@ -33,7 +33,7 @@ export default class CustomURLContext {
     if (data.nResultsDisplay) {
       newTitle += ` (${data.nResultsDisplay})`;
     } else {
-      newTitle += ` - Await...`;
+      newTitle += " - Await...";
     }
     window.document.title = newTitle;
   }

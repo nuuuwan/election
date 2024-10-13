@@ -1,6 +1,6 @@
 import FormatGeneric from "./FormatGeneric";
 
-let FormatPercent = {
+const FormatPercent = {
   percentAbs(x, minimumFractionDigits = undefined) {
     if (!x) {
       return "";

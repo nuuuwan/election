@@ -1,6 +1,9 @@
 import { useState } from "react";
-import { DataProvider, DataSlowProvider } from "../../../nonview";
-import { CustomURLContext } from "../../../nonview";
+import {
+  DataProvider,
+  DataSlowProvider,
+  CustomURLContext,
+} from "../../../nonview";
 import BasePageView from "./BasePageView";
 import BasePageHandlerProvider from "./BasePageHandlerProvider";
 

@@ -27,7 +27,7 @@ const SeatsBuilderMixin = {
   getLKPartyToSeats() {
     return SeatsUtils.getGenericPartyToSeats(
       this.election.resultLK,
-      this.regionToSeats["LK"],
+      this.regionToSeats.LK,
       0,
       0
     );

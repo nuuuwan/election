@@ -6,7 +6,13 @@ import { CustomLoadingProgress, PartyView } from "../../view";
 import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
 
 function HistoryViewRow({ entID, electionForRow }) {
-  const result = electionForRow.getResult(entID);
+
+  let result = null;
+  try {
+    result = electionForRow.getResult(entID);
+  } catch (error) {
+    console.error(error);
+  }
   if (!result) {
     return null;
   }

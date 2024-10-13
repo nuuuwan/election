@@ -3,8 +3,7 @@ import FeatureMatrix from "./FeatureMatrix";
 
 export default class ElectionModelUtils {
   static ERROR_CONF = 0.9;
-  static DEFAULT_P_ERROR = 0.1;
-
+  
   static getPError(Y, YHat) {
     const MIN_P = 0.01;
     const pErrorList = YHat.reduce(function (pErrorList, YHati, i) {

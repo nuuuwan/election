@@ -1,6 +1,13 @@
 export default class Bellwether {
   static getStatsForElection(election, entID) {
-    const resultEnt = election.getResult(entID);
+  
+    let resultEnt = null;
+    try {
+      resultEnt = election.getResult(entID);
+    } catch (error) {
+      console.error(error);
+    }
+    
     if (!resultEnt) {
       return {
         isSameWinner: false,

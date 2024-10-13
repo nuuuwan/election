@@ -1,4 +1,4 @@
-import FormatGeneric from "./FormatGeneric";
+
 const FormatInt = {
   int(x) {
     return x.toLocaleString();

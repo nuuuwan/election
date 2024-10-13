@@ -7,6 +7,16 @@ const DEFAULT_SX = {
   height: 60,
 };
 
+function getMaxValue(dataList, getValues) {
+  return     Math.ceil(
+    Math.max(
+      ...dataList.map(function (data, i) {
+        return MathX.sum(getValues(data, i));
+      })
+    ) / 0.05
+  ) * 0.05;
+}
+
 export default function SVGBarChart({
   dataList,
   sx,
@@ -17,14 +27,7 @@ export default function SVGBarChart({
 }) {
   sx = Object.assign({}, DEFAULT_SX, sx);
 
-  const maxValue =
-    Math.ceil(
-      Math.max(
-        ...dataList.map(function (data, i) {
-          return MathX.sum(getValues(data, i));
-        })
-      ) / 0.05
-    ) * 0.05;
+  const maxValue = getMaxValue(dataList, getValues);
 
   const { width, height } = sx;
   const n = dataList.length;

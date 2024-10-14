@@ -43,13 +43,6 @@ const FormatPercent = {
     return sign + FormatPercent.percentAbs(absX, minimumFractionDigits);
   },
 
-  percentError(x) {
-    return x.toLocaleString(undefined, {
-      style: "percent",
-      minimumFractionDigits: 2,
-    });
-  },
-
   percentFixed(x) {
     return x.toLocaleString(undefined, {
       style: "percent",

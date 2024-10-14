@@ -19,8 +19,6 @@ const FormatPercent = {
     });
   },
 
-
-
   percent(x, minimumFractionDigits = undefined) {
     if (0 < x &&x  < 0.005) {
       return "<0.5%";
@@ -32,6 +30,15 @@ const FormatPercent = {
     const absX = Math.abs(x);
     const sign = x < 0 ? "-" : "";
     return sign + FormatPercent.percentAbs(absX, minimumFractionDigits);
+  },
+
+  percentVotes(x) {
+    const diff = Math.abs(parseFloat(x) - 0.5);
+    if (diff < 0.000000001) {
+      return "50%";
+    }
+    const minimumFractionDigits = Math.max(0, -Math.floor(Math.log10(diff)) - 2);
+    return FormatPercent.percent(x, minimumFractionDigits);
   },
 
   percentSigned(x, minimumFractionDigits = undefined) {
@@ -51,15 +58,14 @@ const FormatPercent = {
     });
   },
 
-
-
   percentRange(p1, p2) {
-    const s1 = FormatPercent.percent(p1);
-    const s2 = FormatPercent.percent(p2);
+    const s1 = FormatPercent.percentVotes(p1);
+    const s2 = FormatPercent.percentVotes(p2);
     if (s1 === s2 || !s2) {
       return s1;
     }
     return s1.substring(0, s1.length - 1) + " - " + s2;
   },
 };
+
 export default FormatPercent;

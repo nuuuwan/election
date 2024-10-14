@@ -1,13 +1,13 @@
 import FeatureMatrix from "./FeatureMatrix";
 
 export default class ElectionModelFeatureUtils {
-  static trainingData(
+  static getTrainingData(
     electionHistory,
     releasedEntIDList,
     nonReleasedEntIDList
   ) {
     const previousHistory = electionHistory.previousHistory;
-
+   
     const XAll = FeatureMatrix.buildFromElectionHistory(
       previousHistory,
       releasedEntIDList

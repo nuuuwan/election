@@ -6,6 +6,7 @@ import ElectionModelUtils from "./ElectionModelUtils";
 export default class ElectionModel {
   static getElectionProjected(electionHistory) {
     const currentElection = electionHistory.electionCurrent;
+    
     const pastElectionList = electionHistory.previousElectionList;
     if (pastElectionList.length === 0) {
       return currentElection;
@@ -16,7 +17,7 @@ export default class ElectionModel {
       electionHistory,
     );
 
-    const { XAll, YAll } = ElectionModelFeatureUtils.trainingData(
+    const { XAll, YAll } = ElectionModelFeatureUtils.getTrainingData(
       electionHistory,
       releasedEntIDList,
       nonReleasedEntIDList

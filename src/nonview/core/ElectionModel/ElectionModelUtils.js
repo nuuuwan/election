@@ -2,9 +2,21 @@ import { MathX, MLModel } from "../..";
 import FeatureMatrix from "./FeatureMatrix";
 
 export default class ElectionModelUtils {
-  static ERROR_CONF = 0.8;
+  static ERROR_CONF = 0.9;
   static MIN_P = 0.01;
+  static SAFETY_ERROR = 0.025;
   
+
+  static getLimit(list, ) {
+    const n = list.length;
+    if (n === 1) {
+      return list[0];
+    }
+    const pConf = ElectionModelUtils.ERROR_CONF;
+    const i = Math.floor(n * pConf);
+    return list[i];
+  }
+
   static getPError(Y, YHat) {
     
     const pErrorList = YHat.reduce(function (pErrorList, YHati, i) {
@@ -12,16 +24,14 @@ export default class ElectionModelUtils {
         const y = Y.get(i, j);
         if (y >= ElectionModelUtils.MIN_P) {
           const YHatijNorm = MathX.forceRange(YHatij, 0, 1);
-          const error = Math.sqrt(Math.pow(YHatijNorm - y, 2)) / y;
+          const error = Math.abs(YHatijNorm - y, 2) / y;
           pErrorList.push(error);
         }
         return pErrorList;
       }, pErrorList);
     }, []).sort();
-    const n = pErrorList.length;
-    const iLimit = Math.floor(ElectionModelUtils.ERROR_CONF * n);
-    const error = pErrorList[iLimit];
-    return error;
+    const error = ElectionModelUtils.getLimit(pErrorList);
+    return Math.max(ElectionModelUtils.SAFETY_ERROR, error);
   }
 
   static getTrainEvaluateData(XAll, YAll) {

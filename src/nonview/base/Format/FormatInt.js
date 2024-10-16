@@ -18,21 +18,22 @@ const FormatInt = {
       return 0;
     }
 
-    let value_limit, mult, suffix;
-    for ([value_limit, mult, suffix] of [
-      [10_000_000, 10, "M"],
-      [1_000_000, 1, "M"],
-      [100_000, 10, "K"],
-      [10_000, 1,"K"],
-      [1_000, 1, "K"],
-      [100, 10, ""],
-    ]) {
-      if (value > value_limit) {
-        return mult * (value / value_limit).toFixed(1) + suffix;
-      }
-    }
-
-    return value.toString();
+    const log10 = Math.floor(Math.log10(Math.abs(value)));
+    const log10K = Math.floor(log10 / 3);
+    const scaledValue = value / Math.pow(10, log10K * 3);
+    const extraDigits = log10 % 3;
+    const nDecimalPlaces = 1 - extraDigits;
+    const nDecimalPlacesActual = Math.max(0, nDecimalPlaces);
+    const mult = Math.pow(10, nDecimalPlacesActual - nDecimalPlaces);
+    const valueStr = (scaledValue / mult).toFixed(nDecimalPlacesActual) * mult;
+    
+    const symbol = {
+      2: "M",
+      1: "K",
+      0: "",
+    }[log10K];
+    
+    return valueStr + symbol;
   },
 
 

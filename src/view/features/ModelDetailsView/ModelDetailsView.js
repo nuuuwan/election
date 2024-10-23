@@ -1,6 +1,6 @@
 import { Stack, Typography } from '@mui/material';
 import { Translate } from '../../../nonview';
-import { ProjectedResultDetailsView } from './ProjectedResultDetailsView';
+import ProjectedResultDetailsView from './ProjectedResultDetailsView';
 
 export default function ModelDetailsView() {
   return (

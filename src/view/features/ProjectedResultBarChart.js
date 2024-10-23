@@ -19,6 +19,7 @@ export default function ProjectedResultBarChart() {
   const { electionProjectedWithError } = data;
 
   const resultLK = electionProjectedWithError.resultLK;
+
   const partyToPVotesSortedOthered =
     resultLK.partyToVotes.partyToPVotesSortedOthered;
 
@@ -27,7 +28,8 @@ export default function ProjectedResultBarChart() {
       dataList={Object.entries(partyToPVotesSortedOthered)
         .filter((entry) => !Party.fromID(entry[0]).isNonParty)
         .map(function ([partyID, pVotes]) {
-          const pVotesError = partyToPVotesSortedOthered[Party.ERROR.id] || 0;
+          const pVotesError =
+            resultLK.partyToVotes.partyToPVotes[Party.ERROR.id] || 0;
           return {
             partyID,
             pVotesMin: pVotes,

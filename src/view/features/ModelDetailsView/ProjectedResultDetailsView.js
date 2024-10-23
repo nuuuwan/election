@@ -1,3 +1,4 @@
+import { ElectionModelError } from '../../../nonview';
 import { useDataSlowContext } from '../../../nonview/core/DataSlowProvider';
 import CustomLoadingProgress from '../../base/CustomLoadingProgress';
 import AggregatedResultViewGroup from '../AggregatedResultView/AggregatedResultViewGroup';
@@ -8,10 +9,11 @@ export default function ProjectedResultDetailsView() {
     return <CustomLoadingProgress />;
   }
   const { electionProjected, electionDisplay } = data;
-  const releasedPDIDList = electionDisplay.baseEntIDList;
-  const notReleasedPDIDList = electionProjected.baseEntIDList.filter(
-    (pdID) => !releasedPDIDList.includes(pdID),
-  );
+
+  const notReleasedPDIDList = ElectionModelError.getNonReleasedPDIDList({
+    electionProjected,
+    electionDisplay,
+  });
   return (
     <AggregatedResultViewGroup
       entIDList={notReleasedPDIDList}

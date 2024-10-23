@@ -26,9 +26,9 @@ export default function PageBody() {
   return (
     <Box sx={STYLE.BOX}>
       <Grid2 container>
+        <Grid2 size={size}>  <PageBodyRight /></Grid2>
         <Grid2 size={size}>  <PageBodyLeft /></Grid2>
         <Grid2 size={size}>  <PageBodyCenter /></Grid2>
-        <Grid2 size={size}>  <PageBodyRight /></Grid2>
       </Grid2>
       <PageBodyBelowTheFold />
     </Box>

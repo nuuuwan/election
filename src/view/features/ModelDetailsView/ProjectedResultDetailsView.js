@@ -21,7 +21,7 @@ export default function ProjectedResultDetailsView() {
       </Typography>
       <AggregatedResultViewGroup
         entIDList={notReleasedPDIDList}
-        shouldUseProjected={true}
+        customElection={electionProjected}
       />
     </>
   );

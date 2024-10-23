@@ -16,10 +16,7 @@ import { Translate } from '../../../nonview';
 
 import CumResultsView from '../CumResultsView/CumResultsView';
 
-function AggregatedResultListColumnViewGroup({
-  sortedEntIDs,
-  shouldUseProjected,
-}) {
+function AggregatedResultListColumnViewGroup({ sortedEntIDs, customElection }) {
   return (
     <Grid2 container spacing={1} rowSpacing={1} justifyContent="center">
       {sortedEntIDs.map(function (entID) {
@@ -28,7 +25,7 @@ function AggregatedResultListColumnViewGroup({
             <CumResultsView
               mode="ColumnView"
               entID={entID}
-              shouldUseProjected={shouldUseProjected}
+              customElection={customElection}
             />
           </Grid2>
         );
@@ -46,7 +43,7 @@ const TABLE_HEADER_LABELS = [
   'Release Status',
 ];
 
-function AggregatedResultListTableView({ sortedEntIDs, shouldUseProjected }) {
+function AggregatedResultListTableView({ sortedEntIDs, customElection }) {
   return (
     <TableContainer>
       <Table>
@@ -70,7 +67,7 @@ function AggregatedResultListTableView({ sortedEntIDs, shouldUseProjected }) {
                 key={entID}
                 mode="TableRowView"
                 entID={entID}
-                shouldUseProjected={shouldUseProjected}
+                customElection={customElection}
               />
             );
           })}
@@ -82,7 +79,7 @@ function AggregatedResultListTableView({ sortedEntIDs, shouldUseProjected }) {
 
 export default function AggregatedResultViewGroup({
   entIDList,
-  shouldUseProjected,
+  customElection,
 }) {
   const theme = useTheme();
   const isSmallerScreen = useMediaQuery(theme.breakpoints.down('lg'));
@@ -96,12 +93,12 @@ export default function AggregatedResultViewGroup({
       {isSmallerScreen ? (
         <AggregatedResultListColumnViewGroup
           sortedEntIDs={entIDList}
-          shouldUseProjected={shouldUseProjected}
+          customElection={customElection}
         />
       ) : (
         <AggregatedResultListTableView
           sortedEntIDs={entIDList}
-          shouldUseProjected={shouldUseProjected}
+          customElection={customElection}
         />
       )}
     </Box>

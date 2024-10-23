@@ -4,6 +4,7 @@ import THEME from "./_constants/THEME.js";
 import CheckIcon from "./base/CheckIcon.js";
 import CustomAlert from "./base/CustomAlert.js";
 import CustomLoadingProgress from "./base/CustomLoadingProgress.js";
+import CustomTablePagination from "./base/CustomTablePagination.js";
 import EntView from "./base/EntView.js";
 import IfElse from "./base/IfElse.js";
 import LabelledStat from "./base/LabelledStat.js";
@@ -111,6 +112,7 @@ export {
   CheckIcon,
   CustomAlert,
   CustomLoadingProgress,
+  CustomTablePagination,
   EntView,
   IfElse,
   LabelledStat,

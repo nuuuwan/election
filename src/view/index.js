@@ -46,7 +46,9 @@ import AggregatedResultUtils from "./features/AggregatedResultView/AggregatedRes
 import AggregatedResultView from "./features/AggregatedResultView/AggregatedResultView.js";
 import AggregatedResultViewGroup from "./features/AggregatedResultView/AggregatedResultViewGroup.js";
 import BellwetherView from "./features/BellwetherView.js";
+import CumResultsColumnView from "./features/CumResultsView/CumResultsColumnView.js";
 import CumResultsView from "./features/CumResultsView/CumResultsView.js";
+import CumResultsViewTableRowView from "./features/CumResultsView/CumResultsViewTableRowView.js";
 import CustomIconButton from "./features/CustomMenu/CustomIconButton.js";
 import CustomMenu from "./features/CustomMenu/CustomMenu.js";
 import ElectionMenuItemList from "./features/CustomMenu/ElectionMenuItemList.js";
@@ -74,6 +76,7 @@ import SVGLegendPercentages from "./features/HexMapView/SVGLegendPercentages.js"
 import SVGTitles from "./features/HexMapView/SVGTitles.js";
 import LatestResultListView from "./features/LatestResultListView.js";
 import ModelDetailsView from "./features/ModelDetailsView/ModelDetailsView.js";
+import ProjectedResultDetailsView from "./features/ModelDetailsView/ProjectedResultDetailsView.js";
 import BanfordView from "./features/MonitoringView/BanfordView.js";
 import ElectorsView from "./features/MonitoringView/ElectorsView.js";
 import GenericScatterChart from "./features/MonitoringView/GenericScatterChart.js";
@@ -149,7 +152,9 @@ export {
   AggregatedResultView,
   AggregatedResultViewGroup,
   BellwetherView,
+  CumResultsColumnView,
   CumResultsView,
+  CumResultsViewTableRowView,
   CustomIconButton,
   CustomMenu,
   ElectionMenuItemList,
@@ -177,6 +182,7 @@ export {
   SVGTitles,
   LatestResultListView,
   ModelDetailsView,
+  ProjectedResultDetailsView,
   BanfordView,
   ElectorsView,
   GenericScatterChart,

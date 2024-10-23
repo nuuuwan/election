@@ -75,6 +75,7 @@ import SVGLegendParty from "./features/HexMapView/SVGLegendParty.js";
 import SVGLegendPercentages from "./features/HexMapView/SVGLegendPercentages.js";
 import SVGTitles from "./features/HexMapView/SVGTitles.js";
 import LatestResultListView from "./features/LatestResultListView.js";
+import EvaluatePreviousElection from "./features/ModelDetailsView/EvaluatePreviousElection.js";
 import ModelDetailsView from "./features/ModelDetailsView/ModelDetailsView.js";
 import ProjectedResultDetailsView from "./features/ModelDetailsView/ProjectedResultDetailsView.js";
 import BanfordView from "./features/MonitoringView/BanfordView.js";
@@ -181,6 +182,7 @@ export {
   SVGLegendPercentages,
   SVGTitles,
   LatestResultListView,
+  EvaluatePreviousElection,
   ModelDetailsView,
   ProjectedResultDetailsView,
   BanfordView,

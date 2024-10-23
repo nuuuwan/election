@@ -7,11 +7,9 @@ import {
   PartyToVotesStatsView,
   EntView,
   ResultsReleasedView,
-  CustomLoadingProgress,
 } from '../..';
 import CumResultsViewTableRowView from './CumResultsViewTableRowView';
 import CumResultsColumnView from './CumResultsColumnView';
-import { useDataSlowContext } from '../../../nonview/core/DataSlowProvider';
 import { useDataContext } from '../../../nonview/core/DataProvider';
 
 function getContentList({ entID, result, election }) {
@@ -46,24 +44,9 @@ function getContentList({ entID, result, election }) {
   ];
 }
 
-export default function CumResultsView({
-  entID,
-  mode,
-  shouldUseProjected = false,
-}) {
+export default function CumResultsView({ entID, mode, customElection = null }) {
   const data = useDataContext();
-  const dataSlow = useDataSlowContext();
-
-  let election;
-  if (shouldUseProjected) {
-    if (!dataSlow) {
-      return <CustomLoadingProgress />;
-    }
-    election = dataSlow.electionProjected;
-  } else {
-    election = data.electionDisplay;
-  }
-
+  const election = customElection || data.electionDisplay;
   const result = election.resultIdx[entID];
   if (!result) {
     return null;

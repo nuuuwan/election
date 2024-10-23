@@ -1,9 +1,9 @@
-import Summary from "./Summary.js";
-import { MathX } from "..";
-import Party from "./Party.js";
+import Summary from './Summary.js';
+import { MathX } from '..';
+import Party from './Party.js';
 
 export default class PartyToVotes {
-  static NON_PARTY_KEYS = [...Summary.KEYS, "entity_id"];
+  static NON_PARTY_KEYS = [...Summary.KEYS, 'entity_id'];
 
   static MIN_N_DISPLAY = 19;
   static MIN_P_VOTES = 0.05;
@@ -47,7 +47,7 @@ export default class PartyToVotes {
     return Object.fromEntries(
       Object.entries(this.partyToVotes).sort(function (a, b) {
         return b[1] - a[1];
-      })
+      }),
     );
   }
 
@@ -64,14 +64,22 @@ export default class PartyToVotes {
     return pVotes[0];
   }
 
-  get partyToPVotesSorted() {
+  get partyToPVotes() {
     const totalVotes = this.totalVotes;
     return Object.fromEntries(
       Object.entries(this.partyToVotesSorted)
         .map(([party, votes]) => [party, votes / totalVotes])
         .sort(function (a, b) {
           return b[1] - a[1];
-        })
+        }),
+    );
+  }
+
+  get partyToPVotesSorted() {
+    return Object.fromEntries(
+      Object.entries(this.partyToPVotes).sort(function (a, b) {
+        return b[1] - a[1];
+      }),
     );
   }
 
@@ -86,7 +94,7 @@ export default class PartyToVotes {
         })
         .filter(function (a, i) {
           return a[1] >= minVotes && i < PartyToVotes.MIN_N_DISPLAY;
-        })
+        }),
     );
     const nonOtherVotes = MathX.sum(Object.values(nonOther));
     return { ...nonOther, Other: this.totalVotes - nonOtherVotes };
@@ -98,7 +106,7 @@ export default class PartyToVotes {
       Object.entries(this.partyToVotesSortedOthered).map(([party, votes]) => [
         party,
         votes / totalVotes,
-      ])
+      ]),
     );
   }
 

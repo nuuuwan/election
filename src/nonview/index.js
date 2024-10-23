@@ -46,6 +46,7 @@ import ElectionStaticLoaderMixin from "./core/Election/ElectionStaticLoaderMixin
 import ElectionStaticUtilsMixin from "./core/Election/ElectionStaticUtilsMixin.js";
 import ElectionHistory from "./core/ElectionHistory/ElectionHistory.js";
 import ElectionModel from "./core/ElectionModel/ElectionModel.js";
+import ElectionModelError from "./core/ElectionModel/ElectionModelError.js";
 import ElectionModelFeatureUtils from "./core/ElectionModel/ElectionModelFeatureUtils.js";
 import ElectionModelNormalizeUtils from "./core/ElectionModel/ElectionModelNormalizeUtils.js";
 import ElectionModelProjectionUtils from "./core/ElectionModel/ElectionModelProjectionUtils.js";
@@ -110,6 +111,7 @@ export {
   ElectionStaticUtilsMixin,
   ElectionHistory,
   ElectionModel,
+  ElectionModelError,
   ElectionModelFeatureUtils,
   ElectionModelNormalizeUtils,
   ElectionModelProjectionUtils,

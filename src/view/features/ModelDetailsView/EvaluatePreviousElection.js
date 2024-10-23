@@ -65,7 +65,7 @@ function EvaluateTableRow({ pdID }) {
     <TableRow>
       {getCellContentList({ pdID, data }).map(function (cellContent, iCell) {
         return (
-          <TableCell key={iCell} sx={{ textAlign: 'center' }}>
+          <TableCell key={iCell} sx={{ textAlign: 'center', padding: 1 }}>
             {cellContent}
           </TableCell>
         );
@@ -88,7 +88,7 @@ function EvaluateTableHead() {
       <TableRow>
         {TABLE_HEADER_LABELS.map(function (title, iTitle) {
           return (
-            <TableCell key={iTitle} sx={{ textAlign: 'center' }}>
+            <TableCell key={iTitle} sx={{ textAlign: 'center', padding: 1 }}>
               <Typography variant="h6" color="secondary">
                 {Translate(title)}
               </Typography>

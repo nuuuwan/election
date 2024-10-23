@@ -9,7 +9,10 @@ export default function CumResultsViewTableRowView({ contentList }) {
           <TableCell
             key={i}
             style={{
-              padding: 12,
+              paddingTop: 3,
+              paddingBottom: 3,
+              paddingLeft: 12,
+              paddingRight: 12,
               borderBottom: '1px solid #eee',
               textAlign: 'center',
             }}

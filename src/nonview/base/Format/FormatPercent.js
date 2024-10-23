@@ -36,7 +36,7 @@ const FormatPercent = {
       return '50%';
     }
     const minimumFractionDigits = Math.max(
-      1,
+      0,
       -Math.floor(Math.log10(diff)) - 2,
     );
     return FormatPercent.percent(x, minimumFractionDigits);

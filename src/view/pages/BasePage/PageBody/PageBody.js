@@ -1,14 +1,12 @@
-import { Box, Grid2 } from "@mui/material";
-import { useDataContext } from "../../../../nonview/core/DataProvider";
+import { Box, Grid2 } from '@mui/material';
+import { useDataContext } from '../../../../nonview/core/DataProvider';
 
-import PageBodyBelowTheFold from "./PageBodyBelowTheFold";
+import PageBodyBelowTheFold from './PageBodyBelowTheFold';
 
-import {
-  NoResultsAlert,
-} from "../../../";
-import PageBodyRight from "./PageBodyRight";
-import PageBodyCenter from "./PageBodyCenter";
-import PageBodyLeft from "./PageBodyLeft";
+import { NoResultsAlert } from '../../../';
+import PageBodyRight from './PageBodyRight';
+import PageBodyCenter from './PageBodyCenter';
+import PageBodyLeft from './PageBodyLeft';
 
 const STYLE = {
   BOX: { paddingTop: 10, paddingBottom: 20 },
@@ -26,9 +24,15 @@ export default function PageBody() {
   return (
     <Box sx={STYLE.BOX}>
       <Grid2 container>
-        <Grid2 size={size}>  <PageBodyRight /></Grid2>
-        <Grid2 size={size}>  <PageBodyLeft /></Grid2>
-        <Grid2 size={size}>  <PageBodyCenter /></Grid2>
+        <Grid2 size={size}>
+          <PageBodyLeft />
+        </Grid2>
+        <Grid2 size={size}>
+          <PageBodyCenter />
+        </Grid2>
+        <Grid2 size={size}>
+          <PageBodyRight />
+        </Grid2>
       </Grid2>
       <PageBodyBelowTheFold />
     </Box>

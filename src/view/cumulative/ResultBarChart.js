@@ -1,9 +1,8 @@
-import { Format, Party } from "../../nonview";
+import { Format, Party } from '../../nonview';
 
-import SVGBarChart from "../base/SVGBarChart.js/SVGBarChart";
+import SVGBarChart from '../base/SVGBarChart.js/SVGBarChart';
 
 export default function ResultBarChart({ partyToPVotes }) {
-
   return (
     <SVGBarChart
       dataList={[partyToPVotes]}
@@ -17,7 +16,7 @@ export default function ResultBarChart({ partyToPVotes }) {
       formatValue={function (partyToPVotes, i, pVotes) {
         return Format.percent(pVotes);
       }}
-      sx={{ width: 200, height: 50 }}
+      sx={{ width: 200, height: 40 }}
     />
   );
 }

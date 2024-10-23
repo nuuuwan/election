@@ -16,10 +16,24 @@ async function getElectionValuesSlow({ electionDisplay }) {
     );
     const electionProjected = electionModel.electionProjected;
 
+    const electionDisplayPrevious =
+      electionPrevious.getSubsetElectionByEntIDList(
+        electionDisplay.baseEntIDList,
+      );
+
+    const electionModelPrevious = new ElectionModel(
+      electionDisplayPrevious,
+      electionHistory.previousHistory.previousElectionList,
+    );
+
+    const electionProjectedPrevious = electionModelPrevious.electionProjected;
+
     return {
       electionHistory,
       electionPrevious,
       electionProjected,
+      electionDisplayPrevious,
+      electionProjectedPrevious,
     };
   };
   return await Timer.logAsync(

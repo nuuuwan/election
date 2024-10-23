@@ -4,34 +4,38 @@ import ElectionModelSimulationUtils from "./ElectionModelSimulationUtils";
 import ElectionModelUtils from "./ElectionModelUtils";
 
 export default class ElectionModel {
-  static getElectionProjected(electionHistory) {
-    const currentElection = electionHistory.electionCurrent;
-    
-    const pastElectionList = electionHistory.previousElectionList;
+
+  constructor(electionHistory) {
+    this.electionHistory = electionHistory;
+  }
+
+
+  get electionProjected() {
+    const pastElectionList = this.electionHistory.previousElectionList;
     if (pastElectionList.length === 0) {
-      return currentElection;
+      return this.electionHistory.currentElection;
     }
     
-    const releasedEntIDList = currentElection.baseEntIDList;
+    const releasedEntIDList = this.electionHistory.currentElection.baseEntIDList;
     const nonReleasedEntIDList = ElectionModel.getNonReleasedEntIDList(
-      electionHistory,
+      this.electionHistory,
     );
 
     const { XAll, YAll } = ElectionModelFeatureUtils.getTrainingData(
-      electionHistory,
+      this.electionHistory,
       releasedEntIDList,
       nonReleasedEntIDList
     );
 
     const pError = ElectionModelUtils.getPErrorByHoldout(XAll, YAll);
     const pdToPartyToPVotes = ElectionModel.getPDToPartyToPVotes(
-      electionHistory,
+      this.electionHistory,
       XAll,
       YAll
     );
 
     return ElectionModel.buildElection(
-      electionHistory,
+      this.electionHistory,
       nonReleasedEntIDList,
       pdToPartyToPVotes,
       pError

@@ -4,6 +4,7 @@ import {
   AggregatedResultView,
   MonitoringView,
   DisclaimerView,
+  ModelDetailsView,
 } from "../../../";
 
 export default function PageBodyBelowTheFold() {
@@ -16,7 +17,8 @@ export default function PageBodyBelowTheFold() {
         p: 1,
         borderTop: "1px solid #eee",
       }}
-    >
+    > 
+      <ModelDetailsView />
       <AggregatedResultView />
       <MonitoringView />
       <DisclaimerView />

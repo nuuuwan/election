@@ -73,6 +73,7 @@ import SVGLegendParty from "./features/HexMapView/SVGLegendParty.js";
 import SVGLegendPercentages from "./features/HexMapView/SVGLegendPercentages.js";
 import SVGTitles from "./features/HexMapView/SVGTitles.js";
 import LatestResultListView from "./features/LatestResultListView.js";
+import ModelDetailsView from "./features/ModelDetailsView/ModelDetailsView.js";
 import BanfordView from "./features/MonitoringView/BanfordView.js";
 import ElectorsView from "./features/MonitoringView/ElectorsView.js";
 import GenericScatterChart from "./features/MonitoringView/GenericScatterChart.js";
@@ -175,6 +176,7 @@ export {
   SVGLegendPercentages,
   SVGTitles,
   LatestResultListView,
+  ModelDetailsView,
   BanfordView,
   ElectorsView,
   GenericScatterChart,

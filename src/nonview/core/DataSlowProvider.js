@@ -10,9 +10,9 @@ async function getElectionValuesSlow({  electionDisplay }) {
     const electionHistory = await ElectionHistory.load(electionDisplay);
     const electionPrevious = electionHistory.electionPrevious;
 
-    const electionProjected = ElectionModel.getElectionProjected(
-      electionHistory
-    );
+  
+    const electionModel = new ElectionModel(electionHistory);
+    const electionProjected = electionModel.electionProjected;
 
     return { electionHistory, electionPrevious, electionProjected };
   };

@@ -8,4 +8,10 @@ export default class ArrayX {
   static last(arr) {
     return arr[arr.length - 1];
   }
+
+  static flatten(arrList) {
+    return arrList.reduce(function (acc, arr) {
+      return acc.concat(arr);
+    }, []);
+  }
 }

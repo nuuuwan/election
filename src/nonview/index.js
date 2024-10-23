@@ -13,6 +13,7 @@ import FormatPercent from "./base/Format/FormatPercent.js";
 import MLModel from "./base/MLModel/MLModel.js";
 import MathX from "./base/MathX.js";
 import ProvinceUtils from "./base/ProvinceUtils.js";
+import Statistics from "./base/Statistics.js";
 import StringX from "./base/StringX/StringX.js";
 import StringXEn from "./base/StringX/StringXEn.js";
 import StringXSi from "./base/StringX/StringXSi.js";
@@ -78,6 +79,7 @@ export {
   MLModel,
   MathX,
   ProvinceUtils,
+  Statistics,
   StringX,
   StringXEn,
   StringXSi,

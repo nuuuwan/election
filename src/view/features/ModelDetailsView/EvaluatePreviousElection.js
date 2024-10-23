@@ -27,7 +27,7 @@ function getCellContentList({ pdID, data }) {
     electionPrevious,
     electionProjectedPrevious,
   );
-  const { winnerCorrect, meanL1Error } =
+  const { winnerCorrect, meanL1Error, nEstimates } =
     electionModelError.getResultErrorInfo(pdID);
   return [
     <EntView key="1" entID={pdID} />,
@@ -44,6 +44,9 @@ function getCellContentList({ pdID, data }) {
     />,
     <Typography key="4" variant="h6" color={!winnerCorrect ? '#000' : '#ccc'}>
       {winnerCorrect ? 'Correct' : 'Incorrect'}
+    </Typography>,
+    <Typography key="5" variant="h6" color={nEstimates < 2 ? '#000' : '#ccc'}>
+      {nEstimates}
     </Typography>,
     <Typography
       key="5"
@@ -79,6 +82,7 @@ const TABLE_HEADER_LABELS = [
   'Projected',
   'Actual',
   'Is Winner Correct?',
+  'Estimates',
   'Error (L1)',
 ];
 
@@ -126,11 +130,17 @@ function EvaluatePreviousSummaryView() {
     electionPrevious,
     electionProjectedPrevious,
   );
-  const { n, nWinnerCorrect, meanL1ErrorMedian, meanL1Error90pctl } =
-    electionModelError.getSummaryStats(notReleasedPDIDList);
+  const {
+    n,
+    nWinnerCorrect,
+    nEstimates,
+    meanL1ErrorMedian,
+    meanL1Error90pctl,
+  } = electionModelError.getSummaryStats(notReleasedPDIDList);
   return (
     <Stack direction="row" gap={2} sx={{ margin: 'auto', color: 'gray' }}>
-      <LabelledStat label="Winner Correct" stat={`${nWinnerCorrect}/${n}`} />
+      <LabelledStat label="Winner Correct" stat={`${nWinnerCorrect}/${n}`} />{' '}
+      <LabelledStat label="Estimates" stat={`${nEstimates}`} />
       <LabelledStat
         label="Median Error"
         stat={Format.percent(meanL1ErrorMedian)}

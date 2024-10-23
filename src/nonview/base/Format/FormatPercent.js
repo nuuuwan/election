@@ -1,7 +1,7 @@
 const FormatPercent = {
   percentAbs(x, minimumFractionDigits = undefined) {
     if (!x) {
-      return '';
+      return '-';
     }
     if (x < 0.000001) {
       return '0.0%';

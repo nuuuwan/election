@@ -28,8 +28,8 @@ export default function ModelDetailsView() {
   return (
     <TabSelector
       valueIdx={{
-        'Projected Result Details': <ProjectedResultDetailsView />,
         'Evaluate Previous Election': <EvaluatePreviousElection />,
+        'Projected Result Details': <ProjectedResultDetailsView />,
       }}
     />
   );

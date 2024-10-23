@@ -1,12 +1,46 @@
+import ArrayX from '../../base/ArrayX';
 import MathX from '../../base/MathX';
+import Statistics from '../../base/Statistics';
 import Party from '../Party';
 import PartyToVotes from '../PartyToVotes';
 import Result from '../Result';
 
 export default class ElectionModelError {
+  static MIN_P_FOR_ESTIMATE = 0.01;
+
   constructor(actualElection, projectedElection) {
     this.actualElection = actualElection;
     this.projectedElection = projectedElection;
+  }
+
+  static getErrorInfoList(resultActual, resultProjected) {
+    return Object.entries(resultActual.partyToVotes.partyToPVotes)
+      .map(function ([partyID, pVotesActual]) {
+        const pVotesProjected =
+          resultProjected.partyToVotes.partyToPVotes[partyID] || 0;
+        const error = Math.abs(pVotesActual - pVotesProjected);
+
+        return {
+          partyID,
+          pVotesActual,
+          pVotesProjected,
+          error,
+        };
+      })
+      .filter(
+        ({ pVotesActual }) =>
+          pVotesActual > ElectionModelError.MIN_P_FOR_ESTIMATE,
+      );
+  }
+
+  static getMeanL1Error(errorInfoList) {
+    return errorInfoList.reduce(function (
+      meanL1Error,
+      { error, pVotesActual },
+    ) {
+      return meanL1Error + error * pVotesActual;
+    },
+    0);
   }
 
   getResultErrorInfo(entID) {
@@ -16,18 +50,17 @@ export default class ElectionModelError {
     const winningPartyIDActual = resultActual.winningPartyID;
     const winningPartyIDProjected = resultProjected.winningPartyID;
 
-    const meanL1Error = Object.entries(
-      resultActual.partyToVotes.partyToPVotes,
-    ).reduce(function (meanL1Error, [partyID, pVotesActual]) {
-      const pVotesProjected =
-        resultProjected.partyToVotes.partyToPVotes[partyID] || 0;
+    const errorInfoList = ElectionModelError.getErrorInfoList(
+      resultActual,
+      resultProjected,
+    );
 
-      const error = pVotesActual * Math.abs(pVotesActual - pVotesProjected);
+    const meanL1Error = ElectionModelError.getMeanL1Error(errorInfoList);
 
-      return meanL1Error + error;
-    }, 0);
     return {
       winnerCorrect: winningPartyIDProjected === winningPartyIDActual,
+      errorInfoList,
+      nEstimates: errorInfoList.length,
       meanL1Error,
     };
   }
@@ -41,18 +74,23 @@ export default class ElectionModelError {
       (errorInfo) => errorInfo.winnerCorrect,
     ).length;
 
-    const meanL1ErrorList = errorInfoList
-      .map((errorInfo) => errorInfo.meanL1Error)
-      .sort();
-    const meanL1ErrorMedian =
-      meanL1ErrorList[Math.floor(meanL1ErrorList.length / 2)];
+    const errorList = ArrayX.flatten(
+      errorInfoList.map((errorInfo) =>
+        errorInfo.errorInfoList.map((errorInfo) => errorInfo.error),
+      ),
+    );
 
-    const meanL1Error90pctl =
-      meanL1ErrorList[Math.floor(meanL1ErrorList.length * 0.9)];
+    const sortedAllErrorInfoList = errorList.sort();
+    const meanL1ErrorMedian = Statistics.median(sortedAllErrorInfoList);
+    const meanL1Error90pctl = Statistics.percentile(
+      sortedAllErrorInfoList,
+      0.9,
+    );
 
     return {
       n: entIDList.length,
       nWinnerCorrect,
+      nEstimates: sortedAllErrorInfoList.length,
       meanL1ErrorMedian,
       meanL1Error90pctl,
     };

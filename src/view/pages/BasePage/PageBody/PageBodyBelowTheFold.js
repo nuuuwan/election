@@ -10,8 +10,8 @@ export default function PageBodyBelowTheFold() {
   return (
     <TabSelector
       valueIdx={{
-        'aggregated results': <AggregatedResultView />,
         'model insights': <ModelDetailsView />,
+        'aggregated results': <AggregatedResultView />,
         monitoring: <MonitoringView />,
         disclaimers: <DisclaimerView />,
       }}

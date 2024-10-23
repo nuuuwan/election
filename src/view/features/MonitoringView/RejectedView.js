@@ -1,18 +1,17 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack } from '@mui/material';
 
-import { Translate, Format } from "../../../nonview";
+import { Translate, Format } from '../../../nonview';
 
-import { CustomAlert } from "../..";
+import { CustomAlert } from '../..';
 
-import GenericScatterChart from "./GenericScatterChart";
+import GenericScatterChart from './GenericScatterChart';
 
 export default function RejectedView() {
   return (
-    <Stack direction="column" sx={{ alignItems: "center" }}>
-      <Typography variant="h5">Rejected Votes</Typography>
+    <Stack direction="column" sx={{ alignItems: 'center' }}>
       <CustomAlert>
         {Translate(
-          "A high percentage of spoiled or rejected ballots in certain areas could indicate attempts to suppress or manipulate results."
+          'A high percentage of spoiled or rejected ballots in certain areas could indicate attempts to suppress or manipulate results.',
         )}
       </CustomAlert>
       <GenericScatterChart

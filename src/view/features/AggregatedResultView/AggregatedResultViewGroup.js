@@ -15,6 +15,7 @@ import {
 import { Translate } from '../../../nonview';
 
 import CumResultsView from '../CumResultsView/CumResultsView';
+import CustomTablePagination from '../../base/CustomTablePagination';
 
 function AggregatedResultListColumnViewGroup({ sortedEntIDs, customElection }) {
   return (
@@ -88,19 +89,25 @@ export default function AggregatedResultViewGroup({
     return null;
   }
 
+  const renderTable = function (displayEntIDList) {
+    return (
+      <Box>
+        {isSmallerScreen ? (
+          <AggregatedResultListColumnViewGroup
+            sortedEntIDs={displayEntIDList}
+            customElection={customElection}
+          />
+        ) : (
+          <AggregatedResultListTableView
+            sortedEntIDs={displayEntIDList}
+            customElection={customElection}
+          />
+        )}
+      </Box>
+    );
+  };
+
   return (
-    <Box>
-      {isSmallerScreen ? (
-        <AggregatedResultListColumnViewGroup
-          sortedEntIDs={entIDList}
-          customElection={customElection}
-        />
-      ) : (
-        <AggregatedResultListTableView
-          sortedEntIDs={entIDList}
-          customElection={customElection}
-        />
-      )}
-    </Box>
+    <CustomTablePagination dataList={entIDList} renderTable={renderTable} />
   );
 }

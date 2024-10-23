@@ -33,7 +33,7 @@ export default function TabSelector({ valueIdx }) {
         })}
       </Tabs>
 
-      <Box>{content}</Box>
+      <Box sx={{ mt: 1 }}>{content}</Box>
     </Stack>
   );
 }

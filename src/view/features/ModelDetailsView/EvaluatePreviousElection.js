@@ -15,6 +15,7 @@ import CustomLoadingProgress from '../../base/CustomLoadingProgress';
 import EntView from '../../base/EntView';
 import ResultBarChart from '../../cumulative/ResultBarChart';
 import LabelledStat from '../../base/LabelledStat';
+import CustomAlert from '../../base/CustomAlert';
 
 function getCellContentList({ pdID, data }) {
   const { electionPrevious, electionProjectedPrevious } = data;
@@ -98,12 +99,7 @@ function EvaluateTableHead() {
   );
 }
 
-function EvaluateTable() {
-  const data = useDataSlowContext();
-  if (!data) {
-    return <CustomLoadingProgress />;
-  }
-  const notReleasedPDIDList = ElectionModelError.getNonReleasedPDIDList(data);
+function EvaluateTable({ notReleasedPDIDList }) {
   return (
     <TableContainer>
       <Table>
@@ -152,14 +148,22 @@ export default function EvaluatePreviousElection() {
     return <CustomLoadingProgress />;
   }
   const { electionPrevious } = data;
-  console.debug('Rendered <EvaluatePreviousElection />');
+
+  const notReleasedPDIDList = ElectionModelError.getNonReleasedPDIDList(data);
   return (
-    <Stack direction="column" gap={2}>
-      <Typography variant="h4">{Translate(electionPrevious.title)}</Typography>
+    <Stack direction="column" gap={1}>
+      <CustomAlert>
+        <Typography variant="body1">
+          {Translate(
+            'The following table compares what our model would have predicted for the %1 Election, compared to the actual results.',
+            [Translate(electionPrevious.title)],
+          )}
+        </Typography>
+      </CustomAlert>
 
       <EvaluatePreviousSummaryView />
 
-      <EvaluateTable />
+      <EvaluateTable notReleasedPDIDList={notReleasedPDIDList} />
     </Stack>
   );
 }

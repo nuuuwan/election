@@ -1,18 +1,17 @@
-import { Stack, Typography } from "@mui/material";
+import { Stack } from '@mui/material';
 
-import { Translate, Format } from "../../../nonview";
+import { Translate, Format } from '../../../nonview';
 
-import { CustomAlert } from "../..";
+import { CustomAlert } from '../..';
 
-import GenericScatterChart from "./GenericScatterChart";
+import GenericScatterChart from './GenericScatterChart';
 
 export default function ElectorsView() {
   return (
-    <Stack direction="column" sx={{ alignItems: "center" }}>
-      <Typography variant="h5">Registered Voters</Typography>
+    <Stack direction="column" sx={{ alignItems: 'center' }}>
       <CustomAlert>
         {Translate(
-          "An abnormal change in the number of registered voters across elections could be suspicious."
+          'An abnormal change in the number of registered voters across elections could be suspicious.',
         )}
       </CustomAlert>
       <GenericScatterChart

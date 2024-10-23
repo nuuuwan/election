@@ -1,9 +1,6 @@
 import ArrayX from '../../base/ArrayX';
-import MathX from '../../base/MathX';
+
 import Statistics from '../../base/Statistics';
-import Party from '../Party';
-import PartyToVotes from '../PartyToVotes';
-import Result from '../Result';
 
 export default class ElectionModelError {
   static MIN_P_FOR_ESTIMATE = 0.01;

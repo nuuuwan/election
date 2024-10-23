@@ -2,9 +2,7 @@ import { Format, Party } from "../../nonview";
 
 import SVGBarChart from "../base/SVGBarChart.js/SVGBarChart";
 
-export default function ResultBarChart({ resultsElection, entID }) {
-  const partyToPVotes =
-    resultsElection.getResult(entID).partyToVotes.partyToPVotesSortedOthered;
+export default function ResultBarChart({ partyToPVotes }) {
 
   return (
     <SVGBarChart

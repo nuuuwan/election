@@ -23,6 +23,8 @@ function getContentList({ entID, result, electionDisplay }) {
   const background = "white";
 
   const sx = { color, background, p: 1, borderRadius: 1 };
+  const partyToPVotes =
+  electionDisplay.getResult(entID).partyToVotes.partyToPVotesSortedOthered;
 
   return [
     <Stack key="0" direction="row" gap={0.5} alignItems="center" sx={sx}>
@@ -31,7 +33,7 @@ function getContentList({ entID, result, electionDisplay }) {
     </Stack>,
 
     <PartyToVotesStatsView key="1" partyToVotes={result.partyToVotes} />,
-    <ResultBarChart key="2" resultsElection={electionDisplay} entID={entID} />,
+    <ResultBarChart key="2" partyToPVotes={partyToPVotes} />,
 
     <SummaryView key="3" summary={result.summary} />,
 

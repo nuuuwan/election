@@ -7,16 +7,19 @@ export default class ElectionModel {
 
   constructor(electionHistory) {
     this.electionHistory = electionHistory;
+    this.pdToPartyToPVotes = null;
+    this.electionProjected = null;
+    this.load();
   }
 
 
-  get electionProjected() {
+  load() {
     const pastElectionList = this.electionHistory.previousElectionList;
     if (pastElectionList.length === 0) {
-      return this.electionHistory.currentElection;
+      return this.electionHistory.electionCurrent;
     }
     
-    const releasedEntIDList = this.electionHistory.currentElection.baseEntIDList;
+    const releasedEntIDList = this.electionHistory.electionCurrent.baseEntIDList;
     const nonReleasedEntIDList = ElectionModel.getNonReleasedEntIDList(
       this.electionHistory,
     );
@@ -28,16 +31,16 @@ export default class ElectionModel {
     );
 
     const pError = ElectionModelUtils.getPErrorByHoldout(XAll, YAll);
-    const pdToPartyToPVotes = ElectionModel.getPDToPartyToPVotes(
+    this.pdToPartyToPVotes = ElectionModel.getPDToPartyToPVotes(
       this.electionHistory,
       XAll,
       YAll
     );
-
-    return ElectionModel.buildElection(
+ 
+    this.electionProjected = ElectionModel.buildElection(
       this.electionHistory,
       nonReleasedEntIDList,
-      pdToPartyToPVotes,
+      this.pdToPartyToPVotes,
       pError
     );
   }
@@ -60,8 +63,8 @@ export default class ElectionModel {
     pdToPartyToPVotes,
     pError
   ) {
-    const currentElection = electionHistory.electionCurrent;
-    const election = currentElection.copy();
+    const electionCurrent = electionHistory.electionCurrent;
+    const election = electionCurrent.copy();
 
     const baseResultList = ElectionModelSimulationUtils.simulateResultList(
       electionHistory,
@@ -79,8 +82,8 @@ export default class ElectionModel {
     XAll,
     YAll
   ) {
-    const currentElection = electionHistory.electionCurrent;
-    const releasedEntIDList = currentElection.baseEntIDList;
+    const electionCurrent = electionHistory.electionCurrent;
+    const releasedEntIDList = electionCurrent.baseEntIDList;
     const nonReleasedEntIDList = ElectionModel.getNonReleasedEntIDList(
       electionHistory,
     );
@@ -88,16 +91,16 @@ export default class ElectionModel {
 
     return ElectionModelProjectionUtils.getPDToPartyToPVotes(
       model,
-      currentElection,
+      electionCurrent,
       ElectionModelFeatureUtils.getXEvaluate(
-        currentElection,
+        electionCurrent,
         releasedEntIDList
       ),
       nonReleasedEntIDList
     );
   }
 
-  static getReleasedResultList(currentElection, releasedEntIDList) {
-    return releasedEntIDList.map((entID) => currentElection.getResult(entID));
+  static getReleasedResultList(electionCurrent, releasedEntIDList) {
+    return releasedEntIDList.map((entID) => electionCurrent.getResult(entID));
   }
 }

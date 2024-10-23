@@ -13,8 +13,9 @@ async function getElectionValuesSlow({  electionDisplay }) {
   
     const electionModel = new ElectionModel(electionHistory);
     const electionProjected = electionModel.electionProjected;
-
-    return { electionHistory, electionPrevious, electionProjected };
+    const pdToPartyToPVotes = electionModel.pdToPartyToPVotes;
+   
+    return { electionHistory, electionPrevious, electionProjected, pdToPartyToPVotes };
   };
   return await Timer.logAsync(
     "DataSlowProvider.getElectionValuesSlow",
@@ -29,17 +30,12 @@ async function getValue(state, data) {
   }
   const {  electionDisplay } = data;
 
-  const { electionHistory, electionPrevious, electionProjected } =
+  const slowValues =
     await getElectionValuesSlow({
-
       electionDisplay,
     });
 
-  return Object.assign({}, data, {
-    electionProjected,
-    electionHistory,
-    electionPrevious,
-  });
+  return Object.assign({}, data, slowValues);
 }
 
 export default function DataSlowProvider({ children, state }) {

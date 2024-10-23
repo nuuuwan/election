@@ -1,24 +1,39 @@
-import { Box, Tab, Tabs } from "@mui/material";
-import { Translate } from "../../nonview";
+import React from 'react';
+import { Box, Stack, Tab, Tabs } from '@mui/material';
+import { Translate } from '../../nonview';
 
-export default function TabSelector({ value, onChange, dataList }) {
+export default function TabSelector({ valueIdx }) {
+  const valueList = Object.keys(valueIdx);
+  const [selectedValue, setSelectedValue] = React.useState(valueList[0]);
+  const content = valueIdx[selectedValue];
+
   return (
-    <Box sx={{ justifyContent: "center", display: "flex" }}>
-      <Tabs value={value}>
-        {dataList.map(function (data, iData) {
+    <Stack
+      direction="column"
+      sx={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        display: 'flex',
+        mt: 3,
+      }}
+    >
+      <Tabs value={selectedValue}>
+        {valueList.map(function (value, iValue) {
           const onClick = function () {
-            onChange(data);
+            setSelectedValue(value);
           };
           return (
             <Tab
-              key={iData}
-              value={data}
-              label={Translate(data)}
+              key={iValue}
+              value={value}
+              label={Translate(value)}
               onClick={onClick}
             />
           );
         })}
       </Tabs>
-    </Box>
+
+      <Box>{content}</Box>
+    </Stack>
   );
 }

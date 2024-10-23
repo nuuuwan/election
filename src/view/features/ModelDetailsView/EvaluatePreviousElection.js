@@ -155,10 +155,7 @@ export default function EvaluatePreviousElection() {
   console.debug('Rendered <EvaluatePreviousElection />');
   return (
     <Stack direction="column" gap={2}>
-      <Typography variant="h4">
-        {Translate('Evaluate Previous Election - ') +
-          Translate(electionPrevious.title)}
-      </Typography>
+      <Typography variant="h4">{Translate(electionPrevious.title)}</Typography>
 
       <EvaluatePreviousSummaryView />
 

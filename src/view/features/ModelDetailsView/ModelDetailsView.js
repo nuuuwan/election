@@ -1,13 +1,14 @@
-import { Stack } from '@mui/material';
-
 import ProjectedResultDetailsView from './ProjectedResultDetailsView';
 import EvaluatePreviousElection from './EvaluatePreviousElection';
+import { TabSelector } from '../..';
 
 export default function ModelDetailsView() {
   return (
-    <Stack direction="column" alignItems="center">
-      <ProjectedResultDetailsView />
-      <EvaluatePreviousElection />
-    </Stack>
+    <TabSelector
+      valueIdx={{
+        'Projected Result Details': <ProjectedResultDetailsView />,
+        'Evaluate Previous Election': <EvaluatePreviousElection />,
+      }}
+    />
   );
 }

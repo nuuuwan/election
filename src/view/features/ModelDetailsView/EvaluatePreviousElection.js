@@ -152,9 +152,10 @@ export default function EvaluatePreviousElection() {
     return <CustomLoadingProgress />;
   }
   const { electionPrevious } = data;
+  console.debug('Rendered <EvaluatePreviousElection />');
   return (
     <Stack direction="column" gap={2}>
-      <Typography variant="h5">
+      <Typography variant="h4">
         {Translate('Evaluate Previous Election - ') +
           Translate(electionPrevious.title)}
       </Typography>

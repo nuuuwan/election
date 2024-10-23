@@ -16,7 +16,7 @@ export default function ProjectedResultDetailsView() {
   );
   return (
     <>
-      <Typography variant="h5">
+      <Typography variant="h4">
         {Translate('Projected PD Results (Not Released)')}
       </Typography>
       <AggregatedResultViewGroup

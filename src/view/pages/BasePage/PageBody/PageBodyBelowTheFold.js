@@ -1,13 +1,25 @@
-import { Stack } from "@mui/material";
+import { Stack } from '@mui/material';
 
 import {
   AggregatedResultView,
   MonitoringView,
   DisclaimerView,
   ModelDetailsView,
-} from "../../../";
+  TabSelector,
+} from '../../../';
+import { useState } from 'react';
+
+const CONTENT_IDX = {
+  'aggregated results': <AggregatedResultView />,
+  'model insights': <ModelDetailsView />,
+  monitoring: <MonitoringView />,
+  disclaimers: <DisclaimerView />,
+};
 
 export default function PageBodyBelowTheFold() {
+  const valueList = Object.keys(CONTENT_IDX);
+  const [mode, setMode] = useState(valueList[0]);
+
   return (
     <Stack
       direction="column"
@@ -15,13 +27,11 @@ export default function PageBodyBelowTheFold() {
       sx={{
         marginTop: 15,
         p: 1,
-        borderTop: "1px solid #eee",
+        borderTop: '1px solid #eee',
       }}
-    > 
-      <ModelDetailsView />
-      <AggregatedResultView />
-      <MonitoringView />
-      <DisclaimerView />
+    >
+      <TabSelector value={mode} onChange={setMode} dataList={valueList} />
+      {CONTENT_IDX[mode]}
     </Stack>
   );
 }

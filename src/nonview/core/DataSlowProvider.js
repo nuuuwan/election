@@ -2,6 +2,7 @@ import React, { useState, useEffect, createContext, useContext } from 'react';
 
 import { ElectionModel, Timer, ElectionHistory, ElectionModelError } from '..';
 import { useDataContext } from './DataProvider';
+import ElectionProjectedWithError from './ElectionModel/ElectionProjectedWithError';
 
 const DataSlowContext = createContext();
 
@@ -28,7 +29,7 @@ function getProjectedElections({
   const electionProjectedPrevious = electionModelPrevious.electionProjected;
 
   const electionProjectedWithError =
-    ElectionModelError.getElectionProjectedWithError(
+    ElectionProjectedWithError.getElectionProjectedWithError(
       electionDisplay,
       electionProjected,
       electionPrevious,

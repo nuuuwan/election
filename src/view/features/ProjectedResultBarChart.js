@@ -1,8 +1,8 @@
-import { Color, Format, Party } from "../../nonview";
+import { Color, Format, Party } from '../../nonview';
 
-import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
-import CustomLoadingProgress from "../base/CustomLoadingProgress";
-import SVGBarChart from "../base/SVGBarChart.js/SVGBarChart";
+import { useDataSlowContext } from '../../nonview/core/DataSlowProvider';
+import CustomLoadingProgress from '../base/CustomLoadingProgress';
+import SVGBarChart from '../base/SVGBarChart.js/SVGBarChart';
 
 function formatRowValue(data) {
   const pVotesMin = data.pVotesMin;
@@ -16,14 +16,13 @@ export default function ProjectedResultBarChart() {
   if (!data) {
     return <CustomLoadingProgress />;
   }
-  const { electionProjected } = data;
+  const { electionProjectedWithError } = data;
 
-  const resultLK = electionProjected.resultLK;
+  const resultLK = electionProjectedWithError.resultLK;
   const partyToPVotesSortedOthered =
     resultLK.partyToVotes.partyToPVotesSortedOthered;
 
   return (
-
     <SVGBarChart
       dataList={Object.entries(partyToPVotesSortedOthered)
         .filter((entry) => !Party.fromID(entry[0]).isNonParty)
@@ -48,6 +47,5 @@ export default function ProjectedResultBarChart() {
       formatRowValue={formatRowValue}
       sx={{ width: 360, height: 180 }}
     />
-
   );
 }

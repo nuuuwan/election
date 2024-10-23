@@ -1,32 +1,63 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
 
-import { ElectionModel, Timer, ElectionHistory } from '..';
+import { ElectionModel, Timer, ElectionHistory, ElectionModelError } from '..';
 import { useDataContext } from './DataProvider';
 
 const DataSlowContext = createContext();
+
+function getProjectedElections({
+  electionDisplay,
+  electionHistory,
+  electionPrevious,
+}) {
+  const electionModel = new ElectionModel(
+    electionDisplay,
+    electionHistory.previousElectionList,
+  );
+  const electionProjected = electionModel.electionProjected;
+
+  const electionDisplayPrevious = electionPrevious.getSubsetElectionByEntIDList(
+    electionDisplay.baseEntIDList,
+  );
+
+  const electionModelPrevious = new ElectionModel(
+    electionDisplayPrevious,
+    electionHistory.previousHistory.previousElectionList,
+  );
+
+  const electionProjectedPrevious = electionModelPrevious.electionProjected;
+
+  const electionProjectedWithError =
+    ElectionModelError.getElectionProjectedWithError(
+      electionDisplay,
+      electionProjected,
+      electionPrevious,
+      electionProjectedPrevious,
+    );
+
+  return {
+    electionProjected,
+    electionDisplayPrevious,
+    electionProjectedPrevious,
+    electionProjectedWithError,
+  };
+}
 
 async function getElectionValuesSlow({ electionDisplay }) {
   const inner = async function () {
     const electionHistory = await ElectionHistory.load(electionDisplay);
     const electionPrevious = electionHistory.electionPrevious;
 
-    const electionModel = new ElectionModel(
-      electionDisplay,
-      electionHistory.previousElectionList,
-    );
-    const electionProjected = electionModel.electionProjected;
-
-    const electionDisplayPrevious =
-      electionPrevious.getSubsetElectionByEntIDList(
-        electionDisplay.baseEntIDList,
-      );
-
-    const electionModelPrevious = new ElectionModel(
+    const {
+      electionProjected,
       electionDisplayPrevious,
-      electionHistory.previousHistory.previousElectionList,
-    );
-
-    const electionProjectedPrevious = electionModelPrevious.electionProjected;
+      electionProjectedPrevious,
+      electionProjectedWithError,
+    } = getProjectedElections({
+      electionDisplay,
+      electionHistory,
+      electionPrevious,
+    });
 
     return {
       electionHistory,
@@ -34,6 +65,7 @@ async function getElectionValuesSlow({ electionDisplay }) {
       electionProjected,
       electionDisplayPrevious,
       electionProjectedPrevious,
+      electionProjectedWithError,
     };
   };
   return await Timer.logAsync(

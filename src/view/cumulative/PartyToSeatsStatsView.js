@@ -1,15 +1,15 @@
-import { Grid2 } from "@mui/material";
-import { Seats, Party } from "../../nonview";
-import { LabelledStat, ParliamentViewCircle, PartyView } from "..";
-import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
+import { Grid2 } from '@mui/material';
+import { Seats, Party } from '../../nonview';
+import { LabelledStat, ParliamentViewCircle, PartyView } from '..';
+import { useDataSlowContext } from '../../nonview/core/DataSlowProvider';
 
 export default function PartyToSeatsStatsView() {
   const data = useDataSlowContext();
   if (!data) {
     return null;
   }
-  const { electionProjected } = data;
-  const seats = Seats.fromElection(electionProjected);
+  const { electionProjectedWithError } = data;
+  const seats = Seats.fromElection(electionProjectedWithError);
   const entries = Object.entries(seats.getTotalPartyToSeats());
 
   return (
@@ -17,7 +17,7 @@ export default function PartyToSeatsStatsView() {
       container
       direction="row"
       gap={1}
-      sx={{ maxWidth: 400, justifyContent: "center" }}
+      sx={{ maxWidth: 400, justifyContent: 'center' }}
     >
       {entries.map(function ([partyID, seats]) {
         const color = Party.fromID(partyID).color;

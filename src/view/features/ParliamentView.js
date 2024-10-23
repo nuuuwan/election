@@ -1,8 +1,8 @@
-import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
-import { Seats } from "../../nonview";
-import { Grid2 } from "@mui/material";
+import { useDataSlowContext } from '../../nonview/core/DataSlowProvider';
+import { Seats } from '../../nonview';
+import { Grid2 } from '@mui/material';
 
-import ParliamentViewCircle from "../core/ParliamentViewCircle";
+import ParliamentViewCircle from '../core/ParliamentViewCircle';
 
 export default function ParliamentView({
   regionID,
@@ -13,15 +13,15 @@ export default function ParliamentView({
   if (!data) {
     return null;
   }
-  const { electionProjected, electionDisplay, entIdx } = data;
-  if (!electionProjected) {
+  const { electionProjectedWithError, electionDisplay, entIdx } = data;
+  if (!electionProjectedWithError) {
     return null;
   }
   if (forceComplete && !electionDisplay.isComplete(regionID, entIdx)) {
-    return "...";
+    return '...';
   }
 
-  const seats = Seats.fromElection(electionProjected);
+  const seats = Seats.fromElection(electionProjectedWithError);
   const partyToSeats = seats.getPartyToSeats(regionID);
   if (!partyToSeats) {
     return null;
@@ -32,7 +32,7 @@ export default function ParliamentView({
       container
       direction="row"
       sx={Object.assign({}, sx)}
-      justifyContent={"center"}
+      justifyContent={'center'}
     >
       {Object.entries(partyToSeats).map(function ([partyID, seats]) {
         return (

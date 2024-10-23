@@ -16,16 +16,6 @@ import EntView from '../../base/EntView';
 import ResultBarChart from '../../cumulative/ResultBarChart';
 import LabelledStat from '../../base/LabelledStat';
 
-function getNonReleasedPDIDList(data) {
-  const { electionProjected, electionDisplay } = data;
-
-  const releasedPDIDList = electionDisplay.baseEntIDList;
-  const notReleasedPDIDList = electionProjected.baseEntIDList.filter(
-    (pdID) => !releasedPDIDList.includes(pdID),
-  );
-  return notReleasedPDIDList;
-}
-
 function getCellContentList({ pdID, data }) {
   const { electionPrevious, electionProjectedPrevious } = data;
   const resultPrevious = electionPrevious.getResult(pdID);
@@ -113,7 +103,7 @@ function EvaluateTable() {
   if (!data) {
     return <CustomLoadingProgress />;
   }
-  const notReleasedPDIDList = getNonReleasedPDIDList(data);
+  const notReleasedPDIDList = ElectionModelError.getNonReleasedPDIDList(data);
   return (
     <TableContainer>
       <Table>
@@ -134,7 +124,7 @@ function EvaluatePreviousSummaryView() {
     return <CustomLoadingProgress />;
   }
   const { electionPrevious, electionProjectedPrevious } = data;
-  const notReleasedPDIDList = getNonReleasedPDIDList(data);
+  const notReleasedPDIDList = ElectionModelError.getNonReleasedPDIDList(data);
   const electionModelError = new ElectionModelError(
     electionPrevious,
     electionProjectedPrevious,

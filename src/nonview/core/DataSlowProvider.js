@@ -1,6 +1,6 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
 
-import { ElectionModel, Timer, ElectionHistory, ElectionModelError } from '..';
+import { ElectionModel, Timer, ElectionHistory } from '..';
 import { useDataContext } from './DataProvider';
 import ElectionProjectedWithError from './ElectionModel/ElectionProjectedWithError';
 

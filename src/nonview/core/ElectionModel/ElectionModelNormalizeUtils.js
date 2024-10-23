@@ -1,12 +1,18 @@
-import { MathX } from "../..";
+import { MathX } from '../..';
 
 export default class ElectionModelNormalizeUtils {
   static normalizeSingle(partyToPVotes) {
-    const totalPVotes = MathX.sumValues(partyToPVotes);
-    return Object.fromEntries(
+    const partyToPVotesRanged = Object.fromEntries(
       Object.entries(partyToPVotes).map(function ([partyID, pVotes]) {
+        return [partyID, MathX.forceRange(pVotes, 0, 1)];
+      }),
+    );
+
+    const totalPVotes = MathX.sumValues(partyToPVotesRanged);
+    return Object.fromEntries(
+      Object.entries(partyToPVotesRanged).map(function ([partyID, pVotes]) {
         return [partyID, pVotes / totalPVotes];
-      })
+      }),
     );
   }
 
@@ -20,7 +26,7 @@ export default class ElectionModelNormalizeUtils {
           pdID,
           ElectionModelNormalizeUtils.normalizeSingle(partyToVoteInfo),
         ];
-      })
+      }),
     );
   }
 }

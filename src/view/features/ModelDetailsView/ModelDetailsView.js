@@ -17,7 +17,7 @@ import EntView from '../../base/EntView';
 
 const StyledTableRow = styled(TableRow)(() => ({
   '&:nth-of-type(odd)': {
-    backgroundColor: '#f8f8f8',
+    backgroundColor: '#fcfcfc',
   },
   // hide last border
   '&:last-child td, &:last-child th': {
@@ -29,7 +29,6 @@ function ModelResultsTableRow({ pdID, partyToPVotes }) {
   const partyToPVotesSorted = Object.fromEntries(
     Object.entries(partyToPVotes).sort(([, a], [, b]) => b - a),
   );
-
   return (
     <StyledTableRow>
       <TableCell>
@@ -47,7 +46,6 @@ function ModelResultsTable() {
   if (!data) {
     return <CustomLoadingProgress />;
   }
-
   const { pdToPartyToPVotes } = data;
 
   return (
@@ -60,7 +58,7 @@ function ModelResultsTable() {
       }}
     >
       <TableContainer>
-        <Table sx={{ maxWidth: 480 }}>
+        <Table>
           <TableBody>
             {Object.entries(pdToPartyToPVotes).map(function ([
               pdID,
@@ -81,11 +79,22 @@ function ModelResultsTable() {
   );
 }
 
+function ProjectedResultDetailsView() {
+  return (
+    <>
+      <Typography variant="h5">
+        {Translate('Projected Results (by PD)')}
+      </Typography>
+      <ModelResultsTable />
+    </>
+  );
+}
+
 export default function ModelDetailsView() {
   return (
     <Stack direction="column" alignItems="center">
       <Typography variant="h4">{Translate('Model Details')}</Typography>
-      <ModelResultsTable />
+      <ProjectedResultDetailsView />
     </Stack>
   );
 }

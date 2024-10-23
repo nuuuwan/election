@@ -8,10 +8,10 @@ export default class ElectionModel {
     this.electionHistory = electionHistory;
     this.pdToPartyToPVotes = null;
     this.electionProjected = null;
-    this.load();
+    this.__load();
   }
 
-  load() {
+  __load() {
     const pastElectionList = this.electionHistory.previousElectionList;
     if (pastElectionList.length === 0) {
       return this.electionHistory.electionCurrent;

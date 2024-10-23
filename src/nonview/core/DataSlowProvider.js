@@ -1,26 +1,28 @@
-import React, { useState, useEffect, createContext, useContext } from "react";
+import React, { useState, useEffect, createContext, useContext } from 'react';
 
-import { ElectionModel, Timer, ElectionHistory } from "..";
-import { useDataContext } from "./DataProvider";
+import { ElectionModel, Timer, ElectionHistory } from '..';
+import { useDataContext } from './DataProvider';
 
 const DataSlowContext = createContext();
 
-async function getElectionValuesSlow({  electionDisplay }) {
+async function getElectionValuesSlow({ electionDisplay }) {
   const inner = async function () {
     const electionHistory = await ElectionHistory.load(electionDisplay);
     const electionPrevious = electionHistory.electionPrevious;
 
-  
     const electionModel = new ElectionModel(electionHistory);
     const electionProjected = electionModel.electionProjected;
-    const pdToPartyToPVotes = electionModel.pdToPartyToPVotes;
-   
-    return { electionHistory, electionPrevious, electionProjected, pdToPartyToPVotes };
+
+    return {
+      electionHistory,
+      electionPrevious,
+      electionProjected,
+    };
   };
   return await Timer.logAsync(
-    "DataSlowProvider.getElectionValuesSlow",
+    'DataSlowProvider.getElectionValuesSlow',
     10_000,
-    inner
+    inner,
   );
 }
 
@@ -28,12 +30,11 @@ async function getValue(state, data) {
   if (!data) {
     return null;
   }
-  const {  electionDisplay } = data;
+  const { electionDisplay } = data;
 
-  const slowValues =
-    await getElectionValuesSlow({
-      electionDisplay,
-    });
+  const slowValues = await getElectionValuesSlow({
+    electionDisplay,
+  });
 
   return Object.assign({}, data, slowValues);
 }
@@ -48,9 +49,9 @@ export default function DataSlowProvider({ children, state }) {
         const value = await getValue(state, data);
         setValue(value);
       };
-      Timer.logAsync("DataSlowProvider.loadValue", 10_000, loadValue);
+      Timer.logAsync('DataSlowProvider.loadValue', 10_000, loadValue);
     },
-    [state, data]
+    [state, data],
   );
 
   return (

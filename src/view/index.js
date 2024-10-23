@@ -46,7 +46,7 @@ import AggregatedResultUtils from "./features/AggregatedResultView/AggregatedRes
 import AggregatedResultView from "./features/AggregatedResultView/AggregatedResultView.js";
 import AggregatedResultViewGroup from "./features/AggregatedResultView/AggregatedResultViewGroup.js";
 import BellwetherView from "./features/BellwetherView.js";
-import CumResultsView from "./features/CumResultsView.js";
+import CumResultsView from "./features/CumResultsView/CumResultsView.js";
 import CustomIconButton from "./features/CustomMenu/CustomIconButton.js";
 import CustomMenu from "./features/CustomMenu/CustomMenu.js";
 import ElectionMenuItemList from "./features/CustomMenu/ElectionMenuItemList.js";

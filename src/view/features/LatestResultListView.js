@@ -1,7 +1,7 @@
-import { Grid2, Stack } from "@mui/material";
-import { useDataContext } from "../../nonview/core/DataProvider";
-import { CumResultsColumnView } from "./CumResultsView";
-import { EntType, ProvinceUtils } from "../../nonview";
+import { Grid2, Stack } from '@mui/material';
+import { useDataContext } from '../../nonview/core/DataProvider';
+import CumResultsView from './CumResultsView/CumResultsView';
+import { EntType, ProvinceUtils } from '../../nonview';
 
 function getResultList({ allRegionIdx, electionDisplay, activeEntID }) {
   const resultIdx = electionDisplay.resultIdx;
@@ -41,7 +41,7 @@ export default function LatestResultListView() {
         {resultList.map(function (result) {
           return (
             <Grid2 key={result.entID}>
-              <CumResultsColumnView entID={result.entID} />
+              <CumResultsView mode="ColumnView" entID={result.entID} />
             </Grid2>
           );
         })}

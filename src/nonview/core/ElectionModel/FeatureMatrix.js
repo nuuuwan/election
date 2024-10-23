@@ -1,4 +1,4 @@
-import FeatureVector from "./FeatureVector";
+import FeatureVector from './FeatureVector';
 
 export default class FeatureMatrix {
   constructor(floatListList) {
@@ -21,7 +21,7 @@ export default class FeatureMatrix {
 
   map(callback) {
     return this.vectorList.map((vector, i) =>
-      callback(vector, i, this.vectorList)
+      callback(vector, i, this.vectorList),
     );
   }
 
@@ -29,7 +29,7 @@ export default class FeatureMatrix {
     return this.vectorList.reduce(
       (accumulator, vector, i) =>
         callback(accumulator, vector, i, this.vectorList),
-      initialValue
+      initialValue,
     );
   }
 
@@ -50,9 +50,9 @@ export default class FeatureMatrix {
         return FeatureVector.buildFromElectionAndParty(
           modelElection,
           partyID,
-          baseEntIDList
+          baseEntIDList,
         ).floatList;
-      })
+      }),
     );
   }
 
@@ -60,15 +60,15 @@ export default class FeatureMatrix {
     return new FeatureMatrix(
       featureMatrixList.reduce(function (matrix, featureMatrix) {
         return matrix.concat(featureMatrix.floatListList);
-      }, [])
+      }, []),
     );
   }
 
-  static buildFromElectionHistory(electionHistory, baseEntIDList) {
+  static buildFromElectionList(electionList, baseEntIDList) {
     return FeatureMatrix.concat(
-      electionHistory.electionList.map(function (election) {
+      electionList.map(function (election) {
         return FeatureMatrix.buildFromElection(election, baseEntIDList);
-      })
+      }),
     );
   }
 }

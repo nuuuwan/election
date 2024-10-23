@@ -1,20 +1,18 @@
-import FeatureMatrix from "./FeatureMatrix";
+import FeatureMatrix from './FeatureMatrix';
 
 export default class ElectionModelFeatureUtils {
   static getTrainingData(
-    electionHistory,
+    previousElectionList,
     releasedEntIDList,
-    nonReleasedEntIDList
+    nonReleasedEntIDList,
   ) {
-    const previousHistory = electionHistory.previousHistory;
-   
-    const XAll = FeatureMatrix.buildFromElectionHistory(
-      previousHistory,
-      releasedEntIDList
+    const XAll = FeatureMatrix.buildFromElectionList(
+      previousElectionList,
+      releasedEntIDList,
     );
-    const YAll = FeatureMatrix.buildFromElectionHistory(
-      previousHistory,
-      nonReleasedEntIDList
+    const YAll = FeatureMatrix.buildFromElectionList(
+      previousElectionList,
+      nonReleasedEntIDList,
     );
 
     return { XAll, YAll };

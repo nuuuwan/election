@@ -1,4 +1,4 @@
-import { MathX, PartyToVotes, Party, Summary, Result } from '../..';
+import { MathX, PartyToVotes, Party, Summary, Result, ArrayX } from '../..';
 
 export default class ElectionModelSimulationUtils {
   static simulateSummary(entID, lastElectionOfSameType) {
@@ -38,11 +38,11 @@ export default class ElectionModelSimulationUtils {
   }
 
   static simulateNonReleasedResultList(
-    electionHistory,
+    previousElectionList,
     nonReleasedEntIDList,
     pdToPartyToPVotes,
   ) {
-    const lastElectionOfSameType = electionHistory.electionPrevious;
+    const lastElectionOfSameType = ArrayX.last(previousElectionList);
     return nonReleasedEntIDList.map(function (entID) {
       return ElectionModelSimulationUtils.simulateResult(
         lastElectionOfSameType,
@@ -53,19 +53,17 @@ export default class ElectionModelSimulationUtils {
   }
 
   static simulateResultList(
-    electionHistory,
+    electionCurrent,
+    previousElectionList,
     nonReleasedEntIDList,
     pdToPartyToPVotes,
   ) {
     const nonReleasedResultList =
       ElectionModelSimulationUtils.simulateNonReleasedResultList(
-        electionHistory,
+        previousElectionList,
         nonReleasedEntIDList,
         pdToPartyToPVotes,
       );
-    return [
-      ...electionHistory.electionCurrent.pdResultList,
-      ...nonReleasedResultList,
-    ];
+    return [...electionCurrent.pdResultList, ...nonReleasedResultList];
   }
 }

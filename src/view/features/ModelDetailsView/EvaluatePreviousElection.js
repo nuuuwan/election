@@ -16,6 +16,7 @@ import EntView from '../../base/EntView';
 import ResultBarChart from '../../cumulative/ResultBarChart';
 import LabelledStat from '../../base/LabelledStat';
 import CustomAlert from '../../base/CustomAlert';
+import CustomTablePagination from '../../base/CustomTablePagination';
 
 function getCellContentList({ pdID, data }) {
   const { electionPrevious, electionProjectedPrevious } = data;
@@ -99,13 +100,13 @@ function EvaluateTableHead() {
   );
 }
 
-function EvaluateTable({ notReleasedPDIDList }) {
+function EvaluateTable({ pdIDList }) {
   return (
     <TableContainer>
       <Table>
         <EvaluateTableHead />
         <TableBody>
-          {notReleasedPDIDList.map(function (pdID) {
+          {pdIDList.map(function (pdID) {
             return <EvaluateTableRow key={pdID} pdID={pdID} />;
           })}
         </TableBody>
@@ -163,7 +164,12 @@ export default function EvaluatePreviousElection() {
 
       <EvaluatePreviousSummaryView />
 
-      <EvaluateTable notReleasedPDIDList={notReleasedPDIDList} />
+      <CustomTablePagination
+        dataList={notReleasedPDIDList}
+        renderTable={function (pdIDList) {
+          return <EvaluateTable pdIDList={pdIDList} />;
+        }}
+      />
     </Stack>
   );
 }

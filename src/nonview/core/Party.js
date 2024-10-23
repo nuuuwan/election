@@ -1,8 +1,8 @@
-import { POLITICAL_PARTY_TO_COLOR } from "..";
+import { POLITICAL_PARTY_TO_COLOR } from '..';
 
 export default class Party {
-  static OTHER = new Party("Other", "Other");
-  static ERROR = new Party("???", "???");
+  static OTHER = new Party('Other', 'Other');
+  static ERROR = new Party('???', '???');
   static NON_PARTY_ID_LIST = [Party.OTHER.id, Party.ERROR.id];
 
   constructor(id) {
@@ -15,12 +15,12 @@ export default class Party {
 
   get color() {
     if (this.id === Party.ERROR.id) {
-      return "lightgray";
+      return 'lightgray';
     }
     if (this.id === Party.OTHER.id) {
-      return "gray";
+      return 'gray';
     }
-    return POLITICAL_PARTY_TO_COLOR[this.id] || "gray";
+    return POLITICAL_PARTY_TO_COLOR[this.id] || 'lightgray';
   }
 
   get isNonParty() {
@@ -30,33 +30,33 @@ export default class Party {
   get emoji() {
     return (
       {
-        SJB: "🟢",
-        NPP: "🔴",
-        IND16: "🟠",
-        IND9: "🔵",
-        SLPP: "🟣",
-        SLCP: "🔵",
+        SJB: '🟢',
+        NPP: '🔴',
+        IND16: '🟠',
+        IND9: '🔵',
+        SLPP: '🟣',
+        SLCP: '🔵',
         // History
-        NDF: "🟢",
-        UNP: "🟢",
-        SLMP: "🟣",
-        UPFA: "🔵",
-        PA: "🔵",
-        SLFP: "🔵",
-        ACTC: "🟠",
-      }[this.id] || "⚪"
+        NDF: '🟢',
+        UNP: '🟢',
+        SLMP: '🟣',
+        UPFA: '🔵',
+        PA: '🔵',
+        SLFP: '🔵',
+        ACTC: '🟠',
+      }[this.id] || '⚪'
     );
   }
 
   get xTag() {
     return (
       {
-        SJB: "@SJBSriLanka",
-        NPP: "@NPPSLOfficial",
-        IND16: "@RW_SRILANKA",
-        SLPP: "@PodujanaParty",
-        SLCP: "@Dilith_J",
-      }[this.id] || "#" + this.id
+        SJB: '@SJBSriLanka',
+        NPP: '@NPPSLOfficial',
+        IND16: '@RW_SRILANKA',
+        SLPP: '@PodujanaParty',
+        SLCP: '@Dilith_J',
+      }[this.id] || '#' + this.id
     );
   }
 }

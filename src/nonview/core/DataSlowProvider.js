@@ -6,35 +6,85 @@ import ElectionProjectedWithError from './ElectionModel/ElectionProjectedWithErr
 
 const DataSlowContext = createContext();
 
-function getProjectedElections({
-  electionDisplay,
-  electionHistory,
-  electionPrevious,
-}) {
+function getElectionProjected(electionDisplay, electionHistory) {
+  if (electionHistory.length === 0) {
+    return electionDisplay;
+  }
   const electionModel = new ElectionModel(
     electionDisplay,
     electionHistory.previousElectionList,
   );
-  const electionProjected = electionModel.electionProjected;
+  return electionModel.electionProjected;
+}
 
-  const electionDisplayPrevious = electionPrevious.getSubsetElectionByEntIDList(
+function getElectionDisplayPrevious(electionDisplay, electionPrevious) {
+  if (!electionPrevious) {
+    return null;
+  }
+  return electionPrevious.getSubsetElectionByEntIDList(
     electionDisplay.baseEntIDList,
   );
+}
 
+function getElectionProjectedPrevious(
+  electionDisplayPrevious,
+  electionHistory,
+) {
+  if (!electionDisplayPrevious) {
+    return null;
+  }
   const electionModelPrevious = new ElectionModel(
     electionDisplayPrevious,
     electionHistory.previousHistory.previousElectionList,
   );
 
   const electionProjectedPrevious = electionModelPrevious.electionProjected;
+  return electionProjectedPrevious;
+}
 
-  const electionProjectedWithError =
-    ElectionProjectedWithError.getElectionProjectedWithError(
-      electionDisplay,
-      electionProjected,
-      electionPrevious,
-      electionProjectedPrevious,
-    );
+function getElectionProjectedWithError({
+  electionDisplay,
+  electionProjected,
+  electionPrevious,
+  electionProjectedPrevious,
+}) {
+  if (!electionProjected || !electionProjectedPrevious) {
+    return null;
+  }
+  return ElectionProjectedWithError.getElectionProjectedWithError({
+    electionDisplay,
+    electionProjected,
+    electionPrevious,
+    electionProjectedPrevious,
+  });
+}
+
+function getProjectedElections({
+  electionDisplay,
+  electionHistory,
+  electionPrevious,
+}) {
+  const electionProjected = getElectionProjected(
+    electionDisplay,
+    electionHistory,
+  );
+
+  const electionDisplayPrevious = getElectionDisplayPrevious(
+    electionDisplay,
+    electionPrevious,
+  );
+
+  const electionProjectedPrevious = getElectionProjectedPrevious(
+    electionDisplayPrevious,
+    electionHistory,
+  );
+
+  const electionProjectedWithError = getElectionProjectedWithError({
+    electionDisplay,
+    electionProjected,
+    electionPrevious,
+    electionProjectedPrevious,
+  });
 
   return {
     electionProjected,
@@ -44,7 +94,7 @@ function getProjectedElections({
   };
 }
 
-async function getElectionValuesSlow({ electionDisplay }) {
+async function getElectionValuesSlow({ electionDisplay, entIdx }) {
   const inner = async function () {
     const electionHistory = await ElectionHistory.load(electionDisplay);
     const electionPrevious = electionHistory.electionPrevious;
@@ -58,6 +108,7 @@ async function getElectionValuesSlow({ electionDisplay }) {
       electionDisplay,
       electionHistory,
       electionPrevious,
+      entIdx,
     });
 
     return {
@@ -80,11 +131,8 @@ async function getValue(state, data) {
   if (!data) {
     return null;
   }
-  const { electionDisplay } = data;
 
-  const slowValues = await getElectionValuesSlow({
-    electionDisplay,
-  });
+  const slowValues = await getElectionValuesSlow(data);
 
   return Object.assign({}, data, slowValues);
 }

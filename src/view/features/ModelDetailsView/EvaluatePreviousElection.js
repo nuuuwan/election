@@ -158,7 +158,15 @@ export default function EvaluatePreviousElection() {
   if (!data) {
     return <CustomLoadingProgress />;
   }
-  const { electionPrevious } = data;
+  const { electionPrevious, electionProjectedPrevious } = data;
+
+  if (!electionProjectedPrevious) {
+    return (
+      <Typography variant="h6">
+        {Translate('No history to build model for Previous Election.')}
+      </Typography>
+    );
+  }
 
   const notReleasedPDIDList = ElectionModelError.getNonReleasedPDIDList(data);
   return (

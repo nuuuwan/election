@@ -23,13 +23,17 @@ export default function SeatsHexMap() {
   if (!data) {
     return null;
   }
-  const { electionProjectedWithError, edIdx } = data;
-  if (!electionProjectedWithError) {
-    return null;
-  }
+  const {
+    electionProjectedWithError,
+    electionProjected,
+    electionDisplay,
+    edIdx,
+  } = data;
+  const election =
+    electionProjectedWithError || electionProjected || electionDisplay;
 
   const mapData = HexMapData.offsetData(HEXMAP_DATA_ED, '', [2, 0]);
-  const seats = Seats.fromElection(electionProjectedWithError);
+  const seats = Seats.fromElection(election);
   const customOverlayRenderer = getCustomOverlayRenderer(seats, edIdx);
 
   return (

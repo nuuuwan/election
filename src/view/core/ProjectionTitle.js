@@ -4,6 +4,7 @@ import { Format, Translate } from '../../nonview';
 import CustomAlert from '../base/CustomAlert';
 
 import { useDataContext } from '../../nonview/core/DataProvider';
+import { useDataSlowContext } from '../../nonview/core/DataSlowProvider';
 
 const ERROR_CONF = 0.9; // #HACK: Must be moved, once error is re-introduced!
 
@@ -35,6 +36,40 @@ export function ProjectionAlert() {
       </Typography>
     </CustomAlert>
   );
+}
+
+export function ProjectionErrorAlert() {
+  const data = useDataSlowContext();
+  if (!data) {
+    return null;
+  }
+  const { electionProjected, electionProjectedWithError } = data;
+
+  if (!electionProjected) {
+    return (
+      <CustomAlert severity="warning">
+        <Typography variant="body1">
+          {Translate(
+            'No historical data available to train the projection model.',
+          )}
+        </Typography>
+      </CustomAlert>
+    );
+  }
+
+  if (!electionProjectedWithError) {
+    return (
+      <CustomAlert severity="warning">
+        <Typography variant="body1">
+          {Translate(
+            "With only one past election, estimating the model's error is not feasible.",
+          )}
+        </Typography>
+      </CustomAlert>
+    );
+  }
+
+  return null;
 }
 
 export default function ProjectionTitle() {

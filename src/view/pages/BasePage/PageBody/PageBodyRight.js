@@ -1,12 +1,14 @@
-import { useDataContext } from "../../../../nonview/core/DataProvider";
+import { useDataContext } from '../../../../nonview/core/DataProvider';
 
-import CustomStack from "../../../core/CustomStack";
-import ElectionSmallTitle from "../../../core/ElectionSmallTitle";
-import ProjectionTitle, { ProjectionAlert } from "../../../core/ProjectionTitle";
-import ProjectionViewParliamentary from "../../../features/ProjectionView/ProjectionViewParliamentary";
-import ProjectionViewPresidential from "../../../features/ProjectionView/ProjectionViewPresidential";
-import {ProjectionModelInfoView} from "../../..";
-
+import CustomStack from '../../../core/CustomStack';
+import ElectionSmallTitle from '../../../core/ElectionSmallTitle';
+import ProjectionTitle, {
+  ProjectionAlert,
+  ProjectionErrorAlert,
+} from '../../../core/ProjectionTitle';
+import ProjectionViewParliamentary from '../../../features/ProjectionView/ProjectionViewParliamentary';
+import ProjectionViewPresidential from '../../../features/ProjectionView/ProjectionViewPresidential';
+import { ProjectionModelInfoView } from '../../..';
 
 function PageBodyRightTypeSpecific() {
   const data = useDataContext();
@@ -17,8 +19,6 @@ function PageBodyRightTypeSpecific() {
   return <ProjectionViewParliamentary />;
 }
 
-
-
 export default function PageBodyRight() {
   return (
     <CustomStack>
@@ -26,9 +26,9 @@ export default function PageBodyRight() {
       <ProjectionModelInfoView>
         <PageBodyRightTypeSpecific />
         <ElectionSmallTitle />
-        <ProjectionAlert/>      
+        <ProjectionErrorAlert />
+        <ProjectionAlert />
       </ProjectionModelInfoView>
-     
     </CustomStack>
   );
 }

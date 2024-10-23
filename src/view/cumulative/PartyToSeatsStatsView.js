@@ -8,8 +8,12 @@ export default function PartyToSeatsStatsView() {
   if (!data) {
     return null;
   }
-  const { electionProjectedWithError } = data;
-  const seats = Seats.fromElection(electionProjectedWithError);
+  const { electionProjectedWithError, electionDisplay, electionProjected } =
+    data;
+  const election =
+    electionProjectedWithError || electionProjected || electionDisplay;
+
+  const seats = Seats.fromElection(election);
   const entries = Object.entries(seats.getTotalPartyToSeats());
 
   return (

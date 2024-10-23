@@ -10,8 +10,12 @@ export default function ProjectionViewPresidential() {
   if (!data) {
     return null;
   }
-  const { electionProjectedWithError } = data;
-  const result = electionProjectedWithError.resultLK;
+  const { electionProjectedWithError, electionProjected, electionDisplay } =
+    data;
+
+  const election =
+    electionProjectedWithError || electionProjected || electionDisplay;
+  const result = election.resultLK;
   return (
     <>
       <PartyToVotesStatsView partyToVotes={result.partyToVotes} />

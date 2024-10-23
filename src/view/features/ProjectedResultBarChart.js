@@ -16,13 +16,13 @@ export default function ProjectedResultBarChart() {
   if (!data) {
     return <CustomLoadingProgress />;
   }
-  const { electionProjectedWithError } = data;
-
-  const resultLK = electionProjectedWithError.resultLK;
-
+  const { electionProjectedWithError, electionProjected, electionDisplay } =
+    data;
+  const election =
+    electionProjectedWithError || electionProjected || electionDisplay;
+  const resultLK = election.resultLK;
   const partyToPVotesSortedOthered =
     resultLK.partyToVotes.partyToPVotesSortedOthered;
-
   return (
     <SVGBarChart
       dataList={Object.entries(partyToPVotesSortedOthered)

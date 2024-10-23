@@ -1,13 +1,6 @@
-import {
-  PartyToSeatsStatsView,
-  SeatsHexMap,
-} from "../..";
-
+import { PartyToSeatsStatsView, SeatsHexMap } from '../..';
 
 export default function ProjectionViewParliamentary() {
-
-
-
   return (
     <>
       <PartyToSeatsStatsView />
@@ -15,4 +8,3 @@ export default function ProjectionViewParliamentary() {
     </>
   );
 }
-

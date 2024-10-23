@@ -153,12 +153,53 @@ function EvaluatePreviousSummaryView() {
   );
 }
 
+function GenericAlert() {
+  const data = useDataSlowContext();
+  if (!data) {
+    return <CustomLoadingProgress />;
+  }
+  const { electionPrevious } = data;
+
+  return (
+    <CustomAlert>
+      <Typography variant="body1">
+        {Translate(
+          'The following table compares what our model would have predicted for the %1 Election, compared to the actual results.',
+          [Translate(electionPrevious.title)],
+        )}
+      </Typography>
+    </CustomAlert>
+  );
+}
+
+function getNonReleasedPDIDList(data) {
+  const {
+    electionProjected,
+    electionDisplay,
+    electionPrevious,
+    electionProjectedPrevious,
+  } = data;
+  const electionModelError = new ElectionModelError(
+    electionPrevious,
+    electionProjectedPrevious,
+  );
+
+  return ElectionModelError.getNonReleasedPDIDList({
+    electionProjected,
+    electionDisplay,
+  }).sort(function (pdIDA, pdIDB) {
+    const errorA = electionModelError.getResultErrorInfo(pdIDA).meanL1Error;
+    const errorB = electionModelError.getResultErrorInfo(pdIDB).meanL1Error;
+    return errorB - errorA;
+  });
+}
+
 export default function EvaluatePreviousElection() {
   const data = useDataSlowContext();
   if (!data) {
     return <CustomLoadingProgress />;
   }
-  const { electionPrevious, electionProjectedPrevious } = data;
+  const { electionProjectedPrevious } = data;
 
   if (!electionProjectedPrevious) {
     return (
@@ -168,20 +209,12 @@ export default function EvaluatePreviousElection() {
     );
   }
 
-  const notReleasedPDIDList = ElectionModelError.getNonReleasedPDIDList(data);
+  const notReleasedPDIDList = getNonReleasedPDIDList(data);
+
   return (
     <Stack direction="column" gap={1}>
-      <CustomAlert>
-        <Typography variant="body1">
-          {Translate(
-            'The following table compares what our model would have predicted for the %1 Election, compared to the actual results.',
-            [Translate(electionPrevious.title)],
-          )}
-        </Typography>
-      </CustomAlert>
-
+      <GenericAlert />
       <EvaluatePreviousSummaryView />
-
       <CustomTablePagination
         dataList={notReleasedPDIDList}
         renderTable={function (pdIDList) {

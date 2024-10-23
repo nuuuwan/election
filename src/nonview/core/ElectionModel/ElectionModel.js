@@ -8,12 +8,13 @@ export default class ElectionModel {
   constructor(electionCurrent, previousElectionList) {
     this.electionCurrent = electionCurrent;
     this.previousElectionList = previousElectionList;
+
     this.pdToPartyToPVotes = null;
     this.electionProjected = null;
-    this.__load();
+    this.__build();
   }
 
-  __load() {
+  __build() {
     const pastElectionList = this.previousElectionList;
     if (pastElectionList.length === 0) {
       return this.electionCurrent;

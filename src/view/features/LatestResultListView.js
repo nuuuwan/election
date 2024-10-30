@@ -1,28 +1,20 @@
 import { Grid2, Stack } from '@mui/material';
 import { useDataContext } from '../../nonview/core/DataProvider';
 import CumResultsView from './CumResultsView/CumResultsView';
-import { EntType, ProvinceUtils } from '../../nonview';
+import { ProvinceUtils } from '../../nonview';
 
 function getResultList({ allRegionIdx, electionDisplay, activeEntID }) {
   const resultIdx = electionDisplay.resultIdx;
 
   const ent = allRegionIdx[activeEntID];
 
-  let resultList;
   const resultLK = resultIdx.LK;
-  if (electionDisplay.baseEntType === EntType.PD) {
-    const resultPD = electionDisplay.resultIdx[activeEntID];
-    const resultED = resultIdx[ent.d.ed_id];
-    const resultProvince = resultIdx[ProvinceUtils.getProvinceIDForPDEnt(ent)];
-    resultList = [resultPD, resultED, resultProvince, resultLK];
-  } else if (electionDisplay.baseEntType === EntType.ED) {
-    const resultED = resultIdx[activeEntID];
-    const resultProvince =
-      resultIdx[ProvinceUtils.getProvinceIDForEDID(activeEntID)];
-    resultList = [resultED, resultProvince, resultLK];
-  }
 
-  return resultList;
+  const resultPD = electionDisplay.resultIdx[activeEntID];
+  const resultED = resultIdx[ent.d.ed_id];
+  const resultProvince = resultIdx[ProvinceUtils.getProvinceIDForPDEnt(ent)];
+
+  return [resultPD, resultED, resultProvince, resultLK];
 }
 
 export default function LatestResultListView() {

@@ -17,6 +17,7 @@ export default function RejectedView() {
       <GenericScatterChart
         getValue={(result) => result.summary.pRejected}
         formatStat={Format.percentFixed}
+        idPrefix="rejected"
       />
     </Stack>
   );

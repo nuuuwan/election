@@ -72,7 +72,11 @@ function getGenericAxis(election, formatStatInner) {
   ];
 }
 
-export default function GenericScatterChart({ getValue, formatStat }) {
+export default function GenericScatterChart({
+  getValue,
+  formatStat,
+  idPrefix,
+}) {
   const data = useDataSlowContext();
   if (!data) {
     return null;
@@ -93,7 +97,7 @@ export default function GenericScatterChart({ getValue, formatStat }) {
   const series = getSeries(baseData, valueFormatter);
 
   return (
-    <WaterMark id="generic-scatter-chart">
+    <WaterMark id={'generic-scatter-chart' + idPrefix}>
       <ScatterChart
         xAxis={getGenericAxis(electionPrevious, formatStatInner)}
         yAxis={getGenericAxis(electionDisplay, formatStatInner)}

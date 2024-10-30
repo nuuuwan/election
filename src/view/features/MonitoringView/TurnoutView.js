@@ -17,6 +17,7 @@ export default function TurnoutView() {
       <GenericScatterChart
         getValue={(result) => result.summary.pTurnout}
         formatStat={Format.percentFixed}
+        idPrefix="turnout"
       />
     </Stack>
   );

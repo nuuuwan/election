@@ -17,6 +17,7 @@ export default function ElectorsView() {
       <GenericScatterChart
         getValue={(result) => result.summary.electors}
         formatStat={Format.intHumanize}
+        idPrefix="electors"
       />
     </Stack>
   );

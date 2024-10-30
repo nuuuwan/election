@@ -1,4 +1,4 @@
-import { TabSelector } from '../..';
+import { TabSelector, WaterMark } from '../..';
 
 import AggregatedResultUtils from './AggregatedResultUtils';
 import AggregatedResultViewGroup from './AggregatedResultViewGroup';
@@ -19,10 +19,12 @@ export default function AggregatedResultView() {
     ]) {
       return [
         group,
-        <AggregatedResultViewGroup
+        <WaterMark
           key={group}
-          entIDList={entIDListGetter(data)}
-        />,
+          id={'aggregate-result-table-' + group.toLowerCase()}
+        >
+          <AggregatedResultViewGroup entIDList={entIDListGetter(data)} />
+        </WaterMark>,
       ];
     }),
   );

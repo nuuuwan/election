@@ -8,7 +8,7 @@ import ProjectionTitle, {
 } from '../../../core/ProjectionTitle';
 import ProjectionViewParliamentary from '../../../features/ProjectionView/ProjectionViewParliamentary';
 import ProjectionViewPresidential from '../../../features/ProjectionView/ProjectionViewPresidential';
-import { ProjectionModelInfoView } from '../../..';
+import { ProjectionModelInfoView, WaterMark } from '../../..';
 
 function PageBodyRightTypeSpecific() {
   const data = useDataContext();
@@ -24,8 +24,9 @@ export default function PageBodyRight() {
     <CustomStack>
       <ProjectionTitle />
       <ProjectionModelInfoView>
-        <PageBodyRightTypeSpecific />
-
+        <WaterMark id="projection-details">
+          <PageBodyRightTypeSpecific />
+        </WaterMark>
         <ProjectionErrorAlert />
         <ProjectionAlert />
       </ProjectionModelInfoView>

@@ -1,13 +1,13 @@
-import { Translate, Format, Color, Party } from "../../../nonview";
-import { CustomAlert } from "../..";
-import { ScatterChart } from "@mui/x-charts";
-import { useDataSlowContext } from "../../../nonview/core/DataSlowProvider";
+import { Translate, Format, Color, Party } from '../../../nonview';
+import { CustomAlert, WaterMark } from '../..';
+import { ScatterChart } from '@mui/x-charts';
+import { useDataSlowContext } from '../../../nonview/core/DataSlowProvider';
 
 function getBaseData(data, getValue) {
   const { electionDisplay, electionPrevious, allRegionIdx } = data;
   return electionDisplay.baseResultList
     .filter(function (result) {
-      return !result.entID.endsWith("P") && allRegionIdx[result.entID];
+      return !result.entID.endsWith('P') && allRegionIdx[result.entID];
     })
     .map(function (result) {
       const ent = allRegionIdx[result.entID];
@@ -31,11 +31,11 @@ function getSeries(baseData, valueFormatter) {
       }
       idx[winningPartyID].push(datum);
       return idx;
-    }, {})
+    }, {}),
   ).map(function (data) {
     const color = Color.getColorWithAlpha(
       Party.fromID(data[0].winningPartyID).color,
-      0.5
+      0.5,
     );
     return { data, color, valueFormatter };
   });
@@ -44,7 +44,7 @@ function getSeries(baseData, valueFormatter) {
 function getFormatStatInner(formatStat) {
   return function (x) {
     if (!x) {
-      return "N/A";
+      return 'N/A';
     }
     return formatStat(x);
   };
@@ -53,11 +53,11 @@ function getFormatStatInner(formatStat) {
 function getValueFormatter(formatStatInner) {
   return function (datum) {
     const percentChange = (datum.y - datum.x) / datum.x;
-    const arrow = datum.y > datum.x ? "↑" : "↓";
+    const arrow = datum.y > datum.x ? '↑' : '↓';
     return `${datum.label} (${datum.winningPartyID}) ${formatStatInner(
-      datum.x
+      datum.x,
     )} ${arrow} ${formatStatInner(datum.y)} (${Format.percentSigned(
-      percentChange
+      percentChange,
     )})`;
   };
 }
@@ -65,7 +65,7 @@ function getValueFormatter(formatStatInner) {
 function getGenericAxis(election, formatStatInner) {
   return [
     {
-      scaleType: "linear",
+      scaleType: 'linear',
       label: election.year,
       valueFormatter: formatStatInner,
     },
@@ -82,7 +82,7 @@ export default function GenericScatterChart({ getValue, formatStat }) {
   if (!electionPrevious) {
     return (
       <CustomAlert severity="warning">
-        {Translate("No previous election data available")}
+        {Translate('No previous election data available')}
       </CustomAlert>
     );
   }
@@ -93,13 +93,15 @@ export default function GenericScatterChart({ getValue, formatStat }) {
   const series = getSeries(baseData, valueFormatter);
 
   return (
-    <ScatterChart
-      xAxis={getGenericAxis(electionPrevious, formatStatInner)}
-      yAxis={getGenericAxis(electionDisplay, formatStatInner)}
-      series={series}
-      width={600}
-      height={600}
-      grid={{ vertical: true, horizontal: true }}
-    />
+    <WaterMark id="generic-scatter-chart">
+      <ScatterChart
+        xAxis={getGenericAxis(electionPrevious, formatStatInner)}
+        yAxis={getGenericAxis(electionDisplay, formatStatInner)}
+        series={series}
+        width={600}
+        height={600}
+        grid={{ vertical: true, horizontal: true }}
+      />
+    </WaterMark>
   );
 }

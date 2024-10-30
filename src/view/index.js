@@ -38,6 +38,7 @@ import ResultsReleasedTitlePercent from "./core/ResultsReleasedTitlePercent.js";
 import ResultsReleasedView from "./core/ResultsReleasedView.js";
 import TestingAlert from "./core/TestingAlert.js";
 import VoteLeadView from "./core/VoteLeadView.js";
+import WaterMark from "./core/WaterMark.js";
 import HistoryView from "./cumulative/HistoryView.js";
 import PartyToSeatsStatsView from "./cumulative/PartyToSeatsStatsView.js";
 import PartyToVotesStatsView from "./cumulative/PartyToVotesStatsView.js";
@@ -146,6 +147,7 @@ export {
   ResultsReleasedView,
   TestingAlert,
   VoteLeadView,
+  WaterMark,
   HistoryView,
   PartyToSeatsStatsView,
   PartyToVotesStatsView,

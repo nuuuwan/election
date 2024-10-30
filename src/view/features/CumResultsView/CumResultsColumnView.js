@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import { ElectionSmallTitle } from '../../../view';
 
 export default function CumResultsColumnView({ contentList }) {
   return (
@@ -19,7 +18,6 @@ export default function CumResultsColumnView({ contentList }) {
           </Box>
         );
       })}
-      <ElectionSmallTitle />
     </Box>
   );
 }

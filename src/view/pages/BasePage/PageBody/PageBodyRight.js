@@ -1,7 +1,7 @@
 import { useDataContext } from '../../../../nonview/core/DataProvider';
 
 import CustomStack from '../../../core/CustomStack';
-import ElectionSmallTitle from '../../../core/ElectionSmallTitle';
+
 import ProjectionTitle, {
   ProjectionAlert,
   ProjectionErrorAlert,
@@ -25,7 +25,7 @@ export default function PageBodyRight() {
       <ProjectionTitle />
       <ProjectionModelInfoView>
         <PageBodyRightTypeSpecific />
-        <ElectionSmallTitle />
+
         <ProjectionErrorAlert />
         <ProjectionAlert />
       </ProjectionModelInfoView>

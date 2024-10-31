@@ -1,7 +1,8 @@
 import { Translate } from '../..';
 
 export default class ElectionBase {
-  static URL_BASE = window.location.origin + '/data/elections';
+  static URL_BASE = // eslint-disable-next-line no-undef
+    window.location.origin + process.env.PUBLIC_URL + '/data/elections';
 
   constructor(electionType, date, baseEntType) {
     this.electionType = electionType;

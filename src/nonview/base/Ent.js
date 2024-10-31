@@ -1,6 +1,7 @@
 import EntType from './EntType.js';
 import WWW from './WWW.js';
-const URL_BASE = window.location.origin + '/data/ents';
+// eslint-disable-next-line no-undef
+const URL_BASE = window.location.origin + process.env.PUBLIC_URL + '/data/ents';
 const ID_KEY = 'id';
 
 export default class Ent {

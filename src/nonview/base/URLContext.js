@@ -6,7 +6,7 @@ export default class URLContext {
   }
 
   static setURL(url) {
-    window.history.pushState("", "", url);
+    window.history.pushState('', '', url);
   }
 
   // convertors (context <-> URL)
@@ -14,23 +14,23 @@ export default class URLContext {
   static contextToURL(context) {
     const parameterStr = Object.entries(context)
       .map(function (token) {
-        return token.join("=");
+        return token.join('=');
       })
-      .join("&");
-      
+      .join('&');
+
     // eslint-disable-next-line no-undef
-    const urlBase = window.location.origin + process.env.PUBLIC_URL; 
-    return urlBase + "?" + parameterStr;
+    const urlBase = window.location.origin + process.env.PUBLIC_URL;
+    return urlBase + '?' + parameterStr;
   }
 
   static urlToContext(url) {
-    const urlTokens = url.split("?");
-    const parameterStr = urlTokens.length > 1 ? urlTokens[1] : "";
+    const urlTokens = url.split('?');
+    const parameterStr = urlTokens.length > 1 ? urlTokens[1] : '';
 
     return Object.fromEntries(
-      parameterStr.split("&").map(function (token) {
-        return token.split("=");
-      })
+      parameterStr.split('&').map(function (token) {
+        return token.replaceAll('%20', ' ').split('=');
+      }),
     );
   }
 

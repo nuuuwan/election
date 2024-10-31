@@ -1,5 +1,5 @@
-import URLContext from "../base/URLContext";
-import ELECTION_LIST_TUPLES from "./Election/ELECTION_LIST_TUPLES.js";
+import URLContext from '../base/URLContext';
+import ELECTION_LIST_TUPLES from './Election/ELECTION_LIST_TUPLES.js';
 export default class CustomURLContext {
   static getDefaultState() {
     const n = ELECTION_LIST_TUPLES.length;
@@ -10,7 +10,10 @@ export default class CustomURLContext {
       electionType,
       date,
       nResultsDisplay,
-      lang: "en",
+      lang: 'en',
+      groupAggregatedResults: 'Electoral Districts',
+      groupMonitoring: 'Turnout',
+      groupModelInsights: 'Projected Result Details',
     };
   }
 
@@ -25,15 +28,15 @@ export default class CustomURLContext {
 
   static set(data) {
     URLContext.set(data);
-    const year = data.date.split("-")[0];
+    const year = data.date.split('-')[0];
     const electionType = data.electionType;
     const electionTypeTag =
-      electionType === "Presidential" ? "PresPoll" : "GenElec";
+      electionType === 'Presidential' ? 'PresPoll' : 'GenElec';
     let newTitle = `#${electionTypeTag}SL${year}`;
     if (data.nResultsDisplay) {
       newTitle += ` (${data.nResultsDisplay})`;
     } else {
-      newTitle += " - Await...";
+      newTitle += ' - Await...';
     }
     window.document.title = newTitle;
   }

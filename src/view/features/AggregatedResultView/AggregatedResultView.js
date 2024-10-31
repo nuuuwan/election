@@ -12,6 +12,8 @@ export default function AggregatedResultView() {
   const groupToEntIDListGetter =
     AggregatedResultUtils.getGroupToEntIDListGetter(data);
 
+  const { groupAggregatedResults } = data;
+
   const valueIdx = Object.fromEntries(
     Object.entries(groupToEntIDListGetter).map(function ([
       group,
@@ -29,5 +31,10 @@ export default function AggregatedResultView() {
     }),
   );
 
-  return <TabSelector valueIdx={valueIdx} />;
+  return (
+    <TabSelector
+      valueIdx={valueIdx}
+      initSelectedValue={groupAggregatedResults}
+    />
+  );
 }

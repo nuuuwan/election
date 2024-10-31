@@ -1,11 +1,31 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   DataProvider,
   DataSlowProvider,
   CustomURLContext,
-} from "../../../nonview";
-import BasePageView from "./BasePageView";
-import BasePageHandlerProvider from "./BasePageHandlerProvider";
+} from '../../../nonview';
+import BasePageView from './BasePageView';
+import BasePageHandlerProvider from './BasePageHandlerProvider';
+
+function getGroupHandlers(updateState) {
+  const setGroupAggregatedResults = function (groupAggregatedResults) {
+    updateState({ groupAggregatedResults });
+  };
+
+  const setGroupMonitoring = function (groupMonitoring) {
+    updateState({ groupMonitoring });
+  };
+
+  const setGroupModelInsights = function (groupModelInsights) {
+    updateState({ groupModelInsights });
+  };
+
+  return {
+    setGroupAggregatedResults,
+    setGroupMonitoring,
+    setGroupModelInsights,
+  };
+}
 
 function getHandlers(updateState) {
   const setElection = function (election0) {
@@ -37,16 +57,24 @@ function getHandlers(updateState) {
 export default function BasePage() {
   const [state, setState] = useState(CustomURLContext.get());
 
+  console.debug(state);
+
   const updateState = function (newState) {
     const newState0 = Object.assign({}, state, newState);
     CustomURLContext.set(newState0);
     setState(newState0);
   };
 
+  const handlers = Object.assign(
+    {},
+    getHandlers(updateState),
+    getGroupHandlers(updateState),
+  );
+
   return (
     <DataProvider state={state}>
       <DataSlowProvider state={state}>
-        <BasePageHandlerProvider handlers={getHandlers(updateState)}>
+        <BasePageHandlerProvider handlers={handlers}>
           <BasePageView />
         </BasePageHandlerProvider>
       </DataSlowProvider>

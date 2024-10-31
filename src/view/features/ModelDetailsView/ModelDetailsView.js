@@ -10,7 +10,7 @@ export default function ModelDetailsView() {
   if (!data) {
     return <CustomLoadingProgress />;
   }
-  const { electionProjected, electionDisplay } = data;
+  const { electionProjected, electionDisplay, groupModelInsights } = data;
   if (!electionProjected) {
     return (
       <CustomAlert severity="warning">
@@ -41,6 +41,7 @@ export default function ModelDetailsView() {
         'Evaluate Previous Election': <EvaluatePreviousElection />,
         'Projected Result Details': <ProjectedResultDetailsView />,
       }}
+      initSelectedValue={groupModelInsights}
     />
   );
 }

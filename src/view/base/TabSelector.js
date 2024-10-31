@@ -29,7 +29,7 @@ export default function TabSelector({ valueIdx, initSelectedValue, setGroup }) {
             <Tab
               key={iValue}
               value={value}
-              label={Translate(value)}
+              label={Translate(value.replaceAll('_', ' '))}
               onClick={onClick}
             />
           );

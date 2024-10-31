@@ -12,10 +12,10 @@ export default class CustomURLContext {
       nResultsDisplay,
       activeEntID: '',
       lang: 'en',
-      groupBelowTheFold: 'Aggregated Results',
-      groupAggregatedResults: 'Electoral Districts',
+      groupBelowTheFold: 'Aggregated_Results',
+      groupAggregatedResults: 'Provinces',
       groupMonitoring: 'Turnout',
-      groupModelInsights: 'Projected Result Details',
+      groupModelInsights: 'Projected_Result_Details',
     };
   }
 

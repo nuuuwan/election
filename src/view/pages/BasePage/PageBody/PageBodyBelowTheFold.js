@@ -18,10 +18,9 @@ export default function PageBodyBelowTheFold() {
   return (
     <TabSelector
       valueIdx={{
-        'Aggregated Results': <AggregatedResultView />,
+        Aggregated_Results: <AggregatedResultView />,
         Monitoring: <MonitoringView />,
-        'Model Insights': <ModelDetailsView />,
-
+        Model_Insights: <ModelDetailsView />,
         Disclaimers: <DisclaimerView />,
       }}
       initSelectedValue={groupBelowTheFold}

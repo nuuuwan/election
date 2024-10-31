@@ -1,4 +1,4 @@
-import { Bellwether } from "../../../nonview";
+import { Bellwether } from '../../../nonview';
 
 export default class AggregatedResultUtils {
   static getLatestEntIDList(data) {
@@ -28,13 +28,13 @@ export default class AggregatedResultUtils {
     const infoList = Bellwether.getBestBellwetherInfoList(
       electionHistory,
       electionDisplay,
-      entIdx
+      entIdx,
     );
 
     return infoList
       .filter(function (info) {
         return (
-          info.error < 0.1 && info.nSame > info.n * 0.5 && info.entID !== "LK"
+          info.error < 0.1 && info.nSame > info.n * 0.5 && info.entID !== 'LK'
         );
       })
       .slice(0, 10)
@@ -45,8 +45,8 @@ export default class AggregatedResultUtils {
     const me = AggregatedResultUtils;
     return {
       Provinces: me.getProvinceEntIDList,
-      "Electoral Districts": me.getElectoralDistrictEntIDList,
-      "Latest Results": me.getLatestEntIDList,
+      Electoral_Districts: me.getElectoralDistrictEntIDList,
+      Latest_Results: me.getLatestEntIDList,
       Ethnicity: me.getEthnicityEntIDList,
       Bellwethers: me.getBellwetherEntIDList,
     };

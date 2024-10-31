@@ -29,7 +29,7 @@ export default class URLContext {
 
     return Object.fromEntries(
       parameterStr.split('&').map(function (token) {
-        return token.replaceAll('%20', ' ').split('=');
+        return token.split('=');
       }),
     );
   }

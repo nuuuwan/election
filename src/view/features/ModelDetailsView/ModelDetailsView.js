@@ -47,8 +47,8 @@ export default function ModelDetailsView() {
   return (
     <TabSelector
       valueIdx={{
-        'Evaluate Previous Election': <EvaluatePreviousElection />,
-        'Projected Result Details': <ProjectedResultDetailsView />,
+        Evaluate_Previous_Election: <EvaluatePreviousElection />,
+        Projected_Result_Details: <ProjectedResultDetailsView />,
       }}
       initSelectedValue={groupModelInsights}
       setGroup={setGroupModelInsights}

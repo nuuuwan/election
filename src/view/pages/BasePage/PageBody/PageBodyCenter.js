@@ -1,4 +1,4 @@
-import { WaterMark } from '../../..';
+import { ExternalMedia } from '../../..';
 import HexagonClickAlert from '../../../core/HexagonClickAlert';
 import ResultsReleasedTitleNumber from '../../../core/ResultsReleasedTitleNumber';
 import HexMapView from '../../../features/HexMapView/HexMapView';
@@ -6,10 +6,10 @@ import HexMapView from '../../../features/HexMapView/HexMapView';
 export default function PageBodyCenter() {
   return (
     <>
-      <WaterMark id="hexmap">
+      <ExternalMedia id="hexmap">
         <ResultsReleasedTitleNumber />
         <HexMapView />
-      </WaterMark>
+      </ExternalMedia>
 
       <HexagonClickAlert />
     </>

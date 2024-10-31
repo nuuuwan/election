@@ -1,5 +1,5 @@
 import { Translate, Format, Color, Party } from '../../../nonview';
-import { CustomAlert, WaterMark } from '../..';
+import { CustomAlert, ExternalMedia } from '../..';
 import { ScatterChart } from '@mui/x-charts';
 import { useDataSlowContext } from '../../../nonview/core/DataSlowProvider';
 
@@ -97,7 +97,7 @@ export default function GenericScatterChart({
   const series = getSeries(baseData, valueFormatter);
 
   return (
-    <WaterMark id={'generic-scatter-chart' + idPrefix}>
+    <ExternalMedia id={'generic-scatter-chart' + idPrefix}>
       <ScatterChart
         xAxis={getGenericAxis(electionPrevious, formatStatInner)}
         yAxis={getGenericAxis(electionDisplay, formatStatInner)}
@@ -106,6 +106,6 @@ export default function GenericScatterChart({
         height={600}
         grid={{ vertical: true, horizontal: true }}
       />
-    </WaterMark>
+    </ExternalMedia>
   );
 }

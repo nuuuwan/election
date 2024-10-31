@@ -2,7 +2,7 @@ import { Grid2, Stack } from '@mui/material';
 import { useDataContext } from '../../nonview/core/DataProvider';
 import CumResultsView from './CumResultsView/CumResultsView';
 import { ProvinceUtils } from '../../nonview';
-import { WaterMark } from '../../view';
+import { ExternalMedia } from '../../view';
 
 function getResultsIdx({ allRegionIdx, electionDisplay, activeEntID }) {
   const resultIdx = electionDisplay.resultIdx;
@@ -39,9 +39,9 @@ export default function LatestResultListView() {
         {Object.entries(resultsIdx).map(function ([resultType, result]) {
           return (
             <Grid2 key={result.entID}>
-              <WaterMark id={'latest-result-' + resultType}>
+              <ExternalMedia id={'latest-result-' + resultType}>
                 <CumResultsView mode="ColumnView" entID={result.entID} />
-              </WaterMark>
+              </ExternalMedia>
             </Grid2>
           );
         })}

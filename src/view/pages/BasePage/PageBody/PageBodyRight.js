@@ -9,7 +9,7 @@ import ProjectionViewPresidential from '../../../features/ProjectionView/Project
 import {
   CustomLoadingProgress,
   ProjectionModelInfoView,
-  WaterMark,
+  ExternalMedia,
 } from '../../..';
 import { useDataSlowContext } from '../../../../nonview/core/DataSlowProvider';
 
@@ -30,9 +30,9 @@ export default function PageBodyRight() {
     <CustomStack>
       <ProjectionTitle />
       <ProjectionModelInfoView>
-        <WaterMark id="projection-details">
+        <ExternalMedia id="projection-details">
           <PageBodyRightTypeSpecific />
-        </WaterMark>
+        </ExternalMedia>
         <ProjectionErrorAlert />
         <ProjectionAlert />
       </ProjectionModelInfoView>

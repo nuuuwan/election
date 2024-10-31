@@ -1,4 +1,4 @@
-import { TabSelector, WaterMark } from '../..';
+import { TabSelector, ExternalMedia } from '../..';
 
 import AggregatedResultUtils from './AggregatedResultUtils';
 import AggregatedResultViewGroup from './AggregatedResultViewGroup';
@@ -24,12 +24,12 @@ export default function AggregatedResultView() {
     ]) {
       return [
         group,
-        <WaterMark
+        <ExternalMedia
           key={group}
-          id={'aggregate-result-table-' + group.toLowerCase()}
+          id={'aggregated-results-table-' + group.toLowerCase()}
         >
           <AggregatedResultViewGroup entIDList={entIDListGetter(data)} />
-        </WaterMark>,
+        </ExternalMedia>,
       ];
     }),
   );

@@ -10,6 +10,7 @@ export default class CustomURLContext {
       electionType,
       date,
       nResultsDisplay,
+      activeEntID: '',
       lang: 'en',
       groupBelowTheFold: 'Aggregated Results',
       groupAggregatedResults: 'Electoral Districts',

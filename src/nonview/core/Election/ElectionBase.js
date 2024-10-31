@@ -1,8 +1,7 @@
-import { Translate } from "../..";
+import { Translate } from '../..';
 
 export default class ElectionBase {
-  static URL_BASE =
-    "https://raw.githubusercontent.com/nuuuwan/gig-data/master/gig2_custom_ec_only";
+  static URL_BASE = '/data/elections';
 
   constructor(electionType, date, baseEntType) {
     this.electionType = electionType;
@@ -21,18 +20,18 @@ export default class ElectionBase {
   }
 
   get isPresidential() {
-    return this.electionType === "Presidential";
+    return this.electionType === 'Presidential';
   }
 
   get electionTypeTitle() {
     if (this.isPresidential) {
-      return "Presidential";
+      return 'Presidential';
     }
-    return "Parliamentary";
+    return 'Parliamentary';
   }
 
   get title() {
-    return this.year + " " + Translate(this.electionTypeTitle);
+    return this.year + ' ' + Translate(this.electionTypeTitle);
   }
 
   get year() {
@@ -40,10 +39,10 @@ export default class ElectionBase {
   }
 
   get electionTypeHashTag() {
-    if (this.electionType === "Presidential") {
-      return "PresPollSL";
+    if (this.electionType === 'Presidential') {
+      return 'PresPollSL';
     }
-    return "GenElecSL";
+    return 'GenElecSL';
   }
 
   get hashTag() {
@@ -52,29 +51,29 @@ export default class ElectionBase {
 
   get hashTagList() {
     return [
-      "🇱🇰 ",
+      '🇱🇰 ',
       this.hashTag,
-      "#SriLanka",
-      "#LKA",
-      "#SriLankaElections",
-      "#Election" + this.year,
-      "#PresidentialElection" + this.year,
+      '#SriLanka',
+      '#LKA',
+      '#SriLankaElections',
+      '#Election' + this.year,
+      '#PresidentialElection' + this.year,
     ];
   }
 
   get urlData() {
     return (
       ElectionBase.URL_BASE +
-      "/government-elections-" +
+      '/government-elections-' +
       this.electionType.toLowerCase() +
-      ".regions-ec." +
+      '.regions-ec.' +
       this.year +
-      ".tsv"
+      '.tsv'
     );
   }
 
   get isFuture() {
-    const DATE_FUTURE = "2024-10-01";
+    const DATE_FUTURE = '2024-10-01';
     return this.date.localeCompare(DATE_FUTURE) > 0;
   }
 
@@ -84,7 +83,7 @@ export default class ElectionBase {
 
   get color() {
     if (!this.resultIdx) {
-      return "gray";
+      return 'gray';
     }
     return this.resultLK.color;
   }

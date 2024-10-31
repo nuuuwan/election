@@ -1,30 +1,30 @@
-import EntType from "./EntType.js";
-import WWW from "./WWW.js";
-const URL_BASE = "https://raw.githubusercontent.com/nuuuwan/gig2/data";
-const ID_KEY = "id";
+import EntType from './EntType.js';
+import WWW from './WWW.js';
+const URL_BASE = '/data/ents';
+const ID_KEY = 'id';
 
 export default class Ent {
   constructor(d) {
-    this.name = d.name.replace("Postal Votes ", "Postal ");
+    this.name = d.name.replace('Postal Votes ', 'Postal ');
     this.id = d.id;
     this.centroid = d.centroid;
     this.d = d;
   }
 
   get hashtag() {
-    return "#" + this.name.replaceAll(" ", "");
+    return '#' + this.name.replaceAll(' ', '');
   }
 
   get entType() {
-    if (this.id === "NationalList") {
+    if (this.id === 'NationalList') {
       return EntType.COUNTRY;
     }
     return EntType.fromID(this.id);
   }
 
   static async listFromType(entType) {
-    const url = `${URL_BASE}/${entType.name}.latest.basic.tsv`;
-    const timeStamp = "any";
+    const url = `${URL_BASE}/${entType.nameForData}.tsv`;
+    const timeStamp = 'any';
     return (await WWW.tsv(url, timeStamp)).map(function (d) {
       return new Ent(d);
     });
@@ -39,7 +39,7 @@ export default class Ent {
   }
 
   static async fromID(entID) {
-    if (entID === "LK") {
+    if (entID === 'LK') {
       return Ent.LK;
     }
 
@@ -57,5 +57,5 @@ export default class Ent {
     return ent;
   }
 
-  static LK = new Ent({ id: "LK", name: "Sri Lanka" });
+  static LK = new Ent({ id: 'LK', name: 'Sri Lanka' });
 }

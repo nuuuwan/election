@@ -11,6 +11,7 @@ export default class CustomURLContext {
       date,
       nResultsDisplay,
       lang: 'en',
+      groupBelowTheFold: 'Aggregated Results',
       groupAggregatedResults: 'Electoral Districts',
       groupMonitoring: 'Turnout',
       groupModelInsights: 'Projected Result Details',

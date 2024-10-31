@@ -5,17 +5,27 @@ import {
   ModelDetailsView,
   TabSelector,
 } from '../../../';
+import { useDataContext } from '../../../../nonview/core/DataProvider';
+import { useBasePageHandlerContext } from '../BasePageHandlerProvider';
 
 export default function PageBodyBelowTheFold() {
+  const data = useDataContext();
+  const handlers = useBasePageHandlerContext();
+
+  const { groupBelowTheFold } = data;
+  const { setGroupBelowTheFold } = handlers;
+
   return (
     <TabSelector
       valueIdx={{
-        'aggregated results': <AggregatedResultView />,
-        monitoring: <MonitoringView />,
-        'model insights': <ModelDetailsView />,
+        'Aggregated Results': <AggregatedResultView />,
+        Monitoring: <MonitoringView />,
+        'Model Insights': <ModelDetailsView />,
 
-        disclaimers: <DisclaimerView />,
+        Disclaimers: <DisclaimerView />,
       }}
+      initSelectedValue={groupBelowTheFold}
+      setGroup={setGroupBelowTheFold}
     />
   );
 }

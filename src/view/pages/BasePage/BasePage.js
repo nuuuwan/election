@@ -8,6 +8,10 @@ import BasePageView from './BasePageView';
 import BasePageHandlerProvider from './BasePageHandlerProvider';
 
 function getGroupHandlers(updateState) {
+  const setGroupBelowTheFold = function (groupBelowTheFold) {
+    updateState({ groupBelowTheFold });
+  };
+
   const setGroupAggregatedResults = function (groupAggregatedResults) {
     updateState({ groupAggregatedResults });
   };
@@ -21,6 +25,7 @@ function getGroupHandlers(updateState) {
   };
 
   return {
+    setGroupBelowTheFold,
     setGroupAggregatedResults,
     setGroupMonitoring,
     setGroupModelInsights,

@@ -4,10 +4,14 @@ import RejectedView from './RejectedView';
 import ElectorsView from './ElectorsView';
 import { TabSelector } from '../..';
 import { useDataContext } from '../../../nonview/core/DataProvider';
+import { useBasePageHandlerContext } from '../../pages/BasePage/BasePageHandlerProvider';
 
 export default function MonitoringView() {
   const data = useDataContext();
+  const handlers = useBasePageHandlerContext();
+
   const { groupMonitoring } = data;
+  const { setGroupMonitoring } = handlers;
   return (
     <TabSelector
       valueIdx={{
@@ -17,6 +21,7 @@ export default function MonitoringView() {
         Electors: <ElectorsView />,
       }}
       initSelectedValue={groupMonitoring}
+      setGroup={setGroupMonitoring}
     />
   );
 }

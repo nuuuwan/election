@@ -3,9 +3,11 @@ import { TabSelector, WaterMark } from '../..';
 import AggregatedResultUtils from './AggregatedResultUtils';
 import AggregatedResultViewGroup from './AggregatedResultViewGroup';
 import { useDataSlowContext } from '../../../nonview/core/DataSlowProvider';
+import { useBasePageHandlerContext } from '../../pages/BasePage/BasePageHandlerProvider';
 
 export default function AggregatedResultView() {
   const data = useDataSlowContext();
+  const handlers = useBasePageHandlerContext();
   if (!data) {
     return null;
   }
@@ -13,6 +15,7 @@ export default function AggregatedResultView() {
     AggregatedResultUtils.getGroupToEntIDListGetter(data);
 
   const { groupAggregatedResults } = data;
+  const { setGroupAggregatedResults } = handlers;
 
   const valueIdx = Object.fromEntries(
     Object.entries(groupToEntIDListGetter).map(function ([
@@ -35,6 +38,7 @@ export default function AggregatedResultView() {
     <TabSelector
       valueIdx={valueIdx}
       initSelectedValue={groupAggregatedResults}
+      setGroup={setGroupAggregatedResults}
     />
   );
 }

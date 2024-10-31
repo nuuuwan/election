@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Stack, Tab, Tabs } from '@mui/material';
 import { Translate } from '../../nonview';
 
-export default function TabSelector({ valueIdx, initSelectedValue }) {
+export default function TabSelector({ valueIdx, initSelectedValue, setGroup }) {
   const valueList = Object.keys(valueIdx);
   const [selectedValue, setSelectedValue] = React.useState(
     initSelectedValue || valueList[0],
@@ -23,6 +23,7 @@ export default function TabSelector({ valueIdx, initSelectedValue }) {
         {valueList.map(function (value, iValue) {
           const onClick = function () {
             setSelectedValue(value);
+            setGroup(value);
           };
           return (
             <Tab

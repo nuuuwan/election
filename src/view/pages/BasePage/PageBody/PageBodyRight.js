@@ -1,5 +1,3 @@
-import { useDataContext } from '../../../../nonview/core/DataProvider';
-
 import CustomStack from '../../../core/CustomStack';
 
 import ProjectionTitle, {
@@ -8,10 +6,18 @@ import ProjectionTitle, {
 } from '../../../core/ProjectionTitle';
 import ProjectionViewParliamentary from '../../../features/ProjectionView/ProjectionViewParliamentary';
 import ProjectionViewPresidential from '../../../features/ProjectionView/ProjectionViewPresidential';
-import { ProjectionModelInfoView, WaterMark } from '../../..';
+import {
+  CustomLoadingProgress,
+  ProjectionModelInfoView,
+  WaterMark,
+} from '../../..';
+import { useDataSlowContext } from '../../../../nonview/core/DataSlowProvider';
 
 function PageBodyRightTypeSpecific() {
-  const data = useDataContext();
+  const data = useDataSlowContext();
+  if (!data) {
+    return <CustomLoadingProgress />;
+  }
   const { electionDisplay } = data;
   if (electionDisplay.isPresidential) {
     return <ProjectionViewPresidential />;

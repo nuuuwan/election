@@ -1,6 +1,6 @@
 import EntType from './EntType.js';
 import WWW from './WWW.js';
-const URL_BASE = '/data/ents';
+const URL_BASE = window.location.origin + '/data/ents';
 const ID_KEY = 'id';
 
 export default class Ent {

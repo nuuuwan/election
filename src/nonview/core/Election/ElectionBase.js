@@ -1,7 +1,7 @@
 import { Translate } from '../..';
 
 export default class ElectionBase {
-  static URL_BASE = '/data/elections';
+  static URL_BASE = window.location.origin + '/data/elections';
 
   constructor(electionType, date, baseEntType) {
     this.electionType = electionType;

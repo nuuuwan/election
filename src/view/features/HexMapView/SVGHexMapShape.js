@@ -1,8 +1,8 @@
-import { Color, ActivePDUtils } from "../../../nonview";
-import { useDataContext } from "../../../nonview/core/DataProvider";
-import { useBasePageHandlerContext } from "../../pages/BasePage/BasePageHandlerProvider";
-import SVGHexPolygonGroup from "./SVGHexPolygonGroup";
-import SVGHexText from "./SVGHexText";
+import { Color, ActivePDUtils } from '../../../nonview';
+import { useDataContext } from '../../../nonview/core/DataProvider';
+import { useBasePageHandlerContext } from '../../pages/BasePage/BasePageHandlerProvider';
+import SVGHexPolygonGroup from './SVGHexPolygonGroup';
+import SVGHexText from './SVGHexText';
 
 function getOnClick({
   entID,
@@ -36,7 +36,7 @@ export default function SVGHexMapShape({
   const { electionDisplay, allRegionIdx, entIdx } = data;
   const result = electionDisplay.resultIdx[entID];
   const isReallyComplete = electionDisplay.isComplete(entID, entIdx) && result;
-  const color = isReallyComplete ? result.color : "ghostwhite";
+  const color = isReallyComplete ? result.color : 'ghostwhite';
   const opacity =
     (isReallyComplete ? Color.getOpacity(result.pWinner) : 1) /
     (customOverlayRenderer ? 3 : 1);
@@ -48,7 +48,10 @@ export default function SVGHexMapShape({
     resultIdx: electionDisplay.resultIdx,
   });
   return (
-    <g onClick={onClick} style={{cursor: isReallyComplete ? "pointer": "progress"}}>
+    <g
+      onClick={onClick}
+      style={{ cursor: isReallyComplete ? 'pointer' : 'default' }}
+    >
       <SVGHexPolygonGroup points={points} color={color} opacity={opacity} />
       <SVGHexText
         x={x}

@@ -28,9 +28,9 @@ function PageBodyRightTypeSpecific() {
 export default function PageBodyRight() {
   return (
     <CustomStack>
-      <ProjectionTitle />
       <ProjectionModelInfoView>
         <ExternalMedia id="projection-details">
+          <ProjectionTitle />
           <PageBodyRightTypeSpecific />
         </ExternalMedia>
         <ProjectionErrorAlert />

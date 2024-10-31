@@ -27,6 +27,7 @@ import WWW from "./base/WWW.js";
 import ED_ID_TO_GROUP_ID from "./constants/ED_ID_TO_GROUP_ID.js";
 import GROUP_ID_TO_ED_ID_LIST from "./constants/GROUP_ID_TO_ED_ID_LIST.js";
 import GROUP_ID_TO_PD_ID_LIST from "./constants/GROUP_ID_TO_PD_ID_LIST.js";
+import PARTY_TO_SYMBOL from "./constants/PARTY_TO_SYMBOL.js";
 import PD_ID_TO_GROUP_ID from "./constants/PD_ID_TO_GROUP_ID.js";
 import POLITICAL_PARTY_TO_COLOR from "./constants/POLITICAL_PARTY_TO_COLOR.js";
 import VERSION from "./constants/VERSION.js";
@@ -94,6 +95,7 @@ export {
   ED_ID_TO_GROUP_ID,
   GROUP_ID_TO_ED_ID_LIST,
   GROUP_ID_TO_PD_ID_LIST,
+  PARTY_TO_SYMBOL,
   PD_ID_TO_GROUP_ID,
   POLITICAL_PARTY_TO_COLOR,
   VERSION,

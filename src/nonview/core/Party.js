@@ -1,4 +1,4 @@
-import { POLITICAL_PARTY_TO_COLOR } from '..';
+import { PARTY_TO_LOGO, POLITICAL_PARTY_TO_COLOR } from '..';
 
 export default class Party {
   static OTHER = new Party('Other', 'Other');
@@ -21,6 +21,20 @@ export default class Party {
       return 'gray';
     }
     return POLITICAL_PARTY_TO_COLOR[this.id] || 'lightgray';
+  }
+
+  get logo() {
+    return (PARTY_TO_LOGO[this.id] || '').replaceAll(' ', '_');
+  }
+
+  get logoImgSrc() {
+    return (
+      window.location.origin + // eslint-disable-next-line no-undef
+      process.env.PUBLIC_URL +
+      '/images/party_logos/' +
+      this.logo +
+      '.png'
+    );
   }
 
   get isNonParty() {

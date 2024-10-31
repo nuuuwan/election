@@ -13,8 +13,8 @@ export default class EntType {
   get shortName() {
     return (
       {
-        country: '',
-        province: '',
+        country: ' ',
+        province: ' ',
         pd: 'PD',
         ed: 'ED',
       }[this.name] || this.name.toUpperCase()

@@ -1,4 +1,4 @@
-const PARTY_TO_SYMBOL = {
+const PARTY_TO_LOGO = {
   //
   ACMC: 'Peacock',
   ACTC: 'Bicycle',
@@ -40,9 +40,10 @@ const PARTY_TO_SYMBOL = {
   LSSP: 'Key',
   //
   MEP: 'Cart Wheel',
+  MNA: 'Scales',
   //
   NC: 'Horse',
-  NDF: 'Coconut',
+  NDF: 'Swan',
   //  "NDF": "Motor Car",
   NDMLP: 'Kettle',
   NFF: 'Panchaudaya',
@@ -97,16 +98,14 @@ const PARTY_TO_SYMBOL = {
   UNFF: 'Banana Bunch',
   UNP: 'Elephant',
   UPA: 'Butterfly',
+  UPFA: 'Betel Leaf',
   UPP: 'Mobile Phone',
   URF: 'Pencil',
   USP: 'Tri-shaw',
-  Till: 'Till',
   //
   WNF: 'Sickle',
   //  Independent Groups
   IND: 'TV',
-  IND1: 'Black Board',
-  IND2: 'Tyre',
   IND3: 'Syringe',
   IND4: 'Calculator',
   IND5: 'Football',
@@ -121,6 +120,12 @@ const PARTY_TO_SYMBOL = {
   IND14: 'Spectacles',
   IND15: 'Cricket Bat',
   IND16: 'Gas Cylinder',
+  // Specific Elections
+  // 1994 Parliamentary
+  IND1: 'Mammoty', // UCPF
+  IND2: 'Veena', //EPDP
+  // 1989 Parliamentary
+  INDI: 'Plough', // EROS
 };
 
-export default PARTY_TO_SYMBOL;
+export default PARTY_TO_LOGO;

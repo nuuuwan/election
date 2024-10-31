@@ -24,11 +24,13 @@ import ClockView from "./core/ClockView.js";
 import CustomStack from "./core/CustomStack.js";
 import DisplaySlider from "./core/DisplaySlider.js";
 import ElectionSmallTitle from "./core/ElectionSmallTitle.js";
+import EntViewPartyLogo from "./core/EntViewPartyLogo.js";
 import HexagonClickAlert from "./core/HexagonClickAlert.js";
 import HiddenDataView from "./core/HiddenDataView.js";
 import HistoryAlert from "./core/HistoryAlert.js";
 import NoResultsAlert from "./core/NoResultsAlert.js";
 import ParliamentViewCircle from "./core/ParliamentViewCircle.js";
+import PartyLogo from "./core/PartyLogo.js";
 import PartyView from "./core/PartyView.js";
 import ProjectionTitle from "./core/ProjectionTitle.js";
 import ResultTimeView from "./core/ResultTimeView.js";
@@ -133,11 +135,13 @@ export {
   CustomStack,
   DisplaySlider,
   ElectionSmallTitle,
+  EntViewPartyLogo,
   HexagonClickAlert,
   HiddenDataView,
   HistoryAlert,
   NoResultsAlert,
   ParliamentViewCircle,
+  PartyLogo,
   PartyView,
   ProjectionTitle,
   ResultTimeView,

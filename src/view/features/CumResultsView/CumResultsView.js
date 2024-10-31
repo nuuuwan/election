@@ -5,12 +5,12 @@ import {
   HistoryView,
   SummaryView,
   PartyToVotesStatsView,
-  EntView,
   ResultsReleasedView,
 } from '../..';
 import CumResultsViewTableRowView from './CumResultsViewTableRowView';
 import CumResultsColumnView from './CumResultsColumnView';
 import { useDataContext } from '../../../nonview/core/DataProvider';
+import EntWithPartyView from '../../core/EntViewPartyLogo';
 
 function getContentList({ entID, result, election }) {
   const baseEntIDList = election.baseEntIDList;
@@ -30,7 +30,7 @@ function getContentList({ entID, result, election }) {
   return [
     <Stack key="0" direction="row" gap={0.5} alignItems="center" sx={sx}>
       {num ? <Typography variant="h5">{num}.</Typography> : null}
-      <EntView entID={entID} />
+      <EntWithPartyView entID={entID} partyID={result.winningPartyID} />
     </Stack>,
 
     <PartyToVotesStatsView key="1" partyToVotes={result.partyToVotes} />,

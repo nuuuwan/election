@@ -3,7 +3,6 @@ import { Box, Stack, Tab, Tabs } from '@mui/material';
 import { Translate } from '../../nonview';
 
 export default function TabSelector({ valueIdx, initSelectedValue }) {
-  console.debug(initSelectedValue);
   const valueList = Object.keys(valueIdx);
   const [selectedValue, setSelectedValue] = React.useState(
     initSelectedValue || valueList[0],

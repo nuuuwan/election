@@ -57,8 +57,6 @@ function getHandlers(updateState) {
 export default function BasePage() {
   const [state, setState] = useState(CustomURLContext.get());
 
-  console.debug(state);
-
   const updateState = function (newState) {
     const newState0 = Object.assign({}, state, newState);
     CustomURLContext.set(newState0);

@@ -1,5 +1,3 @@
-import { Stack, Typography } from '@mui/material';
-
 import {
   ResultBarChart,
   HistoryView,
@@ -13,25 +11,11 @@ import { useDataContext } from '../../../nonview/core/DataProvider';
 import EntWithPartyView from '../../core/EntViewPartyLogo';
 
 function getContentList({ entID, result, election }) {
-  const baseEntIDList = election.baseEntIDList;
-  const iEnt = baseEntIDList.indexOf(entID);
-  let num = null;
-  if (iEnt !== -1) {
-    num = iEnt + 1;
-  }
-
-  const color = result.color;
-  const background = 'white';
-
-  const sx = { color, background, p: 1, borderRadius: 1 };
   const partyToPVotes =
     election.getResult(entID).partyToVotes.partyToPVotesSortedOthered;
 
   return [
-    <Stack key="0" direction="row" gap={0.5} alignItems="center" sx={sx}>
-      {num ? <Typography variant="h5">{num}.</Typography> : null}
-      <EntWithPartyView entID={entID} partyID={result.winningPartyID} />
-    </Stack>,
+    <EntWithPartyView key="0" entID={entID} partyID={result.winningPartyID} />,
 
     <PartyToVotesStatsView key="1" partyToVotes={result.partyToVotes} />,
     <ResultBarChart key="2" partyToPVotes={partyToPVotes} />,

@@ -7,7 +7,7 @@ export default function PartyLogo({ partyID }) {
   }
   const party = Party.fromID(partyID);
 
-  const dim = 24;
+  const dim = 18;
 
   return (
     <Avatar
@@ -17,7 +17,7 @@ export default function PartyLogo({ partyID }) {
         width: dim,
         height: dim,
         m: 0.5,
-        p: 0.2,
+        p: 0.5,
         backgroundColor: party.color,
       }}
     />

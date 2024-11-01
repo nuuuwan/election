@@ -7,7 +7,7 @@ import {
   DerivedData,
   Election,
   GROUP_ID_TO_PD_ID_LIST,
-} from "..";
+} from '..';
 
 export default class DataProviderUtils {
   static async getEntValuesNoCache() {
@@ -18,27 +18,27 @@ export default class DataProviderUtils {
       const ezIdx = Object.fromEntries(
         Object.keys(GROUP_ID_TO_PD_ID_LIST).map(function (ezID) {
           return [ezID, new Ent({ id: ezID, name: ezID })];
-        })
+        }),
       );
 
       const allRegionIdx = Object.assign(
-        { LK: { name: "Sri Lanka" } },
+        { LK: { name: 'Sri Lanka' } },
         pdIdx,
         edIdx,
         provinceIdx,
-        ezIdx
+        ezIdx,
       );
 
       return { pdIdx, edIdx, provinceIdx, ezIdx, allRegionIdx };
     };
 
-    return await Timer.logAsync("DataProviderUtils.getEntValues", 500, inner);
+    return await Timer.logAsync('DataProviderUtils.getEntValues', 100, inner);
   }
 
   static async getEntValues() {
     return await Cache.get(
-      "getEntValues",
-      DataProviderUtils.getEntValuesNoCache
+      'getEntValues',
+      DataProviderUtils.getEntValuesNoCache,
     );
   }
 
@@ -51,21 +51,21 @@ export default class DataProviderUtils {
     const inner = async function () {
       const election = await Election.fromElectionTypeAndDate(
         electionType,
-        date
+        date,
       );
 
       const activeEntIDDerived = DerivedData.getActiveEntID(
         activeEntID,
         nResultsDisplay,
-        election
+        election,
       );
       const nResultsDisplayDerived = DerivedData.getNResultsDisplay(
         nResultsDisplay,
-        election
+        election,
       );
 
       const electionDisplay = election.getElectionSubset(
-        nResultsDisplayDerived
+        nResultsDisplayDerived,
       );
 
       return {
@@ -76,9 +76,9 @@ export default class DataProviderUtils {
       };
     };
     return await Timer.logAsync(
-      "DataProviderUtils.getElectionValues",
-      500,
-      inner
+      'DataProviderUtils.getElectionValues',
+      100,
+      inner,
     );
   }
 
@@ -106,7 +106,7 @@ export default class DataProviderUtils {
       newState,
       entValues,
       { election, electionDisplay },
-      { entIdx }
+      { entIdx },
     );
   }
 }

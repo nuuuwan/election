@@ -16,7 +16,7 @@ export default class Timer {
     const logger = Timer.getLogger(maxDelta, delta);
 
     if (logger) {
-      logger(`🕒[${name}] ${delta}ms (goal: ${maxDelta}ms)`);
+      logger(`🐢[${name}] ${delta}ms (goal: ${maxDelta}ms)`);
     }
     return output;
   }

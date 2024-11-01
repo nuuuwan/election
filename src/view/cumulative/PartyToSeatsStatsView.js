@@ -21,7 +21,7 @@ export default function PartyToSeatsStatsView() {
       container
       direction="row"
       gap={1}
-      sx={{ maxWidth: 400, justifyContent: 'center' }}
+      sx={{ maxWidth: 400, justifyContent: 'center', mt: 2 }}
     >
       {entries.map(function ([partyID, seats]) {
         const color = Party.fromID(partyID).color;

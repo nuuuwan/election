@@ -31,6 +31,7 @@ import HistoryAlert from "./core/HistoryAlert.js";
 import NoResultsAlert from "./core/NoResultsAlert.js";
 import ParliamentViewCircle from "./core/ParliamentViewCircle.js";
 import PartyLogo from "./core/PartyLogo.js";
+import PartyToWinsView from "./core/PartyToWinsView.js";
 import PartyView from "./core/PartyView.js";
 import ProjectionTitle from "./core/ProjectionTitle.js";
 import ResultTimeView from "./core/ResultTimeView.js";
@@ -141,6 +142,7 @@ export {
   NoResultsAlert,
   ParliamentViewCircle,
   PartyLogo,
+  PartyToWinsView,
   PartyView,
   ProjectionTitle,
   ResultTimeView,

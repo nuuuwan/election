@@ -7,4 +7,14 @@ export default class DictX {
       }, idx);
     }, {});
   }
+
+  static sortByValue(dict, reverse = false) {
+    let entries = Object.entries(dict).sort(function (a, b) {
+      return a[1] - b[1];
+    });
+    if (reverse) {
+      entries = entries.reverse();
+    }
+    return Object.fromEntries(entries);
+  }
 }

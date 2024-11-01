@@ -1,4 +1,4 @@
-import { ExternalMedia } from '../../..';
+import { ExternalMedia, PartyToWinsView } from '../../..';
 import { useDataContext } from '../../../../nonview/core/DataProvider';
 import HexagonClickAlert from '../../../core/HexagonClickAlert';
 import ResultsReleasedTitleNumber from '../../../core/ResultsReleasedTitleNumber';
@@ -23,6 +23,7 @@ export default function PageBodyCenter() {
       <ExternalMedia id="hexmap" textLines={getTextLines({ data })}>
         <ResultsReleasedTitleNumber />
         <HexMapView />
+        <PartyToWinsView />
       </ExternalMedia>
 
       <HexagonClickAlert />

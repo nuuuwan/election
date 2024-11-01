@@ -1,4 +1,4 @@
-import { Translate } from '../..';
+import { DictX, Translate } from '../..';
 
 export default class ElectionBase {
   static URL_BASE = // eslint-disable-next-line no-undef
@@ -98,5 +98,17 @@ export default class ElectionBase {
 
   get baseEntIDList() {
     return this.baseResultList.map((result) => result.entID);
+  }
+
+  get partyToWins() {
+    return DictX.sortByValue(
+      this.baseResultList.reduce(function (partyToWins, result) {
+        partyToWins[result.winningPartyID] =
+          (partyToWins[result.winningPartyID] || 0) + 1;
+
+        return partyToWins;
+      }, {}),
+      true,
+    );
   }
 }

@@ -81,6 +81,14 @@ function NoPreviousElectionAlert() {
   );
 }
 
+function getTextLines({ idPrefix, data }) {
+  const { electionDisplay, electionPrevious } = data;
+  return [
+    StringX.toTitleCase(idPrefix),
+    `${electionPrevious.hashTag} vs. ${electionDisplay.hashTag}`,
+  ];
+}
+
 export default function GenericScatterChart({
   getValue,
   formatStat,
@@ -101,7 +109,10 @@ export default function GenericScatterChart({
   const series = getSeries(baseData, valueFormatter);
 
   return (
-    <ExternalMedia id={'generic-scatter-chart' + idPrefix}>
+    <ExternalMedia
+      id={'generic-scatter-chart' + idPrefix}
+      textLines={getTextLines({ idPrefix, data })}
+    >
       <Typography variant="h3" sx={{ opacity: 0.1 }}>
         {Translate(StringX.toTitleCase(idPrefix))}
       </Typography>

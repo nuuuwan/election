@@ -20,7 +20,7 @@ export default class SeatsUtilsCompute {
         partyID,
         (nSeats * votes) / filteredTotalVotes,
       ]),
-      ([partyID, seats]) => !Party.fromID(partyID).isNonParty && seats > 0,
+      ([partyID, seats]) => partyID != Party.OTHER_TRUNCATED.id && seats > 0,
     );
   }
 

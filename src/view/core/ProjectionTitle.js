@@ -80,16 +80,17 @@ export default function ProjectionTitle() {
   const { nResultsTotal, nResultsReleased } =
     electionDisplay.getNResultsReleasedAndTotal(entID, pdIdx);
 
-  const isComplete = nResultsReleased === nResultsTotal;
+  const nToGo = nResultsTotal - nResultsReleased;
+  const isComplete = nToGo === 0;
 
-  let title = 'Final Result';
+  let title = Translate('Final Result');
   if (!isComplete) {
-    title = 'Projected Final Result';
+    title = Translate('Projected Final Result (%1 left)', [nToGo]);
   }
 
   return (
     <Typography variant="h4" color="secondary">
-      {Translate(title)}
+      {title}
     </Typography>
   );
 }

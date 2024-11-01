@@ -1,24 +1,26 @@
-import MathX from "../../base/MathX";
+import { Party } from '../..';
+import DictX from '../../base/DictX';
+import MathX from '../../base/MathX';
 
 export default class SeatsUtilsCompute {
   static getFilteredPartyToVotes(partyToVotes, pLimit) {
     const totalVotes = partyToVotes.totalVotes;
     const voteLimit = totalVotes * pLimit;
-    return Object.fromEntries(
-      Object.entries(partyToVotes.partyToVotes).filter(
-        (entry) => entry[1] >= voteLimit
-      )
+    return DictX.filter(
+      partyToVotes.partyToVotes,
+      (entry) => entry[1] >= voteLimit,
     );
   }
 
   static getPartyToSeatsFloat(partyToVotes, nSeats) {
     const filteredTotalVotes = MathX.sum(Object.values(partyToVotes));
 
-    return Object.fromEntries(
-      Object.entries(partyToVotes).map(([partyID, votes]) => [
+    return DictX.filter(
+      DictX.map(partyToVotes, ([partyID, votes]) => [
         partyID,
         (nSeats * votes) / filteredTotalVotes,
-      ])
+      ]),
+      ([partyID, seats]) => !Party.fromID(partyID).isNonParty && seats > 0,
     );
   }
 
@@ -26,7 +28,7 @@ export default class SeatsUtilsCompute {
     return Object.fromEntries(
       Object.entries(partyToSeatsFloat)
         .map(([partyID, seatsFloat]) => [partyID, parseInt(seatsFloat)])
-        .filter((entry) => entry[1] > 0)
+        .filter((entry) => entry[1] > 0),
     );
   }
 
@@ -35,7 +37,7 @@ export default class SeatsUtilsCompute {
       Object.entries(partyToSeatsFloat).map(([partyID, seatsFloat]) => [
         partyID,
         seatsFloat - parseInt(seatsFloat),
-      ])
+      ]),
     );
   }
 

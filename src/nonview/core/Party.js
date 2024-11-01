@@ -2,8 +2,13 @@ import { Color, PARTY_TO_LOGO, POLITICAL_PARTY_TO_COLOR } from '..';
 
 export default class Party {
   static OTHER = new Party('Other', 'Other');
+  static OTHER_TRUNCATED = new Party('__OTHER', 'Other-Truncated');
   static ERROR = new Party('???', '???');
-  static NON_PARTY_ID_LIST = [Party.OTHER.id, Party.ERROR.id];
+  static NON_PARTY_ID_LIST = [
+    Party.OTHER.id,
+    Party.ERROR.id,
+    Party.OTHER_TRUNCATED.id,
+  ];
 
   constructor(id) {
     this.id = id;

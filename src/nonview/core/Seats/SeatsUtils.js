@@ -1,19 +1,19 @@
-import MathX from "../../base/MathX";
-import Party from "../Party";
-import SeatsUtilsCompute from "./SeatsUtilsCompute";
+import MathX from '../../base/MathX';
+import Party from '../Party';
+import SeatsUtilsCompute from './SeatsUtilsCompute';
 
 export default class SeatsUtils {
   static getGenericPartyToSeats(result, nSeatsAll, nSeatsBonus, pLimit) {
     const partyToVotes = result.partyToVotes;
     const filteredPartyToVotes = SeatsUtilsCompute.getFilteredPartyToVotes(
       partyToVotes,
-      pLimit
+      pLimit,
     );
 
     const nSeatsNonBonus = nSeatsAll - nSeatsBonus;
     const partyToSeatsFloat = SeatsUtilsCompute.getPartyToSeatsFloat(
       filteredPartyToVotes,
-      nSeatsNonBonus
+      nSeatsNonBonus,
     );
     const partyToSeatsInt =
       SeatsUtilsCompute.getPartyToSeatsInt(partyToSeatsFloat);
@@ -24,12 +24,12 @@ export default class SeatsUtils {
 
     const partyToSeatsRem = SeatsUtilsCompute.getPartyToSeatsRem(
       partyToRemSeatsFloat,
-      nSeatsNonBonus - nSeatsInt
+      nSeatsNonBonus - nSeatsInt,
     );
 
     const partyToSeatsBonus = SeatsUtilsCompute.getPartyToSeatsBonus(
       partyToVotes,
-      nSeatsBonus
+      nSeatsBonus,
     );
 
     const unsortedPartyToSeats = SeatsUtils.aggregatePartyToSeats([
@@ -45,7 +45,7 @@ export default class SeatsUtils {
     return Object.fromEntries(
       Object.entries(unsorted).sort(function (
         [partyID1, seats1],
-        [partyID2, seats2]
+        [partyID2, seats2],
       ) {
         if (partyID1 === Party.ERROR.id) {
           return 1;
@@ -61,7 +61,7 @@ export default class SeatsUtils {
           return 0;
         }
         return partyToVotes[partyID2] - partyToVotes[partyID1];
-      })
+      }),
     );
   }
 
@@ -69,7 +69,7 @@ export default class SeatsUtils {
     const unsorted = partyToSeatsList.reduce(function (idx, partyToSeats) {
       return Object.entries(partyToSeats).reduce(function (
         idx,
-        [partyID, seats]
+        [partyID, seats],
       ) {
         idx[partyID] = (idx[partyID] || 0) + seats;
         return idx;

@@ -20,4 +20,8 @@ export default class DictX {
   static filter(dict, lambda) {
     return Object.fromEntries(Object.entries(dict).filter(lambda));
   }
+
+  static map(dict, lambda) {
+    return Object.fromEntries(Object.entries(dict).map(lambda));
+  }
 }

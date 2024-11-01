@@ -143,10 +143,10 @@ export default function DataSlowProvider({ children, state }) {
 
   useEffect(
     function () {
-      const loadValue = async function () {
+      async function loadValue() {
         const value = await getValue(state, data);
         setValue(value);
-      };
+      }
       Timer.logAsync('DataSlowProvider.loadValue', 1000, loadValue);
     },
     [state, data],

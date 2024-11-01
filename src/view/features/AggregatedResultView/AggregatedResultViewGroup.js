@@ -78,13 +78,31 @@ function AggregatedResultListTableView({ sortedEntIDs, customElection }) {
   );
 }
 
+function AggregatedResultViewGroupTitle({
+  group,
+  nResultsReleased,
+  nResultsTotal,
+}) {
+  return (
+    <Typography variant="h4" color="secondary">
+      {Translate('By %1 (%2 of %3)', [
+        Translate(group.replaceAll('_', ' ')),
+        nResultsReleased,
+        nResultsTotal,
+      ])}
+    </Typography>
+  );
+}
+
 export default function AggregatedResultViewGroup({
+  group,
   entIDList,
   customElection,
+  nResultsReleased,
+  nResultsTotal,
 }) {
   const theme = useTheme();
   const isSmallerScreen = useMediaQuery(theme.breakpoints.down('lg'));
-
   if (!entIDList) {
     return null;
   }
@@ -92,6 +110,11 @@ export default function AggregatedResultViewGroup({
   const renderTable = function (displayEntIDList) {
     return (
       <Box>
+        <AggregatedResultViewGroupTitle
+          group={group}
+          nResultsReleased={nResultsReleased}
+          nResultsTotal={nResultsTotal}
+        />
         {isSmallerScreen ? (
           <AggregatedResultListColumnViewGroup
             sortedEntIDs={displayEntIDList}

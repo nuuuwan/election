@@ -1,7 +1,8 @@
-import { Translate, Format, Color, Party } from '../../../nonview';
+import { Translate, Format, Color, Party, StringX } from '../../../nonview';
 import { CustomAlert, ExternalMedia } from '../..';
 import { ScatterChart } from '@mui/x-charts';
 import { useDataSlowContext } from '../../../nonview/core/DataSlowProvider';
+import { Typography } from '@mui/material';
 
 function getBaseData(data, getValue) {
   const { electionDisplay, electionPrevious, allRegionIdx } = data;
@@ -72,6 +73,14 @@ function getGenericAxis(election, formatStatInner) {
   ];
 }
 
+function NoPreviousElectionAlert() {
+  return (
+    <CustomAlert severity="warning">
+      {Translate('No previous election data available')}
+    </CustomAlert>
+  );
+}
+
 export default function GenericScatterChart({
   getValue,
   formatStat,
@@ -84,13 +93,8 @@ export default function GenericScatterChart({
 
   const { electionDisplay, electionPrevious } = data;
   if (!electionPrevious) {
-    return (
-      <CustomAlert severity="warning">
-        {Translate('No previous election data available')}
-      </CustomAlert>
-    );
+    return <NoPreviousElectionAlert />;
   }
-
   const baseData = getBaseData(data, getValue);
   const formatStatInner = getFormatStatInner(formatStat);
   const valueFormatter = getValueFormatter(formatStatInner);
@@ -98,13 +102,17 @@ export default function GenericScatterChart({
 
   return (
     <ExternalMedia id={'generic-scatter-chart' + idPrefix}>
+      <Typography variant="h3" sx={{ opacity: 0.1 }}>
+        {Translate(StringX.toTitleCase(idPrefix))}
+      </Typography>
       <ScatterChart
         xAxis={getGenericAxis(electionPrevious, formatStatInner)}
         yAxis={getGenericAxis(electionDisplay, formatStatInner)}
         series={series}
-        width={600}
-        height={600}
+        width={400}
+        height={400}
         grid={{ vertical: true, horizontal: true }}
+        margin={{ top: 10, right: 10, bottom: 50, left: 50 }}
       />
     </ExternalMedia>
   );

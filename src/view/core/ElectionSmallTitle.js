@@ -6,7 +6,7 @@ export default function ElectionSmallTitle() {
   const { electionDisplay } = data;
   return (
     <Typography variant="h6" sx={{ opacity: 0.1 }}>
-      #{electionDisplay.hashTag}
+      {electionDisplay.hashTag}
     </Typography>
   );
 }

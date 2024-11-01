@@ -5,6 +5,13 @@ import AggregatedResultViewGroup from './AggregatedResultViewGroup';
 import { useDataSlowContext } from '../../../nonview/core/DataSlowProvider';
 import { useBasePageHandlerContext } from '../../pages/BasePage/BasePageHandlerProvider';
 
+function getTextLines({ group, nResultsReleased, nResultsTotal }) {
+  return [
+    `Results Aggregated by ${group.replaceAll('_', ' ')}`,
+    `${nResultsReleased} of ${nResultsTotal} Results Released`,
+  ];
+}
+
 function getValueIdx({
   groupToEntIDListGetter,
   data,
@@ -21,6 +28,7 @@ function getValueIdx({
         <ExternalMedia
           key={group}
           id={'aggregated-results-table-' + group.toLowerCase()}
+          textLines={getTextLines({ group, nResultsReleased, nResultsTotal })}
         >
           <AggregatedResultViewGroup
             group={group}

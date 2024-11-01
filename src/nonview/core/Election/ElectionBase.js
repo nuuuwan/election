@@ -47,7 +47,7 @@ export default class ElectionBase {
   }
 
   get hashTag() {
-    return this.electionTypeHashTag + this.year.toString();
+    return '#' + this.electionTypeHashTag + this.year.toString();
   }
 
   get hashTagList() {

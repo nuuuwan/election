@@ -83,30 +83,33 @@ export default class DataProviderUtils {
   }
 
   static async getValue(state) {
-    const entValues = await DataProviderUtils.getEntValues();
+    const inner = async function () {
+      const entValues = await DataProviderUtils.getEntValues();
 
-    const {
-      election,
-      activeEntIDDerived,
-      nResultsDisplayDerived,
-      electionDisplay,
-    } = await DataProviderUtils.getElectionValues(state);
+      const {
+        election,
+        activeEntIDDerived,
+        nResultsDisplayDerived,
+        electionDisplay,
+      } = await DataProviderUtils.getElectionValues(state);
 
-    const entIdx = election.getEntIdx(entValues);
+      const entIdx = election.getEntIdx(entValues);
 
-    const newState = {
-      ...state,
-      activeEntID: activeEntIDDerived,
-      nResultsDisplay: nResultsDisplayDerived,
+      const newState = {
+        ...state,
+        activeEntID: activeEntIDDerived,
+        nResultsDisplay: nResultsDisplayDerived,
+      };
+      CustomURLContext.set(newState);
+
+      return Object.assign(
+        {},
+        newState,
+        entValues,
+        { election, electionDisplay },
+        { entIdx },
+      );
     };
-    CustomURLContext.set(newState);
-
-    return Object.assign(
-      {},
-      newState,
-      entValues,
-      { election, electionDisplay },
-      { entIdx },
-    );
+    return await Timer.logAsync('DataProviderUtils.getValue', 100, inner);
   }
 }

@@ -8,12 +8,19 @@ const DataContext = createContext();
 export default function DataProvider({ children, state }) {
   const [value, setValue] = useState(null);
 
+  const setValueTimed = function (value) {
+    Timer.log('DataProvider.setValue', 100, function () {
+      setValue(value);
+    });
+  };
+
+  const loadValue = async function () {
+    const value = await DataProviderUtils.getValue(state);
+    setValueTimed(value);
+  };
+
   useEffect(
     function () {
-      const loadValue = async function () {
-        const value = await DataProviderUtils.getValue(state);
-        setValue(value);
-      };
       Timer.logAsync('DataProvider.loadValue', 100, loadValue);
     },
     [state],

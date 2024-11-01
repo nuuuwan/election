@@ -1,4 +1,4 @@
-import Time from "./Time";
+import Time from './Time';
 
 export default class Timer {
   static ERROR_MULT = 1;
@@ -11,8 +11,16 @@ export default class Timer {
   }
 
   static async logAsync(name, maxDelta, callable) {
+    return Timer._logInternal(name, maxDelta, callable, true);
+  }
+
+  static log(name, maxDelta, callable) {
+    return Timer._logInternal(name, maxDelta, callable, false);
+  }
+
+  static async _logInternal(name, maxDelta, callable, isAsync) {
     const ut = Time.now().ut;
-    const output = await callable();
+    const output = isAsync ? await callable() : callable();
     const delta = Time.now().ut - ut;
 
     const logger = Timer.getLogger(maxDelta, delta);

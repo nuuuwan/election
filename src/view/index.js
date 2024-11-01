@@ -27,7 +27,6 @@ import ElectionSmallTitle from "./core/ElectionSmallTitle.js";
 import EntViewPartyLogo from "./core/EntViewPartyLogo.js";
 import ExternalMedia from "./core/ExternalMedia.js";
 import HexagonClickAlert from "./core/HexagonClickAlert.js";
-import HiddenDataView from "./core/HiddenDataView.js";
 import HistoryAlert from "./core/HistoryAlert.js";
 import NoResultsAlert from "./core/NoResultsAlert.js";
 import ParliamentViewCircle from "./core/ParliamentViewCircle.js";
@@ -138,7 +137,6 @@ export {
   EntViewPartyLogo,
   ExternalMedia,
   HexagonClickAlert,
-  HiddenDataView,
   HistoryAlert,
   NoResultsAlert,
   ParliamentViewCircle,

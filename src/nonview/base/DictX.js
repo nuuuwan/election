@@ -8,13 +8,12 @@ export default class DictX {
     }, {});
   }
 
-  static sortByValue(dict, reverse = false) {
+  static sort(dict, lambda = undefined) {
+    lambda = lambda || ((a) => -a[1]);
+
     let entries = Object.entries(dict).sort(function (a, b) {
-      return a[1] - b[1];
+      return lambda(a) - lambda(b);
     });
-    if (reverse) {
-      entries = entries.reverse();
-    }
     return Object.fromEntries(entries);
   }
 }

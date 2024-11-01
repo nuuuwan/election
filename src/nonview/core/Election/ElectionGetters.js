@@ -1,9 +1,4 @@
-import {
-  EntType,
-  ProvinceUtils,
-  PD_ID_TO_GROUP_ID,
-  ED_ID_TO_GROUP_ID,
-} from "../..";
+import { EntType, PD_ID_TO_GROUP_ID, ED_ID_TO_GROUP_ID, DictX } from '../..';
 
 const ElectionStats = {
   getPartyIDList(min_p = 0.01) {
@@ -31,19 +26,15 @@ const ElectionStats = {
 
   getParentID(entID, baseEnt) {
     const entType = EntType.fromID(entID);
-
-    switch (entType) {
-    case EntType.PD:
-      return baseEnt.d.ed_id;
-    case EntType.ED:
-      return baseEnt.d.ed_id;
-    case EntType.PROVINCE:
-      return ProvinceUtils.getProvinceIDForPDEnt(baseEnt);
-    case EntType.EZ:
-      return PD_ID_TO_GROUP_ID[baseEnt.id] || ED_ID_TO_GROUP_ID[baseEnt.id];
-    default:
-      return "LK";
-    }
+    return (
+      {
+        [EntType.PD.name]: baseEnt.d.ed_id,
+        [EntType.ED.name]: baseEnt.d.ed_id,
+        [EntType.PROVINCE.name]: baseEnt.d.province_id,
+        [EntType.EZ.name]:
+          PD_ID_TO_GROUP_ID[baseEnt.id] || ED_ID_TO_GROUP_ID[baseEnt.id],
+      }[entType.name] || 'LK'
+    );
   },
 
   // Releases
@@ -98,14 +89,36 @@ const ElectionStats = {
 
   // Ent
   getEntIdx(data) {
-    switch (this.baseEntType) {
-    case EntType.PD:
-      return data.pdIdx;
-    case EntType.ED:
-      return data.edIdx;
-    default:
-      throw new Error("Unknown baseEntType: " + this.baseEntType);
+    const entIdx = {
+      [EntType.PD.name]: data.pdIdx,
+      [EntType.ED.name]: data.edIdx,
+    }[this.baseEntType.name];
+
+    if (!entIdx) {
+      throw new Error('Unknown baseEntType: ' + this.baseEntType);
     }
+
+    return entIdx;
+  },
+
+  getLKPartyToVotesErrorInfo() {
+    const unsorted = this.baseResultList.reduce(
+      function (idx, result) {
+        const partyToVotesErrorInfo = result.partyToVotes.partyToVoteErrorInfo;
+        for (const [partyID, votesError] of Object.entries(
+          partyToVotesErrorInfo,
+        )) {
+          if (!idx[partyID]) {
+            idx[partyID] = { votesMin: 0, votesMax: 0 };
+          }
+          idx[partyID].votesMin += votesError.votesMin;
+          idx[partyID].votesMax += votesError.votesMax;
+          return idx;
+        }
+      }.bind(this),
+      {},
+    );
+    return DictX.sort(unsorted, (a) => -a.votesMin);
   },
 };
 

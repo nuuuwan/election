@@ -20,22 +20,20 @@ export default function ProjectedResultBarChart() {
     data;
   const election =
     electionProjectedWithError || electionProjected || electionDisplay;
-  const resultLK = election.resultLK;
-  const partyToPVotesSortedOthered =
-    resultLK.partyToVotes.partyToPVotesSortedOthered;
+  const partyToVotesErrorInfo = election.getLKPartyToVotesErrorInfo();
+  const totalVotes = election.summary.valid;
   return (
     <SVGBarChart
-      dataList={Object.entries(partyToPVotesSortedOthered)
-        .filter((entry) => !Party.fromID(entry[0]).isNonParty)
-        .map(function ([partyID, pVotes]) {
-          const pVotesError =
-            resultLK.partyToVotes.partyToPVotes[Party.ERROR.id] || 0;
-          return {
-            partyID,
-            pVotesMin: pVotes,
-            pVotesError,
-          };
-        })}
+      dataList={Object.entries(partyToVotesErrorInfo).map(function ([
+        partyID,
+        { votesMin, votesMax },
+      ]) {
+        return {
+          partyID,
+          pVotesMin: votesMin / totalVotes,
+          pVotesError: (votesMax - votesMin) / totalVotes,
+        };
+      })}
       getValues={function (data) {
         return [data.pVotesMin, data.pVotesError];
       }}

@@ -1,4 +1,11 @@
-import { EntType, PD_ID_TO_GROUP_ID, ED_ID_TO_GROUP_ID, DictX } from '../..';
+import {
+  EntType,
+  PD_ID_TO_GROUP_ID,
+  ED_ID_TO_GROUP_ID,
+  DictX,
+  PartyToVotes,
+  Party,
+} from '../..';
 
 const ElectionStats = {
   getPartyIDList(min_p = 0.01) {
@@ -105,20 +112,29 @@ const ElectionStats = {
     const unsorted = this.baseResultList.reduce(
       function (idx, result) {
         const partyToVotesErrorInfo = result.partyToVotes.partyToVoteErrorInfo;
-        for (const [partyID, votesError] of Object.entries(
-          partyToVotesErrorInfo,
-        )) {
-          if (!idx[partyID]) {
-            idx[partyID] = { votesMin: 0, votesMax: 0 };
-          }
-          idx[partyID].votesMin += votesError.votesMin;
-          idx[partyID].votesMax += votesError.votesMax;
-          return idx;
-        }
+
+        return Object.entries(partyToVotesErrorInfo).reduce(
+          function (idx, [partyID, { votesMin, votesMax }]) {
+            if (!idx[partyID]) {
+              idx[partyID] = { votesMin: 0, votesMax: 0 };
+            }
+            idx[partyID].votesMin += votesMin;
+            idx[partyID].votesMax += votesMax;
+            return idx;
+          }.bind(this),
+          idx,
+        );
       }.bind(this),
       {},
     );
-    return DictX.sort(unsorted, (a) => -a.votesMin);
+    const totalVotes = this.summary.valid;
+    const votesLimit = totalVotes * PartyToVotes.MIN_P_VOTES;
+    const filtered = DictX.filter(
+      unsorted,
+      (a) => a[1].votesMin >= votesLimit && !Party.fromID(a[0]).isNonParty,
+    );
+
+    return DictX.sort(filtered, (a) => -a[1].votesMin);
   },
 };
 

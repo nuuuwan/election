@@ -16,4 +16,8 @@ export default class DictX {
     });
     return Object.fromEntries(entries);
   }
+
+  static filter(dict, lambda) {
+    return Object.fromEntries(Object.entries(dict).filter(lambda));
+  }
 }

@@ -27,16 +27,18 @@ function PageBodyRightTypeSpecific() {
   return <ProjectionViewParliamentary />;
 }
 
-function getTextLinesForResult({ resultLK }) {
-  const partyToPVotesSortedOthered =
-    resultLK.partyToVotes.partyToPVotesSortedOthered;
+function getTextLinesForResult({ election }) {
+  const partyToVoteErrorInfo = election.getLKPartyToVotesErrorInfo();
+  const totalVotes = election.summary.valid;
   let lines = [''];
-  const pVotesError = resultLK.partyToVotes.partyToPVotes[Party.ERROR.id] || 0;
-
-  for (const [partyID, pVotes] of Object.entries(partyToPVotesSortedOthered)) {
+  for (const [partyID, { votesMin, votesMax }] of Object.entries(
+    partyToVoteErrorInfo,
+  )) {
     const party = Party.fromID(partyID);
+    const pVotesMin = votesMin / totalVotes;
+    const pVotesMax = votesMax / totalVotes;
     lines.push(
-      `${party.emoji} ${Format.percentRange(pVotes, pVotes + pVotesError)} ${
+      `${party.emoji} ${Format.percentRange(pVotesMin, pVotesMax)} ${
         party.xTag
       }`,
     );
@@ -59,15 +61,12 @@ function getTextLines({ data }) {
   const isComplete = nToGo === 0;
   const election =
     electionProjectedWithError || electionProjected || electionDisplay;
-  const resultLK = election.resultLK;
-
-  console.debug(resultLK.partyToVotes.partyToVotes[Party.ERROR.id]);
 
   return [].concat(
     isComplete
       ? ['🏁 Final Result']
       : ['🤖 Projected Final Result', `${nToGo} results left`],
-    getTextLinesForResult({ resultLK }),
+    getTextLinesForResult({ election }),
   );
 }
 

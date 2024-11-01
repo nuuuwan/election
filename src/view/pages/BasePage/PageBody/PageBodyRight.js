@@ -2,7 +2,7 @@ import CustomStack from '../../../core/CustomStack';
 
 import { useDataSlowContext } from '../../../../nonview/core/DataSlowProvider';
 
-import { Format, Party } from '../../../../nonview';
+import { Format, Party, Seats } from '../../../../nonview';
 import ProjectionTitle, {
   ProjectionAlert,
   ProjectionErrorAlert,
@@ -27,7 +27,20 @@ function PageBodyRightTypeSpecific() {
   return <ProjectionViewParliamentary />;
 }
 
-function getTextLinesForResult({ election }) {
+function getTextLinesForResultParliamentary({ election }) {
+  const seats = Seats.fromElection(election);
+  const entries = Object.entries(seats.getTotalPartyToSeats());
+
+  let lines = [''];
+
+  for (const [partyID, seats] of entries) {
+    const party = Party.fromID(partyID);
+    lines.push(`${party.emoji} ${party.xTag} ${seats}`);
+  }
+
+  return lines;
+}
+function getTextLinesForResultPresidential({ election }) {
   const partyToVoteErrorInfo = election.getLKPartyToVotesErrorInfo();
   const totalVotes = election.summary.valid;
   let lines = [''];
@@ -44,6 +57,13 @@ function getTextLinesForResult({ election }) {
     );
   }
   return lines;
+}
+
+function getTextLinesForResult({ election }) {
+  if (election.isPresidential) {
+    return getTextLinesForResultPresidential({ election });
+  }
+  return getTextLinesForResultParliamentary({ election });
 }
 
 function getTextLines({ data }) {

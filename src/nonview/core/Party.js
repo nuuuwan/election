@@ -1,4 +1,4 @@
-import { PARTY_TO_LOGO, POLITICAL_PARTY_TO_COLOR } from '..';
+import { Color, PARTY_TO_LOGO, POLITICAL_PARTY_TO_COLOR } from '..';
 
 export default class Party {
   static OTHER = new Party('Other', 'Other');
@@ -42,24 +42,7 @@ export default class Party {
   }
 
   get emoji() {
-    return (
-      {
-        SJB: '🟢',
-        NPP: '🔴',
-        IND16: '🟠',
-        IND9: '🔵',
-        SLPP: '🟣',
-        SLCP: '🔵',
-        // History
-        NDF: '🟢',
-        UNP: '🟢',
-        SLMP: '🟣',
-        UPFA: '🔵',
-        PA: '🔵',
-        SLFP: '🔵',
-        ACTC: '🟠',
-      }[this.id] || '⚪'
-    );
+    return Color.getEmoji(this.color);
   }
 
   get xTag() {

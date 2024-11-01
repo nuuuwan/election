@@ -16,6 +16,10 @@ export default class Ent {
     return '#' + this.name.replaceAll(' ', '');
   }
 
+  get hashtagWithType() {
+    return '#' + this.name.replaceAll(' ', '') + ' ' + this.entType.shortName;
+  }
+
   get entType() {
     if (this.id === 'NationalList') {
       return EntType.COUNTRY;

@@ -1,5 +1,4 @@
 import {
-  Cache,
   Ent,
   EntType,
   Timer,
@@ -10,7 +9,7 @@ import {
 } from '..';
 
 export default class DataProviderUtils {
-  static async getEntValuesNoCache() {
+  static async getEntValues() {
     const inner = async function () {
       const pdIdx = await Ent.idxFromType(EntType.PD);
       const edIdx = await Ent.idxFromType(EntType.ED);
@@ -22,7 +21,7 @@ export default class DataProviderUtils {
       );
 
       const allRegionIdx = Object.assign(
-        { LK: { name: 'Sri Lanka' } },
+        { LK: Ent.LK },
         pdIdx,
         edIdx,
         provinceIdx,
@@ -33,13 +32,6 @@ export default class DataProviderUtils {
     };
 
     return await Timer.logAsync('DataProviderUtils.getEntValues', 100, inner);
-  }
-
-  static async getEntValues() {
-    return await Cache.get(
-      'getEntValues',
-      DataProviderUtils.getEntValuesNoCache,
-    );
   }
 
   static async getElectionValues({

@@ -101,14 +101,17 @@ export default class ElectionBase {
   }
 
   get partyToWins() {
-    return DictX.sortByValue(
+    return DictX.sort(
       this.baseResultList.reduce(function (partyToWins, result) {
         partyToWins[result.winningPartyID] =
           (partyToWins[result.winningPartyID] || 0) + 1;
 
         return partyToWins;
       }, {}),
-      true,
     );
+  }
+
+  get summary() {
+    return this.getResult('LK').summary;
   }
 }

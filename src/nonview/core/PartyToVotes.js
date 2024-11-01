@@ -1,5 +1,5 @@
 import Summary from './Summary.js';
-import { MathX } from '..';
+import { DictX, MathX } from '..';
 import Party from './Party.js';
 
 export default class PartyToVotes {
@@ -113,5 +113,23 @@ export default class PartyToVotes {
   get lead() {
     const votes = Object.values(this.partyToVotesSorted);
     return votes[0] - votes[1];
+  }
+
+  get votesError() {
+    return this.partyToVotes[Party.ERROR.id] || 0;
+  }
+
+  get partyToVoteErrorInfo() {
+    let partyToVoteErrorInfo = {};
+    const votesError = this.votesError;
+
+    for (const [partyID, votesMin] of Object.entries(this.partyToVotes)) {
+      const votesMax = votesMin + votesError;
+      partyToVoteErrorInfo[partyID] = {
+        votesMin: votesMin,
+        votesMax: votesMax,
+      };
+    }
+    return DictX.sort(partyToVoteErrorInfo, (entry) => -entry[1].votesMin);
   }
 }

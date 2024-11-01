@@ -1,7 +1,7 @@
-import React, { useState, useEffect, createContext, useContext } from "react";
-import Timer from "../base/Timer";
-import { CustomLoadingProgress } from "../../view";
-import { DataProviderUtils } from "..";
+import React, { useState, useEffect, createContext, useContext } from 'react';
+import Timer from '../base/Timer';
+import { CustomLoadingProgress } from '../../view';
+import { DataProviderUtils } from '..';
 
 const DataContext = createContext();
 
@@ -14,9 +14,9 @@ export default function DataProvider({ children, state }) {
         const value = await DataProviderUtils.getValue(state);
         setValue(value);
       };
-      Timer.logAsync("DataProvider.loadValue", 1000, loadValue);
+      Timer.logAsync('DataProvider.loadValue', 100, loadValue);
     },
-    [state]
+    [state],
   );
 
   return (

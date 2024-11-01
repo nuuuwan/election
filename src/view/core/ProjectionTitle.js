@@ -1,4 +1,4 @@
-import { Link, Stack, Typography } from '@mui/material';
+import { Link, Typography } from '@mui/material';
 import { Format, Translate } from '../../nonview';
 
 import CustomAlert from '../base/CustomAlert';
@@ -89,9 +89,7 @@ export default function ProjectionTitle() {
 
   return (
     <Typography variant="h4" color="secondary">
-      <Stack direction="row" gap={1} sx={{ alignItems: 'center' }}>
-        {Translate(title)}
-      </Stack>
+      {Translate(title)}
     </Typography>
   );
 }

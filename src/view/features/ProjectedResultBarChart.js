@@ -21,17 +21,17 @@ export default function ProjectedResultBarChart() {
   const election =
     electionProjectedWithError || electionProjected || electionDisplay;
   const partyToVotesErrorInfo = election.getLKPartyToVotesErrorInfo();
-  const totalVotes = election.summary.valid;
+
   return (
     <SVGBarChart
       dataList={Object.entries(partyToVotesErrorInfo).map(function ([
         partyID,
-        { votesMin, votesMax },
+        { pVotesMin, pVotesMax },
       ]) {
         return {
           partyID,
-          pVotesMin: votesMin / totalVotes,
-          pVotesError: (votesMax - votesMin) / totalVotes,
+          pVotesMin,
+          pVotesError: pVotesMax - pVotesMin,
         };
       })}
       getValues={function (data) {

@@ -108,8 +108,8 @@ const ElectionStats = {
     return entIdx;
   },
 
-  getLKPartyToVotesErrorInfo() {
-    const unsorted = this.baseResultList.reduce(
+  getLKPartyToVotesErrorInfoBaseFiltered() {
+    const base = this.baseResultList.reduce(
       function (idx, result) {
         const partyToVotesErrorInfo = result.partyToVotes.partyToVotesErrorInfo;
 
@@ -127,14 +127,38 @@ const ElectionStats = {
       }.bind(this),
       {},
     );
+
     const totalVotes = this.summary.valid;
     const votesLimit = totalVotes * PartyToVotes.MIN_P_VOTES;
     const filtered = DictX.filter(
-      unsorted,
+      base,
       (a) => a[1].votesMin >= votesLimit && !Party.fromID(a[0]).isNonParty,
     );
+    return filtered;
+  },
 
-    return DictX.sort(filtered, (a) => -a[1].votesMin);
+  getLKPartyToVotesErrorInfo() {
+    const filtered = this.getLKPartyToVotesErrorInfoBaseFiltered();
+
+    const totalVotes = this.summary.valid;
+
+    const extended = DictX.map(
+      filtered,
+      function ([partyID, { votesMin, votesMax }]) {
+        return [
+          partyID,
+          {
+            votesMin,
+            votesMax,
+            pVotesMin: PartyToVotes.round(votesMin / totalVotes),
+            pVotesMax: PartyToVotes.round(votesMax / totalVotes),
+          },
+        ];
+      },
+    );
+
+    const sorted = DictX.sort(extended, (a) => -a[1].votesMin);
+    return sorted;
   },
 };
 

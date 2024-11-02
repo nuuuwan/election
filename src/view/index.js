@@ -26,6 +26,7 @@ import DisplaySlider from "./core/DisplaySlider.js";
 import ElectionSmallTitle from "./core/ElectionSmallTitle.js";
 import EntViewPartyLogo from "./core/EntViewPartyLogo.js";
 import ExternalMedia from "./core/ExternalMedia.js";
+import ExternalMediaCustomData from "./core/ExternalMediaCustomData.js";
 import HexagonClickAlert from "./core/HexagonClickAlert.js";
 import HistoryAlert from "./core/HistoryAlert.js";
 import NoResultsAlert from "./core/NoResultsAlert.js";
@@ -137,6 +138,7 @@ export {
   ElectionSmallTitle,
   EntViewPartyLogo,
   ExternalMedia,
+  ExternalMediaCustomData,
   HexagonClickAlert,
   HistoryAlert,
   NoResultsAlert,

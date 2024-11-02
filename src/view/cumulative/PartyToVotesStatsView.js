@@ -7,7 +7,9 @@ export default function PartyToVotesStatsView({ partyToVotes }) {
 
   return (
     <Stack direction="row" gap={1}>
-      <ExternalMediaCustomData customData={{ partyToVotes }} />
+      <ExternalMediaCustomData
+        customData={{ partyToVotes: partyToVotes.partyToVotes }}
+      />
       {entries
         .filter(function (entry) {
           return entry[1] > 0;

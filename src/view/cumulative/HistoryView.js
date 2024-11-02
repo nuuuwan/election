@@ -41,7 +41,7 @@ function HistoryViewRow({ entID, electionForRow }) {
 
 function getCustomData({ entID, previousElectionsDisplay }) {
   return {
-    history: Object.fromEntries(
+    yearToWinningParty: Object.fromEntries(
       previousElectionsDisplay.map(function (electionForRow) {
         const electionYear = electionForRow.year;
         const winningPartyID =

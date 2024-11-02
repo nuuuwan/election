@@ -45,8 +45,8 @@ export default function LatestResultListView() {
                 customData={{
                   entID,
                   partyToPVotesSortedOthered:
-                    electionDisplay.getResult(entID).partyToVotes
-                      .partyToPVotesSortedOthered,
+                    result.partyToVotes.partyToPVotesSortedOthered,
+                  summary: result.summary.toDict(),
                 }}
               >
                 <CumResultsView mode="ColumnView" entID={entID} />

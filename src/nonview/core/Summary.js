@@ -1,5 +1,5 @@
 export default class Summary {
-  static KEYS = ["valid", "rejected", "polled", "electors"];
+  static KEYS = ['valid', 'rejected', 'polled', 'electors'];
   constructor(valid, rejected, polled, electors) {
     this.valid = valid;
     this.rejected = rejected;
@@ -7,12 +7,21 @@ export default class Summary {
     this.electors = electors;
   }
 
+  toDict() {
+    return {
+      valid: this.valid,
+      rejected: this.rejected,
+      polled: this.polled,
+      electors: this.electors,
+    };
+  }
+
   static fromDict(d) {
     const summary = {};
     for (const key in d) {
       if (Summary.KEYS.includes(key)) {
         summary[key] = parseInt(
-          d[key].toString().replaceAll("'", "").replaceAll("\"", "")
+          d[key].toString().replaceAll("'", '').replaceAll('"', ''),
         );
       }
     }
@@ -20,7 +29,7 @@ export default class Summary {
       summary.valid,
       summary.rejected,
       summary.polled,
-      summary.electors
+      summary.electors,
     );
   }
 
@@ -42,7 +51,7 @@ export default class Summary {
       summary.valid,
       summary.rejected,
       summary.polled,
-      summary.electors
+      summary.electors,
     );
   }
 
@@ -61,7 +70,7 @@ export default class Summary {
       summary.valid,
       summary.rejected,
       summary.polled,
-      summary.electors
+      summary.electors,
     );
   }
 

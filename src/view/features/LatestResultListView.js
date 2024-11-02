@@ -44,6 +44,8 @@ export default function LatestResultListView() {
                 id={'latest-result-' + resultType}
                 customData={{
                   entID,
+                  partyToVotesSortedOthered:
+                    result.partyToVotes.partyToVotesSortedOthered,
                   partyToPVotesSortedOthered:
                     result.partyToVotes.partyToPVotesSortedOthered,
                   summary: result.summary.toDict(),

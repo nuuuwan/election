@@ -7,7 +7,7 @@ import ExternalMediaCustomData from '../core/ExternalMediaCustomData';
 export default function ResultBarChart({ partyToPVotes }) {
   return (
     <Box>
-      <ExternalMediaCustomData customData={partyToPVotes} />
+      <ExternalMediaCustomData customData={{ partyToPVotes }} />
       <SVGBarChart
         dataList={[partyToPVotes]}
         getValues={function (partyToPVotes) {

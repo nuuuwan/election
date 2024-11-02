@@ -1,12 +1,13 @@
-import { Stack } from "@mui/material";
-import { Format, Party } from "../../nonview";
-import { LabelledStat, PartyView } from "..";
+import { Stack } from '@mui/material';
+import { Format, Party } from '../../nonview';
+import { ExternalMediaCustomData, LabelledStat, PartyView } from '..';
 
 export default function PartyToVotesStatsView({ partyToVotes }) {
   const entries = Object.entries(partyToVotes.partyToVotesSortedOthered);
 
   return (
     <Stack direction="row" gap={1}>
+      <ExternalMediaCustomData customData={{ partyToVotes }} />
       {entries
         .filter(function (entry) {
           return entry[1] > 0;

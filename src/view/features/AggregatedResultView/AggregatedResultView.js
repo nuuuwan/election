@@ -1,4 +1,4 @@
-import { TabSelector, ExternalMedia } from '../..';
+import { TabSelector, ExternalMedia, ExternalMediaCustomData } from '../..';
 
 import AggregatedResultUtils from './AggregatedResultUtils';
 import AggregatedResultViewGroup from './AggregatedResultViewGroup';
@@ -21,8 +21,10 @@ function getValueIdx({
         <ExternalMedia
           key={group}
           id={'aggregated-results-table-' + group.toLowerCase()}
-          customData={{ group, nResultsReleased, nResultsTotal }}
         >
+          <ExternalMediaCustomData
+            customData={{ group, nResultsReleased, nResultsTotal }}
+          />
           <AggregatedResultViewGroup
             group={group}
             nResultsReleased={nResultsReleased}

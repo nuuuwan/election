@@ -1,5 +1,5 @@
 import { Translate, Format, Color, Party, StringX } from '../../../nonview';
-import { CustomAlert, ExternalMedia } from '../..';
+import { CustomAlert, ExternalMedia, ExternalMediaCustomData } from '../..';
 import { ScatterChart } from '@mui/x-charts';
 import { useDataSlowContext } from '../../../nonview/core/DataSlowProvider';
 import { Typography } from '@mui/material';
@@ -101,10 +101,8 @@ export default function GenericScatterChart({
   const series = getSeries(baseData, valueFormatter);
 
   return (
-    <ExternalMedia
-      id={'generic-scatter-chart' + idPrefix}
-      customData={{ idPrefix }}
-    >
+    <ExternalMedia id={'generic-scatter-chart' + idPrefix}>
+      <ExternalMediaCustomData customData={{ idPrefix }} />
       <Typography variant="h3" sx={{ opacity: 0.1 }}>
         {Translate(StringX.toTitleCase(idPrefix))}
       </Typography>

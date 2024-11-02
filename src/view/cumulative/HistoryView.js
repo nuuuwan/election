@@ -1,7 +1,11 @@
 import { Grid2, Stack, Typography } from '@mui/material';
 import { Format } from '../../nonview';
 
-import { CustomLoadingProgress, PartyView } from '../../view';
+import {
+  CustomLoadingProgress,
+  ExternalMediaCustomData,
+  PartyView,
+} from '../../view';
 
 import { useDataSlowContext } from '../../nonview/core/DataSlowProvider';
 
@@ -35,6 +39,19 @@ function HistoryViewRow({ entID, electionForRow }) {
   );
 }
 
+function getCustomData({ entID, previousElectionsDisplay }) {
+  return {
+    history: Object.fromEntries(
+      previousElectionsDisplay.map(function (electionForRow) {
+        const electionYear = electionForRow.year;
+        const winningPartyID =
+          electionForRow.getResult(entID).partyToVotes.winningPartyID;
+        return [electionYear, winningPartyID];
+      }),
+    ),
+  };
+}
+
 export default function HistoryView({ entID }) {
   const data = useDataSlowContext();
   if (!data) {
@@ -54,6 +71,9 @@ export default function HistoryView({ entID }) {
   return (
     <Stack direction="column" alignItems="center">
       <Grid2 container alignItems="center" gap={0.15}>
+        <ExternalMediaCustomData
+          customData={getCustomData({ entID, previousElectionsDisplay })}
+        />
         {previousElectionsDisplay.map(function (electionForRow, i) {
           return (
             <Grid2 key={i} sx={{ width: 'fit-content' }}>

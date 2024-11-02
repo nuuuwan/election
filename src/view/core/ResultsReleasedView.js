@@ -1,10 +1,11 @@
-import { Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from '@mui/material';
 
-import { useDataSlowContext } from "../../nonview/core/DataSlowProvider";
-import { EntType, Format, Translate } from "../../nonview";
-import LabelledStat from "../base/LabelledStat";
-import { useDataContext } from "../../nonview/core/DataProvider";
-import CustomLoadingProgress from "../base/CustomLoadingProgress";
+import { useDataSlowContext } from '../../nonview/core/DataSlowProvider';
+import { Format, Translate } from '../../nonview';
+import LabelledStat from '../base/LabelledStat';
+import { useDataContext } from '../../nonview/core/DataProvider';
+import CustomLoadingProgress from '../base/CustomLoadingProgress';
+import ExternalMediaCustomData from './ExternalMediaCustomData';
 
 function ResultsReleasedViewPElectors({ entID }) {
   const data = useDataSlowContext();
@@ -16,10 +17,15 @@ function ResultsReleasedViewPElectors({ entID }) {
   const pElectors = electionDisplay.getPElectors(
     entID,
     entIdx,
-    electionPrevious
+    electionPrevious,
   );
 
-  return <LabelledStat label="Released" stat={Format.percent(pElectors)} />;
+  return (
+    <Box>
+      <ExternalMediaCustomData customData={{ entID, pElectors }} />
+      <LabelledStat label="Released" stat={Format.percent(pElectors)} />
+    </Box>
+  );
 }
 
 export default function ResultsReleasedView({ entID }) {
@@ -32,13 +38,16 @@ export default function ResultsReleasedView({ entID }) {
   if (nResultsTotal <= 1) {
     return (
       <Typography variant="h6" color="gray">
-        {Translate("Final")}
+        {Translate('Final')}
       </Typography>
     );
   }
 
   const pdDetails = (
     <Stack direction="row" alignItems="center">
+      <ExternalMediaCustomData
+        customData={{ entID, nResultsReleased, nResultsTotal }}
+      />
       <Typography variant="h6">{nResultsReleased}</Typography>
       <Typography variant="h6" sx={{ opacity: 0.5 }}>
         /{nResultsTotal}
@@ -47,12 +56,9 @@ export default function ResultsReleasedView({ entID }) {
   );
 
   return (
-    <Stack direction="row" alignItems="center" gap={3} sx={{ color: "gray" }}>
+    <Stack direction="row" alignItems="center" gap={3} sx={{ color: 'gray' }}>
       <LabelledStat label="Results" stat={pdDetails} />
-
-      {electionDisplay.baseEntType === EntType.ED ? null : (
-        <ResultsReleasedViewPElectors entID={entID} />
-      )}
+      <ResultsReleasedViewPElectors entID={entID} />
     </Stack>
   );
 }

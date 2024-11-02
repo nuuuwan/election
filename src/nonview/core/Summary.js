@@ -13,6 +13,8 @@ export default class Summary {
       rejected: this.rejected,
       polled: this.polled,
       electors: this.electors,
+      pTurnout: this.pTurnout,
+      pRejected: this.pRejected,
     };
   }
 

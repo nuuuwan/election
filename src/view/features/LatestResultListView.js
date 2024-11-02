@@ -40,17 +40,7 @@ export default function LatestResultListView() {
           const entID = result.entID;
           return (
             <Grid2 key={entID}>
-              <ExternalMedia
-                id={'latest-result-' + resultType}
-                customData={{
-                  entID,
-                  partyToVotesSortedOthered:
-                    result.partyToVotes.partyToVotesSortedOthered,
-                  partyToPVotesSortedOthered:
-                    result.partyToVotes.partyToPVotesSortedOthered,
-                  summary: result.summary.toDict(),
-                }}
-              >
+              <ExternalMedia id={'latest-result-' + resultType}>
                 <CumResultsView mode="ColumnView" entID={entID} />
               </ExternalMedia>
             </Grid2>

@@ -52,6 +52,7 @@ export default class DataProviderUtils {
         election,
       );
       const nResultsDisplayDerived = DerivedData.getNResultsDisplay(
+        activeEntID,
         nResultsDisplay,
         election,
       );

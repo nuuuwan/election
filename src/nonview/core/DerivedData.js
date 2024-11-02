@@ -1,4 +1,4 @@
-import { ArrayX } from "..";
+import { ArrayX } from '..';
 
 export default class DerivedData {
   static isValidNResultsDisplay(nResultsDisplay, election) {
@@ -34,7 +34,7 @@ export default class DerivedData {
       DerivedData.checkIfResultDisplayable(
         election,
         activeEntID,
-        nResultsDisplay
+        nResultsDisplay,
       )
     ) {
       return activeEntID;
@@ -50,13 +50,21 @@ export default class DerivedData {
     return ArrayX.last(election.baseResultList).entID;
   }
 
-  static getNResultsDisplay(nResultsDisplay, election) {
+  static getNResultsDisplay(activeEntID, nResultsDisplay, election) {
     if (!election.isLoaded) {
       return null;
     }
     if (DerivedData.isValidNResultsDisplay(nResultsDisplay, election)) {
       return nResultsDisplay;
     }
+
+    if (activeEntID) {
+      const iResult = election.baseEntIDList.indexOf(activeEntID);
+      if (iResult !== -1) {
+        return iResult + 1;
+      }
+    }
+
     return election.baseResultList.length;
   }
 }

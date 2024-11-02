@@ -1,15 +1,10 @@
 import URLContext from '../base/URLContext';
-import ELECTION_LIST_TUPLES from './Election/ELECTION_LIST_TUPLES.js';
 export default class CustomURLContext {
   static getDefaultState() {
-    const n = ELECTION_LIST_TUPLES.length;
-    const randomI = Math.floor(Math.random() * n);
-    const [electionType, date] = ELECTION_LIST_TUPLES[randomI];
-    const nResultsDisplay = Math.floor(Math.random() * 182) + 1;
     return {
-      electionType,
-      date,
-      nResultsDisplay,
+      electionType: 'Presidential',
+      date: '2024-09-21',
+      nResultsDisplay: '',
       activeEntID: '',
       lang: 'en',
       groupBelowTheFold: 'Aggregated_Results',

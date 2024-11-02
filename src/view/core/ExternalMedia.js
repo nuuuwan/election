@@ -19,7 +19,7 @@ export default function ExternalMedia({ id, children, customData = {} }) {
       <CustomStack>{children}</CustomStack>
       <div
         className="external-media-text-lines-json"
-        // style={{ display: 'none' }}
+        style={{ display: 'none' }}
       >
         {JSON.stringify(customDataDisplay)}
       </div>

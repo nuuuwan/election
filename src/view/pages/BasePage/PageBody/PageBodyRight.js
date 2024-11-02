@@ -2,7 +2,7 @@ import CustomStack from '../../../core/CustomStack';
 
 import { useDataSlowContext } from '../../../../nonview/core/DataSlowProvider';
 
-import { Format, Party, Seats } from '../../../../nonview';
+import { Seats } from '../../../../nonview';
 import ProjectionTitle, {
   ProjectionAlert,
   ProjectionErrorAlert,
@@ -27,66 +27,49 @@ function PageBodyRightTypeSpecific() {
   return <ProjectionViewParliamentary />;
 }
 
-function getTextLinesForResultParliamentary({ election }) {
+function getCustomDataForParliamentary({ election }) {
   const seats = Seats.fromElection(election);
-  const entries = Object.entries(seats.getTotalPartyToSeats());
 
-  let lines = [''];
-
-  for (const [partyID, seats] of entries) {
-    const party = Party.fromID(partyID);
-    lines.push(`${party.emoji} ${party.xTag} ${seats}`);
-  }
-
-  return lines;
+  return {
+    partyToSeats: seats.getTotalPartyToSeats(),
+  };
 }
-function getTextLinesForResultPresidential({ election }) {
+function getCustomDataForPresidential({ election }) {
   const partyToVoteErrorInfo = election.getLKPartyToVotesErrorInfo();
   const totalVotes = election.summary.valid;
-  let lines = [''];
-  for (const [partyID, { votesMin, votesMax }] of Object.entries(
+  return {
     partyToVoteErrorInfo,
-  )) {
-    const party = Party.fromID(partyID);
-    const pVotesMin = votesMin / totalVotes;
-    const pVotesMax = votesMax / totalVotes;
-    lines.push(
-      `${party.emoji} ${Format.percentRange(pVotesMin, pVotesMax)} ${
-        party.xTag
-      }`,
-    );
-  }
-  return lines;
+    totalVotes,
+  };
 }
 
-function getTextLinesForResult({ election }) {
+function getCustomDataForElection({ election }) {
   if (election.isPresidential) {
-    return getTextLinesForResultPresidential({ election });
+    return getCustomDataForPresidential({ election });
   }
-  return getTextLinesForResultParliamentary({ election });
+  return getCustomDataForParliamentary({ election });
 }
 
-function getTextLines({ data }) {
+function getCustomData({ data }) {
   const {
     electionDisplay,
-    electionProjected,
     electionProjectedWithError,
+    electionProjected,
     pdIdx,
   } = data;
 
   const entID = 'LK';
   const { nResultsTotal, nResultsReleased } =
     electionDisplay.getNResultsReleasedAndTotal(entID, pdIdx);
-  const nToGo = nResultsTotal - nResultsReleased;
-  const isComplete = nToGo === 0;
   const election =
     electionProjectedWithError || electionProjected || electionDisplay;
 
-  return [].concat(
-    isComplete
-      ? ['🏁 Final Result']
-      : ['🤖 Projected Final Result', `${nToGo} results left`],
-    getTextLinesForResult({ election }),
+  return Object.assign(
+    {
+      nResultsReleased,
+      nResultsTotal,
+    },
+    getCustomDataForElection({ election }),
   );
 }
 
@@ -100,7 +83,7 @@ export default function PageBodyRight() {
       <ProjectionModelInfoView>
         <ExternalMedia
           id="projection-details"
-          textLines={getTextLines({ data })}
+          customData={getCustomData({ data })}
         >
           <ProjectionTitle />
           <PageBodyRightTypeSpecific />

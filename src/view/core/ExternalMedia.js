@@ -2,10 +2,16 @@ import { useDataContext } from '../../nonview/core/DataProvider';
 import CustomStack from './CustomStack';
 import ElectionSmallTitle from './ElectionSmallTitle';
 
-export default function ExternalMedia({ id, children, textLines = [] }) {
+export default function ExternalMedia({ id, children, customData = {} }) {
   const data = useDataContext();
   const { electionDisplay } = data;
-  const textLinesDisplay = [].concat(textLines, ['', electionDisplay.hashTag]);
+  const customDataDisplay = Object.assign(
+    {
+      electionType: electionDisplay.electionType,
+      electionDate: electionDisplay.date,
+    },
+    customData,
+  );
 
   return (
     <div id={id} className="external-media" style={{ width: '100%' }}>
@@ -13,9 +19,9 @@ export default function ExternalMedia({ id, children, textLines = [] }) {
       <CustomStack>{children}</CustomStack>
       <div
         className="external-media-text-lines-json"
-        style={{ display: 'none' }}
+        // style={{ display: 'none' }}
       >
-        {JSON.stringify(textLinesDisplay)}
+        {JSON.stringify(customDataDisplay)}
       </div>
     </div>
   );

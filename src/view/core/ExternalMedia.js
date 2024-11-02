@@ -18,7 +18,8 @@ export default function ExternalMedia({ id, children, customData = {} }) {
       <ElectionSmallTitle />
       <CustomStack>{children}</CustomStack>
       <div
-        className="external-media-text-lines-json"
+        id={id + '-custom-data'}
+        className="external-media-custom-data"
         style={{ display: 'none' }}
       >
         {JSON.stringify(customDataDisplay)}

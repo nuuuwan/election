@@ -39,21 +39,21 @@ export default class ElectionBase {
     return this.date.substring(0, 4);
   }
 
-  get electionTypeHashTag() {
+  get electionTypeHashtag() {
     if (this.electionType === 'Presidential') {
       return 'PresPollSL';
     }
     return 'GenElecSL';
   }
 
-  get hashTag() {
-    return '#' + this.electionTypeHashTag + this.year.toString();
+  get hashtag() {
+    return '#' + this.electionTypeHashtag + this.year.toString();
   }
 
-  get hashTagList() {
+  get hashtagList() {
     return [
       '🇱🇰 ',
-      this.hashTag,
+      this.hashtag,
       '#SriLanka',
       '#LKA',
       '#SriLankaElections',

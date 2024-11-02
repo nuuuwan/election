@@ -124,17 +124,17 @@ export default class PartyToVotes {
     return this.partyToVotes[Party.ERROR.id] || 0;
   }
 
-  get partyToVoteErrorInfo() {
-    let partyToVoteErrorInfo = {};
+  get partyToVotesErrorInfo() {
+    let partyToVotesErrorInfo = {};
     const votesError = this.votesError;
 
     for (const [partyID, votesMin] of Object.entries(this.partyToVotes)) {
       const votesMax = votesMin + votesError;
-      partyToVoteErrorInfo[partyID] = {
+      partyToVotesErrorInfo[partyID] = {
         votesMin: votesMin,
         votesMax: votesMax,
       };
     }
-    return DictX.sort(partyToVoteErrorInfo, (entry) => -entry[1].votesMin);
+    return DictX.sort(partyToVotesErrorInfo, (entry) => -entry[1].votesMin);
   }
 }

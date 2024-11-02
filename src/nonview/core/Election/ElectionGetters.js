@@ -111,7 +111,7 @@ const ElectionStats = {
   getLKPartyToVotesErrorInfo() {
     const unsorted = this.baseResultList.reduce(
       function (idx, result) {
-        const partyToVotesErrorInfo = result.partyToVotes.partyToVoteErrorInfo;
+        const partyToVotesErrorInfo = result.partyToVotes.partyToVotesErrorInfo;
 
         return Object.entries(partyToVotesErrorInfo).reduce(
           function (idx, [partyID, { votesMin, votesMax }]) {

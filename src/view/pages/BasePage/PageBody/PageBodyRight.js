@@ -35,10 +35,10 @@ function getCustomDataForParliamentary({ election }) {
   };
 }
 function getCustomDataForPresidential({ election }) {
-  const partyToVoteErrorInfo = election.getLKPartyToVotesErrorInfo();
+  const partyToVotesErrorInfo = election.getLKPartyToVotesErrorInfo();
   const totalVotes = election.summary.valid;
   return {
-    partyToVoteErrorInfo,
+    partyToVotesErrorInfo,
     totalVotes,
   };
 }

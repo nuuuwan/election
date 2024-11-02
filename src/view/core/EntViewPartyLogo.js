@@ -2,7 +2,7 @@ import { Stack } from '@mui/material';
 import { Party } from '../../nonview';
 import { EntView, PartyLogo } from '..';
 
-export default function EntWithPartyView({ entID, partyID }) {
+export default function EntViewPartyLogo({ entID, partyID }) {
   const party = Party.fromID(partyID);
   return (
     <Stack direction="row">

@@ -8,14 +8,14 @@ import {
 import CumResultsViewTableRowView from './CumResultsViewTableRowView';
 import CumResultsColumnView from './CumResultsColumnView';
 import { useDataContext } from '../../../nonview/core/DataProvider';
-import EntWithPartyView from '../../core/EntViewPartyLogo';
+import EntViewPartyLogo from '../../core/EntViewPartyLogo';
 
 function getContentList({ entID, result, election }) {
   const partyToPVotes =
     election.getResult(entID).partyToVotes.partyToPVotesSortedOthered;
 
   return [
-    <EntWithPartyView key="0" entID={entID} partyID={result.winningPartyID} />,
+    <EntViewPartyLogo key="0" entID={entID} partyID={result.winningPartyID} />,
 
     <PartyToVotesStatsView key="1" partyToVotes={result.partyToVotes} />,
     <ResultBarChart key="2" partyToPVotes={partyToPVotes} />,

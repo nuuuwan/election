@@ -42,12 +42,19 @@ function HistoryViewRow({ entID, electionForRow }) {
 function getCustomData({ entID, previousElectionsDisplay }) {
   return {
     yearToWinningParty: Object.fromEntries(
-      previousElectionsDisplay.map(function (electionForRow) {
-        const electionYear = electionForRow.year;
-        const winningPartyID =
-          electionForRow.getResult(entID).partyToVotes.winningPartyID;
-        return [electionYear, winningPartyID];
-      }),
+      previousElectionsDisplay
+        .map(function (electionForRow) {
+          const electionYear = electionForRow.year;
+          const result = electionForRow.getResultSafe(entID);
+          if (!result) {
+            return null;
+          }
+          const winningPartyID = result.partyToVotes.winningPartyID;
+          return [electionYear, winningPartyID];
+        })
+        .filter(function (x) {
+          return x;
+        }),
     ),
   };
 }

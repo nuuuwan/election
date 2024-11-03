@@ -1,11 +1,11 @@
-import ElectionBase from "./ElectionBase.js";
+import ElectionBase from './ElectionBase.js';
 
-import ElectionGetters from "./ElectionGetters.js";
+import ElectionGetters from './ElectionGetters.js';
 
-import ElectionStaticUtilsMixin from "./ElectionStaticUtilsMixin.js";
-import ElectionStaticLoaderMixin from "./ElectionStaticLoaderMixin.js";
-import ElectionLoaderMixin from "./ElectionLoaderMixin.js";
-import EntType from "../../base/EntType.js";
+import ElectionStaticUtilsMixin from './ElectionStaticUtilsMixin.js';
+import ElectionStaticLoaderMixin from './ElectionStaticLoaderMixin.js';
+import ElectionLoaderMixin from './ElectionLoaderMixin.js';
+import EntType from '../../base/EntType.js';
 
 class Election extends ElectionBase {
   copy() {
@@ -22,21 +22,18 @@ class Election extends ElectionBase {
     return this.resultIdx[id];
   }
 
-  static async fromElectionTypeAndDate(electionType, date) {
-    const baseEntType = date === "2024-09-22" ? EntType.ED : EntType.PD;
-    const election = new Election(electionType, date, baseEntType);
-    return await election.__loadData();
+  getResultSafe(id) {
+    try {
+      return this.getResult(id);
+    } catch {
+      return null;
+    }
   }
 
-  static getBaseEntTypeFromDate(date) {
-    switch (date) {
-    case "2024-09-21":
-      return EntType.PD;
-    case "2024-09-22":
-      return EntType.ED;
-    default:
-      return undefined;
-    }
+  static async fromElectionTypeAndDate(electionType, date) {
+    const baseEntType = date === '2024-09-22' ? EntType.ED : EntType.PD;
+    const election = new Election(electionType, date, baseEntType);
+    return await election.__loadData();
   }
 
   // Subset Election
@@ -56,7 +53,7 @@ class Election extends ElectionBase {
           } catch {
             return null;
           }
-        }.bind(this)
+        }.bind(this),
       )
       .filter(function (result) {
         return result !== null;

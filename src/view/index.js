@@ -50,7 +50,6 @@ import SummaryView from "./cumulative/SummaryView.js";
 import AggregatedResultUtils from "./features/AggregatedResultView/AggregatedResultUtils.js";
 import AggregatedResultView from "./features/AggregatedResultView/AggregatedResultView.js";
 import AggregatedResultViewGroup from "./features/AggregatedResultView/AggregatedResultViewGroup.js";
-import BellwetherView from "./features/BellwetherView.js";
 import CumResultsColumnView from "./features/CumResultsView/CumResultsColumnView.js";
 import CumResultsView from "./features/CumResultsView/CumResultsView.js";
 import CumResultsViewTableRowView from "./features/CumResultsView/CumResultsViewTableRowView.js";
@@ -162,7 +161,6 @@ export {
   AggregatedResultUtils,
   AggregatedResultView,
   AggregatedResultViewGroup,
-  BellwetherView,
   CumResultsColumnView,
   CumResultsView,
   CumResultsViewTableRowView,

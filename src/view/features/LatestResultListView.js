@@ -1,7 +1,7 @@
 import { Grid2, Stack } from '@mui/material';
 import { useDataContext } from '../../nonview/core/DataProvider';
 import CumResultsView from './CumResultsView/CumResultsView';
-import { ProvinceUtils } from '../../nonview';
+
 import { ExternalMedia } from '../../view';
 
 function getResultsIdx({ allRegionIdx, electionDisplay, activeEntID }) {
@@ -13,7 +13,7 @@ function getResultsIdx({ allRegionIdx, electionDisplay, activeEntID }) {
 
   const resultPD = electionDisplay.resultIdx[activeEntID];
   const resultED = resultIdx[ent.d.ed_id];
-  const resultProvince = resultIdx[ProvinceUtils.getProvinceIDForPDEnt(ent)];
+  const resultProvince = resultIdx[ent.d.province_id];
 
   return {
     pd: resultPD,

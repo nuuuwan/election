@@ -1,8 +1,8 @@
-import EntType from "../../base/EntType.js";
-import ProvinceUtils from "../../base/ProvinceUtils.js";
-import YEAR_TO_REGION_TO_SEATS from "../../constants/YEAR_TO_REGION_TO_SEATS.js";
-import SeatsUtils from "./SeatsUtils.js";
-import SeatsBuilderMixin from "./SeatsBuilderMixin.js";
+import EntType from '../../base/EntType.js';
+
+import YEAR_TO_REGION_TO_SEATS from '../../constants/YEAR_TO_REGION_TO_SEATS.js';
+
+import SeatsBuilderMixin from './SeatsBuilderMixin.js';
 
 class Seats {
   static MIN_SEATS_FOR_DISPLAY = 10;
@@ -16,37 +16,17 @@ class Seats {
     return new Seats(election);
   }
 
-  getPartyToSeatsForProvince(provinceID) {
-    const partyToSeatsList = Object.entries(this.getRegionToPartyToSeats())
-      .filter(function (entry) {
-        const entID = entry[0];
-        if (entID === "LK") {
-          return false;
-        }
-        const provinceID2 = ProvinceUtils.getProvinceIDForEDID(entID);
-        return provinceID2 === provinceID;
-      })
-      .map(function (entry) {
-        return entry[1];
-      });
-
-    return SeatsUtils.aggregatePartyToSeats(partyToSeatsList);
-  }
-
   getPartyToSeats(entID) {
     if (entID === null) {
       return this.getTotalPartyToSeats();
     }
-    if (entID === "LK") {
+    if (entID === 'LK') {
       return this.getLKPartyToSeats();
     }
     if (EntType.fromID(entID) === EntType.ED) {
       return this.getRegionToPartyToSeats()[entID];
     }
 
-    if (EntType.fromID(entID) === EntType.PROVINCE) {
-      return this.getPartyToSeatsForProvince(entID);
-    }
     return null;
   }
 }

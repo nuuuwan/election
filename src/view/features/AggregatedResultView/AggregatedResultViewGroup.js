@@ -88,7 +88,7 @@ function AggregatedResultViewGroupTitle({
   }
   return (
     <Typography variant="h4" color="secondary">
-      {Translate('By %1 (%2 of %3)', [
+      {Translate('By %1 (after %2 of %3 results)', [
         Translate(group.replaceAll('_', ' ')),
         nResultsReleased,
         nResultsTotal,

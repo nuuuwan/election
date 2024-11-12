@@ -1,17 +1,16 @@
-import { Slider, Stack, Typography } from "@mui/material";
-import { useDataContext } from "../../nonview/core/DataProvider";
-import { useState } from "react";
-import { useBasePageHandlerContext } from "../pages/BasePage/BasePageHandlerProvider";
+import { Slider, Stack, Typography } from '@mui/material';
+import { useDataContext } from '../../nonview/core/DataProvider';
+import { useState } from 'react';
+import { useBasePageHandlerContext } from '../pages/BasePage/BasePageHandlerProvider';
 
 export default function DisplaySlider() {
-  
   const data = useDataContext();
   const handlers = useBasePageHandlerContext();
-  const { nResultsDisplay } = data;
-  
+  const { nResultsDisplay, election } = data;
+
   const { setNResultsDisplay } = handlers;
   const [valueDisplay, setValueDisplay] = useState(nResultsDisplay);
-  
+  const nResults = election.nResults;
   const onChange = function (event, value) {
     setValueDisplay(value);
   };
@@ -26,14 +25,14 @@ export default function DisplaySlider() {
       <Slider
         value={valueDisplay}
         min={0}
-        max={182}
+        max={nResults}
         onChange={onChange}
         onChangeCommitted={onChangeCommitted}
       />
       <Stack direction="row" gap={0} alignItems="center">
         <Typography variant="h5">{valueDisplay || nResultsDisplay}</Typography>
-        <Typography variant="body1" sx={{ color: "#888" }}>
-          {"/182"}
+        <Typography variant="body1" sx={{ color: '#888' }}>
+          {`/${nResults}`}
         </Typography>
       </Stack>
     </Stack>

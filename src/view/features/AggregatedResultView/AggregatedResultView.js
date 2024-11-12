@@ -18,20 +18,24 @@ function getValueIdx({
     ]) {
       return [
         group,
-        <ExternalMedia
-          key={group}
-          id={'aggregated-results-table-' + group.toLowerCase()}
-        >
-          <ExternalMediaCustomData
-            customData={{ group, nResultsReleased, nResultsTotal }}
-          />
-          <AggregatedResultViewGroup
-            group={group}
-            nResultsReleased={nResultsReleased}
-            nResultsTotal={nResultsTotal}
-            entIDList={entIDListGetter(data)}
-          />
-        </ExternalMedia>,
+        function () {
+          return (
+            <ExternalMedia
+              key={group}
+              id={'aggregated-results-table-' + group.toLowerCase()}
+            >
+              <ExternalMediaCustomData
+                customData={{ group, nResultsReleased, nResultsTotal }}
+              />
+              <AggregatedResultViewGroup
+                group={group}
+                nResultsReleased={nResultsReleased}
+                nResultsTotal={nResultsTotal}
+                entIDList={entIDListGetter(data)}
+              />
+            </ExternalMedia>
+          );
+        },
       ];
     }),
   );

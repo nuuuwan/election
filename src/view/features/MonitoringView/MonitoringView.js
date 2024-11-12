@@ -15,10 +15,10 @@ export default function MonitoringView() {
   return (
     <TabSelector
       valueIdx={{
-        Banford: <BanfordView />,
-        Turnout: <TurnoutView />,
-        Rejected: <RejectedView />,
-        Electors: <ElectorsView />,
+        Banford: () => <BanfordView />,
+        Turnout: () => <TurnoutView />,
+        Rejected: () => <RejectedView />,
+        Electors: () => <ElectorsView />,
       }}
       initSelectedValue={groupMonitoring}
       setGroup={setGroupMonitoring}

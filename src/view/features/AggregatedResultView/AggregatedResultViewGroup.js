@@ -83,6 +83,9 @@ function AggregatedResultViewGroupTitle({
   nResultsReleased,
   nResultsTotal,
 }) {
+  if (!group) {
+    return null;
+  }
   return (
     <Typography variant="h4" color="secondary">
       {Translate('By %1 (%2 of %3)', [

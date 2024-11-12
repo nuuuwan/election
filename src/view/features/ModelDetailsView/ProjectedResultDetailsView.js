@@ -16,6 +16,7 @@ export default function ProjectedResultDetailsView() {
   });
   return (
     <AggregatedResultViewGroup
+      group={null}
       entIDList={notReleasedPDIDList}
       customElection={electionProjected}
     />

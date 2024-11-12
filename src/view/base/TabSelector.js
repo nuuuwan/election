@@ -7,7 +7,7 @@ export default function TabSelector({ valueIdx, initSelectedValue, setGroup }) {
   const [selectedValue, setSelectedValue] = React.useState(
     initSelectedValue || valueList[0],
   );
-  const content = valueIdx[selectedValue];
+  const content = valueIdx[selectedValue]();
 
   return (
     <Stack

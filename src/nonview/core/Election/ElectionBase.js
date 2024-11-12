@@ -32,7 +32,9 @@ export default class ElectionBase {
   }
 
   get title() {
-    return this.year + ' ' + Translate(this.electionTypeTitle);
+    return (
+      this.year + ' ' + Translate(this.electionTypeTitle) + this.hashtagTestData
+    );
   }
 
   get year() {
@@ -47,7 +49,19 @@ export default class ElectionBase {
   }
 
   get hashtag() {
-    return '#' + this.electionTypeHashtag + this.year.toString();
+    return (
+      '#' +
+      this.electionTypeHashtag +
+      this.year.toString() +
+      this.hashtagTestData
+    );
+  }
+
+  get hashtagTestData() {
+    if (this.date === '2024-11-14') {
+      return ' 🛠️ #TestData';
+    }
+    return '';
   }
 
   get hashtagList() {

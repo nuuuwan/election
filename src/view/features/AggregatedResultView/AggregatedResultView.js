@@ -5,6 +5,36 @@ import AggregatedResultViewGroup from './AggregatedResultViewGroup';
 import { useDataSlowContext } from '../../../nonview/core/DataSlowProvider';
 import { useBasePageHandlerContext } from '../../pages/BasePage/BasePageHandlerProvider';
 
+function getContent({
+  group,
+  data,
+  entIDListGetter,
+  nResultsReleased,
+  nResultsTotal,
+}) {
+  return (
+    <ExternalMedia
+      key={group}
+      id={'aggregated-results-table-' + group.toLowerCase()}
+    >
+      <ExternalMediaCustomData
+        customData={{
+          group,
+          nResultsReleased,
+          nResultsTotal,
+          partyToWins: AggregatedResultUtils.getPartyToWins(group, data),
+        }}
+      />
+      <AggregatedResultViewGroup
+        group={group}
+        nResultsReleased={nResultsReleased}
+        nResultsTotal={nResultsTotal}
+        entIDList={entIDListGetter(data)}
+      />
+    </ExternalMedia>
+  );
+}
+
 function getValueIdx({
   groupToEntIDListGetter,
   data,
@@ -19,22 +49,13 @@ function getValueIdx({
       return [
         group,
         function () {
-          return (
-            <ExternalMedia
-              key={group}
-              id={'aggregated-results-table-' + group.toLowerCase()}
-            >
-              <ExternalMediaCustomData
-                customData={{ group, nResultsReleased, nResultsTotal }}
-              />
-              <AggregatedResultViewGroup
-                group={group}
-                nResultsReleased={nResultsReleased}
-                nResultsTotal={nResultsTotal}
-                entIDList={entIDListGetter(data)}
-              />
-            </ExternalMedia>
-          );
+          return getContent({
+            group,
+            data,
+            entIDListGetter,
+            nResultsReleased,
+            nResultsTotal,
+          });
         },
       ];
     }),

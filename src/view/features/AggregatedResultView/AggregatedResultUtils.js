@@ -51,4 +51,21 @@ export default class AggregatedResultUtils {
       Bellwethers: me.getBellwetherEntIDList,
     };
   }
+
+  static getPartyToWins(group, data) {
+    const { electionDisplay } = data;
+
+    const entIDList =
+      AggregatedResultUtils.getGroupToEntIDListGetter()[group](data);
+    return entIDList.reduce(function (partyToWins, entID) {
+      const result = electionDisplay.getResult(entID);
+      if (result) {
+        const partyID = result.winningPartyID;
+
+        partyToWins[partyID] = (partyToWins[partyID] || 0) + 1;
+      }
+
+      return partyToWins;
+    }, {});
+  }
 }

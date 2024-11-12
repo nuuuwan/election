@@ -3,12 +3,7 @@ import MathX from '../../base/MathX';
 
 export default class ElectionProjectedWithError {
   static MIN_ED_P_ELECTORS = 0.1;
-  static rebuildPartyToVotes(
-    partyToVotes,
-    meanL1Error90pctl,
-
-    edPartyToPVotes,
-  ) {
+  static rebuildPartyToVotes(partyToVotes, meanL1Error90pctl, edPartyToPVotes) {
     const totalVotes = partyToVotes.totalVotes;
     const kError = MathX.forceRange(1 - meanL1Error90pctl, 0, 1);
     let partyToVotesRebuilt = Object.fromEntries(

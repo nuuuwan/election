@@ -94,30 +94,35 @@ function getProjectedElections({
   };
 }
 
-async function getElectionValuesSlow({ electionDisplay, entIdx }) {
+async function getElectionValuesSlow({
+  nResultsDisplay,
+  electionDisplay,
+  entIdx,
+}) {
   const inner = async function () {
     const electionHistory = await ElectionHistory.load(electionDisplay);
     const electionPrevious = electionHistory.electionPrevious;
 
-    const {
-      electionProjected,
-      electionDisplayPrevious,
-      electionProjectedPrevious,
-      electionProjectedWithError,
-    } = getProjectedElections({
-      electionDisplay,
-      electionHistory,
-      electionPrevious,
-      entIdx,
-    });
+    let projectedValues = {};
+
+    if (nResultsDisplay !== 0) {
+      // electionProjected,
+      // electionDisplayPrevious,
+      // electionProjectedPrevious,
+      // electionProjectedWithError,
+
+      projectedValues = getProjectedElections({
+        electionDisplay,
+        electionHistory,
+        electionPrevious,
+        entIdx,
+      });
+    }
 
     return {
       electionHistory,
       electionPrevious,
-      electionProjected,
-      electionDisplayPrevious,
-      electionProjectedPrevious,
-      electionProjectedWithError,
+      ...projectedValues,
     };
   };
   return await Timer.logAsync(

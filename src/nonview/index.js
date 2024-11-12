@@ -56,7 +56,6 @@ import ElectionModelSimulationUtils from "./core/ElectionModel/ElectionModelSimu
 import ElectionProjectedWithError from "./core/ElectionModel/ElectionProjectedWithError.js";
 import FeatureMatrix from "./core/ElectionModel/FeatureMatrix.js";
 import FeatureVector from "./core/ElectionModel/FeatureVector.js";
-import OngoingElection from "./core/OngoingElection.js";
 import Party from "./core/Party.js";
 import PartyToVotes from "./core/PartyToVotes.js";
 import ProjectionModelInfo from "./core/ProjectionModelInfo.js";
@@ -124,7 +123,6 @@ export {
   ElectionProjectedWithError,
   FeatureMatrix,
   FeatureVector,
-  OngoingElection,
   Party,
   PartyToVotes,
   ProjectionModelInfo,

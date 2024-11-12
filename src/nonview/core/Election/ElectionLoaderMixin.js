@@ -1,21 +1,16 @@
-import { WWW, EntType } from "../..";
-import Result from "../Result.js";
+import { WWW, EntType } from '../..';
+import Result from '../Result.js';
 
-import OngoingElection from "../OngoingElection.js";
-import ElectionStaticLoaderMixin from "./ElectionStaticLoaderMixin.js";
+import ElectionStaticLoaderMixin from './ElectionStaticLoaderMixin.js';
 const ElectionLoaderMixin = {
   async __loadData() {
-    if (this.isFuture) {
-      await OngoingElection.loadData(this);
-    } else {
-      const pdResultList = await this.getPDResultList();
-      this.build(pdResultList);
-    }
+    const pdResultList = await this.getPDResultList();
+    this.build(pdResultList);
     return this;
   },
 
   async getRawDataList() {
-    const timeStamp = "any";
+    const timeStamp = 'any';
     return await WWW.tsv(this.urlData, timeStamp);
   },
 
@@ -26,14 +21,14 @@ const ElectionLoaderMixin = {
       return (
         EntType.fromID(d.entity_id) === EntType.PD &&
         ![
-          "EC-10-",
-          "EC-11D",
-          "EC-11-",
-          "EC-12D",
-          "EC-12-",
-          "EC-13-",
-          "EC-14D",
-          "EC-14-",
+          'EC-10-',
+          'EC-11D',
+          'EC-11-',
+          'EC-12D',
+          'EC-12-',
+          'EC-13-',
+          'EC-14D',
+          'EC-14-',
         ].includes(d.entity_id)
       );
     });
@@ -44,7 +39,7 @@ const ElectionLoaderMixin = {
 
     const sortedPDResultList = pdResultList.sort(function (a, b) {
       return (
-        (a.resultTime || "").localeCompare(b.resultTime || "") ||
+        (a.resultTime || '').localeCompare(b.resultTime || '') ||
         a.summary.polled - b.summary.polled
       );
     });
@@ -61,22 +56,22 @@ const ElectionLoaderMixin = {
       this.pdResultList = [];
       this.edResultList = baseResultList;
     } else {
-      throw new Error("Invalid baseEntType: " + this.baseEntType);
+      throw new Error('Invalid baseEntType: ' + this.baseEntType);
     }
 
     this.edResultList =
       this.edResultList ||
       ElectionStaticLoaderMixin.buildEDResultList(this.pdResultList);
     this.provinceResultList = ElectionStaticLoaderMixin.buildProvinceResultList(
-      this.edResultList
+      this.edResultList,
     );
 
     this.resultLK = ElectionStaticLoaderMixin.buildResultLK(
-      this.provinceResultList
+      this.provinceResultList,
     );
 
     this.ezResultList = ElectionStaticLoaderMixin.buildEZResultList(
-      this.baseResultList
+      this.baseResultList,
     );
 
     this.resultList = [

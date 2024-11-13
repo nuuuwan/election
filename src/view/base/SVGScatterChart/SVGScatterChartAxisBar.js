@@ -8,10 +8,12 @@ export function SVGScatterChartAxisBar({
   boundParams,
   isX,
 }) {
-  const { xMin, xSpan, yMin, ySpan } = boundParams;
+  const { xMin, xSpan, yMin, ySpan, yMax } = boundParams;
   const p = i / nAxisLabels;
   const x = xMin + xSpan * p;
   const y = yMin + ySpan * p;
+
+  console.debug({ yMin, yMax, y, ySpan, p });
   return (
     <g key={i}>
       <SVGScatterChartAxisBarLine

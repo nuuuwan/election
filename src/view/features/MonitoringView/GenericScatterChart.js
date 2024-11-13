@@ -8,23 +8,32 @@ import {
 import { useDataSlowContext } from '../../../nonview/core/DataSlowProvider';
 import { Typography } from '@mui/material';
 
-function getPoints(electionX, electionY, getValue) {
-  return electionX.baseResultList.map(function (resultX) {
-    const x = getValue(resultX);
-    const entID = resultX.entID;
-    const resultY = electionY.getResult(entID);
-    if (!resultY) {
-      return null;
-    }
-    const y = getValue(resultY);
+function getPoints(electionX, electionY, entIdx, getValue) {
+  return electionX.baseResultList
+    .map(function (resultX) {
+      const x = getValue(resultX);
+      const entID = resultX.entID;
+      const ent = entIdx[entID];
+      const resultY = electionY.getResultSafe(entID);
+      if (!resultY) {
+        return null;
+      }
+      const y = getValue(resultY);
 
-    return {
-      entID,
-      x,
-      y,
-      xWinningPartyID: resultX.winningPartyID,
-    };
-  });
+      const absX = Math.abs((x - y) / x);
+
+      return {
+        entID,
+        ent,
+        x,
+        y,
+        absX,
+        resultX,
+        resultY,
+      };
+    })
+    .filter((x) => x)
+    .sort((a, b) => b.absX - a.absX);
 }
 
 function NoPreviousElectionAlert() {
@@ -45,11 +54,11 @@ export default function GenericScatterChart({
     return null;
   }
 
-  const { electionDisplay, electionPrevious } = data;
+  const { electionDisplay, electionPrevious, entIdx } = data;
   if (!electionPrevious) {
     return <NoPreviousElectionAlert />;
   }
-  const points = getPoints(electionDisplay, electionPrevious, getValue);
+  const points = getPoints(electionPrevious, electionDisplay, entIdx, getValue);
 
   return (
     <ExternalMedia id={'generic-scatter-chart' + idPrefix}>
@@ -59,8 +68,8 @@ export default function GenericScatterChart({
       </Typography>
       <SVGScatterChart
         points={points}
-        xTitle={electionDisplay.year}
-        yTitle={electionPrevious.year}
+        xTitle={electionPrevious.year}
+        yTitle={electionDisplay.year}
         formatStat={formatStat}
         width={640}
         height={640}

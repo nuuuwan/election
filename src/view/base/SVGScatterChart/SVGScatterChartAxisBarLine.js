@@ -5,8 +5,8 @@ export function SVGScatterChartAxisBarLine({ x, y, boundParams, isX }) {
       <line
         x1={x}
         x2={x}
-        y1={yMax - yMin}
-        y2={yMax - yMax}
+        y1={yMin}
+        y2={yMax}
         stroke={'#888'}
         strokeWidth={radius / 20}
       />
@@ -16,8 +16,8 @@ export function SVGScatterChartAxisBarLine({ x, y, boundParams, isX }) {
     <line
       x1={xMin}
       x2={xMax}
-      y1={yMax - y}
-      y2={yMax - y}
+      y1={y}
+      y2={y}
       stroke={'#888'}
       strokeWidth={radius / 20}
     />

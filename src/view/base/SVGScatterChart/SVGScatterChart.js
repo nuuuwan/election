@@ -31,7 +31,11 @@ export default function SVGScatterChart({
         formatStat={formatStat}
         isX={false}
       />
-      <SVGScatterChartPoints points={points} boundParams={boundParams} />
+      <SVGScatterChartPoints
+        points={points}
+        boundParams={boundParams}
+        formatStat={formatStat}
+      />
     </svg>
   );
 }

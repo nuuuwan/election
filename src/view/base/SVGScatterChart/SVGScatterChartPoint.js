@@ -1,10 +1,26 @@
-import { Party } from '../../../nonview';
+import { SVGScatterChartPointCircle } from './SVGScatterChartPointCircle';
+import { SVGScatterChartPointText } from './SVGScatterChartPointText';
+export const MAX_OUTLIERS = 5;
 
-export function SVGScatterChartPoint({ entID, xWinningPartyID, x, y, radius }) {
-  const color = Party.fromID(xWinningPartyID).color;
+export function SVGScatterChartPoint({
+  point,
+  iPoint,
+  boundParams,
+  formatStat,
+}) {
   return (
-    <g key={entID}>
-      <circle cx={x} cy={y} r={radius} fill={color} fillOpacity={0.5} />
+    <g>
+      <SVGScatterChartPointCircle
+        point={point}
+        iPoint={iPoint}
+        boundParams={boundParams}
+        formatStat={formatStat}
+      />
+      <SVGScatterChartPointText
+        point={point}
+        iPoint={iPoint}
+        boundParams={boundParams}
+      />
     </g>
   );
 }

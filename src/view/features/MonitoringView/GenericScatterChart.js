@@ -13,6 +13,9 @@ function getPoints(electionX, electionY, entIdx, getValue) {
     .map(function (resultX) {
       const x = getValue(resultX);
       const entID = resultX.entID;
+      if (entID.endsWith('P')) {
+        return null;
+      }
       const ent = entIdx[entID];
       const resultY = electionY.getResultSafe(entID);
       if (!resultY) {

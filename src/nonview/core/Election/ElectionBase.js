@@ -58,9 +58,9 @@ export default class ElectionBase {
   }
 
   get hashtagTestData() {
-    if (this.date === '2024-11-14') {
-      return ' 🛠️ #TestData';
-    }
+    // if (this.date === '2024-11-14') {
+    //   return ' 🛠️ #TestData';
+    // }
     return '';
   }
 

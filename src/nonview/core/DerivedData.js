@@ -47,7 +47,8 @@ export default class DerivedData {
       return election.baseResultList[nResultsDisplay - 1].entID;
     }
 
-    return ArrayX.last(election.baseResultList).entID;
+    const lastResult = ArrayX.last(election.baseResultList);
+    return lastResult?.entID;
   }
 
   static getNResultsDisplay(activeEntID, nResultsDisplay, election) {

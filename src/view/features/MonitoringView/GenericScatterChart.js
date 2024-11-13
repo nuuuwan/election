@@ -20,20 +20,21 @@ function getPoints(electionX, electionY, entIdx, getValue) {
       }
       const y = getValue(resultY);
 
-      const absX = Math.abs((x - y) / x);
-
+      const pDelta = (y - x) / x;
+      const absPDelta = Math.abs(pDelta);
       return {
         entID,
         ent,
         x,
         y,
-        absX,
+        pDelta,
+        absPDelta,
         resultX,
         resultY,
       };
     })
     .filter((x) => x)
-    .sort((a, b) => b.absX - a.absX);
+    .sort((a, b) => b.absPDelta - a.absPDelta);
 }
 
 function NoPreviousElectionAlert() {
@@ -71,8 +72,8 @@ export default function GenericScatterChart({
         xTitle={electionPrevious.year}
         yTitle={electionDisplay.year}
         formatStat={formatStat}
-        width={640}
-        height={640}
+        width={400}
+        height={400}
       />
     </ExternalMedia>
   );

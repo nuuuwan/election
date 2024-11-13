@@ -2,7 +2,7 @@ import { MAX_OUTLIERS } from './SVGScatterChartPoint';
 
 export function SVGScatterChartPointText({ point, iPoint, boundParams }) {
   const { ent, x, y } = point;
-  const { radius } = boundParams;
+  const { radius, transformY } = boundParams;
 
   const isOutlier = iPoint < MAX_OUTLIERS;
   if (!isOutlier) {
@@ -12,7 +12,7 @@ export function SVGScatterChartPointText({ point, iPoint, boundParams }) {
   return (
     <text
       x={x + radius}
-      y={y}
+      y={transformY(y)}
       fontSize={radius * 2}
       fill="black"
       textAnchor="start"

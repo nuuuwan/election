@@ -1,5 +1,6 @@
 export function SVGScatterChartAxisTitle({ title, boundParams, isX }) {
-  const { xMin, xSpan, yMin, xPadding, yPadding, radius, ySpan } = boundParams;
+  const { xMin, xSpan, yMin, xPadding, yPadding, radius, ySpan, transformY } =
+    boundParams;
   let xText, yText, transform;
   if (isX) {
     xText = xMin + xSpan / 2;
@@ -14,7 +15,7 @@ export function SVGScatterChartAxisTitle({ title, boundParams, isX }) {
   return (
     <text
       x={xText}
-      y={yText}
+      y={transformY(yText)}
       transform={transform}
       fontSize={radius * 3}
       textAnchor="middle"

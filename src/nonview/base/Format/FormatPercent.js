@@ -43,8 +43,8 @@ const FormatPercent = {
   },
 
   percentSigned(x, minimumFractionDigits = undefined) {
-    if (x < 0.005 && x > 0) {
-      return '<0.5%';
+    if (x < 0.005 && x > -0.005) {
+      return '';
     }
     const absX = Math.abs(x);
     const sign = x < 0 ? '-' : '+';

@@ -1,5 +1,5 @@
 export class SVGScatterChartUtils {
-  static P_PADDING = 0.3;
+  static P_PADDING = 0.25;
   static SPANS_PER_RADIUS = 50;
   static getBoundParams(points) {
     const xList = points
@@ -26,8 +26,6 @@ export class SVGScatterChartUtils {
     const radius =
       Math.max(xSpan, ySpan) / SVGScatterChartUtils.SPANS_PER_RADIUS;
 
-    console.debug({ xMin, xMax, yMin, yMax, xSpan, ySpan, n: points.length });
-
     return {
       xMin,
       xMax,
@@ -39,6 +37,7 @@ export class SVGScatterChartUtils {
       xPadding,
       viewBox,
       radius,
+      transformY: (y) => yMax - y + yMin,
     };
   }
 }

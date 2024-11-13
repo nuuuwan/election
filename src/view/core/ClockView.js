@@ -1,14 +1,18 @@
-import { Box, Typography } from "@mui/material";
-import { useDataContext } from "../../nonview/core/DataProvider";
+import { Box, Typography } from '@mui/material';
+import { useDataContext } from '../../nonview/core/DataProvider';
 
 export default function ClockView() {
   const data = useDataContext();
   const { electionDisplay } = data;
-  const lastResult = electionDisplay.pdResultList.slice().reverse()[0];
-
+  const lastResult = electionDisplay.lastResult;
+  if (!lastResult || !lastResult.resultTime) {
+    return null;
+  }
   return (
     <Box>
-      <Typography variant="h6">{lastResult.resultTime}</Typography>
+      <Typography variant="h5">
+        {lastResult.resultTime.substring(0, 19)}
+      </Typography>
     </Box>
   );
 }

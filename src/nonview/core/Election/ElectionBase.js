@@ -128,4 +128,8 @@ export default class ElectionBase {
   get summary() {
     return this.getResult('LK').summary;
   }
+
+  get lastResult() {
+    return this.pdResultList.slice().reverse()[0];
+  }
 }

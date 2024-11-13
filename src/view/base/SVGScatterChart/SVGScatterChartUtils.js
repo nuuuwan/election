@@ -1,6 +1,27 @@
+import MLR from 'ml-regression-multivariate-linear';
+
 export class SVGScatterChartUtils {
   static P_PADDING = 0.15;
   static SPANS_PER_RADIUS = 50;
+
+  static extendPoints(points) {
+    const X = points.map(({ x }) => [x]);
+    const Y = points.map(({ y }) => [y]);
+
+    const mlr = new MLR(X, Y);
+    const [[m], [c]] = mlr.weights;
+
+    const extendedPoints = points
+      .map(function (point) {
+        const { x, y } = point;
+        const pDelta = (y - x) / x;
+        const dY = Math.abs(m * x + c - y) / Math.sqrt(m * m + 1);
+        return Object.assign({}, point, { dY, pDelta });
+      })
+      .sort((a, b) => b.dY - a.dY);
+
+    return { m, c, extendedPoints };
+  }
 
   static getBoundParams(points) {
     const xList = points

@@ -5,16 +5,20 @@ export function SVGScatterChartAxisBarLabel({
   formatStat,
   isX,
 }) {
-  const { xMin, yMin, radius, yPadding, xPadding, transformY } = boundParams;
-
+  const { xMin, yMin, radius, yPadding, xPadding, transformX, transformY } =
+    boundParams;
+  const P_FROM_PADDING = 0.25;
+  const STYLE = {
+    fontSize: radius * 3,
+    textAnchor: 'middle',
+    dominantBaseline: 'middle',
+  };
   if (isX) {
     return (
       <text
-        x={x}
-        y={transformY(yMin) + yPadding / 3}
-        fontSize={radius * 2}
-        textAnchor="middle"
-        dominantBaseline="middle"
+        x={transformX(x)}
+        y={transformY(yMin) + yPadding * P_FROM_PADDING}
+        {...STYLE}
       >
         {formatStat(x)}
       </text>
@@ -22,11 +26,9 @@ export function SVGScatterChartAxisBarLabel({
   }
   return (
     <text
-      x={xMin - xPadding / 3}
+      x={transformX(xMin) - xPadding * P_FROM_PADDING}
       y={transformY(y)}
-      fontSize={radius * 2}
-      textAnchor="middle"
-      dominantBaseline="middle"
+      {...STYLE}
     >
       {formatStat(y)}
     </text>

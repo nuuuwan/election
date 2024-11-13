@@ -1,6 +1,11 @@
 import { SVGScatterChartPoint } from './SVGScatterChartPoint';
 
-export function SVGScatterChartPoints({ points, boundParams, formatStat }) {
+export function SVGScatterChartPoints({
+  points,
+  boundParams,
+  formatStat,
+  mode,
+}) {
   return points.map(function (point, iPoint) {
     return (
       <SVGScatterChartPoint
@@ -9,6 +14,7 @@ export function SVGScatterChartPoints({ points, boundParams, formatStat }) {
         point={point}
         boundParams={boundParams}
         formatStat={formatStat}
+        mode={mode}
       />
     );
   });

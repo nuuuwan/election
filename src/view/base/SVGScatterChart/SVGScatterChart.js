@@ -2,22 +2,8 @@ import { THEME_DATA } from '../../_constants/THEME';
 import { SVGScatterChartPoints } from './SVGScatterChartPoints';
 import { SVGScatterChartUtils } from './SVGScatterChartUtils';
 import { SVGScatterChartAxis } from './SVGScatterChartAxis';
+import { SVGScatterChartBackgroundRect } from './SVGScatterChartBackgroundRect';
 
-function SVGScatterChartBackgroundRect({ boundParams }) {
-  const { xMin, yMin, xSpan, ySpan, yPadding, xPadding } = boundParams;
-  return (
-    <g>
-      <rect
-        x={xMin - xPadding}
-        y={yMin - yPadding}
-        width={xSpan + xPadding * 2}
-        height={ySpan + yPadding * 2}
-        fill={'#fcfcfc'}
-      />
-      <rect x={xMin} y={yMin} width={xSpan} height={ySpan} fill={'#f8f8f8'} />
-    </g>
-  );
-}
 export default function SVGScatterChart({
   points,
   width,
@@ -27,6 +13,10 @@ export default function SVGScatterChart({
   formatStat,
 }) {
   const boundParams = SVGScatterChartUtils.getBoundParams(points);
+  const common = {
+    boundParams,
+    formatStat,
+  };
   return (
     <svg
       viewBox={boundParams.viewBox}
@@ -34,24 +24,11 @@ export default function SVGScatterChart({
       height={height}
       fontFamily={THEME_DATA.typography.fontFamily}
     >
-      <SVGScatterChartBackgroundRect boundParams={boundParams} />
-      <SVGScatterChartAxis
-        title={xTitle}
-        boundParams={boundParams}
-        formatStat={formatStat}
-        isX={true}
-      />
-      <SVGScatterChartAxis
-        title={yTitle}
-        boundParams={boundParams}
-        formatStat={formatStat}
-        isX={false}
-      />
-      <SVGScatterChartPoints
-        points={points}
-        boundParams={boundParams}
-        formatStat={formatStat}
-      />
+      <SVGScatterChartBackgroundRect {...common} />
+      <SVGScatterChartAxis title={xTitle} isX={true} {...common} />
+      <SVGScatterChartAxis title={yTitle} isX={false} {...common} />
+      <SVGScatterChartPoints points={points} mode="circle" {...common} />
+      <SVGScatterChartPoints points={points} mode="text" {...common} />
     </svg>
   );
 }

@@ -7,20 +7,27 @@ export function SVGScatterChartPoint({
   iPoint,
   boundParams,
   formatStat,
+  mode,
 }) {
-  return (
-    <g>
+  if (mode === 'circle') {
+    return (
       <SVGScatterChartPointCircle
         point={point}
         iPoint={iPoint}
         boundParams={boundParams}
         formatStat={formatStat}
       />
+    );
+  }
+  if (mode === 'text') {
+    return (
       <SVGScatterChartPointText
         point={point}
         iPoint={iPoint}
         boundParams={boundParams}
+        formatStat={formatStat}
       />
-    </g>
-  );
+    );
+  }
+  throw new Error(`Unknown mode: ${mode}`);
 }

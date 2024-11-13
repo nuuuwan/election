@@ -1,23 +1,23 @@
 export function SVGScatterChartAxisTitle({ title, boundParams, isX }) {
-  const { xMin, xSpan, yMin, xPadding, yPadding, radius, ySpan, transformY } =
-    boundParams;
+  const { xPadding, yPadding, radius } = boundParams;
   let xText, yText, transform;
+  const P_FROM_PADDING = 0.75;
   if (isX) {
-    xText = xMin + xSpan / 2;
-    yText = yMin - (yPadding * 2) / 3;
+    xText = 0.5;
+    yText = 1 + yPadding * P_FROM_PADDING;
     transform = '';
   } else {
-    xText = xMin - (xPadding * 2) / 3;
-    yText = yMin + ySpan / 2;
+    xText = 0 - xPadding * P_FROM_PADDING;
+    yText = 0.5;
     transform = `rotate(-90, ${xText}, ${yText})`;
   }
 
   return (
     <text
       x={xText}
-      y={transformY(yText)}
+      y={yText}
       transform={transform}
-      fontSize={radius * 3}
+      fontSize={radius * 4}
       textAnchor="middle"
       dominantBaseline="middle"
     >

@@ -1,30 +1,30 @@
-import { Format, Party } from '../../../nonview';
-import { MAX_OUTLIERS } from './SVGScatterChartPoint';
+import { Party } from '../../../nonview';
+import SVGScatterChartPointToolTip from './SVGScatterChartPointToolTip';
+const UNIT_POLLED = 20_000;
 
 export function SVGScatterChartPointCircle({
   point,
-  iPoint,
+
   boundParams,
   formatStat,
 }) {
-  const { ent, resultY, x, y, pDelta } = point;
-  const { radius, transformY } = boundParams;
+  const { resultY, x, y } = point;
+  const { radius, transformX, transformY } = boundParams;
   const xWinningPartyID = resultY.winningPartyID;
   const color = Party.fromID(xWinningPartyID).color;
-  const toolTip = `${ent.name} ${formatStat(x)} ➡ ${formatStat(
-    y,
-  )} (${Format.percentSigned(pDelta)})`;
-  const isOutlier = iPoint < MAX_OUTLIERS;
-  const fillOpacity = isOutlier ? 1 : 0.333;
+
+  const polled = resultY.summary.polled;
+  const radiusScaled = radius * Math.sqrt(polled / UNIT_POLLED);
+
   return (
     <circle
-      cx={x}
+      cx={transformX(x)}
       cy={transformY(y)}
-      r={radius}
+      r={radiusScaled}
       fill={color}
-      fillOpacity={fillOpacity}
+      fillOpacity={0.25}
     >
-      <title>{toolTip}</title>
+      <SVGScatterChartPointToolTip point={point} formatStat={formatStat} />
     </circle>
   );
 }

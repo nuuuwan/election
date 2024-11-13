@@ -1,8 +1,14 @@
 import { MAX_OUTLIERS } from './SVGScatterChartPoint';
+import SVGScatterChartPointToolTip from './SVGScatterChartPointToolTip';
 
-export function SVGScatterChartPointText({ point, iPoint, boundParams }) {
+export function SVGScatterChartPointText({
+  point,
+  iPoint,
+  boundParams,
+  formatStat,
+}) {
   const { ent, x, y } = point;
-  const { radius, transformY } = boundParams;
+  const { radius, transformX, transformY } = boundParams;
 
   const isOutlier = iPoint < MAX_OUTLIERS;
   if (!isOutlier) {
@@ -11,13 +17,14 @@ export function SVGScatterChartPointText({ point, iPoint, boundParams }) {
 
   return (
     <text
-      x={x + radius}
+      x={transformX(x) + radius}
       y={transformY(y)}
       fontSize={radius * 2}
       fill="black"
       textAnchor="start"
       dominantBaseline="middle"
     >
+      <SVGScatterChartPointToolTip point={point} formatStat={formatStat} />
       {ent.name}
     </text>
   );

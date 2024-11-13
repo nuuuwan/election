@@ -58,7 +58,7 @@ export default class AggregatedResultUtils {
     const entIDList =
       AggregatedResultUtils.getGroupToEntIDListGetter()[group](data);
     return entIDList.reduce(function (partyToWins, entID) {
-      const result = electionDisplay.getResult(entID);
+      const result = electionDisplay.getResultSafe(entID);
       if (result) {
         const partyID = result.winningPartyID;
 

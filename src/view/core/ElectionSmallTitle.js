@@ -5,7 +5,7 @@ export default function ElectionSmallTitle() {
   const data = useDataContext();
   const { electionDisplay } = data;
   return (
-    <Typography variant="h6" sx={{ opacity: 0.1 }}>
+    <Typography variant="h6" sx={{ opacity: 0.25 }}>
       {electionDisplay.hashtag}
     </Typography>
   );

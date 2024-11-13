@@ -27,18 +27,19 @@ export default class ActivePDUtils {
 
   static getNewActiveEntID({ baseResultList, entIdx, entID }) {
     const entType = EntType.fromID(entID);
+
     return {
-      [EntType.PD]: entID,
-      [EntType.ED]: ActivePDUtils.getNewActiveEntIDForED({
+      [EntType.PD.name]: entID,
+      [EntType.ED.name]: ActivePDUtils.getNewActiveEntIDForED({
         baseResultList,
         entIdx,
         entID,
       }),
-      [EntType.PROVINCE]: ActivePDUtils.getNewActiveEntIDForProvince({
+      [EntType.PROVINCE.name]: ActivePDUtils.getNewActiveEntIDForProvince({
         baseResultList,
         entIdx,
         entID,
       }),
-    }[entType];
+    }[entType.name];
   }
 }

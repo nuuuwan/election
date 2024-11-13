@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import { Format, Party } from '../../nonview';
 
-import SVGBarChart from '../base/SVGBarChart.js/SVGBarChart';
+import SVGBarChart from '../base/SVGBarChart/SVGBarChart';
 import ExternalMediaCustomData from '../core/ExternalMediaCustomData';
 
 export default function ResultBarChart({ partyToPVotes }) {

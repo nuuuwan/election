@@ -9,15 +9,16 @@ import EntView from "./base/EntView.js";
 import IfElse from "./base/IfElse.js";
 import LabelledStat from "./base/LabelledStat.js";
 import RefreshButton from "./base/RefreshButton.js";
-import SVGBarChart from "./base/SVGBarChart.js/SVGBarChart.js";
-import SVGBarChartCell from "./base/SVGBarChart.js/SVGBarChartCell.js";
-import SVGBarChartCellBar from "./base/SVGBarChart.js/SVGBarChartCellBar.js";
-import SVGBarChartCellLabel from "./base/SVGBarChart.js/SVGBarChartCellLabel.js";
-import SVGBarChartContextProvider from "./base/SVGBarChart.js/SVGBarChartContextProvider.js";
-import SVGBarChartRow from "./base/SVGBarChart.js/SVGBarChartRow.js";
-import SVGBarChartRowLabel from "./base/SVGBarChart.js/SVGBarChartRowLabel.js";
-import SVGBarChartTable from "./base/SVGBarChart.js/SVGBarChartTable.js";
-import SVGLabel from "./base/SVGBarChart.js/SVGLabel.js";
+import SVGBarChart from "./base/SVGBarChart/SVGBarChart.js";
+import SVGBarChartCell from "./base/SVGBarChart/SVGBarChartCell.js";
+import SVGBarChartCellBar from "./base/SVGBarChart/SVGBarChartCellBar.js";
+import SVGBarChartCellLabel from "./base/SVGBarChart/SVGBarChartCellLabel.js";
+import SVGBarChartContextProvider from "./base/SVGBarChart/SVGBarChartContextProvider.js";
+import SVGBarChartRow from "./base/SVGBarChart/SVGBarChartRow.js";
+import SVGBarChartRowLabel from "./base/SVGBarChart/SVGBarChartRowLabel.js";
+import SVGBarChartTable from "./base/SVGBarChart/SVGBarChartTable.js";
+import SVGLabel from "./base/SVGBarChart/SVGLabel.js";
+import SVGScatterChart from "./base/SVGScatterChart/SVGScatterChart.js";
 import TabSelector from "./base/TabSelector.js";
 import CitationsView from "./core/CitationsView.js";
 import ClockView from "./core/ClockView.js";
@@ -129,6 +130,7 @@ export {
   SVGBarChartRowLabel,
   SVGBarChartTable,
   SVGLabel,
+  SVGScatterChart,
   TabSelector,
   CitationsView,
   ClockView,

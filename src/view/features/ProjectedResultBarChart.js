@@ -2,7 +2,7 @@ import { Color, Format, Party } from '../../nonview';
 
 import { useDataSlowContext } from '../../nonview/core/DataSlowProvider';
 import CustomLoadingProgress from '../base/CustomLoadingProgress';
-import SVGBarChart from '../base/SVGBarChart.js/SVGBarChart';
+import SVGBarChart from '../base/SVGBarChart/SVGBarChart';
 
 function formatRowValue(data) {
   const pVotesMin = data.pVotesMin;

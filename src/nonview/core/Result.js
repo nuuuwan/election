@@ -1,6 +1,6 @@
-import Summary from "./Summary";
-import PartyToVotes from "./PartyToVotes";
-import MathX from "../base/MathX";
+import Summary from './Summary';
+import PartyToVotes from './PartyToVotes';
+import MathX from '../base/MathX';
 
 export default class Result {
   constructor(entID, summary, partyToVotes, resultTime) {
@@ -14,11 +14,11 @@ export default class Result {
     const entID = d.entity_id;
     const partyToVotes = PartyToVotes.fromDict(d);
 
-    // HACK
+    // HACK to fix #GenElecSL2000 BUG
     let summary = Summary.fromDict(d);
     if (!summary.electors) {
       const valid = parseInt(
-        MathX.sum(Object.values(partyToVotes.partyToVotes))
+        MathX.sum(Object.values(partyToVotes.partyToVotes)),
       );
       const rejected = parseInt(valid * 0.05);
       const polled = valid + rejected;
@@ -26,7 +26,7 @@ export default class Result {
       summary = new Summary(valid, rejected, polled, electors);
     }
 
-    const resultTime = d.result_time;
+    const resultTime = d['timestamp'];
 
     return new Result(entID, summary, partyToVotes, resultTime);
   }
@@ -38,8 +38,8 @@ export default class Result {
 
     if (resultList.length > 0) {
       resultTime = resultList.sort(function (a, b) {
-        const resultTimeA = a.resultTime || "";
-        const resultTimeB = b.resultTime || "";
+        const resultTimeA = a.resultTime || '';
+        const resultTimeB = b.resultTime || '';
         return resultTimeA.localeCompare(resultTimeB);
       })[resultList.length - 1].resultTime;
     }

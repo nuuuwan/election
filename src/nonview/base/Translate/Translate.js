@@ -1,8 +1,8 @@
-import URLContext from "../URLContext";
-import DICTIONARY from "./DICTIONARY";
+import URLContext from '../URLContext';
+import DICTIONARY from './DICTIONARY';
 
 class Translate {
-  static DEFAULT_LANG = "en";
+  static DEFAULT_LANG = 'en';
 
   static getLang() {
     const context = URLContext.get();
@@ -10,6 +10,10 @@ class Translate {
   }
 
   static getTranslationInLanguage(phrase, lang) {
+    if (phrase.toString().trim() === '') {
+      return '';
+    }
+
     if (!DICTIONARY[phrase] || !DICTIONARY[phrase][lang]) {
       console.warn(phrase);
       return phrase;
@@ -18,10 +22,10 @@ class Translate {
   }
 
   static getTranslationWithoutParams(phrase) {
-    if (["%"].includes(phrase)) {
+    if (['%'].includes(phrase)) {
       return phrase;
     }
-    if (typeof phrase !== "string") {
+    if (typeof phrase !== 'string') {
       return phrase;
     }
     const lang = Translate.getLang();
@@ -37,7 +41,7 @@ class Translate {
       return translation;
     }
     for (let i = 0; i < params.length; i++) {
-      translation = translation.replace("%" + (i + 1).toString(), params[i]);
+      translation = translation.replace('%' + (i + 1).toString(), params[i]);
     }
     return translation;
   }

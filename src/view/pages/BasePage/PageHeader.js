@@ -2,7 +2,6 @@ import { AppBar, Box, Toolbar, Typography } from '@mui/material';
 
 import { RefreshButton, CustomMenu, ClockView } from '../../../view';
 import { useDataSlowContext } from '../../../nonview/core/DataSlowProvider';
-import { Translate } from '../../../nonview';
 
 const STYLE_PAGE_HEADER = {
   SELECTOR: {
@@ -24,7 +23,7 @@ function PageHeaderTitle() {
   if (data) {
     const { electionProjected, nResultsDisplay } = data;
     if (electionProjected) {
-      label = Translate(electionProjected.title) + ` (${nResultsDisplay})`;
+      label = electionProjected.title + ` (${nResultsDisplay})`;
     }
   }
   return <Typography variant="h4">{label}</Typography>;

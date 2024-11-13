@@ -22,7 +22,9 @@ export function SVGScatterChartPointCircle({
       cy={transformY(y)}
       r={radiusScaled}
       fill={color}
-      fillOpacity={0.25}
+      fillOpacity={0.5}
+      stroke="white"
+      strokeWidth={0.001}
     >
       <SVGScatterChartPointToolTip point={point} formatStat={formatStat} />
     </circle>

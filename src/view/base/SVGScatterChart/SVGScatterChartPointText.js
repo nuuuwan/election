@@ -17,11 +17,11 @@ export function SVGScatterChartPointText({
 
   return (
     <text
-      x={transformX(x) + radius}
-      y={transformY(y)}
+      x={transformX(x)}
+      y={transformY(y) + radius / 2}
       fontSize={radius * 2}
       fill="black"
-      textAnchor="start"
+      textAnchor="middle"
       dominantBaseline="middle"
     >
       <SVGScatterChartPointToolTip point={point} formatStat={formatStat} />

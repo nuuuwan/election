@@ -7,9 +7,9 @@ export function SVGScatterChartBackgroundRect({ boundParams }) {
         y={-yPadding}
         width={1 + xPadding * 2}
         height={1 + yPadding * 2}
-        fill={'#fcfcfc'}
+        fill={'#fefefe'}
       />
-      <rect x={0} y={0} width={1} height={1} fill={'#f8f8f8'} />
+      <rect x={0} y={0} width={1} height={1} fill={'#fdfdfd'} />
     </g>
   );
 }

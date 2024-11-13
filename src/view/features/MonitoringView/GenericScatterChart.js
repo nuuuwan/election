@@ -60,7 +60,7 @@ export default function GenericScatterChart({
   return (
     <ExternalMedia id={'generic-scatter-chart' + idPrefix}>
       <ExternalMediaCustomData customData={{ idPrefix }} />
-      <Typography variant="h3" sx={{ opacity: 0.1 }}>
+      <Typography variant="h3" sx={{ opacity: 0.5 }}>
         {Translate(StringX.toTitleCase(idPrefix))}
       </Typography>
       <SVGScatterChart

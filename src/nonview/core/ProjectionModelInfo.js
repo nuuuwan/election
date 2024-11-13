@@ -1,9 +1,7 @@
-import Party from "./Party";
-
+import Party from './Party';
 
 export default class ProjectionModelInfo {
-
-  static MIN_N_RESULTS_DISPLAY = 30;
+  static MIN_N_RESULTS_DISPLAY = 1;
   static MIN_P_ERROR = 0.5;
 
   constructor(electionProjected, nResultsDisplay) {
@@ -23,5 +21,4 @@ export default class ProjectionModelInfo {
   get isTooMuchError() {
     return this.error > ProjectionModelInfo.MIN_P_ERROR;
   }
-  
 }

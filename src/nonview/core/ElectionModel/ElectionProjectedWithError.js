@@ -11,7 +11,11 @@ export default class ElectionProjectedWithError {
         partyID,
         votes,
       ]) {
-        if (!edPartyToPVotes || !edPartyToPVotes[partyID]) {
+        if (
+          !edPartyToPVotes ||
+          !edPartyToPVotes[partyID] ||
+          edPartyToPVotes[partyID] < 0.05
+        ) {
           return [partyID, 0];
         }
 

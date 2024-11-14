@@ -1,7 +1,7 @@
 import Party from './Party';
 
 export default class ProjectionModelInfo {
-  static MIN_N_RESULTS_DISPLAY = 20;
+  static MIN_N_RESULTS_DISPLAY = 1;
   static MIN_P_ERROR = 0.5;
 
   constructor(electionProjected, nResultsDisplay) {

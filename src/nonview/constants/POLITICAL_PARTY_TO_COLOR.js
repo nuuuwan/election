@@ -42,7 +42,7 @@ const COLOR_TO_POLITICAL_PARTIES = {
   // 2024
   '#f82': ['IND16'],
   '#04c': ['IND9'],
-  '#06c': ['CPSL'],
+  '#06c': ['CPSL', 'SB'],
 };
 
 const POLITICAL_PARTY_TO_COLOR = Object.entries(

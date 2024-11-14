@@ -1,4 +1,5 @@
-export function SVGScatterChartFittedLine({ m, c, boundParams }) {
+export function SVGScatterChartFittedLine({ boundParams }) {
+  const [m, c] = [1, 0];
   const { xMin, xMax, transformX, transformY } = boundParams;
   const x1 = transformX(xMin);
   const x2 = transformX(xMax);

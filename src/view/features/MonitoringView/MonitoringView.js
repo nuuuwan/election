@@ -2,6 +2,7 @@ import BanfordView from './BanfordView';
 import TurnoutView from './TurnoutView';
 import RejectedView from './RejectedView';
 import ElectorsView from './ElectorsView';
+import EffectiveVotesView from './EffectiveVotesView';
 import { TabSelector } from '../..';
 import { useDataContext } from '../../../nonview/core/DataProvider';
 import { useBasePageHandlerContext } from '../../pages/BasePage/BasePageHandlerProvider';
@@ -19,6 +20,7 @@ export default function MonitoringView() {
         Turnout: () => <TurnoutView />,
         Rejected: () => <RejectedView />,
         Electors: () => <ElectorsView />,
+        Effective: () => <EffectiveVotesView />,
       }}
       initSelectedValue={groupMonitoring}
       setGroup={setGroupMonitoring}

@@ -81,6 +81,14 @@ export default class Summary {
   }
 
   get pRejected() {
-    return this.rejected / this.valid;
+    return this.rejected / this.polled;
+  }
+
+  get pValid() {
+    return this.valid / this.polled;
+  }
+
+  get pEffective() {
+    return this.valid / this.electors;
   }
 }

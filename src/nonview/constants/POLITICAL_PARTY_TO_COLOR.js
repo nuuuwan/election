@@ -6,7 +6,7 @@ const COLOR_TO_POLITICAL_PARTIES = {
   '#f80': ['ACTC', 'Ind-R'],
   '#f99': ['JHU', 'SU', 'OPPP'],
 
-  '#f00': [
+  '#c4094a': [
     'JVP',
     'LSSP',
 

@@ -1,17 +1,16 @@
-
 const FormatInt = {
   int(x) {
     return x.toLocaleString();
   },
 
   intHumanizeSigned(x) {
-    const sign = x < 0 ? "-" : "+";
+    const sign = x < 0 ? '-' : '+';
     return sign + FormatInt.intHumanize(Math.abs(x));
   },
 
   intHumanize(value) {
     if (value === null || value === undefined) {
-      return "";
+      return '';
     }
 
     if (value === 0) {
@@ -26,16 +25,14 @@ const FormatInt = {
     const nDecimalPlacesActual = Math.max(0, nDecimalPlaces);
     const mult = Math.pow(10, nDecimalPlacesActual - nDecimalPlaces);
     const valueStr = (scaledValue / mult).toFixed(nDecimalPlacesActual) * mult;
-    
+
     const symbol = {
-      2: "M",
-      1: "K",
-      0: "",
+      2: 'M',
+      1: 'K',
+      0: '',
     }[log10K];
-    
+
     return valueStr + symbol;
   },
-
-
 };
 export default FormatInt;
